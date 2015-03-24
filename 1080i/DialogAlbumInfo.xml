@@ -4,8 +4,10 @@
 	<allowoverlay>no</allowoverlay>
 	<controls>
 		<control type="group">
-			<animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
-			<animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
+			<animation effect="slide" start="-729,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
+			<animation effect="slide" end="-729,0" time="320" tween="quadratic">WindowClose</animation>
+			<animation effect="slide" start="-729,0" end="0,0" time="320" tween="quadratic" condition="!Window.IsVisible(script-Actors-DialogVideoInfo.xml)|!Window.IsVisible(script-Actors-DialogInfo.xml)">Conditional</animation>
+			<animation effect="slide" end="-729,0" time="320" tween="quadratic" condition="Window.IsVisible(script-Actors-DialogVideoInfo.xml)|Window.IsVisible(script-Actors-DialogInfo.xml)">Conditional</animation>
 			<control type="image">
 				<width>729</width>
 				<height>1080</height>
@@ -26,13 +28,13 @@
 				<visible>Container.Content(artists)</visible>
 			</control>
 			<control type="image">
-				<top>311</top>
+				<posy>311</posy>
 				<width>729</width>
 				<height>40</height>
 				<texture flipy="true" border="1">bottom_shadow.png</texture>
 			</control>
 			<control type="image">
-				<top>351</top>
+				<posy>351</posy>
 				<width>729</width>
 				<height>729</height>
 				<aspectratio scalediffuse="false" aligny="bottom">keep</aspectratio>
@@ -40,9 +42,11 @@
 			</control>
 		</control>
 		<control type="group">
-			<animation effect="slide" start="1242,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
-			<animation effect="slide" end="1242,0" time="500" tween="quadratic">WindowClose</animation>
-			<left>729</left>
+			<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
+			<animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
+			<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic" condition="!Window.IsVisible(script-Actors-DialogVideoInfo.xml)|!Window.IsVisible(script-Actors-DialogInfo.xml)">Conditional</animation>
+			<animation effect="slide" end="1242,0" time="320" tween="quadratic" condition="Window.IsVisible(script-Actors-DialogVideoInfo.xml)|Window.IsVisible(script-Actors-DialogInfo.xml)">Conditional</animation>
+			<posx>729</posx>
 			<control type="image">
 				<width>1192</width>
 				<height>1080</height>
@@ -60,13 +64,14 @@
 				<height>1080</height>
 				<texture border="4">dialogs/info/info_rightpaneltop.png</texture>
 			</control>
+
 			<control type="group">
-				<left>40</left>
-				<top>20</top>
+				<posx>40</posx>
+				<posy>20</posy>
 				<width>1042</width>
 				<height>854</height>
 				<control type="grouplist">
-					<top>-20</top>
+					<posy>-20</posy>
 					<width>1100</width>
 					<height>110</height>
 					<itemgap>0</itemgap>
@@ -77,10 +82,10 @@
 						<height>60</height>
 						<aligny>center</aligny>
 						<align>left</align>
-						<font>font30_title_bold</font>
+						<font>font30_title</font>
 						<textcolor>grey</textcolor>
 						<scroll>true</scroll>
-						<label>$INFO[ListItem.Album]</label>
+						<label>[B]$INFO[ListItem.Album][/B]</label>
 					</control>
 					<control type="label">
 						<width>1100</width>
@@ -95,7 +100,7 @@
 					</control>
 				</control>
 				<control type="grouplist">
-					<top>-20</top>
+					<posy>-20</posy>
 					<width>1100</width>
 					<height>110</height>
 					<itemgap>0</itemgap>
@@ -106,22 +111,22 @@
 						<height>60</height>
 						<aligny>center</aligny>
 						<align>left</align>
-						<font>font30_title_bold</font>
+						<font>font30_title</font>
 						<textcolor>grey</textcolor>
 						<scroll>true</scroll>
-						<label>$INFO[ListItem.Artist]</label>
+						<label>[B]$INFO[ListItem.Artist][/B]</label>
 					</control>
 				</control>
 				<control type="image">
-					<left>-37</left>
-					<top>32</top>
+					<posx>-37</posx>
+					<posy>32</posy>
 					<width>1188</width>
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 				</control>
 				<control type="grouplist">
-					<left>0</left>
-					<top>95</top>
+					<posx>0</posx>
+					<posy>95</posy>
 					<width>1050</width>
 					<height>90</height>
 					<itemgap>0</itemgap>
@@ -132,8 +137,8 @@
 						<width>140</width>
 						<height>90</height>
 						<align>left</align>
-						<label>$INFO[ListItem.Year]</label>
-						<font>font35_title_bold</font>
+						<label>[B]$INFO[ListItem.Year][/B]</label>
+						<font>font35_title</font>
 						<textcolor>grey</textcolor>
 					</control>
 					<control type="image">
@@ -152,7 +157,7 @@
 							<texture>$INFO[ListItem.Property(Album_Label),flags/music/recordlabel/,.png]</texture>
 						</control>
 						<control type="label">
-							<left>0</left>
+							<posx>0</posx>
 							<width>198</width>
 							<height>90</height>
 							<align>center</align>
@@ -172,17 +177,17 @@
 						<visible>!IsEmpty(Container(50).NumItems)</visible>
 						<width>160</width>
 						<control type="label">
-							<left>0</left>
-							<top>2</top>
+							<posx>0</posx>
+							<posy>2</posy>
 							<width>160</width>
 							<height>60</height>
 							<align>center</align>
-							<label>$INFO[Container(50).NumItems]</label>
-							<font>font48_bold</font>
+							<label>[B]$INFO[Container(50).NumItems][/B]</label>
+							<font>font48</font>
 							<textcolor>grey</textcolor>
 						</control>
 						<control type="label">
-							<top>52</top>
+							<posy>52</posy>
 							<width>160</width>
 							<height>30</height>
 							<align>center</align>
@@ -192,7 +197,7 @@
 							<visible>Container.Content(albums)</visible>
 						</control>
 						<control type="label">
-							<top>52</top>
+							<posy>52</posy>
 							<width>160</width>
 							<height>30</height>
 							<align>center</align>
@@ -220,15 +225,15 @@
 					</control>
 				</control>
 				<control type="image">
-					<left>-37</left>
-					<top>126</top>
+					<posx>-37</posx>
+					<posy>126</posy>
 					<width>1188</width>
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 				</control>
 				<control type="panel" id="300">
-					<left>-36</left>
-					<top>184</top>
+					<posx>-36</posx>
+					<posy>184</posy>
 					<width>1188</width>
 					<height>306</height>
 					<onup>4002</onup>
@@ -237,13 +242,13 @@
 					<scrolltime tween="quadratic" easing="out">200</scrolltime>
 					<itemlayout height="102" width="594">
 						<control type="image">
-							<top>42</top>
+							<posy>42</posy>
 							<width>594</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
 						</control>
 						<control type="label">
-							<top>50</top>
+							<posy>50</posy>
 							<width>594</width>
 							<height>40</height>
 							<font>font15</font>
@@ -253,7 +258,7 @@
 							<textoffsetx>36</textoffsetx>
 						</control>
 						<control type="label">
-							<top>5</top>
+							<posy>5</posy>
 							<width>594</width>
 							<height>40</height>
 							<font>font15</font>
@@ -265,13 +270,13 @@
 					</itemlayout>
 					<focusedlayout height="102" width="594">
 						<control type="image">
-							<top>42</top>
+							<posy>42</posy>
 							<width>594</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
 						</control>
 						<control type="image">
-							<top>1</top>
+							<posy>1</posy>
 							<width>594</width>
 							<height>100</height>
 							<texture border="4">listselect_fo.png</texture>
@@ -279,7 +284,7 @@
 							<include>VisibleFadeEffect</include>
 						</control>
 						<control type="label">
-							<top>50</top>
+							<posy>50</posy>
 							<width>594</width>
 							<height>40</height>
 							<font>font15</font>
@@ -290,7 +295,7 @@
 							<textoffsetx>36</textoffsetx>
 						</control>
 						<control type="label">
-							<top>5</top>
+							<posy>5</posy>
 							<width>594</width>
 							<height>40</height>
 							<font>font15</font>
@@ -413,9 +418,10 @@
 						</item>
 					</content>
 				</control>
+
 				<control type="button" id="4003">
-					<left>0</left>
-					<top>560</top>
+					<posx>0</posx>
+					<posy>560</posy>
 					<width>1132</width>
 					<height>400</height>
 					<onleft>9000</onleft>
@@ -428,8 +434,8 @@
 				</control>
 				<control type="textbox" id="4">
 					<description>Plot</description>
-					<left>0</left>
-					<top>560</top>
+					<posx>0</posx>
+					<posy>560</posy>
 					<width>1132</width>
 					<height>462</height>
 					<font>font15_textbox</font>
@@ -440,8 +446,8 @@
 					<visible>!Control.IsVisible(50)</visible>
 				</control>
 				<control type="scrollbar" id="60">
-					<left>1140</left>
-					<top>560</top>
+					<posx>1140</posx>
+					<posy>560</posy>
 					<width>14</width>
 					<height>400</height>
 					<texturesliderbackground>-</texturesliderbackground>
@@ -452,8 +458,8 @@
 					<visible>!Control.IsVisible(50)</visible>
 				</control>
 				<control type="panel" id="50">
-					<left>-36</left>
-					<top>550</top>
+					<posx>-36</posx>
+					<posy>550</posy>
 					<width>1186</width>
 					<height>504</height>
 					<onleft>50</onleft>
@@ -466,7 +472,7 @@
 					<orientation>horizontal</orientation>
 					<itemlayout height="84" width="593" condition="Container.Content(artists)">
 						<control type="image">
-							<top>24</top>
+							<posy>24</posy>
 							<width>593</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
@@ -481,7 +487,7 @@
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 						<control type="label">
-							<left>593</left>
+							<posx>593</posx>
 							<width>593</width>
 							<height>84</height>
 							<font>font15</font>
@@ -494,7 +500,7 @@
 					</itemlayout>
 					<focusedlayout height="84" width="593" condition="Container.Content(artists)">
 						<control type="image">
-							<top>24</top>
+							<posy>24</posy>
 							<width>593</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
@@ -517,7 +523,7 @@
 							<animation effect="fade" start="100" end="40" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
 						</control>
 						<control type="label">
-							<left>593</left>
+							<posx>593</posx>
 							<width>593</width>
 							<height>84</height>
 							<font>font15</font>
@@ -530,7 +536,7 @@
 					</focusedlayout>
 					<itemlayout height="84" width="593" condition="Container.Content(albums)">
 						<control type="image">
-							<top>24</top>
+							<posy>24</posy>
 							<width>593</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
@@ -545,7 +551,7 @@
 							<label>$INFO[ListItem.Tracknumber,,: ]$INFO[ListItem.Label]</label>
 						</control>
 						<control type="label">
-							<left>593</left>
+							<posx>593</posx>
 							<width>593</width>
 							<height>84</height>
 							<font>font15</font>
@@ -558,7 +564,7 @@
 					</itemlayout>
 					<focusedlayout height="84" width="593" condition="Container.Content(albums)">
 						<control type="image">
-							<top>24</top>
+							<posy>24</posy>
 							<width>593</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
@@ -581,7 +587,7 @@
 							<animation effect="fade" start="100" end="40" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
 						</control>
 						<control type="label">
-							<left>593</left>
+							<posx>593</posx>
 							<width>593</width>
 							<height>84</height>
 							<font>font15</font>
@@ -594,27 +600,28 @@
 					</focusedlayout>
 				</control>
 			</control>
+
 			<control type="group">
-				<left>3</left>
-				<top>0</top>
+				<posx>3</posx>
+				<posy>0</posy>
 				<control type="image">
-					<top>450</top>
+					<posy>450</posy>
 					<width>594</width>
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 					<visible>!IntegerGreaterThan(Container(300).NumItems,2)</visible>
 				</control>
 				<control type="image">
-					<left>594</left>
-					<top>450</top>
+					<posx>594</posx>
+					<posy>450</posy>
 					<width>594</width>
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 					<visible>!IntegerGreaterThan(Container(300).NumItems,5)</visible>
 				</control>
 				<control type="grouplist" id="9000">
-					<left>1</left>
-					<top>510</top>
+					<posx>1</posx>
+					<posy>510</posy>
 					<width>1192</width>
 					<height>60</height>
 					<itemgap>0</itemgap>
@@ -693,6 +700,7 @@
 					</control>
 				</control>
 			</control>
+
 		</control>
 	</controls>
 </window>

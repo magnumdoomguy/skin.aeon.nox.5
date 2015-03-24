@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol always="true">9000</defaultcontrol>
+    <defaultcontrol always="true">9000</defaultcontrol>
 	<onload>SetProperty(Window.HasSettings,True,home)</onload>
 	<onload>ClearProperty(MediaMenu,Home)</onload>
 	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
 	<allowoverlay>no</allowoverlay>
-	<controls>
-		<include>CommonBackground</include>
+    <controls>
+        <include>CommonBackground</include>
 		<control type="group">
-			<left>0</left>
-			<top>128</top>
+			<posx>0</posx>
+			<posy>128</posy>
 			<include>Window_OpenClose_Animation</include>
 			<include>SystemLeftPanel</include>
 			<control type="panel" id="9000">
-				<left>82</left>
-				<top>32</top>
+				<posx>82</posx>
+				<posy>32</posy>
 				<width>356</width>
 				<height>720</height>
-				<onleft>61</onleft>
+				<onleft>SetProperty(MediaMenu,True,home)</onleft>
+				<onleft>SetFocus(9050)</onleft>
 				<onright condition="Container(9000).HasFocus(1)">300</onright>
 				<onright condition="Container(9000).HasFocus(5)">304</onright>
 				<onup>9000</onup>
 				<ondown>9000</ondown>
-				<pagecontrol>61</pagecontrol>
+				<pagecontrol>-</pagecontrol>
 				<scrolltime tween="quadratic">300</scrolltime>
 				<itemlayout height="90" width="356">
 					<control type="image">
-						<top>30</top>
+						<posy>30</posy>
 						<width>356</width>
 						<height>60</height>
 						<texture border="1">separator2.png</texture>
 					</control>
 					<control type="label">
+						<posx>356</posx>
+						<posy>0</posy>
 						<width>356</width>
 						<height>90</height>
 						<font>font15</font>
@@ -45,12 +48,14 @@
 				</itemlayout>
 				<focusedlayout height="90" width="356">
 					<control type="image">
-						<top>30</top>
+						<posy>30</posy>
 						<width>356</width>
 						<height>60</height>
 						<texture border="1">separator2.png</texture>
 					</control>
 					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
 						<width>356</width>
 						<height>90</height>
 						<texture border="4">listselect_fo.png</texture>
@@ -58,6 +63,8 @@
 						<include>VisibleFadeEffect</include>
 					</control>
 					<control type="label">
+						<posx>356</posx>
+						<posy>0</posy>
 						<width>356</width>
 						<height>90</height>
 						<font>font15</font>
@@ -80,77 +87,33 @@
 						<label>31904</label>
 						<onclick>noop</onclick>
 						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(Daily.IsFetched))</visible>
 					</item>
 					<item id="3">
 						<label>31901</label>
 						<onclick>noop</onclick>
 						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(36Hour.IsFetched))</visible>
 					</item>
 					<item id="4">
 						<label>31903</label>
 						<onclick>noop</onclick>
 						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(Weekend.IsFetched))</visible>
 					</item>
 					<item id="5">
 						<label>31902</label>
 						<onclick>noop</onclick>
 						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(Hourly.IsFetched))</visible>
 					</item>
 					<item id="6">
-						<label fallback="1448">$INFO[Window.Property(Map.1.Heading)]</label>
+						<label>31910</label>
 						<onclick>noop</onclick>
 						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(Map.1.Area)) + !IsEmpty(Window.Property(Map.IsFetched))</visible>
-					</item>
-					<item id="7">
-						<label fallback="387">$INFO[Window.Property(Map.2.Heading)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(Map.2.Area)) + !IsEmpty(Window.Property(Map.IsFetched))</visible>
-					</item>
-					<item id="8">
-						<label fallback="1375">$INFO[Window.Property(Map.3.Heading)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(Map.3.Area)) + !IsEmpty(Window.Property(Map.IsFetched))</visible>
-					</item>
-					<item id="9">
-						<label fallback="404">$INFO[Window.Property(Map.4.Heading)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(Map.4.Area)) + !IsEmpty(Window.Property(Map.IsFetched))</visible>
-					</item>
-					<item id="10">
-						<label fallback="1376">$INFO[Window.Property(Map.5.Heading)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-						<visible>!IsEmpty(Window.Property(Map.5.Area)) + !IsEmpty(Window.Property(Map.IsFetched))</visible>
 					</item>
 				</content>
 			</control>
-			<control type="scrollbar" id="61">
-				<left>65</left>
-				<top>32</top>
-				<width>14</width>
-				<height>720</height>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050)</onleft>
-				<onright>9000</onright>
-				<ondown>61</ondown>
-				<onup>61</onup>
-				<showonepage>false</showonepage>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-			</control>
 			<control type="image">
 				<description>LOGO</description>
-				<left>82</left>
-				<top>752</top>
+				<posx>82</posx>
+				<posy>752</posy>
 				<width>356</width>
 				<height>120</height>
 				<aspectratio>keep</aspectratio>
@@ -161,13 +124,13 @@
 				<control type="group">
 					<visible>Container(9000).HasFocus(1)</visible>
 					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
+					<posx>522</posx>
+					<posy>32</posy>
 					<width>1316</width>
 					<height>840</height>
 					<control type="image">
-						<left>105</left>
-						<top>0</top>
+						<posx>105</posx>
+						<posy>0</posy>
 						<width>540</width>
 						<height>135</height>
 						<aspectratio align="center" aligny="center">keep</aspectratio>
@@ -175,8 +138,8 @@
 					</control>
 					<control type="image">
 						<description>current weather icon</description>
-						<left>971</left>
-						<top>0</top>
+						<posx>971</posx>
+						<posy>0</posy>
 						<width>345</width>
 						<height>345</height>
 						<texture>$INFO[Window.Property(Current.ConditionIcon)]</texture>
@@ -184,7 +147,7 @@
 					</control>
 					<control type="label">
 						<description>weather location label</description>
-						<top>150</top>
+						<posy>150</posy>
 						<width>690</width>
 						<height>45</height>
 						<font>font15_title</font>
@@ -194,7 +157,7 @@
 					</control>
 					<control type="label">
 						<description>update label</description>
-						<top>190</top>
+						<posy>190</posy>
 						<width>690</width>
 						<height>45</height>
 						<font>font13_title</font>
@@ -204,8 +167,8 @@
 					</control>
 					<control type="label">
 						<description>current temp Value</description>
-						<left>530</left>
-						<top>0</top>
+						<posx>800</posx>
+						<posy>0</posy>
 						<width>270</width>
 						<height>345</height>
 						<font>WeatherTemp</font>
@@ -215,8 +178,8 @@
 					</control>
 					<control type="label">
 						<description>current temp Value Units</description>
-						<left>800</left>
-						<top>0</top>
+						<posx>800</posx>
+						<posy>0</posy>
 						<width>150</width>
 						<height>290</height>
 						<font>font16</font>
@@ -225,7 +188,7 @@
 					</control>
 					<control type="label">
 						<description>current condition label</description>
-						<top>280</top>
+						<posy>280</posy>
 						<width>1316</width>
 						<height>45</height>
 						<info>Window.Property(Current.Condition)</info>
@@ -236,15 +199,15 @@
 					</control>
 					<control type="image">
 						<description>separator image</description>
-						<left>0</left>
-						<top>280</top>
+						<posx>0</posx>
+						<posy>280</posy>
 						<width>1316</width>
 						<height>60</height>
 						<texture border="1">separator2.png</texture>
 					</control>
 					<control type="grouplist">
-						<left>0</left>
-						<top>350</top>
+						<posx>0</posx>
+						<posy>350</posy>
 						<width>438</width>
 						<itemgap>10</itemgap>
 						<control type="button">
@@ -259,15 +222,15 @@
 						</control>
 					</control>
 					<control type="image">
-						<top>340</top>
-						<left>437</left>
+						<posy>340</posy>
+						<posx>437</posx>
 						<width>2</width>
 						<height>198</height>
 						<texture border="1">separator3.png</texture>
 					</control>
 					<control type="grouplist">
-						<left>438</left>
-						<top>350</top>
+						<posx>438</posx>
+						<posy>350</posy>
 						<width>438</width>
 						<itemgap>10</itemgap>
 						<control type="button">
@@ -282,15 +245,15 @@
 						</control>
 					</control>
 					<control type="image">
-						<top>340</top>
-						<left>875</left>
+						<posy>340</posy>
+						<posx>875</posx>
 						<width>2</width>
 						<height>198</height>
 						<texture border="1">separator3.png</texture>
 					</control>
 					<control type="grouplist">
-						<left>876</left>
-						<top>350</top>
+						<posx>876</posx>
+						<posy>350</posy>
 						<width>438</width>
 						<itemgap>10</itemgap>
 						<control type="button">
@@ -303,7 +266,7 @@
 								<include>SettingsPanelButtonsValues</include>
 							</control>
 							<control type="button">
-								<left>219</left>
+								<posx>219</posx>
 								<label>[COLOR labelheader]$LOCALIZE[33028]:[/COLOR][CR]$INFO[Window.Property(Today.Sunset)]</label>
 								<texturenofocus>-</texturenofocus>
 								<include>SettingsPanelButtonsValues</include>
@@ -311,8 +274,8 @@
 						</control>
 					</control>
 					<control type="panel" id="300">
-						<left>0</left>
-						<top>540</top>
+						<posx>0</posx>
+						<posy>540</posy>
 						<width>1316</width>
 						<height>300</height>
 						<onup>9000</onup>
@@ -321,20 +284,21 @@
 						<scrolltime tween="quadratic" easing="out">200</scrolltime>
 						<itemlayout height="300" width="329">
 							<control type="image">
-								<left>327</left>
+								<posx>327</posx>
 								<width>2</width>
 								<height>300</height>
 								<texture border="1">separator3.png</texture>
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<top>60</top>
+								<posy>60</posy>
 								<width>329</width>
 								<height>100</height>
 								<texture>$INFO[ListItem.Icon]</texture>
 								<aspectratio aligny="top">keep</aspectratio>
 							</control>
 							<control type="label">
+								<posx>164</posx>
 								<width>329</width>
 								<height>60</height>
 								<font>font15</font>
@@ -345,7 +309,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>160</top>
+								<posx>164</posx>
+								<posy>160</posy>
 								<width>329</width>
 								<height>60</height>
 								<font>font15</font>
@@ -356,7 +321,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>240</top>
+								<posx>164</posx>
+								<posy>240</posy>
 								<width>329</width>
 								<height>60</height>
 								<font>font15</font>
@@ -369,7 +335,7 @@
 						</itemlayout>
 						<focusedlayout height="300" width="329">
 							<control type="image">
-								<left>327</left>
+								<posx>327</posx>
 								<width>2</width>
 								<height>300</height>
 								<texture border="1">separator3.png</texture>
@@ -381,13 +347,14 @@
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<top>60</top>
+								<posy>60</posy>
 								<width>329</width>
 								<height>100</height>
 								<texture>$INFO[ListItem.Icon]</texture>
 								<aspectratio aligny="top">keep</aspectratio>
 							</control>
 							<control type="label">
+								<posx>164</posx>
 								<width>329</width>
 								<height>60</height>
 								<font>font15</font>
@@ -397,7 +364,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>160</top>
+								<posx>164</posx>
+								<posy>160</posy>
 								<width>329</width>
 								<height>60</height>
 								<font>font15</font>
@@ -407,7 +375,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>240</top>
+								<posx>164</posx>
+								<posy>240</posy>
 								<width>329</width>
 								<height>60</height>
 								<font>font15</font>
@@ -483,46 +452,47 @@
 						</content>
 					</control>
 				</control>
+
 				<control type="group">
 					<visible>Container(9000).HasFocus(2)</visible>
 					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
+					<posx>522</posx>
+					<posy>32</posy>
 					<width>1316</width>
 					<height>838</height>
 					<control type="image">
-						<left>657</left>
+						<posx>657</posx>
 						<width>2</width>
 						<height>838</height>
 						<texture border="1">separator3.png</texture>
 					</control>
 					<control type="panel" id="301">
-						<left>0</left>
-						<top>0</top>
+						<posx>0</posx>
+						<posy>0</posy>
 						<width>1316</width>
 						<height>840</height>
 						<onup>9000</onup>
 						<ondown>9000</ondown>
-						<orientation>vertical</orientation>
+						<orientation>horizontal</orientation>
 						<scrolltime tween="quadratic" easing="out">200</scrolltime>
 						<itemlayout height="168" width="658">
 							<control type="image">
-								<top>108</top>
+								<posy>108</posy>
 								<width>658</width>
 								<height>60</height>
 								<texture border="1">separator2.png</texture>
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<left>15</left>
+								<posx>15</posx>
 								<width>168</width>
 								<height>168</height>
 								<texture>$INFO[ListItem.Icon]</texture>
-								<aspectratio>keep</aspectratio>
+								<aspectratio aligny="right">keep</aspectratio>
 								<bordersize>2</bordersize>
 							</control>
 							<control type="label">
-								<left>185</left>
+								<posx>185</posx>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -532,8 +502,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>185</left>
-								<top>56</top>
+								<posx>185</posx>
+								<posy>56</posy>
 								<width>475</width>
 								<height>56</height>
 								<font>font15</font>
@@ -543,8 +513,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>183</left>
-								<top>0</top>
+								<posx>658</posx>
+								<posy>0</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -555,8 +525,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>185</left>
-								<top>98</top>
+								<posx>185</posx>
+								<posy>98</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -566,8 +536,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>183</left>
-								<top>98</top>
+								<posx>658</posx>
+								<posy>98</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -580,22 +550,22 @@
 						</itemlayout>
 						<focusedlayout height="168" width="658">
 							<control type="image">
-								<top>108</top>
+								<posy>108</posy>
 								<width>658</width>
 								<height>60</height>
 								<texture border="1">separator2.png</texture>
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<left>15</left>
+								<posx>15</posx>
 								<width>168</width>
 								<height>168</height>
 								<texture>$INFO[ListItem.Icon]</texture>
-								<aspectratio>keep</aspectratio>
+								<aspectratio aligny="right">keep</aspectratio>
 								<bordersize>2</bordersize>
 							</control>
 							<control type="label">
-								<left>185</left>
+								<posx>185</posx>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -605,8 +575,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>185</left>
-								<top>56</top>
+								<posx>185</posx>
+								<posy>56</posy>
 								<width>475</width>
 								<height>56</height>
 								<font>font15</font>
@@ -616,8 +586,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>183</left>
-								<top>0</top>
+								<posx>658</posx>
+								<posy>0</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -628,8 +598,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>185</left>
-								<top>98</top>
+								<posx>185</posx>
+								<posy>98</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -639,8 +609,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>183</left>
-								<top>98</top>
+								<posx>658</posx>
+								<posy>98</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -781,16 +751,17 @@
 						</content>
 					</control>
 				</control>
+
 				<control type="group">
 					<visible>Container(9000).HasFocus(3)</visible>
 					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
+					<posx>522</posx>
+					<posy>32</posy>
 					<width>1314</width>
 					<height>838</height>
 					<control type="panel" id="302">
-						<left>0</left>
-						<top>0</top>
+						<posx>0</posx>
+						<posy>0</posy>
 						<width>1314</width>
 						<height>838</height>
 						<onup>9000</onup>
@@ -799,15 +770,15 @@
 						<scrolltime tween="quadratic" easing="out">200</scrolltime>
 						<itemlayout height="840" width="438">
 							<control type="image">
-								<left>438</left>
+								<posx>438</posx>
 								<width>2</width>
 								<height>840</height>
 								<texture border="1">separator3.png</texture>
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<left>15</left>
-								<top>60</top>
+								<posx>15</posx>
+								<posy>60</posy>
 								<width>408</width>
 								<height>408</height>
 								<texture>$INFO[ListItem.Icon]</texture>
@@ -815,6 +786,7 @@
 								<bordersize>2</bordersize>
 							</control>
 							<control type="label">
+								<posx>219</posx>
 								<width>438</width>
 								<height>60</height>
 								<font>font15</font>
@@ -825,28 +797,27 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="textbox">
-								<left>15</left>
-								<top>498</top>
+								<posx>15</posx>
+								<posy>498</posy>
 								<width>408</width>
 								<height>342</height>
-								<align>center</align>
 								<font>font15_textbox</font>
 								<textcolor>grey</textcolor>
 								<selectedcolor>selected</selectedcolor>
-								<label>$INFO[ListItem.Label2][CR]$INFO[ListItem.Property(TemperatureHeading),,: ]$INFO[ListItem.Property(Temperature)][CR]$INFO[ListItem.Property(FeelsLike),$LOCALIZE[402]: ][CR]$INFO[ListItem.Property(Precipitation),$LOCALIZE[1448]: ][CR]$INFO[ListItem.Property(Wind),$LOCALIZE[404]: ][CR]$INFO[ListItem.Property(Humidity),$LOCALIZE[406]: ]</label>
+								<label>$INFO[ListItem.Label2]</label>
 							</control>
 						</itemlayout>
 						<focusedlayout height="840" width="438">
 							<control type="image">
-								<left>438</left>
+								<posx>438</posx>
 								<width>2</width>
 								<height>840</height>
 								<texture border="1">separator3.png</texture>
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<left>15</left>
-								<top>60</top>
+								<posx>15</posx>
+								<posy>60</posy>
 								<width>408</width>
 								<height>408</height>
 								<texture>$INFO[ListItem.Icon]</texture>
@@ -854,6 +825,7 @@
 								<bordersize>2</bordersize>
 							</control>
 							<control type="label">
+								<posx>219</posx>
 								<width>438</width>
 								<height>60</height>
 								<font>font15</font>
@@ -864,15 +836,14 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="textbox">
-								<left>15</left>
-								<top>498</top>
+								<posx>15</posx>
+								<posy>498</posy>
 								<width>408</width>
 								<height>342</height>
-								<align>center</align>
 								<font>font15_textbox</font>
 								<textcolor>grey</textcolor>
 								<selectedcolor>selected</selectedcolor>
-								<label>$INFO[ListItem.Label2][CR]$INFO[ListItem.Property(TemperatureHeading),,: ]$INFO[ListItem.Property(Temperature)][CR]$INFO[ListItem.Property(FeelsLike),$LOCALIZE[402]: ][CR]$INFO[ListItem.Property(Precipitation),$LOCALIZE[1448]: ][CR]$INFO[ListItem.Property(Wind),$LOCALIZE[404]: ][CR]$INFO[ListItem.Property(Humidity),$LOCALIZE[406]: ]</label>
+								<label>$INFO[ListItem.Label2]</label>
 							</control>
 						</focusedlayout>
 						<content>
@@ -884,56 +855,48 @@
 							</item>
 							<item>
 								<label>$INFO[Window.Property(36Hour.1.Heading)]</label>
-								<label2>$INFO[Window.Property(36Hour.1.Outlook)]</label2>
+								<label2>$INFO[Window.Property(36Hour.1.Forecast)]</label2>
 								<icon>$INFO[Window.Property(36Hour.1.OutlookIcon)]</icon>
 								<property name="TemperatureHeading">$INFO[Window.Property(36Hour.1.TemperatureHeading)]</property>
 								<property name="Temperature">$INFO[Window.Property(36Hour.1.Temperature)]</property>
-								<property name="Precipitation">$INFO[Window.Property(36Hour.1.Precipitation)]</property>
-								<property name="FeelsLike">$INFO[Window.Property(36Hour.1.FeelsLike)]</property>
-								<property name="Humidity">$INFO[Window.Property(36Hour.1.Humidity)]</property>
-								<property name="Wind">$INFO[Window.Property(36Hour.1.WindSpeed)]$INFO[Window.Property(36Hour.1.WindDirection),  ]$INFO[Window.Property(36Hour.1.WindDegree),  ]</property>
+								<property name="ChancePrecipitation">$INFO[Window.Property(36Hour.1.ChancePrecipitation)]</property>
 								<onclick>noop</onclick>
 								<visible>!IsEmpty(Window.Property(36Hour.IsFetched))</visible>
 							</item>
 							<item>
 								<label>$INFO[Window.Property(36Hour.2.Heading)]</label>
-								<label2>$INFO[Window.Property(36Hour.2.Outlook)]</label2>
+								<label2>$INFO[Window.Property(36Hour.2.Forecast)]</label2>
 								<icon>$INFO[Window.Property(36Hour.2.OutlookIcon)]</icon>
 								<property name="TemperatureHeading">$INFO[Window.Property(36Hour.2.TemperatureHeading)]</property>
 								<property name="Temperature">$INFO[Window.Property(36Hour.2.Temperature)]</property>
-								<property name="Precipitation">$INFO[Window.Property(36Hour.2.Precipitation)]</property>
-								<property name="FeelsLike">$INFO[Window.Property(36Hour.2.FeelsLike)]</property>
-								<property name="Humidity">$INFO[Window.Property(36Hour.2.Humidity)]</property>
-								<property name="Wind">$INFO[Window.Property(36Hour.2.WindSpeed)]$INFO[Window.Property(36Hour.2.WindDirection),  ]$INFO[Window.Property(36Hour.2.WindDegree),  ]</property>
+								<property name="ChancePrecipitation">$INFO[Window.Property(36Hour.2.ChancePrecipitation)]</property>
 								<onclick>noop</onclick>
 								<visible>!IsEmpty(Window.Property(36Hour.IsFetched))</visible>
 							</item>
 							<item>
 								<label>$INFO[Window.Property(36Hour.3.Heading)]</label>
-								<label2>$INFO[Window.Property(36Hour.3.Outlook)]</label2>
+								<label2>$INFO[Window.Property(36Hour.3.Forecast)]</label2>
 								<icon>$INFO[Window.Property(36Hour.3.OutlookIcon)]</icon>
 								<property name="TemperatureHeading">$INFO[Window.Property(36Hour.3.TemperatureHeading)]</property>
 								<property name="Temperature">$INFO[Window.Property(36Hour.3.Temperature)]</property>
-								<property name="Precipitation">$INFO[Window.Property(36Hour.3.Precipitation)]</property>
-								<property name="FeelsLike">$INFO[Window.Property(36Hour.3.FeelsLike)]</property>
-								<property name="Humidity">$INFO[Window.Property(36Hour.3.Humidity)]</property>
-								<property name="Wind">$INFO[Window.Property(36Hour.3.WindSpeed)]$INFO[Window.Property(36Hour.3.WindDirection),  ]$INFO[Window.Property(36Hour.3.WindDegree),  ]</property>
+								<property name="ChancePrecipitation">$INFO[Window.Property(36Hour.3.ChancePrecipitation)]</property>
 								<onclick>noop</onclick>
 								<visible>!IsEmpty(Window.Property(36Hour.IsFetched))</visible>
 							</item>
 						</content>
 					</control>
 				</control>
+
 				<control type="group">
 					<visible>Container(9000).HasFocus(4)</visible>
 					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
+					<posx>522</posx>
+					<posy>32</posy>
 					<width>1316</width>
 					<height>838</height>
 					<control type="panel" id="303">
-						<left>0</left>
-						<top>0</top>
+						<posx>0</posx>
+						<posy>0</posy>
 						<width>1316</width>
 						<height>838</height>
 						<onup>9000</onup>
@@ -942,15 +905,15 @@
 						<scrolltime tween="quadratic" easing="out">200</scrolltime>
 						<itemlayout height="840" width="658">
 							<control type="image">
-								<left>658</left>
+								<posx>658</posx>
 								<width>2</width>
 								<height>840</height>
 								<texture border="1">separator3.png</texture>
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<left>125</left>
-								<top>60</top>
+								<posx>125</posx>
+								<posy>60</posy>
 								<width>408</width>
 								<height>408</height>
 								<texture>$INFO[ListItem.Icon]</texture>
@@ -958,6 +921,7 @@
 								<bordersize>2</bordersize>
 							</control>
 							<control type="label">
+								<posx>329</posx>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -968,7 +932,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>528</top>
+								<posx>329</posx>
+								<posy>528</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -979,7 +944,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>468</top>
+								<posx>328</posx>
+								<posy>468</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -990,18 +956,20 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>588</top>
+								<posx>328</posx>
+								<posy>588</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
 								<align>center</align>
 								<textcolor>grey</textcolor>
 								<selectedcolor>selected</selectedcolor>
-								<label>$INFO[ListItem.Property(WindSpeed),$LOCALIZE[383]: ]$INFO[ListItem.Property(WindDirection),  ]</label>
+								<label>$INFO[ListItem.Property(WindSpeed),$LOCALIZE[383]: ]$INFO[ListItem.Property(WindDirection), | ]</label>
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>648</top>
+								<posx>328</posx>
+								<posy>648</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -1012,7 +980,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>708</top>
+								<posx>328</posx>
+								<posy>708</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -1025,15 +994,15 @@
 						</itemlayout>
 						<focusedlayout height="840" width="658">
 							<control type="image">
-								<left>658</left>
+								<posx>658</posx>
 								<width>2</width>
 								<height>840</height>
 								<texture border="1">separator3.png</texture>
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<left>125</left>
-								<top>60</top>
+								<posx>125</posx>
+								<posy>60</posy>
 								<width>408</width>
 								<height>408</height>
 								<texture>$INFO[ListItem.Icon]</texture>
@@ -1041,6 +1010,7 @@
 								<bordersize>2</bordersize>
 							</control>
 							<control type="label">
+								<posx>329</posx>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -1051,7 +1021,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>528</top>
+								<posx>329</posx>
+								<posy>528</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -1062,7 +1033,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>468</top>
+								<posx>328</posx>
+								<posy>468</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -1073,18 +1045,20 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>588</top>
+								<posx>328</posx>
+								<posy>588</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
 								<align>center</align>
 								<textcolor>grey</textcolor>
 								<selectedcolor>selected</selectedcolor>
-								<label>$INFO[ListItem.Property(WindSpeed),$LOCALIZE[383]: ]$INFO[ListItem.Property(WindDirection),  ]</label>
+								<label>$INFO[ListItem.Property(WindSpeed),$LOCALIZE[383]: ]$INFO[ListItem.Property(WindDirection), | ]</label>
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>648</top>
+								<posx>328</posx>
+								<posy>648</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -1095,7 +1069,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<top>708</top>
+								<posx>328</posx>
+								<posy>708</posy>
 								<width>658</width>
 								<height>60</height>
 								<font>font15</font>
@@ -1144,22 +1119,23 @@
 						</content>
 					</control>
 				</control>
+
 				<control type="group">
 					<visible>Container(9000).HasFocus(5)</visible>
 					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
+					<posx>522</posx>
+					<posy>32</posy>
 					<width>1316</width>
 					<height>838</height>
 					<control type="image">
-						<left>657</left>
+						<posx>657</posx>
 						<width>2</width>
 						<height>838</height>
 						<texture border="1">separator3.png</texture>
 					</control>
 					<control type="panel" id="304">
-						<left>0</left>
-						<top>0</top>
+						<posx>0</posx>
+						<posy>0</posy>
 						<width>1316</width>
 						<height>840</height>
 						<onup>304</onup>
@@ -1170,22 +1146,22 @@
 						<scrolltime tween="quadratic" easing="out">200</scrolltime>
 						<itemlayout height="168" width="658">
 							<control type="image">
-								<top>108</top>
+								<posy>108</posy>
 								<width>658</width>
 								<height>60</height>
 								<texture border="1">separator2.png</texture>
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<left>15</left>
+								<posx>15</posx>
 								<width>168</width>
 								<height>168</height>
 								<texture>$INFO[ListItem.Icon]</texture>
-								<aspectratio>keep</aspectratio>
+								<aspectratio aligny="right">keep</aspectratio>
 								<bordersize>2</bordersize>
 							</control>
 							<control type="label">
-								<left>185</left>
+								<posx>185</posx>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -1195,8 +1171,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>185</left>
-								<top>56</top>
+								<posx>185</posx>
+								<posy>56</posy>
 								<width>475</width>
 								<height>56</height>
 								<font>font15</font>
@@ -1206,7 +1182,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>183</left>
+								<posx>658</posx>
+								<posy>0</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -1217,8 +1194,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>185</left>
-								<top>98</top>
+								<posx>185</posx>
+								<posy>98</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -1228,8 +1205,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>183</left>
-								<top>98</top>
+								<posx>658</posx>
+								<posy>98</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -1242,7 +1219,7 @@
 						</itemlayout>
 						<focusedlayout height="168" width="658">
 							<control type="image">
-								<top>108</top>
+								<posy>108</posy>
 								<width>658</width>
 								<height>60</height>
 								<texture border="1">separator2.png</texture>
@@ -1254,15 +1231,15 @@
 							</control>
 							<control type="image">
 								<description>current weather icon</description>
-								<left>15</left>
+								<posx>15</posx>
 								<width>168</width>
 								<height>168</height>
 								<texture>$INFO[ListItem.Icon]</texture>
-								<aspectratio>keep</aspectratio>
+								<aspectratio aligny="right">keep</aspectratio>
 								<bordersize>2</bordersize>
 							</control>
 							<control type="label">
-								<left>185</left>
+								<posx>185</posx>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -1272,8 +1249,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>185</left>
-								<top>56</top>
+								<posx>185</posx>
+								<posy>56</posy>
 								<width>475</width>
 								<height>56</height>
 								<font>font15</font>
@@ -1283,7 +1260,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>183</left>
+								<posx>658</posx>
+								<posy>0</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -1294,8 +1272,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>185</left>
-								<top>98</top>
+								<posx>185</posx>
+								<posy>98</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -1305,8 +1283,8 @@
 								<textoffsetx>15</textoffsetx>
 							</control>
 							<control type="label">
-								<left>183</left>
-								<top>98</top>
+								<posx>658</posx>
+								<posy>98</posy>
 								<width>475</width>
 								<height>70</height>
 								<font>font15</font>
@@ -1759,224 +1737,56 @@
 						</content>
 					</control>
 				</control>
+
 				<control type="group">
 					<visible>Container(9000).HasFocus(6)</visible>
 					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
+					<posx>522</posx>
+					<posy>32</posy>
 					<width>1316</width>
 					<height>838</height>
-					<control type="image">
+					<control type="multiimage">
 						<width>1316</width>
 						<height>839</height>
-						<texture>$INFO[Window.Property(Map.1.Area)]</texture>
-						<aspectratio>scale</aspectratio>
+						<imagepath>$INFO[Window.Property(MapPath)]</imagepath>
+						<timeperimage>500</timeperimage>
+						<pauseatend>1000</pauseatend>
+						<fadetime>0</fadetime>
+						<randomize>false</randomize>
+						<loop>yes</loop>
+						<aspectratio>keep</aspectratio>
+						<aligny>center</aligny>
 					</control>
 					<control type="image">
+						<posy>348</posy>
 						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.1.Layer)]</texture>
-						<aspectratio>scale</aspectratio>
-						<colordiffuse>70FFFFFF</colordiffuse>
+						<height>512</height>
+						<texture border="1">gradient_floor.png</texture>
+						<visible>!StringCompare(Window.Property(Alerts.Count),0)</visible>
 					</control>
-					<control type="label">
-						<top>720</top>
-						<width>1316</width>
-						<height>70</height>
-						<align>right</align>
-						<font>font24</font>
-						<textcolor>black</textcolor>
-						<shadowcolor>white</shadowcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<textoffsetx>15</textoffsetx>
-					</control>
-					<control type="image">
-						<top>780</top>
-						<width>1316</width>
-						<height>60</height>
-						<texture>$INFO[Window.Property(Map.1.Legend)]</texture>
-						<aspectratio align="right" aligny="bottom">keep</aspectratio>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Container(9000).HasFocus(7)</visible>
-					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
-					<width>1316</width>
-					<height>838</height>
-					<control type="image">
-						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.2.Area)]</texture>
-						<aspectratio>scale</aspectratio>
-					</control>
-					<control type="image">
-						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.2.Layer)]</texture>
-						<aspectratio>scale</aspectratio>
-						<colordiffuse>70FFFFFF</colordiffuse>
-					</control>
-					<control type="label">
-						<top>720</top>
-						<width>1316</width>
-						<height>70</height>
-						<align>right</align>
-						<font>font24</font>
-						<textcolor>black</textcolor>
-						<shadowcolor>white</shadowcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<textoffsetx>15</textoffsetx>
-					</control>
-					<control type="image">
-						<top>780</top>
-						<width>1316</width>
-						<height>60</height>
-						<texture>$INFO[Window.Property(Map.2.Legend)]</texture>
-						<aspectratio align="right" aligny="bottom">keep</aspectratio>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Container(9000).HasFocus(8)</visible>
-					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
-					<width>1316</width>
-					<height>838</height>
-					<control type="image">
-						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.3.Area)]</texture>
-						<aspectratio>scale</aspectratio>
-					</control>
-					<control type="image">
-						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.3.Layer)]</texture>
-						<aspectratio>scale</aspectratio>
-						<colordiffuse>70FFFFFF</colordiffuse>
-					</control>
-					<control type="label">
-						<top>720</top>
-						<width>1316</width>
-						<height>70</height>
-						<align>right</align>
-						<font>font24</font>
-						<textcolor>black</textcolor>
-						<shadowcolor>white</shadowcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<textoffsetx>15</textoffsetx>
-					</control>
-					<control type="image">
-						<top>780</top>
-						<width>1316</width>
-						<height>60</height>
-						<texture>$INFO[Window.Property(Map.3.Legend)]</texture>
-						<aspectratio align="right" aligny="bottom">keep</aspectratio>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Container(9000).HasFocus(9)</visible>
-					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
-					<width>1316</width>
-					<height>838</height>
-					<control type="image">
-						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.4.Area)]</texture>
-						<aspectratio>scale</aspectratio>
-					</control>
-					<control type="image">
-						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.4.Layer)]</texture>
-						<aspectratio>scale</aspectratio>
-						<colordiffuse>70FFFFFF</colordiffuse>
-					</control>
-					<control type="label">
-						<top>720</top>
-						<width>1316</width>
-						<height>70</height>
-						<align>right</align>
-						<font>font24</font>
-						<textcolor>black</textcolor>
-						<shadowcolor>white</shadowcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<textoffsetx>15</textoffsetx>
-					</control>
-					<control type="image">
-						<top>780</top>
-						<width>1316</width>
-						<height>60</height>
-						<texture>$INFO[Window.Property(Map.4.Legend)]</texture>
-						<aspectratio align="right" aligny="bottom">keep</aspectratio>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Container(9000).HasFocus(10)</visible>
-					<include>SettingsFadeEffect</include>
-					<left>522</left>
-					<top>32</top>
-					<width>1316</width>
-					<height>838</height>
-					<control type="image">
-						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.5.Area)]</texture>
-						<aspectratio>scale</aspectratio>
-					</control>
-					<control type="image">
-						<width>1316</width>
-						<height>839</height>
-						<texture>$INFO[Window.Property(Map.5.Layer)]</texture>
-						<aspectratio>scale</aspectratio>
-						<colordiffuse>70FFFFFF</colordiffuse>
-					</control>
-					<control type="label">
-						<top>720</top>
-						<width>1316</width>
-						<height>70</height>
-						<align>right</align>
-						<font>font24</font>
-						<textcolor>black</textcolor>
-						<shadowcolor>white</shadowcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<textoffsetx>15</textoffsetx>
-					</control>
-					<control type="image">
-						<top>780</top>
-						<width>1316</width>
-						<height>60</height>
-						<texture>$INFO[Window.Property(Map.5.Legend)]</texture>
-						<aspectratio align="right" aligny="bottom">keep</aspectratio>
+					<control type="textbox">
+						<description>description area</description>
+						<posx>30</posx>
+						<posy>600</posy>
+						<width>1256</width>
+						<height>400</height>
+						<font>font15_textbox</font>
+						<align>left</align>
+						<textcolor>grey2</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<label>$INFO[Window.Property(Alerts)]</label>
+						<visible>!StringCompare(Window.Property(Alerts.Count),0)</visible>
 					</control>
 				</control>
 			</control>
 		</control>
 		<include>Topbar</include>
-		<control type="label">
-			<left>1020</left>
-			<width>900</width>
-			<height>90</height>
-			<font>font13_title</font>
-			<textoffsetx>15</textoffsetx>
-			<textcolor>grey2</textcolor>
-			<align>right</align>
-			<aligny>top</aligny>
-			<textoffsety>-2</textoffsety>
-			<label>$INFO[Weather.Location]</label>
-			<animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
-			<animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
-		</control>
 		<control type="group">
-			<left>-440</left>
+			<posx>-440</posx>
 			<include>SideBladeLeft</include>
 			<control type="grouplist" id="9050">
-				<left>0</left>
-				<top>100</top>
+				<posx>0</posx>
+				<posy>100</posy>
 				<width>400</width>
 				<height>1080</height>
 				<onleft>9050</onleft>
@@ -1996,12 +1806,36 @@
 					<textcolor>themecolor</textcolor>
 					<aligny>center</aligny>
 				</control>
-				<control type="spincontrolex" id="3">
-					<description>change location button</description>
-					<font>-</font>
-					<include>ButtonCommonValues</include>
+                <control type="group" id="300">
+                    <width>400</width>
+                    <height>60</height>
+                    <control type="spincontrolex" id="3">
+                        <description>change location button</description>
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <font>-</font>
+                        <include>ButtonCommonValues</include>
+                        <onleft>9050</onleft>
+						<onright>ClearProperty(MediaMenu,Home)</onright>
+						<onright>9000</onright>
+						<onup>200</onup>
+                        <ondown>2</ondown>
+						<onback>ClearProperty(MediaMenu,Home)</onback>
+						<onback>9000</onback>
+                    </control>
+                    <control type="label" id="201">
+						<include>ButtonCommonValues</include>
+						<label>31069</label>
+						<visible>!Control.HasFocus(3)</visible>
+                    </control>
+					<control type="label" id="202">
+						<textcolor>white</textcolor>
+						<include>ButtonCommonValues</include>
+						<label>31069</label>
+						<visible>Control.HasFocus(3)</visible>
+					</control>
 				</control>
-				<control type="label" id="203">
+                <control type="label" id="203">
 					<width>400</width>
 					<height>52</height>
 					<textoffsetx>15</textoffsetx>
@@ -2010,54 +1844,33 @@
 					<textcolor>themecolor</textcolor>
 					<aligny>center</aligny>
 				</control>
-				<control type="button" id="2">
-					<description>Refresh button</description>
-					<textwidth>352</textwidth>
-					<include>ButtonCommonValues</include>
-					<label>103</label>
-				</control>
-				<control type="button" id="4">
-					<description>Settings button</description>
-					<label>5</label>
-					<onclick>ActivateWindow(MyWeatherSettings)</onclick>
-					<textwidth>352</textwidth>
-					<include>ButtonCommonValues</include>
-				</control>
-				<control type="radiobutton" id="204">
-					<description>Fanart Toggle</description>
-					<include>ButtonCommonValues</include>
-					<label>31307</label>
-					<onclick>Skin.ToggleSetting(ShowWeatherFanart)</onclick>
-					<selected>!Skin.HasSetting(ShowWeatherFanart)</selected>
-				</control>
-				<control type="button" id="205">
-					<include>ButtonCommonValues</include>
-					<label>31317</label>
-					<onclick>Skin.SetPath(WeatherFanartDir,,special://home)</onclick>
-					<enable>Skin.HasSetting(ShowWeatherFanart)</enable>
-				</control>
-				<control type="button" id="206">
-					<include>ButtonCommonValues</include>
-					<label>10035</label>
-					<onclick>Skin.SetString(WeatherFanartDir,http://aeon-nox-background-packs.googlecode.com/svn/trunk/weather-fanart/default/)</onclick>
-					<enable>Skin.HasSetting(ShowWeatherFanart)</enable>
-				</control>
-			</control>
-			<control type="group">
-				<posx>0</posx>
-				<posy>152</posy>
-				<control type="label" id="201">
-					<include>ButtonCommonValues</include>
-					<label>31069</label>
-					<visible>!Control.HasFocus(3)</visible>
-				</control>
-				<control type="label" id="202">
-					<textcolor>white</textcolor>
-					<include>ButtonCommonValues</include>
-					<label>31069</label>
-					<visible>Control.HasFocus(3)</visible>
-				</control>
-			</control>
-		</control>
-	</controls>
+                <control type="button" id="2">
+                    <description>Refresh button</description>
+                    <textwidth>352</textwidth>
+                    <include>ButtonCommonValues</include>
+                    <label>103</label>
+                </control>
+                <control type="button" id="4">
+                    <description>Settings button</description>
+                    <label>5</label>
+                    <onclick>ActivateWindow(MyWeatherSettings)</onclick>
+                    <textwidth>352</textwidth>
+                    <include>ButtonCommonValues</include>
+                </control>
+                <control type="radiobutton" id="204">
+                    <description>Fanart Toggle</description>
+                    <include>ButtonCommonValues</include>
+                    <label>31307</label>
+                    <onclick>Skin.ToggleSetting(ShowWeatherFanart)</onclick>
+                    <selected>!Skin.HasSetting(ShowWeatherFanart)</selected>
+                </control>
+                <control type="button" id="205">
+                    <include>ButtonCommonValues</include>
+                    <label>31317</label>
+                    <onclick>Skin.SetPath(WeatherFanartDir)</onclick>
+                    <enable>Skin.HasSetting(ShowWeatherFanart)</enable>
+                </control>
+            </control>
+        </control>
+    </controls>
 </window>

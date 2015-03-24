@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<includes>
+	<include name="SharedContentMainBG">
+		<include>BGSharedContent</include>
+		<include>BGOverlay</include>
+		<control type="group">
+			<include>BGGrainy</include>
+			<animation effect="fade" start="0" end="80" time="0" condition="true">Conditional</animation>
+		</control>
+	</include>
+	<include name="SharedContentLeafs">
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>264</width>
+			<height>264</height>
+			<include>Shadow</include>
+		</control>
+		<control type="image">
+			<posx>13</posx>
+			<posy>13</posy>
+			<width>238</width>
+			<height>238</height>
+			<texture background="true">default-square-big.png</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="middle">scale</aspectratio>
+		</control>
+		<control type="image">
+			<posx>13</posx>
+			<posy>13</posy>
+			<width>238</width>
+			<height>238</height>
+			<texture background="true" diffuse="mask-4leaf1.png">$INFO[ListItem.CompositeImage(width=720;height=720;cols=2;rows=2)]</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="middle">scale</aspectratio>
+		</control>
+	</include>
+	<include name="SharedContentLeafsSelectedBorder">
+		<control type="image">
+			<width>244</width>
+			<height>244</height>
+			<include>Border</include>
+		</control>
+	</include>
+	<include name="SharedContentLeafsTitle">
+		<posy>265</posy>
+		<posx>119</posx>
+		<width>238</width>
+		<height>30</height>
+		<align>center</align>
+		<aligny>center</aligny>
+		<label>$INFO[ListItem.Label]</label>
+		<font>Bold-26</font>
+		<shadowcolor>FF222222</shadowcolor>
+	</include>	
+	<include name="SharedContentLeafsTitle2">
+		<posy>295</posy>
+		<posx>119</posx>
+		<width>238</width>
+		<height>30</height>
+		<align>center</align>
+		<aligny>center</aligny>
+		<label>$INFO[ListItem.Property(serverOwner)] &#xB7; $INFO[ListItem.Property(serverName)]</label>
+		<textcolor>greyLighter</textcolor>
+		<font>Regular-17</font>
+		<shadowcolor>FF222222</shadowcolor>
+	</include>	
+	<include name="SharedContent">
+		<control type="group">
+			<!-- main list -->
+			<control type="group" id="777">
+				<control type="panel" id="50">
+					<viewtype label="PanelSharedSecondary">panel</viewtype>
+					<onup>50</onup>
+					<ondown>50</ondown>
+					<onright>Container.NextViewMode</onright>
+					<onleft>50</onleft>
+					<orientation>vertical</orientation>
+					<posx>53</posx>
+					<posy>67</posy>
+					<width>1150</width>
+					<height>635</height>
+					<itemlayout width="304" height="315">
+						<include>SharedContentLeafs</include>
+						<control type="label">
+							<include>SharedContentLeafsTitle</include>
+						</control>
+						<control type="label">
+							<include>SharedContentLeafsTitle2</include>
+						</control>
+					</itemlayout>
+					<focusedlayout width="223" height="315">
+						<include>SharedContentLeafs</include>
+						<control type="label">
+							<include>SharedContentLeafsTitle</include>
+							<textcolor>orangeLight</textcolor>
+						</control>
+						<control type="label">
+							<include>SharedContentLeafsTitle2</include>
+						</control>
+						<include>SharedContentLeafsSelectedBorder</include>
+					</focusedlayout>
+				</control>
+			</control>
+			<!-- right side thumbs -->
+		<!--<control type="group">
+				<posx>800</posx>
+				<posy>300</posy>
+				<visible>!Container.OnNext + !Container.OnPrevious</visible>
+				<animation effect="fade" start="0" end="100" time="1000" delay="300" condition="Control.HasFocus(56)" reversible="false">Conditional</animation>
+				<animation effect="fade" start="0" end="100" time="2000" delay="0">WindowOpen</animation>
+				<animation effect="fade" start="0" end="100" time="400" delay="0">Visible</animation>
+				<animation effect="fade" start="0" end="0" time="0">Hidden</animation>
+				<control type="grouplist">
+					<orientation>horizontal</orientation>
+					<itemgap>16</itemgap>					
+					<control type="image">
+						<width max="200">auto</width>
+						<height>350</height>
+						<bordertexture border="14">bigPosterFrameShadow.png</bordertexture>
+						<bordersize>9</bordersize>
+						<texture background="true" diffuse="bigPosterMask.png">$INFO[ListItem(0).Thumb0]</texture>
+						<aspectratio scalediffuse="true" align="center" aligny="center">keep</aspectratio>
+						<visible>!IsEmpty(ListItem(0).Thumb0)</visible>
+					</control>
+					<control type="grouplist">
+						<orientation>vertical</orientation>
+						<itemgap>16</itemgap>
+						<control type="image">
+							<width max="175">auto</width>
+							<height>175</height>
+							<bordertexture border="14">bigPosterFrameShadow.png</bordertexture>
+							<bordersize>9</bordersize>
+							<texture background="true" diffuse="bigPosterMask.png">$INFO[ListItem(0).Thumb1]</texture>
+							<aspectratio scalediffuse="true" align="center" aligny="top">keep</aspectratio>
+							<visible>!IsEmpty(ListItem(0).Thumb1)</visible>
+						</control>
+						<control type="image">
+							<width max="175">auto</width>
+							<height>175</height>
+							<bordertexture border="14">bigPosterFrameShadow.png</bordertexture>
+							<bordersize>9</bordersize>
+							<texture background="true" diffuse="bigPosterMask.png">$INFO[ListItem(0).Thumb2]</texture>
+							<aspectratio scalediffuse="true" align="center" aligny="bottom">keep</aspectratio>
+							<visible>!IsEmpty(ListItem(0).Thumb2)</visible>
+						</control>
+					</control>
+				</control>
+			</control>
+		-->
+		</control>
+	</include>
+</includes>

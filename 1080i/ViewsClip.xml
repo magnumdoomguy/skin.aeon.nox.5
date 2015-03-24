@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<includes>
+	<include name="ClipThumb">
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>274</width>
+			<height>165</height>
+			<include>Shadow</include>
+		</control>
+		<control type="image">
+			<posx>13</posx>
+			<posy>13</posy>
+			<width>248</width>
+			<height>139</height>
+			<texture background="true">default-thumb-small.png</texture>
+		</control>
+		<control type="image">
+			<posx>13</posx>
+			<posy>13</posy>
+			<width>248</width>
+			<height>139</height>
+			<texture background="true" diffuse="mask-wide-big.png">$INFO[ListItem.Art(thumb)]</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="top">scale</aspectratio>
+		</control>
+	</include>
+	<include name="ClipThumbCard">
+		<control type="image">
+			<posx>13</posx>
+			<posy>150</posy>
+			<width>248</width>
+			<height>56</height>
+			<include>Card</include>
+			<animation effect="fade" start="0" end="20" time="400" condition="true">Conditional</animation>
+		</control>
+	</include>
+	<include name="ClipThumbSelectedBorder">
+		<control type="image">
+			<width>254</width>
+			<height>197</height>
+			<include>Border</include>
+		</control>
+	</include>
+	<include name="ClipTitle">
+		<posy>160</posy>
+		<posx>64</posx>
+		<width>190</width>
+		<height>20</height>
+		<align>left</align>
+		<aligny>center</aligny>
+		<label>$INFO[ListItem.Label]</label>
+		<font>Regular-17</font>
+		<shadowcolor>FF222222</shadowcolor>
+	</include>
+	<include name="ClipSecondTitle">
+		<control type="label">
+			<posy>180</posy>
+			<posx>64</posx>
+			<width>190</width>
+			<height>20</height>
+			<align>left</align>
+			<aligny>center</aligny>
+			<font>Regular-14</font>
+			<textcolor>FF999999</textcolor>
+			<label>$INFO[ListItem.DurationStr]$INFO[ListItem.Property(Recommender), [COLOR=orange]&#xB7;[/COLOR] ]</label>
+			<shadowcolor>FF222222</shadowcolor>
+			<visible>[!IsEmpty(ListItem.DurationStr) + !IsEmpty(ListItem.Property(Recommender))]</visible>
+		</control>
+		<control type="label">
+			<posy>180</posy>
+			<posx>64</posx>
+			<width>190</width>
+			<height>20</height>
+			<align>left</align>
+			<aligny>center</aligny>
+			<font>Regular-14</font>
+			<textcolor>FF999999</textcolor>
+			<label>$INFO[ListItem.DurationStr]$INFO[ListItem.Property(Recommender)]</label>
+			<shadowcolor>FF222222</shadowcolor>
+			<visible>[IsEmpty(ListItem.DurationStr) | IsEmpty(ListItem.Property(Recommender))]</visible>
+		</control>
+	</include>
+	<include name="ClipSourceIcon">
+		<control type="image">
+			<posy>160</posy>
+			<posx>19</posx>
+			<width>38</width>
+			<height>38</height>
+			<texture>default-square-small.png</texture>
+			<aspectratio align="right" aligny="center">keep</aspectratio>
+			<visible>IsEmpty(ListItem.Art(sourceIcon))</visible>
+		</control>
+		<control type="image">
+			<posy>160</posy>
+			<posx>19</posx>
+			<width>38</width>
+			<height>38</height>
+			<texture>$INFO[ListItem.Art(sourceIcon)]</texture>
+			<aspectratio align="right" aligny="center">keep</aspectratio>
+		</control>
+	</include>
+	<include name="ClipThumbUnwatchedOverlay">
+		<control type="image">
+			<visible>!IsEmpty(ListItem.Overlay)</visible>
+			<posx>229</posx>
+			<posy>120</posy>
+			<width>28</width>
+			<height>28</height>
+			<info>ListItem.Overlay</info>
+		</control>
+	</include>
+	<!-- Library -->
+	<include name="ClipThumbs">
+		<!-- Clips -->
+		<control type="group" id="777">
+			<include>FadeDialog</include>
+			<include>rightSideSlide</include>
+			<visible>Container.PlexContent(Clips) | Container.PlexContent(Homemovies)</visible>
+			<control type="panel" id="80">
+				<viewtype label="ClipThumbs">panel</viewtype>
+				<visible>Container.PlexContent(Clips) | Container.PlexContent(Homemovies)</visible>
+				<onup>80</onup>
+				<ondown>80</ondown>
+				<onright condition="Container.PlexContent(homemovies)">Container.NextViewMode</onright>
+				<onright condition="!Container.PlexContent(homemovies)">80</onright>
+				<onleft>998</onleft>
+				<orientation>vertical</orientation>
+				<posx>102</posx>
+				<posy>28</posy>
+				<width>1200</width>
+				<height>680</height>
+				<itemlayout width="292" height="224">
+					<include>ClipThumbCard</include>
+					<include>ClipThumb</include>
+					<include>ClipSourceIcon</include>
+					<control type="label">
+						<include>ClipTitle</include>
+					</control>
+					<include>ClipSecondTitle</include>
+					<include>ClipThumbUnwatchedOverlay</include>
+				</itemlayout>
+				<focusedlayout width="292" height="224">
+					<!--<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>208</width>
+						<height>317</height>
+						<include>BlackRounded</include>
+						<animation effect="fade" start="0" end="40" time="0" condition="true">Conditional</animation>
+					</control>-->
+					<include>ClipThumbCard</include>
+					<include>ClipThumb</include>
+					<include>ClipSourceIcon</include>
+					<control type="label">
+						<include>ClipTitle</include>
+						<textcolor>orangeLight</textcolor>
+					</control>
+					<include>ClipSecondTitle</include>
+					<include>ClipThumbSelectedBorder</include>
+					<include>ClipThumbUnwatchedOverlay</include>
+				</focusedlayout>
+			</control>
+		</control>
+	</include>
+	<!-- By Folder -->
+	<include name="ByFolder">
+		<control type="group">
+			<include>FadeDialog</include>
+			<include>rightSideSlide</include>
+			<visible>Container.PlexContent(Folders) | Container.PlexContent(Folder)</visible>
+			<control type="group" id="777">
+				<control type="list" id="40">
+					<visible>Container.PlexContent(Folders) | Container.PlexContent(Folder)</visible>
+					<viewtype label="ByFolder">list</viewtype>
+					<posy>30</posy>
+					<posx>100</posx>
+					<width>1200</width>
+					<height>655</height>
+					<onright>-</onright>
+					<onleft>998</onleft>
+					<onup>40</onup>
+					<ondown>40</ondown>
+					<focusposition>0</focusposition>
+					<wraparound>true</wraparound>
+					<scrolltime>200</scrolltime>
+					<pagecontrol>61</pagecontrol>
+					<itemlayout height="50">
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>1150</width>
+							<height>50</height>
+							<texture border="5">border-bottom-grey.png</texture>
+						</control>
+						<control type="image">
+							<posx>20</posx>
+							<posy>4</posy>
+							<width>40</width>
+							<height>40</height>
+							<texture>icon-folder.png</texture>
+							<aspectratio>keep</aspectratio>
+							<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
+						</control>
+						<control type="label">
+							<width>1150</width>
+							<height>50</height>
+							<info>ListItem.Label</info>
+							<include>White2</include>
+							<textoffsetx>80</textoffsetx>
+						</control>
+					</itemlayout>
+					<focusedlayout height="50">
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>1150</width>
+							<height>50</height>
+							<texture border="5">black-bottom-grey.png</texture>
+						</control>
+						<control type="image">
+							<posx>20</posx>
+							<posy>4</posy>
+							<width>40</width>
+							<height>40</height>
+							<texture>icon-folder.png</texture>
+							<aspectratio>keep</aspectratio>
+							<animation effect="fade" start="0" end="80" time="0" condition="true">Conditional</animation>
+						</control>
+						<control type="label">
+							<width>1150</width>
+							<height>50</height>
+							<info>ListItem.Label</info>
+							<textcolor>Focused</textcolor>
+							<textoffsetx>80</textoffsetx>
+						</control>
+					</focusedlayout>
+				</control>
+			</control>
+		</control>
+	</include>
+</includes>

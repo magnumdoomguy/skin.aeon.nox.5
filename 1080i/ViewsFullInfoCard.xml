@@ -1,0 +1,1007 @@
+<?xml version="1.0"?>
+<includes>
+	<!-- ListItemFullInfo -->
+	<include name="ListItemFullInfoThumbSize">
+		<posy>30</posy>
+		<posx>20</posx>
+		<width>390</width>
+		<height>215</height>
+		<fadetime>300</fadetime>
+		<aspectratio scalediffuse="false" align="center">scale</aspectratio>
+	</include>
+	<include name="ListItemFullInfoThumbCard">
+		<control type="image">
+			<posy>245</posy>
+			<posx>20</posx>
+			<width>390</width>
+			<height>30</height>
+			<animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation>
+			<include>Black</include>
+			<visible>![Control.IsVisible(88) + Player.HasVideo]</visible>
+		</control>
+	</include>
+	<variable name="ListItemFullInfoTitle">
+		<value condition="ListItem.Type(episode) + !Container.PlexContent(Episodes) + !Container.PlexContent(Channel) + !Control.IsVisible(88)">$INFO[ListItem.TVShowTitle]</value>
+		<value condition="ListItem.Type(episode) + Container.PlexContent(Episodes)">$INFO[ListItem.Label]</value>
+		<value condition="ListItem.Type(episode) + Container.PlexContent(Channel)">$INFO[Container.FolderName]</value>
+		<value condition="ListItem.Type(movie)">$INFO[ListItem.Label]</value>
+		<value condition="ListItem.Type(artist)">$INFO[ListItem.Label]</value>
+		<value condition="ListItem.Type(album) | Container.PlexContent(Songs) | [Container.PlexContent(Channel) + Skin.String(SectionType,music)]">$INFO[ListItem.Artist]</value>
+		<value condition="[Container.PlexContent(Albums) + !ListItem.Type(album)] | Container.PlexContent(Seasons)">$INFO[Container.Property(parentTitle)]</value>
+		<value>$INFO[ListItem.Label]</value>
+	</variable>
+	<variable name="ListItemFullInfoSecondTitle">
+		<value condition="ListItem.Type(movie) + !Container.PlexContent(Homemovies) + ![Control.IsVisible(88) + Player.HasVideo]">$INFO[ListItem.DurationStr]$INFO[ListItem.Year, [COLOR=orange]&#xB7;[/COLOR] ]</value>
+		<value condition="ListItem.Type(movie) + Container.PlexContent(Homemovies)">$INFO[ListItem.DurationStr]</value>
+		<value condition="Window.IsActive(mysharedcontent)">$INFO[ListItem.Property(SourceTitle)]</value>
+		<value condition="ListItem.Type(episode) + !Container.PlexContent(Episodes) + !Control.IsVisible(88)">$INFO[ListItem.Label]</value>
+		<value condition="ListItem.Type(episode) + Container.PlexContent(Episodes) + IsEmpty(Container.Property(mixedParents))  + !Control.IsVisible(88)">$INFO[Container.SecondTitle] [COLOR=orange]&#xB7;[/COLOR] Episode $INFO[ListItem.Episode]</value>
+		<value condition="ListItem.Type(episode) + [Container.PlexContent(Episodes) + !IsEmpty(Container.Property(mixedParents)) + !IsEmpty(ListItem.Season) + !Control.IsVisible(88)]">Season $INFO[ListItem.Season] [COLOR=orange]&#xB7;[/COLOR] Episode $INFO[ListItem.Episode]</value>
+		<value condition="ListItem.Type(episode) + Control.IsVisible(88) + !Player.HasVideo">$INFO[ListItem.TVShowTitle]</value>
+		<value condition="ListItem.Type(episode) + [Container.PlexContent(Episodes) + !IsEmpty(Container.Property(mixedParents)) + IsEmpty(ListItem.Season) + !Control.IsVisible(88)]">$LOCALIZE[31145] [COLOR=orange]&#xB7;[/COLOR] Episode $INFO[ListItem.Episode]</value>
+		<value condition="ListItem.Type(clip)">$INFO[ListItem.DurationStr]</value>
+		<value condition="ListItem.Type(photo)">$INFO[ListItem.Date]</value>
+		<value condition="ListItem.Type(photoAlbum)">Album</value>
+		<value condition="ListItem.Type(artist)">$INFO[ListItem.Genre]</value>
+		<value condition="ListItem.Type(album)">$INFO[ListItem.Album]</value>
+		<value condition="[Container.PlexContent(Albums) + !ListItem.Type(album)]">$INFO[ListItem.Label]</value>
+		<value condition="Container.PlexContent(Channels)">$INFO[ListItem.Property(ServerName)]</value>
+		<value condition="Container.PlexContent(Songs) | [Container.PlexContent(Channel) + Skin.String(SectionType,music)]">$INFO[ListItem.Label]$INFO[ListItem.DurationStr, [COLOR=orange]&#xB7;[/COLOR] ]</value>
+	</variable>
+	<variable name="ListItemFullInfoThirdTitle">
+		<value condition="Window.IsActive(mysharedcontent)">$INFO[ListItem.Property(ServerName)]</value>
+		<value condition="ListItem.Type(episode) + !Container.PlexContent(Episodes) + !Container.PlexContent(Channel) + ![Control.IsVisible(88) + Player.HasVideo]">Season $INFO[ListItem.Season] [COLOR=orange]&#xB7;[/COLOR] Episode $INFO[ListItem.Episode]$INFO[ListItem.Date, [COLOR=orange]&#xB7;[/COLOR] ]</value>
+		<value condition="ListItem.Type(episode) + Container.PlexContent(Episodes)">$INFO[ListItem.DurationStr]$INFO[ListItem.Date, [COLOR=orange]&#xB7;[/COLOR] ]</value>
+		<value condition="ListItem.Type(episode) + [Container.PlexContent(Episodes) | Container.PlexContent(Channel)]">$INFO[ListItem.Date]</value>
+		<value condition="[ListItem.Type(movie) + !Container.PlexContent(Homemovies) + ![Control.IsVisible(88) + Player.HasVideo]] | Container.PlexContent(TVShows)">[UPPERCASE]$INFO[ListItem.Genre][/UPPERCASE]</value>
+		<value condition="[ListItem.Type(movie) + Container.PlexContent(Homemovies)] | [Container.PlexContent(Channel) + ListItem.Type(clip)]">$INFO[ListItem.Date]</value>
+		<value condition="ListItem.Type(season) + !Container.PlexContent(Seasons)">$LOCALIZE[32101]: $INFO[ListItem.Property(LeafCount)]</value>
+		<value condition="Container.PlexContent(Seasons)">$INFO[ListItem.Genre]</value>
+		<value condition="[!Container.PlexContent(Albums) + ListItem.Type(album) + !IsEmpty(ListItem.Album) + !Container.PlexContent(Channel)] | [Container.PlexContent(Channel) + Skin.String(SectionType,music) + !ListItem.Type(album)]">$INFO[ListItem.Album]</value>
+		<value condition="[Container.PlexContent(Channel) + Skin.String(SectionType,music) + ListItem.Type(album)]">$INFO[ListItem.Year]</value>
+		<value condition="ListItem.Type(clip) + IsEmpty(ListItem.Property(Recommender))">$INFO[ListItem.Property(sourceTitle)]</value>
+		<value condition="ListItem.Type(clip) + !IsEmpty(ListItem.Property(Recommender))">$INFO[ListItem.Property(Recommender)]$INFO[ListItem.Property(sourceTitle), [COLOR=orange]&#xB7;[/COLOR] ]</value>
+		<value condition="ListItem.Type(photo)">$INFO[ListItem.PictureResolution]</value>
+		<value condition="Container.PlexContent(Albums)">$INFO[ListItem.Property(LeafCount)] $LOCALIZE[32106]$INFO[ListItem.Year, [COLOR=orange]&#xB7;[/COLOR] ]</value>
+		<value condition="Container.PlexContent(Songs)">$INFO[ListItem.Album]</value>
+		<value condition="Container.PlexContent(HomeMovies) + Container.PlexFilter(Folder) + !ListItem.Type(Movie)">[UPPERCASE]$LOCALIZE[31658][/UPPERCASE]</value>
+	</variable>
+	<include name="ListItemUnwatchedCount">
+		<control type="grouplist">
+			<visible>[Container.PlexContent(TVShows) | Container.PlexContent(Seasons)]</visible>
+			<width>310</width>
+			<height>20</height>
+			<align>left</align>
+			<posy>32</posy>
+			<orientation>horizontal</orientation>
+			<itemgap>5</itemgap>
+			<control type="label">
+				<width min="10" max="150">auto</width>
+				<height>20</height>
+				<label>$INFO[ListItem.DurationStr]$INFO[ListItem.Year, [COLOR=orange]&#xB7;[/COLOR] ]</label>
+				<font>Bold-16</font>
+				<scroll>false</scroll>
+				<textcolor>FFefedeb</textcolor>
+				<wrapmultiline>false</wrapmultiline>
+				<shadowcolor>ff222222</shadowcolor>
+				<visible>!Container.PlexContent(Seasons)</visible>
+			</control>
+			<control type="label">
+				<width min="10" max="150">auto</width>
+				<height>20</height>
+				<label>$INFO[ListItem.Label]</label>
+				<font>Bold-16</font>
+				<scroll>false</scroll>
+				<textcolor>FFefedeb</textcolor>
+				<wrapmultiline>false</wrapmultiline>
+				<shadowcolor>ff222222</shadowcolor>
+				<visible>Container.PlexContent(Seasons)</visible>
+			</control>
+			<control type="label">
+				<width min="0" max="20">auto</width>
+				<height>20</height>
+				<label>&#xB7;</label>
+				<font>Bold-16</font>
+				<scroll>false</scroll>
+				<textcolor>orange</textcolor>
+				<wrapmultiline>false</wrapmultiline>
+				<shadowcolor>ff222222</shadowcolor>
+				<visible>[Container.PlexContent(Movies) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsMovies)] | [Container.PlexContent(TVShows) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)] | [Container.PlexContent(Seasons) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)]</visible>
+			</control>
+			<control type="image">
+				<height>17</height>
+				<width min="1" max="20">auto</width>
+				<texture>OverlayUnwatched.png</texture>
+				<aspectratio>keep</aspectratio>
+				<visible>[Container.PlexContent(Movies) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsMovies)] | [Container.PlexContent(TVShows) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)] | [Container.PlexContent(Seasons) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)]</visible>
+			</control>
+			<control type="label">
+				<width min="10" max="50">auto</width>
+				<height>20</height>
+				<label>$INFO[ListItem.Property(UnwatchedEpisodes)]</label>
+				<font>Bold-16</font>
+				<scroll>false</scroll>
+				<textcolor>FFefedeb</textcolor>
+				<wrapmultiline>false</wrapmultiline>
+				<shadowcolor>ff222222</shadowcolor>
+				<visible>[Container.PlexContent(Movies) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsMovies)] | [Container.PlexContent(TVShows) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)] | [Container.PlexContent(Seasons) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)]</visible>
+			</control>
+		</control>
+	</include>
+	<variable name="ListItemFullInfoPlot">
+		<value condition="!ListItem.Type(episode) + ![Control.IsVisible(88) +  Player.HasVideo]">$INFO[ListItem.Plot]</value>
+		<value condition="[ListItem.Type(episode) + [ListItem.Status(Watched) | [!Skin.HasSetting(HidePlotForUnwatched) + [ListItem.Status(InProgress) | ListItem.Status(UnWatched)]]]] + ![Control.IsVisible(88) +  Player.HasVideo]">$INFO[ListItem.Plot]</value>
+		<value condition="[[Container.PlexContent(Episodes) + !IsEmpty(Container.Property(primaryFilterActivated))] + [ListItem.Status(Watched) | [!Skin.HasSetting(HidePlotForUnwatched) + [ListItem.Status(InProgress) | ListItem.Status(UnWatched)]]]] + ![Control.IsVisible(88) +  Player.HasVideo]">$INFO[ListItem.Plot]</value>
+		<value condition="[ListItem.Type(episode) + [Skin.HasSetting(HidePlotForUnwatched) + [ListItem.Status(InProgress) | ListItem.Status(UnWatched)] + !IsEmpty(ListItem.Plot)]] + ![Control.IsVisible(88) +  Player.HasVideo]">$LOCALIZE[32105]</value>
+		<value condition="[Player.HasVideo]">$INFO[VideoPlayer.Plot]</value>
+		<value condition="IsEmpty(ListItem.Plot) + ![Control.IsVisible(88) + Player.HasVideo]">NoPlotDefault</value>
+		<!--><value>$INFO[ListItem.Plot]</value>-->
+	</variable>
+	<include name="ListItemFullInfoFlags">
+		<control type="grouplist">
+			<animation effect="fade" start="0" end="60" time="0" condition="true">Conditional</animation>
+			<width>310</width>
+			<align>center</align>
+			<posy>27</posy>
+			<orientation>horizontal</orientation>
+			<itemgap>40</itemgap>
+			<control type="image">
+				<visible>!IsEmpty(Listitem.Art(mediaTag::videoResolution))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Listitem.Art(mediaTag::videoResolution)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+			<control type="image">
+				<visible>!IsEmpty(Listitem.Art(mediaTag::audioCodec))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Listitem.Art(mediaTag::audioCodec)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+			<control type="image">
+				<visible>!IsEmpty(Listitem.Art(mediaTag::audioChannels))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Listitem.Art(mediaTag::audioChannels)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+		</control>
+	</include>
+	<include name="ListItemFullInfoLeftSlide">
+		<animation effect="slide" start="0" end="-74" time="400" condition="[Container.PlexContent(Albums) + ![Container.PlexFilter(Albums) | Container.PlexFilter(recentlyAdded) | Container.PlexFilter(All)]] | Container.PlexContent(Channels) | [Container.PlexContent(Channel) + ![ListItem.Type(clip) | ListItem.Type(episode) | ListItem.Type(song)]] | Window.IsActive(mysharedcontent) | [System.PlexPlayQueue(Video) + Player.HasVideo]">Conditional</animation>
+	</include>
+	<include name="ListItemFullInfoThumbCardUnwatchedOverlay">
+		<control type="group">
+			<control type="image">
+				<posy>206</posy>
+				<posx>370</posx>
+				<width>30</width>
+				<height>30</height>
+				<info>ListItem.Overlay</info>
+			</control>
+			<visible>[Container.PlexContent(Movies) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsMovies)] | [Container.PlexContent(TVShows) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)] | [Container.PlexContent(Seasons) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)] | Container.PlexContent(Episodes)</visible>
+		</control>
+	</include>
+	<!-- Card -->
+	<include name="ListItemFullInfo">
+		<control type="group">
+			<include>FadeDialog</include>
+			<visible>Control.IsVisible(58) | Control.IsVisible(88)</visible>
+			<include>rightSideSlide</include>
+			<include>ListItemFullInfoLeftSlide</include>
+			<control type="group" id="999">
+				<posx>74</posx>
+				<posy>0</posy>
+				<height>25</height>
+				<control type="group">
+					<!-- bg -->
+					<control type="image">
+						<posx>-889</posx>
+						<posy>0</posy>
+						<width>1280</width>
+						<height>720</height>
+						<texture>bg-overlay-grainy.png</texture>
+						<animation effect="fade" start="0" end="100" time="400" condition="true">Conditional</animation>
+						<colordiffuse>FF555555</colordiffuse>
+						<visible>true</visible>
+					</control>
+					<!-- plot bg -->
+					<control type="image">
+						<posx>0</posx>
+						<posy>330</posy>
+						<width>390</width>
+						<height>320</height>
+						<include>Black</include>
+						<animation effect="fade" start="0" end="30" time="400" condition="true">Conditional</animation>
+						<visible>true</visible>
+					</control>
+					<!-- orange separator -->
+					<control type="image">
+						<posx>390</posx>
+						<posy>0</posy>
+						<width>1</width>
+						<height>720</height>
+						<texture border="1">base.png</texture>
+						<colordiffuse>orange</colordiffuse>
+						<animation effect="fade" start="0" end="100" time="400" condition="true">Conditional</animation>
+						<visible>true</visible>
+					</control>
+					<!-- arrow -->
+					<control type="image">
+						<posy>365</posy>
+						<posx>391</posx>
+						<texture background="true">arrow-big.png</texture>
+						<colordiffuse>orange</colordiffuse>
+						<animation effect="fade" start="0" end="100" time="500" delay="100" condition="true">Visible</animation>
+						<animation effect="fade" start="100" end="0" time="100" condition="true">Hidden</animation>
+						<animation effect="slide" time="0" end="0,-20" condition="Control.IsVisible(88)">Conditional</animation>
+					</control>
+					<!-- thumb -->
+					<control type="group">
+						<posy>-30</posy>
+						<posx>-20</posx>
+						<control type="group">
+							<include>ListItemFullInfoThumbCard</include>
+							<control type="image">
+								<include>ListItemFullInfoThumbSize</include>
+								<texture background="true">bg-myplex.png</texture>
+								<animation effect="fade" end="20" time="300" delay="0" condition="true">Conditional</animation>
+								<visible>Window.IsActive(mysharedcontent)</visible>
+							</control>
+							<control type="image">
+								<include>ListItemFullInfoThumbSize</include>
+								<texture background="true">$INFO[ListItem.Property(Fanart_Image)]</texture>
+								<visible>!IsEmpty(ListItem.Property(Fanart_Image)) + !Container.PlexContent(Homemovies) + !Container.PlexContent(Photos) + !Container.PlexContent(Artists) | [Container.PlexContent(Channel) + !ListItem.Type(photo)] + [Container.PlexContent(Channel) + !ListItem.Type(clip) + !ListItem.Type(episode)]</visible>
+							</control>
+							<control type="image">
+								<posy>30</posy>
+								<posx>20</posx>
+								<width>390</width>
+								<height>215</height>
+								<fadetime>300</fadetime>
+								<aspectratio scalediffuse="false" align="center" aligny="top">scale</aspectratio>
+								<texture fallback="default-thumb-big.png" background="true">$INFO[ListItem.Art(thumb)]</texture>
+								<visible>IsEmpty(ListItem.Property(Fanart_Image)) | Container.PlexContent(Homemovies) | Container.PlexContent(Photos) | Container.PlexContent(Artists) | [Container.PlexContent(Channel) + ListItem.Type(photo)] | [Container.PlexContent(Channel) + [ListItem.Type(clip) | ListItem.Type(episode)]]</visible>
+							</control>
+							<include>ListItemFullInfoThumbCardUnwatchedOverlay</include>
+						</control>
+					</control>
+					<!-- infos -->
+					<control type="group">
+						<posy>231</posy>
+						<posx>22</posx>
+						<include>ListItemUnwatchedCount</include>
+						<control type="label">
+							<width>340</width>
+							<align>left</align>
+							<label>$VAR[ListItemFullInfoTitle]</label>
+							<font>Bold-16</font>
+							<scroll>true</scroll>
+							<textcolor>orange</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<shadowcolor>ff222222</shadowcolor>
+							<visible>![Control.IsVisible(88) + Player.HasVideo]</visible>
+						</control>
+						<control type="label">
+							<posy>42</posy>
+							<align>left</align>
+							<label>$VAR[ListItemFullInfoSecondTitle]</label>
+							<font>Bold-16</font>
+							<scroll>false</scroll>
+							<textcolor>FFefedeb</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<width>315</width>
+							<shadowcolor>ff222222</shadowcolor>
+							<visible>![Control.IsVisible(88) + Player.HasVideo]</visible>
+						</control>
+						<control type="label">
+							<posy>72</posy>
+							<align>left</align>
+							<label>$VAR[ListItemFullInfoThirdTitle]</label>
+							<font>Regular-16</font>
+							<scroll>false</scroll>
+							<textcolor>FF888888</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<width>270</width>
+							<shadowcolor>ff222222</shadowcolor>
+							<visible>![Control.IsVisible(88) + Player.HasVideo]</visible>
+						</control>
+						<control type="image">
+							<posy>37</posy>
+							<posx>960r</posx>
+							<width>50</width>
+							<height>40</height>
+							<texture>$INFO[Listitem.Art(mediaTag::contentRating)]</texture>
+							<aspectratio align="right" aligny="bottom">keep</aspectratio>
+							<colordiffuse>FF999999</colordiffuse>
+							<visible>![Control.IsVisible(88) + Player.HasVideo]</visible>
+						</control>
+						<control type="image">
+							<posy>37</posy>
+							<posx>960r</posx>
+							<width>50</width>
+							<height>40</height>
+							<texture>icon-photoalbum.png</texture>
+							<visible>ListItem.Type(photoAlbum)</visible>
+							<aspectratio align="right" aligny="bottom">keep</aspectratio>
+							<colordiffuse>FF999999</colordiffuse>
+						</control>
+						<control type="image">
+							<posy>37</posy>
+							<posx>960r</posx>
+							<width>50</width>
+							<height>40</height>
+							<texture>icon-video.png</texture>
+							<aspectratio align="right" aligny="bottom">keep</aspectratio>
+							<colordiffuse>FF999999</colordiffuse>
+							<visible>Container.PlexContent(Channels) + ListItem.Type(video)</visible>
+						</control>
+						<control type="image">
+							<posy>37</posy>
+							<posx>960r</posx>
+							<width>50</width>
+							<height>40</height>
+							<texture>icon-music.png</texture>
+							<aspectratio align="right" aligny="bottom">keep</aspectratio>
+							<colordiffuse>FF999999</colordiffuse>
+							<visible>Container.PlexContent(Channels) + ListItem.Type(music)</visible>
+						</control>
+						<control type="image">
+							<posy>37</posy>
+							<posx>960r</posx>
+							<width>50</width>
+							<height>40</height>
+							<texture>icon-photo.png</texture>
+							<aspectratio align="right" aligny="bottom">keep</aspectratio>
+							<colordiffuse>FF999999</colordiffuse>
+							<visible>Container.PlexContent(Channels) + ListItem.Type(photos)</visible>
+						</control>
+						<control type="textbox" id="111">
+							<posy>115</posy>
+							<width>315</width>
+							<height>280</height>
+							<label>$INFO[ListItem.Property(summary)]</label>
+							<font>HomePlot</font>
+							<textcolor>white</textcolor>
+							<shadowcolor>ff222222</shadowcolor>
+							<visible>IsEmpty(ListItem.Plot) + !IsEmpty(ListItem.Property(summary))</visible>
+						</control>
+						<control type="textbox" id="112">
+							<posy>115</posy>
+							<width>315</width>
+							<height>280</height>
+							<label>$INFO[Container.Property(summary)]</label>
+							<font>HomePlot</font>
+							<textcolor>white</textcolor>
+							<shadowcolor>ff222222</shadowcolor>
+							<visible>[Container.PlexContent(Songs) + !IsEmpty(Container.Property(summary))] | [Container.PlexContent(Seasons) + IsEmpty(ListItem.Property(summary)) + !IsEmpty(Container.Property(summary))]</visible>
+						</control>
+						<control type="textbox" id="113">
+							<posy>115</posy>
+							<width>315</width>
+							<height>280</height>
+							<label>$VAR[ListItemFullInfoPlot]</label>
+							<font>HomePlot</font>
+							<textcolor>white</textcolor>
+							<shadowcolor>ff222222</shadowcolor>
+							<visible>[!IsEmpty(ListItem.Plot) | !IsEmpty(ListItem.Property(summary))] | [Container.PlexContent(Episodes) + !IsEmpty(Container.ShowPlot)]</visible>
+						</control>
+						<control type="textbox">
+							<posy>115</posy>
+							<width>315</width>
+							<height>280</height>
+							<include>NoPlotDefault</include>
+							<font>HomePlot</font>
+							<textcolor>white</textcolor>
+							<shadowcolor>ff222222</shadowcolor>
+							<visible>!Control.IsVisible(111) + !Control.IsVisible(112) + !Control.IsVisible(113) + !Container.PlexContent(Channels) + !Container.PlexContent(Channel) + !Window.IsActive(mysharedcontent) + ![Control.IsVisible(88) + Player.HasVideo]</visible>
+						</control>
+						<control type="textbox">
+							<posy>115</posy>
+							<width>315</width>
+							<height>280</height>
+							<label>$LOCALIZE[32103]$VAR[NoPlotDefaultItem].</label>
+							<font>HomePlot</font>
+							<textcolor>white</textcolor>
+							<shadowcolor>ff222222</shadowcolor>
+							<visible>!Control.IsVisible(111) + !Control.IsVisible(112) + !Control.IsVisible(113) + [Container.PlexContent(Channels) | Container.PlexContent(Channel) | Window.IsActive(mysharedcontent) | Control.IsVisible(88)]</visible>
+						</control>
+					</control>
+					<!-- media flags -->
+					<control type="group">
+						<posy>650</posy>
+						<posx>34</posx>
+						<include>ListItemFullInfoFlags</include>
+					</control>
+				</control>
+			</control>
+		</control>
+	</include>
+	<!-- HomeListItemFullInfo -->
+	<include name="ShowHomeFullInfo">
+		<visible>[Control.HasFocus(11001) + Control.IsVisible(11000)] | [Control.HasFocus(11003) + Control.IsVisible(11004)] | [Control.HasFocus(11000) + Control.IsVisible(11001)] | [Control.HasFocus(11004) + Control.IsVisible(11003)] | [Control.HasFocus(11000) + !Control.IsVisible(11001) + [Container(11000).ListItem.Type(movie) | Container(11000).ListItem.Type(episode)]] | [Control.HasFocus(11001) + !Control.IsVisible(11000)] | [Control.HasFocus(11003) + !Control.IsVisible(11004)] | [Control.HasFocus(11004) + !Control.IsVisible(11003)]</visible>
+	</include>
+	<include name="ShowHomeClassic">
+		<!-- show the menu title when no full info available -->
+		<visible>ControlGroup(5000).HasFocus + !Control.IsVisible(999)</visible>
+	</include>
+	<include name="HomeListItemFullInfoThumbSize">
+		<posy>30</posy>
+		<posx>20</posx>
+		<width>390</width>
+		<height>215</height>
+		<fadetime>300</fadetime>
+		<aspectratio scalediffuse="false" align="center">scale</aspectratio>
+	</include>
+	<include name="HomeListItemFullInfoThumbCard">
+		<control type="image">
+			<posy>245</posy>
+			<posx>20</posx>
+			<width>390</width>
+			<height>30</height>
+			<animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation>
+			<include>Black</include>
+		</control>
+	</include>
+	<variable name="HomeListItemFullInfoTitle">
+		<!-- on deck -->
+		<value condition="ControlGroup(7002).HasFocus + Container(11001).ListItem.Type(episode)">$INFO[Container(11001).ListItem.TVShowTitle]</value>
+		<value condition="ControlGroup(7002).HasFocus + Container(11001).ListItem.Type(movie)">$INFO[Container(11001).ListItem.Label]</value>
+		<!-- recently added -->
+		<value condition="ControlGroup(7001).HasFocus + [Container(11000).ListItem.Type(season) | Container(11000).ListItem.Type(episode)]">$INFO[Container(11000).ListItem.TVShowTitle]</value>
+		<value condition="ControlGroup(7001).HasFocus + [Container(11000).ListItem.Type(movie) | Container(11000).ListItem.Type(clip)]">$INFO[Container(11000).ListItem.Label]</value>
+		<!-- queue -->
+		<value condition="ControlGroup(7003).HasFocus">$INFO[Container(11003).ListItem.Label]</value>
+		<!-- recommended -->
+		<value condition="ControlGroup(7005).HasFocus">$INFO[Container(11004).ListItem.Label]</value>
+		<!--><value>No title available (debug).</value>-->
+	</variable>
+	<variable name="HomeListItemFullInfoSecondTitle">
+		<!-- on deck -->
+		<value condition="ControlGroup(7002).HasFocus + Container(11001).ListItem.Type(episode)">$INFO[Container(11001).ListItem.Label]</value>
+		<value condition="ControlGroup(7002).HasFocus + Container(11001).ListItem.Type(movie)">$INFO[Container(11001).ListItem.DurationStr]$INFO[Container(11001).ListItem.Year, &#xB7; ]</value>
+		<!-- recently added -->
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(season)">$INFO[Container(11000).ListItem.Label]</value>
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(episode)">$INFO[Container(11000).ListItem.Label]</value>
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(movie)">$INFO[Container(11000).ListItem.DurationStr]$INFO[Container(11000).ListItem.Year, &#xB7; ]</value>
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(album)">$INFO[Container(11000).ListItem.Label]</value>
+		<!-- queue -->
+		<value condition="ControlGroup(7003).HasFocus]">$INFO[Container(11003).ListItem.DurationStr]</value>
+		<!-- recommended -->
+		<value condition="ControlGroup(7005).HasFocus]">$INFO[Container(11004).ListItem.DurationStr]</value>
+	</variable>
+	<variable name="HomeListItemFullInfoThirdTitle">
+		<!-- on deck -->
+		<value condition="ControlGroup(7002).HasFocus + Container(11001).ListItem.Type(episode)">Season $INFO[Container(11001).ListItem.Season] [COLOR=orange]&#xB7;[/COLOR] Episode $INFO[Container(11001).ListItem.Episode]$INFO[Container(11001).ListItem.Date, [COLOR=orange]&#xB7;[/COLOR] ]</value>
+		<value condition="ControlGroup(7002).HasFocus + Container(11001).ListItem.Type(movie)">[UPPERCASE]$INFO[Container(11001).ListItem.Genre][/UPPERCASE]</value>
+		<!-- recently added -->
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(season)">$LOCALIZE[32101]: $INFO[Container(11000).ListItem.Property(LeafCount)]</value>
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(episode)">Season $INFO[Container(11000).ListItem.Season] [COLOR=orange]&#xB7;[/COLOR] Episode $INFO[Container(11000).ListItem.Episode]$INFO[Container(11000).ListItem.Date, [COLOR=orange]&#xB7;[/COLOR] ]</value>
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(movie)">[UPPERCASE]$INFO[Container(11000).ListItem.Genre][/UPPERCASE]</value>
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(album) + !IsEmpty(Container(11000).ListItem.Album)">$INFO[Container(11000).ListItem.Album]</value>
+		<!-- queue -->
+		<value condition="ControlGroup(7003).HasFocus]">$INFO[Container(11003).ListItem.Property(sourceTitle)]</value>
+		<!-- recommended -->
+		<value condition="ControlGroup(7005).HasFocus]">$INFO[Container(11004).ListItem.Property(Recommender)]$INFO[Container(11004).ListItem.Property(sourceTitle), [COLOR=orange]&#xB7;[/COLOR] ]</value>
+		<!--><value>No second title available (debug).</value>-->
+		<!--><value>No third title available (debug).</value>-->
+	</variable>
+	<variable name="HomeListItemFullInfoPlot">
+		<!-- on deck -->
+		<value condition="ControlGroup(7002).HasFocus + !Container(11001).ListItem.Type(episode)">$INFO[Container(11001).ListItem.Plot]</value>
+		<value condition="ControlGroup(7002).HasFocus + Container(11001).ListItem.Type(episode) + !Skin.HasSetting(HidePlotForUnwatched)">$INFO[Container(11001).ListItem.Plot]</value>
+		<value condition="ControlGroup(7002).HasFocus + Container(11001).ListItem.Type(episode) + Skin.HasSetting(HidePlotForUnwatched)">$LOCALIZE[32105]</value>
+		<!-- recently added -->
+		<value condition="ControlGroup(7001).HasFocus + !Container(11000).ListItem.Type(episode)">$INFO[Container(11000).ListItem.Plot]</value>
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(episode) + !Skin.HasSetting(HidePlotForUnwatched)">$INFO[Container(11000).ListItem.Plot]</value>
+		<value condition="ControlGroup(7001).HasFocus + Container(11000).ListItem.Type(episode) + Skin.HasSetting(HidePlotForUnwatched)">$LOCALIZE[32105]</value>
+		<!-- queue -->
+		<value condition="ControlGroup(7003).HasFocus]">$INFO[Container(11003).ListItem.Plot]</value>
+		<!-- recommended -->
+		<value condition="ControlGroup(7005).HasFocus]">$INFO[Container(11004).ListItem.Plot]</value>
+		<!--><value>No plot available (debug).</value>-->
+	</variable>
+	<include name="HomeListItemFullInfoFlags">
+		<control type="grouplist">
+			<animation effect="fade" start="0" end="60" time="0" condition="true">Conditional</animation>
+			<width>310</width>
+			<align>center</align>
+			<visible>[Control.HasFocus(11000)]</visible>
+			<posy>27</posy>
+			<orientation>horizontal</orientation>
+			<itemgap>40</itemgap>
+			<control type="image">
+				<visible>!IsEmpty(Container(11000).Listitem.Art(mediaTag::videoResolution))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Container(11000).Listitem.Art(mediaTag::videoResolution)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+			<control type="image">
+				<visible>!IsEmpty(Container(11000).Listitem.Art(mediaTag::audioCodec))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Container(11000).Listitem.Art(mediaTag::audioCodec)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+			<control type="image">
+				<visible>!IsEmpty(Container(11000).Listitem.Art(mediaTag::audioChannels))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Container(11000).Listitem.Art(mediaTag::audioChannels)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+		</control>
+		<control type="grouplist">
+			<animation effect="fade" start="0" end="60" time="0" condition="true">Conditional</animation>
+			<width>310</width>
+			<align>center</align>
+			<visible>[Control.HasFocus(11001)]</visible>
+			<posy>27</posy>
+			<orientation>horizontal</orientation>
+			<itemgap>40</itemgap>
+			<control type="image">
+				<visible>!IsEmpty(Container(11001).Listitem.Art(mediaTag::videoResolution))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Container(11001).Listitem.Art(mediaTag::videoResolution)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+			<control type="image">
+				<visible>!IsEmpty(Container(11001).Listitem.Art(mediaTag::audioCodec))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Container(11001).Listitem.Art(mediaTag::audioCodec)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+			<control type="image">
+				<visible>!IsEmpty(Container(11001).Listitem.Art(mediaTag::audioChannels))</visible>
+				<height>18</height>
+				<width min="1" max="95">auto</width>
+				<info>Container(11001).Listitem.Art(mediaTag::audioChannels)</info>
+				<aspectratio>keep</aspectratio>
+			</control>
+		</control>
+	</include>
+	<include name="HomeListItemFullInfoSlide">
+		<animation effect="slide" start="0" end="391" time="400" tween="out" condition="true">Visible</animation>
+	</include>
+	<!-- Card -->
+	<include name="HomeListItemFullInfo">
+		<control type="group">
+			<!-- left side presentation -->
+			<control type="group" id="999">
+				<include>HomeListItemFullInfoSlide</include>
+				<include>ShowHomeFullInfo</include>
+				<posx>-391</posx>
+				<posy>0</posy>
+				<height>25</height>
+				<control type="group">
+					<!-- bg -->
+					<control type="image">
+						<posx>-889</posx>
+						<posy>0</posy>
+						<width>1280</width>
+						<height>720</height>
+						<texture>bg-overlay-grainy.png</texture>
+						<animation effect="fade" start="0" end="100" time="400" condition="true">Conditional</animation>
+						<colordiffuse>FF555555</colordiffuse>
+						<visible>true</visible>
+					</control>
+					<!-- plot bg -->
+					<control type="image">
+						<posx>0</posx>
+						<posy>330</posy>
+						<width>390</width>
+						<height>320</height>
+						<include>Black</include>
+						<animation effect="fade" start="0" end="30" time="400" condition="true">Conditional</animation>
+						<visible>true</visible>
+					</control>
+					<!-- orange separator -->
+					<control type="image">
+						<posx>390</posx>
+						<posy>0</posy>
+						<width>1</width>
+						<height>720</height>
+						<texture border="1">base.png</texture>
+						<colordiffuse>orange</colordiffuse>
+						<animation effect="fade" start="0" end="100" time="400" condition="true">Conditional</animation>
+						<visible>true</visible>
+					</control>
+					<!-- arrow -->
+					<control type="image">
+						<posy>440</posy>
+						<posx>391</posx>
+						<texture background="true">arrow-big.png</texture>
+						<colordiffuse>orange</colordiffuse>
+						<animation effect="fade" start="0" end="100" time="500" delay="100" condition="true">Visible</animation>
+						<animation effect="fade" start="100" end="0" time="100" condition="true">Hidden</animation>
+						<!-- top on deck -->
+						<animation effect="slide" start="0,110" end="0,-110" time="300" reversible="false" tween="quadratic" easing="out" condition="[Control.HasFocus(11001) + Control.IsVisible(11000)]">Conditional</animation>
+						<!-- top queue -->
+						<animation effect="slide" start="0,110" end="0,-135" time="300" reversible="false" tween="quadratic" easing="out" condition="[Control.HasFocus(11003) + Control.IsVisible(11004)]">Conditional</animation>
+						<!-- bottom recently added -->
+						<animation effect="slide" start="0,0" end="0,110" time="300" reversible="false" tween="quadratic" easing="out" condition="[Control.HasFocus(11000) + Control.IsVisible(11001)]">Conditional</animation>
+						<!-- bottom recommended -->
+						<animation effect="slide" start="0,0" end="0,85" time="300" reversible="false" tween="quadratic" easing="out" condition="[Control.HasFocus(11004) + Control.IsVisible(11003)]">Conditional</animation>
+						<!-- middle -->
+						<animation effect="slide" start="0,0" end="0,0" time="0" reversible="false" tween="quadratic" easing="out" condition="[Control.HasFocus(11000) + !Control.IsVisible(11001)] | [Control.HasFocus(11001) + !Control.IsVisible(11000)] | [Control.HasFocus(11003) + !Control.IsVisible(11004)] | [Control.HasFocus(11004) + !Control.IsVisible(11003)]">Conditional</animation>
+					</control>
+					<!-- thumb -->
+					<control type="group">
+						<posy>-30</posy>
+						<posx>-20</posx>
+						<!-- on deck -->
+						<control type="group">
+							<visible>ControlGroup(7002).HasFocus</visible>
+							<include>HomeListItemFullInfoThumbCard</include>
+							<control type="image">
+								<include>HomeListItemFullInfoThumbSize</include>
+								<texture background="true">$INFO[Container(11001).ListItem.Art(thumb)]</texture>
+								<visible>!Container(11001).ListItem.Type(movie)</visible>
+							</control>
+							<control type="image">
+								<include>HomeListItemFullInfoThumbSize</include>
+								<texture background="true">$INFO[Container(11001).ListItem.Property(Fanart_Image)]</texture>
+								<visible>Container(11001).ListItem.Type(movie)</visible>
+							</control>
+							<control type="image">
+								<posx>367</posx>
+								<posy>210</posy>
+								<width>30</width>
+								<height>30</height>
+								<texture>$INFO[Container(11001).ListItem.Overlay]</texture>
+								<visible>Container(11001).ListItem.Status(InProgress)</visible>
+							</control>
+						</control>
+						<!-- recently added -->
+						<control type="group">
+							<visible>ControlGroup(7001).HasFocus</visible>
+							<include>HomeListItemFullInfoThumbCard</include>
+							<control type="image">
+								<include>HomeListItemFullInfoThumbSize</include>
+								<texture background="true">$INFO[Container(11000).ListItem.Art(thumb)]</texture>
+								<visible>!Container(11000).ListItem.Type(movie) | !Container(11000).ListItem.Type(season)</visible>
+							</control>
+							<control type="image">
+								<include>HomeListItemFullInfoThumbSize</include>
+								<texture background="true">$INFO[Container(11000).ListItem.Property(Fanart_Image)]</texture>
+								<visible>Container(11000).ListItem.Type(movie) | Container(11000).ListItem.Type(season)</visible>
+							</control>
+						</control>
+						<!-- queue & recommended -->
+						<control type="group">
+							<visible>ControlGroup(7003).HasFocus | ControlGroup(7005).HasFocus</visible>
+							<include>HomeListItemFullInfoThumbCard</include>
+							<control type="image">
+								<include>HomeListItemFullInfoThumbSize</include>
+								<texture background="true">$INFO[Container(11003).ListItem.Art(thumb)]</texture>
+								<visible>ControlGroup(7003).HasFocus</visible>
+							</control>
+							<control type="image">
+								<include>HomeListItemFullInfoThumbSize</include>
+								<texture background="true">$INFO[Container(11004).ListItem.Art(thumb)]</texture>
+								<visible>ControlGroup(7005).HasFocus</visible>
+							</control>
+						</control>
+					</control>
+					<!-- infos -->
+					<control type="group">
+						<posy>231</posy>
+						<posx>22</posx>
+						<control type="label">
+							<width>300</width>
+							<align>left</align>
+							<label>$VAR[HomeListItemFullInfoTitle]</label>
+							<font>Bold-16</font>
+							<scroll>true</scroll>
+							<textcolor>orange</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<shadowcolor>ff222222</shadowcolor>
+						</control>
+						<control type="label">
+							<posy>42</posy>
+							<align>left</align>
+							<label>$VAR[HomeListItemFullInfoSecondTitle]</label>
+							<font>Bold-16</font>
+							<scroll>false</scroll>
+							<textcolor>FFefedeb</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<width>315</width>
+							<shadowcolor>ff222222</shadowcolor>
+						</control>
+						<control type="label">
+							<posy>72</posy>
+							<align>left</align>
+							<label>$VAR[HomeListItemFullInfoThirdTitle]</label>
+							<font>Regular-16</font>
+							<scroll>false</scroll>
+							<textcolor>FF888888</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<width>270</width>
+							<shadowcolor>ff222222</shadowcolor>
+						</control>
+						<control type="image">
+							<posy>37</posy>
+							<posx>960r</posx>
+							<width>50</width>
+							<height>40</height>
+							<texture>$INFO[Container(11001).Listitem.Art(mediaTag::contentRating)]</texture>
+							<aspectratio align="right" aligny="bottom">keep</aspectratio>
+							<colordiffuse>FF999999</colordiffuse>
+							<visible>ControlGroup(7002).HasFocus</visible>
+						</control>
+						<control type="image">
+							<posy>37</posy>
+							<posx>960r</posx>
+							<width>50</width>
+							<height>40</height>
+							<texture>$INFO[Container(11000).Listitem.Art(mediaTag::contentRating)]</texture>
+							<aspectratio align="right" aligny="bottom">keep</aspectratio>
+							<colordiffuse>FF999999</colordiffuse>
+							<visible>ControlGroup(7001).HasFocus</visible>
+						</control>
+						<control type="textbox">
+							<posy>115</posy>
+							<width>315</width>
+							<height>280</height>
+							<label>$VAR[HomeListItemFullInfoPlot]</label>
+							<font>HomePlot</font>
+							<textcolor>white</textcolor>
+							<shadowcolor>ff222222</shadowcolor>
+						</control>
+					</control>
+					<!-- media flags -->
+					<control type="group">
+						<posy>650</posy>
+						<posx>34</posx>
+						<include>HomeListItemFullInfoFlags</include>
+					</control>
+				</control>
+			</control>
+			<!-- right side section title and origin -->
+			<!--><control type="group">
+				<include>ShowHomeFullInfo</include>
+				<posx>30r</posx>
+				<posy>160</posy>
+				<control type="label">
+					<width>600</width>
+					<height>0</height>
+					<label>$INFO[Container(300).ListItem(0).Label]</label>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>Bold-28</font>
+					<textcolor>orange</textcolor>
+					<animation effect="fade" end="70" time="0" condition="true">Conditional</animation>
+				</control>-->
+			<!-- with Label2 -->
+			<!--><control type="label">
+					<posy>20</posy>
+					<width>600</width>
+					<height>20</height>
+					<label>$INFO[Container(300).ListItem(0).Label2]</label>
+					<align>right</align>
+					<aligny>center</aligny>
+					<font>Bold-16</font>
+					<textcolor>white</textcolor>
+					<visible>!IsEmpty(Container(300).ListItem(0).Label2)</visible>
+					<animation effect="fade" start="50" end="50" time="0" condition="true">Conditional</animation>
+				</control>
+			</control>-->
+		</control>
+	</include>
+	<!-- SearchItemFullInfo -->
+	<variable name="SearchItemFullInfoTitle">
+		<!-- movie -->
+		<value condition="ControlGroup(7001).HasFocus">$INFO[Container(9001).ListItem.Label]</value>
+		<!-- tv show -->
+		<value condition="ControlGroup(7002).HasFocus">$INFO[Container(9002).ListItem.TVShowTitle]</value>
+		<!-- tv episode -->
+		<value condition="ControlGroup(7004).HasFocus">$INFO[Container(9004).ListItem.Label]</value>
+	</variable>
+	<variable name="SearchItemFullInfoSecondTitle">
+		<!-- movie -->
+		<value condition="ControlGroup(7001).HasFocus">$INFO[Container(9001).ListItem.DurationStr] [COLOR=orange]&#xB7;[/COLOR] $INFO[Container(9001).ListItem.Year]</value>
+		<!-- tv show -->
+		<value condition="ControlGroup(7002).HasFocus">[UPPERCASE]$INFO[Container(9002).ListItem.Genre][/UPPERCASE]</value>
+		<!-- tv episode -->
+		<value condition="ControlGroup(7004).HasFocus">$INFO[Container(9004).ListItem.TVShowTitle]</value>
+	</variable>
+	<variable name="SearchItemFullInfoThirdTitle">
+		<!-- movie -->
+		<value condition="ControlGroup(7001).HasFocus">[UPPERCASE]$INFO[Container(9001).ListItem.Genre][/UPPERCASE]</value>
+		<!-- tv show -->
+		<value condition="ControlGroup(7002).HasFocus">$INFO[Container(9002).ListItem.Property(UnWatchedEpisodes)] $LOCALIZE[31139] $LOCALIZE[31137]</value>
+		<!-- tv episode -->
+		<value condition="ControlGroup(7004).HasFocus">Season $INFO[Container(9004).ListItem.Season] [COLOR=orange]&#xB7;[/COLOR] Episode $INFO[Container(9004).ListItem.Episode] [COLOR=orange]&#xB7;[/COLOR] $INFO[Container(9004).ListItem.Date]</value>
+	</variable>
+	<variable name="SearchItemFullInfoSource">
+		<!-- movie -->
+		<value condition="ControlGroup(7001).HasFocus + !IsEmpty(Container(9001).ListItem.Property(ServerOwner))">$INFO[Container(9001).ListItem.Property(ServerOwner)] [COLOR=orange]&#xB7;[/COLOR] $INFO[Container(9001).ListItem.Property(ServerName)]</value>
+		<value condition="ControlGroup(7001).HasFocus + IsEmpty(Container(9001).ListItem.Property(ServerOwner))">$INFO[Container(9001).ListItem.Property(ServerName)]</value>
+		<!-- tv show -->
+		<value condition="ControlGroup(7002).HasFocus + !IsEmpty(Container(9002).ListItem.Property(ServerOwner))">$INFO[Container(9002).ListItem.Property(ServerOwner)] [COLOR=orange]&#xB7;[/COLOR] $INFO[Container(9002).ListItem.Property(ServerName)]</value>
+		<value condition="ControlGroup(7002).HasFocus + IsEmpty(Container(9002).ListItem.Property(ServerOwner))">$INFO[Container(9002).ListItem.Property(ServerName)]</value>
+		<!-- tv episode -->
+		<value condition="ControlGroup(7004).HasFocus + !IsEmpty(Container(9004).ListItem.Property(ServerOwner))">$INFO[Container(9004).ListItem.Property(ServerOwner)] [COLOR=orange]&#xB7;[/COLOR] $INFO[Container(9004).ListItem.Property(ServerName)]</value>
+		<value condition="ControlGroup(7004).HasFocus + IsEmpty(Container(9004).ListItem.Property(ServerOwner))">$INFO[Container(9004).ListItem.Property(ServerName)]</value>
+	</variable>
+	<variable name="SearchItemFullInfoPlot">
+		<!-- movie -->
+		<value condition="ControlGroup(7001).HasFocus">$INFO[Container(9001).ListItem.Plot]</value>
+		<!-- tv show -->
+		<value condition="ControlGroup(7002).HasFocus">$INFO[Container(9002).ListItem.Plot]</value>
+		<!-- tv episode -->
+		<value condition="ControlGroup(7004).HasFocus + [!Skin.HasSetting(HidePlotForUnwatched) | Container(9004).ListItem.Status(Watched)]">$INFO[Container(9004).ListItem.Plot]</value>
+		<value condition="ControlGroup(7004).HasFocus + [Container(9004).ListItem.Status(InProgress) | Container(9004).ListItem.Status(UnWatched)] + Skin.HasSetting(HidePlotForUnwatched)">$LOCALIZE[32105]</value>
+	</variable>
+	<include name="SearchItemFullInfoSlide">
+		<animation effect="slide" start="0" end="376" time="200" tween="out" condition="ControlGroup(7001).HasFocus | ControlGroup(7002).HasFocus | ControlGroup(7004).HasFocus">Conditional</animation>
+	</include>
+	<!-- Card -->
+	<include name="SearchItemFullInfo">
+		<control type="group">
+			<!-- left side presentation -->
+			<control type="group">
+				<include>SearchItemFullInfoSlide</include>
+				<posx>-376</posx>
+				<posy>74</posy>
+				<height>25</height>
+				<control type="group">
+					<control type="image">
+						<posx>22</posx>
+						<posy>383</posy>
+						<width>325</width>
+						<height>235</height>
+						<include>BlackRounded</include>
+						<animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation>
+						<visible>true</visible>
+					</control>
+					<!-- orange separator -->
+					<control type="image">
+						<posx>375</posx>
+						<posy>-72</posy>
+						<width>1</width>
+						<height>720</height>
+						<texture border="1">base.png</texture>
+						<colordiffuse>orange</colordiffuse>
+						<animation effect="fade" start="0" end="100" time="400" condition="true">Conditional</animation>
+						<visible>true</visible>
+					</control>
+					<!-- thumb -->
+					<control type="group">
+						<posy>-20</posy>
+						<posx>-12</posx>
+						<control type="image">
+							<posy>47</posy>
+							<posx>34</posx>
+							<width>314</width>
+							<height>203</height>
+							<include>BorderBlack</include>
+							<animation effect="fade" start="0" end="10" condition="true">Conditional</animation>
+						</control>
+						<control type="image">
+							<width>334</width>
+							<height>223</height>
+							<include>Shadow</include>
+						</control>
+						<!-- movie -->
+						<control type="group">
+							<visible>ControlGroup(7001).HasFocus</visible>
+							<control type="image">
+								<include>PosListItem</include>
+								<width>323</width>
+								<height>197</height>
+								<aspectratio scalediffuse="false" align="center">scale</aspectratio>
+								<texture diffuse="mask-wide-big.png" background="true">$INFO[Container(9001).ListItem.Property(Fanart_Image)]</texture>
+								<fadetime>200</fadetime>
+							</control>
+							<control type="image">
+								<posx>337</posx>
+								<posy>264</posy>
+								<width>26</width>
+								<height>26</height>
+								<texture>$INFO[Container(9001).ListItem.Overlay]</texture>
+							</control>
+						</control>
+						<!-- tv show -->
+						<control type="group">
+							<visible>ControlGroup(7002).HasFocus</visible>
+							<control type="image">
+								<include>PosListItem</include>
+								<width>323</width>
+								<height>197</height>
+								<aspectratio scalediffuse="false" align="center">scale</aspectratio>
+								<texture diffuse="mask-wide-big.png" background="true">$INFO[Container(9002).ListItem.Property(Fanart_Image)]</texture>
+								<fadetime>200</fadetime>
+							</control>
+							<control type="image">
+								<posx>337</posx>
+								<posy>264</posy>
+								<width>26</width>
+								<height>26</height>
+								<texture>$INFO[Container(9002).ListItem.Overlay]</texture>
+							</control>
+						</control>
+						<!-- tv episode -->
+						<control type="group">
+							<visible>ControlGroup(7004).HasFocus</visible>
+							<control type="image">
+								<include>PosListItem</include>
+								<width>323</width>
+								<height>197</height>
+								<aspectratio scalediffuse="false" align="center">scale</aspectratio>
+								<texture diffuse="mask-wide-big.png" background="true">$INFO[Container(9004).ListItem.Art(thumb)]</texture>
+								<fadetime>200</fadetime>
+							</control>
+							<control type="image">
+								<posx>337</posx>
+								<posy>264</posy>
+								<width>26</width>
+								<height>26</height>
+								<texture>$INFO[Container(9004).ListItem.Overlay]</texture>
+							</control>
+						</control>
+					</control>
+					<!-- infos -->
+					<control type="group">
+						<posy>255</posy>
+						<posx>34</posx>
+						<control type="label">
+							<width>285</width>
+							<align>left</align>
+							<label>$VAR[SearchItemFullInfoTitle]</label>
+							<font>Bold-22</font>
+							<scroll>true</scroll>
+							<textcolor>orangeLight</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<shadowcolor>ff222222</shadowcolor>
+						</control>
+						<control type="label">
+							<posy>35</posy>
+							<align>left</align>
+							<label>$VAR[SearchItemFullInfoSecondTitle]</label>
+							<font>Regular-16</font>
+							<scroll>false</scroll>
+							<textcolor>FF888888</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<width>300</width>
+							<shadowcolor>ff222222</shadowcolor>
+						</control>
+						<control type="label">
+							<posy>55</posy>
+							<align>left</align>
+							<label>$VAR[SearchItemFullInfoThirdTitle]</label>
+							<font>Regular-16</font>
+							<scroll>false</scroll>
+							<textcolor>FF888888</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<width>300</width>
+							<shadowcolor>ff222222</shadowcolor>
+						</control>
+						<control type="label">
+							<posy>95</posy>
+							<align>left</align>
+							<label>$VAR[SearchItemFullInfoSource]</label>
+							<font>Regular-14</font>
+							<scroll>false</scroll>
+							<textcolor>orange</textcolor>
+							<wrapmultiline>false</wrapmultiline>
+							<width>300</width>
+							<shadowcolor>ff222222</shadowcolor>
+						</control>
+						<control type="textbox">
+							<posy>137</posy>
+							<width>300</width>
+							<height>215</height>
+							<label>$VAR[SearchItemFullInfoPlot]</label>
+							<font>HomePlot</font>
+						</control>
+					</control>
+				</control>
+			</control>
+		</control>
+	</include>
+</includes>
