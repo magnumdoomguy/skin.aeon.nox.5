@@ -19,7 +19,7 @@
 				<width>729</width>
 				<height>1080</height>
 				<aspectratio aligny="top">scale</aspectratio>
-				<texture background="true" fallback="black.png">$VAR[PosterVar]</texture>
+				<texture background="true" fallback="black.png">$INFO[ListItem.Art(bigThumb)]</texture> <!-- $INFO[ListItem.Art(bigThumb)] Looks better but doesn't work for TV $VAR[PosterVar] is original-->
 			</control>
 			
 			<!-- Display Watched Status Overlay (On the Poster, instead of next to the title) -->
@@ -349,6 +349,8 @@
 						<visible>!IsEmpty(ListItem.Top250)</visible>
 					</control>-->
 				</control>
+				
+				<!-- Item Separator -->
 				<control type="image">
 					<posx>-37</posx>
 					<posy>126</posy>
@@ -356,13 +358,14 @@
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 				</control>
+				
 				<control type="panel" id="300">
 					<posx>-36</posx>
 					<posy>184</posy>
 					<width>1188</width>
 					<height>306</height>
-					<onup>4002</onup>
-					<ondown>9000</ondown>
+					<!--<onup>4002</onup>
+					<ondown>9000</ondown>-->
 					<orientation>horizontal</orientation>
 					<scrolltime tween="quadratic" easing="out">200</scrolltime>
 					<itemlayout height="102" width="594">
@@ -492,24 +495,32 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(ListItem.Genre)</visible>
 						</item>
+						
+						<!-- Display Date Premiered -->
 						<item>
 							<label>$INFO[ListItem.Premiered]</label>
 							<label2>$LOCALIZE[20416]:</label2>
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(ListItem.Premiered)</visible>
 						</item>
+						
+						<!-- Display Country -->
 						<item>
 							<label>$INFO[ListItem.Country]</label>
 							<label2>$LOCALIZE[574]:</label2>
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(ListItem.Country)</visible>
 						</item>
-						<item>
+						
+						<!-- Not available in Plex -->
+						<!-- <item>
 							<label>$INFO[Window(Home).Property(NextAired.Country)]</label>
 							<label2>$LOCALIZE[574]:</label2>
 							<onclick>noop</onclick>
 							<visible>Container.Content(tvshows) + !IsEmpty(Window(Home).Property(NextAired.Country))</visible>
-						</item>
+						</item> -->
+						
+						<!-- Display Date Added -->
 						<item>
 							<label>$INFO[ListItem.DateAdded]</label>
 							<label2>$LOCALIZE[570]:</label2>
@@ -517,7 +528,7 @@
 							<visible>!IsEmpty(ListItem.DateAdded)</visible>
 						</item>
 						
-						<!-- Path is Not Useful in Plex -->
+						<!-- Path looks ugly in Plex -->
 						<!-- <item>
 							<label>$INFO[ListItem.Path]</label>
 							<label2>$LOCALIZE[573]:</label2>
@@ -525,13 +536,15 @@
 							<onclick>ActivateWindow(Videos,$INFO[ListItem.Path],return)</onclick>
 						</item> -->
 						
-						<!-- Filename is Not Useful in Plex -->
+						<!-- Filename looks ugly in Plex -->
 						<!-- <item>
 							<label>$INFO[ListItem.Filename]</label>
 							<label2>$LOCALIZE[21800]:</label2>
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(ListItem.Filename)</visible>
 						</item> -->
+						
+						<!-- Display Play Count -->						
 						<item>
 							<label>$INFO[ListItem.PlayCount]</label>
 							<label2>$LOCALIZE[567]:</label2>
@@ -559,12 +572,12 @@
 					<posy>560</posy>
 					<width>1132</width>
 					<height>400</height>
-					<onleft>9000</onleft>
-					<onright>9000</onright>
+					<!--<onleft>9000</onleft>
+					<onright>9000</onright>-->
 					<texturefocus>-</texturefocus>
 					<texturenofocus>-</texturenofocus>
-					<onup>PageUp(60)</onup>
-					<ondown>PageDown(60)</ondown>
+					<!--<onup>PageUp(60)</onup>
+					<ondown>PageDown(60)</ondown>-->
 					<!-- No plot outline to toggle in Plex -->
 					<!--<onclick>Skin.ToggleSetting(VideoInfoPlotToggle)</onclick>-->
 				</control>
@@ -608,7 +621,7 @@
 				</control>
 				
 				<!-- Scrollbar for Plot -->
-				<control type="scrollbar" id="60">
+				<!--<control type="scrollbar" id="60">
 					<posx>1140</posx>
 					<posy>560</posy>
 					<width>14</width>
@@ -619,7 +632,7 @@
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
 					<visible>!Control.IsVisible(50)</visible>
-				</control>
+				</control>-->
 				
 				<!-- Media Flags -->
 				<control type="group">
@@ -845,10 +858,10 @@
 					<itemgap>0</itemgap>
 					<onleft>9000</onleft>
 					<onright>9000</onright>
-					<onup>300</onup>
+					<!--<onup>300</onup>-->
 					<align>left</align>
-					<ondown condition="!Control.IsVisible(50)">4003</ondown>
-					<ondown condition="Control.IsVisible(50)">50</ondown>
+					<!--<ondown condition="!Control.IsVisible(50)">4003</ondown>
+					<ondown condition="Control.IsVisible(50)">50</ondown>-->
 					<orientation>horizontal</orientation>
 					
 					<!-- Play Button -->
@@ -868,11 +881,11 @@
 						<texture border="1">separator3.png</texture>
 					</control>
 					
-					<!-- Extras -->
+					<!-- Audio Button -->
 					<control type="button" id="3">
-						<description>Extras</description>
+						<description>Audio</description>
 						<include>ButtonInfoDialogsCommonValues</include>
-						<label>Extras</label>
+						<label>Audio</label>
 					</control>
 					
 					<!-- Item Separator -->
@@ -882,24 +895,61 @@
 						<texture border="1">separator3.png</texture>
 					</control>
 					
+					<!-- Subtitles Button -->
 					<control type="button" id="10">
-						<description>Get Thumb</description>
+						<description>Subtitles</description>
 						<include>ButtonInfoDialogsCommonValues</include>
-						<label>13511</label>
-						<enable>!Skin.HasSetting(KioskMode.Enabled)</enable>
+						<label>Subtitles</label>
+						<!--<enable>!Skin.HasSetting(KioskMode.Enabled)</enable>-->
 					</control>
+					
+					<!-- Item Separator -->
 					<control type="image" id="202">
 						<width>2</width>
 						<height>58</height>
 						<texture border="1">separator3.png</texture>
 					</control>
+					
+					<!-- Extras -->
 					<control type="button" id="11">
-						<description>Play Trailer</description>
+						<description>Extras</description>
 						<include>ButtonInfoDialogsCommonValues</include>
-						<label>20410</label>
-						<visible>!IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>
+						<label>Extras</label>
+						<!--<visible>!IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>-->
 					</control>
-					<control type="button" id="203">
+					
+					<!-- Item Separator -->
+					<control type="image" id="202">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Ratings Button -->
+					<control type="button" id="11">
+						<description>Ratings</description>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label>Rating</label>
+						<!--<visible>!IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>-->
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="202">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Watched Status Button -->
+					<control type="button" id="11">
+						<description>Watched Status</description>
+						<include>ButtonInfoDialogsCommonValues</include>
+						<label>Watched</label>
+						<!--<visible>!IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>-->
+					</control>
+					
+					<!-- Not necessary for Plex -->
+					<!--<control type="button" id="203">
 						<description>Play Trailer</description>
 						<include>ButtonInfoDialogsCommonValues</include>
 						<label>-</label>
@@ -914,25 +964,33 @@
 						<onclick>ActivateWindow(videos,plugin://plugin.video.youtube/?path=/root/search&amp;feed=search&amp;search=$ESCINFO[ListItem.Label] Trailer,return)</onclick>
 						<onclick>Dialog.Close(movieinformation)</onclick>
 						<visible>IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>
-					</control>
+					</control>-->
+					
+					<!-- Item Separator -->
 					<control type="image" id="205">
 						<width>2</width>
 						<height>58</height>
 						<texture border="1">separator3.png</texture>
 					</control>
-					<control type="button" id="6">
+					
+					<!-- Not Necessary for Plex -->
+					<!--<control type="button" id="6">
 						<description>Refresh</description>
 						<font>IconMedium</font>
 						<width>80</width>
 						<include>ButtonInfoDialogsCommonValues</include>
 						<label></label>
 						<enable>!Skin.HasSetting(KioskMode.Enabled)</enable>
-					</control>
+					</control>-->
+					
+					<!-- Item Separator -->
 					<control type="image" id="206">
 						<width>2</width>
 						<height>58</height>
 						<texture border="1">separator3.png</texture>
 					</control>
+					
+					
 					<control type="button" id="207">
 						<description>Extras</description>
 						<font>IconMedium</font>
