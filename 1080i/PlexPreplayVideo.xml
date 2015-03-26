@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol always="true">8</defaultcontrol>
+	<defaultcontrol always="true">102</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	
 	<!-- Play TV Show Theme Song in background if available -->
@@ -36,7 +36,7 @@
 			<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
 			<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic" condition="!Window.IsVisible(script-Actors-DialogVideoInfo.xml)|!Window.IsVisible(script-Actors-DialogInfo.xml)">Conditional</animation>
-			<animation effect="slide" end="1242,0" time="320" tween="quadratic" condition="Window.IsVisible(script-Actors-DialogVideoInfo.xml)|Window.IsVisible(script-Actors-DialogInfo.xml)">Conditional</animation>
+			<!--<animation effect="slide" end="1242,0" time="320" tween="quadratic" condition="Window.IsVisible(script-Actors-DialogVideoInfo.xml)|Window.IsVisible(script-Actors-DialogInfo.xml)">Conditional</animation>-->
 			<posx>729</posx>
 			<control type="image">
 				<width>1192</width>
@@ -496,6 +496,22 @@
 							<visible>!IsEmpty(ListItem.Genre)</visible>
 						</item>
 						
+						<!-- Display Audio Stream -->
+						<item>
+							<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
+							<label2>Audio:</label2>
+							<onclick>noop</onclick>
+							<!--<visible>!IsEmpty(ListItem.Genre)</visible>-->
+						</item>
+						
+						<!-- Display Subtitles -->
+						<item>
+							<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
+							<label2>Subtitles:</label2>
+							<onclick>noop</onclick>
+							<!--<visible>!IsEmpty(ListItem.Genre)</visible>-->
+						</item>
+						
 						<!-- Display Date Premiered -->
 						<item>
 							<label>$INFO[ListItem.Premiered]</label>
@@ -835,7 +851,7 @@
 			<control type="group">
 				<posx>3</posx>
 				<posy>0</posy>
-				<control type="image">
+				<!--<control type="image">
 					<posy>450</posy>
 					<width>594</width>
 					<height>60</height>
@@ -849,7 +865,7 @@
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 					<visible>!IntegerGreaterThan(Container(300).NumItems,5)</visible>
-				</control>
+				</control>-->
 				<control type="grouplist" id="9000">
 					<posx>1</posx>
 					<posy>510</posy>
@@ -858,20 +874,25 @@
 					<itemgap>0</itemgap>
 					<onleft>9000</onleft>
 					<onright>9000</onright>
-					<!--<onup>300</onup>-->
+					<onup>XBMC.PrevItem</onup>
 					<align>left</align>
-					<!--<ondown condition="!Control.IsVisible(50)">4003</ondown>
-					<ondown condition="Control.IsVisible(50)">50</ondown>-->
+					<ondown>XBMC.NextItem</ondown>
 					<orientation>horizontal</orientation>
 					
 					<!-- Play Button -->
-					<control type="togglebutton" id="8">
+					<control type="button" id="102">
 						<description>Play/browse to Show</description>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>208</label>
+						<height>60</height>
+						<width>170</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label></label>
+						<font>IconMedium</font>
+						<width>80</width>
 						<onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick>
-						<altlabel>1024</altlabel>
-						<usealttexture>Container.Content(TVShows)</usealttexture>
 					</control>
 					
 					<!-- Item Separator -->
@@ -882,10 +903,21 @@
 					</control>
 					
 					<!-- Audio Button -->
-					<control type="button" id="3">
+					<control type="button" id="103">
 						<description>Audio</description>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>Audio</label>
+						<height>60</height>
+						<width>170</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label></label>
+						<font>IconMedium</font>
+						<width>80</width>
+						<onfocus>Skin.SetString(DialogPos,audiostreampicker)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+						<onclick>ActivateWindow(10205)</onclick>
 					</control>
 					
 					<!-- Item Separator -->
@@ -896,11 +928,21 @@
 					</control>
 					
 					<!-- Subtitles Button -->
-					<control type="button" id="10">
+					<control type="button" id="104">
 						<description>Subtitles</description>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>Subtitles</label>
-						<!--<enable>!Skin.HasSetting(KioskMode.Enabled)</enable>-->
+						<height>60</height>
+						<width>170</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label></label>
+						<font>IconMedium</font>
+						<width>80</width>
+						<onclick>ActivateWindow(10204)</onclick>
+						<onfocus>Skin.SetString(DialogPos,subtitlestreampicker)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
 					</control>
 					
 					<!-- Item Separator -->
@@ -910,42 +952,88 @@
 						<texture border="1">separator3.png</texture>
 					</control>
 					
-					<!-- Extras -->
-					<control type="button" id="11">
+					<!-- Extras Button -->
+					<control type="button" id="110">
 						<description>Extras</description>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>Extras</label>
-						<!--<visible>!IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>-->
+						<height>60</height>
+						<width>170</width>
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label></label>
+						<font>IconMedium</font>
+						<width>80</width>
+						<onclick>SetFocus(3)</onclick>
+						<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
 					</control>
 					
 					<!-- Item Separator -->
-					<control type="image" id="202">
+					<control type="image" id="203">
 						<width>2</width>
 						<height>58</height>
 						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
 					</control>
 					
 					<!-- Ratings Button -->
-					<control type="button" id="11">
+					<control type="button" id="105">
 						<description>Ratings</description>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>Rating</label>
-						<!--<visible>!IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>-->
+						<height>60</height>
+						<width>170</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label></label>
+						<font>IconMedium</font>
+						<width>80</width>
+						<onclick>ActivateWindow(10200,$INFO[ListItem(0).Path])</onclick>
+						<onfocus>Skin.SetString(DialogPos,rate)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
 					</control>
 					
 					<!-- Item Separator -->
-					<control type="image" id="202">
+					<control type="image" id="204">
 						<width>2</width>
 						<height>58</height>
 						<texture border="1">separator3.png</texture>
 					</control>
 					
+					<!-- Mark as Watched Button -->
+					<control type="button" id="108">
+						<description>Mark as Watched</description>
+						<height>60</height>
+						<width>170</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label></label>
+						<font>IconMedium</font>
+						<width>80</width>
+						<onclick>markaswatched</onclick>
+						<visible>ListItem.Status(unwatched) | ListItem.Status(inprogress)</visible>
+					</control>
+					
 					<!-- Watched Status Button -->
-					<control type="button" id="11">
-						<description>Watched Status</description>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>Watched</label>
-						<!--<visible>!IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>-->
+					<control type="button" id="109">
+						<description>Mark as Unwatched</description>
+						<height>60</height>
+						<width>170</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label></label>
+						<font>IconMedium</font>
+						<width>80</width>
+						<onclick>markasunwatched</onclick>
+						<visible>ListItem.Status(watched)</visible>
 					</control>
 					
 					<!-- Not necessary for Plex -->
@@ -973,33 +1061,32 @@
 						<texture border="1">separator3.png</texture>
 					</control>
 					
-					<!-- Not Necessary for Plex -->
+					<!-- Up Arrow -->
 					<!--<control type="button" id="6">
-						<description>Refresh</description>
+						<description>Previous Item</description>
 						<font>IconMedium</font>
 						<width>80</width>
 						<include>ButtonInfoDialogsCommonValues</include>
-						<label></label>
-						<enable>!Skin.HasSetting(KioskMode.Enabled)</enable>
-					</control>-->
+						<label></label>
+						<onclick>XBMC.PrevItem</onclick>
+					</control> -->
 					
 					<!-- Item Separator -->
-					<control type="image" id="206">
+					<!--<control type="image" id="206">
 						<width>2</width>
 						<height>58</height>
 						<texture border="1">separator3.png</texture>
-					</control>
+					</control>-->
 					
-					
-					<control type="button" id="207">
-						<description>Extras</description>
+					<!-- Down Arrow -->
+					<!--<control type="button" id="207">
+						<description>Next Item</description>
 						<font>IconMedium</font>
 						<width>80</width>
 						<include>ButtonInfoDialogsCommonValues</include>
-						<label>+</label>
-						<onclick>ActivateWindow(1119)</onclick>
-						<enable>!Skin.HasSetting(KioskMode.Enabled)</enable>
-					</control>
+						<label></label>
+						<onclick>XBMC.NextItem</onclick>
+					</control>-->
 				</control>
 			</control>
 
