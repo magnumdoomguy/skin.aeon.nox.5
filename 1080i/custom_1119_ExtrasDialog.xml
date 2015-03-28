@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="1119" type="dialog">
-	<defaultcontrol always="true">90200</defaultcontrol>
+	<defaultcontrol always="true">3</defaultcontrol>
 	<coordinates>
 		<system>1</system>
 		<posx>0</posx>
@@ -8,15 +8,15 @@
 	</coordinates>
 	<include>dialogeffect</include>
 	<controls>
-		<control type="grouplist" id="90200">
+		<control type="grouplist" id="3">
 			<posx>705</posx>
 			<posy>0</posy>
 			<width>510</width>
 			<height>1080</height>
-			<onleft>90200</onleft>
-			<onright>90200</onright>
-			<onup>90200</onup>
-			<ondown>90200</ondown>
+			<onleft>3</onleft>
+			<onright>3</onright>
+			<onup>3</onup>
+			<ondown>3</ondown>
 			<itemgap>0</itemgap>
 			<align>center</align>
 			<control type="image" id="90201">
@@ -129,17 +129,15 @@
 				<visible>System.HasAddon(plugin.video.youtube) + [Container.Content(albums) | Container.Content(songs)]</visible>
 			</control>
 			<control type="button" id="90210">
-				<description>Add album as startup playlist button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<onclick>Skin.SetString(Startup_Playlist_Path,RunScript(script.playalbum,albumid=$INFO[ListItem.DBID]))</onclick>
-				<label>31089</label>
-				<visible>System.HasAddon(script.playalbum) + Container.Content(albums)</visible>
-			</control>
+                <description>FS Fanart button</description>
+                <width>510</width>
+                <textwidth>435</textwidth>
+                <textoffsetx>45</textoffsetx>
+                <texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
+                <texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
+                <onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick>
+                <label>$INFO[ListItem.Label] - $INFO[ListItem.Property(extraTypeStr)]</label>
+            </control>
 			<control type="button" id="90211">
                 <description>FS Fanart button</description>
                 <width>510</width>
