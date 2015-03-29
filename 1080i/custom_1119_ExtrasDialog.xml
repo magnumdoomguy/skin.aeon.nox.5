@@ -8,184 +8,117 @@
 	</coordinates>
 	<include>dialogeffect</include>
 	<controls>
-		<control type="grouplist" id="3">
-			<posx>705</posx>
-			<posy>0</posy>
-			<width>510</width>
-			<height>1080</height>
-			<onleft>3</onleft>
-			<onright>3</onright>
-			<onup>3</onup>
-			<ondown>3</ondown>
-			<itemgap>0</itemgap>
-			<align>center</align>
-			<control type="image" id="90201">
-				<description>background image</description>
-				<width>510</width>
-				<height>34</height>
-				<texture border="30,20,30,2">dialog_top2.png</texture>
-			</control>
-			<control type="button" id="90202">
-				<description>Cinema Experience button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<onclick>Dialog.Close(MovieInformation)</onclick>
-				<onclick>RunScript(script.cinema.experience,movieid=$INFO[ListItem.DBID])</onclick>
-				<label>$INFO[System.AddonTitle(script.cinema.experience)]</label>
-				<visible>System.HasAddon(script.cinema.experience)</visible>
-				<visible>Container.Content(movies) + !SubString(Window(10025).Property(CinemaExperienceRunning),True)</visible>
-			</control>
-			<control type="button" id="90203">
-				<description>Artwork downloader button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<onclick condition="Container.Content(movies)">RunScript(script.artwork.downloader, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="Container.Content(tvshows)">RunScript(script.artwork.downloader, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
-				<label>$INFO[System.AddonTitle(script.artwork.downloader)]</label>
-				<visible>System.HasAddon(script.artwork.downloader)</visible>
-			</control>
-			<control type="button" id="90204">
-				<description>Artwork downloader button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<onclick condition="Container.Content(movies)">XBMC.RunScript(script.artwork.downloader, mode=gui, mediatype=movie, dbid=$INFO[ListItem.DBID])</onclick>
-				<onclick condition="Container.Content(tvshows)">RunScript(script.artwork.downloader,mode=gui, mediatype=tvshow, dbid=$INFO[ListItem.DBID])</onclick>
-				<label>$INFO[System.AddonTitle(script.artwork.downloader),,: $LOCALIZE[413]]</label>
-				<visible>System.HasAddon(script.artwork.downloader)</visible>
-			</control>
-			<control type="button" id="90205">
-				<description>Edit button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<onclick>RunScript(script.libraryeditor,DBID=$INFO[ListItem.DBID])</onclick>
-				<label>21435</label>
-				<visible>System.HasAddon(script.libraryeditor)</visible>
-			</control>
-			<control type="button" id="90206">
-				<description>Rating Update button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<onclick>RunScript(script.ratingupdate,Single=Movie)</onclick>
-				<label>31067</label>
-				<visible>System.HasAddon(script.ratingupdate)</visible>
-				<visible>Container.Content(movies) | Container.Content(tvshows)</visible>
-			</control>
-			<control type="button" id="90207">
-				<description>TvTunes button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<onclick>RunScript(script.tvtunes,mode=solo)</onclick>
-				<label>$INFO[System.AddonTitle(script.tvtunes)]</label>
-				<visible>System.HasAddon(script.tvtunes)</visible>
-				<visible>[Container.Content(movies) | Container.Content(tvshows)] + IsEmpty(Window(movieinformation).Property("TvTunes_HideVideoInfoButton"))</visible>
-			</control>
-			<control type="button" id="90208">
-				<description>VideoExtras button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<onclick>RunScript(script.videoextras,display,"$INFO[ListItem.FilenameAndPath]")</onclick>
-				<label>$INFO[System.AddonTitle(script.videoextras)]</label>
-				<visible>System.HasAddon(script.videoextras)</visible>
-				<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)]</visible>
-			</control>
-			<control type="button" id="90209">
-				<description>Search YouTube button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(all,true)</onclick>
-				<onclick>ActivateWindow(videos,$ESCINFO[ListItem.Label,plugin://plugin.video.youtube/?path=/root/search&amp;feed=search&amp;search=],return)</onclick>
-				<label>$INFO[System.AddonTitle(plugin.video.youtube)]</label>
-				<visible>System.HasAddon(plugin.video.youtube) + [Container.Content(albums) | Container.Content(songs)]</visible>
-			</control>
-			<control type="button" id="90210">
-                <description>FS Fanart button</description>
-                <width>510</width>
-                <textwidth>435</textwidth>
-                <textoffsetx>45</textoffsetx>
-                <texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-                <texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-                <onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick>
-                <label>$INFO[ListItem.Label] - $INFO[ListItem.Property(extraTypeStr)]</label>
-            </control>
-			<control type="button" id="90211">
-                <description>FS Fanart button</description>
-                <width>510</width>
-                <textwidth>435</textwidth>
-                <textoffsetx>45</textoffsetx>
-                <texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-                <texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-                <onclick>SetFocus(90300)</onclick>
-                <label>$LOCALIZE[31092]</label>
-            </control>
-			<control type="button" id="90212">
-				<description>No extra feautures button</description>
-				<width>510</width>
-				<textwidth>435</textwidth>
-				<textoffsetx>45</textoffsetx>
-				<texturefocus border="35,2,35,2">button_shutdown_focus.png</texturefocus>
-				<texturenofocus border="35,2,35,2">button_shutdown_nofocus.png</texturenofocus>
-				<onclick>Dialog.Close(1119)</onclick>
-				<label>$LOCALIZE[31075]</label>
-				<visible>![Control.IsVisible(90202) | Control.IsVisible(90203) | Control.IsVisible(90204) | Control.IsVisible(90205) | Control.IsVisible(90206) | Control.IsVisible(90207) | Control.IsVisible(90208) | Control.IsVisible(90209) | Control.IsVisible(90210) | Control.IsVisible(90211)]</visible>
-			</control>
-			<control type="image" id="90213">
-				<description>background image</description>
+<control type="group">
+	<!--<visible>skin.string(showcast,true) + !Container.PlexContent(Clip) + !container.content(episode) + !IsEmpty(ListItem.Property(PlexExtras))</visible>-->
+	<animation effect="slide" start="800" end="0" tween="cubic" easing="out" time="400" delay="100">VisibleChange</animation>
+	<posx>1263</posx>
+	<posy>0</posy>
+	<animation type="Windowclose">
+		<effect type="slide" start="0" end="800" tween="cubic" easing="out" time="400" delay="300"/>
+	</animation>
+	<animation type="Windowopen">
+		<effect type="fade" start="0" end="100" time="300" delay="300"/>
+		<effect type="slide" start="800" end="0" tween="cubic" easing="out" time="400" delay="300"/>
+	</animation>
+	<!--overlay-->
+	<control type="image">
+		<posx>84</posx>
+		<posy>0</posy>
+		<width>573</width>
+		<height>198</height>
+		<texture>colors/selected.png</texture>
+		<colordiffuse>ffffffff</colordiffuse>
+		<aspectratio>stretch</aspectratio>
+	</control>
+	<control type="image">
+		<posx>84</posx>
+		<posy>198</posy>
+		<width>573</width>
+		<height>16-row</height>
+		<texture>colors/black.png</texture>
+		<colordiffuse>ccffffff</colordiffuse>
+		<aspectratio>stretch</aspectratio>
+	</control>
+	<!--content-->
+	<control type="group">
+		<posx>col-1-begin</posx>
+		<posy>row-2-begin</posy>
+		<control type="label">
+			<posx>0</posx>
+			<posy>42</posy>
+			<width>8-col-gutter</width>
+			<align>left</align>
+			<font>itemTitleSmall</font>
+			<textcolor>black</textcolor>
+			<label>$LOCALIZE[41008]</label>
+			<shadowcolor>-</shadowcolor>
+		</control>
+	</control>
+	<control type="list" id="3">
+		<posx>84</posx>
+		<posy>202</posy>
+		<width>8-col</width>
+		<height>14-row</height>
+		<itemgap>3</itemgap>
+		<onup>3</onup>
+		<ondown>3</ondown>
+		<onleft>8000</onleft>
+		<onright>Skin.SetString(showcast,false)</onright>
+		<onright>Control.SetFocus(8000)</onright>
+		<itemlayout width="8-col" height="2-row">
+			<control type="image">
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>510</width>
-				<height>34</height>
-				<texture border="30,2,30,20">dialog_bottom2.png</texture>
+				<width>111</width>
+				<height>111</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture border="0" fallback="candy/default.png">$INFO[ListItem.Art(thumb)]</texture>
+				<bordersize>0</bordersize>
+				<colordiffuse>ffFFFFFF</colordiffuse>
 			</control>
-		</control>
-
-		<control type="group">
-			<visible allowhiddenfocus="true">Control.HasFocus(90300)</visible>
-			<include>VisibleFadeEffect</include>
-			<control type="button" id="90300">
-				<description>FS Fanart button</description>
-				<width>1920</width>
-				<height>1080</height>
-				<texturefocus border="35,2,35,2">-</texturefocus>
-				<texturenofocus border="35,2,35,2">-</texturenofocus>
-				<onclick>SetFocus(90200)</onclick>
-				<label>-</label>
+			<control type="textbox">
+				<posx>134</posx>
+				<posy>18</posy>
+				<width>5-col-gutter</width>
+				<height>68</height>
+				<font>itemTitleSmall</font>
+				<textcolor>selected</textcolor>
+				<label>$INFO[ListItem.label]</label>
+				<shadowcolor>-</shadowcolor>
+			</control>
+		</itemlayout>
+		<focusedlayout width="8-col" height="2-row">
+			<control type="image">
+				<posx>114</posx>
+				<posy>0</posy>
+				<width>7-col</width>
+				<height>111</height>
+				<aspectratio>stretch</aspectratio>
+				<texture>colors/selected.png</texture>
+				<colordiffuse>ffFFFFFF</colordiffuse>
 			</control>
 			<control type="image">
-				<include>FullscreenDimensions</include>
-				<texture>$INFO[ListItem.Art(fanart)]</texture>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>111</width>
+				<height>111</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture border="0" fallback="candy/default.png">$INFO[ListItem.Art(thumb)]</texture>
+				<bordersize>0</bordersize>
+				<colordiffuse>ffFFFFFF</colordiffuse>
 			</control>
-		</control>
-
+			<control type="textbox">
+				<posx>134</posx>
+				<posy>18</posy>
+				<width>5-col-gutter</width>
+				<height>68</height>
+				<font>itemTitleSmall</font>
+				<textcolor>black</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+				<shadowcolor>-</shadowcolor>
+			</control>
+		</focusedlayout>
+	</control>
+</control>
 	</controls>
 </window>
