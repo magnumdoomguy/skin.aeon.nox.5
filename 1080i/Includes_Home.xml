@@ -413,14 +413,22 @@
 			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X1)</visible>
 		</item>
 	</include>
+	
+	<!-- Settings Submenu -->
 	<include name="HomeSubMenuSettings">
+	
+		<!-- Sign in -->
 		<item>
-			<label>24001</label>
-			<onclick>ActivateWindow(AddonBrowser)</onclick>
+			<description>Sign In</description>
+			<label>Sign in</label>
+			<onclick>Plex.ActivateWindow(plexlogin)</onclick>
 			<icon>-</icon>
 			<thumb>-</thumb>
 			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
+			<visible>!System.IsSignedIn</visible>
 		</item>
+		
+		<!-- Skin Settings -->
 		<item>
 			<label>20077</label>
 			<onclick>ActivateWindow(SkinSettings)</onclick>
@@ -428,28 +436,42 @@
 			<thumb>-</thumb>
 			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
 		</item>
+		
+		<!-- Channel Directory -->
 		<item>
-			<label>7</label>
-			<onclick>ActivateWindow(FileManager)</onclick>
+			<description>Channel Directory</description>
+			<label>Channel Directory</label>
+			<onclick>Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
 			<icon>-</icon>
 			<thumb>-</thumb>
 			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
+			<visible>!System.UserIsRestricted</visible>
 		</item>
+		
+		<!-- Openelec Settings -->
 		<item>
-			<label>13200</label>
-			<onclick>ActivateWindow(Profiles)</onclick>
+			<description>OE Settings Button</description>
+			<label>$LOCALIZE[41000]</label>
+			<onclick>RunAddon(service.openelec.settings)</onclick>
 			<icon>-</icon>
 			<thumb>-</thumb>
 			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
+			<visible>System.isSystem(openelec) + !System.UserIsRestricted</visible>
 		</item>
+		
+		<!-- Control Global Caching -->
 		<item>
-			<label>130</label>
-			<onclick>ActivateWindow(SystemInfo)</onclick>
+			<description>Control Global Caching</description>
+			<label>$LOCALIZE[41001]</label>
+			<onclick>XBMC.ActivateWindow(10208)</onclick>
 			<icon>-</icon>
 			<thumb>-</thumb>
 			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
+			<visible>System.isSystem(rasplex) + !System.UserIsRestricted</visible>
 		</item>
 	</include>
+	
+	<!-- Power Submenu -->
 	<include name="HomeSubMenuShutdown">
 	
 		<!-- Shutdown Timer -->
@@ -509,6 +531,7 @@
 			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
 	</include>
+	
 	<include name="HomeSubMenuPictures">
 		<item>
 			<label>24001</label>
