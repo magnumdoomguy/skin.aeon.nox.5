@@ -155,7 +155,7 @@
 	<include name="ShutdownMainMenu">
 		<item id="6">
 			<label fallback="33060">$INFO[Skin.String(ShutdownHomeItem.Label)]</label>
-			<onclick>$INFO[Container(300).ListItem.Property(Path)]</onclick>
+			<onclick>Plex.Quit</onclick>
 			<icon fallback="special://skin/extras/icons/power.png">$INFO[Skin.String(ShutdownHomeItem.Icon)]</icon>
 			<thumb>$INFO[Skin.String(ShutdownHomeItem.MultiFanart)]</thumb>
 			<property name="Path" fallback="ActivateWindow(shutdownmenu)">$INFO[Skin.String(ShutdownHomeItem.Path)]</property>
@@ -451,6 +451,8 @@
 		</item>
 	</include>
 	<include name="HomeSubMenuShutdown">
+	
+		<!-- Shutdown Timer -->
 		<item>
 			<label>$LOCALIZE[19040]</label>
 			<onclick>AlarmClock(shutdowntimer,Shutdown())</onclick>
@@ -458,41 +460,53 @@
 			<visible>!System.HasAlarm(shutdowntimer)</visible>
 			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
 		</item>
+		
+		<!-- Cancel Timer -->
 		<item>
 			<label>$LOCALIZE[222]</label>
 			<onclick>CancelAlarm(shutdowntimer)</onclick>
 			<visible>System.HasAlarm(shutdowntimer)</visible>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
+			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
+		
+		<!-- Shutdown -->
 		<item>
 			<label>$LOCALIZE[13016]</label>
-			<onclick>Powerdown()</onclick>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
+			<onclick>Plex.Powerdown</onclick>
+			<visible>!System.UserIsRestricted</visible>
+			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
+		
+		<!-- Restart -->
 		<item>
 			<label>13013</label>
-			<onclick>Reset()</onclick>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
+			<onclick>System.Exec(reboot)</onclick>
+			<visible>System.isSystem(openelec) + !System.UserIsRestricted</visible>
+			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
+		
+		<!-- Suspend -->
 		<item>
 			<label>13011</label>
-			<onclick>Suspend()</onclick>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
+			<onclick>Plex.Suspend</onclick>
+			<visible>!System.isSystem(rasplex)</visible>
+			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
-		<item>
-			<label>13010</label>
-			<onclick>Hibernate()</onclick>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
-		</item>
+		
+		<!-- Switch User -->
 		<item>
 			<label>20126</label>
-			<onclick>System.LogOff</onclick>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
+			<onclick>XBMC.ActivateWindow(selectuser)</onclick>
+			<visible>System.IsSignedIn + System.UserIsInHome</visible>
+			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
+		
+		<!-- Quit -->
 		<item>
 			<label>13009</label>
-			<onclick>Quit</onclick>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
+			<onclick>Plex.Quit</onclick>
+			<visible>!System.isSystem(openelec)</visible>
+			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
 	</include>
 	<include name="HomeSubMenuPictures">
