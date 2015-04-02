@@ -1,14 +1,58 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<window>
-	<defaultcontrol always="true">300</defaultcontrol>
+﻿<?xml version="1.0"?>
+<window id="0">
+	<defaultcontrol always="true">299</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
-	<onload>SetProperty(Window.HasSettings,True,home)</onload>
+	<onload>SetProperty(Window.HasSettings,True,Home)</onload>
 	
 	<!-- Not Necessary for Plex -->	<!--<onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=X1|X2|X3|X4|X5|X6|X7|X8|X9|X10|X11|X12|X13|X101|X202|X303|X404|X50​5|X606)</onload>-->
 	
 	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
+	
 	<controls>
-		<include>CommonBackground</include>
+	
+		<!-- PHT NoFocus Bug Workaround -->
+		<control type="button" id="299">
+			<posx>-10</posx>
+			<posy>-10</posy>
+			<width>0</width>
+			<height>0</height>
+			<texturenofocus>-</texturenofocus>
+			<texturefocus>-</texturefocus>
+			<onfocus>SetFocus(300)</onfocus>
+		</control>
+	
+		<!-- Display Plex Fanart -->
+		<control type="group">
+		
+			<!--<animation effect="fade" start="0" end="50" condition="true">Conditional</animation>-->
+			
+			<!-- generic autopopulated fanart slideshow -->
+			<control type="multiimage" id="10101">
+				<visible>![stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground1Label) + Skin.HasSetting(CustomHomeBackground1)]</visible>
+				<visible>![stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground2Label) + Skin.HasSetting(CustomHomeBackground2)]</visible>
+				<visible>![stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground3Label) + Skin.HasSetting(CustomHomeBackground3)]</visible>
+			</control>
+			
+			<!-- Custom Home Background Slideshow 1 -->
+			<control type="multiimage">
+				<visible>[stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground1Label) + Skin.HasSetting(CustomHomeBackground1)]</visible>
+				<info>Skin.String(CustomHomeBackground1Path)</info>
+			</control>
+			
+			<!-- Custom Home Background Slideshow 2 -->
+			<control type="multiimage">
+				<visible>[stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground2Label) + Skin.HasSetting(CustomHomeBackground2)]</visible>
+				<info>Skin.String(CustomHomeBackground2Path)</info>
+			</control>
+			
+			<!-- Custom Home Background Slideshow 3 -->
+			<control type="multiimage">
+				<visible>[stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground3Label) + Skin.HasSetting(CustomHomeBackground3)]</visible>
+				<info>Skin.String(CustomHomeBackground3Path)</info>
+			</control>
+			
+		</control>
+		
 		<include condition="!Skin.HasSetting(Disable.Videoinfo)">NowPlayingVideoWidget</include>
 		<include condition="!Skin.HasSetting(Disable.Musicinfo)">NowPlayingMusicWidget</include>
 		<include>HomeRecentlyAddedInfo</include>
@@ -329,4 +373,5 @@
 		</control>
 
 	</controls>
+
 </window>
