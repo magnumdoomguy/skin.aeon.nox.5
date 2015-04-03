@@ -3,6 +3,10 @@
 	<defaultcontrol always="true">299</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	<onload>SetProperty(Window.HasSettings,True,Home)</onload>
+	<onload condition="Container.PlexContent(Movies)">Skin.SetString(SectionType,movies)</onload>
+	<onload condition="Container.PlexContent(TVShows)">Skin.SetString(SectionType,tvshows)</onload>
+	<onload condition="Container.PlexContent(Clips)">Skin.SetString(SectionType,clips)</onload>
+	<onunload>Skin.Reset(SectionType)</onunload>
 	
 	<!-- Not Necessary for Plex -->	<!--<onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=X1|X2|X3|X4|X5|X6|X7|X8|X9|X10|X11|X12|X13|X101|X202|X303|X404|X50​5|X606)</onload>-->
 	
@@ -10,6 +14,37 @@
 	
 	<controls>
 	
+		<control type="group">
+			<posy>5</posy>
+			<control type="image">
+				<posx>3</posx>
+				<width>60</width>
+				<height>60</height>
+				<aspectratio scalediffuse="false" align="center">scale</aspectratio>
+				<texture diffuse="round.png" background="true">round.png</texture>
+				<animation effect="fade" start="20" end="20" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="image">
+				<posy>5</posy>
+				<posx>8</posx>
+				<width>50</width>
+				<height>50</height>
+				<aspectratio scalediffuse="false" align="center">scale</aspectratio>
+				<texture diffuse="round.png" background="true" fallback="default-square-small.png">$INFO[System.CurrentUserThumb]</texture>
+			</control>
+			<control type="label">
+				<posx>66</posx>
+				<width>600</width>
+				<height>87</height>
+				<label>$INFO[System.CurrentUser]</label>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>Regular-22</font>
+				<textcolor>white</textcolor>
+				<animation effect="fade" end="70" time="0" condition="true">Conditional</animation>
+			</control>
+			<animation effect="fade" start="100" end="0" time="500" delay="15000" condition="true">Conditional</animation>
+		</control>
 		<!-- PHT NoFocus Bug Workaround -->
 		<control type="button" id="299">
 			<posx>-10</posx>
@@ -174,9 +209,10 @@
 					</control>-->
 					
 					<control type="label" id="9025">
-						<width>auto</width>
+						<width>500</width>
 						<height>41</height>
-						<label>[COLOR grey]$INFO[System.Date]  •[/COLOR]  $INFO[System.Time]</label>
+						<align>right</align>
+						<label>$INFO[System.Date,[COLOR grey],  |  [/COLOR]]$INFO[System.Time]</label>
 						<font>font13_title</font>
 						<textcolor>themecolor</textcolor>
 						<shadowcolor>AA000000</shadowcolor>
@@ -218,7 +254,7 @@
 					<height>87</height>
 					<texture>submenu_bar.png</texture>
 				</control>
-				<control type="fixedlist" id="9010">
+				<control type="fixedlist" id="9010"> <!-- 9010 -->
 					<posx>210</posx>
 					<posy>0</posy>
 					<width>1500</width>
