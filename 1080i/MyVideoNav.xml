@@ -2,7 +2,7 @@
 <window>
     <defaultcontrol always="true">50</defaultcontrol>
     <allowoverlay>true</allowoverlay>
-    <views>50,51,52,53,55,56,57,58,59,500</views>
+    <views>50,51,52,53,55,56,57,58,59,500,501</views>
 	<onload>SetProperty(Window.HasSettings,True,home)</onload>
     <onload>ClearProperty(MediaMenu,Home)</onload>
 	<onload condition="Container.PlexContent(Movies)">Skin.SetString(SectionType,movies)</onload>
@@ -57,6 +57,8 @@
 			<!-- view id = 59 -->
 			<include>VideoWall</include>
 			<!-- view id = 500 -->
+			<include>VideoLowList</include>
+			<!-- view id = 501 -->
 		</control>
 		<control type="group">
 			<visible>Control.IsVisible(52) | Control.IsVisible(53) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(58) | Control.IsVisible(59)</visible>
@@ -367,91 +369,88 @@
 					<onclick condition="Control.IsVisible(53)">$VAR[53VideoInfoPanelVar]</onclick>					
 					<visible>Control.IsVisible(52) | Control.IsVisible(53)</visible>
 				</control>
-				<control type="button" id="201">
-					<description>View options</description>
-					<textwidth>352</textwidth>
+								
+				<!-- FILTERS -->
+				<!-- primary filter list title -->
+				<control type="label" id="19008">
+					<description>Title</description>
+					<width>400</width>
+					<height>52</height>
+					<textoffsetx>15</textoffsetx>
 					<font>font13_title</font>
-					<include>ButtonCommonValues</include>
-					<label>31026</label>
-					<enable>no</enable>
-					<disabledcolor>themecolor</disabledcolor>
+					<textcolor>themecolor</textcolor>
+					<aligny>center</aligny>
 				</control>
-                <control type="button" id="10">
-                    <description>Watched Toggle</description>
-                    <textwidth>255</textwidth>
-                    <include>ButtonCommonValues</include>
-                    <label>20367</label>
-                    <label2>[COLOR themecolor]$INFO[Container.NumItems][/COLOR]</label2>
-                </control>
-                <control type="button" id="8">
-                    <description>Search</description>
-                    <include>ButtonCommonValues</include>
-                    <label>137</label>
-                </control>
-				<control type="edit" id="19">
-					<visible>Container.CanFilter + !Container.CanFilterAdvanced</visible>
-					<description>Filter</description>
-					<textwidth>345</textwidth>
+					
+				<!-- primary filters list -->
+				<control type="grouplist" id="19000">
 					<include>ButtonCommonValues</include>
-					<label>587</label>
-				</control>
-				<control type="radiobutton" id="98">
-					<visible>Container.CanFilterAdvanced</visible>
-					<description>Filter</description>
-					<include>ButtonCommonValues</include>
-					<label>587</label>
-					<selected>Container.Filtered</selected>
-					<onclick>right</onclick>
-					<onclick>Filter</onclick>
+					<textoffsetx>15</textoffsetx>
+					<!--<onup>19010</onup>
+					<ondown>29999</ondown>-->
+					<itemgap>0</itemgap>
 				</control>
 				
-				<!-- Not Available in Plex -->
-				<!-- <control type="radiobutton" id="16">
-                    <description>PartyMode</description>
-                    <label>589</label>
-                    <include>ButtonCommonValues</include>
-                    <visible>Container.Content(MusicVideos)</visible>
-                </control>-->
-				
-				<!-- Not Available in Plex -->
-                <!--<control type="radiobutton" id="11">
-                    <description>Unlock Shares</description>
-                    <textwidth>255</textwidth>
-                    <include>ButtonCommonValues</include>
-                    <label>20336</label>
-                    <onclick>xbmc.mastermode</onclick>
-                    <selected>system.ismaster</selected>
-                    <visible>system.haslocks</visible>
-                </control>-->
-				
-				<!-- Actions not available in Plex -->
-				<!--<control type="button" id="203">
-					<description>View options</description>
-					<textwidth>352</textwidth>
+				<!-- secondary filters list title -->
+				<control type="label" id="19009">
+					<description>Secondary Title</description>
+					<width>400</width>
+					<height>52</height>
+					<textoffsetx>15</textoffsetx>
 					<font>font13_title</font>
-					<include>ButtonCommonValues</include>
-					<label>31039</label>
-					<enable>no</enable>
-					<disabledcolor>themecolor</disabledcolor>
-				</control>-->
+					<textcolor>themecolor</textcolor>
+					<aligny>center</aligny>
+					<label>FILTER</label>
+					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
+				</control>
 				
-				<!-- Updating Library not available in Plex -->
-                <!-- <control type="togglebutton" id="20">
-                    <description>Update library</description>
-                    <include>ButtonCommonValues</include>
-                    <label>653</label>
-                    <altlabel>13353</altlabel>
-                    <usealttexture>library.isscanningvideo</usealttexture>
-                </control> -->
-				
-				<!-- Now playing not available in Plex -->
-				<!--<control type="button" id="612">
-					<description>Go to playlist</description>
+				<!-- secondary filters list -->
+				<control type="grouplist" id="19001">
 					<include>ButtonCommonValues</include>
-					<label>13350</label>
-					<onclick>ActivateWindow(videoplaylist)</onclick>
-					<visible>!StringCompare(Playlist.Length(video),0)</visible>
-				</control>-->
+					<!--<onup>19000</onup>
+					<ondown>32000</ondown>-->
+					<itemgap>0</itemgap>
+				</control>
+				
+				<!-- filters buttons -->
+				<control type="button" id="19005">
+					<include>ButtonCommonValues</include>
+					<textoffsetx>35</textoffsetx>
+				</control>
+				<control type="radiobutton" id="19006">
+					<include>ButtonCommonValues</include>
+					<include>leftMenuFilterRadioButton</include>
+				</control>
+				<control type="label" id="19007">
+					<include>ButtonCommonValues</include>
+				</control>
+				
+				<!-- SORTING -->
+				<!-- sorting list title -->
+				<control type="label" id="19019">
+					<description>Title</description>
+					<width>400</width>
+					<height>52</height>
+					<textoffsetx>15</textoffsetx>
+					<font>font13_title</font>
+					<textcolor>themecolor</textcolor>
+					<aligny>center</aligny>
+					<label>SORT</label>
+					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
+				</control>
+				
+				<!-- sorting list -->
+				<control type="grouplist" id="19010">
+					<include>ButtonCommonValues</include>
+					<itemgap>0</itemgap>
+				</control>
+				
+				<!-- sorting buttons -->
+				<control type="filterorderbutton" id="19011">
+					<include>ButtonCommonValues</include>
+					<include>leftMenuSortingButton</include>
+				</control>
+				
 			</control>
         </control>
     </controls>
