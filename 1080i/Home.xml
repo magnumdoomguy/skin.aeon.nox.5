@@ -7,9 +7,6 @@
 	<onload condition="Container.PlexContent(TVShows)">Skin.SetString(SectionType,tvshows)</onload>
 	<onload condition="Container.PlexContent(Clips)">Skin.SetString(SectionType,clips)</onload>
 	<onunload>Skin.Reset(SectionType)</onunload>
-	
-	<!-- Not Necessary for Plex -->	<!--<onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=300&amp;group=X1|X2|X3|X4|X5|X6|X7|X8|X9|X10|X11|X12|X13|X101|X202|X303|X404|X50​5|X606)</onload>-->
-	
 	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
 	
 	<controls>
@@ -172,6 +169,24 @@
 				<include>FullscreenDimensions</include>
 				<info>Skin.String(CustomHomeBackground15Path)</info>
 			</control>
+		</control>
+		
+		<!-- Visualization Background -->
+		<control type="visualisation">
+			<include>FullscreenDimensions</include>
+			<visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
+			<visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
+		</control>
+		
+		<!-- Video Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>black.png</texture>
+			<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+		</control>
+		<control type="videowindow">
+				<include>FullscreenDimensions</include>
+				<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
 		</control>
 			
 		<!-- User Avatar -->

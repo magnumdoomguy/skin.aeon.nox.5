@@ -3,10 +3,31 @@
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	<controls>
+		
+		<!-- NOWALL Settings Background -->
 		<control type="image">
 			<include>FullscreenDimensions</include>
 			<texture>special://skin/backgrounds/system.jpg</texture>
 		</control>
+		
+		<!-- Visualization Background -->
+		<control type="visualisation">
+			<include>FullscreenDimensions</include>
+			<visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
+			<visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
+		</control>
+		
+		<!-- Video Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>black.png</texture>
+			<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+		</control>
+		<control type="videowindow">
+				<include>FullscreenDimensions</include>
+				<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+		</control>
+		
 		<include>Topbar</include>
 		<control type="group">
 			<posx>0</posx>
