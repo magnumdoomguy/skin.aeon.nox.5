@@ -3,7 +3,53 @@
 	<defaultcontrol>3</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	<controls>
-		<include>CommonBackground</include>
+		
+		<!-- NOWALL Appearance Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>special://skin/backgrounds/appearance.jpg</texture>
+			<visible>Window.IsActive(appearancesettings)</visible>
+		</control>
+		
+		<!-- NOWALL Playback Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>special://skin/backgrounds/play_disc.jpg</texture>
+			<visible>Window.IsActive(videossettings)</visible>
+		</control>
+		
+		<!-- NOWALL System Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>special://skin/backgrounds/default_settings.jpg</texture>
+			<visible>Window.IsActive(SystemSettings)</visible>
+		</control>
+		
+		<!-- NOWALL Network Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>special://skin/backgrounds/network.jpg</texture>
+			<visible>Window.IsActive(ServiceSettings)</visible>
+		</control>
+		
+		<!-- Visualization Background -->
+		<control type="visualisation">
+			<include>FullscreenDimensions</include>
+			<visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
+			<visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
+		</control>
+		
+		<!-- Video Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>black.png</texture>
+			<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+		</control>
+		<control type="videowindow">
+				<include>FullscreenDimensions</include>
+				<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+		</control>
+		
 		<control type="group">
 			<posx>0</posx>
 			<posy>128</posy>
