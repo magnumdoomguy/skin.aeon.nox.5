@@ -347,11 +347,109 @@
 		
         <control type="group">
             <posx>-440</posx>
-            <include>SideBladeLeft</include>
-            <control type="grouplist" id="9050">
-				<include>MediaMenuTop</include>
+            <animation effect="slide" start="440,0" end="0,0" time="400" tween="quadratic" easing="out" condition="IsEmpty(Window(home).Property(MediaMenu))">Conditional</animation>
+			<animation effect="slide" start="0,0" end="-440,0" time="400" tween="quadratic" easing="out">WindowClose</animation>
+			<!--<posy>44</posy>-->
+			
+			<!-- Display Side Blade Menu Background -->
+			<control type="image">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>432</width>
+				<height>1080</height>
+				<texture border="40">mediamenu_back.png</texture>
+			</control>
+			
+			<!-- Display Aeon Nox Logo -->
+			<control type="image">
+				<description>LOGO</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>400</width>
+				<height>120</height>
+				<aspectratio>keep</aspectratio>
+				<texture>aeon-nox-logo.png</texture>
+			</control>
+			
+			<control type="grouplist" id="9050">  
+				<posx>0</posx>
+				<posy>100</posy>
+				<width>400</width>
+				<height>1080</height>
+				<onleft>9050</onleft>
+				<onright>ClearProperty(MediaMenu,Home)</onright>
+				<onright>50</onright>
+				<onup>19000</onup>
+				<ondown>19000</ondown>
+				<onback>ClearProperty(MediaMenu,Home)</onback>
+				<onback>50</onback>
+				<itemgap>0</itemgap>
+				<orientation>vertical</orientation>
+				<include condition="Skin.HasSetting(KioskMode.Enabled)">KioskModeButton</include>
+			
+				<!-- Play Options -->
+				<control type="label">
+					<width>400</width>
+					<height>52</height>
+					<textoffsetx>15</textoffsetx>
+					<font>font13_title</font>
+					<label>Play Options</label>
+					<textcolor>themecolor</textcolor>
+					<aligny>center</aligny>
+				</control>
+					
+				<!-- Play All -->
+				<control type="button" id="104">
+					<textwidth>352</textwidth>
+					<include>ButtonCommonValues</include>
+					<label>Play All</label>
+					<onclick>Plex.PlayAll()</onclick>
+					<visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
+				</control>
+					
+				<!-- Shuffle All -->
+				<control type="button" id="105">
+					<textwidth>352</textwidth>
+					<include>ButtonCommonValues</include>
+					<label>Shuffle</label>
+					<onclick>Plex.ShuffleAll()</onclick>
+					<visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
+				</control>
+					
+				<!-- Now Playing -->
+				<control type="button" id="106">
+					<textwidth>352</textwidth>
+					<include>ButtonCommonValues</include>
+					<label>Now Playing</label>
+					<onclick>fullscreen</onclick>
+					<visible>Player.HasAudio | Player.HasVideo</visible>
+				</control>
+
+				<!-- View Options Title -->
+				<control type="label" id="200">
+					<width>400</width>
+					<height>52</height>
+					<textoffsetx>15</textoffsetx>
+					<font>font13_title</font>
+					<label>31006</label>
+					<textcolor>themecolor</textcolor>
+					<aligny>center</aligny>
+				</control>
+				
+				<!-- Change View type -->
+				<control type="button" id="2">
+					<description>View As button</description>
+					<posy>60</posy>
+					<textwidth>352</textwidth>
+					<include>ButtonCommonValues</include>
+					<onclick>Container.NextViewMode</onclick>	
+					<label>-</label>
+				</control>
+				
+				<!-- Toggle Info Panel -->
 				<control type="button" id="6052">
 					<description>Show Info Toggle</description>
+					<posy>120</posy>
 					<textwidth>255</textwidth>
 					<include>ButtonCommonValues</include>
 					<label>$LOCALIZE[33068]</label>
@@ -359,6 +457,7 @@
 					<onclick>$VAR[VideoBackgroundClickVar]</onclick>
 					<visible>!Container.Content(genres)</visible>
 				</control>
+
 				<control type="button" id="6051">
 					<description>Show Info Toggle</description>
 					<textwidth>255</textwidth>
@@ -369,10 +468,11 @@
 					<onclick condition="Control.IsVisible(53)">$VAR[53VideoInfoPanelVar]</onclick>					
 					<visible>Control.IsVisible(52) | Control.IsVisible(53)</visible>
 				</control>
-								
+				
 				<!-- FILTERS -->
+				
 				<!-- primary filter list title -->
-				<control type="label" id="19008">
+				<!--<control type="label" id="19008">
 					<description>Title</description>
 					<width>400</width>
 					<height>52</height>
@@ -380,15 +480,24 @@
 					<font>font13_title</font>
 					<textcolor>themecolor</textcolor>
 					<aligny>center</aligny>
-				</control>
-					
+				</control>-->
+						
 				<!-- primary filters list -->
 				<control type="grouplist" id="19000">
-					<!--<textoffsetx>15</textoffsetx>-->
+					<posy>60</posy>
+					<!--<onright>ClearProperty(MediaMenu,Home)</onright>
+					<onright>50</onright>
+					<onleft>9050</onleft>
+					<onup>9050</onup>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<ondown>19001</ondown>-->
+					<itemgap>0</itemgap>
 				</control>
 				
 				<!-- secondary filters list title -->
-				<control type="label" id="19009">
+				<!--<control type="label" id="19009">
+					<posy>240</posy>
 					<description>Secondary Title</description>
 					<width>400</width>
 					<height>52</height>
@@ -398,33 +507,59 @@
 					<aligny>center</aligny>
 					<label>FILTER</label>
 					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
-				</control>
+				</control>-->
 				
 				<!-- secondary filters list -->
-				<control type="grouplist" id="19001">
-					<!--<include>ButtonCommonValues</include>-->
-					<!--<onup>19000</onup>
-					<ondown>32000</ondown>-->
-					<!--<itemgap>0</itemgap>-->
-				</control>
+				<!--<control type="grouplist" id="19001">
+					<posy>300</posy>
+					<onright>ClearProperty(MediaMenu,Home)</onright>
+					<onright>50</onright>
+					<onleft>9050</onleft>
+					<onup>19000</onup>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<ondown>19010</ondown>
+				</control>-->
 				
 				<!-- filters buttons -->
-				<control type="button" id="19005">
-					<include>ButtonCommonValues</include>
-					<label>-</label>
-					<!--<textoffsetx>35</textoffsetx>-->
+				<!--<control type="button" id="19005">
+					<width>400</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
 				</control>
 				<control type="radiobutton" id="19006">
-					<include>ButtonCommonValues</include>
-					<!--<include>leftMenuFilterRadioButton</include>-->
+					<radiowidth>64</radiowidth>
+					<radioheight>64</radioheight>
+					<textureradiofocus>overlays/list/OverlayWatched.png</textureradiofocus> 
+					<textureradionofocus>overlays/list/OverlayUnwatched.png</textureradionofocus> 
+					<texturefocus border="1">listselect_fo.png</texturefocus>
+					<texturenofocus border="1">separator2.png</texturenofocus>
+					<label>-</label>
+					<disabledcolor>grey4</disabledcolor>
+					<pulseonselect>false</pulseonselect>
+					<width>400</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
 				</control>
 				<control type="label" id="19007">
-					<include>ButtonCommonValues</include>
-				</control>
+				</control>-->
 				
 				<!-- SORTING -->
 				<!-- sorting list title -->
 				<control type="label" id="19019">
+					<!--<posy>720</posy>-->
 					<description>Title</description>
 					<width>400</width>
 					<height>52</height>
@@ -432,14 +567,25 @@
 					<font>font13_title</font>
 					<textcolor>themecolor</textcolor>
 					<aligny>center</aligny>
-					<label>SORT</label>
+					<label>SORT OPTIONS</label>
 					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
 				</control>
 				
 				<!-- sorting list -->
 				<control type="grouplist" id="19010">
-					<!--<include>ButtonCommonValues</include>
-					<!--<itemgap>0</itemgap>-->
+					<posy>60</posy><!-- 780 -->
+					<onright>ClearProperty(MediaMenu,Home)</onright>
+					<onright>50</onright>
+					<onleft>9050</onleft>
+					<onup>6051</onup>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<ondown>2</ondown>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
 				</control>
 				
 				<!-- sorting buttons -->
@@ -448,26 +594,25 @@
 					<posy>0</posy>
 					<width>450</width>
 					<height>60</height>
-					<!--<radiowidth>64</radiowidth>
-					<radioheight>64</radioheight>
-					<textureradiofocus>android/btn_radio_on_holo_dark.png</textureradiofocus> 
-					<textureradionofocus>android/btn_radio_off_holo_dark.png</textureradionofocus> -->
+					<radiowidth>32</radiowidth>
+					<radioheight>32</radioheight>
+					<radioposx>356</radioposx>
+					<textureorderascending>android/numberpicker_up_longpressed_holo_dark.png</textureorderascending> 
+					<textureorderdescending>android/numberpicker_down_longpressed_holo_dark.png</textureorderdescending>
 					<texturefocus border="1">listselect_fo.png</texturefocus>
 					<texturenofocus border="1">separator2.png</texturenofocus>
-					<font>font14</font>
+					<font>font13</font>
 					<label>-</label>
 					<textcolor>grey2</textcolor>
 					<focusedcolor>white</focusedcolor>
 					<disabledcolor>grey4</disabledcolor>
-					<!-- <invalidcolor>invalid</invalidcolor> Not Available in Frodo -->
 					<textoffsetx>15</textoffsetx>
 					<aligny>center</aligny>
-					<pulseonselect>false</pulseonselect>
-					<include>ButtonCommonValues</include>
-					<!--<include>leftMenuSortingButton</include>-->
+					<pulseonselect>false</pulseonselect>				
 				</control>
 				
 			</control>
+			
         </control>
     </controls>
 </window>
