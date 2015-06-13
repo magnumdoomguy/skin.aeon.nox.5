@@ -117,14 +117,20 @@
 					<width>1920</width>
 					<align>center</align>
 					<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+					
+					<!-- Display Studio -->
 					<control type="group">
 						<posx>120</posx>
+						
+						<!-- Display Studio Flag -->
 						<control type="image" id="800011">
 							<colordiffuse>white</colordiffuse>
 							<include>MediaFlagVars</include>
 							<bordersize>2</bordersize>
-							<texture>$INFO[ListItem.Studio,flags/studios/,.png]</texture>
+							<texture align="center" aligny="center">flags/studios/$INFO[Listitem.Property(mediaTag-Studio)].png</texture>
 						</control>
+						
+						<!-- Fallback to Text If No Studio Flag Present -->
 						<control type="label">
 							<posx>-10</posx>
 							<width>155</width>
@@ -136,28 +142,36 @@
 							<wrapmultiline>true</wrapmultiline>
 							<visible>IsEmpty(Control.GetLabel(800011))</visible>
 						</control>
+						
 					</control>
-					<!--<control type="image">
+					
+					<!-- Display Audio Codec Flag -->
+					<control type="image">
 						<posx>1470</posx>
 						<colordiffuse>white</colordiffuse>
 						<include>MediaFlagVars</include>
-						<texture>$INFO[ListItem.AudioCodec,flags/audio/,.png]</texture>
+						<texture align="center" aligny="center" fallback="flags/audio/defaultsound.png">$INFO[ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
 						<visible>!IsEmpty(ListItem.AudioCodec)</visible>
 					</control>
+					
+					<!-- Display Video Codec Flag -->
 					<control type="image">
 						<posx>1675</posx>
 						<colordiffuse>white</colordiffuse>
 						<include>MediaFlagVars</include>
-						<texture>$VAR[SourceFlagVar,flags/video/,.png]</texture>
+						<texture align="center" aligny="center" fallback="flags/video/default.png">$INFO[ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
 						<visible>!IsEmpty(ListItem.VideoCodec)</visible>
-					</control>-->
+					</control>
+					
+					<!-- Display Content Rating Flag -->
 					<control type="image">
 						<posx>1675</posx>
 						<colordiffuse>white</colordiffuse>
 						<include>MediaFlagVars</include>
-						<texture fallback="flags/mpaa/NR.png">$VAR[RatingFlagVar]</texture>
+						<texture align="center" aligny="center" fallback="flags/mpaa/NR.png">flags/mpaa/$INFO[Listitem.Property(mediaTag-contentRating)].png</texture>
 						<!--<animation effect="slide" start="0" end="-1350" time="200" tween="cubic" easing="inout" condition="Container.Content(movies) | Container.Content(episodes)">Conditional</animation>-->
 					</control>
+					
 				</control>
 				<control type="group">
 					<posx>0</posx>
@@ -254,14 +268,18 @@
 					<orientation>horizontal</orientation>
 					<include>VisibleFadeEffect</include>
 					<visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
+					
+					<!-- Display Studio Flag -->
 					<control type="image" id="800012">
 						<posx>32</posx>
 						<width>198</width>
 						<include>MediaFlagVars</include>
 						<bordersize>2</bordersize>
-						<texture>$INFO[ListItem.Studio,flags/studios/,.png]</texture>
+						<texture align="center" aligny="center">flags/studios/$INFO[Listitem.Property(mediaTag-Studio)].png</texture>
 						<visible>!IsEmpty(Control.GetLabel(800012))</visible>
 					</control>
+					
+					<!-- Fallback to Text If Studio Flag Is Not Present -->
 					<control type="label">
 						<posx>32</posx>
 						<width>198</width>
@@ -273,11 +291,14 @@
 						<wrapmultiline>true</wrapmultiline>
 						<visible>IsEmpty(Control.GetLabel(800012))</visible>
 					</control>
+					
+					<!-- Display Content Rating Flag -->
 					<control type="image">
 						<posx>230</posx>
 						<include>MediaFlagVars</include>
-						<texture fallback="flags/mpaa/NR.png">$VAR[RatingFlagVar]</texture>
+						<texture align="center" aligny="center" fallback="flags/mpaa/NR.png">flags/mpaa/$INFO[Listitem.Property(mediaTag-contentRating)].png</texture>
 					</control>
+					
 				</control>
 				<control type="group">
 					<posx>1246</posx>
@@ -286,22 +307,28 @@
 					<height>90</height>
 					<include>VisibleFadeEffect</include>
 					<visible>![Container.Content(tvshows) | Container.Content(seasons) | Control.IsVisible(55)]</visible>
+					
+					<!-- Display Resolution Flag -->
 					<control type="image">
 						<posx>32</posx>
 						<include>MediaFlagVars</include>
-						<texture>$INFO[ListItem.VideoResolution,flags/resolution/,.png]</texture>
+						<texture align="center" aligny="center" fallback="flags/resolution/defaultscreen.png">$INFO[ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture> <!-- $INFO[Listitem.Art(mediaTag::videoResolution)] -->
 						<visible>!IsEmpty(ListItem.VideoResolution)</visible>
 					</control>
+					
+					<!-- Display Audio Codec Flag -->
 					<control type="image">
 						<posx>230</posx>
 						<include>MediaFlagVars</include>
-						<texture>$INFO[ListItem.AudioCodec,flags/audio/,.png]</texture>
+						<texture align="center" aligny="center" fallback="flags/audio/defaultsound.png">$INFO[ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
 						<visible>!IsEmpty(ListItem.AudioCodec)</visible>
 					</control>
+					
+					<!-- Display Video Codec Flag -->
 					<control type="image">
 						<posx>428</posx>
 						<include>MediaFlagVars</include>
-						<texture>$VAR[SourceFlagVar,flags/video/,.png]</texture>
+						<texture align="center" aligny="center" fallback="flags/video/default.png">$INFO[ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
 						<visible>!IsEmpty(ListItem.VideoCodec)</visible>
 					</control>
 				</control>
@@ -312,26 +339,34 @@
 					<height>90</height>
 					<include>VisibleFadeEffect</include>
 					<visible>![Container.Content(tvshows) | Container.Content(seasons)] + Control.IsVisible(55)</visible>
+					
+					<!-- Display Video Resolution Flag -->
 					<control type="image">
 						<posx>0</posx>
 						<include>MediaFlagVars</include>
-						<texture>$INFO[ListItem.VideoResolution,flags/resolution/,.png]</texture>
+						<texture align="center" aligny="center" fallback="flags/resolution/defaultscreen.png">$INFO[ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture> <!-- $INFO[Listitem.Art(mediaTag::videoResolution)] -->
 						<visible>!IsEmpty(ListItem.VideoResolution)</visible>
 					</control>
+					
+					<!-- Display Audio Codec Flag -->
 					<control type="image">
 						<posx>175</posx>
 						<include>MediaFlagVars</include>
-						<texture>$INFO[ListItem.AudioCodec,flags/audio/,.png]</texture>
+						<texture align="center" aligny="center" fallback="flags/audio/defaultsound.png">$INFO[ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
 						<visible>!IsEmpty(ListItem.AudioCodec)</visible>
 					</control>
+					
+					<!-- Display Video Codec Flag -->
 					<control type="image">
 						<posx>350</posx>
 						<include>MediaFlagVars</include>
-						<texture>$VAR[SourceFlagVar,flags/video/,.png]</texture>
+						<texture align="center" aligny="center" fallback="flags/video/default.png">$INFO[ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
 						<visible>!IsEmpty(ListItem.VideoCodec)</visible>
 					</control>
 				</control>
 			</control>
+			
+			<!-- Display Floor -->
 			<control type="image">
 				<posx>0</posx>
 				<posy>970</posy>
@@ -340,6 +375,7 @@
 				<texture border="1">gradient_floor.png</texture>
 				<animation effect="slide" start="0,0" end="0,15" time="720" tween="cubic" easing="inout" condition="Control.IsVisible(56)">Conditional</animation>
 			</control>
+			
 		</control>
 		<include>ScrollOffsetLabel</include>
 		<include>Topbar</include>
@@ -698,19 +734,10 @@
 					<pulseonselect>false</pulseonselect>				
 				</control>
 				
-				
-				
-				
-				
 			</control>
-			
 			
         </control>
 		
-		
-		
-		
-		
-		
     </controls>
+
 </window>

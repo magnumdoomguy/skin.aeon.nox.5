@@ -136,7 +136,7 @@
 		</item>
 	</include>-->
 	
-	<include name="SettingsMainMenu">
+	<!--<include name="SettingsMainMenu">
 		<item id="5">
 			<label fallback="31959">$INFO[Skin.String(SettingsHomeItem.Label)]</label>
 			<onclick>$INFO[Container(300).ListItem.Property(Path)]</onclick>
@@ -151,8 +151,8 @@
 			<property name="submenuVisibility" fallback="X5">$INFO[Skin.String(SettingsHomeItem.SubMenu)]</property>
 			<property name="Disable">$INFO[Skin.String(SettingsHomeItem.Disable)]</property>
 		</item>
-	</include>
-	<include name="ShutdownMainMenu">
+	</include>-->
+	<!--<include name="ShutdownMainMenu">
 		<item id="6">
 			<label fallback="33060">$INFO[Skin.String(ShutdownHomeItem.Label)]</label>
 			<onclick>Plex.Quit</onclick>
@@ -167,7 +167,7 @@
 			<property name="submenuVisibility" fallback="X6">$INFO[Skin.String(ShutdownHomeItem.SubMenu)]</property>
 			<property name="Disable">$INFO[Skin.String(ShutdownHomeItem.Disable)]</property>
 		</item>
-	</include>
+	</include>-->
 
 	<include name="FallbackMenu">
 		<content>
@@ -177,246 +177,15 @@
 	</include>
 
 	<!-- SubMenu -->
-	<include name="HomeSubMenuVideos">
+	<include name="HomeSubMenu">
+		
+		<!-- Switch User -->
 		<item>
-			<label>342</label>
-			<onclick>ActivateWindow(Videos,Movies,root)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>Library.HasContent(Movies) + StringCompare(Container(9000).ListItem.Property(submenuVisibility),x2)</visible>
+			<label>20126</label>
+			<onclick>XBMC.ActivateWindow(selectuser)</onclick>
+			<visible>System.IsSignedIn + System.UserIsInHome</visible>
 		</item>
-		<item>
-			<label>20343</label>
-			<onclick>ActivateWindow(Videos,TvShows,root)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>Library.HasContent(TVShows) + StringCompare(Container(300).ListItem.Property(submenuVisibility),X2)</visible>
-		</item>
-		<item>
-			<label>24001</label>
-			<onclick>ActivateWindow(Videos,Addons,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X2)</visible>
-		</item>
-		<item>
-			<label>744</label>
-			<onclick>ActivateWindow(Videos,Files,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X2)</visible>
-		</item>
-		<item>
-			<label>136</label>
-			<onclick>ActivateWindow(Videos,Playlists,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X2)</visible>
-		</item>
-		<item>
-			<label>14022</label>
-			<onclick>ActivateWindow(Videos,Root)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>Library.HasContent(Video) + StringCompare(Container(300).ListItem.Property(submenuVisibility),X2)</visible>
-		</item>
-	</include>
-	<include name="HomeSubMenuMovies">
-		<item>
-			<label>16101</label>
-			<onclick>ActivateWindow(Videos,plexserver://ec081cd501d8b307622a0fc402d90dd235e8576c/library/sections/28/unwatched)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>[stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)]</visible>
-		</item>
-		<item>
-			<label>575</label>
-			<onclick>ActivateWindow(Videos,special://skin/extras/InProgress.xsp,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>Skin.String(SectionType,movies) | Container.PlexContent(Movies)</visible>
-		</item>
-		<item>
-			<label>31328</label>
-			<onclick>ActivateWindow(Videos,RecentlyAddedMovies,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X10)</visible>
-		</item>
-		<item>
-			<label>20434</label>
-			<onclick>ActivateWindow(Videos,MovieSets,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>Library.HasContent(MovieSets) + StringCompare(Container(300).ListItem.Property(submenuVisibility),X10)</visible>
-		</item>
-		<item>
-			<label>135</label>
-			<onclick>ActivateWindow(Videos,MovieGenres,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X10)</visible>
-		</item>
-		<item>
-			<label>652</label>
-			<onclick>ActivateWindow(Videos,MovieYears,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X10)</visible>
-		</item>
-		<item>
-			<label>344</label>
-			<onclick>ActivateWindow(Videos,MovieActors,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X10)</visible>
-		</item>
-		<item>
-			<label>20459</label>
-			<onclick>ActivateWindow(Videos,MovieTags,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X10)</visible>
-		</item>
-	</include>
-	<include name="HomeSubMenuTVShows">
-		<item>
-			<label>369</label>
-			<onclick>ActivateWindow(Videos,TVShowTitles,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X11) +!System.HasAddon(script.tv.show.next.aired)</visible>
-		</item>
-		<item>
-			<label>$ADDON[script.tv.show.next.aired 450]</label>
-			<onclick>RunAddon(script.tv.show.next.aired,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X11) + System.HasAddon(script.tv.show.next.aired)</visible>
-		</item>
-		<item>
-			<label>575</label>
-			<onclick>ActivateWindow(Videos,library://video/inprogressshows.xml,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X11)</visible>
-		</item>
-		<item>
-			<label>31328</label>
-			<onclick>ActivateWindow(Videos,RecentlyAddedEpisodes,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X11)</visible>
-		</item>
-		<item>
-			<label>135</label>
-			<onclick>ActivateWindow(Videos,TVShowGenres,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X11)</visible>
-		</item>
-		<item>
-			<label>652</label>
-			<onclick>ActivateWindow(Videos,TvShowYears,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X11)</visible>
-		</item>
-		<item>
-			<label>344</label>
-			<onclick>ActivateWindow(Videos,TvShowActors,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X11)</visible>
-		</item>
-	</include>
-	<include name="HomeSubMenuMusic">
-		<item>
-			<label>133</label>
-			<onclick>ActivateWindow(MusicLibrary,Artists,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X3)</visible>
-		</item>
-		<item>
-			<label>132</label>
-			<onclick>ActivateWindow(MusicLibrary,Albums,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X3)</visible>
-		</item>
-		<item>
-			<label>134</label>
-			<onclick>ActivateWindow(MusicLibrary,Songs,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X3)</visible>
-		</item>
-		<item>
-			<label>744</label>
-			<onclick>ActivateWindow(MusicFiles)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X3)</visible>
-		</item>
-		<item>
-			<label>14022</label>
-			<onclick>ActivateWindow(MusicLibrary,root)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X3)</visible>
-		</item>
-		<item>
-			<label>24001</label>
-			<onclick>ActivateWindow(MusicLibrary,Addons,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X3)</visible>
-		</item>
-	</include>
-	<include name="HomeSubMenuPrograms">
-		<item>
-			<label>20244</label>
-			<onclick>ActivateWindow(Programs)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X1) + System.Platform(Android)</visible>
-		</item>
-		<item>
-			<label>15016</label>
-			<onclick>SetProperty(Progams.Games,True,home)</onclick>
-			<onclick>RunAddon(plugin.program.advanced.launcher)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X1) + System.HasAddon(plugin.program.advanced.launcher)</visible>
-		</item>
-		<item>
-			<label>1037</label>
-			<onclick>ActivateWindow(Videos,Addons,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X1)</visible>
-		</item>
-		<item>
-			<label>1038</label>
-			<onclick condition="Library.HasContent(music)">ActivateWindow(Musiclibrary,Addons,return)</onclick>
-			<onclick condition="!Library.HasContent(music)">ActivateWindow(Musicfiles,Addons,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X1)</visible>
-		</item>
-		<item>
-			<label>1039</label>
-			<onclick>ActivateWindow(Pictures,Addons,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X1)</visible>
-		</item>
-	</include>
-	
-	<!-- Settings Submenu -->
-	<include name="HomeSubMenuSettings">
-	
+		
 		<!-- Sign in -->
 		<item>
 			<description>Sign In</description>
@@ -424,17 +193,7 @@
 			<onclick>Plex.ActivateWindow(plexlogin)</onclick>
 			<icon>-</icon>
 			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
 			<visible>!System.IsSignedIn</visible>
-		</item>
-		
-		<!-- Skin Settings -->
-		<item>
-			<label>20077</label>
-			<onclick>ActivateWindow(SkinSettings)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
 		</item>
 		
 		<!-- Channel Directory -->
@@ -444,7 +203,25 @@
 			<onclick>Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
 			<icon>-</icon>
 			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
+			<visible>!System.UserIsRestricted</visible>
+		</item>
+		
+		<!-- Preferences -->
+		<item>
+			<description>Preferences</description>
+			<label>Preferences</label>
+			<onclick>XBMC.ActivateWindow(appearancesettings)</onclick>
+			<icon>-</icon>
+			<thumb>-</thumb>
+			<visible>!System.UserIsRestricted</visible>
+		</item>
+		
+		<!-- Skin Settings -->
+		<item>
+			<label>20077</label>
+			<onclick>ActivateWindow(SkinSettings)</onclick>
+			<icon>-</icon>
+			<thumb>-</thumb>
 			<visible>!System.UserIsRestricted</visible>
 		</item>
 		
@@ -455,7 +232,6 @@
 			<onclick>RunAddon(service.openelec.settings)</onclick>
 			<icon>-</icon>
 			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
 			<visible>System.isSystem(openelec) + !System.UserIsRestricted</visible>
 		</item>
 		
@@ -466,61 +242,7 @@
 			<onclick>XBMC.ActivateWindow(10208)</onclick>
 			<icon>-</icon>
 			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X5)</visible>
 			<visible>System.isSystem(rasplex) + !System.UserIsRestricted</visible>
-		</item>
-	</include>
-	
-	<!-- Power Submenu -->
-	<include name="HomeSubMenuShutdown">
-	
-		<!-- Shutdown Timer -->
-		<item>
-			<label>$LOCALIZE[19040]</label>
-			<onclick>AlarmClock(shutdowntimer,Shutdown())</onclick>
-			<visible>System.CanPowerDown | System.CanSuspend | System.CanHibernate</visible>
-			<visible>!System.HasAlarm(shutdowntimer)</visible>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X6)</visible>
-		</item>
-		
-		<!-- Cancel Timer -->
-		<item>
-			<label>$LOCALIZE[222]</label>
-			<onclick>CancelAlarm(shutdowntimer)</onclick>
-			<visible>System.HasAlarm(shutdowntimer)</visible>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
-		</item>
-		
-		<!-- Shutdown -->
-		<item>
-			<label>$LOCALIZE[13016]</label>
-			<onclick>Plex.Powerdown</onclick>
-			<visible>!System.UserIsRestricted</visible>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
-		</item>
-		
-		<!-- Restart -->
-		<item>
-			<label>13013</label>
-			<onclick>System.Exec(reboot)</onclick>
-			<visible>System.isSystem(openelec) + !System.UserIsRestricted</visible>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
-		</item>
-		
-		<!-- Suspend -->
-		<item>
-			<label>13011</label>
-			<onclick>Plex.Suspend</onclick>
-			<visible>!System.isSystem(rasplex)</visible>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
-		</item>
-		
-		<!-- Switch User -->
-		<item>
-			<label>20126</label>
-			<onclick>XBMC.ActivateWindow(selectuser)</onclick>
-			<visible>System.IsSignedIn + System.UserIsInHome</visible>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
 		
 		<!-- Quit -->
@@ -528,107 +250,49 @@
 			<label>13009</label>
 			<onclick>Plex.Quit</onclick>
 			<visible>!System.isSystem(openelec)</visible>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),x6)</visible>
 		</item>
+		
+		<!-- Suspend -->
+		<item>
+			<label>13011</label>
+			<onclick>Plex.Suspend</onclick>
+			<visible>!System.isSystem(rasplex)</visible>
+		</item>
+		
+		<!-- Shutdown -->
+		<item>
+			<label>$LOCALIZE[13016]</label>
+			<onclick>Plex.Powerdown</onclick>
+			<visible>!System.UserIsRestricted</visible>
+		</item>
+		
+		<!-- Restart -->
+		<item>
+			<label>13013</label>
+			<onclick>System.Exec(reboot)</onclick>
+			<visible>System.isSystem(openelec) + !System.UserIsRestricted</visible>
+		</item>
+		
 	</include>
 	
 	<include name="HomeSubMenuPictures">
-		<item>
-			<label>24001</label>
-			<onclick>ActivateWindow(Pictures,Addons,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X4)</visible>
-		</item>
+	
 	</include>
+	
 	<include name="HomeSubMenuLiveTV">
-		<item>
-			<label>19024</label>
-			<onclick>ActivateWindowAndFocus(MyPVR, 33,0, 12,0)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X12)</visible>
-		</item>
-		<item>
-			<label>19023</label>
-			<onclick>ActivateWindowAndFocus(MyPVR, 33,0, 11,0)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X12)</visible>
-		</item>
-		<item>
-			<label>19069</label>
-			<onclick>ActivateWindowAndFocus(MyPVR, 31,0, 10,0)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X12)</visible>
-		</item>
-		<item>
-			<label>19163</label>
-			<onclick>ActivateWindowAndFocus(MyPVR, 34,0, 13,0)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X12)</visible>
-		</item>
-		<item>
-			<label>19040</label>
-			<onclick>ActivateWindowAndFocus(MyPVR, 35,0, 14,0)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X12)</visible>
-		</item>
+	
 	</include>
+	
 	<include name="HomeSubMenuMusicVideos">
-		<item>
-			<label>133</label>
-			<onclick>ActivateWindow(Videos,MusicVideoArtists,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X13)</visible>
-		</item>
-		<item>
-			<label>135</label>
-			<onclick>ActivateWindow(Videos,MusicVideoGenres,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X13)</visible>
-		</item>
-		<item>
-			<label>31328</label>
-			<onclick>ActivateWindow(Videos,RecentlyAddedMusicVideos,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X13)</visible>
-		</item>
-		<item>
-			<label>652</label>
-			<onclick>ActivateWindow(Videos,MusicVideoYears,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X13)</visible>
-		</item>
-		<item>
-			<label>20459</label>
-			<onclick>ActivateWindow(Videos,MusicVideoTags,return)</onclick>
-			<icon>-</icon>
-			<thumb>-</thumb>
-			<visible>StringCompare(Container(300).ListItem.Property(submenuVisibility),X13)</visible>
-		</item>
+	
 	</include>
+	
 	<include name="FallbackSubMenu">
 		<content>
-			<include>HomeSubMenuVideos</include>
-			<include>HomeSubMenuMovies</include>
-			<include>HomeSubMenuTVShows</include>
-			<include>HomeSubMenuMusic</include>
-			<include>HomeSubMenuPrograms</include>
-			<include>HomeSubMenuSettings</include>
-			<include>HomeSubMenuShutdown</include>
-			<include>HomeSubMenuPictures</include>
-			<include>HomeSubMenuLiveTV</include>
-			<include>HomeSubMenuMusicVideos</include>
+			<include>HomeSubMenu</include>
 		</content>
 	</include>
+	
 	<include name="CustomSubMenu">
 		<content>
 			<include>skinshortcuts-submenu</include>
