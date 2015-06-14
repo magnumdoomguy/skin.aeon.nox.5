@@ -5,28 +5,28 @@
 			<visible>Control.IsVisible(510) + !Window.IsActive(addoninformation)</visible>
 			<include>ViewAnimation</include>
             <control type="group">
-				<left>100</left>
-				<top>-20</top>
+				<posx>100</posx>
+				<posy>-20</posy>
                 <control type="image">
                     <description>background image</description>
-                    <left>-32</left>
-                    <top>870</top>
+                    <posx>-32</posx>
+                    <posy>870</posy>
                     <width>1788</width>
                     <height>934</height>
                     <texture border="40">panel_reflect.png</texture>
                 </control>
 				<control type="image">
 					<description>background image</description>
-					<left>-32</left>
-					<top>118</top>
+					<posx>-32</posx>
+					<posy>118</posy>
 					<width>1788</width>
 					<height>934</height>
 					<texture border="40">listpanel_back.png</texture>
 				</control>
                 <control type="list" id="510">
                     <viewtype label="BigList">biglist</viewtype>
-                    <left>0</left>
-                    <top>151</top>
+                    <posx>0</posx>
+                    <posy>151</posy>
                     <width>1725</width>
                     <height>868</height>
                     <onleft>SetProperty(MediaMenu,True,home)</onleft>
@@ -41,16 +41,18 @@
                     <visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)]</visible>
                     <itemlayout width="1808" height="217">
                         <control type="image">
-                            <left>0</left>
-                            <top>0</top>
+                            <posx>0</posx>
+                            <posy>0</posy>
                             <width>1725</width>
                             <height>217</height>
                             <texture border="5">separator2.png</texture>
                         </control>
                         <include>BigList_Landscape</include>
                         <control type="group">
-                            <left>375</left>
-                            <top>10</top>           
+                            <posx>375</posx>
+                            <posy>10</posy>   
+
+							<!-- Title -->
                             <control type="label">
                                 <width>1330</width>
                                 <height>50</height>
@@ -58,30 +60,80 @@
                                 <font>font16_title_bold</font>
                                 <textcolor>grey</textcolor>
                             </control>
+							
+							<!-- Genre -->
                             <control type="label">
-                                <top>45</top>
+                                <posy>45</posy>
                                 <width>980</width>
                                 <height>50</height>
-                                <label>$VAR[BigListInfoVar]</label>
+                                <label>$INFO[ListItem.Genre]</label>
                                 <aligny>center</aligny>
                                 <font>font14</font>
                                 <textcolor>grey2</textcolor>
                             </control>
+							
+							<!-- Year, Rating and Runtime -->
                             <control type="label">
-                                <top>45</top>
+                                <posy>45</posy>
+								<posx>1330</posx>
                                 <width>1330</width>
                                 <height>50</height>
-                                <label>$VAR[BigListInfoVar2]</label>
+                                <label>$INFO[ListItem.Year] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Rating] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
                                 <align>right</align>
                                 <aligny>center</aligny>
                                 <font>font14</font>
                                 <textcolor>grey2</textcolor>
+								<visible>!IsEmpty(ListItem.Year) + !IsEmpty(ListItem.Rating)</visible>
                             </control>
+							
+							<!-- Year and Runtime -->
+                            <control type="label">
+                                <posy>45</posy>
+								<posx>1330</posx>
+                                <width>1330</width>
+                                <height>50</height>
+                                <label>$INFO[ListItem.Year] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
+                                <align>right</align>
+                                <aligny>center</aligny>
+                                <font>font14</font>
+                                <textcolor>grey2</textcolor>
+								<visible>!IsEmpty(ListItem.Year) + IsEmpty(ListItem.Rating)</visible>
+                            </control>
+							
+							<!-- Rating and Runtime -->
+                            <control type="label">
+                                <posy>45</posy>
+								<posx>1330</posx>
+                                <width>1330</width>
+                                <height>50</height>
+                                <label>$INFO[ListItem.Rating] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
+                                <align>right</align>
+                                <aligny>center</aligny>
+                                <font>font14</font>
+                                <textcolor>grey2</textcolor>
+								<visible>IsEmpty(ListItem.Year) + !IsEmpty(ListItem.Rating)</visible>
+                            </control>
+							
+							<!-- Runtime -->
+                            <control type="label">
+                                <posy>45</posy>
+								<posx>1330</posx>
+                                <width>1330</width>
+                                <height>50</height>
+                                <label>$INFO[ListItem.Duration] Minutes</label>
+                                <align>right</align>
+                                <aligny>center</aligny>
+                                <font>font14</font>
+                                <textcolor>grey2</textcolor>
+								<visible>IsEmpty(ListItem.Year) + IsEmpty(ListItem.Rating)</visible>
+                            </control>
+							
+							<!-- Plot Summary -->
                             <control type="textbox">
-                                <top>95</top>
+                                <posy>95</posy>
                                 <width>1330</width>
                                 <height>108</height>
-                                <label>$VAR[BigListPlotVar]</label>
+                                <label>$VAR[VideoPlotVar]</label>
                                 <autoscroll>false</autoscroll>
                                 <font>font14_textbox</font>
                                 <textcolor>grey</textcolor>
@@ -90,56 +142,107 @@
                     </itemlayout>
                     <focusedlayout width="1808" height="217">
                         <control type="image">
-                            <left>0</left>
-                            <top>0</top>
+                            <posx>0</posx>
+                            <posy>0</posy>
                             <width>1725</width>
                             <height>217</height>
                             <texture border="5">separator2.png</texture>
                         </control>
                         <control type="image">
-                            <left>0</left>
-                            <top>0</top>
+                            <posx>0</posx>
+                            <posy>0</posy>
                             <width>1725</width>
                             <height>217</height>
                             <texture>listselect_fo.png</texture>
-                            <visible>Control.HasFocus(510)</visible>
-							<include>VisibleFadeEffect</include>
+                            <include>VisibleFadeEffect</include>
                         </control>
                         <include>BigList_Landscape</include>
                         <control type="group">
-                            <left>375</left>
-                            <top>10</top>
+                            <posx>375</posx>
+                            <posy>10</posy>
                             <control type="group">
+							
+								<!-- Title -->
                                 <control type="label">
                                     <width>1330</width>
                                     <height>50</height>
                                     <label>$INFO[ListItem.Label]</label>
                                     <font>font16_title_bold</font>
                                 </control>
+								
+								<!-- Genre -->
                                 <control type="label">
-                                    <top>45</top>
+                                    <posy>45</posy>
                                     <width>980</width>
                                     <height>50</height>
-                                    <label>$VAR[BigListInfoVar]</label>
+                                    <label>$INFO[ListItem.Genre]</label>
                                     <aligny>center</aligny>
                                     <font>font14</font>
                                     <textcolor>grey</textcolor>
                                 </control>
+								
+								<!-- Year, Rating and Runtime -->
                                 <control type="label">
-                                    <top>45</top>
+                                    <posy>45</posy>
                                     <width>1330</width>
+									<posx>1330</posx>
                                     <height>50</height>
-                                    <label>$VAR[BigListInfoVar2]</label>
+                                    <label>$INFO[ListItem.Year] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Rating] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
                                     <align>right</align>
                                     <aligny>center</aligny>
                                     <font>font14</font>
                                     <textcolor>grey</textcolor>
+									<visible>!IsEmpty(ListItem.Year) + !IsEmpty(ListItem.Rating)</visible>
                                 </control>
+								
+								<!-- Year and Runtime -->
+                                <control type="label">
+                                    <posy>45</posy>
+                                    <width>1330</width>
+									<posx>1330</posx>
+                                    <height>50</height>
+                                    <label>$INFO[ListItem.Year] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
+                                    <align>right</align>
+                                    <aligny>center</aligny>
+                                    <font>font14</font>
+                                    <textcolor>grey</textcolor>
+									<visible>!IsEmpty(ListItem.Year) + IsEmpty(ListItem.Rating)</visible>
+                                </control>
+								
+								<!-- Rating and Runtime -->
+                                <control type="label">
+                                    <posy>45</posy>
+                                    <width>1330</width>
+									<posx>1330</posx>
+                                    <height>50</height>
+                                    <label>$INFO[ListItem.Rating] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
+                                    <align>right</align>
+                                    <aligny>center</aligny>
+                                    <font>font14</font>
+                                    <textcolor>grey</textcolor>
+									<visible>IsEmpty(ListItem.Year) + !IsEmpty(ListItem.Rating)</visible>
+                                </control>
+								
+								<!-- Runtime -->
+                                <control type="label">
+                                    <posy>45</posy>
+                                    <width>1330</width>
+									<posx>1330</posx>
+                                    <height>50</height>
+                                    <label>$INFO[ListItem.Duration] Minutes</label>
+                                    <align>right</align>
+                                    <aligny>center</aligny>
+                                    <font>font14</font>
+                                    <textcolor>grey</textcolor>
+									<visible>IsEmpty(ListItem.Year) + IsEmpty(ListItem.Rating)</visible>
+                                </control>
+								
+								<!-- Plot Summary -->
                                 <control type="textbox">
-                                    <top>95</top>
+                                    <posy>95</posy>
                                     <width>1330</width>
                                     <height>108</height>
-                                    <label>$VAR[BigListPlotVar]</label>
+                                    <label>$VAR[VideoPlotVar]</label>
                                     <font>font14_textbox</font>
                                     <autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
                                 </control>
@@ -148,8 +251,8 @@
                     </focusedlayout>
                 </control>
                 <control type="scrollbar" id="60">
-                    <left>1725</left>
-                    <top>151</top>
+                    <posx>1725</posx>
+                    <posy>151</posy>
                     <width>12</width>
                     <height>868</height>
                     <onup>60</onup>
@@ -173,28 +276,28 @@
             <visible>Control.IsVisible(510) + !Window.IsActive(addoninformation)</visible>
             <include>ViewAnimation</include>
             <control type="group">
-                <left>100</left>
-                <top>-20</top>
+                <posx>100</posx>
+                <posy>-20</posy>
                 <control type="image">
                     <description>background image</description>
-                    <left>-32</left>
-                    <top>870</top>
+                    <posx>-32</posx>
+                    <posy>870</posy>
                     <width>1788</width>
                     <height>934</height>
                     <texture border="40">panel_reflect.png</texture>
                 </control>
                 <control type="image">
                     <description>background image</description>
-                    <left>-32</left>
-                    <top>118</top>
+                    <posx>-32</posx>
+                    <posy>118</posy>
                     <width>1788</width>
                     <height>934</height>
                     <texture border="40">listpanel_back.png</texture>
                 </control>
                 <control type="list" id="510">
                     <viewtype label="BigList">biglist</viewtype>
-                    <left>0</left>
-                    <top>151</top>
+                    <posx>0</posx>
+                    <posy>151</posy>
                     <width>1725</width>
                     <height>868</height>
                     <onleft>SetProperty(MediaMenu,True,home)</onleft>
@@ -209,15 +312,15 @@
                     <visible>[Container.Content(artists) | Container.Content(albums)]</visible>
                     <itemlayout width="1725" height="217">
                         <control type="image">
-                            <left>0</left>
-                            <top>0</top>
+                            <posx>0</posx>
+                            <posy>0</posy>
                             <width>1725</width>
                             <height>217</height>
                             <texture border="5">separator2.png</texture>
                         </control>
                         <control type="image">
-                            <left>12</left>
-                            <top>11</top>
+                            <posx>12</posx>
+                            <posy>11</posy>
                             <width>195</width>
                             <height>195</height>
                             <aspectratio>stretch</aspectratio>
@@ -226,8 +329,8 @@
                             <bordersize>2</bordersize>
                         </control>
                         <control type="group">
-                            <left>225</left>
-                            <top>10</top>
+                            <posx>225</posx>
+                            <posy>10</posy>
                             <control type="label">
                                 <width>1330</width>
                                 <height>50</height>
@@ -236,7 +339,7 @@
                                 <textcolor>grey</textcolor>
                             </control>
                             <control type="label">
-                                <top>45</top>
+                                <posy>45</posy>
                                 <width>980</width>
                                 <height>50</height>
                                 <label>$VAR[BigListInfoVar]</label>
@@ -245,7 +348,7 @@
                                 <textcolor>grey2</textcolor>
                             </control>
                             <control type="label">
-                                <top>45</top>
+                                <posy>45</posy>
                                 <width>1480</width>
                                 <height>50</height>
                                 <label>$VAR[BigListInfoVar2]</label>
@@ -255,17 +358,17 @@
                                 <textcolor>grey2</textcolor>
                             </control>
                             <control type="textbox">
-                                <top>95</top>
+                                <posy>95</posy>
                                 <width>1480</width>
                                 <height>108</height>
-                                <label>$VAR[OtherPlotVar]</label>
+                                <label>$VAR[MusicPlotVar]</label>
                                 <autoscroll>false</autoscroll>
                                 <font>font14_textbox</font>
                                 <textcolor>grey</textcolor>
                             </control>
                             <control type="image">
-                                <left>1290</left>
-                                <top>10</top>
+                                <posx>1290</posx>
+                                <posy>10</posy>
                                 <width>192</width>
                                 <height>33</height>
                                 <texture colordiffuse="themecolor_transparent" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
@@ -276,24 +379,24 @@
                     </itemlayout>
                     <focusedlayout width="1725" height="217">
                         <control type="image">
-                            <left>0</left>
-                            <top>0</top>
+                            <posx>0</posx>
+                            <posy>0</posy>
                             <width>1725</width>
                             <height>217</height>
                             <texture border="5">separator2.png</texture>
                         </control>
                         <control type="image">
-                            <left>0</left>
-                            <top>0</top>
+                            <posx>0</posx>
+                            <posy>0</posy>
                             <width>1725</width>
                             <height>217</height>
                             <texture>listselect_fo.png</texture>
-                            <visible>Control.HasFocus(510)</visible>
+                            <!--<visible>Control.HasFocus(510)</visible>-->
                             <include>VisibleFadeEffect</include>
                         </control>
                         <control type="image">
-                            <left>12</left>
-                            <top>11</top>
+                            <posx>12</posx>
+                            <posy>11</posy>
                             <width>195</width>
                             <height>195</height>
                             <aspectratio>stretch</aspectratio>
@@ -302,8 +405,8 @@
                             <bordersize>2</bordersize>
                         </control>
                         <control type="group">
-                            <left>225</left>
-                            <top>10</top>
+                            <posx>225</posx>
+                            <posy>10</posy>
                             <control type="group">
                                 <control type="label">
                                     <width>1330</width>
@@ -312,7 +415,7 @@
                                     <font>font16_title_bold</font>
                                 </control>
                                 <control type="label">
-                                    <top>45</top>
+                                    <posy>45</posy>
                                     <width>980</width>
                                     <height>50</height>
                                     <label>$VAR[BigListInfoVar]</label>
@@ -321,7 +424,7 @@
                                     <textcolor>grey</textcolor>
                                 </control>
                                 <control type="label">
-                                    <top>45</top>
+                                    <posy>45</posy>
                                     <width>1480</width>
                                     <height>50</height>
                                     <label>$VAR[BigListInfoVar2]</label>
@@ -331,16 +434,16 @@
                                     <textcolor>grey</textcolor>
                                 </control>
                                 <control type="textbox">
-                                    <top>95</top>
+                                    <posy>95</posy>
                                     <width>1480</width>
                                     <height>108</height>
-                                    <label>$VAR[OtherPlotVar]</label>
+                                    <label>$VAR[MusicPlotVar]</label>
                                     <font>font14_textbox</font>
                                     <autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
                                 </control>
                                 <control type="image">
-                                    <left>1290</left>
-                                    <top>10</top>
+                                    <posx>1290</posx>
+                                    <posy>10</posy>
                                     <width>192</width>
                                     <height>33</height>
                                     <texture colordiffuse="themecolor" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
@@ -352,8 +455,8 @@
                     </focusedlayout>
                 </control>
                 <control type="scrollbar" id="60">
-                    <left>1725</left>
-                    <top>151</top>
+                    <posx>1725</posx>
+                    <posy>151</posy>
                     <width>12</width>
                     <height>868</height>
                     <onup>60</onup>
@@ -374,8 +477,8 @@
    
 	<include name="BigList_Landscape">
 		<control type="group">
-			<left>12</left>
-			<top>11</top>
+			<posx>12</posx>
+			<posy>11</posy>
             <control type="group">
                 <visible>!Container.Content(episodes)</visible>
                 <control type="image">
@@ -397,7 +500,7 @@
                     <visible>IsEmpty(ListItem.Art(landscape))</visible>
                 </control>
                 <control type="image">
-                    <top>90</top>
+                    <posy>90</posy>
                     <width>346</width>
                     <height>98</height>
                     <aspectratio align="center" aligny="bottom">keep</aspectratio>
@@ -415,8 +518,8 @@
 				<visible>Container.Content(episodes)</visible>
 			</control>
             <control type="image">
-				<left>286</left>
-                <top>2</top>
+				<posx>286</posx>
+                <posy>2</posy>
 				<width>60</width>
 				<height>60</height>
 				<texture>$VAR[OverlayVar]</texture>
