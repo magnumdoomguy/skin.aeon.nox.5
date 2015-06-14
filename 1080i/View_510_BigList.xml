@@ -141,6 +141,8 @@
                         </control>
                     </itemlayout>
                     <focusedlayout width="1808" height="217">
+					
+						<!-- Display Separator -->
                         <control type="image">
                             <posx>0</posx>
                             <posy>0</posy>
@@ -148,6 +150,8 @@
                             <height>217</height>
                             <texture border="5">separator2.png</texture>
                         </control>
+						
+						<!-- Display Focus Indicator -->
                         <control type="image">
                             <posx>0</posx>
                             <posy>0</posy>
@@ -250,6 +254,8 @@
                         </control>
                     </focusedlayout>
                 </control>
+				
+				<!-- Display Scrollbar -->
                 <control type="scrollbar" id="60">
                     <posx>1725</posx>
                     <posy>151</posy>
@@ -479,35 +485,19 @@
 		<control type="group">
 			<posx>12</posx>
 			<posy>11</posy>
-            <control type="group">
+            
+			<!-- Display Fanart as Thumb -->
+			<control type="image">
+                <width>346</width>
+                <height>195</height>
+                <texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+                <aspectratio>scale</aspectratio>
+                <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+				<bordersize>2</bordersize>
                 <visible>!Container.Content(episodes)</visible>
-                <control type="image">
-                    <width>346</width>
-                    <height>195</height>
-                    <texture background="true">$INFO[ListItem.Art(landscape)]</texture>
-                    <aspectratio>scale</aspectratio>
-                    <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-					<bordersize>2</bordersize>
-                    <visible>!IsEmpty(ListItem.Art(landscape))</visible>
-                </control>
-                <control type="image">
-                    <width>346</width>
-                    <height>195</height>
-                    <texture background="true">$INFO[ListItem.Art(fanart)]</texture>
-                    <aspectratio>scale</aspectratio>
-                    <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-					<bordersize>2</bordersize>
-                    <visible>IsEmpty(ListItem.Art(landscape))</visible>
-                </control>
-                <control type="image">
-                    <posy>90</posy>
-                    <width>346</width>
-                    <height>98</height>
-                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                    <texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
-                    <visible>IsEmpty(ListItem.Art(landscape)) + !IsEmpty(ListItem.Art(clearlogo))</visible>
-                </control>
             </control>
+            
+			<!-- Display Episode Thumb -->
             <control type="image">
 				<width>346</width>
 				<height>195</height>
@@ -517,12 +507,14 @@
                 <bordersize>2</bordersize>
 				<visible>Container.Content(episodes)</visible>
 			</control>
+			
+			<!-- Watched Status Overlay -->
             <control type="image">
 				<posx>286</posx>
                 <posy>2</posy>
 				<width>60</width>
 				<height>60</height>
-				<texture>$VAR[OverlayVar]</texture>
+				<texture>$INFO[ListItem.Overlay]</texture>
 				<aspectratio align="right" aligny="top">keep</aspectratio>
 			</control>
 		</control>
