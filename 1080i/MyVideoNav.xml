@@ -12,16 +12,15 @@
 	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
 	
 	<controls>
+	
+		<!-- Display Infopanel Animation -->
 		<control type="label" id="4420">
 			<label>$VAR[VideoInfoPanelVar]</label>
 			<include>HiddenObject</include>
-            <visible>[Control.IsVisible(52) | Control.IsVisible(53)] + Skin.HasSetting(</visible>
-            <include condition="!IsEmpty(Skin.String(InfoPanel.Delay))">InfoPanelDelayAnimation</include>
-        </control>
-		<control type="label" id="4421">
-			<label>$VAR[VideoBackgroundVar]</label>
-			<include>HiddenObject</include>
+			<visible>Control.IsVisible(52) | Control.IsVisible(53)</visible>
+			<include condition="!IsEmpty(Skin.String(InfoPanel.Delay))">InfoPanelDelayAnimation</include>
 		</control>
+		
 		<include>CommonBackground</include>
 
 		<control type="group">
@@ -70,6 +69,8 @@
 			<include>Window_OpenClose_Animation</include>			
 			<posy>-30</posy>
 			<control type="group">
+			
+				<!-- Landscape & Showcase Views Bottom of Screen -->
 				<visible>Control.IsVisible(52) | Control.IsVisible(53)</visible>
 				<animation effect="slide" tween="cubic" time="720" start="0,806" end="0,0">VisibleChange</animation>
 				<control type="grouplist">
@@ -80,8 +81,10 @@
 					<align>center</align>
 					<itemgap>18</itemgap>
 					<orientation>horizontal</orientation>
+					
+					<!-- Display Title -->
 					<control type="label">
-						<!-- <width>auto</width> Not Available in Frodo -->
+						<width>1200</width>
 						<height>42</height>
 						<aligny>top</aligny>
 						<align>center</align>
@@ -92,13 +95,16 @@
 						<textoffsety>-2</textoffsety>
 						<textoffsetx>0</textoffsetx>
 					</control>
-					<control type="image">
+					
+					<!-- HD/SD Indicator Causes problems with Plex -->
+					<!--<control type="image">
 						<width>42</width>
 						<height>46.5</height>
 						<aspectratio>keep</aspectratio>
-						<texture>$VAR[UnFocusHDIndicator]</texture>
+						<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
 						<visible>!IsEmpty(ListItem.VideoResolution)</visible>
-					</control>
+					</control>-->
+					
 				</control>
 				<control type="group">
 					<posx>300</posx>
@@ -634,7 +640,7 @@
 					<visible>!Container.Content(genres)</visible>
 				</control>
 
-				<!-- Toggle Infopanel -->
+				<!-- Toggle Infopanel 52 -->
 				<control type="button" id="204">
 					<description>Show Info Toggle</description>
 					<textwidth>255</textwidth>
@@ -649,12 +655,31 @@
 					<radioposx>340</radioposx>
 					<label>$LOCALIZE[31018]</label>
 					<label2>[COLOR labelheader]$VAR[InfoPanelLabelVar][/COLOR]</label2>
-					<onclick>Skin.ToggleSetting(VideoInfoPanel)</onclick>
-					<visible>Control.IsVisible(52) | Control.IsVisible(53)</visible>
+					<onclick>$VAR[52VideoInfoPanelVar]</onclick>
+					<visible>Control.IsVisible(52)</visible>
+				</control>
+				
+				<!-- Toggle Infopanel Movies 53 -->
+				<control type="button" id="205">
+					<description>Show Info Toggle</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[31018]</label>
+					<label2>[COLOR labelheader]$VAR[InfoPanelLabelVar][/COLOR]</label2>
+					<onclick>$VAR[53VideoInfoPanelVar]</onclick>
+					<visible>Control.IsVisible(53)</visible>
 				</control>
 				
 				<!-- Lowlist Toggle -->
-				<control type="togglebutton" id="6053">
+				<control type="togglebutton" id="206">
 					<description>LowList Toggle</description>
 					<textwidth>255</textwidth>
 					<width>350</width>
