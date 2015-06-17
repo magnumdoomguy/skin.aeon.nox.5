@@ -4,7 +4,7 @@
 	<allowoverlay>no</allowoverlay>
 	
 	<controls>
-	
+			
 		<control type="group">
 			<animation effect="slide" start="-729,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="-729,0" time="320" tween="quadratic">WindowClose</animation>
@@ -25,7 +25,130 @@
 				<height>166</height>
 				<texture>$INFO[ListItem.Overlay]</texture>
 			</control>
+			
+			<!--<control type="group">
+					<posy>85</posy>
+					<posx>26</posx>
+					
+					<zorder>10</zorder>
+					<control type="list" id="30">
+						<width>260</width>
+						<height>600</height>
+						<onup>3</onup>
+						<ondown>3</ondown>
+						<pagecontrol>6111</pagecontrol>
+						<scrolltime>200</scrolltime>
+						<itemlayout height="200">
+							<control type="image">
+								<posx>13</posx>
+								<posy>13</posy>
+								<width>220</width>
+								<height>124</height>
+								<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+								<aspectratio scalediffuse="false" align="center" aligny="top">scale</aspectratio>
+							</control>
+							<control type="label">
+								<posy>146</posy>
+								<posx>24</posx>
+								<width>190</width>
+								<height>20</height>
+								<align>left</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]</label>
+								<font>Regular-14</font>
+								<shadowcolor>FF222222</shadowcolor>
+	
+							</control>
+							<control type="label">
+			<posy>170</posy>
+			<posx>24</posx>
+			<width>190</width>
+			<height>20</height>
+			<align>left</align>
+			<aligny>center</aligny>
+			<font>Regular-14</font>
+			<textcolor>FF999999</textcolor>
+			<label>$INFO[ListItem.DurationStr]</label>
+			<shadowcolor>FF222222</shadowcolor>
 		</control>
+						</itemlayout>
+						<focusedlayout height="200">
+							<include>ExtraThumb</include>
+							<!--<include>ExtraIconPlay</include>-->
+							<!--<control type="label">
+								<include>ExtraTitle</include>
+								<textcolor>orangeLight</textcolor>
+							</control>
+							<include>ExtraSecondTitle</include>
+							<include>ExtraThumbSelectedBorder</include>
+						</focusedlayout>
+					</control>
+					-
+				</control>-->
+		</control>
+		
+		<control type="group" id="1200">
+				<visible allowhiddenfocus="true">ControlGroup(1200).HasFocus</visible>
+				<posx>763</posx>
+				<posy>448</posy>
+				<width>394</width>
+				<height>1080</height>
+				<itemgap>0</itemgap>
+				<zorder>0</zorder>
+				<align>center</align>
+			
+				<!-- Top Border of Dialog Window -->
+				<control type="image" id="1">
+					<description>background image</description>
+					<width>394</width>
+					<height>67</height>
+					<texture border="30,20,30,2">dialog_top2.png</texture>
+				</control>
+			
+				<!-- Dialog Title -->
+				<control type="label" id="3">
+					<posx>0</posx>
+					<posy>20</posy>
+					<label>[UPPERCASE]$LOCALIZE[32100][/UPPERCASE]</label>
+					<width>394</width>
+					<height>40</height>
+					<align>center</align>
+					<textcolor>dialogheader</textcolor>
+					<font>font15_title</font>
+				</control>
+			
+				<control type="image" id="4">
+					<description>Star Border</description>
+					<posx>0</posx>
+					<posy>67</posy>
+					<width>394</width>
+					<height>84</height>
+					<textoffsetx>45</textoffsetx>
+					<texture border="35,2,35,2">button_shutdown_nofocus.png</texture>
+				</control>
+			
+				<!-- Actual Rating Control -->
+				<control type="image" id=10>
+					<posx>45</posx>
+					<posy>77</posy>
+					<width>304</width>
+					<height>64</height>
+					<texture align="center" aligny="center">rating0-big.png</texture>
+					<aspectratio align="right" aligny="center">keep</aspectratio>
+					<colordiffuse>blue</colordiffuse>
+				</control>
+			
+				<!-- Bottom Border of Dialog Window -->
+				<control type="image" id="11">
+					<description>background image</description>
+					<posx>0</posx>
+					<posy>151</posy>
+					<width>394</width>
+					<height>34</height>
+					<texture border="30,2,30,20">dialog_bottom2.png</texture>
+				</control>
+				
+			</control>
 
 		<!-- Display Fanart -->
 		<control type="group">
@@ -623,21 +746,7 @@
 			<control type="group">
 				<posx>3</posx>
 				<posy>0</posy>
-				<!--<control type="image">
-					<posy>450</posy>
-					<width>594</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-					<visible>!IntegerGreaterThan(Container(300).NumItems,2)</visible>
-				</control>
-				<control type="image">
-					<posx>594</posx>
-					<posy>450</posy>
-					<width>594</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-					<visible>!IntegerGreaterThan(Container(300).NumItems,5)</visible>
-				</control>-->
+				
 				<control type="grouplist" id="9000">
 					<posx>1</posx>
 					<posy>510</posy>
@@ -738,7 +847,7 @@
 						<label>Extras</label>
 						<font>font15</font>
 						<width>80</width>
-						<onclick>ActivateWindow(1119)</onclick>
+						<onclick>Control.SetFocus(3)</onclick>
 						<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
 					</control>
 					
@@ -809,100 +918,10 @@
 						<visible>ListItem.Status(watched)</visible>
 					</control>
 					
-					<!-- Not necessary for Plex -->
-					<!--<control type="button" id="203">
-						<description>Play Trailer</description>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>-</label>
-						<onclick>noop</onclick>
-						<enable>no</enable>
-						<visible>IsEmpty(ListItem.Trailer) + !Container.Content(movies)</visible>
-					</control>
-					<control type="button" id="204">
-						<description>Play Trailer</description>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>20410</label>
-						<onclick>ActivateWindow(videos,plugin://plugin.video.youtube/?path=/root/search&amp;feed=search&amp;search=$ESCINFO[ListItem.Label] Trailer,return)</onclick>
-						<onclick>Dialog.Close(movieinformation)</onclick>
-						<visible>IsEmpty(ListItem.Trailer) + Container.Content(movies)</visible>
-					</control>-->
-					
-					<!-- Item Separator -->
-					<!--<control type="image" id="205">
-						<width>2</width>
-						<height>58</height>
-						<texture border="1">separator3.png</texture>
-					</control>-->
-					
-					<!-- Up Arrow -->
-					<!--<control type="button" id="6">
-						<description>Previous Item</description>
-						<font>IconMedium</font>
-						<width>80</width>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label></label>
-						<onclick>XBMC.PrevItem</onclick>
-					</control> -->
-					
-					<!-- Item Separator -->
-					<!--<control type="image" id="206">
-						<width>2</width>
-						<height>58</height>
-						<texture border="1">separator3.png</texture>
-					</control>-->
-					
-					<!-- Down Arrow -->
-					<!--<control type="button" id="207">
-						<description>Next Item</description>
-						<font>IconMedium</font>
-						<width>80</width>
-						<include>ButtonInfoDialogsCommonValues</include>
-						<label>+</label>
-						<onclick>ActivateWindow(3)</onclick> 
-					</control>-->
 				</control>
+						
 			</control>
-
-
-
-			<!--<control type="button" id="4002">
-				<posx>738</posx>
-				<posy>274</posy>
-				<width>424</width>
-				<height>234</height>
-				<onup>9000</onup>
-				<ondown>13</ondown>
-				<onleft>13</onleft>
-				<onright>9000</onright>
-				<texturefocus>-</texturefocus>
-				<texturenofocus>-</texturenofocus>
-				<onclick condition="IsEmpty(Window(movieinformation).Property(FanartZoom))">SetProperty(FanartZoom,True,movieinformation)</onclick>
-				<onclick condition="!IsEmpty(Window(movieinformation).Property(FanartZoom))">ClearProperty(FanartZoom,movieinformation)</onclick>
-				<onback condition="!IsEmpty(Window(movieinformation).Property(FanartZoom))">ClearProperty(FanartZoom,movieinformation)</onback>
-				<onback condition="IsEmpty(Window(movieinformation).Property(FanartZoom))">Dialog.Close(movieinformation)</onback>
-				<animation effect="zoom" start="738,274,424,234" end="-750,-4,1960,1088" time="640" tween="cubic" condition="!IsEmpty(Window(movieinformation).Property(FanartZoom))">Conditional</animation>
-			</control>
-
-			<control type="image">
-				<posx>738</posx>
-				<posy>202</posy>
-				<width>424</width>
-				<height>238</height>
-				<aspectratio align="center">keep</aspectratio>
-				<texture>$INFO[ListItem.Art(fanart)]</texture>
-				<animation effect="zoom" start="738,202,424,238" end="-750,-4,1960,1088" time="640" tween="cubic" condition="!IsEmpty(Window(movieinformation).Property(FanartZoom))">Conditional</animation>
-			</control>
-			<control type="label">
-				<posx>738</posx>
-				<posy>112</posy>
-				<width>424</width>
-				<height>238</height>
-				<label></label>
-				<align>center</align>
-				<font>IconBig</font>
-				<textcolor>themecolor</textcolor>
-				<visible>Control.HasFocus(4002) + IsEmpty(Window(movieinformation).Property(FanartZoom))</visible>
-			</control>-->
+				
 		</control>
 	</controls>
 </window>

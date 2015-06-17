@@ -83,6 +83,11 @@
 	</variable>
 	<variable name="VideoBackgroundImageVar">
 	
+		<!-- User Defined Backgrounds -->
+		<value condition="StringCompare(Control.GetLabel(4421),1) + Container.Content(movies) + !Skin.HasSetting(CustomMovieSectionBackground)">special://skin/backgrounds/movies/movies.jpg</value>
+		<value condition="StringCompare(Control.GetLabel(4421),1) + Container.Content(movies) + Skin.HasSetting(CustomMovieSectionBackground)">$INFO[Skin.String(CustomMovieSectionBackgroundFile)]</value>
+		<value condition="StringCompare(Control.GetLabel(4421),1) + Container.Content(tvshows)">special://skin/backgrounds/tvshows/tvshows.jpg</value>
+	
 		<!-- Stage Curtains -->
 		<value condition="StringCompare(Control.GetLabel(4421),2)">special://skin/backgrounds/fallback_movies.jpg</value>
 		
@@ -93,7 +98,7 @@
 		
 		<!-- Default Fanart -->
 		<value condition="!IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="[Container.Content(movies)">$VAR[GlobalBackground2Var]</value>
+		<value condition="Container.Content(movies)">$VAR[GlobalBackground2Var]</value>
 		<value condition="[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]">$VAR[GlobalBackground3Var]</value>
 		<value>$VAR[GlobalBackground4Var]</value>
 	</variable>
