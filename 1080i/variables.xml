@@ -55,10 +55,9 @@
 		<value>$INFO[Skin.String(Video.VideoFanart)]</value>
 	</variable>
 	<variable name="VideoBackgroundClickVar">
-		<value condition="[Container.Content(movies) | Container.Content(sets)] + IsEmpty(Skin.String(Movie.VideoFanart))">Skin.SetString(Movie.VideoFanart,1)</value>
-		<value condition="[Container.Content(movies) | Container.Content(sets)] + StringCompare(Skin.String(Movie.VideoFanart),1)">Skin.SetString(Movie.VideoFanart,2)</value>
-		<value condition="[Container.Content(movies) | Container.Content(sets)] + StringCompare(Skin.String(Movie.VideoFanart),2)">Skin.SetString(Movie.VideoFanart,3)</value>
-		<value condition="[Container.Content(movies) | Container.Content(sets)] + StringCompare(Skin.String(Movie.VideoFanart),3)">Skin.Reset(Movie.VideoFanart)</value>
+		<value condition="Container.Content(movies) + IsEmpty(Skin.String(Movie.VideoFanart))">Skin.SetString(Movie.VideoFanart,1)</value>
+		<value condition="Container.Content(movies) + StringCompare(Skin.String(Movie.VideoFanart),1)">Skin.SetString(Movie.VideoFanart,2)</value>
+		<value condition="Container.Content(movies) + StringCompare(Skin.String(Movie.VideoFanart),2)">Skin.Reset(Movie.VideoFanart)</value>
 		<value condition="[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + IsEmpty(Skin.String(TVShow.VideoFanart))">Skin.SetString(TVShow.VideoFanart,1)</value>
 		<value condition="[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + StringCompare(Skin.String(TVShow.VideoFanart),1)">Skin.SetString(TVShow.VideoFanart,2)</value>
 		<value condition="[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + StringCompare(Skin.String(TVShow.VideoFanart),2)">Skin.SetString(TVShow.VideoFanart,3)</value>
@@ -68,18 +67,33 @@
 		<value condition="StringCompare(Skin.String(Video.VideoFanart),3)">Skin.Reset(Video.VideoFanart)</value>
 	</variable>
 	<variable name="BackgroundLabelVar">
-		<value condition="StringCompare(Control.GetLabel(4421),1)">Remove Me</value>
-		<value condition="StringCompare(Control.GetLabel(4421),2)">$LOCALIZE[31021]</value>
-		<value condition="StringCompare(Control.GetLabel(4421),3)">Default</value>
+	
+		<!-- Use custom library background -->
+		<value condition="StringCompare(Control.GetLabel(4421),1)">User</value>
+		
+		<!-- Stage Curtains -->
+		<value condition="StringCompare(Control.GetLabel(4421),2)">Stage Curtains</value>
+		
+		<!-- Remove Me -->
+		<value condition="StringCompare(Control.GetLabel(4421),3)">Remove Me</value>
+		
+		<!-- Default Value of "Fanart" -->
 		<value>$LOCALIZE[20445]</value>
+		
 	</variable>
 	<variable name="VideoBackgroundImageVar">
+	
+		<!-- Stage Curtains -->
 		<value condition="StringCompare(Control.GetLabel(4421),2)">special://skin/backgrounds/fallback_movies.jpg</value>
+		
+		<!-- Remove Me -->
 		<value condition="StringCompare(Control.GetLabel(4421),3) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]">$INFO[Window(Home).Property(script.grab.fanart.TV.FanArt)]</value>
 		<value condition="StringCompare(Control.GetLabel(4421),3) + Container.Content(movies)">$INFO[Window(Home).Property(script.grab.fanart.Movie.FanArt)]</value>
 		<value condition="StringCompare(Control.GetLabel(4421),3)">$INFO[Window(Home).Property(script.grab.fanart.Video.FanArt)]</value>
+		
+		<!-- Default Fanart -->
 		<value condition="!IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
-		<value condition="[Container.Content(movies) | Container.Content(sets)]">$VAR[GlobalBackground2Var]</value>
+		<value condition="[Container.Content(movies)">$VAR[GlobalBackground2Var]</value>
 		<value condition="[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]">$VAR[GlobalBackground3Var]</value>
 		<value>$VAR[GlobalBackground4Var]</value>
 	</variable>
