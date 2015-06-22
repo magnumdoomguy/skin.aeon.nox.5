@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<!--PORTRAIT-->
-	<include name="View_505_Panel">
+	<include name="View_506_Panel">
 		<include>ViewAnimation</include>
-		<control type="fixedlist" id="505">
+		<control type="fixedlist" id="506">
 			<viewtype label="Panel">wrap</viewtype>
-			<left>45</left>
-			<top>335</top>
+			<posx>45</posx>
+			<posy>335</posy>
 			<width>1908</width>
 			<height>840</height>
 			<onup>SetProperty(MediaMenu,True,home)</onup>
 			<onup>SetFocus(9050)</onup>
 			<ondown>60</ondown>
-			<onleft>505</onleft>
-			<onright>505</onright>
+			<onleft>506</onleft>
+			<onright>506</onright>
 			<focusposition>1</focusposition>
 			<preloaditems>2</preloaditems>
 			<pagecontrol>60</pagecontrol>
@@ -21,8 +21,8 @@
 			<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)]</visible>
 			<itemlayout width="600" height="843">
 				<control type="label">
-					<top>327</top>
-					<left>15</left>
+					<posy>327</posy>
+					<posx>15</posx>
 					<width>465</width>
 					<height>30</height>
 					<label>[B]$INFO[ListItem.Label][/B]</label>
@@ -30,17 +30,17 @@
 					<textcolor>grey</textcolor>
 				</control>
 				<control type="image">
-					<left>495</left>
-					<top>328</top>
+					<posx>495</posx>
+					<posy>328</posy>
 					<width>42</width>
 					<height>28</height>
 					<aspectratio>keep</aspectratio>
-					<texture>$VAR[UnFocusHDIndicator]</texture>
+					<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
 					<colordiffuse>grey</colordiffuse>
 				</control>
 				<control type="textbox">
-					<top>370</top>
-					<left>15</left>
+					<posy>370</posy>
+					<posx>15</posx>
 					<width>525</width>
 					<align>justify</align>
 					<height>350</height>
@@ -57,8 +57,8 @@
 					<texture>listselect_fo.png</texture>
 				</control>
 				<control type="label">
-					<top>327</top>
-					<left>15</left>
+					<posy>327</posy>
+					<posx>15</posx>
 					<width>465</width>
 					<height>30</height>
 					<label>[B]$INFO[ListItem.Label][/B]</label>
@@ -66,17 +66,17 @@
 					<textcolor>white2</textcolor>
 				</control>
 				<control type="image">
-					<left>495</left>
-					<top>328</top>
+					<posx>495</posx>
+					<posy>328</posy>
 					<width>42</width>
 					<height>28</height>
 					<aspectratio>keep</aspectratio>
-					<texture>$VAR[UnFocusHDIndicator]</texture>
+					<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
 					<colordiffuse>white2</colordiffuse>
 				</control>
 				<control type="textbox">
-					<top>370</top>
-					<left>15</left>
+					<posy>370</posy>
+					<posx>15</posx>
 					<width>525</width>
 					<align>justify</align>
 					<height>350</height>
@@ -89,13 +89,13 @@
 			</focusedlayout>
 		</control>
 		<control type="scrollbar" id="60">
-			<visible>Control.IsVisible(505)</visible>
-			<left>0</left>
-			<top>1066</top>
+			<visible>Control.IsVisible(506)</visible>
+			<posx>0</posx>
+			<posy>1066</posy>
 			<width>1920</width>
 			<height>14</height>
-			<onup>505</onup>
-			<ondown>505</ondown>
+			<onup>506</onup>
+			<ondown>506</ondown>
 			<orientation>horizontal</orientation>
 			<texturesliderbackground border="1">-</texturesliderbackground>
 			<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
@@ -109,8 +109,8 @@
 		<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)</visible>
 		<control type="group">
 			<control type="group">
-				<left>15</left>
-				<top>15</top>
+				<posx>15</posx>
+				<posy>15</posy>
 				<control type="image">
 					<visible>Container.Content(movies) | Container.Content(tvshows)</visible>
 					<width>525</width>
@@ -118,14 +118,14 @@
 					<texture fallback="special://skin/backgrounds/default_bg.jpg" background="true">$INFO[ListItem.Art(fanart)]</texture>
 					<aspectratio align="center" aligny="center">scale</aspectratio>
 				</control>
-				<control type="image">
+				<!--<control type="image">
 					<visible>Container.Content(movies) | Container.Content(tvshows)</visible>
-					<left>75</left>
+					<posx>75</posx>
 					<width>375</width>
 					<height>278</height>
 					<texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
 					<aspectratio align="center" aligny="bottom">keep</aspectratio>
-				</control>
+				</control>-->
 				<control type="image">
 					<visible>Container.Content(episodes)</visible>
 					<width>525</width>
@@ -134,17 +134,8 @@
 					<aspectratio align="center" aligny="center">scale</aspectratio>
 				</control>
 				<control type="image">
-					<left>-20</left>
-					<top>5</top>
-					<width>85</width>
-					<height>90</height>
-					<aspectratio>keep</aspectratio>
-					<texture background="true">oscars.png</texture>
-					<visible>Skin.HasSetting(oscars505) + [SubString(ListItem.FileName,.oscars) | StringCompare(Container.FolderPath,special://profile/playlists/video/BestPicture.xsp)]</visible> 
-				</control>
-				<control type="image">
-					<left>456</left>
-					<top>0</top>
+					<posx>456</posx>
+					<posy>0</posy>
 					<width>80</width>
 					<height>80</height>
 					<texture>$VAR[OverlayVar]</texture>
