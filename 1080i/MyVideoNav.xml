@@ -10,9 +10,9 @@
 	<onload condition="Container.PlexContent(Clips)">Skin.SetString(SectionType,clips)</onload>
 	<onunload>Skin.Reset(SectionType)</onunload>
 	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
-	
+		
 	<controls>
-	
+		
 		<!-- Display Infopanel Animation -->
 		<control type="label" id="4420">
 			<label>$VAR[VideoInfoPanelVar]</label>
@@ -1036,6 +1036,8 @@
 					<onback>ClearProperty(MediaMenu,Home)</onback>
 					<onback>50</onback>
 					<ondown>19001</ondown>
+					<onclick>19000</onclick>
+					<onclick>Control.SetFocus(19000)</onclick>
 					<itemgap>0</itemgap>
 					<textwidth>250</textwidth>
 					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
@@ -1245,6 +1247,24 @@
 			
         </control>
 		
+		<!--debug to navs -->
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1920</width>
+			<height>300</height>
+			<texture>listpanel_back.png</texture>
+			<colordiffuse>BAffffff</colordiffuse>
+			<visible>Skin.HasSetting(DebugInfo)</visible>
+		</control>
+		<control type="label">
+			<include>WindowID</include>
+			<posx>20</posx>
+			<posy>20</posy>
+			<label>MyVideoNav.xml -> $INFO[Skin.String(SectionType)] - $INFO[Container(300).ListItem(0).Label] - $INFO[Container.PlexContent][CR] - $VAR[ListItemType] CC=$VAR[ContainerContent]- st. $INFO[Skin.String(SectionType)] ft. $INFO[Container.FirstTitle] pt. $INFO[Container.Property(parentTitle)] [CR]===> fn. $INFO[Container.FolderName]  => ll. $INFO[ListItem.Label] >300. $INFO[Container(300).ListItem(0).Label] >pos. $INFO[Container.Position][CR] url. $INFO[ListItem.FileNameAndPath][CR]ltype = $VAR[ListItemType]</label>
+			<visible>Skin.HasSetting(DebugInfo)</visible>
+		</control>
+ 		<!--debug to navs -->
     </controls>
 
 </window>
