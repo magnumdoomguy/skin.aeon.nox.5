@@ -5,11 +5,11 @@
 		<control type="group">
 			<visible>Control.IsVisible(58) + !Window.IsActive(addoninformation)</visible>
 			<include>ViewAnimation</include>
-			<posy>-55</posy>
+			<posy>-10</posy>
 			<control type="image">
 				<description>background image</description>
 				<posx>90</posx>
-				<posy>955</posy>
+				<posy>885</posy>
 				<width>1740</width>
 				<height>839</height>
 				<texture border="40">panel_reflect.png</texture>
@@ -17,84 +17,82 @@
 			<control type="image">
 				<description>background image</description>
 				<posx>90</posx>
-				<posy>148</posy>
+				<posy>89</posy>
 				<width>1740</width>
-				<height>839</height>
+				<height>935</height>
 				<texture border="40">listpanel_back.png</texture>
 			</control>
 			<control type="panel" id="58">
 				<posx>120</posx>
-				<posy>179</posy>
-				<width>1680</width>
-				<height>775</height>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050)</onleft>
-				<onright>60</onright>
+				<posy>120</posy>
+				<width>1180</width>
+				<height>880</height>
+				<onleft>60</onleft>
+				<onright>61</onright>
 				<onup>58</onup>
 				<ondown>58</ondown>
 				<pagecontrol>60</pagecontrol>
 				<preloaditems>2</preloaditems>
 				<viewtype label="31088">icons</viewtype>
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
-				<visible>Container.Content(tvshows)</visible> <!-- <visible>Container.Content(tvshows) | Container.Content(movies)</visible> -->
-				<itemlayout height="155" width="840">
+				<visible>Container.Content(tvshows) | Container.Content(movies)</visible>
+				<itemlayout height="110" width="560">
 					<control type="image">
-						<width>840</width>
-						<height>155</height>
+						<width>560</width>
+						<height>110</height>
 						<aspectratio>scale</aspectratio>
-						<texture background="true">$VAR[BannerThumb]</texture>
+						<texture colordiffuse="BAFFFFFF" background="true">$VAR[BannerThumb]</texture>
 						<fadetime>400</fadetime>
 						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-						<bordersize>2</bordersize>
-						<colordiffuse>BAffffff</colordiffuse>
+						<bordersize>4</bordersize>
 						<visible>!IsEmpty(ListItem.Art(banner)) | IsEmpty(ListItem.Art(fanart))</visible>
 					</control>
 					<control type="group">
 						<visible>IsEmpty(ListItem.Art(banner))</visible>
 						<control type="image">
-							<width>840</width>
-							<height>155</height>
+							<width>560</width>
+							<height>110</height>
 							<aspectratio>scale</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+							<texture colordiffuse="BAFFFFFF" background="true">$INFO[ListItem.Art(fanart)]</texture>
 							<fadetime>400</fadetime>
 							<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-							<bordersize>2</bordersize>
-							<colordiffuse>BAffffff</colordiffuse>
+							<bordersize>4</bordersize>
 						</control>
 						<control type="image">
-							<width>400</width>
-							<height>155</height>
+							<posy>5</posy>
+							<width>300</width>
+							<height>100</height>
 							<aspectratio>keep</aspectratio>
 							<texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
 							<fadetime>400</fadetime>
-							<bordersize>2</bordersize>
+							<bordersize>4</bordersize>
 							<colordiffuse>BAffffff</colordiffuse>
 						</control>
 					</control>
 					<control type="image">
-						<posx>760</posx>
+						<posx>490</posx>
 						<posy>0</posy>
-						<width>80</width>
-						<height>80</height>
+						<width>60</width>
+						<height>60</height>
 						<texture>$VAR[OverlayVar]</texture>
 						<aspectratio align="center" aligny="top">keep</aspectratio>
-						<bordersize>1</bordersize>
+						<bordersize>4</bordersize>
 					</control>
 					<control type="group">
-						<posx>15</posx>
-						<posy>15</posy>
+						<posx>10</posx>
+						<posy>10</posy>
 						<include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
 					</control>
 				</itemlayout>
-				<focusedlayout heigth="155" width="840">
+				<focusedlayout height="110" width="560">
 					<control type="group">
-						<animation type="Focus">
-							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
+							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
 						</animation>
 						<control type="image">
-							<width>840</width>
-							<height>155</height>
+							<width>560</width>
+							<height>110</height>
 							<aspectratio>scale</aspectratio>
 							<texture background="true">$VAR[BannerThumb]</texture>
 							<fadetime>400</fadetime>
@@ -105,8 +103,8 @@
 						<control type="group">
 							<visible>IsEmpty(ListItem.Art(banner))</visible>
 							<control type="image">
-								<width>840</width>
-								<height>155</height>
+								<width>560</width>
+								<height>110</height>
 								<aspectratio>scale</aspectratio>
 								<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
 								<fadetime>400</fadetime>
@@ -114,47 +112,103 @@
 								<bordersize>8</bordersize>
 							</control>
 							<control type="image">
-								<width>400</width>
-								<height>155</height>
+								<posy>5</posy>
+								<width>300</width>
+								<height>100</height>
 								<aspectratio>keep</aspectratio>
 								<texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
 								<fadetime>400</fadetime>
-								<bordersize>2</bordersize>
+								<bordersize>4</bordersize>
 							</control>
 						</control>
 						<control type="image">
-							<posx>760</posx>
-							<posy>6</posy>
-							<width>80</width>
-							<height>80</height>
+							<posx>490</posx>
+							<posy>4</posy>
+							<width>60</width>
+							<height>60</height>
 							<texture>$VAR[OverlayVar]</texture>
 							<aspectratio align="center" aligny="top">keep</aspectratio>
-							<bordersize>2</bordersize>
+							<bordersize>4</bordersize>
 						</control>
 						<control type="group">
-							<posx>15</posx>
-							<posy>15</posy>
+							<posx>10</posx>
+							<posy>10</posy>
 							<include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
 						</control>
 					</control>
 				</focusedlayout>
 			</control>
 			<control type="scrollbar" id="60">
-				<posx>1797</posx>
+				<posx>104</posx>
 				<posy>179</posy>
 				<width>14</width>
-				<height>720</height>
-				<colordiffuse>55ffffff</colordiffuse>
-				<onleft>50</onleft>
-				<onright>SetProperty(MediaMenu,True,home)</onright>
-				<onright>SetFocus(9050)</onright>
+				<height>900</height>
+				<onright>50</onright>
+				<onleft>SetProperty(MediaMenu,True,home)</onleft>
+				<onleft>SetFocus(9050)</onleft>
 				<ondown>60</ondown>
 				<onup>60</onup>
 				<showonepage>false</showonepage>
 				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
 				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
 				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+			</control>
+
+			<control type="group">
+				<posx>1240</posx>
+				<posy>120</posy>
+				<control type="image">
+					<width>560</width>
+					<height>330</height>
+					<aspectratio>scale</aspectratio>
+					<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+					<bordersize>2</bordersize>
+				</control>
+				<control type="label">
+					<posy>325</posy>
+					<width>560</width>
+					<height>60</height>
+					<font>font16_title_bold</font>
+					<textcolor>grey</textcolor>
+					<scroll>true</scroll>
+					<label>$VAR[FloorLabelVar]</label>
+					<textoffsetx>15</textoffsetx>
+				</control>
+				<control type="button">
+					<posy>370</posy>
+					<width>560</width>
+					<label>$INFO[ListItem.Genre,,[CR]]$VAR[VideoSubLabelVar]</label>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+				</control>
+				<control type="textbox">
+					<label>$VAR[VideoPlotVar]</label>
+					<posx>15</posx>
+					<posy>464</posy>
+					<width>530</width>
+					<height>402</height>
+					<font>font14_textbox</font>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
+					<pagecontrol>61</pagecontrol>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+				</control>
+				<control type="scrollbar" id="61">
+					<posx>557</posx>
+					<posy>441</posy>
+					<width>14</width>
+					<height>302</height>
+					<onleft>50</onleft>
+					<onright>SetProperty(MediaMenu,True,home)</onright>
+					<onright>SetFocus(9050)</onright>
+					<ondown>61</ondown>
+					<onup>61</onup>
+					<showonepage>false</showonepage>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+				</control>
 			</control>
 		</control>
 	</include>
