@@ -37,15 +37,15 @@
                     <include>ShowCaseInfoPanelButtonsValues</include>
                     <visible>!IsEmpty(ListItem.Director) + Container.Content(movies)</visible>
                 </control>
-                <control type="button">
+                <!--<control type="button">
                     <label>[COLOR labelheader]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Premiered]</label>
                     <width>650</width>
                     <include>ShowCaseInfoPanelButtonsValues</include>
                     <include>VisibleFadeEffect</include>
                     <visible>!IsEmpty(ListItem.Premiered) + Container.Content(episodes)</visible>
-                </control>
+                </control>-->
                 <control type="button">
-                    <label>[COLOR labelheader]$LOCALIZE[31019]:[/COLOR][CR]$INFO[ListItem.Studio]</label>
+                    <label>[COLOR labelheader]$LOCALIZE[31019]:[/COLOR][CR]$INFO[ListItem.Property(mediaTag-Studio)]</label>
                     <width>650</width>
                     <include>ShowCaseInfoPanelButtonsValues</include>
                     <include>VisibleFadeEffect</include>
@@ -63,7 +63,7 @@
                     <width>650</width>
                     <include>ShowCaseInfoPanelButtonsValues</include>
                     <include>VisibleFadeEffect</include>
-                    <visible>!IsEmpty(ListItem.Duration)</visible>
+                    <visible>!IsEmpty(ListItem.Duration) + Skin.HasSetting(nohighlist)</visible>
                 </control>
             </control>
             <control type="image">
@@ -115,7 +115,7 @@
             </control>
             <control type="group">
                 <posx>1270</posx>
-                <posy>652</posy>
+                <posy>743</posy>
                 <visible>!Skin.HasSetting(nohighlist) + [Container.Content(tvshows) | Container.Content(seasons)]</visible>
                 <include>VisibleFadeEffect</include>
                 <control type="textbox" id="70">
@@ -123,17 +123,17 @@
                     <posx>15</posx>
                     <posy>0</posy>
                     <width>615</width>
-                    <height>347</height>
+                    <height>247</height>
                     <font>font14_textbox</font>
                     <pagecontrol>62</pagecontrol>
                     <include>ShowCaseInfoPanelButtonsValues</include>
                     <autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
                 </control>
                 <control type="scrollbar" id="62">
-                    <posx>636</posx>
+                    <posx>743</posx>
                     <posy>0</posy>
                     <width>14</width>
-                    <height>345</height>
+                    <height>247</height>
 					<colordiffuse>55ffffff</colordiffuse>
                     <onup>PageUp(70)</onup>
                     <ondown>PageUp(70)</ondown>
@@ -209,7 +209,7 @@
                     <posx>13.5</posx>
                     <!--<colordiffuse>grey2</colordiffuse>-->
                     <include>MediaFlagVars</include>
-                    <texture fallback="flags/resolution/defaultscreen.png">$INFO[ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture>
+                    <texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
                     <!--<visible>!IsEmpty(ListItem.VideoResolution)</visible>-->
                     <include>VisibleFadeEffect</include>
                 </control>
@@ -218,7 +218,7 @@
                     <posx>176.5</posx>
                     <!--<colordiffuse>grey2</colordiffuse>-->
                     <include>MediaFlagVars</include>
-                    <texture fallback="flags/audio/defaultsound.png">$INFO[ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+                    <texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
                     <!--<visible>!IsEmpty(ListItem.AudioCodec)</visible>-->
                     <include>VisibleFadeEffect</include>
                 </control>
@@ -227,7 +227,7 @@
                     <posx>339</posx>
                     <!--<colordiffuse>grey2</colordiffuse>-->
                     <include>MediaFlagVars</include>
-                    <texture>$INFO[ListItem.Property(mediaTag-audioChannels),flags/channels/,.png]</texture>
+                    <texture>$VAR[AudioChannelsFlag]</texture>
                     <!--<visible>!IsEmpty(ListItem.AudioChannels)</visible>-->
                     <include>VisibleFadeEffect</include>
                 </control>
@@ -236,7 +236,7 @@
                     <posx>506</posx>
                     <!--<colordiffuse>grey2</colordiffuse>-->
                     <include>MediaFlagVars</include>
-                    <texture fallback="flags/video/default.png">$INFO[ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+                    <texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
                     <!--<visible>!IsEmpty(ListItem.VideoCodec)</visible>-->
                     <include>VisibleFadeEffect</include>
                 </control>
