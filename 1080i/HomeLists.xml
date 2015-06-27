@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<include name="HomeRecentlyAddedInfo">
-        <control type="group" id="7001">
+        <control type="group" id="9003">
             <animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0">WindowOpen</animation>
             <animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0">WindowClose</animation>
             <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(lowermainmenu)">Conditional</animation>
-			<visible>false</visible>
-            <!--<visible>[Control.IsVisible(11000) | Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11004) | Control.IsVisible(11005) | Control.IsVisible(11006) | Control.IsVisible(11007) | Control.IsVisible(12000)]</visible>
-            <include>VisibleFadeEffect</include>-->
+			<visible>[Control.IsVisible(11000) | Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11004) | Control.IsVisible(11005) | Control.IsVisible(11006) | Control.IsVisible(11007) | Control.IsVisible(12000)]</visible>
+            <include>VisibleFadeEffect</include>
             <control type="group">
-                <visible>ControlGroup(7001).HasFocus() + !Skin.HasSetting(lowermainmenu)</visible>
+                <visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(lowermainmenu)</visible>
                 <include>VisibleFadeEffect</include>
                 <control type="image">
                     <posx>0</posx>
@@ -28,7 +27,7 @@
                 </control>
             </control>
             <control type="group">
-                <visible>ControlGroup(7001).HasFocus() + Skin.HasSetting(lowermainmenu)</visible>
+                <visible>ControlGroup(9003).HasFocus() + Skin.HasSetting(lowermainmenu)</visible>
                 <include>VisibleFadeEffect</include>
                 <control type="image">
                     <posx>0</posx>
@@ -55,7 +54,7 @@
                     <width>432</width>
                     <height>432</height>
                     <aspectratio align="right">keep</aspectratio>
-                    <texture background="true">$VAR[WidgetPosterVar]</texture>
+                    <texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
                     <fadetime>IconCrossfadeTime</fadetime>
                     <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
                     <bordersize>20</bordersize>
@@ -67,24 +66,14 @@
                     <height>432</height>
                     <itemgap>12</itemgap>
                     <align>center</align>
-                    <!--<visible>!SubString(Container(9000).ListItem.Property(Widget),addons://sources/,left)</visible>-->
                     <control type="label">
                         <width>900</width>
-                        <height>40</height>
-                        <font>font14_title</font>
+                        <height>60</height>
+                        <font>font30_title</font>
                         <textcolor>labelheader</textcolor>
                         <shadowcolor>black</shadowcolor>
                         <label>$INFO[Container(11000).ListItem.Title]</label>
                         <wrapmultiline>true</wrapmultiline>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>20</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Tagline]</label>
-                        <visible>!IsEmpty(Container(11000).ListItem.Tagline)</visible>
                     </control>
                     <control type="label">
                         <width>900</width>
@@ -187,59 +176,7 @@
                         <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
                     </control>
                 </control>
-                <!--<control type="grouplist">
-                    <posx>432</posx>
-                    <posy>13</posy>
-                    <width>1300</width>
-                    <height>432</height>
-                    <itemgap>12</itemgap>
-                    <align>center</align>
-                    <visible>SubString(Container(9000).ListItem.Property(Widget),addons://sources/,left)</visible>
-                    <control type="label">
-                        <width>900</width>
-                        <height>40</height>
-                        <font>font14_title</font>
-                        <textcolor>white</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Property(Addon.Name)]</label>
-                        <wrapmultiline>true</wrapmultiline>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>20</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Property(Addon.Version)]</label>
-                    </control>
-                    <control type="label">
-                        <height>2</height>
-                        <label>-</label>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Property(Addon.Creator),[COLOR labelheader]$LOCALIZE[21863]:[/COLOR] ]</label>
-                    </control>
-                    <control type="label">
-                        <height>2</height>
-                        <label>-</label>
-                    </control>
-                    <control type="textbox">
-                        <description>Plot</description>
-                        <width>900</width>
-                        <height>250</height>
-                        <font>font14_textbox</font>
-                        <align>left</align>
-                        <label>$INFO[Container(11000).ListItem.Property(Addon.Description)]</label>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-                    </control>
-                </control>-->
+                
             </control>
             <control type="group">
                 <posx>1420</posx>
@@ -248,7 +185,8 @@
                     <animation type="Conditional" condition="Control.HasFocus(11000)">
                         <effect type="rotatey" start="0" end="180" center="221,0" time="400" tween="sine" easing="inout" />
                         <effect type="fade" start="100" end="0" time="10" delay="200" />
-                    </animation>
+                    </animation>		
+					
                     <control type="image">
                         <posx>0</posx>
                         <posy>0</posy>
@@ -264,16 +202,29 @@
                         <font>font15_title</font>
                         <align>center</align>
                         <textcolor>dialogheader</textcolor>
-                        <label>$INFO[ListItem.Label]</label>
+                        <label>Recent $INFO[Container(300).ListItem.Label]</label>
                     </control>
                     <control type="image">
                         <posx>32</posx>
                         <posy>86</posy>
                         <width>362</width>
                         <height>226</height>
+						<visible>!Container(11000).ListItem.Type(Photo)</visible>
                         <fadetime>IconCrossfadeTime</fadetime>
                         <aspectratio align="center" aligny="top">keep</aspectratio>
-                        <texture>$INFO[ListItem.Art(smallThumb)]</texture>
+                        <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+                        <bordertexture border="5">dialogs/default/inner2.png</bordertexture>
+                        <bordersize>1</bordersize>
+                    </control>
+					<control type="image">
+                        <posx>32</posx>
+                        <posy>86</posy>
+                        <width>362</width>
+                        <height>226</height>
+						<visible>Container(11000).ListItem.Type(Photo)</visible>
+                        <fadetime>IconCrossfadeTime</fadetime>
+                        <aspectratio align="center" aligny="top">scale</aspectratio>
+                        <texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
                         <bordertexture border="5">dialogs/default/inner2.png</bordertexture>
                         <bordersize>1</bordersize>
                     </control>
@@ -287,7 +238,7 @@
                         <align>center</align>
                         <aligny>center</aligny>
                         <wrapmultiline>true</wrapmultiline>
-                        <label>$INFO[ListItem.Property(episodeno),,: ]$INFO[ListItem.Label]</label>
+                        <label>$INFO[Container(11000).ListItem.Property(episodeno),,: ]$INFO[Container(11000).ListItem.Label]</label>
                         <textcolor>grey2</textcolor>
                     </control>
                 </control>
@@ -318,15 +269,16 @@
                         <height>360</height>
                         <onup>11000</onup>
                         <ondown>11000</ondown>
-                        <onleft>9000</onleft>
-                        <onright>9000</onright>
-                        <onback>9000</onback>
-                        <viewtype label="535">list</viewtype>
+                        <onleft>300</onleft>
+						<onright>300</onright>
+                        <onback>300</onback>
+						<viewtype label="535">list</viewtype>
                         <pagecontrol>-</pagecontrol>
                         <orientation>vertical</orientation>
-                        <scrolltime tween="quadratic" easing="out">200</scrolltime>
-                        <!--<visible>!IsEmpty(Container(9000).ListItem.Property(Widget))</visible>-->
-                        <autoscroll time="10000" delay="10000" repeat="10000">Control.IsVisible(7001) + !Control.HasFocus(11000)</autoscroll>
+                        <scrolltime>200</scrolltime>
+                        <visible>!IsEmpty(Container(11000).ListItem.Label)</visible>
+                        <autoscroll>true</autoscroll>
+						
                         <itemlayout height="60" width="360">
                             <control type="image">
                                 <width>360</width>
@@ -340,7 +292,7 @@
                                 <textcolor>grey2</textcolor>
                                 <selectedcolor>selected</selectedcolor>
                                 <textoffsetx>15</textoffsetx>
-                                <label>$INFO[listitem.title]</label>
+                                <label>$INFO[ListItem.Title]</label>
                             </control>
                         </itemlayout>
                         <focusedlayout height="60" width="360">
@@ -358,7 +310,7 @@
                                 <label>$INFO[listitem.title]</label>
                             </control>
                         </focusedlayout>
-                        <content target="$VAR[WidgetListTargetVar]">$VAR[WidgetListContent]</content>
+                        
                     </control>
                 </control>
             </control>

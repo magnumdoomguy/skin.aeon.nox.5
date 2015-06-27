@@ -22,6 +22,9 @@
         <!-- Display Plex Fanart -->
         <animation effect="fade" time="600">WindowOpen</animation>
         <animation effect="fade" time="600">WindowClose</animation>
+		<!-- No Widget Fanart -->
+		<control type="group">
+			<visible>!ControlGroup(9003).HasFocus()</visible>
         <!-- generic autopopulated fanart slideshow -->
         <control type="group">
             <visible>![stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)]</visible>
@@ -149,6 +152,23 @@
                 <info>Skin.String(CustomHomeBackground15Path)</info>
             </control>
         </control>
+		</control>
+		
+		<!-- Widget Background -->
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <visible>ControlGroup(9003).HasFocus() + !Container(11000).ListItem.Type(Photo)</visible>
+            <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+        </control>
+		
+		<!-- Widget Background Photo -->
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <visible>ControlGroup(9003).HasFocus() + Container(11000).ListItem.Type(Photo)</visible>
+            <texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+			<aspectratio>scale</aspectratio>
+        </control>
+		
         <!-- Visualization Background -->
         <control type="visualisation">
             <include>FullscreenDimensions</include>
