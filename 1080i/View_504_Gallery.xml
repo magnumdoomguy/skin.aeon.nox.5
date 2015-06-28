@@ -15,16 +15,6 @@
                 <font>font16_title_bold</font>
                 <textcolor>white</textcolor>
             </control>
-            <!--<control type="image">
-				<posx>1475</posx>
-				<posy>827</posy>
-				<width>42</width>
-				<height>28</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
-				<visible>Container.Content(movies)</visible>
-				<colordiffuse>white</colordiffuse>
-			</control>-->
             <control type="label">
                 <posx>398</posx>
                 <posy>860</posy>
@@ -34,7 +24,18 @@
                 <font>font13_title</font>
                 <textcolor>white</textcolor>
                 <label>$VAR[VideoSubLabelVar]</label>
-                <visible>!Container.Content(artists)</visible>
+                <visible>!Container.Content(artists) + !Container.Content(tvshows)</visible>
+            </control>
+			<control type="label">
+                <posx>398</posx>
+                <posy>860</posy>
+                <width>1125</width>
+                <height>30</height>
+                <align>left</align>
+                <font>font13_title</font>
+                <textcolor>white</textcolor>
+                <label>Episodes: $INFO[ListItem.episode] ($INFO[ListItem.Property(UnWatchedEpisodes)] Unwatched)</label>
+                <visible>Container.Content(tvshows)</visible>
             </control>
             <control type="label">
                 <posx>398</posx>
@@ -45,30 +46,6 @@
                 <font>font13_title</font>
                 <textcolor>white</textcolor>
                 <label>$INFO[ListItem.Genre]</label>
-            </control>
-            <!-- Next Episode -->
-            <control type="label">
-                <posy>890</posy>
-                <posx>398</posx>
-                <width>1220</width>
-                <height>100</height>
-                <align>left</align>
-                <font>font13_title</font>
-                <textcolor>white</textcolor>
-                <label>Next Episode: $INFO[Window(Home).Property(NextAired.NextNumber)] - $INFO[Window(Home).Property(NextAired.NextTitle)]   ($INFO[Window(Home).Property(NextAired.NextDay)])</label>
-                <visible>[!IsEmpty(Window(Home).Property(NextAired.NextDate)) + !Control.HasFocus(61)] + Skin.HasSetting(noextendedinfotvshows)</visible>
-            </control>
-            <!-- Next Aired Status -->
-            <control type="label">
-                <posy>890</posy>
-                <posx>398</posx>
-                <width>1220</width>
-                <height>100</height>
-                <align>left</align>
-                <font>font13_title</font>
-                <textcolor>white</textcolor>
-                <label>$INFO[Window(Home).Property(NextAired.Status)]</label>
-                <visible>[IsEmpty(Window(Home).Property(NextAired.NextDate)) + !IsEmpty(Window(Home).Property(NextAired.Status)) + !Control.HasFocus(61)] + Skin.HasSetting(noextendedinfotvshows)</visible>
             </control>
             <control type="label">
                 <posx>398</posx>
@@ -100,7 +77,7 @@
                 <preloaditems>2</preloaditems>
                 <focusposition>1</focusposition>
                 <orientation>horizontal</orientation>
-                <visible>[Container.Content(movies) | Container.Content(tvshows) | Window.IsActive(10002) | Container.Content(artists) | Container.Content(sets)] + !Container.Content(addons)</visible>
+                <visible>[Container.Content(movies) | Container.Content(tvshows) | Window.IsActive(10002) | Container.Content(artists)] + !Container.Content(addons)</visible>
                 <itemlayout width="1125" height="663">
                     <control type="group">
                         <posx>45</posx>
@@ -171,32 +148,13 @@
                             <bordersize>8</bordersize>
                         </control>
                         <control type="image">
-                            <posx>-20</posx>
-                            <posy>10</posy>
-                            <width>85</width>
-                            <height>80</height>
-                            <aspectratio>keep</aspectratio>
-                            <texture background="true">oscars.png</texture>
-                            <visible>Skin.HasSetting(oscars504) + [SubString(ListItem.FileName,.oscars) | StringCompare(Container.FolderPath,special://profile/playlists/video/BestPicture.xsp)]</visible>
-                        </control>
-                        <control type="image">
                             <visible>![Window.IsActive(pictures) | Container.Content(artists)]</visible>
                             <posx>1048</posx>
                             <posy>8</posy>
                             <width>80</width>
                             <height>80</height>
-                            <texture>$VAR[OverlayVar]</texture>
+                            <texture>$INFO[ListItem.Overlay]</texture>
                             <aspectratio align="center" aligny="top">keep</aspectratio>
-                        </control>
-                        <control type="image">
-                            <visible>![Window.IsActive(pictures) | Container.Content(artists)]</visible>
-                            <posx>0</posx>
-                            <posy>420</posy>
-                            <width>1125</width>
-                            <height>168</height>
-                            <aspectratio align="center">keep</aspectratio>
-                            <texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
-                            <animation effect="zoom" start="100" end="173" time="200" center="528,308" tween="Cubic" condition="Control.HasFocus(8000) + !IsEmpty(ListItem.Title)">Conditional</animation>
                         </control>
                         <control type="image">
                             <visible>Window.IsActive(pictures)</visible>
