@@ -24,6 +24,8 @@
         <animation effect="fade" time="600">WindowClose</animation>
 		<!-- No Widget Fanart -->
 		<control type="group">
+			<animation effect="fade" time="600">WindowOpen</animation>
+            <animation effect="fade" time="600">WindowClose</animation>
 			<visible>!ControlGroup(9003).HasFocus()</visible>
         <!-- generic autopopulated fanart slideshow -->
         <control type="group">
@@ -155,10 +157,13 @@
 		</control>
 		
 		<!-- Widget Background -->
-        <control type="image">
+        <control type="multiimage">
             <include>FullscreenDimensions</include>
+			<animation effect="fade" time="600">VisibleChange</animation>
+        
+            
             <visible>ControlGroup(9003).HasFocus() + !Container(11000).ListItem.Type(Photo)</visible>
-            <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+            <imagepath background="true">$INFO[Container(11000).ListItem.Art(fanart)]</imagepath>
         </control>
 		
 		<!-- Widget Background Photo -->
