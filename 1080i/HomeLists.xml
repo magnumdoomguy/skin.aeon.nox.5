@@ -154,7 +154,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + !Skin.HasSetting(WidgetGlass)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + IsEmpty(Skin.String(CaseType))</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
 					<itemlayout height="305" width="216">
 						<control type="image">
@@ -195,7 +195,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + Skin.HasSetting(WidgetGlass)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(CaseType),Glass)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
 					<itemlayout height="305" width="216">
 						<control type="image">
@@ -260,9 +260,9 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(ListItem.Label)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(CaseType),DVD/Bluray)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
-					<visible>Skin.HasSetting(Panel.Case)</visible>
+					
 					<itemlayout height="305" width="216">
 						<control type="image">
 							<description>Cover</description>
@@ -271,7 +271,8 @@
 							<width>202</width>
 							<height>277</height>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
 						</control>						
 						<control type="image">
 							<description>Case Overlay</description>
@@ -281,7 +282,8 @@
 							<height>323</height>
 							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),thumbs/boxes/,.png]</texture>													
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),thumbs/boxes/,.png]</texture>
+							<aspectratio>stretch</aspectratio>
 						</control>												
 					</itemlayout>
 					<focusedlayout height="305" width="216">
@@ -292,7 +294,8 @@
 							<width>202</width>
 							<height>277</height>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
 						</control>						
 						<control type="image">
 							<description>Case Overlay</description>
@@ -324,9 +327,9 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(ListItem.Label)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(CaseType),Clear)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
-					<visible>Skin.HasSetting(Panel.ClearCase)</visible>
+					
 					<itemlayout height="305" width="216">
 						<control type="image">
 							<description>Cover</description>
@@ -335,7 +338,8 @@
 							<width>200</width>
 							<height>295</height>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>												
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
 						</control>						
 						<control type="image">
 							<description>Case Overlay</description>
@@ -356,7 +360,8 @@
 							<width>200</width>
 							<height>295</height>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>												
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
 						</control>						
 						<control type="image">
 							<description>Case Overlay</description>
@@ -388,7 +393,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(album)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(album) + !StringCompare(Skin.String(CaseType),Glass)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
 					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>				
 					
@@ -421,51 +426,6 @@
 						</control>										
 					</focusedlayout>
 				</control>
-				
-				<!-- Photo Cover -->
-				<!--<control type="panel" id="11000">
-					<posx>207</posx>
-					<posy>115</posy>
-					<width>1510</width>
-					<height>305</height>
-					<onup>8072</onup>		
-					<ondown>300</ondown>
-					<onleft>11000</onleft>
-					<onright>11000</onright>
-					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(photo)</visible>
-					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
-					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>				
-					
-					<itemlayout height="305" width="303">
-						<visible>!Skin.HasSetting(HomeInfo)</visible>
-						<control type="image">
-							<description>Cover</description>
-							<width>296</width>
-							<height>305</height>		
-							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
-							<aspectratio>scale</aspectratio>
-						</control>						
-					</itemlayout>
-					<focusedlayout height="305" width="303">
-						<visible>!Skin.HasSetting(HomeInfo)</visible>
-						<control type="image">
-							<description>Cover</description>
-							<width>296</width>
-							<height>305</height>		
-							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
-							<aspectratio>scale</aspectratio>
-						</control>
-						<control type="image">
-							<width>296</width>
-							<height>305</height>		
-							<fadetime>200</fadetime>
-							<texture border="10">thumbs/thumbnail_focused.png</texture>													
-						</control>										
-					</focusedlayout>
-				</control>-->
 				
 				<!-- Channels Cover -->
 				<control type="panel" id="11002">
@@ -604,10 +564,10 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(ListItem.Label)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(album) + StringCompare(Skin.String(CaseType),Glass)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
 					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation> 	
-					<visible>Skin.HasSetting(Panel.MusicGlass)</visible>			
+								
 					<itemlayout height="305" width="303">
 						<control type="image">
 							<description>Cover</description>
@@ -616,7 +576,8 @@
 							<width>284</width>
 							<height>293</height>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>stretch</aspectratio>
 						</control>
 						<control type="image">
 							<description>Glass Overlay</description>
@@ -637,7 +598,8 @@
 							<width>284</width>
 							<height>293</height>
 							<fadetime>200</fadetime>
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>stretch</aspectratio>
 						</control>
 						<control type="image">
 							<description>Glass Overlay</description>
