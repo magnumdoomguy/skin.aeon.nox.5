@@ -142,30 +142,7 @@
 						<visible>Control.HasFocus(11005)</visible>
 					</control>
 				</control>
-				
-				<!-- Panel Updating -->
-				<!--<control type="group">
-					<visible>IsEmpty(Container(11000).ListItem.Label)</visible>
-					<posx>912</posx>
-					<posy>211</posy>
-					<control type="image">
-						<description>Busy animation</description>
-						<width>96</width>
-						<height>96</height>
-						<texture colordiffuse="labelheader">android/spinner_48_inner_holo.png</texture>
-						<aspectratio>keep</aspectratio>
-						<animation effect="rotate" start="0" end="360" center="auto" time="2000" loop="true" condition="true">conditional</animation>
-					</control>
-					<control type="image">
-						<description>Busy animation</description>
-						<width>96</width>
-						<height>96</height>
-						<texture>android/spinner_48_outer_holo.png</texture>
-						<aspectratio>keep</aspectratio>
-						<animation effect="rotate" start="360" end="0" center="auto" time="2000" loop="true" condition="true">conditional</animation>
-					</control>
-				</control>-->
-				
+								
 				<!-- Cover -->			
 				<control type="panel" id="11000">				
 					<posx>207</posx>
@@ -177,7 +154,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + !Skin.HasSetting(WidgetGlass)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
 					<itemlayout height="305" width="216">
 						<control type="image">
@@ -218,9 +195,8 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(ListItem.Label)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + Skin.HasSetting(WidgetGlass)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
-					<visible>Skin.HasSetting(Panel.Cover)</visible>
 					<itemlayout height="305" width="216">
 						<control type="image">
 							<description>Cover</description>
@@ -229,7 +205,8 @@
 							<width>200</width>
 							<height>295</height>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
 						</control>						
 						<control type="image">
 							<description>Glass Overlay</description>
@@ -250,7 +227,8 @@
 							<width>200</width>
 							<height>295</height>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
 						</control>						
 						<control type="image">
 							<description>Glass Overlay</description>
