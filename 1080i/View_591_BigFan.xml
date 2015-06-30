@@ -205,7 +205,7 @@
                             <align>left</align>
                             <font>font13</font>
                             <textcolor>grey</textcolor>
-                            <label>$INFO[ListItem.Property(UnWatchedEpisodes),[LOWERCASE] ($LOCALIZE[16101][/LOWERCASE]: ])</label>
+                            <label>$INFO[ListItem.RatingAndVotes]</label>
                             <textoffsetx>30</textoffsetx>
                         </control>
                     </control>
@@ -217,17 +217,17 @@
                             <posx>-300</posx>
                             <include>MediaFlagVars</include>
                             <texture>$VAR[StudioFlag]</texture>
-                            <visible>!IsEmpty(ListItem.Studio)</visible>
+                            <!--<visible>!IsEmpty(ListItem.Studio)</visible>-->
                         </control>
                         <control type="group">
-                            <visible>!IsEmpty(ListItem.Property(TotalSeasons))</visible>
+                            <visible>Container.Content(tvshows)</visible>
                             <control type="label">
                                 <posx>-150</posx>
                                 <posy>0</posy>
                                 <width>150</width>
                                 <height>60</height>
                                 <align>center</align>
-                                <label>[B]$INFO[ListItem.Property(TotalSeasons)][/B]</label>
+                                <label>[B]$INFO[ListItem.Property(UnWatchedEpisodes)][/B]</label>
                                 <font>font16</font>
                                 <wrapmultiline>true</wrapmultiline>
                                 <textcolor>grey</textcolor>
@@ -238,20 +238,20 @@
                                 <width>150</width>
                                 <height>30</height>
                                 <align>center</align>
-                                <label>[LOWERCASE]$VAR[OneOrMoreSeasonsVar][/LOWERCASE]</label>
+                                <label>unwatched</label>
                                 <font>font13</font>
                                 <textcolor>grey</textcolor>
                             </control>
                         </control>
                         <control type="group">
-                            <visible>!IsEmpty(ListItem.Property(TotalEpisodes))</visible>
+                            <visible>Container.Content(tvshows)</visible>
                             <control type="label">
                                 <posx>-25</posx>
                                 <posy>0</posy>
                                 <width>162.5</width>
                                 <height>60</height>
                                 <align>center</align>
-                                <label>[B]$INFO[ListItem.Property(TotalEpisodes)][/B]</label>
+                                <label>[B]$INFO[ListItem.episode][/B]</label>
                                 <font>font16</font>
                                 <wrapmultiline>true</wrapmultiline>
                                 <textcolor>grey</textcolor>
@@ -267,7 +267,7 @@
                                 <textcolor>grey</textcolor>
                             </control>
                         </control>
-                        <control type="label">
+                        <!--<control type="label">
                             <posx>120</posx>
                             <posy>-10</posy>
                             <width>200</width>
@@ -276,22 +276,23 @@
                             <label>$INFO[Window(Home).Property(NextAired.Status)]</label>
                             <font>font12</font>
                             <textcolor>white</textcolor>
-                        </control>
-                        <control type="image">
+                        </control>-->
+                        <!--<control type="image">
                             <posx>150</posx>
                             <posy>-10</posy>
                             <colordiffuse>grey2</colordiffuse>
                             <include>MediaFlagVars</include>
                             <texture>tvguide/$INFO[Window(Home).Property(NextAired.StatusID)].png</texture>
-                        </control>
-                        <control type="image">
+                        </control>-->
+                        <control type="label">
                             <posx>350</posx>
                             <posy>-5</posy>
-                            <width>100</width>
-                            <height>100</height>
-                            <colordiffuse>grey2</colordiffuse>
-                            <include>MediaFlagVars</include>
-                            <texture fallback="flags/mpaa/NR.png">flags\imdb.png</texture>
+                            <width>150</width>
+                            <height>30</height>
+                            <align>center</align>
+                            <label>rating</label>
+                            <font>font13</font>
+                            <textcolor>grey</textcolor>
                         </control>
                         <control type="label">
                             <posx>325</posx>
@@ -307,7 +308,7 @@
                             <posx>480</posx>
                             <colordiffuse>grey2</colordiffuse>
                             <include>MediaFlagVars</include>
-                            <texture fallback="flags/mpaa/NR.png">$VAR[RatingFlagVar]</texture>
+                            <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
                         </control>
                     </control>
                 </control>

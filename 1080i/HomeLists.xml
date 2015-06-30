@@ -7,6 +7,8 @@
             <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(lowermainmenu)">Conditional</animation>
 			<visible>[Control.IsVisible(11000) | Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11004) | Control.IsVisible(11005) | Control.IsVisible(11006) | Control.IsVisible(11007) | Control.IsVisible(12000)]</visible>
             <include>VisibleFadeEffect</include>
+			
+			<!-- For Homemenu in Middle of Screen -->
             <control type="group">
                 <visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(lowermainmenu)</visible>
                 <include>VisibleFadeEffect</include>
@@ -26,6 +28,8 @@
                     <colordiffuse>44FFFFFF</colordiffuse>
                 </control>
             </control>
+			
+			<!-- For Homemenu at Bottom of Screen -->
             <control type="group">
                 <visible>ControlGroup(9003).HasFocus() + Skin.HasSetting(lowermainmenu)</visible>
                 <include>VisibleFadeEffect</include>
@@ -45,296 +49,867 @@
                     <colordiffuse>44FFFFFF</colordiffuse>
                 </control>
             </control>
-            <control type="group">
-                <visible>Control.HasFocus(11000)</visible>
-                <include>VisibleFadeEffect</include>
-                <control type="image">
-                    <posx>0</posx>
-                    <posy>13</posy>
-                    <width>432</width>
-                    <height>432</height>
-                    <aspectratio align="right">keep</aspectratio>
-                    <texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
-                    <fadetime>IconCrossfadeTime</fadetime>
-                    <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-                    <bordersize>20</bordersize>
-                </control>
-                <control type="grouplist">
-                    <posx>432</posx>
-                    <posy>13</posy>
-                    <width>1300</width>
-                    <height>432</height>
-                    <itemgap>12</itemgap>
-                    <align>center</align>
-                    <control type="label">
-                        <width>900</width>
-                        <height>60</height>
-                        <font>font30_title</font>
-                        <textcolor>labelheader</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Title]</label>
-                        <wrapmultiline>true</wrapmultiline>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>20</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.TvShowTitle]</label>
-                        <visible>!IsEmpty(Container(11000).ListItem.TvShowTitle)</visible>
-                    </control>
-                    <control type="label">
-                        <height>2</height>
-                        <label>-</label>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Genre]</label>
-                        <visible>!IsEmpty(Container(11000).ListItem.Genre)</visible>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14_title</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Property(episodeno)]</label>
-                        <visible>!IsEmpty(Container(11000).ListItem.Property(episodeno))</visible>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Year]$INFO[Container(11000).ListItem.RatingAndVotes,  |  ]$INFO[Container(11000).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
-                        <visible>IsEmpty(Container(11000).ListItem.Artist) + IsEmpty(Container(11000).ListItem.TvShowTitle)</visible>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Premiered,,  |  ]$INFO[Container(11000).ListItem.RatingAndVotes]$INFO[Container(11000).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
-                        <visible>!IsEmpty(Container(11000).ListItem.TvShowTitle)</visible>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Director,$LOCALIZE[31000] ]</label>
-                        <visible>IsEmpty(Container(11000).ListItem.Artist) + IsEmpty(Container(11000).ListItem.TvShowTitle)</visible>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Artist]</label>
-                        <visible>!IsEmpty(Container(11000).ListItem.Artist)</visible>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Year]</label>
-                        <visible>!IsEmpty(Container(11000).ListItem.Artist)</visible>
-                    </control>
-                    <control type="label">
-                        <width>900</width>
-                        <height>35</height>
-                        <font>font14</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Container(11000).ListItem.Album]$INFO[Container(11000).ListItem.Year, [,]]</label>
-                        <visible>!IsEmpty(Container(11000).ListItem.Album)</visible>
-                    </control>
-                    <control type="label">
-                        <height>2</height>
-                        <label>-</label>
-                    </control>
-                    <control type="textbox">
-                        <description>Plot</description>
-                        <width>900</width>
-                        <height>150</height>
-                        <font>font14_textbox</font>
-                        <align>left</align>
-                        <label>$INFO[Container(11000).ListItem.Plot]$INFO[Container(11000).ListItem.Property(Album_Description)]</label>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-                    </control>
-                </control>
-                
-            </control>
-            <control type="group">
-                <posx>1420</posx>
-                <posy>20</posy>
-                <control type="group">
-                    <animation type="Conditional" condition="Control.HasFocus(11000)">
-                        <effect type="rotatey" start="0" end="180" center="221,0" time="400" tween="sine" easing="inout" />
-                        <effect type="fade" start="100" end="0" time="10" delay="200" />
-                    </animation>		
-					
-                    <control type="image">
-                        <posx>0</posx>
-                        <posy>0</posy>
-                        <width>422</width>
-                        <height>422</height>
-                        <texture border="40">dialogs/default/bg2.png</texture>
-                    </control>
-                    <control type="label">
-                        <posx>32</posx>
-                        <posy>32</posy>
-                        <width>362</width>
-                        <height>40</height>
-                        <font>font15_title</font>
-                        <align>center</align>
-                        <textcolor>dialogheader</textcolor>
-                        <label>Recent $INFO[Container(300).ListItem.Label]</label>
-                    </control>
-                    <control type="image">
-                        <posx>32</posx>
-                        <posy>86</posy>
-                        <width>362</width>
-                        <height>226</height>
-						<visible>!Container(11000).ListItem.Type(Photo)</visible>
-                        <fadetime>IconCrossfadeTime</fadetime>
-                        <aspectratio align="center" aligny="top">keep</aspectratio>
-                        <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
-                        <bordertexture border="5">dialogs/default/inner2.png</bordertexture>
-                        <bordersize>1</bordersize>
-                    </control>
+			
+			<!-- Widget Panel-->
+			<control type="group">
+				<animation effect="rotatex" start="0" end="90" time="200" center="221,0" tween="sine" easing="inout" condition="Skin.HasSetting(HomeInfo)">conditional</animation>
+				<animation effect="fade" start="100" end="0" time="100" center="221,0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>			
+				
+				<!-- Panel Background-->
+				<control type="group">
 					<control type="image">
-                        <posx>32</posx>
-                        <posy>86</posy>
-                        <width>362</width>
-                        <height>226</height>
-						<visible>Container(11000).ListItem.Type(Photo)</visible>
-                        <fadetime>IconCrossfadeTime</fadetime>
-                        <aspectratio align="center" aligny="top">scale</aspectratio>
-                        <texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
-                        <bordertexture border="5">dialogs/default/inner2.png</bordertexture>
-                        <bordersize>1</bordersize>
-                    </control>
-                    <control type="label">
-                        <description>Plot</description>
-                        <posx>47</posx>
-                        <posy>310</posy>
-                        <width>332</width>
-                        <height>80</height>
-                        <font>font15_title</font>
-                        <align>center</align>
-                        <aligny>center</aligny>
-                        <wrapmultiline>true</wrapmultiline>
-                        <label>$INFO[Container(11000).ListItem.Property(episodeno),,: ]$INFO[Container(11000).ListItem.Label]</label>
-                        <textcolor>grey2</textcolor>
-                    </control>
-                </control>
-                <control type="group">
-                    <animation effect="fade" start="100" end="0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(11000)">Conditional</animation>
-                    <animation type="Conditional" condition="Control.HasFocus(11000)">
-                        <effect type="rotatey" start="-180" end="0" center="221,0" time="400" tween="sine" easing="inout" />
-                        <effect type="fade" start="0" end="100" time="10" delay="200" />
-                    </animation>
-                    <control type="image">
-                        <posx>0</posx>
-                        <posy>0</posy>
-                        <width>422</width>
-                        <height>422</height>
-                        <texture border="40">dialogs/default/bg2.png</texture>
-                    </control>
-                    <control type="image">
-                        <posx>30</posx>
-                        <posy>30</posy>
-                        <width>362</width>
-                        <height>362</height>
-                        <texture border="5">dialogs/default/inner2.png</texture>
-                    </control>
-                    <control type="list" id="11000">
-                        <posx>31</posx>
-                        <posy>31</posy>
-                        <width>360</width>
-                        <height>360</height>
-                        <onup>11000</onup>
-                        <ondown>11000</ondown>
-                        <onleft>300</onleft>
-						<onright>300</onright>
-                        <onback>300</onback>
-						<viewtype label="535">list</viewtype>
-                        <pagecontrol>-</pagecontrol>
-                        <orientation>vertical</orientation>
-                        <scrolltime>200</scrolltime>
-                        <visible>!IsEmpty(Container(11000).ListItem.Label)</visible>
-                        <autoscroll>true</autoscroll>
+						<posx>222</posx>
+						<posy>25</posy>	
+						<width>945</width>
+						<height>87</height>
+						<texture flipy="true">submenu_bar.png</texture>	
+						<align>left</align>						
+					</control>
+					<control type="image">
+						<posx>132</posx>
+						<posy>25</posy>	
+						<width>90</width>
+						<height>87</height>
+						<texture flipy="true">submenu_square.png</texture>	
+						<align>left</align>			
+					</control>
+					<control type="image">
+						<posx>1167</posx>
+						<posy>25</posy>	
+						<width>90</width>
+						<height>87</height>
+						<texture flipy="true" flipx="true">submenu_end.png</texture>	
+						<align>left</align>							
+					</control>
+					<control type="image">
+						<posx>186</posx>
+						<posy>92</posy>
+						<width>1550</width>
+						<height>350</height>
+						<colordiffuse>EEFFFFFF</colordiffuse>		
+						<texture border="40">dialogs/default/bg2.png</texture>								
+					</control>					
+					<control type="label">						
+						<posx>222</posx>
+						<posy>69</posy>
+						<width>370</width>
+						<height>40</height>
+						<font>font13_title</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<label>Recent $INFO[Container(300).ListItem.Label]</label>	
+					</control>
+					<control type="label">
+						<posx>1170</posx>
+						<posy>69</posy>
+						<align>right</align>
+						<width>650</width>
+						<height>40</height>
+						<align>right</align>
+						<font>font13_title</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<scroll>true</scroll>	
+						<label>$INFO[Container(11000).ListItem.Label]</label>
+						<visible>Control.HasFocus(11000)</visible>
+					</control>
+					<control type="label">
+						<posx>1170</posx>
+						<posy>69</posy>
+						<align>right</align>
+						<width>650</width>
+						<height>40</height>
+						<align>right</align>
+						<font>font13_title</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<scroll>true</scroll>	
+						<label>$INFO[Container(11002).ListItem.Label]</label>
+						<visible>Control.HasFocus(11002)</visible>
+					</control>
+					<control type="label">
+						<posx>1170</posx>
+						<posy>69</posy>
+						<align>right</align>
+						<width>650</width>
+						<height>40</height>
+						<align>right</align>
+						<font>font13_title</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<scroll>true</scroll>	
+						<label>$INFO[Container(11005).ListItem.Label]</label>
+						<visible>Control.HasFocus(11005)</visible>
+					</control>
+				</control>
+				
+				<!-- Panel Updating -->
+				<!--<control type="group">
+					<visible>IsEmpty(Container(11000).ListItem.Label)</visible>
+					<posx>912</posx>
+					<posy>211</posy>
+					<control type="image">
+						<description>Busy animation</description>
+						<width>96</width>
+						<height>96</height>
+						<texture colordiffuse="labelheader">android/spinner_48_inner_holo.png</texture>
+						<aspectratio>keep</aspectratio>
+						<animation effect="rotate" start="0" end="360" center="auto" time="2000" loop="true" condition="true">conditional</animation>
+					</control>
+					<control type="image">
+						<description>Busy animation</description>
+						<width>96</width>
+						<height>96</height>
+						<texture>android/spinner_48_outer_holo.png</texture>
+						<aspectratio>keep</aspectratio>
+						<animation effect="rotate" start="360" end="0" center="auto" time="2000" loop="true" condition="true">conditional</animation>
+					</control>
+				</control>-->
+				
+				<!-- Cover -->			
+				<control type="panel" id="11000">				
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8052</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
+					<itemlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>												
+					</itemlayout>
+					<focusedlayout height="305" width="216">					
+						<control type="image">
+							<description>Cover</description>
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>
+						<control type="image">
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>							
+						</control>										
+					</focusedlayout>					
+				</control>
+				
+				<!-- Glass Cover -->
+				<control type="panel" id="11000">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8052</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(ListItem.Label)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
+					<visible>Skin.HasSetting(Panel.Cover)</visible>
+					<itemlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<posx>5</posx>
+							<posy>5</posy>
+							<width>200</width>
+							<height>295</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+						</control>						
+						<control type="image">
+							<description>Glass Overlay</description>
+							<posx>-7</posx>
+							<posy>-4</posy>
+							<width>226</width>
+							<height>319</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>thumbs/boxes/poster_shadow.png</texture>													
+						</control>											
+					</itemlayout>
+					<focusedlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<posx>5</posx>
+							<posy>5</posy>
+							<width>200</width>
+							<height>295</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+						</control>						
+						<control type="image">
+							<description>Glass Overlay</description>
+							<posx>-7</posx>
+							<posy>-4</posy>
+							<width>226</width>
+							<height>319</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>thumbs/boxes/poster_shadow.png</texture>													
+						</control>
+						<control type="image">
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>						
+					</focusedlayout>
+				</control>
+				
+				<!-- Case -->
+				<control type="panel" id="11000">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8052</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(ListItem.Label)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
+					<visible>Skin.HasSetting(Panel.Case)</visible>
+					<itemlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<posx>4</posx>
+							<posy>23</posy>
+							<width>202</width>
+							<height>277</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+						</control>						
+						<control type="image">
+							<description>Case Overlay</description>
+							<posx>-35</posx>
+							<posy>-5</posy>
+							<width>259</width>
+							<height>323</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),thumbs/boxes/,.png]</texture>													
+						</control>												
+					</itemlayout>
+					<focusedlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<posx>4</posx>
+							<posy>23</posy>
+							<width>202</width>
+							<height>277</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+						</control>						
+						<control type="image">
+							<description>Case Overlay</description>
+							<posx>-35</posx>
+							<posy>-5</posy>
+							<width>259</width>
+							<height>323</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),thumbs/boxes/,.png]</texture>													
+						</control>
+						<control type="image">
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>						
+					</focusedlayout>
+				</control>
+				
+				<!-- Clear Case -->
+				<control type="panel" id="11000">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8052</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(ListItem.Label)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
+					<visible>Skin.HasSetting(Panel.ClearCase)</visible>
+					<itemlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<posx>5</posx>
+							<posy>5</posy>
+							<width>200</width>
+							<height>295</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>												
+						</control>						
+						<control type="image">
+							<description>Case Overlay</description>
+							<posx>-34</posx>
+							<posy>-24</posy>
+							<width>257</width>
+							<height>345</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),thumbs/boxes/clearcases/,.png]</texture>													
+						</control>												
+					</itemlayout>
+					<focusedlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<posx>5</posx>
+							<posy>5</posy>
+							<width>200</width>
+							<height>295</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>												
+						</control>						
+						<control type="image">
+							<description>Case Overlay</description>
+							<posx>-34</posx>
+							<posy>-24</posy>
+							<width>257</width>
+							<height>345</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),thumbs/boxes/clearcases,.png]</texture>													
+						</control>
+						<control type="image">
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>						
+					</focusedlayout>
+				</control>
+				
+				<!-- Music/App Cover -->
+				<control type="panel" id="11000">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8072</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(album)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>				
+					
+					<itemlayout height="305" width="303">
+						<visible>!Skin.HasSetting(HomeInfo)</visible>
+						<control type="image">
+							<description>Cover</description>
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>stretch</aspectratio>
+						</control>						
+					</itemlayout>
+					<focusedlayout height="305" width="303">
+						<visible>!Skin.HasSetting(HomeInfo)</visible>
+						<control type="image">
+							<description>Cover</description>
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>stretch</aspectratio>
+						</control>
+						<control type="image">
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>										
+					</focusedlayout>
+				</control>
+				
+				<!-- Photo Cover -->
+				<control type="panel" id="11000">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8072</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(photo)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>				
+					
+					<itemlayout height="305" width="303">
+						<visible>!Skin.HasSetting(HomeInfo)</visible>
+						<control type="image">
+							<description>Cover</description>
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>						
+					</itemlayout>
+					<focusedlayout height="305" width="303">
+						<visible>!Skin.HasSetting(HomeInfo)</visible>
+						<control type="image">
+							<description>Cover</description>
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>
+						<control type="image">
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>										
+					</focusedlayout>
+				</control>
+				
+				<!-- Channels Cover -->
+				<control type="panel" id="11002">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8072</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11002).ListItem.Label)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>				
+					
+					<itemlayout height="305" width="303">
+						<visible>!Skin.HasSetting(HomeInfo)</visible>
+						<control type="image">
+							<description>Cover</description>
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>stretch</aspectratio>
+						</control>						
+					</itemlayout>
+					<focusedlayout height="305" width="303">
+						<visible>!Skin.HasSetting(HomeInfo)</visible>
+						<control type="image">
+							<description>Cover</description>
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<aspectratio>stretch</aspectratio>
+						</control>
+						<control type="image">
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>										
+					</focusedlayout>
+				</control>
+				
+				<!-- Playlists Cover -->
+				<control type="panel" id="11005">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8072</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11005).ListItem.Label)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>				
+					
+					<itemlayout height="305" width="303">
+						<visible>!Skin.HasSetting(HomeInfo)</visible>
+						<control type="image">
+							<description>Cover</description>
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.CompositeImage(width=296;height=305;cols=2;rows=2)]</texture>
+							<aspectratio>stretch</aspectratio>
+						</control>
+							<control type="image">
+							<posy>257</posy>
+							<posx>-2</posx>
+							<width>300</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posy>265</posy>
+							<width>300</width>
+							<height>30</height>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>grey2</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>					
+					</itemlayout>
+					<focusedlayout height="305" width="303">
+						<visible>!Skin.HasSetting(HomeInfo)</visible>
+						<control type="image">
+							<description>Cover</description>
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.CompositeImage(width=296;height=305;cols=2;rows=2)]</texture>
+							<aspectratio>stretch</aspectratio>
+						</control>
 						
-                        <itemlayout height="60" width="360">
-                            <control type="image">
-                                <width>360</width>
-                                <height>60</height>
-                                <texture border="1">separator2.png</texture>
-                            </control>
-                            <control type="label">
-                                <width>360</width>
-                                <height>60</height>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                                <selectedcolor>selected</selectedcolor>
-                                <textoffsetx>15</textoffsetx>
-                                <label>$INFO[ListItem.Title]</label>
-                            </control>
-                        </itemlayout>
-                        <focusedlayout height="60" width="360">
-                            <control type="image">
-                                <width>360</width>
-                                <height>60</height>
-                                <texture border="5">listselect_fo.png</texture>
-                            </control>
-                            <control type="label">
-                                <width>360</width>
-                                <height>60</height>
-                                <font>font14</font>
-                                <selectedcolor>selected</selectedcolor>
-                                <textoffsetx>15</textoffsetx>
-                                <label>$INFO[listitem.title]</label>
-                            </control>
-                        </focusedlayout>
-                        
-                    </control>
-                </control>
-            </control>
-            <control type="group">
-                <visible>IsEmpty(Container(11000).ListItem.Label)</visible>
-                <posx>1583</posx>
-                <posy>183</posy>
-                <control type="image">
-                    <description>Busy animation</description>
-                    <width>96</width>
-                    <height>96</height>
-                    <texture>android/spinner_48_inner_holo.png</texture>
-                    <aspectratio>keep</aspectratio>
-                    <animation effect="rotate" start="0" end="360" center="auto" time="2000" loop="true" condition="true">conditional</animation>
-                </control>
-                <control type="image">
-                    <description>Busy animation</description>
-                    <width>96</width>
-                    <height>96</height>
-                    <texture>android/spinner_48_outer_holo.png</texture>
-                    <aspectratio>keep</aspectratio>
-                    <animation effect="rotate" start="360" end="0" center="auto" time="2000" loop="true" condition="true">conditional</animation>
-                </control>
-            </control>
-        </control>
-    </include>
+						<control type="image">
+							<posy>257</posy>
+							<posx>-2</posx>
+							<width>300</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posy>265</posy>
+							<width>300</width>
+							<height>30</height>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>white</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						
+						<control type="image">
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>										
+					</focusedlayout>
+				</control>
+				
+				<!-- Music/App Glass Cover -->
+				<control type="panel" id="11000">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8072</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(ListItem.Label)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation> 	
+					<visible>Skin.HasSetting(Panel.MusicGlass)</visible>			
+					<itemlayout height="305" width="303">
+						<control type="image">
+							<description>Cover</description>
+							<posx>6</posx>
+							<posy>5</posy>
+							<width>284</width>
+							<height>293</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+						</control>
+						<control type="image">
+							<description>Glass Overlay</description>
+							<posx>-10</posx>
+							<posy>-9</posy>
+							<width>315</width>
+							<height>329</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>thumbs/boxes/cd_shadow_light.png</texture>													
+						</control>												
+					</itemlayout>
+					<focusedlayout height="305" width="303">
+						<control type="image">
+							<description>Music Cover</description>
+							<posx>6</posx>
+							<posy>5</posy>
+							<width>284</width>
+							<height>293</height>
+							<fadetime>200</fadetime>
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>													
+						</control>
+						<control type="image">
+							<description>Glass Overlay</description>
+							<posx>-10</posx>
+							<posy>-9</posy>
+							<width>315</width>
+							<height>329</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>thumbs/boxes/cd_shadow_light.png</texture>													
+						</control>
+						<control type="image">
+							<width>296</width>
+							<height>305</height>		
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>						
+					</focusedlayout>
+				</control>
+				
+				<!-- Fanart -->
+				<control type="panel" id="11000">					
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8052</onup>
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>			
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(ListItem.Label)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation> 	
+					<visible>Skin.HasSetting(Panel.Fanart)</visible>		
+					<itemlayout height="305" width ="504">
+						<control type="image">
+							<description>FanArt</description>
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(fanart)]</texture>							
+						</control>																	
+					</itemlayout>
+					<focusedlayout height="305" width="504">
+						<control type="image">
+							<description>FanArt</description>
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(fanart)]</texture>							
+						</control>
+						<control type="image">
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>						
+					</focusedlayout>
+				</control>	
+				
+				<!-- Episode -->
+				<control type="panel" id="11000">					
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8052</onup>
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>			
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation> 	
+					<itemlayout height="305" width ="504">
+						<control type="image">
+							<description>Episode Thumbnail</description>
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>	
+							<aspectratio>scale</aspectratio>
+						</control>	
+
+						<control type="image">
+							<posy>257</posy>
+							<posx>-2</posx>
+							<width>503</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posy>265</posy>
+							<width>499</width>
+							<height>30</height>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>grey2</textcolor>
+							<label>$INFO[ListItem.TVShowTitle]</label>
+						</control>
+						<control type="label">
+							<posx>499</posx>
+							<posy>265</posy>
+							<width>240</width>
+							<height>30</height>
+							<align>right</align>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>grey2</textcolor>
+							<label>S$INFO[ListItem.Season] [COLOR=blue]&#xB7;[/COLOR] E$INFO[ListItem.Episode]</label>
+						</control>
+						
+					</itemlayout>
+					<focusedlayout height="305" width="504">
+						<control type="image">
+							<description>Episode Thumbnail</description>
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>	
+							<aspectratio>scale</aspectratio>
+						</control>
+						<control type="image">
+							<posy>257</posy>
+							<posx>-2</posx>
+							<width>503</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posy>265</posy>
+							<width>499</width>
+							<height>30</height>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>white</textcolor>
+							<label>$INFO[ListItem.TVShowTitle]</label>
+						</control>
+						<control type="label">
+							<posx>499</posx>
+							<posy>265</posy>
+							<width>240</width>
+							<height>30</height>
+							<align>right</align>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>white</textcolor>
+							<label>S$INFO[ListItem.Season] [COLOR=blue]&#xB7;[/COLOR] E$INFO[ListItem.Episode]</label>
+						</control>	
+
+						<control type="image">
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>							
+					</focusedlayout>
+				</control>	
+				
+				<!-- Banner -->
+				<control type="panel" id="11000">
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>310</height>
+					<onup>8052</onup>		
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(ListItem.Label)</visible>
+					<animation effect="fade" start="0" end="100" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>    
+					<preloaditems>2</preloaditems>	
+					<visible>Skin.HasSetting(Panel.Banner)</visible>				
+					<itemlayout height="155" width ="757">
+						<control type="image">
+							<description>Banner</description>
+							<width>751</width>
+							<height>150</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(banner)]</texture>														
+						</control>
+						<control type="image">
+							<description>Fanart Fallback</description>
+							<width>751</width>
+							<height>150</height>
+							<fadetime>200</fadetime>
+							<aspectratio aligny="center">scale</aspectratio>						
+							<texture>$INFO[ListItem.Art(fanart)]</texture>
+							<visible>IsEmpty(ListItem.Art(banner))</visible>							
+						</control>
+						<control type="label">
+							<description>Text Fallback</description>
+							<posx>25</posx>
+							<posy>25</posy>
+							<width>701</width>
+							<height>100</height>
+							<align>center</align>		
+							<font>font13_title</font>
+							<textcolor>white</textcolor>
+							<shadowcolor>shadow</shadowcolor>
+							<scroll>false</scroll>
+							<animation effect="fade" start="0" end="100" delay="0" time="200">Visible</animation>	
+							<label>$INFO[ListItem.title]</label>
+							<visible>IsEmpty(ListItem.Art(banner))</visible>						
+						</control>															
+					</itemlayout>
+					<focusedlayout height="305" width="504">
+						<control type="image">
+							<description>Banner</description>
+							<width>751</width>
+							<height>150</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(banner)]</texture>														
+						</control>
+						<control type="image">
+							<description>Fanart Fallback</description>
+							<width>751</width>
+							<height>150</height>
+							<fadetime>200</fadetime>
+							<aspectratio aligny="center">scale</aspectratio>						
+							<texture>$INFO[ListItem.Art(fanart)]</texture>
+							<visible>IsEmpty(ListItem.Art(banner))</visible>							
+						</control>
+						<control type="label">
+							<description>Text Fallback</description>
+							<posx>25</posx>
+							<posy>25</posy>
+							<width>701</width>
+							<height>100</height>
+							<align>center</align>		
+							<font>font13_title</font>
+							<textcolor>white</textcolor>
+							<shadowcolor>shadow</shadowcolor>
+							<scroll>false</scroll>
+							<animation effect="fade" start="0" end="100" delay="0" time="200">Visible</animation>	
+							<label>$INFO[ListItem.title]</label>
+							<visible>IsEmpty(ListItem.Art(banner))</visible>						
+						</control>	
+						<control type="image">
+							<width>751</width>
+							<height>150</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>										
+					</focusedlayout>
+				</control>			
+			</control>		
+		</control>
+	</include>
 </includes>
