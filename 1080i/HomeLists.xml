@@ -187,6 +187,87 @@
 					</focusedlayout>					
 				</control>
 				
+				<!-- TV Poster -->			
+				<control type="panel" id="11000">				
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>Control.SetFocus(9500)</onup>	
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<onclick>ActivateWindow(1117)</onclick>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(TVCaseType),Poster)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					
+					<itemlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigGrandparentThumb)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>	
+
+						<control type="image">
+							<posy>257</posy>
+							<posx>-2</posx>
+							<width>214</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posy>265</posy>
+							<width>210</width>
+							<height>30</height>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>grey2</textcolor>
+							<label>S$INFO[ListItem.Season] [COLOR=blue]&#xB7;[/COLOR] E$INFO[ListItem.Episode]</label>
+						</control>
+						
+					</itemlayout>
+					<focusedlayout height="305" width="216">					
+						<control type="image">
+							<description>Cover</description>
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigGrandparentThumb)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>
+						
+						<control type="image">
+							<posy>257</posy>
+							<posx>-2</posx>
+							<width>214</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posy>265</posy>
+							<width>210</width>
+							<height>30</height>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>white</textcolor>
+							<label>S$INFO[ListItem.Season] [COLOR=blue]&#xB7;[/COLOR] E$INFO[ListItem.Episode]</label>
+						</control>
+						
+						<control type="image">
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>							
+						</control>										
+					</focusedlayout>					
+				</control>
+				
 				<!-- Movie Glass Cover -->
 				<control type="panel" id="11000">
 					<posx>207</posx>
@@ -743,7 +824,7 @@
 					</focusedlayout>
 				</control>	
 								
-				<!-- Episode Fanart -->
+				<!-- Episode Thumbnail -->
 				<control type="panel" id="11000">					
 					<posx>207</posx>
 					<posy>115</posy>
@@ -754,7 +835,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>			
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(TVCaseType))</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
 					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation> 	
 					<itemlayout height="305" width ="504">
@@ -930,18 +1011,18 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(ListItem.Label)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(TVCaseType),Banner)</visible>
 					<animation effect="fade" start="0" end="100" time="400">Visible</animation>
 					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>    
 					<preloaditems>2</preloaditems>	
-					<visible>Skin.HasSetting(Panel.Banner)</visible>				
+									
 					<itemlayout height="155" width ="757">
 						<control type="image">
 							<description>Banner</description>
 							<width>751</width>
 							<height>150</height>
 							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(banner)]</texture>														
+							<texture>$INFO[ListItem.Art(grandparentBanner)]</texture>														
 						</control>
 						<control type="image">
 							<description>Fanart Fallback</description>
