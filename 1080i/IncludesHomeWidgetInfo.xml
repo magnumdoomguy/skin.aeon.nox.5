@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>		
+	<include name="HomeWidgetInfo">
+		<control type="group" id="9500">
+			
+			<animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0">WindowClose</animation>
+			<animation effect="fade" start="0" delay="200">WindowOpen</animation>
+			<animation effect="rotatex" start="-90" end="0" time="200" center="221,0" tween="sine" easing="inout" condition="Skin.HasSetting(HomeInfo)">conditional</animation>
+			<animation effect="fade" start="0" end="100" time="100" condition="Skin.HasSetting(HomeInfo)">conditional</animation>
+			
+			<!-- Poster -->
+			<control type="group">
+				<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),1) | StringCompare(Container(9000).ListItem.Property(WidgetType),4) | StringCompare(Container(9000).ListItem.Property(WidgetType),20) | StringCompare(Container(9000).ListItem.Property(WidgetType),40) | StringCompare(Container(9000).ListItem.Property(WidgetType),41) | StringCompare(Container(9000).ListItem.Property(WidgetType),42) | StringCompare(Container(9000).ListItem.Property(WidgetType),43) | StringCompare(Container(9000).ListItem.Property(WidgetType),44)</visible>
+				<control type="image">			
+					<posx>25</posx>
+					<posy>25</posy>
+					<width>1870</width>
+					<height>755</height>
+					<colordiffuse>ff000000</colordiffuse>
+					<texture border="40">dialogs/default/bg2.png</texture>								
+				</control>
+				
+				<!-- Images-->
+				<control type="image">
+					<posx>50</posx>
+					<posy>50</posy>		
+					<width>470</width>
+					<height>705</height>								
+					<texture>$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>							
+				</control>
+								
+				<!-- Info Next/Previous-->
+				<control type="image">
+					<posx>50</posx>
+					<posy>695</posy>		
+					<width>475</width>
+					<height>60</height>							
+					<texture colordiffuse="FFFFFFFF">widgetinfo_nofocus.png</texture>
+					<!--<visible>Control.HasFocus(9300)</visible>-->
+				</control>
+				<control type="image">
+					<posx>500</posx>
+					<posy>700</posy>		
+					<width>20</width>
+					<height>50</height>							
+					<texture colordiffuse="labelheader">arrowright.png</texture>
+					<!--<visible>Control.HasFocus(8001)</visible>-->
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>700</posy>		
+					<width>20</width>
+					<height>50</height>
+					<texture colordiffuse="labelheader" flipx="true">arrowright.png</texture>							
+					<!--<visible>Control.HasFocus(8001)</visible>-->
+				</control>
+				<control type="label">					
+					<posx>80</posx>
+					<posy>700</posy>		
+					<width>410</width>
+					<height>50</height>
+					<align>center</align>
+					<shadowcolor>shadow</shadowcolor>
+					<font>font13_title</font>
+					<label>$VAR[HomeInfoTitleVar]</label>
+					<!--<visible>Control.HasFocus(8001)</visible>-->					
+				</control>	
+				
+				<!-- Header -->								
+				<control type="grouplist">
+					<posx>540</posx>
+					<posy>52</posy>				
+					<control type="label">					
+						<height>35</height>					
+						<font>font30_title_bold</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<scroll>true</scroll>
+						<width>1320</width>						
+						<label>$INFO[Container(11000).ListItem.Label]</label>						
+					</control>
+					<control type="label">						
+						<height>60</height>
+						<font>font30</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<scroll>true</scroll>
+						<width>1320</width>
+						<label>$INFO[Container(11000).ListItem.Genre]</label>						
+					</control>					
+					<control type="label">
+						<height>10</height>
+						<label></label>					
+					</control>
+					<control type="image">						
+						<width>1320</width>
+						<height>2</height>
+						<texture border="1">separator6.png</texture>						
+					</control>								
+				</control>
+				
+				<!-- Flags-->
+				<control type="grouplist">
+					<posx>540</posx>
+					<posy>162</posy>
+					<height>90</height>							
+					<orientation>horizontal</orientation>	
+
+					<!-- Year -->
+					<control type="label" id="8021">
+						<width min="115" max="1000">auto</width>
+						<height>90</height>
+						<align>left</align>		
+						<font>font35_title_bold</font>
+						<textcolor>grey</textcolor>
+						<label>$INFO[Container(11000).ListItem.Year]</label>					
+						<visible>!IsEmpty(Control.GetLabel(8021))</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8022)</visible>
+					</control>
+
+					<!-- MPAA Rating Flag -->
+					<control type="image" id="8022">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<!--<colordiffuse>grey</colordiffuse>-->
+						<texture>$VAR[MPAAFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8022))</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Container(11000).ListItem.Studio | !IsEmpty(Container(11000).ListItem.Property(Album_Label)</visible>
+					</control>
+
+					<!-- Studio Flag -->
+					<control type="image" id="8023">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<!--<colordiffuse>grey</colordiffuse>-->
+						<texture>$VAR[StudioFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8023))</visible>
+					</control>	
+
+					<!-- Studio Text Fallback -->
+					<control type="label">				
+						<width>152</width>	
+						<height>90</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font10</font>
+						<textcolor>grey</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+						<label>$INFO[Container(11000).ListItem.Studio]</label>
+						<visible>IsEmpty(Control.GetLabel(8023)) + !IsEmpty(Container(11000).ListItem.Studio</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8024))</visible>
+					</control>
+					
+					<!-- Video Codec Flag -->
+					<control type="image" id="8024">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<!--<colordiffuse>grey</colordiffuse>-->
+						<texture>$VAR[VideoCodecFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8024))</visible>
+					</control>
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8025))</visible>
+					</control>
+					
+					<!-- Resolution Flag -->
+					<control type="image" id="8025">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<colordiffuse>grey</colordiffuse>					
+						<texture>$VAR[ResolutionFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8025))</visible>
+					</control>
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8026))</visible>
+					</control>
+					
+					<!-- Aspect Ratio Flag -->
+					<control type="image" id="8026">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<!--<colordiffuse>grey</colordiffuse>-->
+						<texture>$VAR[AspectRatioFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8026))</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8037))</visible>
+					</control>
+					
+					<!-- Audio Codec Flag -->
+					<control type="image" id="8027">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<!--<colordiffuse>grey</colordiffuse>-->
+						<texture>$VAR[AudioCodecFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8027))</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8028))</visible>
+					</control>
+
+					<!-- Audio Channel Flag -->
+					<control type="image" id="8028">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<!--<colordiffuse>grey</colordiffuse>-->
+						<texture>$VAR[AudioChannelsFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8028))</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8029))</visible>
+					</control>
+					
+					<!-- Framerate Flag -->
+					<control type="image" id="8029">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<!--<colordiffuse>grey</colordiffuse>-->
+						<texture>$VAR[FramerateFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8029))</visible>
+					</control>
+					
+				</control>
+				
+				<!-- Separator -->
+				<control type="image">						
+					<posy>255</posy>
+					<posx>540</posx>
+					<width>1320</width>
+					<height>2</height>
+					<texture border="1">separator6.png</texture>						
+				</control>
+				
+				<!-- Separator -->
+				<control type="image">						
+					<posy>316</posy>
+					<posx>540</posx>
+					<width>1320</width>
+					<height>2</height>
+					<texture border="1">separator6.png</texture>					
+				</control>	
+				
+				<!-- Icons-->
+				<control type="grouplist">
+					<posy>350</posy>
+					<posx>540</posx>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Control.GetLabel(8030)) | !IsEmpty(Control.GetLabel(8031)) |!IsEmpty(Control.GetLabel(8032))</visible>					
+					<control type="image">									
+						<width>30</width>
+						<height>30</height>						
+						<colordiffuse>AAFFFFFF</colordiffuse>
+						<texture>WidgetInfoMovieIcon.png</texture>									
+					</control>
+					<control type="label">				
+						<width>12</width>							
+					</control>
+					<control type="label" id="8030">				
+						<width min="0" max="1105">auto</width>
+						<height>30</height>		
+						<font>font14</font>
+						<textcolor>grey</textcolor>				
+						<label>$INFO[Container(11000).ListItem.Genre]</label>					
+					</control>
+					<control type="label">			
+						<width min="0" max="50">auto</width>
+						<height>30</height>		
+						<font>font12</font>
+						<textcolor>grey</textcolor>	
+						<label>   |   </label>
+						<visible>!IsEmpty(Control.GetLabel(8030)) + [!IsEmpty(Control.GetLabel(8031)) | !IsEmpty(Control.GetLabel(8032))]</visible>					
+					</control>
+					<control type="label" id="8031">				
+						<width min="0" max="1105">auto</width>
+						<height>30</height>		
+						<font>font14</font>
+						<textcolor>grey</textcolor>				
+						<label>$INFO[Container(11000).ListItem.RatingAndVotes]</label>				
+					</control>
+					
+					<!--<control type="label">			
+						<include>WI-IconTextSeparator</include>
+						<visible>!IsEmpty(Control.GetLabel(8031)) + !IsEmpty(Control.GetLabel(8032))</visible>					
+					</control>
+					<control type="label" id="8032">				
+						<include>WI-IconText</include>			
+						<label>$VAR[HomeInfoIcon13TextVar]</label>				
+					</control>-->
+				</control>
+				<control type="grouplist">
+					<posy>400</posy>
+					<posx>540</posx>
+					<orientation>horizontal</orientation>			
+					<visible>!IsEmpty(Control.GetLabel(8033))</visible>										               
+					<control type="image">									
+						<width>30</width>
+						<height>30</height>						
+						<colordiffuse>AAFFFFFF</colordiffuse>
+						<texture>WidgetInfoGenreIcon.png</texture>						
+					</control>
+					<control type="label">				
+						<width>12</width>									
+					</control>
+					<control type="label" id="8033">				
+						<width min="0" max="1105">auto</width>
+						<height>30</height>		
+						<font>font14</font>
+						<textcolor>grey</textcolor>				
+						<label>$INFO[Container(11000).ListItem.Director]</label>					
+					</control>				
+				</control>
+				
+				<!-- Info Plot-->				
+				<control type="grouplist">					
+					<posy>410</posy>
+					<posx>540</posx>
+					<visible>IsEmpty(Control.GetLabel(8020))</visible>	
+					<control type="label">					
+						<height>50</height>
+						<label></label>
+						<visible>!IsEmpty(Control.GetLabel(8033)) + [!IsEmpty(Control.GetLabel(8030)) | !IsEmpty(Control.GetLabel(8031)) | !IsEmpty(Control.GetLabel(8032))]</visible>									
+					</control>					
+					<control type="textbox">						
+						<height>290</height>
+						<width>1320</width>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>			
+						<label>$INFO[Container(11000).ListItem.Plot]</label>
+						<visible>!IsEmpty(Control.GetLabel(8033)) + [!IsEmpty(Control.GetLabel(8030)) | !IsEmpty(Control.GetLabel(8031)) | !IsEmpty(Control.GetLabel(8032))]</visible>
+					</control>				
+					<control type="textbox">						
+						<height>345</height>
+						<width>1320</width>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>			
+						<label>$INFO[Container(11000).ListItem.Plot]</label>
+						<visible>IsEmpty(Control.GetLabel(8033)) | [IsEmpty(Control.GetLabel(8030)) + IsEmpty(Control.GetLabel(8031)) + IsEmpty(Control.GetLabel(8032))]</visible>
+					</control>				
+				</control>
+				<control type="grouplist">					
+					<posy>410</posy>
+					<posx>540</posx>
+					<visible>!IsEmpty(Control.GetLabel(8020))</visible>	
+					<control type="label">					
+						<height>50</height>
+						<label></label>
+						<visible>!IsEmpty(Control.GetLabel(8033)) + [!IsEmpty(Control.GetLabel(8030)) | !IsEmpty(Control.GetLabel(8031)) | !IsEmpty(Control.GetLabel(8032))]</visible>									
+					</control>							
+					<control type="textbox">						
+						<height>290</height>
+						<width>885</width>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>			
+						<label>$INFO[Container(11000).ListItem.Plot]</label>
+						<visible>!IsEmpty(Control.GetLabel(8033)) + [!IsEmpty(Control.GetLabel(8030)) | !IsEmpty(Control.GetLabel(8031)) | !IsEmpty(Control.GetLabel(8032))]</visible>
+					</control>				
+					<control type="textbox">						
+						<height>345</height>
+						<width>885</width>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>			
+						<label>$INFO[Container(11000).ListItem.Plot]</label>
+						<visible>IsEmpty(Control.GetLabel(8033)) | [IsEmpty(Control.GetLabel(8030)) + IsEmpty(Control.GetLabel(8031)) + IsEmpty(Control.GetLabel(8032))]</visible>
+					</control>				
+				</control>	
+				
+				<!-- Info Buttons-->					
+				<control type="grouplist" id="8052">					
+					<posx>540</posx>
+					<width>1320</width>
+					<posy>257</posy>						
+					<height>60</height>						
+					<onup>-</onup>
+					<ondown>8001</ondown>					
+					<orientation>horizontal</orientation>
+					<control type="button" id="8053">
+						<description>Close</description>												
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>						
+						<label>Close</label>					
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<onclick>Control.Setfocus(8001)</onclick>							                  
+					</control>						
+					<control type="button" id="8054">						
+						<description>File Play Button</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>Play</label>						
+						<onclick>PlayMedia($INFO[Container(8001).ListItem.FileNameAndPath],noresume)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>!SubString(Container(8001).ListItem.Path,script.extendedinfo) + [StringCompare(Container(9000).ListItem.Property(WidgetType),1) | StringCompare(Container(9000).ListItem.Property(WidgetType),4) | StringCompare(Container(9000).ListItem.Property(WidgetType),5) | StringCompare(Container(9000).ListItem.Property(WidgetType),9) | StringCompare(Container(9000).ListItem.Property(WidgetType),20) | StringCompare(Container(9000).ListItem.Property(WidgetType),40) | StringCompare(Container(9000).ListItem.Property(WidgetType),41) | StringCompare(Container(9000).ListItem.Property(WidgetType),42)]</visible>					
+					</control>	
+					<control type="button" id="8055">
+						<label>$LOCALIZE[13404] $INFO[Container(8001).ListItem.PercentPlayed,(,%)]</label>
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<onclick>PlayMedia($INFO[Container(8001).ListItem.FileNameAndPath],resume)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>IntegerGreaterThan(Container(8001).ListItem.PercentPlayed,1)</visible>
+					</control>												
+					<control type="button" id="8056">							
+						<description>Play Trailer</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>	
+						<label>$LOCALIZE[20410]</label>						
+						<onclick>PlayMedia($INFO[Container(8001).ListItem.Trailer])</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>!IsEmpty(Container(8001).ListItem.Trailer)</visible>
+					</control>										
+					<control type="button" id="8057">							
+						<description>Add to Couch Potato</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>Add CouchPotato</label>						
+						<onclick>RunPlugin(plugin://plugin.video.couchpotato_manager/movies/add?title=$INFO[Container(8001).ListItem.Label])</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>System.HasAddon(plugin.video.couchpotato_manager) + SubString(Container(8001).ListItem.Path,script.extendedinfo) + [StringCompare(Container(9000).ListItem.Property(WidgetType),40) | StringCompare(Container(9000).ListItem.Property(WidgetType),41) | StringCompare(Container(9000).ListItem.Property(WidgetType),42)]</visible>
+					</control>
+					<control type="button" id="8058">							
+						<description>Movie ExtendedInfo</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>ExtendedInfo</label>						
+						<onclick>RunScript(script.extendedinfo,info=extendedinfo,dbid=$INFO[Container(8001).ListItem.DBID],name=$INFO[Container(8001).ListItem.Title])</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),1) | StringCompare(Container(9000).ListItem.Property(WidgetType),40) | StringCompare(Container(9000).ListItem.Property(WidgetType),41) | StringCompare(Container(9000).ListItem.Property(WidgetType),42)</visible>
+					</control>
+					<control type="button" id="8059">							
+						<description>TV ExtendedInfo</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>ExtendedTVInfo</label>						
+						<onclick>RunScript(script.extendedinfo,info=extendedtvinfo,dbid=$INFO[Container(8001).ListItem.DBID],name=$INFO[Container(8001).ListItem.Title])</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),43) | StringCompare(Container(9000).ListItem.Property(WidgetType),44)</visible>
+					</control>
+					<control type="button" id="8060">							
+						<description>TV Library ExtendedInfo</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>ExtendedTVInfo</label>						
+						<onclick>RunScript(script.extendedinfo,info=extendedtvinfo,name=$INFO[Container(8001).ListItem.TVShowTitle])</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),4)</visible>
+					</control>
+					<control type="button" id="8061">						
+						<description>Title Search Youtube</description>
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>	
+						<label>Youtube</label>						
+						<onclick>ActivateWindow(videos,plugin://plugin.video.youtube/kodion/search/query/?q=$INFO[Container(8001).ListItem.Label]+movie)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),1) | StringCompare(Container(9000).ListItem.Property(WidgetType),20) | StringCompare(Container(9000).ListItem.Property(WidgetType),40) | StringCompare(Container(9000).ListItem.Property(WidgetType),41) | StringCompare(Container(9000).ListItem.Property(WidgetType),42)</visible>
+					</control>
+					<control type="button" id="8062">						
+						<description>TV Title Search Youtube</description>
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>	
+						<label>Youtube</label>						
+						<onclick>ActivateWindow(videos,plugin://plugin.video.youtube/kodion/search/query/?q=$INFO[Container(8001).ListItem.Label]+tvshow)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),43) | StringCompare(Container(9000).ListItem.Property(WidgetType),44)</visible>
+					</control>
+					<control type="button" id="8063">						
+						<description>TV Show Search Youtube</description>
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>	
+						<label>Youtube</label>						
+						<onclick>ActivateWindow(videos,plugin://plugin.video.youtube/kodion/search/query/?q=$INFO[Container(8001).ListItem.TvShowTitle]+tvshow)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),4)</visible>
+					</control>												
+				</control>				
+			</control>	
+			
+			<!-- Square Poster -->
+			<control type="group">
+				<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),2) | StringCompare(Container(9000).ListItem.Property(WidgetType),5) | StringCompare(Container(9000).ListItem.Property(WidgetType),7) | StringCompare(Container(9000).ListItem.Property(WidgetType),8) | StringCompare(Container(9000).ListItem.Property(WidgetType),9) | StringCompare(Container(9000).ListItem.Property(WidgetType),21)  | StringCompare(Container(9000).ListItem.Property(WidgetType),45)</visible>
+				<control type="image">			
+					<posx>25</posx>
+					<posy>25</posy>
+					<width>1870</width>
+					<height>755</height>		
+					<texture border="40" colordiffuse="ff000000">dialogs/default/bg2.png</texture>								
+				</control>
+				
+				<!-- Images-->
+				<control type="image">
+					<posx>50</posx>
+					<posy>50</posy>		
+					<width>705</width>
+					<height>705</height>								
+					<texture>$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>							
+				</control>
+				<control type="image">
+					<posx>1455</posx>
+					<posy>342</posy>		
+					<width>397</width>
+					<height>397</height>
+					<texture diffuse="thumbs/round_mask.png">$INFO[Container(8001).ListItem.Property(artist_image)]</texture>
+					<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),45)</visible>
+				</control>							
+				<control type="image" id="8035">
+					<posx>1455</posx>
+					<posy>342</posy>		
+					<width>397</width>
+					<height>397</height>	
+					<texture>$INFO[Container(11000).ListItem.Label]</texture>
+					<visible>!IsEmpty(Control.GetLabel(8035))</visible>				
+				</control>
+				
+				<!-- Info Next/Previous-->
+				<control type="image">
+					<posx>50</posx>
+					<posy>695</posy>		
+					<width>710</width>
+					<height>60</height>							
+					<texture colordiffuse="FFFFFFFF">widgetinfo_nofocus.png</texture>
+					<visible>Control.HasFocus(8001)</visible>
+				</control>
+				<control type="image">
+					<posx>735</posx>
+					<posy>700</posy>		
+					<width>20</width>
+					<height>50</height>							
+					<texture colordiffuse="labelheader">arrowright.png</texture>
+					<visible>Control.HasFocus(8001)</visible>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>700</posy>		
+					<width>20</width>
+					<height>50</height>
+					<texture colordiffuse="labelheader" flipx="true">arrowright.png</texture>							
+					<visible>Control.HasFocus(8001)</visible>
+				</control>
+				<control type="label">					
+					<posx>80</posx>
+					<posy>700</posy>		
+					<width>645</width>
+					<height>50</height>
+					<align>center</align>
+					<shadowcolor>shadow</shadowcolor>
+					<font>font13_title</font>
+					<label>$INFO[Container(11000).ListItem.Label]</label>
+					<visible>Control.HasFocus(8001)</visible>					
+				</control>
+				
+				<!-- Header -->								
+				<control type="grouplist">
+					<posx>770</posx>
+					<posy>52</posy>				
+					<control type="label">					
+						<height>35</height>					
+						<font>font30_title_bold</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<scroll>true</scroll>
+						<width>1085</width>						
+						<label>$INFO[Container(11000).ListItem.Label]</label>						
+					</control>
+					<control type="label">						
+						<height>60</height>
+						<font>font30</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<scroll>true</scroll>
+						<width>1085</width>	
+						<label>$VAR[HomeInfoSubTitleVar]</label>						
+					</control>					
+					<control type="label">
+						<height>10</height>
+						<label></label>					
+					</control>
+					<control type="image">						
+						<width>1085</width>
+						<height>2</height>
+						<texture border="1">separator6.png</texture>						
+					</control>								
+				</control>
+				
+				<!-- Flags-->
+				<control type="grouplist">
+					<posx>770</posx>
+					<posy>162</posy>
+					<height>90</height>							
+					<orientation>horizontal</orientation>
+
+					<!-- Year -->
+					<control type="label" id="8036">
+						<width min="115" max="1000">auto</width>
+						<height>90</height>
+						<align>left</align>		
+						<font>font35_title_bold</font>
+						<textcolor>grey</textcolor>
+						<label>$INFO[Container(11000).ListItem.Year]</label>					
+						<visible>!IsEmpty(Control.GetLabel(8036))</visible>
+					</control>
+					
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>	
+						<visible>!IsEmpty(Container(8001).ListItem.Property(Album_Label)) + !IsEmpty(Container(8001).ListItem.Studio))</visible>
+					</control>	
+					
+					<!-- Studio Flag -->
+					<control type="image" id="8037">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<colordiffuse>grey</colordiffuse>					
+						<texture>$VAR[StudioFlag]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8037))</visible>
+					</control>	
+
+					<!-- Text Fallback -->
+					<control type="label">				
+						<width>152</width>	
+						<height>90</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font10</font>
+						<textcolor>grey</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+						<label>$INFO[Container(8001).ListItem.Property(Album_Label)]</label>
+						<visible>IsEmpty(Control.GetLabel(8037)) + !IsEmpty(Container(8001).ListItem.Property(Album_Label))</visible>
+					</control>
+					
+					<control type="label">				
+						<width>152</width>	
+						<height>90</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font10</font>
+						<textcolor>grey</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+						<label>$INFO[Container(8001).ListItem.Studio]</label>
+						<visible>IsEmpty(Control.GetLabel(8037)) + !IsEmpty(Container(8001).ListItem.Studio)</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8038)))</visible>
+					</control>
+					
+					<control type="image" id="8038">									
+						<width>260</width>
+						<colordiffuse>grey</colordiffuse>
+						<width>135</width>
+						<height>90</height>
+						<aspectratio>keep</aspectratio>
+						<fadetime>250</fadetime>
+						<colordiffuse>white</colordiffuse>
+						<animation effect="fade" time="200">VisibleChange</animation>				
+						<texture>$VAR[HomeInfoFlag2Var]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8038))</visible>
+					</control>
+					
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8039)))</visible>
+					</control>
+					
+					
+					<control type="image" id="8039">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<colordiffuse>grey</colordiffuse>					
+						<texture>$VAR[HomeInfoFlag4Var]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8039))</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8040))</visible>
+					</control>
+					
+					
+					<control type="image" id="8040">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<colordiffuse>grey</colordiffuse>					
+						<texture>$VAR[HomeInfoFlag5Var]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8040))</visible>
+					</control>	
+
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8041))</visible>
+					</control>
+					
+					<control type="image" id="8041">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<colordiffuse>grey</colordiffuse>				
+						<texture>$VAR[HomeInfoFlag6Var]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8041))</visible>
+					</control>	
+					
+					<!-- Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8042))</visible>
+					</control>
+					
+					<control type="image" id="8042">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<colordiffuse>grey</colordiffuse>					
+						<texture>$VAR[HomeInfoFlag7Var]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8042))</visible>
+					</control>
+					
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>!IsEmpty(Control.GetLabel(8043)</visible>
+					</control>	
+					<control type="image" id="8043">									
+						<width>150</width>		
+						<height>90</height>		
+						<aspectratio>keep</aspectratio>		
+						<colordiffuse>grey</colordiffuse>					
+						<texture>$VAR[HomeInfoFlag8Var]</texture>
+						<visible>!IsEmpty(Control.GetLabel(8044))</visible>
+					</control>											
+				</control>
+				<control type="image">						
+					<posy>255</posy>
+					<posx>770</posx>
+					<width>1085</width>	
+					<height>2</height>
+					<texture border="1">separator6.png</texture>					
+				</control>
+				<control type="image">						
+					<posy>316</posy>
+					<posx>770</posx>
+					<width>1085</width>
+					<height>2</height>
+					<texture border="1">separator6.png</texture>						
+				</control>
+				
+				<!-- Icons-->
+				<control type="grouplist">
+					<posy>350</posy>
+					<posx>770</posx>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Control.GetLabel(8045)) | !IsEmpty(Control.GetLabel(8046)) | !IsEmpty(Control.GetLabel(8047))</visible>					
+					<control type="image">									
+						<width>30</width>
+						<height>30</height>						
+						<colordiffuse>AAFFFFFF</colordiffuse>
+						<texture>$VAR[HomeInfoIcon1Var]</texture>									
+					</control>
+					<control type="label">				
+						<width>12</width>								
+					</control>
+					<control type="label" id="8045">				
+						<width min="0" max="1105">auto</width>
+						<height>30</height>		
+						<font>font14</font>
+						<textcolor>grey</textcolor>				
+						<label>$VAR[HomeInfoIcon11TextVar]</label>					
+					</control>
+					<control type="label">			
+						<width min="0" max="50">auto</width>
+						<height>30</height>		
+						<font>font12</font>
+						<textcolor>grey</textcolor>	
+						<label>   |   </label>
+						<visible>!IsEmpty(Control.GetLabel(8045)) + [!IsEmpty(Control.GetLabel(8046)) | !IsEmpty(Control.GetLabel(8047))]</visible>					
+					</control>
+					<control type="label" id="8046">				
+						<width min="0" max="1105">auto</width>
+						<height>30</height>		
+						<font>font14</font>
+						<textcolor>grey</textcolor>				
+						<label>$VAR[HomeInfoIcon12TextVar]</label>				
+					</control>
+					<control type="label">			
+						<width min="0" max="50">auto</width>
+						<height>30</height>		
+						<font>font12</font>
+						<textcolor>grey</textcolor>	
+						<label>   |   </label>
+						<visible>!IsEmpty(Control.GetLabel(8046)) + !IsEmpty(Control.GetLabel(8047))</visible>					
+					</control>
+					<control type="label" id="8047">				
+						<width min="0" max="1105">auto</width>
+						<height>30</height>		
+						<font>font14</font>
+						<textcolor>grey</textcolor>		
+						<label>$VAR[HomeInfoIcon13TextVar]</label>				
+					</control>
+				</control>
+				<control type="grouplist">
+					<posy>400</posy>
+					<posx>770</posx>
+					<orientation>horizontal</orientation>			
+					<visible>!IsEmpty(Control.GetLabel(8048))</visible>	
+					<control type="label">					
+						<height>50</height>
+						<label></label>
+						<visible>!IsEmpty(Control.GetLabel(8048)) + (!IsEmpty(Control.GetLabel(8045)) | !IsEmpty(Control.GetLabel(8046)) | !IsEmpty(Control.GetLabel(8047))]</visible>									
+					</control>
+					<control type="image">									
+						<width>30</width>
+						<height>30</height>						
+						<colordiffuse>AAFFFFFF</colordiffuse>
+						<texture>$VAR[HomeInfoIcon2Var]</texture>						
+					</control>
+					<control type="label">				
+						<width>12</width>									
+					</control>
+					<control type="label" id="8048">				
+						<width min="0" max="1105">auto</width>
+						<height>30</height>		
+						<font>font14</font>
+						<textcolor>grey</textcolor>				
+						<label>$VAR[HomeInfoIcon21TextVar]</label>					
+					</control>				
+				</control>	
+				
+				<!-- Info Plot-->				
+				<control type="grouplist">					
+					<posy>410</posy>
+					<posx>770</posx>
+					<visible>IsEmpty(Control.GetLabel(8035)) + !StringCompare(Container(9000).ListItem.Property(WidgetType),45)</visible>	
+					<control type="label">					
+						<height>50</height>
+						<label></label>
+						<visible>!IsEmpty(Control.GetLabel(8048)) + [!IsEmpty(Control.GetLabel(8045)) | !IsEmpty(Control.GetLabel(8046)) | !IsEmpty(Control.GetLabel(8047))]</visible>									
+					</control>							
+					<control type="textbox">						
+						<height>290</height>
+						<width>1085</width>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>			
+						<label>$VAR[HomeInfoPlotVar]</label>
+						<visible>!IsEmpty(Control.GetLabel(8048)) + [!IsEmpty(Control.GetLabel(8045)) | !IsEmpty(Control.GetLabel(8046)) | !IsEmpty(Control.GetLabel(8047))]</visible>
+					</control>				
+					<control type="textbox">						
+						<height>345</height>
+						<width>1085</width>	
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>			
+						<label>$VAR[HomeInfoPlotVar]</label>
+						<visible>IsEmpty(Control.GetLabel(8048)) | [IsEmpty(Control.GetLabel(8045)) + IsEmpty(Control.GetLabel(8046)) + IsEmpty(Control.GetLabel(8047))]</visible>
+					</control>				
+				</control>
+				<control type="grouplist">					
+					<posy>410</posy>
+					<posx>770</posx>
+					<visible>!IsEmpty(Control.GetLabel(8035)) | StringCompare(Container(9000).ListItem.Property(WidgetType),45)</visible>	
+					<control type="label">					
+						<height>50</height>
+						<label></label>
+						<visible>!IsEmpty(Control.GetLabel(8048)) + [!IsEmpty(Control.GetLabel(8045)) | !IsEmpty(Control.GetLabel(8046)) | !IsEmpty(Control.GetLabel(8047))]</visible>									
+					</control>							
+					<control type="textbox">						
+						<height>290</height>
+						<width>655</width>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>			
+						<label>$VAR[HomeInfoPlotVar]</label>
+						<visible>!IsEmpty(Control.GetLabel(8048)) + [!IsEmpty(Control.GetLabel(8045)) | !IsEmpty(Control.GetLabel(8046)) | !IsEmpty(Control.GetLabel(8047))]</visible>
+					</control>				
+					<control type="textbox">						
+						<height>345</height>
+						<width>655</width>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>grey</textcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>			
+						<label>$VAR[HomeInfoPlotVar]</label>
+						<visible>IsEmpty(Control.GetLabel(8048)) | [IsEmpty(Control.GetLabel(8045)) + IsEmpty(Control.GetLabel(8046)) + IsEmpty(Control.GetLabel(8047))]</visible>
+					</control>				
+				</control>	
+				
+				<!-- Info Buttons-->					
+				<control type="grouplist" id="8072">					
+					<posx>770</posx>
+					<width>1085</width>
+					<posy>257</posy>						
+					<height>60</height>						
+					<onup>-</onup>
+					<ondown>8001</ondown>					
+					<orientation>horizontal</orientation>
+					<control type="button" id="8073">
+						<description>Close</description>												
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>						
+						<label>Close</label>					
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<onclick>Control.Setfocus(8001)</onclick>							                  
+					</control>						
+					<control type="button" id="8074">						
+						<description>File Play Button</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>Play</label>						
+						<onclick>PlayMedia($INFO[Container(8001).ListItem.FileNameAndPath],noresume)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),5) | StringCompare(Container(9000).ListItem.Property(WidgetType),9) | StringCompare(Container(9000).ListItem.Property(WidgetType),21)</visible>					
+					</control>
+					<control type="button" id="8075">						
+						<description>Folder Play Button</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>Play</label>						
+						<onclick>PlayMedia($INFO[Container(8001).ListItem.FolderPath],isdir)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),2)</visible>					
+					</control>
+					<control type="button" id="8076">						
+						<description>App Open Button</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>Open</label>						
+						<onclick>ActivateWindow(Programs,$INFO[Container(8001).ListItem.FolderPath])</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),7) | StringCompare(Container(9000).ListItem.Property(WidgetType),8)</visible>					
+					</control>
+					<control type="button" id="8077">						
+						<description>Map Button</description>						
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>
+						<label>Map</label>						
+						<onclick>ActivateWindow(Programs,$INFO[Container(8001).ListItem.FolderPath])</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),45)</visible>					
+					</control>					
+					<control type="button" id="8078">						
+						<description>Artist Search Youtube</description>
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>	
+						<label>Youtube</label>						
+						<onclick>ActivateWindow(videos,plugin://plugin.video.youtube/kodion/search/query/?q=$INFO[Container(8001).ListItem.Artist]+video)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),2) | StringCompare(Container(9000).ListItem.Property(WidgetType),5) | StringCompare(Container(9000).ListItem.Property(WidgetType),9) | StringCompare(Container(9000).ListItem.Property(WidgetType),21)</visible>
+					</control>
+					<control type="button" id="8079">						
+						<description>Artist Near Events Search Youtube</description>
+						<height>60</height>
+						<width>264</width>	
+						<textoffsetx>10</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font15</font>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<texturenofocus colordiffuse="77FFFFFF">widgetinfo_nofocus.png</texturenofocus>	
+						<label>Youtube</label>						
+						<onclick>ActivateWindow(videos,plugin://plugin.video.youtube/kodion/search/query/?q=$INFO[Container(8001).ListItem.Property(headliner)]+band)</onclick>
+						<onclick>Skin.Reset(HomeInfo)</onclick>
+						<visible>StringCompare(Container(9000).ListItem.Property(WidgetType),45)</visible>
+					</control>																
+				</control>				
+			</control>
+		</control>
+	</include>
+</includes>

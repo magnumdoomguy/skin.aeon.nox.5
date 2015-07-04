@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
     <defaultcontrol always="true">9000</defaultcontrol>
-    <!--<onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;group=X1|X2|X3|X4|X5|X6|X7|X8|X9|X10|X11|X12|X13|X101|X202|X303|X404|X50​5|X606)</onunload>-->
+    
     <controls>
+	
         <!-- NOWALL Background -->
         <control type="image">
             <include>FullscreenDimensions</include>
             <texture>special://skin/backgrounds/skinsetting.jpg</texture>
         </control>
+		
         <!-- Visualization Background -->
         <control type="visualisation">
             <include>FullscreenDimensions</include>
             <visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
             <visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
         </control>
+		
         <!-- Video Background -->
         <control type="image">
             <include>FullscreenDimensions</include>
@@ -24,7 +27,10 @@
             <include>FullscreenDimensions</include>
             <visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
         </control>
+		
+		<!-- TopBar -->
         <include>Topbar</include>
+		
         <control type="group">
             <posx>0</posx>
             <posy>128</posy>
@@ -140,6 +146,8 @@
 					
                 </content>
             </control>
+			
+			<!-- Aeon Nox Logo -->
             <control type="image">
                 <description>LOGO</description>
                 <posx>82</posx>
@@ -178,7 +186,7 @@
                 <include>SettingsFadeEffect</include>
 				
 				<!-- General Skin Settings -->
-                <control type="grouplist" id="9002">
+                <control type="grouplist" id="9001">
                     <description>control area</description>
                     <posx>522</posx>
                     <posy>32</posy>
@@ -193,7 +201,7 @@
                     <visible>Container(9000).HasFocus(1)</visible>
 					
                     <!-- Enable Plot Autoscroll -->
-                    <control type="radiobutton" id="200">
+                    <control type="radiobutton" id="101">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -205,7 +213,7 @@
                     </control>
 					
                     <!-- Show Background Video -->
-                    <control type="radiobutton" id="201">
+                    <control type="radiobutton" id="102">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -217,7 +225,7 @@
                     </control>
 					
                     <!-- Show Background Visualization -->
-                    <control type="radiobutton" id="202">
+                    <control type="radiobutton" id="103">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -230,7 +238,7 @@
                 </control>
 				
                 <!-- Home Window -->
-                <control type="grouplist" id="9001">
+                <control type="grouplist" id="9002">
                     <description>control area</description>
                     <posx>522</posx>
                     <posy>32</posy>
@@ -245,7 +253,7 @@
                     <visible>Container(9000).HasFocus(2)</visible>
 					
                     <!-- Set Main Menu Position -->
-                    <control type="button" id="101">
+                    <control type="button" id="201">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -257,7 +265,7 @@
                     </control>
 					
                     <!-- Toggle Home Screen Now Playing Music Widget -->
-                    <control type="radiobutton" id="102">
+                    <control type="radiobutton" id="202">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -269,7 +277,7 @@
                     </control>
 					
                     <!-- Toggle Home Screen Now Playing Video Widget -->
-                    <control type="radiobutton" id="103">
+                    <control type="radiobutton" id="203">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -281,7 +289,7 @@
                     </control>
 					
                     <!-- Home Menu Size -->
-                    <control type="button" id="104">
+                    <control type="button" id="204">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -296,7 +304,8 @@
                     </control>
                 </control>
                 
-				<control type="grouplist" id="9004">
+				<!-- On Deck -->
+				<control type="grouplist" id="9003">
                     <description>control area</description>
                     <posx>522</posx>
                     <posy>32</posy>
@@ -310,26 +319,49 @@
                     <ondown>9004</ondown>
                     <visible>Container(9000).HasFocus(3)</visible>
 					
-                    <!-- Enable Glass Cases -->
-                    <control type="button" id="301">
+					<!-- Disable On Deck -->
+					<control type="radiobutton" id="301">
+						<description>Disable On Deck</description>
+						<width>1316</width>
+                        <height>90</height>
+                        <textoffsetx>30</textoffsetx>
+                        <font>font15</font>
+                        <label>Disable On Deck</label>
+                        <onclick>Skin.ToggleSetting(DisableOnDeck)</onclick>
+					</control>
+					
+                    <!-- Choose Movie Icon Type -->
+                    <control type="button" id="302">
+						<description>Cycle Through Movie Icon Styles</description>
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
                         <font>font15</font>
-                        <label>Case Style</label>
-                        <label2>[COLOR labelheader]$VAR[WidgetCasesLabel][/COLOR]</label2>
-                        <onclick>$VAR[WidgetCases]</onclick>
+                        <label>Movie Icon Style</label>
+                        <label2>[COLOR labelheader]$VAR[WidgetMovieCasesLabel][/COLOR]</label2>
+                        <onclick>$VAR[WidgetMovieCases]</onclick>
                         <texturenofocus border="1">separator5.png</texturenofocus>
-						
+						<selected>!Skin.HasSetting(DisableOnDeck)</selected>
                     </control>
 					
-					
-					
-                    
+					<!-- Choose TV Icon Type -->
+                    <!--<control type="button" id="302">
+						<description>Cycle Through TV Icon Styles</description>
+                        <width>1316</width>
+                        <height>90</height>
+                        <textoffsetx>30</textoffsetx>
+                        <font>font15</font>
+                        <label>TV Icon Style</label>
+                        <label2>[COLOR labelheader]$VAR[WidgetTVCasesLabel][/COLOR]</label2>
+                        <onclick>$VAR[WidgetTVCases]</onclick>
+                        <texturenofocus border="1">separator5.png</texturenofocus>
+						<selected>!Skin.HasSetting(DisableOnDeck)</selected>
+                    </control>-->
+                  
                 </control>
 				
                 <!-- Backgrounds -->
-                <control type="grouplist" id="9003">
+                <control type="grouplist" id="9004">
                     <description>control area</description>
                     <posx>522</posx>
                     <posy>32</posy>
@@ -342,8 +374,9 @@
                     <onup>9003</onup>
                     <ondown>9003</ondown>
                     <visible>Container(9000).HasFocus(4)</visible>
+					
                     <!-- Custom Home Background 1 -->
-                    <control type="radiobutton" id="306">
+                    <control type="radiobutton" id="401">
                         <description>Enable Custom Home Background 1</description>
                         <width>1316</width>
                         <height>90</height>
@@ -353,7 +386,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground1)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground1)</selected>
                     </control>
-                    <control type="button" id="307">
+                    <control type="button" id="402">
                         <description>Set Custom Home Background 1 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -364,7 +397,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground1Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground1)</enable>
                     </control>
-                    <control type="button" id="308">
+                    <control type="button" id="403">
                         <description>Set Custom Home Background 1 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -375,8 +408,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground1Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground1)</enable>
                     </control>
+					
                     <!-- Custom Home Background 2 -->
-                    <control type="radiobutton" id="309">
+                    <control type="radiobutton" id="404">
                         <description>Enable Custom Home Background 2</description>
                         <width>1316</width>
                         <height>90</height>
@@ -386,7 +420,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground2)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground2)</selected>
                     </control>
-                    <control type="button" id="310">
+                    <control type="button" id="405">
                         <description>Set Custom Home Background 2 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -397,7 +431,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground2Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground2)</enable>
                     </control>
-                    <control type="button" id="311">
+                    <control type="button" id="406">
                         <description>Set Custom Home Background 2 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -408,8 +442,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground2Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground2)</enable>
                     </control>
+					
                     <!-- Custom Home Background 3 -->
-                    <control type="radiobutton" id="312">
+                    <control type="radiobutton" id="407">
                         <description>Enable Custom Home Background 3</description>
                         <width>1316</width>
                         <height>90</height>
@@ -419,7 +454,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground3)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground3)</selected>
                     </control>
-                    <control type="button" id="313">
+                    <control type="button" id="408">
                         <description>Set Custom Home Background 3 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -430,7 +465,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground3Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground3)</enable>
                     </control>
-                    <control type="button" id="314">
+                    <control type="button" id="409">
                         <description>Set Custom Home Background 3 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -441,8 +476,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground3Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground3)</enable>
                     </control>
+					
                     <!-- Custom Home Background 4 -->
-                    <control type="radiobutton" id="315">
+                    <control type="radiobutton" id="410">
                         <description>Enable Custom Home Background 4</description>
                         <width>1316</width>
                         <height>90</height>
@@ -452,7 +488,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground4)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground4)</selected>
                     </control>
-                    <control type="button" id="316">
+                    <control type="button" id="411">
                         <description>Set Custom Home Background 4 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -463,7 +499,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground4Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground4)</enable>
                     </control>
-                    <control type="button" id="317">
+                    <control type="button" id="412">
                         <description>Set Custom Home Background 4 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -474,8 +510,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground4Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground4)</enable>
                     </control>
+					
                     <!-- Custom Home Background 5 -->
-                    <control type="radiobutton" id="318">
+                    <control type="radiobutton" id="413">
                         <description>Enable Custom Home Background 5</description>
                         <width>1316</width>
                         <height>90</height>
@@ -485,7 +522,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground5)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground5)</selected>
                     </control>
-                    <control type="button" id="319">
+                    <control type="button" id="414">
                         <description>Set Custom Home Background 5 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -496,7 +533,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground5Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground5)</enable>
                     </control>
-                    <control type="button" id="320">
+                    <control type="button" id="415">
                         <description>Set Custom Home Background 5 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -507,8 +544,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground5Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground5)</enable>
                     </control>
+					
                     <!-- Custom Home Background 6 -->
-                    <control type="radiobutton" id="321">
+                    <control type="radiobutton" id="416">
                         <description>Enable Custom Home Background 6</description>
                         <width>1316</width>
                         <height>90</height>
@@ -518,7 +556,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground6)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground6)</selected>
                     </control>
-                    <control type="button" id="322">
+                    <control type="button" id="417">
                         <description>Set Custom Home Background 6 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -529,7 +567,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground6Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground6)</enable>
                     </control>
-                    <control type="button" id="323">
+                    <control type="button" id="418">
                         <description>Set Custom Home Background 6 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -540,8 +578,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground6Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground6)</enable>
                     </control>
+					
                     <!-- Custom Home Background 7 -->
-                    <control type="radiobutton" id="324">
+                    <control type="radiobutton" id="419">
                         <description>Enable Custom Home Background 7</description>
                         <width>1316</width>
                         <height>90</height>
@@ -551,7 +590,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground7)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground7)</selected>
                     </control>
-                    <control type="button" id="325">
+                    <control type="button" id="420">
                         <description>Set Custom Home Background 7 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -562,7 +601,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground7Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground7)</enable>
                     </control>
-                    <control type="button" id="326">
+                    <control type="button" id="421">
                         <description>Set Custom Home Background 7 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -573,8 +612,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground7Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground7)</enable>
                     </control>
+					
                     <!-- Custom Home Background 8 -->
-                    <control type="radiobutton" id="327">
+                    <control type="radiobutton" id="422">
                         <description>Enable Custom Home Background 8</description>
                         <width>1316</width>
                         <height>90</height>
@@ -584,7 +624,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground8)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground8)</selected>
                     </control>
-                    <control type="button" id="328">
+                    <control type="button" id="423">
                         <description>Set Custom Home Background 8 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -595,7 +635,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground8Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground8)</enable>
                     </control>
-                    <control type="button" id="329">
+                    <control type="button" id="424">
                         <description>Set Custom Home Background 8 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -606,8 +646,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground8Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground8)</enable>
                     </control>
+					
                     <!-- Custom Home Background 9 -->
-                    <control type="radiobutton" id="330">
+                    <control type="radiobutton" id="425">
                         <description>Enable Custom Home Background 9</description>
                         <width>1316</width>
                         <height>90</height>
@@ -617,7 +658,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground9)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground9)</selected>
                     </control>
-                    <control type="button" id="331">
+                    <control type="button" id="426">
                         <description>Set Custom Home Background 9 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -628,7 +669,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground9Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground9)</enable>
                     </control>
-                    <control type="button" id="332">
+                    <control type="button" id="427">
                         <description>Set Custom Home Background 9 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -639,8 +680,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground9Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground9)</enable>
                     </control>
+					
                     <!-- Custom Home Background 10 -->
-                    <control type="radiobutton" id="333">
+                    <control type="radiobutton" id="428">
                         <description>Enable Custom Home Background 10</description>
                         <width>1316</width>
                         <height>90</height>
@@ -650,7 +692,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground10)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground10)</selected>
                     </control>
-                    <control type="button" id="334">
+                    <control type="button" id="429">
                         <description>Set Custom Home Background 10 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -661,7 +703,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground10Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground10)</enable>
                     </control>
-                    <control type="button" id="335">
+                    <control type="button" id="430">
                         <description>Set Custom Home Background 10 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -672,8 +714,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground10Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground10)</enable>
                     </control>
+					
                     <!-- Custom Home Background 11 -->
-                    <control type="radiobutton" id="336">
+                    <control type="radiobutton" id="431">
                         <description>Enable Custom Home Background 11</description>
                         <width>1316</width>
                         <height>90</height>
@@ -683,7 +726,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground11)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground11)</selected>
                     </control>
-                    <control type="button" id="337">
+                    <control type="button" id="432">
                         <description>Set Custom Home Background 11 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -694,7 +737,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground11Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground11)</enable>
                     </control>
-                    <control type="button" id="338">
+                    <control type="button" id="433">
                         <description>Set Custom Home Background 11 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -705,8 +748,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground11Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground11)</enable>
                     </control>
+					
                     <!-- Custom Home Background 12 -->
-                    <control type="radiobutton" id="339">
+                    <control type="radiobutton" id="434">
                         <description>Enable Custom Home Background 12</description>
                         <width>1316</width>
                         <height>90</height>
@@ -716,7 +760,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground12)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground12)</selected>
                     </control>
-                    <control type="button" id="340">
+                    <control type="button" id="435">
                         <description>Set Custom Home Background 12 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -727,7 +771,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground12Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground12)</enable>
                     </control>
-                    <control type="button" id="341">
+                    <control type="button" id="436">
                         <description>Set Custom Home Background 12 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -738,8 +782,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground12Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground12)</enable>
                     </control>
+					
                     <!-- Custom Home Background 13 -->
-                    <control type="radiobutton" id="342">
+                    <control type="radiobutton" id="437">
                         <description>Enable Custom Home Background 13</description>
                         <width>1316</width>
                         <height>90</height>
@@ -749,7 +794,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground13)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground13)</selected>
                     </control>
-                    <control type="button" id="343">
+                    <control type="button" id="438">
                         <description>Set Custom Home Background 13 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -760,7 +805,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground13Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground13)</enable>
                     </control>
-                    <control type="button" id="344">
+                    <control type="button" id="439">
                         <description>Set Custom Home Background 13 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -771,8 +816,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground13Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground13)</enable>
                     </control>
+					
                     <!-- Custom Home Background 14 -->
-                    <control type="radiobutton" id="345">
+                    <control type="radiobutton" id="440">
                         <description>Enable Custom Home Background 14</description>
                         <width>1316</width>
                         <height>90</height>
@@ -782,7 +828,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground14)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground14)</selected>
                     </control>
-                    <control type="button" id="346">
+                    <control type="button" id="441">
                         <description>Set Custom Home Background 14 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -793,7 +839,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground14Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground14)</enable>
                     </control>
-                    <control type="button" id="347">
+                    <control type="button" id="442">
                         <description>Set Custom Home Background 14 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -804,8 +850,9 @@
                         <onclick>Skin.SetPath(CustomHomeBackground14Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground14)</enable>
                     </control>
+					
                     <!-- Custom Home Background 15 -->
-                    <control type="radiobutton" id="348">
+                    <control type="radiobutton" id="443">
                         <description>Enable Custom Home Background 15</description>
                         <width>1316</width>
                         <height>90</height>
@@ -815,7 +862,7 @@
                         <onclick>Skin.ToggleSetting(CustomHomeBackground15)</onclick>
                         <selected>Skin.HasSetting(CustomHomeBackground15)</selected>
                     </control>
-                    <control type="button" id="349">
+                    <control type="button" id="444">
                         <description>Set Custom Home Background 15 Label</description>
                         <width>1316</width>
                         <height>90</height>
@@ -826,7 +873,7 @@
                         <onclick>Skin.SetString(CustomHomeBackground15Label)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground15)</enable>
                     </control>
-                    <control type="button" id="350">
+                    <control type="button" id="445">
                         <description>Set Custom Home Background 15 Path</description>
                         <width>1316</width>
                         <height>90</height>
@@ -836,43 +883,6 @@
                         <label2>[COLOR labelheader]$INFO[Skin.String(CustomHomeBackground15Path)][/COLOR]</label2>
                         <onclick>Skin.SetPath(CustomHomeBackground15Path)</onclick>
                         <enable>Skin.HasSetting(CustomHomeBackground15)</enable>
-                    </control>
-                </control>
-				
-                <control type="grouplist" id="9004">
-                    <description>control area</description>
-                    <posx>522</posx>
-                    <posy>32</posy>
-                    <width>1316</width>
-                    <height>720</height>
-                    <itemgap>0</itemgap>
-                    <pagecontrol>60</pagecontrol>
-                    <onleft>9000</onleft>
-                    <onright>60</onright>
-                    <onup>9004</onup>
-                    <ondown>9004</ondown>
-                    <visible>Container(9000).HasFocus(5)</visible>
-                    <!-- Custom Home Background 1 -->
-                    <control type="radiobutton" id="306">
-                        <description>Enable Custom Movies Background</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>Enable Custom Movies Background</label>
-                        <onclick>Skin.ToggleSetting(CustomMovieSectionBackground)</onclick>
-                        <selected>Skin.HasSetting(CustomMovieSectionBackground)</selected>
-                    </control>
-                    <control type="button" id="308">
-                        <description>Set Custom Movie Section Background</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>Background Image:</label>
-                        <label2>[COLOR labelheader]$INFO[Skin.String(CustomMovieSectionBackgroundFile)][/COLOR]</label2>
-                        <onclick>Skin.SetImage(CustomMovieSectionBackgroundFile)</onclick>
-                        <enable>Skin.HasSetting(CustomMovieSectionBackground)</enable>
                     </control>
                 </control>
 				
@@ -888,8 +898,46 @@
                     <onright>60</onright>
                     <onup>9004</onup>
                     <ondown>9004</ondown>
+                    <visible>Container(9000).HasFocus(5)</visible>
+					
+                    <!-- Custom Home Background 1 -->
+                    <control type="radiobutton" id="501">
+                        <description>Enable Custom Movies Background</description>
+                        <width>1316</width>
+                        <height>90</height>
+                        <textoffsetx>30</textoffsetx>
+                        <font>font15</font>
+                        <label>Enable Custom Movies Background</label>
+                        <onclick>Skin.ToggleSetting(CustomMovieSectionBackground)</onclick>
+                        <selected>Skin.HasSetting(CustomMovieSectionBackground)</selected>
+                    </control>
+                    <control type="button" id="502">
+                        <description>Set Custom Movie Section Background</description>
+                        <width>1316</width>
+                        <height>90</height>
+                        <textoffsetx>30</textoffsetx>
+                        <font>font15</font>
+                        <label>Background Image:</label>
+                        <label2>[COLOR labelheader]$INFO[Skin.String(CustomMovieSectionBackgroundFile)][/COLOR]</label2>
+                        <onclick>Skin.SetImage(CustomMovieSectionBackgroundFile)</onclick>
+                        <enable>Skin.HasSetting(CustomMovieSectionBackground)</enable>
+                    </control>
+                </control>
+				
+                <control type="grouplist" id="9006">
+                    <description>control area</description>
+                    <posx>522</posx>
+                    <posy>32</posy>
+                    <width>1316</width>
+                    <height>720</height>
+                    <itemgap>0</itemgap>
+                    <pagecontrol>60</pagecontrol>
+                    <onleft>9000</onleft>
+                    <onright>60</onright>
+                    <onup>9004</onup>
+                    <ondown>9004</ondown>
                     <visible>Container(9000).HasFocus(6)</visible>
-                    <control type="button" id="401">
+                    <control type="button" id="601">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -899,7 +947,7 @@
                         <onclick>$VAR[InfoPanelDelayOnClickVar]</onclick>
                         <texturenofocus border="1">separator5.png</texturenofocus>
                     </control>
-                    <control type="radiobutton" id="402">
+                    <control type="radiobutton" id="602">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -909,7 +957,7 @@
                         <selected>Skin.HasSetting(KioskMode.Enabled)</selected>
                         <texturenofocus border="1">separator5.png</texturenofocus>
                     </control>
-                    <control type="button" id="403">
+                    <control type="button" id="603">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -919,7 +967,7 @@
                         <onclick>Skin.ToggleSetting(HorizontalListNav)</onclick>
                         <texturenofocus border="1">separator5.png</texturenofocus>
                     </control>
-                    <control type="button" id="404">
+                    <control type="button" id="604">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -928,7 +976,7 @@
                         <onclick>ActivateWindow(1127)</onclick>
                         <texturenofocus border="1">separator5.png</texturenofocus>
                     </control>
-                    <control type="radiobutton" id="405">
+                    <control type="radiobutton" id="605">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -938,7 +986,7 @@
                         <selected>!Skin.HasSetting(DarkenBackGround)</selected>
                         <texturenofocus border="1">separator5.png</texturenofocus>
                     </control>
-                    <control type="radiobutton" id="406">
+                    <control type="radiobutton" id="606">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -948,7 +996,7 @@
                         <selected>!Skin.HasSetting(ShowPlotInfo)</selected>
                         <texturenofocus border="1">separator5.png</texturenofocus>
                     </control>
-                    <control type="radiobutton" id="407">
+                    <control type="radiobutton" id="607">
                         <width>1316</width>
                         <height>90</height>
                         <textoffsetx>30</textoffsetx>
@@ -958,7 +1006,7 @@
                         <selected>!Skin.HasSetting(ShowPlotPause)</selected>
                         <texturenofocus border="1">separator5.png</texturenofocus>
                     </control>
-					<control type="radiobutton" id="408">
+					<control type="radiobutton" id="608">
 						<width>1316</width>
 						<height>90</height>
 						<textoffsetx>30</textoffsetx>

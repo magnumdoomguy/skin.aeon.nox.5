@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<include name="HomeRecentlyAddedInfo">
+		<include>HomeWidgetInfo</include>
         <control type="group" id="9003">
             <animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0">WindowOpen</animation>
             <animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0">WindowClose</animation>
             <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(lowermainmenu)">Conditional</animation>
-			<visible>[Control.IsVisible(11000) | Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11004) | Control.IsVisible(11005) | Control.IsVisible(11006) | Control.IsVisible(11007) | Control.IsVisible(12000)]</visible>
+			<visible>[Control.IsVisible(11000) | Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11004) | Control.IsVisible(11005) | Control.IsVisible(11006) | Control.IsVisible(11007) | Control.IsVisible(12000)] + !Skin.HasSetting(DisableOnDeck)</visible>
             <include>VisibleFadeEffect</include>
 			
 			<!-- For Homemenu in Middle of Screen -->
@@ -49,7 +50,7 @@
                     <colordiffuse>44FFFFFF</colordiffuse>
                 </control>
             </control>
-			
+		
 			<!-- Widget Panel-->
 			<control type="group">
 				<animation effect="rotatex" start="0" end="90" time="200" center="221,0" tween="sine" easing="inout" condition="Skin.HasSetting(HomeInfo)">conditional</animation>
@@ -143,19 +144,21 @@
 					</control>
 				</control>
 								
-				<!-- Cover -->			
+				<!-- Movie Poster -->			
 				<control type="panel" id="11000">				
 					<posx>207</posx>
 					<posy>115</posy>
 					<width>1510</width>
 					<height>305</height>
-					<onup>8052</onup>		
+					<onup>Control.SetFocus(9500)</onup>	
 					<ondown>300</ondown>
 					<onleft>11000</onleft>
 					<onright>11000</onright>
+					<onclick>ActivateWindow(1117)</onclick>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + IsEmpty(Skin.String(CaseType))</visible>
-					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + IsEmpty(Skin.String(MovieCaseType))</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					
 					<itemlayout height="305" width="216">
 						<control type="image">
 							<description>Cover</description>
@@ -184,7 +187,7 @@
 					</focusedlayout>					
 				</control>
 				
-				<!-- Glass Cover -->
+				<!-- Movie Glass Cover -->
 				<control type="panel" id="11000">
 					<posx>207</posx>
 					<posy>115</posy>
@@ -195,7 +198,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(CaseType),Glass)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(MovieCaseType),Glass)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
 					<itemlayout height="305" width="216">
 						<control type="image">
@@ -249,7 +252,7 @@
 					</focusedlayout>
 				</control>
 				
-				<!-- Case -->
+				<!-- Movie Bluray/DVD Case -->
 				<control type="panel" id="11000">
 					<posx>207</posx>
 					<posy>115</posy>
@@ -260,7 +263,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(CaseType),DVD/Bluray)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(MovieCaseType),DVD/Bluray)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
 					
 					<itemlayout height="305" width="216">
@@ -316,7 +319,7 @@
 					</focusedlayout>
 				</control>
 				
-				<!-- Clear Case -->
+				<!-- Movie Clear Case -->
 				<control type="panel" id="11000">
 					<posx>207</posx>
 					<posy>115</posy>
@@ -327,7 +330,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(CaseType),Clear)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(MovieCaseType),Clear)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>	
 					
 					<itemlayout height="305" width="216">
@@ -382,7 +385,86 @@
 					</focusedlayout>
 				</control>
 				
-				<!-- Music/App Cover -->
+				<!-- Movie Fanart -->
+				<control type="panel" id="11000">					
+					<posx>207</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>8052</onup>
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>			
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + StringCompare(Skin.String(MovieCaseType),Fanart)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
+					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation> 	
+							
+					<itemlayout height="305" width ="504">
+						<control type="image">
+							<description>FanArt</description>
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(fanart)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>	
+
+						<control type="image">
+							<posy>257</posy>
+							<posx>-2</posx>
+							<width>503</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posy>265</posy>
+							<width>499</width>
+							<height>30</height>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>grey2</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						
+					</itemlayout>
+					<focusedlayout height="305" width="504">
+						<control type="image">
+							<description>FanArt</description>
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(fanart)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>
+						<control type="image">
+							<posy>257</posy>
+							<posx>-2</posx>
+							<width>503</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posy>265</posy>
+							<width>499</width>
+							<height>30</height>
+							<textoffsetx>15</textoffsetx>
+							<textcolor>white</textcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						<control type="image">
+							<width>499</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
+						</control>						
+					</focusedlayout>
+				</control>
+				
+				<!-- Music Cover -->
 				<control type="panel" id="11000">
 					<posx>207</posx>
 					<posy>115</posy>
@@ -393,7 +475,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(album) + !StringCompare(Skin.String(CaseType),Glass)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(album) + !StringCompare(Skin.String(MovieCaseType),Glass)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
 					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>				
 					
@@ -564,7 +646,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(album) + StringCompare(Skin.String(CaseType),Glass)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(album) + StringCompare(Skin.String(MovieCaseType),Glass)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
 					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation> 	
 								
@@ -661,7 +743,7 @@
 					</focusedlayout>
 				</control>	
 								
-				<!-- Episode -->
+				<!-- Episode Fanart -->
 				<control type="panel" id="11000">					
 					<posx>207</posx>
 					<posy>115</posy>
