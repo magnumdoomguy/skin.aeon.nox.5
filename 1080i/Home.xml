@@ -169,7 +169,7 @@
         </control>
 		</control>
 		
-		<!-- Widget Background -->
+		<!-- Widget Recently Added Background -->
         <control type="image">
             <include>FullscreenDimensions</include>
 			<animation effect="fade" time="600">VisibleChange</animation>
@@ -179,11 +179,29 @@
             <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
         </control>
 		
-		<!-- Widget Background Photo -->
+		<!-- Widget Recently Added Background (Photo) -->
         <control type="image">
             <include>FullscreenDimensions</include>
             <visible>ControlGroup(9003).HasFocus() + Container(11000).ListItem.Type(Photo)</visible>
             <texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+			<aspectratio>scale</aspectratio>
+        </control>
+		
+		<!-- Widget On Deck Background -->
+        <control type="image">
+            <include>FullscreenDimensions</include>
+			<animation effect="fade" time="600">VisibleChange</animation>
+        
+            
+            <visible>ControlGroup(9003).HasFocus() + !Container(11001).ListItem.Type(Photo)</visible>
+            <texture background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+        </control>
+		
+		<!-- Widget On Deck Background (Photo) -->
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <visible>ControlGroup(9003).HasFocus() + Container(11001).ListItem.Type(Photo)</visible>
+            <texture background="true">$INFO[Container(11001).ListItem.Art(bigThumb)]</texture>
 			<aspectratio>scale</aspectratio>
         </control>
 		
@@ -206,7 +224,7 @@
         </control>
 		
         <!-- User Avatar -->
-        <control type="group">
+        <!--<control type="group">
             <visible>System.UserIsInHome</visible>
             <posy>15</posy>
             <control type="image">
@@ -236,10 +254,11 @@
                 <textcolor>white</textcolor>
                 <animation effect="fade" end="70" time="0" condition="true">Conditional</animation>
             </control>
-        </control>
+        </control>-->
         <include condition="!Skin.HasSetting(Disable.Videoinfo)">NowPlayingVideoWidget</include>
         <include condition="!Skin.HasSetting(Disable.Musicinfo)">NowPlayingMusicWidget</include>
-        <include>HomeRecentlyAddedInfo</include>
+        <include>RecentlyAdded</include>
+		<include>OnDeck</include>
         <control type="group">
 			<posy>424</posy>
 			
@@ -341,9 +360,7 @@
                 </control>
             </control>
         </control>
-        <!-- Not necessary for Plex -->
-        <include condition="system.getbool(lookandfeel.enablerssfeeds) + Skin.HasSetting(Detach.RSS)">RSSFeedWidget</include>
-        <include condition="system.getbool(lookandfeel.enablerssfeeds) + !Skin.HasSetting(Detach.RSS)">RSSFeedWidget2</include>
+        
         <control type="group">
             <posy>453</posy>
             <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(lowermainmenu)">Conditional</animation>
