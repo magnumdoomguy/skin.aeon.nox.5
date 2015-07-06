@@ -174,15 +174,17 @@
             <include>FullscreenDimensions</include>
 			<animation effect="fade" time="600">VisibleChange</animation>
         
-            
+            <fadetime>800</fadetime>
             <visible>ControlGroup(9003).HasFocus() + !Container(11000).ListItem.Type(Photo)</visible>
             <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+			
         </control>
 		
 		<!-- Widget Recently Added Background (Photo) -->
         <control type="image">
             <include>FullscreenDimensions</include>
             <visible>ControlGroup(9003).HasFocus() + Container(11000).ListItem.Type(Photo)</visible>
+			<fadetime>800</fadetime>
             <texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
 			<aspectratio>scale</aspectratio>
         </control>
@@ -190,17 +192,17 @@
 		<!-- Widget On Deck Background -->
         <control type="image">
             <include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-        
-            
-            <visible>ControlGroup(9003).HasFocus() + !Container(11001).ListItem.Type(Photo)</visible>
+			
+            <fadetime>800</fadetime>
+            <visible>ControlGroup(9004).HasFocus() + !Container(11001).ListItem.Type(Photo)</visible>
             <texture background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
         </control>
 		
 		<!-- Widget On Deck Background (Photo) -->
         <control type="image">
             <include>FullscreenDimensions</include>
-            <visible>ControlGroup(9003).HasFocus() + Container(11001).ListItem.Type(Photo)</visible>
+            <visible>ControlGroup(9004).HasFocus() + Container(11001).ListItem.Type(Photo)</visible>
+			<fadetime>800</fadetime>
             <texture background="true">$INFO[Container(11001).ListItem.Art(bigThumb)]</texture>
 			<aspectratio>scale</aspectratio>
         </control>
@@ -257,8 +259,16 @@
         </control>-->
         <include condition="!Skin.HasSetting(Disable.Videoinfo)">NowPlayingVideoWidget</include>
         <include condition="!Skin.HasSetting(Disable.Musicinfo)">NowPlayingMusicWidget</include>
+		
+		<control type="button" id="9005">
+			<include>HiddenObject</include>
+			<visible>Control.HasFocus(9003) | Control.HasFocus(9004)</visible>
+		</control>
+		
+		<control type="group" id="9006">
         <include>RecentlyAdded</include>
 		<include>OnDeck</include>
+		</control>
         <control type="group">
 			<posy>424</posy>
 			
