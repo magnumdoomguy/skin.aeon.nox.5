@@ -26,14 +26,52 @@
         <include condition="!Skin.HasSetting(Disable.Videoinfo)">NowPlayingVideoWidget</include>
         <include condition="!Skin.HasSetting(Disable.Musicinfo)">NowPlayingMusicWidget</include>
 		
-		<control type="group" id="9500">
-			<!--<animation effect="slide" start="-1497,0" end="0,0" time="500" condition="!Control(9003).HasFocus">Conditional</animation>-->
-			<animation effect="slide" start="-1497,0" end="0,0" time="500">Unfocus</animation>
-				<animation effect="slide" start="0,0" end="-1497,0" time="500">Focus</animation>
-			<include>RecentlyAdded</include>
-			<include>OnDeck</include>
-		</control>
-		
+			
+		<!-- For Homemenu in Middle of Screen -->
+        <control type="group">
+            <visible>ControlGroup(9500).HasFocus() + !Skin.HasSetting(lowermainmenu)</visible>
+            <include>VisibleFadeEffect</include>
+            <control type="image">
+                <posx>0</posx>
+                <posy>325</posy>
+                <width>1920</width>
+                <height>630</height>
+                <texture flipy="true" border="1">nowplaying_shadow.png</texture>
+            </control>
+            <control type="image">
+                <posx>0</posx>
+                <posy>325</posy>
+                <width>1920</width>
+                <height>630</height>
+                <texture flipy="true" border="1">nowplaying_shadow.png</texture>
+                <colordiffuse>44FFFFFF</colordiffuse>
+            </control>
+        </control>
+			
+		<!-- For Homemenu at Bottom of Screen -->
+        <control type="group">
+            <visible>ControlGroup(9500).HasFocus() + Skin.HasSetting(lowermainmenu)</visible>
+            <include>VisibleFadeEffect</include>
+            <control type="image">
+                <posx>0</posx>
+                <posy>325</posy>
+                <width>1920</width>
+                <height>630</height>
+                <texture border="1">nowplaying_shadow.png</texture>
+            </control>
+            <control type="image">
+                <posx>0</posx>
+                <posy>325</posy>
+                <width>1920</width>
+                <height>630</height>
+                <texture border="1">nowplaying_shadow.png</texture>
+                <colordiffuse>44FFFFFF</colordiffuse>
+            </control>
+        </control>	
+			
+		<include>RecentlyAdded</include>
+		<include>OnDeck</include>
+				
         <control type="group">
 			<posy>424</posy>
 			

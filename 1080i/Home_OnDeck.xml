@@ -6,6 +6,8 @@
             <animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0">WindowOpen</animation>
             <animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0">WindowClose</animation>
             <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(lowermainmenu)">Conditional</animation>
+			<animation effect="slide" start="-1497,0" end="0,0" time="500">Unfocus</animation>
+			<animation effect="slide" start="0,0" end="-1497,0" time="500">Focus</animation>
 			<visible>Control.IsVisible(11001) + !Skin.HasSetting(DisableOnDeck)</visible>
             <include>VisibleFadeEffect</include>
 		
@@ -13,15 +15,10 @@
 			<control type="group">
 				<animation effect="rotatex" start="0" end="90" time="200" center="221,0" tween="sine" easing="inout" condition="Skin.HasSetting(HomeInfo)">conditional</animation>
 				<animation effect="fade" start="100" end="0" time="100" center="221,0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>
-				<!--<animation effect="slide" start="0,0" end="0,0" time="500">Focus</animation>-->
-				<!--<animation effect="slide" start="0,0" end="-1497,0" time="500">Unfocus</animation>-->
-				<!--<animation effect="slide" start="-1497,0" end="0,0" time="500" condition="!ControlGroup(300).HasFocus()">Conditional</animation>
-				<animation effect="slide" start="0,0" end="-1497,0" time="500" condition="ControlGroup(300).HasFocus()">Conditional</animation>-->
-				<!--<animation effect="slide" start="0,0" end="-1497,0" time="500" condition="Control(9300).HasFocus">Conditional</animation>-->
-				
-				
-				<!-- Panel Background-->
+						
+				<!-- Poster Panel Background-->
 				<control type="group">
+					<visible>![StringCompare(Skin.String(MovieCaseType),Fanart) + Container(11001).ListItem.Type(movie)] + ![Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(TVCaseType))]</visible>
 					<control type="image">
 						<posx>1719</posx> <!-- 222 -->
 						<posy>-350</posy>	
@@ -395,9 +392,88 @@
 					</focusedlayout>
 				</control>
 				
+			</control>
+			
+		</control>
+				
+		<control type="group" id="9004">
+            <animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0">WindowOpen</animation>
+            <animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0">WindowClose</animation>
+            <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(lowermainmenu)">Conditional</animation>
+			<animation effect="slide" start="-1209,0" end="0,0" time="500">Unfocus</animation>
+				<animation effect="slide" start="0,0" end="-1209,0" time="500">Focus</animation>
+			<visible>Control.IsVisible(11001) + !Skin.HasSetting(DisableOnDeck)</visible>
+            <include>VisibleFadeEffect</include>
+				
+			<!-- Fanart Panel Background-->
+			<control type="group">
+				<animation effect="rotatex" start="0" end="90" time="200" center="221,0" tween="sine" easing="inout" condition="Skin.HasSetting(HomeInfo)">conditional</animation>
+				<animation effect="fade" start="100" end="0" time="100" center="221,0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>
+				
+				
+				<control type="group">
+					<visible>[StringCompare(Skin.String(MovieCaseType),Fanart) + Container(11001).ListItem.Type(movie)] | [IsEmpty(Skin.String(TVCaseType)) + Container(11001).ListItem.Type(episode)]</visible>
+					<control type="image">
+						<posx>1431</posx> <!-- 222 -->
+						<posy>-350</posy>	
+						<width>945</width>
+						<height>87</height>
+						<texture flipy="true">submenu_bar.png</texture>	
+						<align>left</align>						
+					</control>
+					<control type="image">
+						<posx>1341</posx> <!-- 132 -->
+						<posy>-350</posy>	
+						<width>90</width>
+						<height>87</height>
+						<texture flipy="true">submenu_square.png</texture>	
+						<align>left</align>			
+					</control>
+					<control type="image">
+						<posx>2376</posx> <!-- 1167 -->
+						<posy>-350</posy>	
+						<width>90</width>
+						<height>87</height>
+						<texture flipy="true" flipx="true">submenu_end.png</texture>	
+						<align>left</align>							
+					</control>
+					<control type="image">
+						<posx>1395</posx> <!-- 186 -->
+						<posy>-283</posy>
+						<width>1550</width>
+						<height>350</height>
+						<colordiffuse>EEFFFFFF</colordiffuse>		
+						<texture border="40">dialogs/default/bg2.png</texture>								
+					</control>					
+					<control type="label">						
+						<posx>1431</posx> <!-- 222 -->
+						<posy>-306</posy>
+						<width>370</width>
+						<height>40</height>
+						<font>font13_title</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<label>On Deck</label>	
+					</control>
+					<control type="label">
+						<posx>2379</posx> <!-- 1170 -->
+						<posy>-306</posy>
+						<align>right</align>
+						<width>650</width>
+						<height>40</height>
+						<font>font13_title</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<scroll>true</scroll>	
+						<label>$INFO[Container(11001).ListItem.Label]</label>
+						<visible>Control.HasFocus(11001)</visible>
+					</control>
+					
+				</control>
+				
 				<!-- Movie Fanart -->
 				<control type="panel" id="11001">					
-					<posx>207</posx>
+					<posx>1416</posx>
 					<posy>-260</posy>
 					<width>1510</width>
 					<height>305</height>
@@ -475,7 +551,7 @@
 				
 				<!-- Episode Thumbnail -->
 				<control type="panel" id="11001">					
-					<posx>207</posx>
+					<posx>1416</posx>
 					<posy>-260</posy>
 					<width>1510</width>
 					<height>305</height>
@@ -570,96 +646,9 @@
 						</control>							
 					</focusedlayout>
 				</control>	
-					
-				<!-- Banner -->
-				<control type="panel" id="11001">
-					<posx>207</posx>
-					<posy>-260</posy>
-					<width>1510</width>
-					<height>310</height>
-					<ondown>9003</ondown>
-					<onleft>11001</onleft>
-					<onright>11001</onright>
-					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11001).ListItem.Label) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(TVCaseType),Banner)</visible>
-					<animation effect="fade" start="0" end="100" time="400">Visible</animation>
-					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation>    
-					<preloaditems>2</preloaditems>	
-									
-					<itemlayout height="155" width ="757">
-						<control type="image">
-							<description>Banner</description>
-							<width>751</width>
-							<height>150</height>
-							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(grandparentBanner)]</texture>														
-						</control>
-						<control type="image">
-							<description>Fanart Fallback</description>
-							<width>751</width>
-							<height>150</height>
-							<fadetime>200</fadetime>
-							<aspectratio aligny="center">scale</aspectratio>						
-							<texture>$INFO[ListItem.Art(fanart)]</texture>
-							<visible>IsEmpty(ListItem.Art(banner))</visible>							
-						</control>
-						<control type="label">
-							<description>Text Fallback</description>
-							<posx>25</posx>
-							<posy>25</posy>
-							<width>701</width>
-							<height>100</height>
-							<align>center</align>		
-							<font>font13_title</font>
-							<textcolor>white</textcolor>
-							<shadowcolor>shadow</shadowcolor>
-							<scroll>false</scroll>
-							<animation effect="fade" start="0" end="100" delay="0" time="200">Visible</animation>	
-							<label>$INFO[ListItem.title]</label>
-							<visible>IsEmpty(ListItem.Art(banner))</visible>						
-						</control>															
-					</itemlayout>
-					<focusedlayout height="305" width="504">
-						<control type="image">
-							<description>Banner</description>
-							<width>751</width>
-							<height>150</height>
-							<fadetime>200</fadetime>	
-							<texture>$INFO[ListItem.Art(banner)]</texture>														
-						</control>
-						<control type="image">
-							<description>Fanart Fallback</description>
-							<width>751</width>
-							<height>150</height>
-							<fadetime>200</fadetime>
-							<aspectratio aligny="center">scale</aspectratio>						
-							<texture>$INFO[ListItem.Art(fanart)]</texture>
-							<visible>IsEmpty(ListItem.Art(banner))</visible>							
-						</control>
-						<control type="label">
-							<description>Text Fallback</description>
-							<posx>25</posx>
-							<posy>25</posy>
-							<width>701</width>
-							<height>100</height>
-							<align>center</align>		
-							<font>font13_title</font>
-							<textcolor>white</textcolor>
-							<shadowcolor>shadow</shadowcolor>
-							<scroll>false</scroll>
-							<animation effect="fade" start="0" end="100" delay="0" time="200">Visible</animation>	
-							<label>$INFO[ListItem.title]</label>
-							<visible>IsEmpty(ListItem.Art(banner))</visible>						
-						</control>	
-						<control type="image">
-							<width>751</width>
-							<height>150</height>
-							<fadetime>200</fadetime>
-							<texture border="10">thumbs/thumbnail_focused.png</texture>													
-						</control>										
-					</focusedlayout>
-				</control>			
 			</control>
+
+			
 		</control>	
 	</include>
 </includes>
