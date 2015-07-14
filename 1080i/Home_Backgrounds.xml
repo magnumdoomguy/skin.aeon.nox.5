@@ -2,155 +2,58 @@
 <includes>
 	<include name="HomeBackgrounds">
 
-		<!-- No Widget Fanart -->
-		<control type="group">
-			<animation effect="fade" time="600">WindowOpen</animation>
-            <animation effect="fade" time="600">WindowClose</animation>
-			<visible>!ControlGroup(9003).HasFocus()</visible>
-		
-        <!-- Display Plex Fanart -->
-        <control type="group">
-            <visible>![stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)]</visible>
-            <visible>![stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground2Label)) + Skin.HasSetting(CustomHomeBackground2)]</visible>
-            <visible>![stringcompare(Container(300).ListItem(0).Label,Skin.String(CustomHomeBackground3Label)) + Skin.HasSetting(CustomHomeBackground3)]</visible>
-            <control type="multiimage" id="10101"></control>
+		<!-- Display Plex Fanart -->
+        <control type="multiimage" id="10101">
+			<include>FullscreenDimensions</include>
+			<animation effect="fade" time="600">VisibleChange</animation>
+            <fadetime>600</fadetime>
+			<visible>!ControlGroup(9003).HasFocus() + !ControlGroup(9001).HasFocus()</visible>
         </control>
 		
-        <!-- Custom Home Background Slideshow 1 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground1Path)</info>
-            </control>
+		<!-- Log off / Sign in -->
+		<control type="image">
+            <include>FullscreenDimensions</include>
+			<animation effect="fade" time="600">VisibleChange</animation>
+            <fadetime>600</fadetime>
+            <visible>ControlGroup(9001).HasFocus() + [stringcompare(Container(9010).ListItem.Label,Log Off) | stringcompare(Container(9010).ListItem.Label,Sign In)]</visible>
+            <texture background="true">special://skin/backgrounds/profile.jpg</texture>	
         </control>
 		
-        <!-- Custom Home Background Slideshow 2 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground2Label)) + Skin.HasSetting(CustomHomeBackground2)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground2Path)</info>
-            </control>
+		<!-- Channel Directory -->
+		<control type="image">
+            <include>FullscreenDimensions</include>
+			<animation effect="fade" time="600">VisibleChange</animation>
+            <fadetime>600</fadetime>
+            <visible>ControlGroup(9001).HasFocus() + stringcompare(Container(9010).ListItem.Label,Channel Directory)</visible>
+            <texture background="true">special://skin/backgrounds/channels.jpg</texture>	
         </control>
 		
-        <!-- Custom Home Background Slideshow 3 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground3Label)) + Skin.HasSetting(CustomHomeBackground3)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground3Path)</info>
-            </control>
+		<!-- Preferences -->
+		<control type="image">
+            <include>FullscreenDimensions</include>
+			<animation effect="fade" time="600">VisibleChange</animation>
+            <fadetime>600</fadetime>
+            <visible>ControlGroup(9001).HasFocus() + stringcompare(Container(9010).ListItem.Label,Preferences)</visible>
+            <texture background="true">special://skin/backgrounds/system.jpg</texture>	
         </control>
 		
-        <!-- Custom Home Background Slideshow 4 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground4Label)) + Skin.HasSetting(CustomHomeBackground4)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground4Path)</info>
-            </control>
+		<!-- Skin Settings -->
+		<control type="image">
+            <include>FullscreenDimensions</include>
+			<animation effect="fade" time="600">VisibleChange</animation>
+            <fadetime>600</fadetime>
+            <visible>ControlGroup(9001).HasFocus() + stringcompare(Container(9010).ListItem.Label,Skin Settings)</visible>
+            <texture background="true">special://skin/backgrounds/skinsetting.jpg</texture>	
         </control>
 		
-        <!-- Custom Home Background Slideshow 5 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground5Label)) + Skin.HasSetting(CustomHomeBackground5)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground5Path)</info>
-            </control>
+		<!-- Quit -->
+		<control type="image">
+            <include>FullscreenDimensions</include>
+			<animation effect="fade" time="600">VisibleChange</animation>
+            <fadetime>600</fadetime>
+            <visible>ControlGroup(9001).HasFocus() + [stringcompare(Container(9010).ListItem.Label,Quit) | stringcompare(Container(9010).ListItem.Label,Suspend) | stringcompare(Container(9010).ListItem.Label,Power Off System)]</visible>
+            <texture background="true">special://skin/backgrounds/shutdown.jpg</texture>	
         </control>
-		
-        <!-- Custom Home Background Slideshow 6 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground6Label)) + Skin.HasSetting(CustomHomeBackground6)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground6Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 7 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground7Label)) + Skin.HasSetting(CustomHomeBackground7)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground7Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 8 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground8Label)) + Skin.HasSetting(CustomHomeBackground8)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground8Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 9 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground9Label)) + Skin.HasSetting(CustomHomeBackground9)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground9Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 10 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground10Label)) + Skin.HasSetting(CustomHomeBackground10)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground10Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 11 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground11Label)) + Skin.HasSetting(CustomHomeBackground11)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground11Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 12 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground12Label)) + Skin.HasSetting(CustomHomeBackground12)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground12Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 13 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground13Label)) + Skin.HasSetting(CustomHomeBackground13)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground13Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 14 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground14Label)) + Skin.HasSetting(CustomHomeBackground14)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground14Path)</info>
-            </control>
-        </control>
-		
-        <!-- Custom Home Background Slideshow 15 -->
-        <control type="group">
-            <visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground15Label)) + Skin.HasSetting(CustomHomeBackground15)]</visible>
-            <control type="multiimage">
-                <include>FullscreenDimensions</include>
-                <info>Skin.String(CustomHomeBackground15Path)</info>
-            </control>
-        </control>
-		</control>
 		
 		<!-- Widget Recently Added Background -->
         <control type="image">
@@ -158,8 +61,7 @@
 			<animation effect="fade" time="600">VisibleChange</animation>
             <fadetime>600</fadetime>
             <visible>ControlGroup(9003).HasFocus() + !Container(11000).ListItem.Type(Photo)</visible>
-            <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
-			
+            <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>	
         </control>
 		
 		<!-- Widget Playlists Background -->
