@@ -2,121 +2,231 @@
 <includes>
 	<include name="HomeBackgrounds">
 
-		<!-- Display Plex Fanart -->
-        <control type="multiimage" id="10101">
-			<include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-            <fadetime>600</fadetime>
-			<visible>!ControlGroup(9003).HasFocus() + !ControlGroup(9001).HasFocus()</visible>
-        </control>
-		
-		<!-- Log off / Sign in -->
-		<control type="image">
-            <include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-            <fadetime>600</fadetime>
-            <visible>ControlGroup(9001).HasFocus() + [stringcompare(Container(9010).ListItem.Label,Log Off) | stringcompare(Container(9010).ListItem.Label,Sign In)]</visible>
-            <texture background="true">special://skin/backgrounds/profile.jpg</texture>	
-        </control>
-		
-		<!-- Channel Directory -->
-		<control type="image">
-            <include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-            <fadetime>600</fadetime>
-            <visible>ControlGroup(9001).HasFocus() + stringcompare(Container(9010).ListItem.Label,Channel Directory)</visible>
-            <texture background="true">special://skin/backgrounds/channels.jpg</texture>	
-        </control>
-		
-		<!-- Preferences -->
-		<control type="image">
-            <include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-            <fadetime>600</fadetime>
-            <visible>ControlGroup(9001).HasFocus() + stringcompare(Container(9010).ListItem.Label,Preferences)</visible>
-            <texture background="true">special://skin/backgrounds/system.jpg</texture>	
-        </control>
-		
-		<!-- Skin Settings -->
-		<control type="image">
-            <include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-            <fadetime>600</fadetime>
-            <visible>ControlGroup(9001).HasFocus() + stringcompare(Container(9010).ListItem.Label,Skin Settings)</visible>
-            <texture background="true">special://skin/backgrounds/skinsetting.jpg</texture>	
-        </control>
-		
-		<!-- Quit -->
-		<control type="image">
-            <include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-            <fadetime>600</fadetime>
-            <visible>ControlGroup(9001).HasFocus() + [stringcompare(Container(9010).ListItem.Label,Quit) | stringcompare(Container(9010).ListItem.Label,Suspend) | stringcompare(Container(9010).ListItem.Label,Power Off System)]</visible>
-            <texture background="true">special://skin/backgrounds/shutdown.jpg</texture>	
-        </control>
-		
-		<!-- Widget Recently Added Background -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-            <fadetime>600</fadetime>
-            <visible>ControlGroup(9003).HasFocus() + !Container(11000).ListItem.Type(Photo)</visible>
-            <texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>	
-        </control>
-		
-		<!-- Widget Playlists Background -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-			<animation effect="fade" time="600">VisibleChange</animation>
-            <fadetime>600</fadetime>
-            <visible>ControlGroup(11005).HasFocus() + !IsEmpty(Container(11005).ListItem.Label)</visible>
-            <texture background="true">$INFO[Container(11005).ListItem.CompositeImage(width=1920;height=1080;cols=6;rows=2)]</texture>
-        </control>
-		
-		<!-- Widget Recently Added Background (Photo) -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <visible>ControlGroup(9003).HasFocus() + Container(11000).ListItem.Type(Photo)</visible>
-			<fadetime>600</fadetime>
-            <texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
-			<aspectratio>scale</aspectratio>
-        </control>
-		
-		<!-- Widget On Deck Background -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-			
-            <fadetime>600</fadetime>
-            <visible>ControlGroup(9004).HasFocus() + !Container(11001).ListItem.Type(Photo)</visible>
-            <texture background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
-        </control>
-		
-		<!-- Widget On Deck Background (Photo) -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <visible>ControlGroup(9004).HasFocus() + Container(11001).ListItem.Type(Photo)</visible>
-			<fadetime>600</fadetime>
-            <texture background="true">$INFO[Container(11001).ListItem.Art(bigThumb)]</texture>
-			<aspectratio>scale</aspectratio>
-        </control>
-		
-        <!-- Visualization Background -->
+		<!-- Visualization Background -->
         <control type="visualisation">
             <include>FullscreenDimensions</include>
             <visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
-            <visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
         </control>
+	
+		<!-- No Visualization -->
+		<control type="group">
+			<visible>!Player.HasAudio</visible>
 		
-        <!-- Video Background -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <texture>black.png</texture>
-            <visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
-        </control>
-        <control type="videowindow">
-            <include>FullscreenDimensions</include>
-            <visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
-        </control>
+			<!-- Video Background -->
+			<control type="group">
+				<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+				
+				<control type="image">
+					<include>FullscreenDimensions</include>
+					<texture>black.png</texture>
+				</control>
+				<control type="videowindow">
+					<include>FullscreenDimensions</include>
+				</control>
+			</control>
+			
+			<!-- No Video Background -->
+			<control type="group">
+				<visible>!Player.HasVideo</visible>
+		
+				<!-- Display Plex Fanart -->
+				<control type="multiimage" id="10101">
+					<include>FullscreenDimensions</include>
+					<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+					<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+					<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+					<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+					<fadetime>600</fadetime>
+					<visible>!ControlGroup(9003).HasFocus() + !ControlGroup(9001).HasFocus() + !stringcompare(Container(300).ListItem.Label,Channels) + !stringcompare(Container(300).ListItem.Label,Playlists) + !stringcompare(Container(300).ListItem.Label,Watch Later) + !stringcompare(Container(300).ListItem.Label,Search)</visible>
+				</control>
+		
+				<!-- Main Menu Backgrounds -->
+				<control type="group">
+					<visible>!ControlGroup(9003).HasFocus() + !ControlGroup(9001).HasFocus()</visible>
+		
+					<!-- Channels -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>stringcompare(Container(300).ListItem.Label,Channels)</visible>
+						<texture background="true">special://skin/backgrounds/channels.jpg</texture>	
+					</control>
+			
+					<!-- Playlists -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>stringcompare(Container(300).ListItem.Label,Playlists)</visible>
+						<texture background="true">special://skin/backgrounds/playlist.jpg</texture>	
+					</control>
+			
+					<!-- Watch Later -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>-->
+						<visible>stringcompare(Container(300).ListItem.Label,Watch Later)</visible>
+						<texture background="true">special://skin/backgrounds/watchlater.jpg</texture>	
+					</control>
+			
+					<!-- Search -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>stringcompare(Container(300).ListItem.Label,Search)</visible>
+						<texture background="true">special://skin/backgrounds/search.jpg</texture>	
+					</control>
+				</control>
+		
+				<!-- Submenu Backgrounds -->
+				<control type="group">
+					<visible>ControlGroup(9001).HasFocus()</visible>
+			
+					<!-- Log off / Sign in -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>stringcompare(Container(9010).ListItem.Label,Log Off) | stringcompare(Container(9010).ListItem.Label,Sign In)</visible>
+						<texture background="true">special://skin/backgrounds/profile.jpg</texture>	
+					</control>
+		
+					<!-- Channel Directory -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>stringcompare(Container(9010).ListItem.Label,Channel Directory)</visible>
+						<texture background="true">special://skin/backgrounds/channels.jpg</texture>	
+					</control>
+		
+					<!-- Preferences -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>stringcompare(Container(9010).ListItem.Label,Preferences)</visible>
+						<texture background="true">special://skin/backgrounds/preferences.jpg</texture>	
+					</control>
+		
+					<!-- Skin Settings -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>stringcompare(Container(9010).ListItem.Label,Skin Settings)</visible>
+						<texture background="true">special://skin/backgrounds/skins.jpg</texture>	
+					</control>
+		
+					<!-- Quit -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="80" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="80" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>stringcompare(Container(9010).ListItem.Label,Quit) | stringcompare(Container(9010).ListItem.Label,Suspend) | stringcompare(Container(9010).ListItem.Label,Power Off System)</visible>
+						<texture background="true">special://skin/backgrounds/shutdown.jpg</texture>	
+					</control>
+				</control>
+		
+				<!-- Widgets -->
+				<control type="group">
+					<visible>ControlGroup(9003).HasFocus()</visible>
+				
+					<!-- Widget Recently Added Background -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>ControlGroup(9003).HasFocus() + !Container(11000).ListItem.Type(Photo)</visible>
+						<texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>	
+					</control>
+		
+					<!-- Widget Playlists Background -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>ControlGroup(11005).HasFocus() + !IsEmpty(Container(11005).ListItem.Label)</visible>
+						<texture background="true">$INFO[Container(11005).ListItem.CompositeImage(width=1920;height=1080;cols=6;rows=2)]</texture>
+					</control>
+		
+					<!-- Widget Recently Added Background (Photo) -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">Hidden</animation>
+						<visible>ControlGroup(9003).HasFocus() + Container(11000).ListItem.Type(Photo)</visible>
+						<fadetime>600</fadetime>
+						<texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+						<aspectratio>scale</aspectratio>
+					</control>
+		
+					<!-- Widget On Deck Background -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">Hidden</animation>
+						<fadetime>600</fadetime>
+						<visible>ControlGroup(9004).HasFocus() + !Container(11001).ListItem.Type(Photo)</visible>
+						<texture background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					</control>
+		
+					<!-- Widget On Deck Background (Photo) -->
+					<control type="image">
+						<include>FullscreenDimensions</include>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">WindowOpen</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">WindowClose</animation>
+						<animation effect="fade" start="0" end="40" time="300" delay="0">Visible</animation>
+						<animation effect="fade" start="40" end="0" time="300" delay="0">Hidden</animation>
+						<visible>ControlGroup(9004).HasFocus() + Container(11001).ListItem.Type(Photo)</visible>
+						<fadetime>600</fadetime>
+						<texture background="true">$INFO[Container(11001).ListItem.Art(bigThumb)]</texture>
+						<aspectratio>scale</aspectratio>
+					</control>
+				</control>
+			</control>
+		</control>
+                
 		
 	</include>
 </includes>
