@@ -13,71 +13,350 @@
 			<include>VisibleFadeEffect</include>
 			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(movie)</visible>
 			<control type="image">
-					<posx>0</posx>
-					<posy>13</posy>
-					<width>241</width>
-					<height>350</height>
-					<aspectratio align="right">scale</aspectratio>
-					<texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
-					<fadetime>IconCrossfadeTime</fadetime>
-					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-					<bordersize>20</bordersize>
+				<posx>0</posx>
+				<posy>13</posy>
+				<width>241</width>
+				<height>350</height>
+				<aspectratio align="right">scale</aspectratio>
+				<texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+				<fadetime>IconCrossfadeTime</fadetime>
+				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+				<bordersize>20</bordersize>
 				</control>
-				<control type="grouplist">
-					<posx>241</posx>
-					<posy>13</posy>
-					<width>1300</width>
-					<height>350</height>
-					<itemgap>12</itemgap>
-					<align>center</align>
-					<control type="label">
-						<width>900</width>
-						<height>40</height>
-						<font>font14_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[Container(11000).ListItem.Title]</label>
-						<wrapmultiline>true</wrapmultiline>
-					</control>
-					<control type="label">
-						<width>900</width>
-						<height>20</height>
-						<font>font14</font>
-						<textcolor>white2</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[Container(11000).ListItem.Genre]</label>
-						<visible>!IsEmpty(Container(11000).ListItem.Genre)</visible>
-					</control>
-					<control type="label">
-						<height>2</height>
-						<label>-</label>
-					</control>
-					<control type="label">
-						<width>900</width>
-						<height>35</height>
-						<font>font14</font>
-						<textcolor>white2</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[Container(11000).ListItem.Year]$INFO[Container(11000).ListItem.RatingAndVotes,  |  ]$INFO[Container(11000).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
-					</control>
-					<control type="label">
-						<height>2</height>
-						<label>-</label>
-					</control>
-					<control type="textbox">
-						<description>Plot</description>
-						<width>900</width>
-						<height>150</height>
-						<font>font14_textbox</font>
-						<align>left</align>
-						<label>$INFO[Container(11000).ListItem.Plot]</label>
-						<textcolor>white2</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-					</control>
+			<control type="grouplist">
+				<posx>241</posx>
+				<posy>13</posy>
+				<width>1300</width>
+				<height>350</height>
+				<itemgap>12</itemgap>
+				<align>center</align>
+				<control type="label">
+					<width>900</width>
+					<height>40</height>
+					<font>font14_title</font>
+					<textcolor>labelheader</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Title]</label>
+					<wrapmultiline>true</wrapmultiline>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>20</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Genre]</label>
+					<visible>!IsEmpty(Container(11000).ListItem.Genre)</visible>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>35</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Year]$INFO[Container(11000).ListItem.RatingAndVotes,  |  ]$INFO[Container(11000).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>  
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font14_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11000).ListItem.Plot]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>!Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font11_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11000).ListItem.Plot]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>Skin.HasSetting(SmallerPlotText)</visible>
 				</control>
 			</control>
+		</control>
 			
+		<!-- TV Item Info -->
+		<control type="group">
+			<animation effect="fade" start="0" end="100" time="300" delay="0">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300" delay="0">WindowClose</animation>
+			<animation effect="fade" start="0" end="100" time="300" delay="0">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="300" delay="0">Hidden</animation>
+			<posx>195</posx>
+			<posy>17</posy>
+			<include>VisibleFadeEffect</include>
+			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode)</visible>
+			<control type="image">
+				<posx>0</posx>
+				<posy>13</posy>
+				<width>241</width>
+				<height>350</height>
+				<aspectratio align="right">scale</aspectratio>
+				<texture background="true">$INFO[ListItem.Art(bigGrandparentThumb)]</texture>
+				<fadetime>IconCrossfadeTime</fadetime>
+				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+				<bordersize>20</bordersize>
+				</control>
+			<control type="grouplist">
+				<posx>241</posx>
+				<posy>13</posy>
+				<width>1300</width>
+				<height>350</height>
+				<itemgap>12</itemgap>
+				<align>center</align>
+				<control type="label">
+					<width>900</width>
+					<height>40</height>
+					<font>font14_title</font>
+					<textcolor>labelheader</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Title]</label>
+					<wrapmultiline>true</wrapmultiline>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>20</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.TVShowTitle]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>35</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Year]$INFO[Container(11000).ListItem.RatingAndVotes,  |  ]$INFO[Container(11000).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font14_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11000).ListItem.Plot]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>!Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font11_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11000).ListItem.Plot]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+			</control>
+		</control>
+	
+		<!-- Album Item Info -->
+		<control type="group">
+			<animation effect="fade" start="0" end="100" time="300" delay="0">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300" delay="0">WindowClose</animation>
+			<animation effect="fade" start="0" end="100" time="300" delay="0">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="300" delay="0">Hidden</animation>
+			<posx>195</posx>
+			<posy>17</posy>
+			<include>VisibleFadeEffect</include>
+			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(album)</visible>
+			<control type="image">
+				<posx>0</posx>
+				<posy>13</posy>
+				<width>241</width>
+				<height>350</height>
+				<aspectratio align="right">scale</aspectratio>
+				<texture background="true">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+				<fadetime>IconCrossfadeTime</fadetime>
+				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+				<bordersize>20</bordersize>
+				</control>
+			<control type="grouplist">
+				<posx>241</posx>
+				<posy>13</posy>
+				<width>1300</width>
+				<height>350</height>
+				<itemgap>12</itemgap>
+				<align>center</align>
+				<control type="label">
+					<width>900</width>
+					<height>40</height>
+					<font>font14_title</font>
+					<textcolor>labelheader</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Title]</label>
+					<wrapmultiline>true</wrapmultiline>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>20</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Genre]</label>
+					<visible>!IsEmpty(Container(11000).ListItem.Genre)</visible>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>35</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Year]$INFO[Container(11000).ListItem.RatingAndVotes,  |  ]$INFO[Container(11000).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font14_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11000).ListItem.Property(summary)]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>!Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font11_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11000).ListItem.Property(summary)]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+			</control>
+		</control>
+		
+		<!-- Watch Later Item Info -->
+		<control type="group">
+			<animation effect="fade" start="0" end="100" time="300" delay="0">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300" delay="0">WindowClose</animation>
+			<animation effect="fade" start="0" end="100" time="300" delay="0">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="300" delay="0">Hidden</animation>
+			<posx>195</posx>
+			<posy>17</posy>
+			<include>VisibleFadeEffect</include>
+			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Control.IsVisible(11003)</visible>
+			<control type="image">
+				<posx>0</posx>
+				<posy>13</posy>
+				<width>241</width>
+				<height>350</height>
+				<aspectratio align="right">scale</aspectratio>
+				<texture background="true">$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+				<fadetime>IconCrossfadeTime</fadetime>
+				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+				<bordersize>20</bordersize>
+				</control>
+			<control type="grouplist">
+				<posx>241</posx>
+				<posy>13</posy>
+				<width>1300</width>
+				<height>350</height>
+				<itemgap>12</itemgap>
+				<align>center</align>
+				<control type="label">
+					<width>900</width>
+					<height>40</height>
+					<font>font14_title</font>
+					<textcolor>labelheader</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11003).ListItem.Title]</label>
+					<wrapmultiline>true</wrapmultiline>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>20</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11003).ListItem.Genre]</label>
+					<visible>!IsEmpty(Container(11003).ListItem.Genre)</visible>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>35</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11003).ListItem.Year]$INFO[Container(11003).ListItem.RatingAndVotes,  |  ]$INFO[Container(11003).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>  
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font14_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11003).ListItem.Plot]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>!Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font11_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11003).ListItem.Plot]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+			</control>
+		</control>
+		
 		<!-- Posters -->
 		<control type="group" id="9003">
             <animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0">WindowOpen</animation>
@@ -165,8 +444,6 @@
 						<visible>Control.HasFocus(11005)</visible>
 					</control>
 				</control>
-				
-				
 				
 				<!-- Movie Poster -->			
 				<control type="panel" id="11000">				
