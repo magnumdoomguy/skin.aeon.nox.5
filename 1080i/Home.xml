@@ -20,7 +20,6 @@
         </control>
 		
 		<include>HomeBackgrounds</include>
-		<!--<include>LiveCasesBackground</include>-->
 		
 		<!-- Home Widgets -->		
         <include condition="!Skin.HasSetting(Disable.Videoinfo)">NowPlayingVideoWidget</include>
@@ -29,7 +28,7 @@
 			
 		<!-- For Homemenu in Middle of Screen -->
         <control type="group">
-            <visible>ControlGroup(9500).HasFocus() + !Skin.HasSetting(lowermainmenu)</visible>
+            <visible>ControlGroup(9500).HasFocus() + Skin.HasSetting(middlemainmenu)</visible>
             <include>VisibleFadeEffect</include>
             <control type="image">
                 <posx>0</posx>
@@ -50,7 +49,7 @@
 			
 		<!-- For Homemenu at Bottom of Screen -->
         <control type="group">
-            <visible>ControlGroup(9500).HasFocus() + Skin.HasSetting(lowermainmenu)</visible>
+            <visible>ControlGroup(9500).HasFocus() + !Skin.HasSetting(middlemainmenu)</visible>
             <include>VisibleFadeEffect</include>
             <control type="image">
                 <posx>0</posx>
@@ -76,7 +75,7 @@
 			<posy>424</posy>
 			
             <control type="group">
-                <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(lowermainmenu)">Conditional</animation>
+                <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(middlemainmenu)">Conditional</animation>
                 <animation effect="slide" end="-1870,0" time="240">WindowClose</animation>
                 <animation effect="slide" start="-1870,0" end="0,0" delay="300" time="240" condition="!Window.Previous(startup)">WindowOpen</animation>
                 <animation effect="slide" start="-1870" end="0" time="240">VisibleChange</animation>
@@ -183,7 +182,7 @@
         
         <control type="group">
             <posy>453</posy>
-            <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(lowermainmenu)">Conditional</animation>
+            <animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(middlemainmenu)">Conditional</animation>
             <animation type="WindowOpen" reversible="false">
                 <effect type="zoom" start="80" end="100" center="960,540" easing="out" tween="back" time="300" />
                 <effect type="fade" start="0" end="100" time="300" />
