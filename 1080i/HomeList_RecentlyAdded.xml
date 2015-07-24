@@ -161,7 +161,7 @@
 			</control>
 		</control>
 			
-		<!-- TV Item Info -->
+		<!-- TV Item Poster Info -->
 		<control type="group">
 			<animation effect="fade" start="0" end="100" time="300" delay="0">WindowOpen</animation>
 			<animation effect="fade" start="100" end="0" time="300" delay="0">WindowClose</animation>
@@ -170,7 +170,7 @@
 			<posx>195</posx>
 			<posy>27</posy>
 			<include>VisibleFadeEffect</include>
-			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000)</visible>
+			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + StringCompare(Skin.String(TVCaseType),Poster)</visible>
 			<control type="image">
 				<description>Episode Thumbnail</description>
 				<posx>0</posx>
@@ -189,6 +189,96 @@
 				<posy>13</posy>
 				<width>1300</width>
 				<height>305</height>
+				<itemgap>12</itemgap>
+				<align>center</align>
+				<control type="label">
+					<width>900</width>
+					<height>40</height>
+					<font>font14_title</font>
+					<textcolor>labelheader</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Title]</label>
+					<wrapmultiline>true</wrapmultiline>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>20</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.TVShowTitle]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>35</height>
+					<font>font14</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11000).ListItem.Year]$INFO[Container(11000).ListItem.RatingAndVotes,  |  ]$INFO[Container(11000).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font14_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11000).ListItem.Plot]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>!Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+				<control type="textbox">
+					<description>Plot</description>
+					<width>900</width>
+					<height>150</height>
+					<font>font12_textbox</font>
+					<align>left</align>
+					<label>$INFO[Container(11000).ListItem.Plot]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+					<visible>Skin.HasSetting(SmallerPlotText)</visible>
+				</control>
+			</control>
+		</control>
+	
+		<!-- TV Item EpisodeThumb Info -->
+		<control type="group">
+			<animation effect="fade" start="0" end="100" time="300" delay="0">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="300" delay="0">WindowClose</animation>
+			<animation effect="fade" start="0" end="100" time="300" delay="0">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="300" delay="0">Hidden</animation>
+			<posx>195</posx>
+			<posy>17</posy>
+			<include>VisibleFadeEffect</include>
+			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + IsEmpty(Skin.String(TVCaseType))</visible>
+			<control type="image">
+				<posx>0</posx>
+				<posy>10</posy>
+				<description>Cover</description>
+				<width>250</width>
+				<height>345</height>
+				<fadetime>200</fadetime>	
+				<texture>$INFO[Container(11000).ListItem.Art(bigGrandparentThumb)]</texture>
+				<aspectratio>scale</aspectratio>
+				<fadetime>IconCrossfadeTime</fadetime>
+				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+				<bordersize>20</bordersize>
+			</control>	
+			<control type="grouplist">
+				<posx>251</posx>
+				<posy>13</posy>
+				<width>1300</width>
+				<height>350</height>
 				<itemgap>12</itemgap>
 				<align>center</align>
 				<control type="label">
@@ -396,7 +486,7 @@
 					<font>font14</font>
 					<textcolor>white2</textcolor>
 					<shadowcolor>black</shadowcolor>
-					<label>$INFO[Container(11003).ListItem.Year]$INFO[Container(11003).ListItem.RatingAndVotes,  |  ]$INFO[Container(11003).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
+					<label>$INFO[Container(11003).ListItem.RatingAndVotes]$INFO[Container(11003).ListItem.Duration,  |  , $LOCALIZE[12391]]</label>
 				</control>
 				<control type="label">
 					<height>2</height>
@@ -488,32 +578,6 @@
 						<textcolor>grey</textcolor>
 						<shadowcolor>shadow</shadowcolor>
 						<label>Recent</label>	
-					</control>
-					<control type="label">
-						<posx>2667</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11002).ListItem.Label]</label>
-						<visible>Control.HasFocus(11002)</visible>
-					</control>
-					<control type="label">
-						<posx>2667</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11005).ListItem.Label]</label>
-						<visible>Control.HasFocus(11005)</visible>
 					</control>
 				</control>
 				
@@ -889,58 +953,6 @@
 						<textcolor>grey</textcolor>
 						<shadowcolor>shadow</shadowcolor>
 						<label>Recent</label>	
-					</control>
-					<control type="label">
-						<posx>2379</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11000).ListItem.Label]</label>
-						<visible>Control.HasFocus(11000)</visible>
-					</control>
-					<control type="label">
-						<posx>2379</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11002).ListItem.Label]</label>
-						<visible>Control.HasFocus(11002)</visible>
-					</control>
-					<control type="label">
-						<posx>2379</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11005).ListItem.Label]</label>
-						<visible>Control.HasFocus(11005)</visible>
-					</control>
-					<control type="label">
-						<posx>2379</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11003).ListItem.Label]</label>
-						<visible>Control.HasFocus(11003)</visible>
 					</control>
 				</control>
 				
@@ -1425,45 +1437,6 @@
 						<textcolor>grey</textcolor>
 						<shadowcolor>shadow</shadowcolor>
 						<label>Recent</label>	
-					</control>
-					<control type="label">
-						<posx>2583</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11000).ListItem.Label]</label>
-						<visible>Control.HasFocus(11000)</visible>
-					</control>
-					<control type="label">
-						<posx>2583</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11002).ListItem.Label]</label>
-						<visible>Control.HasFocus(11002)</visible>
-					</control>
-					<control type="label">
-						<posx>2583</posx> <!-- 1170 -->
-						<posy>69</posy>
-						<align>right</align>
-						<width>650</width>
-						<height>40</height>
-						<font>font13_title</font>
-						<textcolor>labelheader</textcolor>
-						<shadowcolor>shadow</shadowcolor>
-						<scroll>true</scroll>	
-						<label>$INFO[Container(11005).ListItem.Label]</label>
-						<visible>Control.HasFocus(11005)</visible>
 					</control>
 				</control>
 				
