@@ -70,6 +70,29 @@
 				<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),thumbs/boxes/clearcases/,.png]</texture>	
 				<visible>StringCompare(Skin.String(MovieCaseType),Clear)</visible>
 			</control>	
+			<control type="image">
+				<description>Cover</description>
+				<posx>24</posx>
+				<posy>53</posy>
+				<width>202</width>
+				<height>277</height>
+				<fadetime>200</fadetime>	
+				<texture>$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+				<aspectratio>scale</aspectratio>
+				<visible>StringCompare(Skin.String(MovieCaseType),DVD/Bluray)</visible>
+			</control>						
+			<control type="image">
+				<description>Case Overlay</description>
+				<posx>-15</posx>
+				<posy>25</posy>
+				<width>259</width>
+				<height>323</height>
+				<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+				<fadetime>200</fadetime>	
+				<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),thumbs/boxes/,.png]</texture>
+				<aspectratio>stretch</aspectratio>
+				<visible>StringCompare(Skin.String(MovieCaseType),DVD/Bluray)</visible>
+			</control>
 			<control type="grouplist">
 				<posx>251</posx>
 				<posy>13</posy>
@@ -145,25 +168,27 @@
 			<animation effect="fade" start="0" end="100" time="300" delay="0">Visible</animation>
 			<animation effect="fade" start="100" end="0" time="300" delay="0">Hidden</animation>
 			<posx>195</posx>
-			<posy>17</posy>
+			<posy>27</posy>
 			<include>VisibleFadeEffect</include>
 			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000)</visible>
 			<control type="image">
+				<description>Episode Thumbnail</description>
 				<posx>0</posx>
 				<posy>13</posy>
-				<width>241</width>
-				<height>350</height>
-				<aspectratio align="right">scale</aspectratio>
-				<texture background="true">$INFO[Container(11000).ListItem.Art(bigGrandparentThumb)]</texture>
+				<width>499</width>
+				<height>305</height>
+				<fadetime>200</fadetime>	
+				<texture>$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>	
+				<aspectratio>scale</aspectratio>
 				<fadetime>IconCrossfadeTime</fadetime>
 				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 				<bordersize>20</bordersize>
-				</control>
+			</control>
 			<control type="grouplist">
-				<posx>241</posx>
+				<posx>500</posx>
 				<posy>13</posy>
 				<width>1300</width>
-				<height>350</height>
+				<height>305</height>
 				<itemgap>12</itemgap>
 				<align>center</align>
 				<control type="label">
