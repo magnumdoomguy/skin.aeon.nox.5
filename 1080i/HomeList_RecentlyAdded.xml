@@ -170,7 +170,7 @@
 			<posx>195</posx>
 			<posy>27</posy>
 			<include>VisibleFadeEffect</include>
-			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + StringCompare(Skin.String(TVCaseType),Poster)</visible>
+			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + [IsEmpty(Skin.String(TVCaseType)) | StringCompare(Skin.String(TVCaseType),Glass)]</visible>
 			<control type="image">
 				<description>Episode Thumbnail</description>
 				<posx>0</posx>
@@ -260,7 +260,7 @@
 			<posx>195</posx>
 			<posy>17</posy>
 			<include>VisibleFadeEffect</include>
-			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + IsEmpty(Skin.String(TVCaseType))</visible>
+			<visible>ControlGroup(9003).HasFocus() + !Skin.HasSetting(DisableOnDeck) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + StringCompare(Skin.String(TVCaseType),Thumbnail)</visible>
 			<control type="image">
 				<posx>0</posx>
 				<posy>10</posy>
@@ -561,7 +561,7 @@
 				
 				<!-- Poster Panel Background-->
 				<control type="group">
-					<visible>![StringCompare(Skin.String(MovieCaseType),Fanart) + Container(11000).ListItem.Type(movie)] + ![Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(TVCaseType))] + !Container(11000).ListItem.Type(album) + !Container(11000).ListItem.Type(photo)</visible>
+					<visible>![StringCompare(Skin.String(MovieCaseType),Fanart) + Container(11000).ListItem.Type(movie)] + ![Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(TVCaseType),Thumbnail)] + !Container(11000).ListItem.Type(album) + !Container(11000).ListItem.Type(photo)</visible>
 					<control type="image">
 						<posx>1719</posx> <!-- 222 -->
 						<posy>25</posy>	<!-- 25 -->
@@ -658,7 +658,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(TVCaseType),Poster)</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(TVCaseType))</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>				
 					<itemlayout height="305" width="216">
 						<control type="image">
@@ -718,6 +718,71 @@
 							<height>305</height>
 							<fadetime>200</fadetime>
 							<texture border="10">thumbs/thumbnail_focused.png</texture>							
+						</control>										
+					</focusedlayout>					
+				</control>
+				
+				<!-- TV Glass -->			
+				<control type="panel" id="11000">				
+					<posx>1704</posx>
+					<posy>115</posy>
+					<width>1510</width>
+					<height>305</height>
+					<onup>9004</onup>	
+					<ondown>300</ondown>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
+					<orientation>horizontal</orientation>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(TVCaseType),Glass)</visible>
+					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>				
+					<itemlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<posx>5</posx>
+							<posy>5</posy>
+							<width>200</width>
+							<height>295</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigGrandparentThumb)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>						
+						<control type="image">
+							<description>Glass Overlay</description>
+							<posx>-7</posx>
+							<posy>-4</posy>
+							<width>226</width>
+							<height>319</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>thumbs/boxes/poster_shadow.png</texture>													
+						</control>											
+					</itemlayout>
+					<focusedlayout height="305" width="216">
+						<control type="image">
+							<description>Cover</description>
+							<posx>5</posx>
+							<posy>5</posy>
+							<width>200</width>
+							<height>295</height>
+							<fadetime>200</fadetime>	
+							<texture>$INFO[ListItem.Art(bigGrandparentThumb)]</texture>
+							<aspectratio>scale</aspectratio>
+						</control>						
+						<control type="image">
+							<description>Glass Overlay</description>
+							<posx>-7</posx>
+							<posy>-4</posy>
+							<width>226</width>
+							<height>319</height>
+							<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+							<fadetime>200</fadetime>	
+							<texture>thumbs/boxes/poster_shadow.png</texture>													
+						</control>
+						<control type="image">
+							<width>210</width>
+							<height>305</height>
+							<fadetime>200</fadetime>
+							<texture border="10">thumbs/thumbnail_focused.png</texture>													
 						</control>										
 					</focusedlayout>					
 				</control>
@@ -936,7 +1001,7 @@
 					
 				<!-- Fanart Panel Background-->
 				<control type="group">
-					<visible>[StringCompare(Skin.String(MovieCaseType),Fanart) + Container(11000).ListItem.Type(movie)] | [IsEmpty(Skin.String(TVCaseType)) + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(MusicCaseType),Fanart)] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(PhotoCaseType))] | Control.IsVisible(11003)</visible>
+					<visible>[StringCompare(Skin.String(MovieCaseType),Fanart) + Container(11000).ListItem.Type(movie)] | [StringCompare(Skin.String(TVCaseType),Thumbnail) + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(MusicCaseType),Fanart)] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(PhotoCaseType))] | Control.IsVisible(11003)</visible>
 					<control type="image">
 						<posx>1431</posx> <!-- 222 -->
 						<posy>25</posy>	<!-- 25 -->
@@ -1144,7 +1209,7 @@
 					<onleft>11000</onleft>
 					<onright>11000</onright>			
 					<orientation>horizontal</orientation>
-					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(TVCaseType))</visible>
+					<visible>!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(TVCaseType),Thumbnail)</visible>
 					<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
 					<animation effect="zoom" end="0" condition="Skin.HasSetting(HomeInfo)">conditional</animation> 	
 					<itemlayout height="305" width ="504">
