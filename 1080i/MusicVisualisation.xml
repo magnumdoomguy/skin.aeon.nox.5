@@ -3,17 +3,18 @@
     <defaultcontrol>-</defaultcontrol>
     <allowoverlay>false</allowoverlay>
     <onload condition="System.HasAddon(script.artistslideshow)">RunScript(script.artistslideshow, daemon=True)</onload>
-    <!-- <onload condition="Skin.HasSetting(Blur.Viz.Fanart) + System.HasAddon(script.toolbox)">RunScript(script.toolbox,info=blur,id=$INFO[Player.Art(fanart)])</onload> -->
+    
     <controls>
         <control type="visualisation" id="2">
             <!-- FIX ME Music Visualization needs to have an id of 2 in this window to be able to lock or change preset -->
             <description>visualisation</description>
             <include>FullscreenDimensions</include>
-            <!--<visible>Player.HasAudio + ![StringCompare(Visualisation.Name,waveform) | StringCompare(Visualisation.Name,opengl spectrum) | StringCompare(Visualisation.Name,directx spectrum)]</visible>-->
+            <visible>Player.HasAudio + ![StringCompare(Visualisation.Name,waveform) | StringCompare(Visualisation.Name,opengl spectrum) | StringCompare(Visualisation.Name,directx spectrum)]</visible>
         </control>
+		
         <control type="group">
-            <!--<visible>!StringCompare(Skin.String(Viz.Background),1)</visible>
-            <visible>!Skin.HasSetting(HideVisualizationFanart)</visible>-->
+            <!--<visible>!StringCompare(Skin.String(Viz.Background),1)</visible>-->
+            <visible>!Skin.HasSetting(HideVisualizationFanart)</visible>
             <include>SettingsFadeEffect</include>
             <control type="multiimage" id="90300">
                 <description>Fanart image</description>
@@ -23,63 +24,18 @@
                 <animation effect="fade" start="100" end="20" time="0" condition="![StringCompare(Visualisation.Name,waveform) | StringCompare(Visualisation.Name,opengl spectrum) | StringCompare(Visualisation.Name,directx spectrum) | IsEmpty(Visualisation.Name)] + !Skin.HasSetting(HideVisualizationFanart)">Conditional</animation>
             </control>
         </control>
-        <control type="group">
-            <!--<visible>StringCompare(Skin.String(Viz.Background),1)</visible>-->
-            <include>SettingsFadeEffect</include>
-            <control type="panel" id="9032">
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>FullScreenWidth</width>
-                <height>1080</height>
-                <viewtype label="$LOCALIZE[31291]">icons</viewtype>
-                <onleft>9032</onleft>
-                <onright>9032</onright>
-                <onup>9032</onup>
-                <ondown>9032</ondown>
-                <pagecontrol>60</pagecontrol>
-                <scrolltime tween="cubic" easing="inout">600</scrolltime>
-                <orientation>vertical</orientation>
-                <preloaditems>2</preloaditems>
-                <itemlayout height="192" width="192">
-                    <control type="image">
-                        <posx>0</posx>
-                        <posy>0</posy>
-                        <width>192</width>
-                        <height>192</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">$INFO[ListItem.Icon]</texture>
-                        <fadetime>400</fadetime>
-                        <bordertexture border="1,1,2,1">thumbs/panel_border3.png</bordertexture>
-                        <bordersize>1,1,2,1</bordersize>
-                    </control>
-                </itemlayout>
-                <focusedlayout height="192" width="192">
-                    <control type="image">
-                        <posx>0</posx>
-                        <posy>0</posy>
-                        <width>192</width>
-                        <height>192</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">$INFO[ListItem.Icon]</texture>
-                        <fadetime>400</fadetime>
-                        <bordertexture border="1,1,2,1">thumbs/panel_border3.png</bordertexture>
-                        <bordersize>1,1,2,1</bordersize>
-                    </control>
-                </focusedlayout>
-                <!--<content>special://skin/extras/playlists/albumwall.xsp</content>-->
-            </control>
-        </control>
+        
         <control type="visualisation" id="2">
             <!-- FIX ME Music Visualization needs to have an id of 2 in this window to be able to lock or change preset -->
             <description>visualisation</description>
-            <!--<visible>Player.HasAudio + [StringCompare(Visualisation.Name,waveform) | StringCompare(Visualisation.Name,opengl spectrum) | StringCompare(Visualisation.Name,directx spectrum)]</visible>-->
+            <visible>Player.HasAudio + [StringCompare(Visualisation.Name,waveform) | StringCompare(Visualisation.Name,opengl spectrum) | StringCompare(Visualisation.Name,directx spectrum)]</visible>
             <include>FullscreenDimensions</include>
         </control>
         <!-- media infos -->
         <control type="fadelabel">
             <posx>0</posx>
             <posy>0</posy>
-            <heigth>1080</heigth>
+            <height>1080</height>
             <width>FullScreenWidth</width>
             <scroll>true</scroll>
             <scrollout>true</scrollout>
@@ -97,8 +53,8 @@
         <control type="fadelabel">
             <posx>0</posx>
             <posy>0</posy>
-            <heigth>1920</heigth>
-            <width>1080</width>
+            <height>1080</height>
+            <width>1920</width>
             <scroll>true</scroll>
             <scrollout>true</scrollout>
             <font>BigAssFont</font>
@@ -116,7 +72,7 @@
         <control type="group">
             <posx>0</posx>
             <posy>540</posy>
-            <!--<visible>[Player.ShowInfo | Window.IsActive(MusicOSD)] + ![Window.IsVisible(AddonSettings) | Window.IsVisible(SelectDialog) | Window.IsVisible(VisualisationPresetList)]</visible>-->
+            <visible>[Player.ShowInfo | Window.IsActive(MusicOSD)] + ![Window.IsVisible(AddonSettings) | Window.IsVisible(SelectDialog) | Window.IsVisible(VisualisationPresetList)]</visible>
             <include>VisibleFadeEffect</include>
             <include>Window_OpenClose_Animation</include>
             <control type="image">
@@ -222,7 +178,7 @@
             <!-- Change colour of the Duration call -->
             <control type="label">
                 <description>Time Label</description>
-                <posx>-25</posx>
+                <posx>1155</posx>
                 <!-- Adjust Label Positioning -59 -->
                 <posy>401</posy>
                 <!-- Adjust Label Positioning -59 -->
@@ -235,8 +191,9 @@
                 <shadowcolor>black</shadowcolor>
             </control>
             <!-- End Change colour of the Duration call -->
+			
             <control type="label">
-                <posx>0</posx>
+                <posx>1180</posx>
                 <!-- Adjust Label Positioning -44 -->
                 <posy>-4</posy>
                 <!-- Adjust Label Positioning -44 -->
@@ -248,21 +205,8 @@
                 <textcolor>white2</textcolor>
                 <shadowcolor>black</shadowcolor>
                 <label>$INFO[MusicPlayer.Artist]</label>
-                <visible>Substring(Control.GetLabel(9999),empty.png) | IsEmpty(Skin.String(pathlogosartists))</visible>
             </control>
-            <control type="image" id="9999">
-                <posx>770</posx>
-                <!-- Adjust Label Positioning -44 -->
-                <posy>-29</posy>
-                <!-- Adjust Label Positioning -44 -->
-                <description>Artist Logo</description>
-                <width>400</width>
-                <height>155</height>
-                <aspectratio>keep</aspectratio>
-                <texture background="true" fallback="empty.png">$INFO[Skin.String(pathlogosartists)]$INFO[MusicPlayer.Artist,,/logo.png]</texture>
-                <fadetime>400</fadetime>
-                <visible>!IsEmpty(Skin.String(pathlogosartists))</visible>
-            </control>
+            
             <!-- Add Handwritten CD-R -->
             <control type="group">
                 <posx>1170</posx>
@@ -340,7 +284,7 @@
             <!-- Add Playlist Count to bottom of screen -->
             <control type="label">
                 <posy>497</posy>
-                <posx>1725</posx>
+                <posx>1925</posx>
                 <width>200</width>
                 <height>40</height>
                 <font>font15</font>
@@ -352,54 +296,7 @@
             </control>
             <!-- End Add Playlist Count to bottom of screen -->
         </control>
-        <!-- RSS Feed: similar artists-->
-        <control type="group">
-            <animation effect="slide" end="1870,0" time="240">WindowClose</animation>
-            <animation effect="slide" start="1870" end="0" time="240">VisibleChange</animation>
-            <animation effect="slide" start="1870,0" end="0,0" delay="800" time="480" condition="Window.Previous(startup)">WindowOpen</animation>
-            <visible>System.HasAddon(script.artistslideshow) + [!IsEmpty(Window(Visualisation).Property(ArtistSlideshow.ArtistBiography)) | !IsEmpty(Window(Visualisation).Property(ArtistSlideshow.1.AlbumName)) | !IsEmpty(Window(Visualisation).Property(ArtistSlideshow.1.SimilarName))]</visible>
-            <visible>[Player.ShowInfo + Skin.HasSetting(Enable.VizInfo)] | Skin.HasSetting(Enable.VizPersistent)</visible>
-            <posy>993</posy>
-            <control type="group">
-                <control type="image">
-                    <posx>140</posx>
-                    <width>1780</width>
-                    <height>87</height>
-                    <texture flipy="true">submenu_bar.png</texture>
-                </control>
-                <control type="image">
-                    <posx>50</posx>
-                    <width>90</width>
-                    <height>87</height>
-                    <texture flipy="true" border="78,0,0,0">submenu_end.png</texture>
-                </control>
-            </control>
-            <control type="group">
-                <control type="label">
-                    <posx>1880</posx>
-                    <posy>44</posy>
-                    <width>60</width>
-                    <height>41</height>
-                    <label></label>
-                    <font>IconSmall</font>
-                    <textcolor>themecolor</textcolor>
-                </control>
-                <control type="fadelabel">
-                    <description>RSS feed</description>
-                    <posx>140</posx>
-                    <posy>44</posy>
-                    <height>30</height>
-                    <width>1730</width>
-                    <font>font13</font>
-                    <textcolor>grey</textcolor>
-                    <shadowcolor>shadow</shadowcolor>
-                    <label>$INFO[Window(Visualisation).Property(ArtistSlideshow.ArtistBiography),[COLOR labelheader]$LOCALIZE[21887]:[/COLOR] ]</label>
-                    <label>$INFO[MusicPlayer.Artist,[COLOR labelheader]$LOCALIZE[31105] ,:[/COLOR] ]$INFO[Window(Visualisation).Property(ArtistSlideshow.1.AlbumName)]$INFO[Window(Visualisation).Property(ArtistSlideshow.2.AlbumName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.3.AlbumName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.4.AlbumName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.5.AlbumName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.6.AlbumName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.7.AlbumName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.8.AlbumName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.9.AlbumName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.10.AlbumName),[COLOR labelheader]  •  [/COLOR]]</label>
-                    <label>$INFO[Window(Visualisation).Property(ArtistSlideshow.1.SimilarName),[COLOR labelheader]$LOCALIZE[31104]:[/COLOR] ]$INFO[Window(Visualisation).Property(ArtistSlideshow.2.SimilarName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.3.SimilarName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.4.SimilarName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.5.SimilarName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.6.SimilarName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.7.SimilarName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.8.SimilarName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.9.SimilarName),[COLOR labelheader]  •  [/COLOR]]$INFO[Window(Visualisation).Property(ArtistSlideshow.10.SimilarName),[COLOR labelheader]  •  [/COLOR]]</label>
-                    <scrollspeed>75</scrollspeed>
-                </control>
-            </control>
-        </control>
+        
         <!-- codec & viz infos -->
         <control type="group" id="0">
             <animation effect="slide" start="0,-340" end="0,0" time="200">VisibleChange</animation>
