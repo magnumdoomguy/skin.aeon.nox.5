@@ -44,18 +44,6 @@
                 <control type="grouplist">
                     <visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
                     <control type="label">
-                        <label>[COLOR labelheader]$LOCALIZE[31010]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.NextDate),,: ]$INFO[Window(Home).Property(NextAired.NextTitle)]</label>
-                        <width>650</width>
-                        <include>RighListButtonsValues</include>
-                        <visible>!IsEmpty(Window(Home).Property(NextAired.NextDate)) + !Skin.HasSetting(Disable.NextAired)</visible>
-                    </control>
-                    <control type="label">
-                        <label>[COLOR labelheader]$LOCALIZE[126]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.Status)]</label>
-                        <width>650</width>
-                        <include>RighListButtonsValues</include>
-                        <visible>[Container.Content(tvshows) | Container.Content(seasons)] + [!IsEmpty(Window(Home).Property(NextAired.Status)) + IsEmpty(Window(Home).Property(NextAired.NextDate)) + !Skin.HasSetting(Disable.NextAired)]</visible>
-                    </control>
-                    <control type="label">
                         <label>[COLOR labelheader]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
                         <width>650</width>
                         <include>RighListButtonsValues</include>
@@ -120,8 +108,8 @@
                 <control type="image">
                     <posx>0</posx>
                     <include>MediaFlagVars</include>
-                    <texture fallback="flags/studios/default-studio.png">$VAR[StudioFlag]</texture>
-                    <!--<visible>!Container.Content(tvshows) + !Container.Content(seasons)</visible>-->
+                    <texture >$VAR[StudioFlag]</texture>
+                    <visible>!Container.Content(tvshows) + !Container.Content(seasons)</visible>
                     <include>VisibleFadeEffect</include>
                 </control>
                 <control type="image">
@@ -129,31 +117,35 @@
                     <width>200</width>
                     <include>MediaFlagVars</include>
                     <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-                    <!--<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>-->
+                    <visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
                 </control>
                 <control type="image">
                     <posx>400</posx>
                     <include>MediaFlagVars</include>
                     <texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
                     <include>VisibleFadeEffect</include>
+					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
                 </control>
                 <control type="image">
                     <posx>600</posx>
                     <include>MediaFlagVars</include>
                     <texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
                     <!--<visible>!IsEmpty(ListItem.VideoCodec)</visible>-->
+					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
                     <include>VisibleFadeEffect</include>
                 </control>
                 <control type="image">
                     <posx>800</posx>
                     <include>MediaFlagVars</include>
                     <texture fallback="flags/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag]</texture>
+					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
                     <include>VisibleFadeEffect</include>
                 </control>
                 <control type="image">
                     <posx>1000</posx>
                     <include>MediaFlagVars</include>
                     <texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
+					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
                     <!--<visible>!IsEmpty(ListItem.AudioCodec)</visible>-->
                     <include>VisibleFadeEffect</include>
                 </control>
@@ -162,6 +154,7 @@
                     <!--<colordiffuse>grey</colordiffuse>-->
                     <include>MediaFlagVars</include>
                     <texture>$VAR[AudioChannelsFlag]</texture>
+					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
                     <!--<visible>!IsEmpty(ListItem.AudioChannels) + !Container.Content(seasons)</visible>-->
                     <include>VisibleFadeEffect</include>
                 </control>
@@ -491,7 +484,7 @@
                         <texture border="1">separator2.png</texture>
                     </control>
                     <control type="label">
-                        <posx>30</posx>
+                        <posx>630</posx>
                         <width>600</width>
                         <height>68</height>
                         <font>font15</font>
@@ -501,7 +494,7 @@
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                     <control type="label">
-                        <posx>630</posx>
+                        <posx>730</posx>
                         <width>100</width>
                         <height>68</height>
                         <font>font15</font>
@@ -530,7 +523,7 @@
                             <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
                         </control>
                         <control type="label">
-                            <posx>-18</posx>
+                            <posx>32</posx>
                             <posy>0</posy>
                             <width>100</width>
                             <height>68</height>
@@ -556,7 +549,7 @@
                     </control>
                     <control type="label">
                         <posy>-12</posy>
-                        <posx>30</posx>
+                        <posx>630</posx>
                         <width>600</width>
                         <height>68</height>
                         <font>font16</font>
@@ -566,7 +559,7 @@
                         <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
                     </control>
                     <control type="label">
-                        <posx>30</posx>
+                        <posx>630</posx>
                         <posy>27</posy>
                         <width>600</width>
                         <height>68</height>
@@ -577,7 +570,7 @@
                         <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
                     </control>
                     <control type="label">
-                        <posx>630</posx>
+                        <posx>730</posx>
                         <posy>8</posy>
                         <width>100</width>
                         <height>68</height>
@@ -609,7 +602,7 @@
                             <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
                         </control>
                         <control type="label">
-                            <posx>-18</posx>
+                            <posx>32</posx>
                             <posy>0</posy>
                             <width>100</width>
                             <height>68</height>
