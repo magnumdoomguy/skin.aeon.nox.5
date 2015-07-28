@@ -19,29 +19,32 @@
 					<description>Cover image</description>
 					<posx>20</posx>
 					<posy>45</posy>
-					<width>360</width>
+					<width>248</width>
 					<height>360</height>
-					<aspectratio align="right">keep</aspectratio>
-					<texture fallback="DefaultVideoCover.png">$VAR[HomeNowPlayingThumbVar]</texture>
+					<aspectratio align="right">scale</aspectratio>
+					<texture fallback="DefaultVideoCover.png">$INFO[Player.Art(bigThumb)]</texture>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
+					<visible>!VideoPlayer.Content(episodes)</visible>
+				</control>
+				<control type="image">
+					<description>Cover image</description>
+					<posx>20</posx>
+					<posy>45</posy>
+					<width>248</width>
+					<height>360</height>
+					<aspectratio align="right">scale</aspectratio>
+					<texture fallback="DefaultVideoCover.png">$INFO[Player.Art(bigGrandparentThumb)]</texture>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>VideoPlayer.Content(episodes)</visible>
 				</control>
 				<control type="grouplist">
-					<posx>390</posx>
+					<posx>278</posx>
 					<posy>86</posy>
 					<width>1510</width>
 					<height>460</height>
 					<itemgap>12</itemgap>
-					<control type="label">
-						<posx>50</posx>
-						<width>1300</width>
-						<height>40</height>
-						<font>font48_title</font>
-						<textcolor>white2</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[VideoPlayer.ChannelName]</label>
-						<visible>VideoPlayer.Content(livetv)</visible>
-					</control>
 					<control type="label">
 						<posx>50</posx>
 						<width>1300</width>
@@ -62,16 +65,6 @@
 						<visible>VideoPlayer.Content(episodes)</visible>
 					</control>
 					<control type="label">
-						<posx>90</posx>
-						<width>1300</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>white2</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[VideoPlayer.Artist]</label>
-						<visible>VideoPlayer.Content(musicvideos)</visible>
-					</control>
-					<control type="label">
 						<posx>100</posx>
 						<width>1300</width>
 						<height>40</height>
@@ -88,7 +81,7 @@
 						<font>font15</font>
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
-						<label>$INFO[VideoPlayer.Premiered]</label>
+						<label>$INFO[VideoPlayer.Date]</label>
 						<visible>VideoPlayer.Content(episodes)</visible>
 					</control>
 					<control type="label">
@@ -98,7 +91,7 @@
 						<font>font15</font>
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
-						<label>$INFO[VideoPlayer.Tagline]</label>
+						<label>$INFO[VideoPlayer.Genre]</label>
 						<visible>VideoPlayer.Content(movies)</visible>
 					</control>
 					<control type="label">
@@ -108,8 +101,8 @@
 						<font>font15</font>
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
-						<label>$INFO[VideoPlayer.Year]$INFO[VideoPlayer.Genre, | ]</label>
-						<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)</visible>
+						<label>$INFO[VideoPlayer.Year]</label>
+						<visible>VideoPlayer.Content(movies)</visible>
 					</control>
 					<control type="label">
 						<posx>90</posx>
@@ -119,17 +112,7 @@
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<label>$INFO[VideoPlayer.Studio]</label>
-						<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)</visible>
-					</control>
-					<control type="label">
-						<posx>100</posx>
-						<width>1300</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>white2</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[VideoPlayer.Plot]</label>
-						<visible>VideoPlayer.Content(livetv)</visible>
+						<visible>VideoPlayer.Content(movies)</visible>
 					</control>
 					<control type="label">
 						<description>Time Label</description>
@@ -145,8 +128,9 @@
 			</control>
 		</control>
 	</include>
+	
+	<!-- Music Info -->
 	<include name="NowPlayingMusicWidget">
-		<!-- Music Info -->
 		<control type="group">
 			<posx>0</posx>
 			<posy>622</posy>
@@ -235,24 +219,12 @@
 					<shadowcolor>black</shadowcolor>
 				</control>
 			</control>
-			<control type="image" id="3343">
-				<posx>160</posx>
-				<posy>45</posy>
-				<width>360</width>
-				<height>360</height>
-				<aligny>top</aligny>
-				<aspectratio align="left">keep</aspectratio>
-				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
-				<texture background="true" diffuse="thumbs/cdart_mask.png">$INFO[Player.FolderPath]cdart.png</texture>
-				<bordersize>30</bordersize>
-			</control>
 			<control type="image">
 				<posx>160</posx>
 				<posy>45</posy>
 				<width>360</width>
 				<height>360</height>
 				<aligny>top</aligny>
-				<visible>IsEmpty(Control.GetLabel(3343))</visible>
 				<aspectratio align="left">keep</aspectratio>
 				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
 				<texture background="true" diffuse="thumbs/cdart_mask.png">$VAR[mviscdARTVar]</texture>
@@ -268,7 +240,6 @@
 			<aligny>top</aligny>
 			<font>fontCDartistHome</font>
 			<label>$INFO[MusicPlayer.Artist]</label>
-			<visible>IsEmpty(Control.GetLabel(3343))</visible>
 			<textcolor>black</textcolor>
 			<wrapmultiline>true</wrapmultiline>
 			</control>
@@ -297,26 +268,7 @@
 				<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
 				<bordersize>28</bordersize>
 			</control>
-			<!--<control type="image">
-				<posx>1290</posx>
-				<posy>45</posy>
-				<width>609</width>
-				<height>360</height>
-				<aspectratio>stretch</aspectratio>
-				<texture border="20">thumbs/thumb_shadow.png</texture>
-			</control>
-			<control type="multiimage">
-				<description>Fanart image</description>
-				<posx>1310</posx>
-				<posy>65</posy>
-				<width>570</width>
-				<height>320</height>
-				<aspectratio align="left">keep</aspectratio>
-				<imagepath background="true" fallback="special://skin/backgrounds/fallback_music.jpg">$INFO[Window(Visualisation).Property(ArtistSlideshow)]</imagepath>
-				<texture fallback="special://skin/backgrounds/fallback_music.jpg">$INFO[Player.Art(fanart)]</texture>
-				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-				<bordersize>20</bordersize>
-			</control>-->
+			
 		</control>
 	</include>
    
