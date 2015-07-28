@@ -2,262 +2,322 @@
 <includes>
     
     <include name="NowPlayingVideoWidget">
-        <!-- Video Info -->
-        <control type="group">
-            <posx>0</posx>
-            <posy>622</posy>
-            <visible>Player.HasVideo + ![ControlGroup(9003).HasFocus() | ControlGroup(9004).HasFocus()]</visible>
-            <visible>VideoPlayer.Content(movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(musicvideos) | VideoPlayer.Content(livetv)</visible>
-            <include>VisibleFadeEffect</include>
-            <animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0" condition="Skin.HasSetting(middlemainmenu)">WindowOpen</animation>
-            <animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0" condition="Skin.HasSetting(middlemainmenu)">WindowClose</animation>
-            <animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0" condition="!Skin.HasSetting(middlemainmenu)">WindowOpen</animation>
-            <animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0" condition="!Skin.HasSetting(middlemainmenu)">WindowClose</animation>
-            <animation effect="slide" end="0,-640" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(middlemainmenu)">Conditional</animation>
-            <control type="group">
-                <control type="image">
-                    <description>Cover image</description>
-                    <posx>20</posx>
-                    <posy>45</posy>
-                    <width>360</width>
-                    <height>360</height>
-                    <aspectratio align="right">keep</aspectratio>
-                    <texture fallback="DefaultVideoCover.png">$VAR[HomeNowPlayingThumbVar]</texture>
-                    <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-                    <bordersize>20</bordersize>
-                </control>
-                <control type="grouplist">
-                    <posx>390</posx>
-                    <posy>86</posy>
-                    <width>1510</width>
-                    <height>460</height>
-                    <itemgap>12</itemgap>
-                    <control type="label">
-                        <posx>50</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font48_title</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.ChannelName]</label>
-                        <visible>VideoPlayer.Content(livetv)</visible>
-                    </control>
-                    <control type="label">
-                        <posx>50</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font48_title</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[Player.Title]</label>
-                    </control>
-                    <control type="label">
-                        <posx>90</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font15</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.TvShowTitle]</label>
-                        <visible>VideoPlayer.Content(episodes)</visible>
-                    </control>
-                    <control type="label">
-                        <posx>90</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font15</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.Artist]</label>
-                        <visible>VideoPlayer.Content(musicvideos)</visible>
-                    </control>
-                    <control type="label">
-                        <posx>100</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font15</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,], $INFO[VideoPlayer.Episode,$LOCALIZE[20452] , , ]</label>
-                        <visible>VideoPlayer.Content(episodes)</visible>
-                    </control>
-                    <control type="label">
-                        <posx>90</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font15</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.Premiered]</label>
-                        <visible>VideoPlayer.Content(episodes)</visible>
-                    </control>
-                    <control type="label">
-                        <posx>90</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font15</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.Tagline]</label>
-                        <visible>VideoPlayer.Content(movies)</visible>
-                    </control>
-                    <control type="label">
-                        <posx>100</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font15</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.Year]$INFO[VideoPlayer.Genre, | ]</label>
-                        <visible>VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)</visible>
-                    </control>
-                    <control type="label">
-                        <posx>90</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font15</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.Studio]</label>
-                        <visible>VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)</visible>
-                    </control>
-                    <control type="label">
-                        <posx>100</posx>
-                        <width>1300</width>
-                        <height>40</height>
-                        <font>font15</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <label>$INFO[VideoPlayer.Plot]</label>
-                        <visible>VideoPlayer.Content(livetv)</visible>
-                    </control>
-                    <control type="label">
-                        <description>Time Label</description>
-                        <posx>50</posx>
-                        <height>50</height>
-                        <width>1300</width>
-                        <label>$INFO[Player.Time]$INFO[Player.Duration,[COLOR=labelheader] / [/COLOR]]</label>
-                        <font>font48</font>
-                        <textcolor>white2</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                    </control>
-                </control>
-            </control>
-        </control>
-    </include>
-    <include name="NowPlayingMusicWidget">
-        <!-- Music Info -->
-        <control type="group">
-            <posx>0</posx>
-            <posy>622</posy>
-            <visible>Player.HasAudio + ![ControlGroup(9003).HasFocus() | ControlGroup(9004).HasFocus()]</visible>
-            <include>VisibleFadeEffect</include>
-            <animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0" condition="Skin.HasSetting(middlemainmenu)">WindowOpen</animation>
-            <animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0" condition="Skin.HasSetting(middlemainmenu)">WindowClose</animation>
-            <animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0" condition="!Skin.HasSetting(middlemainmenu)">WindowOpen</animation>
-            <animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0" condition="!Skin.HasSetting(middlemainmenu)">WindowClose</animation>
-            <animation effect="slide" end="0,-640" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(middlemainmenu)">Conditional</animation>
-            <control type="image">
-                <posx>0</posx>
-                <posy>-172</posy>
-                <width>1920</width>
-                <height>630</height>
-                <texture border="1">nowplaying_shadow.png</texture>
-                <visible>Skin.HasSetting(middlemainmenu)</visible>
-            </control>
-            <control type="image">
-                <posx>0</posx>
-                <posy>-70</posy>
-                <width>1920</width>
-                <height>630</height>
-                <texture flipy="true" border="1">nowplaying_shadow.png</texture>
-                <visible>!Skin.HasSetting(middlemainmenu)</visible>
-            </control>
-            <control type="grouplist">
-                <posx>410</posx>
-                <posy>86</posy>
-                <width>1510</width>
-                <height>460</height>
-                <itemgap>12</itemgap>
-                <usecontrolcoords>true</usecontrolcoords>
-                <control type="label">
-                    <posx>50</posx>
-                    <width>1300</width>
-                    <height>40</height>
-                    <font>font48_title</font>
-                    <textcolor>white2</textcolor>
-                    <shadowcolor>black</shadowcolor>
-                    <label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title]</label>
-                </control>
-                <control type="label">
-                    <height>2</height>
-                    <label>-</label>
-                </control>
-                <control type="label">
-                    <posx>90</posx>
-                    <width>1300</width>
-                    <height>40</height>
-                    <font>font15</font>
-                    <textcolor>white2</textcolor>
-                    <shadowcolor>black</shadowcolor>
-                    <label>$INFO[MusicPlayer.Artist]</label>
-                </control>
-                <control type="label">
-                    <posx>100</posx>
-                    <width>1300</width>
-                    <height>40</height>
-                    <font>font15</font>
-                    <textcolor>white2</textcolor>
-                    <shadowcolor>black</shadowcolor>
-                    <label>$INFO[MusicPlayer.Album]$INFO[musicplayer.discnumber, - $LOCALIZE[427]:]</label>
-                </control>
-                <control type="label">
-                    <posx>90</posx>
-                    <width>1300</width>
-                    <height>40</height>
-                    <font>font15</font>
-                    <textcolor>white2</textcolor>
-                    <shadowcolor>black</shadowcolor>
-                    <label>$INFO[MusicPlayer.offset(1).TrackNumber,[COLOR=labelheader]$LOCALIZE[19031]:[/COLOR] ,. ]$INFO[MusicPlayer.offset(1).Artist,, - ]$INFO[MusicPlayer.offset(1).Title]</label>
-                </control>
-                <control type="label">
-                    <height>2</height>
-                    <label>-</label>
-                </control>
-                <control type="label">
-                    <description>Time Label</description>
-                    <posx>50</posx>
-                    <height>50</height>
-                    <width>1300</width>
-                    <label>$INFO[Player.Time]$INFO[Player.Duration,[COLOR=labelheader] / [/COLOR]]</label>
-                    <font>font48</font>
-                    <textcolor>white2</textcolor>
-                    <shadowcolor>black</shadowcolor>
-                </control>
-            </control>
-            <control type="image">
-                <posx>160</posx>
-                <posy>45</posy>
-                <width>360</width>
-                <height>360</height>
-                <aligny>top</aligny>
-                <aspectratio align="left">keep</aspectratio>
-                <fadetime>300</fadetime>
-                <animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
-                <texture background="true" fallback="special://skin/extras/cdart/default.png" diffuse="thumbs/cdart_mask.png">$INFO[Player.FolderPath]cdart.png</texture>
-                <bordersize>30</bordersize>
-            </control>
-            <control type="image">
-                <description>Cover image</description>
-                <posx>-10</posx>
-                <posy>45</posy>
-                <width>390</width>
-                <height>360</height>
-                <aspectratio align="right">keep</aspectratio>
-                <texture diffuse="thumbs/cdcover_mask2.png" fallback="DefaultAlbumCover.png">$INFO[Player.Art(thumb)]</texture>
-                <bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
-                <bordersize>28</bordersize>
-            </control>
-        </control>
-    </include>
+		<!-- Video Info -->
+		<control type="group">
+			<posx>0</posx>
+			<posy>622</posy>
+			<visible>Player.HasVideo + ![ControlGroup(9003).HasFocus() | ControlGroup(9004).HasFocus()]</visible>
+			<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(musicvideos) | VideoPlayer.Content(livetv)</visible>
+			<include>VisibleFadeEffect</include>
+			<animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0" condition="Skin.HasSetting(middlemainmenu)">WindowOpen</animation>
+			<animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0" condition="Skin.HasSetting(middlemainmenu)">WindowClose</animation>
+			<animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0" condition="!Skin.HasSetting(middlemainmenu)">WindowOpen</animation>
+			<animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0" condition="!Skin.HasSetting(middlemainmenu)">WindowClose</animation>
+			<animation effect="slide" end="0,-640" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(middlemainmenu)">Conditional</animation>
+			<control type="group">
+				<control type="image">
+					<description>Cover image</description>
+					<posx>20</posx>
+					<posy>45</posy>
+					<width>360</width>
+					<height>360</height>
+					<aspectratio align="right">keep</aspectratio>
+					<texture fallback="DefaultVideoCover.png">$VAR[HomeNowPlayingThumbVar]</texture>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				<control type="grouplist">
+					<posx>390</posx>
+					<posy>86</posy>
+					<width>1510</width>
+					<height>460</height>
+					<itemgap>12</itemgap>
+					<control type="label">
+						<posx>50</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font48_title</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.ChannelName]</label>
+						<visible>VideoPlayer.Content(livetv)</visible>
+					</control>
+					<control type="label">
+						<posx>50</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font48_title</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Player.Title]</label>
+					</control>
+					<control type="label">
+						<posx>90</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font15</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.TvShowTitle]</label>
+						<visible>VideoPlayer.Content(episodes)</visible>
+					</control>
+					<control type="label">
+						<posx>90</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font15</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.Artist]</label>
+						<visible>VideoPlayer.Content(musicvideos)</visible>
+					</control>
+					<control type="label">
+						<posx>100</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font15</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,], $INFO[VideoPlayer.Episode,$LOCALIZE[20452] , , ]</label>
+						<visible>VideoPlayer.Content(episodes)</visible>
+					</control>
+					<control type="label">
+						<posx>90</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font15</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.Premiered]</label>
+						<visible>VideoPlayer.Content(episodes)</visible>
+					</control>
+					<control type="label">
+						<posx>90</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font15</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.Tagline]</label>
+						<visible>VideoPlayer.Content(movies)</visible>
+					</control>
+					<control type="label">
+						<posx>100</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font15</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.Year]$INFO[VideoPlayer.Genre, | ]</label>
+						<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)</visible>
+					</control>
+					<control type="label">
+						<posx>90</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font15</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.Studio]</label>
+						<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(musicvideos)</visible>
+					</control>
+					<control type="label">
+						<posx>100</posx>
+						<width>1300</width>
+						<height>40</height>
+						<font>font15</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[VideoPlayer.Plot]</label>
+						<visible>VideoPlayer.Content(livetv)</visible>
+					</control>
+					<control type="label">
+						<description>Time Label</description>
+						<posx>50</posx>
+						<height>50</height>
+						<width>1300</width>
+						<label>$INFO[Player.Time]$INFO[Player.Duration,[COLOR=labelheader] / [/COLOR]]</label>
+						<font>font48</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+					</control>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="NowPlayingMusicWidget">
+		<!-- Music Info -->
+		<control type="group">
+			<posx>0</posx>
+			<posy>622</posy>
+			<visible>Player.HasAudio + ![ControlGroup(9003).HasFocus() | ControlGroup(9004).HasFocus()]</visible>
+			<include>VisibleFadeEffect</include>
+			<animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0" condition="Skin.HasSetting(middlemainmenu)">WindowOpen</animation>
+			<animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0" condition="Skin.HasSetting(middlemainmenu)">WindowClose</animation>
+			<animation effect="slide" tween="cubic" time="720" start="0,-1080" end="0,0" condition="!Skin.HasSetting(middlemainmenu)">WindowOpen</animation>
+			<animation effect="slide" tween="cubic" time="720" end="0,-1080" start="0,0" condition="!Skin.HasSetting(middlemainmenu)">WindowClose</animation>
+			<animation effect="slide" end="0,-640" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(middlemainmenu)">Conditional</animation>
+			<control type="image">
+				<posx>0</posx>
+				<posy>-172</posy>
+				<width>FullScreenWidth</width>
+				<height>630</height>
+				<texture border="1">nowplaying_shadow.png</texture>
+				<visible>Skin.HasSetting(middlemainmenu)</visible>
+			</control>
+			<control type="image">
+				<posx>0</posx>
+				<posy>-70</posy>
+				<width>FullScreenWidth</width>
+				<height>630</height>
+				<texture flipy="true" border="1">nowplaying_shadow.png</texture>
+				<visible>!Skin.HasSetting(middlemainmenu)</visible>
+			</control>
+			<control type="grouplist">
+				<posx>410</posx>
+				<posy>86</posy>
+				<width>1510</width>
+				<height>460</height>
+				<itemgap>12</itemgap>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="label">
+					<posx>50</posx>
+					<width>1300</width>
+					<height>40</height>
+					<font>font48_title</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="label">
+					<posx>90</posx>
+					<width>1300</width>
+					<height>40</height>
+					<font>font15</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[MusicPlayer.Artist]</label>
+				</control>
+				<control type="label">
+					<posx>100</posx>
+					<width>1300</width>
+					<height>40</height>
+					<font>font15</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[MusicPlayer.Album]$INFO[musicplayer.discnumber, - $LOCALIZE[427]:]</label>
+				</control>
+				<control type="label">
+					<posx>90</posx>
+					<width>1300</width>
+					<height>40</height>
+					<font>font15</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[MusicPlayer.offset(1).TrackNumber,[COLOR=labelheader]$LOCALIZE[19031]:[/COLOR] ,. ]$INFO[MusicPlayer.offset(1).Artist,, - ]$INFO[MusicPlayer.offset(1).Title]</label>
+				</control>
+				<control type="label">
+					<height>2</height>
+					<label>-</label>
+				</control>
+				<control type="label">
+					<description>Time Label</description>
+					<posx>50</posx>
+					<height>50</height>
+					<width>1300</width>
+					<label>$INFO[Player.Time]$INFO[Player.Duration,[COLOR=labelheader] / [/COLOR]]</label>
+					<font>font48</font>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+				</control>
+			</control>
+			<control type="image" id="3343">
+				<posx>160</posx>
+				<posy>45</posy>
+				<width>360</width>
+				<height>360</height>
+				<aligny>top</aligny>
+				<aspectratio align="left">keep</aspectratio>
+				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+				<texture background="true" diffuse="thumbs/cdart_mask.png">$INFO[Player.FolderPath]cdart.png</texture>
+				<bordersize>30</bordersize>
+			</control>
+			<control type="image">
+				<posx>160</posx>
+				<posy>45</posy>
+				<width>360</width>
+				<height>360</height>
+				<aligny>top</aligny>
+				<visible>IsEmpty(Control.GetLabel(3343))</visible>
+				<aspectratio align="left">keep</aspectratio>
+				<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+				<texture background="true" diffuse="thumbs/cdart_mask.png">$VAR[mviscdARTVar]</texture>
+				<bordersize>30</bordersize>
+			</control>
+			<control type="label">
+			<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+			<posx>231</posx>
+			<posy>119</posy>
+			<width>218</width>
+			<height>212</height>
+			<align>center</align>
+			<aligny>top</aligny>
+			<font>fontCDartistHome</font>
+			<label>$INFO[MusicPlayer.Artist]</label>
+			<visible>IsEmpty(Control.GetLabel(3343))</visible>
+			<textcolor>black</textcolor>
+			<wrapmultiline>true</wrapmultiline>
+			</control>
+			<control type="label">
+			<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+			<posx>236</posx>
+			<posy>75</posy>
+			<width>208</width>
+			<height>300</height>
+			<align>center</align>
+			<aligny>center</aligny>
+			<font>fontCDartistHome</font>
+			<label>[CR][CR][CR][CR][CR][CR]$INFO[MusicPlayer.Album]</label>
+			<visible>IsEmpty(Control.GetLabel(3343))</visible>
+			<textcolor>black</textcolor>
+			<wrapmultiline>true</wrapmultiline>
+			</control>
+			<control type="image">
+				<description>Cover image</description>
+				<posx>20</posx>
+				<posy>45</posy>
+				<width>360</width>
+				<height>360</height>
+				<aspectratio align="right">strecht</aspectratio>
+				<texture diffuse="thumbs/cdcover_mask2.png" fallback="DefaultAlbumCover.png">$INFO[Player.Art(thumb)]</texture>
+				<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+				<bordersize>28</bordersize>
+			</control>
+			<!--<control type="image">
+				<posx>1290</posx>
+				<posy>45</posy>
+				<width>609</width>
+				<height>360</height>
+				<aspectratio>stretch</aspectratio>
+				<texture border="20">thumbs/thumb_shadow.png</texture>
+			</control>
+			<control type="multiimage">
+				<description>Fanart image</description>
+				<posx>1310</posx>
+				<posy>65</posy>
+				<width>570</width>
+				<height>320</height>
+				<aspectratio align="left">keep</aspectratio>
+				<imagepath background="true" fallback="special://skin/backgrounds/fallback_music.jpg">$INFO[Window(Visualisation).Property(ArtistSlideshow)]</imagepath>
+				<texture fallback="special://skin/backgrounds/fallback_music.jpg">$INFO[Player.Art(fanart)]</texture>
+				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+				<bordersize>20</bordersize>
+			</control>-->
+		</control>
+	</include>
+   
 </includes>
