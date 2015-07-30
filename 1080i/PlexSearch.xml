@@ -1,11 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="51">
-	<defaultcontrol always="true">9000</defaultcontrol>
+	<defaultcontrol always="true">65</defaultcontrol>
 	<onload condition="!IsEmpty(Window(home).Property(Window.HasSettings))">ClearProperty(Window.HasSettings,Home)</onload>
 	<onunload>SetProperty(Window.HasSettings,True,home)</onunload>
 	<allowoverlay>no</allowoverlay>
+	
 	<controls>
-		<include>CommonBackground</include>
+		<control type="group">
+            <animation effect="fade" time="600">WindowOpen</animation>
+            <animation effect="fade" time="600">WindowClose</animation>
+			<control type="multiimage">
+				<description>Normal Default Background Image</description>
+				<include>FullscreenDimensions</include>
+				<imagepath fallback="special://skin/backgrounds/search.jpg" background="true">$VAR[GlobalBackgroundVar]</imagepath>
+			</control>
+			<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<include>ViewAnimation</include>
+			<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.isVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55)  | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(57)  | Control.IsVisible(58)]">Conditional</animation>
+            <control type="image">
+                <posx>0</posx>
+                <posy>-40</posy>
+                <width>696</width>
+                <height>914</height>
+                <texture border="1">vignette.png</texture>
+                <visible>![Control.IsVisible(59) | Control.IsVisible(56) | Control.IsVisible(57)]</visible>
+                <animation effect="slide" tween="cubic" time="720" start="-696" end="0,0">VisibleChange</animation>
+            </control>
+            <control type="image">
+                <posx>696r</posx>
+                <posy>-40</posy>
+                <width>696</width>
+                <height>914</height>
+                <texture flipx="true" border="1">vignette.png</texture>
+                <animation effect="slide" tween="cubic" time="720" start="696" end="0,0">VisibleChange</animation>
+                <visible>![Control.IsVisible(59) | Control.IsVisible(56) | Control.IsVisible(57)]</visible>
+            </control>
+            <control type="image">
+                <posx>0</posx>
+                <posy>400</posy>
+                <width>1920</width>
+                <height>680</height>
+                <texture>floor.png</texture>
+            </control>
+        </control>
+        <control type="image">
+            <posx>1000</posx>
+            <width>920</width>
+            <height>1080</height>
+            <texture flipx="true">side_fade.png</texture>
+            <visible>Control.IsVisible(700)</visible>
+        </control>
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <texture>black-back.png</texture>
+            <visible>Control.IsVisible(503)  | Control.IsVisible(504)  | Control.IsVisible(505) | Control.IsVisible(508) | Control.IsVisible(609) | Control.IsVisible(506)</visible>
+        </control>
+        <control type="image">
+            <include>FullscreenDimensions</include>
+			<colordiffuse>66FFFFFF</colordiffuse>
+            <texture>black-back.png</texture>
+            <visible>Control.IsVisible(700)</visible>
+        </control>
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <texture border="1">logo_back.png</texture>
+            <visible>Control.IsVisible(59) | Control.IsVisible(591) | Control.IsVisible(592) | Control.IsVisible(700)</visible>
+            <include>ViewAnimation</include>
+        </control>
+		</control>
+		
 		<include>Topbar</include>
 		<control type="group">
 			<animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
@@ -48,148 +112,461 @@
 			<animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0">WindowOpen</animation>
 			<animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0">WindowClose</animation>
 			<include>SystemLeftPanel</include>
-			<control type="panel" id="9000">
-				<posx>82</posx>
-				<posy>32</posy>
-				<width>356</width>
-				<height>720</height>
-				<onleft>60</onleft>
-				<onright>101</onright>
-				<onup>9000</onup>
-				<ondown>9000</ondown>
-				<pagecontrol>60</pagecontrol>
-				<scrolltime tween="quadratic">300</scrolltime>
-				<itemlayout height="90" width="356">
-					<control type="image">
-						<posy>30</posy>
-						<width>356</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="label">
-						<width>356</width>
-						<height>90</height>
-						<font>font15</font>
-						<textoffsetx>20</textoffsetx>
-						<textcolor>grey2</textcolor>
-						<selectedcolor>selected</selectedcolor>
-						<align>right</align>
-						<aligny>center</aligny>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-				</itemlayout>
-				<focusedlayout height="90" width="356">
-					<control type="image">
-						<posy>30</posy>
-						<width>356</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="image">
-						<width>356</width>
-						<height>90</height>
-						<texture border="4">listselect_fo.png</texture>
-						<visible>Control.HasFocus(9000)</visible>
-						<include>VisibleFadeEffect</include>
-					</control>
-					<control type="label">
-						<width>356</width>
-						<height>90</height>
-						<font>font15</font>
-						<textoffsetx>20</textoffsetx>
-						<textcolor>white</textcolor>
-						<selectedcolor>selected</selectedcolor>
-						<align>right</align>
-						<aligny>center</aligny>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(9000)">Conditional</animation>
-					</control>
-				</focusedlayout>
-				<content>
-					<item id="1">
-						<visible>!IsEmpty(Container(111).ListItem.Label)</visible>
-						<label>$LOCALIZE[342]$INFO[Control.GetLabel(110), (,)]</label>
-						<onclick>noop</onclick>
-						<onright>111</onright>
-						<icon>-</icon>
-					</item>
-					<item id="11">
-						<visible>!IsEmpty(Container(211).ListItem.Label)</visible>
-						<label>$LOCALIZE[344]$INFO[Control.GetLabel(210), (, $LOCALIZE[342])]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="2">
-						<visible>!IsEmpty(Container(121).ListItem.Label)</visible>
-						<label>$LOCALIZE[20343]$INFO[Control.GetLabel(120), (,)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="3">
-						<visible>!IsEmpty(Container(131).ListItem.Label)</visible>
-						<label>$LOCALIZE[33054]$INFO[Control.GetLabel(130), (,)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="4">
-						<visible>!IsEmpty(Container(141).ListItem.Label)</visible>
-						<label>$LOCALIZE[20360]$INFO[Control.GetLabel(140), (,)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="5">
-						<visible>!IsEmpty(Container(151).ListItem.Label)</visible>
-						<label>$LOCALIZE[20389]$INFO[Control.GetLabel(150), (,)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="6">
-						<visible>!IsEmpty(Container(161).ListItem.Label)</visible>
-						<label>$LOCALIZE[133]$INFO[Control.GetLabel(160), (,)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="7">
-						<visible>!IsEmpty(Container(171).ListItem.Label)</visible>
-						<label>$LOCALIZE[132]$INFO[Control.GetLabel(170), (,)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="8">
-						<visible>!IsEmpty(Container(181).ListItem.Label)</visible>
-						<label>$LOCALIZE[134]$INFO[Control.GetLabel(180), (,)]</label>
-						<onclick>noop</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="9">
-						<visible>Control.IsVisible(198)</visible>
-						<label>$INFO[Control.GetLabel(198)]</label>
-						<onclick>SendClick(198)</onclick>
-						<icon>-</icon>
-					</item>
-					<item id="12">
-						<visible>!IsEmpty(Container(121).ListItem.Label)</visible>
-						<label>$LOCALIZE[342]$INFO[Control.GetLabel(200), (,)]</label>
-						<onclick>noop</onclick>
-						<onright>121</onright>
-						<icon>-</icon>
-					</item>
-				</content>
+			<!-- text field -->
+			<control type="edit" id="310">
+				<description>Search</description>
+				<posx>70</posx>
+				<posy>26</posy>
+				<font>font15</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>themecolor</focusedcolor>
+				<width>340</width>
+				<height>90</height>
+				<onleft>-</onleft>
+				<ondown>9001</ondown>
+				<onright>350</onright>
+				<emptylabel>-</emptylabel>
+				<emptycolor>FF555555</emptycolor>
+				<align>left</align>
+				<aligny>center</aligny>
+				<textoffsetx>20</textoffsetx>
+				<label/>
 			</control>
-			<control type="scrollbar" id="60">
-				<posx>65</posx>
-				<posy>32</posy>
-				<width>14</width>
-				<height>720</height>
-				<onleft>101</onleft>
-				<onright>9000</onright>
-				<ondown>60</ondown>
-				<onup>60</onup>
-				<showonepage>false</showonepage>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+			<!-- keys -->
+			<control type="group" id="4000">
+				<animation effect="fade" start="100" end="0" time="200" condition="ControlGroup(7001).HasFocus | ControlGroup(7002).HasFocus | ControlGroup(7004).HasFocus">Conditional</animation>
+				<posx>90</posx>
+				<posy>90</posy>
+				<control type="grouplist" id="350">
+					<visible>true</visible>
+					<posx>5</posx>
+					<!--posy>194</posy-->
+					<posy>50</posy>
+					<width>340</width>
+					<height>420</height>
+					<itemgap>0</itemgap>
+					<orientation>vertical</orientation>
+					<usecontrolcoords>false</usecontrolcoords>
+					<onup>-</onup>
+					<ondown>-</ondown>
+					<onleft>9000</onleft>
+					<onright>9000</onright>
+					<renderfocusedlast>false</renderfocusedlast>
+					<control type="group" id="351">
+						<width>339</width>
+						<height>56</height>
+						<control type="button" id="65">
+							<description>'A' button</description>
+							<onleft>5100</onleft>
+							<onright>66</onright>
+							<onup>310</onup>
+							<ondown>71</ondown>
+							<posx>0</posx>
+							<label>[B]A[/B]</label>
+							<include>SearchKeys</include>
+						</control>
+						<control type="button" id="66">
+							<include>SearchKeys</include>
+							<description>'B' button</description>
+							<onleft>65</onleft>
+							<onright>67</onright>
+							<onup>310</onup>
+							<ondown>72</ondown>
+							<posx>54</posx>
+							<label>[B]B[/B]</label>
+						</control>
+						<control type="button" id="67">
+							<include>SearchKeys</include>
+							<description>'C' button</description>
+							<onleft>66</onleft>
+							<onright>68</onright>
+							<onup>310</onup>
+							<ondown>73</ondown>
+							<posx>108</posx>
+							<label>[B]C[/B]</label>
+						</control>
+						<control type="button" id="68">
+							<include>SearchKeys</include>
+							<description>'D' button</description>
+							<onleft>67</onleft>
+							<onright>69</onright>
+							<onup>310</onup>
+							<ondown>74</ondown>
+							<posx>162</posx>
+							<label>[B]D[/B]</label>
+						</control>
+						<control type="button" id="69">
+							<include>SearchKeys</include>
+							<description>'E' button</description>
+							<onleft>68</onleft>
+							<onright>70</onright>
+							<onup>310</onup>
+							<ondown>75</ondown>
+							<posx>216</posx>
+							<label>[B]E[/B]</label>
+						</control>
+						<control type="button" id="70">
+							<include>SearchKeys</include>
+							<description>'F' button</description>
+							<onleft>69</onleft>
+							<onright>5100</onright>
+							<onup>310</onup>
+							<ondown>76</ondown>
+							<posx>270</posx>
+							<label>[B]F[/B]</label>
+						</control>
+					</control>
+					<control type="group" id="352">
+						<width>348</width>
+						<height>54</height>
+						<control type="button" id="71">
+							<include>SearchKeys</include>
+							<description>'G' button</description>
+							<onleft>5100</onleft>
+							<onright>72</onright>
+							<onup>65</onup>
+							<ondown>77</ondown>
+							<posx>0</posx>
+							<label>[B]G[/B]</label>
+						</control>
+						<control type="button" id="72">
+							<include>SearchKeys</include>
+							<description>'H' button</description>
+							<onleft>71</onleft>
+							<onright>73</onright>
+							<onup>66</onup>
+							<ondown>78</ondown>
+							<posx>54</posx>
+							<label>[B]H[/B]</label>
+						</control>
+						<control type="button" id="73">
+							<include>SearchKeys</include>
+							<description>'I' button</description>
+							<onleft>72</onleft>
+							<onright>74</onright>
+							<onup>67</onup>
+							<ondown>79</ondown>
+							<posx>108</posx>
+							<label>[B]I[/B]</label>
+						</control>
+						<control type="button" id="74">
+							<include>SearchKeys</include>
+							<description>'J' button</description>
+							<onleft>73</onleft>
+							<onright>75</onright>
+							<onup>68</onup>
+							<ondown>80</ondown>
+							<posx>162</posx>
+							<label>[B]J[/B]</label>
+						</control>
+						<control type="button" id="75">
+							<include>SearchKeys</include>
+							<description>'K' button</description>
+							<onleft>74</onleft>
+							<onright>76</onright>
+							<onup>69</onup>
+							<ondown>81</ondown>
+							<posx>216</posx>
+							<label>[B]K[/B]</label>
+						</control>
+						<control type="button" id="76">
+							<include>SearchKeys</include>
+							<description>'L' button</description>
+							<onleft>75</onleft>
+							<onright>5100</onright>
+							<onup>70</onup>
+							<ondown>82</ondown>
+							<posx>270</posx>
+							<label>[B]L[/B]</label>
+						</control>
+					</control>
+					<control type="group" id="353">
+						<width>348</width>
+						<height>54</height>
+						<control type="button" id="77">
+							<include>SearchKeys</include>
+							<description>'M' button</description>
+							<onleft>5100</onleft>
+							<onright>78</onright>
+							<onup>71</onup>
+							<ondown>83</ondown>
+							<posx>0</posx>
+							<label>[B]M[/B]</label>
+						</control>
+						<control type="button" id="78">
+							<include>SearchKeys</include>
+							<description>'N' button</description>
+							<onleft>77</onleft>
+							<onright>79</onright>
+							<onup>72</onup>
+							<ondown>84</ondown>
+							<posx>54</posx>
+							<label>[B]N[/B]</label>
+						</control>
+						<control type="button" id="79">
+							<include>SearchKeys</include>
+							<description>'O' button</description>
+							<onleft>78</onleft>
+							<onright>80</onright>
+							<onup>73</onup>
+							<ondown>85</ondown>
+							<posx>108</posx>
+							<label>[B]O[/B]</label>
+						</control>
+						<control type="button" id="80">
+							<include>SearchKeys</include>
+							<description>'P' button</description>
+							<onleft>79</onleft>
+							<onright>81</onright>
+							<onup>74</onup>
+							<ondown>86</ondown>
+							<posx>162</posx>
+							<label>[B]P[/B]</label>
+						</control>
+						<control type="button" id="81">
+							<include>SearchKeys</include>
+							<description>'Q' button</description>
+							<onleft>80</onleft>
+							<onright>82</onright>
+							<onup>75</onup>
+							<ondown>87</ondown>
+							<posx>216</posx>
+							<label>[B]Q[/B]</label>
+						</control>
+						<control type="button" id="82">
+							<include>SearchKeys</include>
+							<description>'R' button</description>
+							<onleft>81</onleft>
+							<onright>5100</onright>
+							<onup>76</onup>
+							<ondown>88</ondown>
+							<posx>270</posx>
+							<label>[B]R[/B]</label>
+						</control>
+					</control>
+					<control type="group" id="354">
+						<width>348</width>
+						<height>54</height>
+						<control type="button" id="83">
+							<include>SearchKeys</include>
+							<description>'S' button</description>
+							<onleft>5100</onleft>
+							<onright>84</onright>
+							<onup>77</onup>
+							<ondown>89</ondown>
+							<posx>0</posx>
+							<label>[B]S[/B]</label>
+						</control>
+						<control type="button" id="84">
+							<include>SearchKeys</include>
+							<description>'T' button</description>
+							<onleft>83</onleft>
+							<onright>85</onright>
+							<onup>78</onup>
+							<ondown>90</ondown>
+							<posx>54</posx>
+							<label>[B]T[/B]</label>
+						</control>
+						<control type="button" id="85">
+							<include>SearchKeys</include>
+							<description>'U' button</description>
+							<onleft>84</onleft>
+							<onright>86</onright>
+							<onup>79</onup>
+							<ondown>91</ondown>
+							<posx>108</posx>
+							<label>[B]U[/B]</label>
+						</control>
+						<control type="button" id="86">
+							<include>SearchKeys</include>
+							<description>'V' button</description>
+							<onleft>85</onleft>
+							<onright>87</onright>
+							<onup>80</onup>
+							<ondown>92</ondown>
+							<posx>162</posx>
+							<label>[B]V[/B]</label>
+						</control>
+						<control type="button" id="87">
+							<include>SearchKeys</include>
+							<description>'W' button</description>
+							<onleft>86</onleft>
+							<onright>88</onright>
+							<onup>81</onup>
+							<ondown>93</ondown>
+							<posx>216</posx>
+							<label>[B]W[/B]</label>
+						</control>
+						<control type="button" id="88">
+							<include>SearchKeys</include>
+							<description>'X' button</description>
+							<onleft>87</onleft>
+							<onright>5100</onright>
+							<onup>82</onup>
+							<ondown>94</ondown>
+							<posx>270</posx>
+							<label>[B]X[/B]</label>
+						</control>
+					</control>
+					<control type="group" id="355">
+						<width>348</width>
+						<height>54</height>
+						<control type="button" id="89">
+							<include>SearchKeys</include>
+							<description>'Y' button</description>
+							<onleft>5100</onleft>
+							<onright>90</onright>
+							<onup>83</onup>
+							<ondown>95</ondown>
+							<posx>0</posx>
+							<label>[B]Y[/B]</label>
+						</control>
+						<control type="button" id="90">
+							<include>SearchKeys</include>
+							<description>'Z' button</description>
+							<onleft>89</onleft>
+							<onright>91</onright>
+							<onup>84</onup>
+							<ondown>96</ondown>
+							<posx>54</posx>
+							<label>[B]Z[/B]</label>
+						</control>
+						<control type="button" id="91">
+							<include>SearchKeys</include>
+							<description>'0' button</description>
+							<onleft>90</onleft>
+							<onright>92</onright>
+							<onup>85</onup>
+							<ondown>97</ondown>
+							<posx>108</posx>
+							<label>[B]$LOCALIZE[12310][/B]</label>
+						</control>
+						<control type="button" id="92">
+							<include>SearchKeys</include>
+							<description>'1' button</description>
+							<onleft>91</onleft>
+							<onright>93</onright>
+							<onup>86</onup>
+							<ondown>98</ondown>
+							<posx>162</posx>
+							<label>[B]$LOCALIZE[12311][/B]</label>
+						</control>
+						<control type="button" id="93">
+							<include>SearchKeys</include>
+							<description>'2' button</description>
+							<onleft>92</onleft>
+							<onright>94</onright>
+							<onup>87</onup>
+							<ondown>99</ondown>
+							<posx>216</posx>
+							<label>[B]$LOCALIZE[12312][/B]</label>
+						</control>
+						<control type="button" id="94">
+							<include>SearchKeys</include>
+							<description>'3' button</description>
+							<onleft>93</onleft>
+							<onright>5100</onright>
+							<onup>88</onup>
+							<ondown>100</ondown>
+							<posx>270</posx>
+							<label>[B]$LOCALIZE[12313][/B]</label>
+						</control>
+					</control>
+					<control type="group" id="356">
+						<width>348</width>
+						<height>54</height>
+						<control type="button" id="95">
+							<include>SearchKeys</include>
+							<description>'4' button</description>
+							<onleft>5100</onleft>
+							<onright>96</onright>
+							<onup>89</onup>
+							<ondown>8</ondown>
+							<posx>0</posx>
+							<label>[B]$LOCALIZE[12314][/B]</label>
+						</control>
+						<control type="button" id="96">
+							<include>SearchKeys</include>
+							<description>'5' button</description>
+							<onleft>95</onleft>
+							<onright>97</onright>
+							<onup>90</onup>
+							<ondown>8</ondown>
+							<posx>54</posx>
+							<label>[B]$LOCALIZE[12315][/B]</label>
+						</control>
+						<control type="button" id="97">
+							<include>SearchKeys</include>
+							<description>'6' button</description>
+							<onleft>96</onleft>
+							<onright>98</onright>
+							<onup>91</onup>
+							<ondown>32</ondown>
+							<posx>108</posx>
+							<label>[B]$LOCALIZE[12316][/B]</label>
+						</control>
+						<control type="button" id="98">
+							<include>SearchKeys</include>
+							<description>'7' button</description>
+							<onleft>97</onleft>
+							<onright>99</onright>
+							<onup>92</onup>
+							<ondown>32</ondown>
+							<posx>162</posx>
+							<label>[B]$LOCALIZE[12317][/B]</label>
+						</control>
+						<control type="button" id="99">
+							<include>SearchKeys</include>
+							<description>'8' button</description>
+							<onleft>98</onleft>
+							<onright>100</onright>
+							<onup>93</onup>
+							<ondown>10</ondown>
+							<posx>216</posx>
+							<label>[B]$LOCALIZE[12318][/B]</label>
+						</control>
+						<control type="button" id="100">
+							<include>SearchKeys</include>
+							<description>'9' button</description>
+							<onleft>99</onleft>
+							<onright>5100</onright>
+							<onup>94</onup>
+							<ondown>10</ondown>
+							<posx>270</posx>
+							<label>[B]$LOCALIZE[12319][/B]</label>
+						</control>
+					</control>
+					<control type="group" id="357">
+						<width>348</width>
+						<height>54</height>
+						<!-- Delete button -->
+						<control type="button" id="8">
+							<posx>0</posx>
+							<onleft>100</onleft>
+							<onright>32</onright>
+							<label>Delete</label>
+							<include>Search_Keyboard_Press_Button</include>
+						</control>
+						<!-- Space -->
+						<control type="button" id="32">
+							<posx>108</posx>
+							<onleft>8</onleft>
+							<onright>10</onright>
+							<label>Space</label>
+							<include>Search_Keyboard_Press_Button</include>
+						</control>
+						<!-- Clear -->
+						<control type="button" id="10">
+							<posx>216</posx>
+							<onleft>32</onleft>
+							<onright>9001</onright>
+							<label>Clear</label>
+							<include>Search_Keyboard_Press_Button</include>
+						</control>
+					</control>
+				</control>
 			</control>
+			
 			<control type="image">
 				<description>LOGO</description>
 				<posx>82</posx>
