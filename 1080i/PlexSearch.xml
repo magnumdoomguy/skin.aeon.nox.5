@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="51">
-	<defaultcontrol always="true">350</defaultcontrol>
+	<defaultcontrol always="true">81</defaultcontrol>
 	<onload condition="!IsEmpty(Window(home).Property(Window.HasSettings))">ClearProperty(Window.HasSettings,Home)</onload>
 	<onunload>SetProperty(Window.HasSettings,True,home)</onunload>
 	<onunload>TakeScreenshot</onunload>
@@ -113,473 +113,145 @@
 			<posy>128</posy>
 			<animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0">WindowOpen</animation>
 			<animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0">WindowClose</animation>
-			<control type="image">
-            <posx>50</posx>
-            <posy>874</posy>
-            <width>420</width>
-            <height>904</height>
-            <texture border="40">panel_reflect.png</texture>
-        </control>
-		<control type="image">
-			<posx>50</posx>
-            <width>420</width>
-            <height>904</height>
-            <texture border="40,100,40,100">dialog_back.png</texture>
-        </control>
-        
-			<!-- text field -->
-			<control type="edit" id="310">
-				<description>Search</description>
-				<posx>80</posx>
-				<posy>68</posy>
-				<font>font15_title</font>
-				<textcolor>grey2</textcolor>
-				<focusedcolor>themecolor</focusedcolor>
-				<width>360</width>
-				<height>50</height>
-				<onleft>-</onleft>
-				<ondown>350</ondown>
-				<onright>350</onright>
-				<emptylabel>-</emptylabel>
-				<emptycolor>FF555555</emptycolor>
-				<align>left</align>
-				<aligny>center</aligny>
-				<textoffsetx>15</textoffsetx>
-                
-                
-                
-				<label/>
+			<include>SystemLeftPanel</include>
+        <control type="panel" id="9000">
+				<posx>82</posx>
+				<posy>32</posy>
+				<width>356</width>
+				<height>720</height>
+				<onleft>60</onleft>
+				<onright>101</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<pagecontrol>60</pagecontrol>
+				<scrolltime tween="quadratic">300</scrolltime>
+				<itemlayout height="90" width="356">
+					<control type="image">
+						<posy>30</posy>
+						<width>356</width>
+						<height>60</height>
+						<texture border="1">separator2.png</texture>
+					</control>
+					<control type="label">
+						<posx>356</posx>
+						<width>356</width>
+						<height>90</height>
+						<font>font15</font>
+						<textoffsetx>20</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="90" width="356">
+					<control type="image">
+						<posy>30</posy>
+						<width>356</width>
+						<height>60</height>
+						<texture border="1">separator2.png</texture>
+					</control>
+					<control type="image">
+						<width>356</width>
+						<height>90</height>
+						<texture border="4">listselect_fo.png</texture>
+						<!--<visible>Control.HasFocus(9000)</visible>-->
+						<include>VisibleFadeEffect</include>
+					</control>
+					<control type="label">
+						<width>356</width>
+						<height>90</height>
+						<font>font15</font>
+						<textoffsetx>20</textoffsetx>
+						<textcolor>white</textcolor>
+						<selectedcolor>selected</selectedcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+				</focusedlayout>
+				<content>
+					<item id="1">
+						<visible>!IsEmpty(Container(9001).ListItem.Label)</visible>
+						<label>$LOCALIZE[342] ($INFO[Container(9001).NumItems])</label>
+						<onclick>noop</onclick>
+						<onright>111</onright>
+						<icon>-</icon>
+					</item>
+					<item id="11">
+						<visible>!IsEmpty(Container(211).ListItem.Label)</visible>
+						<label>$LOCALIZE[344]$INFO[Control.GetLabel(210), (, $LOCALIZE[342])]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+					<item id="2">
+						<visible>!IsEmpty(Container(121).ListItem.Label)</visible>
+						<label>$LOCALIZE[20343]$INFO[Control.GetLabel(120), (,)]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+					<item id="3">
+						<visible>!IsEmpty(Container(131).ListItem.Label)</visible>
+						<label>$LOCALIZE[33054]$INFO[Control.GetLabel(130), (,)]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+					<item id="4">
+						<visible>!IsEmpty(Container(141).ListItem.Label)</visible>
+						<label>$LOCALIZE[20360]$INFO[Control.GetLabel(140), (,)]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+					<item id="5">
+						<visible>!IsEmpty(Container(151).ListItem.Label)</visible>
+						<label>$LOCALIZE[20389]$INFO[Control.GetLabel(150), (,)]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+					<item id="6">
+						<visible>!IsEmpty(Container(161).ListItem.Label)</visible>
+						<label>$LOCALIZE[133]$INFO[Control.GetLabel(160), (,)]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+					<item id="7">
+						<visible>!IsEmpty(Container(171).ListItem.Label)</visible>
+						<label>$LOCALIZE[132]$INFO[Control.GetLabel(170), (,)]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+					<item id="8">
+						<visible>!IsEmpty(Container(181).ListItem.Label)</visible>
+						<label>$LOCALIZE[134]$INFO[Control.GetLabel(180), (,)]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+					<item id="9">
+						<visible>Control.IsVisible(198)</visible>
+						<label>$INFO[Control.GetLabel(198)]</label>
+						<onclick>SendClick(198)</onclick>
+						<icon>-</icon>
+					</item>
+				</content>
 			</control>
-			<!-- keys -->
-			<control type="group" id="4000">
-				<animation effect="fade" start="100" end="0" time="200" condition="ControlGroup(7001).HasFocus | ControlGroup(7002).HasFocus | ControlGroup(7004).HasFocus">Conditional</animation>
-				<posx>80</posx>
-				<posy>90</posy>
-				<control type="grouplist" id="350">
-					<visible>true</visible>
-					<posx>0</posx>
-					<!--posy>194</posy-->
-					<posy>50</posy>
-					<width>360</width>
-					<height>420</height>
-					<itemgap>0</itemgap>
-					<orientation>vertical</orientation>
-					<usecontrolcoords>false</usecontrolcoords>
-					<onup>-</onup>
-					<ondown>-</ondown>
-					<onleft>9000</onleft>
-					<onright>9000</onright>
-					<renderfocusedlast>false</renderfocusedlast>
-					<control type="group" id="351">
-						<width>360</width>
-						<height>60</height>
-						<control type="button" id="65">
-							<description>'A' button</description>
-							<onleft>5100</onleft>
-							<onright>66</onright>
-							<ondown>71</ondown>
-							<posx>0</posx>
-							<label>[B]A[/B]</label>
-							<include>SearchKeys</include>
-						</control>
-						<control type="button" id="66">
-							<include>SearchKeys</include>
-							<description>'B' button</description>
-							<onleft>65</onleft>
-							<onright>67</onright>
-							<ondown>72</ondown>
-							<posx>60</posx>
-							<label>[B]B[/B]</label>
-						</control>
-						<control type="button" id="67">
-							<include>SearchKeys</include>
-							<description>'C' button</description>
-							<onleft>66</onleft>
-							<onright>68</onright>
-							<ondown>73</ondown>
-							<posx>120</posx>
-							<label>[B]C[/B]</label>
-						</control>
-						<control type="button" id="68">
-							<include>SearchKeys</include>
-							<description>'D' button</description>
-							<onleft>67</onleft>
-							<onright>69</onright>
-							<ondown>74</ondown>
-							<posx>180</posx>
-							<label>[B]D[/B]</label>
-						</control>
-						<control type="button" id="69">
-							<include>SearchKeys</include>
-							<description>'E' button</description>
-							<onleft>68</onleft>
-							<onright>70</onright>
-							<ondown>75</ondown>
-							<posx>240</posx>
-							<label>[B]E[/B]</label>
-						</control>
-						<control type="button" id="70">
-							<include>SearchKeys</include>
-							<description>'F' button</description>
-							<onleft>69</onleft>
-							<onright>5100</onright>
-							<ondown>76</ondown>
-							<posx>300</posx>
-							<label>[B]F[/B]</label>
-						</control>
-					</control>
-					<control type="group" id="352">
-						<width>360</width>
-						<height>60</height>
-						<control type="button" id="71">
-							<include>SearchKeys</include>
-							<description>'G' button</description>
-							<onleft>5100</onleft>
-							<onright>72</onright>
-							<onup>65</onup>
-							<ondown>77</ondown>
-							<posx>0</posx>
-							<label>[B]G[/B]</label>
-						</control>
-						<control type="button" id="72">
-							<include>SearchKeys</include>
-							<description>'H' button</description>
-							<onleft>71</onleft>
-							<onright>73</onright>
-							<onup>66</onup>
-							<ondown>78</ondown>
-							<posx>60</posx>
-							<label>[B]H[/B]</label>
-						</control>
-						<control type="button" id="73">
-							<include>SearchKeys</include>
-							<description>'I' button</description>
-							<onleft>72</onleft>
-							<onright>74</onright>
-							<onup>67</onup>
-							<ondown>79</ondown>
-							<posx>120</posx>
-							<label>[B]I[/B]</label>
-						</control>
-						<control type="button" id="74">
-							<include>SearchKeys</include>
-							<description>'J' button</description>
-							<onleft>73</onleft>
-							<onright>75</onright>
-							<onup>68</onup>
-							<ondown>80</ondown>
-							<posx>180</posx>
-							<label>[B]J[/B]</label>
-						</control>
-						<control type="button" id="75">
-							<include>SearchKeys</include>
-							<description>'K' button</description>
-							<onleft>74</onleft>
-							<onright>76</onright>
-							<onup>69</onup>
-							<ondown>81</ondown>
-							<posx>240</posx>
-							<label>[B]K[/B]</label>
-						</control>
-						<control type="button" id="76">
-							<include>SearchKeys</include>
-							<description>'L' button</description>
-							<onleft>75</onleft>
-							<onright>5100</onright>
-							<onup>70</onup>
-							<ondown>82</ondown>
-							<posx>300</posx>
-							<label>[B]L[/B]</label>
-						</control>
-					</control>
-					<control type="group" id="353">
-						<width>360</width>
-						<height>60</height>
-						<control type="button" id="77">
-							<include>SearchKeys</include>
-							<description>'M' button</description>
-							<onleft>5100</onleft>
-							<onright>78</onright>
-							<onup>71</onup>
-							<ondown>83</ondown>
-							<posx>0</posx>
-							<label>[B]M[/B]</label>
-						</control>
-						<control type="button" id="78">
-							<include>SearchKeys</include>
-							<description>'N' button</description>
-							<onleft>77</onleft>
-							<onright>79</onright>
-							<onup>72</onup>
-							<ondown>84</ondown>
-							<posx>60</posx>
-							<label>[B]N[/B]</label>
-						</control>
-						<control type="button" id="79">
-							<include>SearchKeys</include>
-							<description>'O' button</description>
-							<onleft>78</onleft>
-							<onright>80</onright>
-							<onup>73</onup>
-							<ondown>85</ondown>
-							<posx>120</posx>
-							<label>[B]O[/B]</label>
-						</control>
-						<control type="button" id="80">
-							<include>SearchKeys</include>
-							<description>'P' button</description>
-							<onleft>79</onleft>
-							<onright>81</onright>
-							<onup>74</onup>
-							<ondown>86</ondown>
-							<posx>180</posx>
-							<label>[B]P[/B]</label>
-						</control>
-						<control type="button" id="81">
-							<include>SearchKeys</include>
-							<description>'Q' button</description>
-							<onleft>80</onleft>
-							<onright>82</onright>
-							<onup>75</onup>
-							<ondown>87</ondown>
-							<posx>240</posx>
-							<label>[B]Q[/B]</label>
-						</control>
-						<control type="button" id="82">
-							<include>SearchKeys</include>
-							<description>'R' button</description>
-							<onleft>81</onleft>
-							<onright>5100</onright>
-							<onup>76</onup>
-							<ondown>88</ondown>
-							<posx>300</posx>
-							<label>[B]R[/B]</label>
-						</control>
-					</control>
-					<control type="group" id="354">
-						<width>360</width>
-						<height>60</height>
-						<control type="button" id="83">
-							<include>SearchKeys</include>
-							<description>'S' button</description>
-							<onleft>5100</onleft>
-							<onright>84</onright>
-							<onup>77</onup>
-							<ondown>89</ondown>
-							<posx>0</posx>
-							<label>[B]S[/B]</label>
-						</control>
-						<control type="button" id="84">
-							<include>SearchKeys</include>
-							<description>'T' button</description>
-							<onleft>83</onleft>
-							<onright>85</onright>
-							<onup>78</onup>
-							<ondown>90</ondown>
-							<posx>60</posx>
-							<label>[B]T[/B]</label>
-						</control>
-						<control type="button" id="85">
-							<include>SearchKeys</include>
-							<description>'U' button</description>
-							<onleft>84</onleft>
-							<onright>86</onright>
-							<onup>79</onup>
-							<ondown>91</ondown>
-							<posx>120</posx>
-							<label>[B]U[/B]</label>
-						</control>
-						<control type="button" id="86">
-							<include>SearchKeys</include>
-							<description>'V' button</description>
-							<onleft>85</onleft>
-							<onright>87</onright>
-							<onup>80</onup>
-							<ondown>92</ondown>
-							<posx>180</posx>
-							<label>[B]V[/B]</label>
-						</control>
-						<control type="button" id="87">
-							<include>SearchKeys</include>
-							<description>'W' button</description>
-							<onleft>86</onleft>
-							<onright>88</onright>
-							<onup>81</onup>
-							<ondown>93</ondown>
-							<posx>240</posx>
-							<label>[B]W[/B]</label>
-						</control>
-						<control type="button" id="88">
-							<include>SearchKeys</include>
-							<description>'X' button</description>
-							<onleft>87</onleft>
-							<onright>5100</onright>
-							<onup>82</onup>
-							<ondown>94</ondown>
-							<posx>300</posx>
-							<label>[B]X[/B]</label>
-						</control>
-					</control>
-					<control type="group" id="355">
-						<width>360</width>
-						<height>60</height>
-						<control type="button" id="89">
-							<include>SearchKeys</include>
-							<description>'Y' button</description>
-							<onleft>5100</onleft>
-							<onright>90</onright>
-							<onup>83</onup>
-							<ondown>95</ondown>
-							<posx>0</posx>
-							<label>[B]Y[/B]</label>
-						</control>
-						<control type="button" id="90">
-							<include>SearchKeys</include>
-							<description>'Z' button</description>
-							<onleft>89</onleft>
-							<onright>91</onright>
-							<onup>84</onup>
-							<ondown>96</ondown>
-							<posx>60</posx>
-							<label>[B]Z[/B]</label>
-						</control>
-						<control type="button" id="91">
-							<include>SearchKeys</include>
-							<description>'0' button</description>
-							<onleft>90</onleft>
-							<onright>92</onright>
-							<onup>85</onup>
-							<ondown>97</ondown>
-							<posx>120</posx>
-							<label>[B]$LOCALIZE[12310][/B]</label>
-						</control>
-						<control type="button" id="92">
-							<include>SearchKeys</include>
-							<description>'1' button</description>
-							<onleft>91</onleft>
-							<onright>93</onright>
-							<onup>86</onup>
-							<ondown>98</ondown>
-							<posx>180</posx>
-							<label>[B]$LOCALIZE[12311][/B]</label>
-						</control>
-						<control type="button" id="93">
-							<include>SearchKeys</include>
-							<description>'2' button</description>
-							<onleft>92</onleft>
-							<onright>94</onright>
-							<onup>87</onup>
-							<ondown>99</ondown>
-							<posx>240</posx>
-							<label>[B]$LOCALIZE[12312][/B]</label>
-						</control>
-						<control type="button" id="94">
-							<include>SearchKeys</include>
-							<description>'3' button</description>
-							<onleft>93</onleft>
-							<onright>5100</onright>
-							<onup>88</onup>
-							<ondown>100</ondown>
-							<posx>300</posx>
-							<label>[B]$LOCALIZE[12313][/B]</label>
-						</control>
-					</control>
-					<control type="group" id="356">
-						<width>360</width>
-						<height>60</height>
-						<control type="button" id="95">
-							<include>SearchKeys</include>
-							<description>'4' button</description>
-							<onleft>5100</onleft>
-							<onright>96</onright>
-							<onup>89</onup>
-							<ondown>8</ondown>
-							<posx>0</posx>
-							<label>[B]$LOCALIZE[12314][/B]</label>
-						</control>
-						<control type="button" id="96">
-							<include>SearchKeys</include>
-							<description>'5' button</description>
-							<onleft>95</onleft>
-							<onright>97</onright>
-							<onup>90</onup>
-							<ondown>8</ondown>
-							<posx>60</posx>
-							<label>[B]$LOCALIZE[12315][/B]</label>
-						</control>
-						<control type="button" id="97">
-							<include>SearchKeys</include>
-							<description>'6' button</description>
-							<onleft>96</onleft>
-							<onright>98</onright>
-							<onup>91</onup>
-							<ondown>32</ondown>
-							<posx>120</posx>
-							<label>[B]$LOCALIZE[12316][/B]</label>
-						</control>
-						<control type="button" id="98">
-							<include>SearchKeys</include>
-							<description>'7' button</description>
-							<onleft>97</onleft>
-							<onright>99</onright>
-							<onup>92</onup>
-							<ondown>32</ondown>
-							<posx>180</posx>
-							<label>[B]$LOCALIZE[12317][/B]</label>
-						</control>
-						<control type="button" id="99">
-							<include>SearchKeys</include>
-							<description>'8' button</description>
-							<onleft>98</onleft>
-							<onright>100</onright>
-							<onup>93</onup>
-							<ondown>10</ondown>
-							<posx>240</posx>
-							<label>[B]$LOCALIZE[12318][/B]</label>
-						</control>
-						<control type="button" id="100">
-							<include>SearchKeys</include>
-							<description>'9' button</description>
-							<onleft>99</onleft>
-							<onright>5100</onright>
-							<onup>94</onup>
-							<ondown>10</ondown>
-							<posx>300</posx>
-							<label>[B]$LOCALIZE[12319][/B]</label>
-						</control>
-					</control>
-					<control type="group" id="357">
-						<width>360</width>
-						<height>60</height>
-						<!-- Delete button -->
-						<control type="button" id="8">
-							<posx>0</posx>
-							<onup>95</onup>
-							<onright>32</onright>
-							<label>Delete</label>
-							<include>Search_Keyboard_Press_Button</include>
-						</control>
-						<!-- Space -->
-						<control type="button" id="32">
-							<posx>120</posx>
-							<onup>97</onup>
-							<onleft>8</onleft>
-							<onright>10</onright>
-							<label>Space</label>
-							<include>Search_Keyboard_Press_Button</include>
-						</control>
-						<!-- Clear -->
-						<control type="button" id="10">
-							<posx>240</posx>
-							<onup>99</onup>
-							<onleft>32</onleft>
-							<onright>9001</onright>
-							<label>Clear</label>
-							<include>Search_Keyboard_Press_Button</include>
-						</control>
-					</control>
-				</control>
-			</control>-->
+			<control type="scrollbar" id="60">
+				<posx>65</posx>
+				<posy>32</posy>
+				<width>14</width>
+				<height>720</height>
+				<onleft>101</onleft>
+				<onright>9000</onright>
+				<ondown>60</ondown>
+				<onup>60</onup>
+				<showonepage>false</showonepage>
+				<texturesliderbackground>-</texturesliderbackground>
+				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+			</control>
+			
+			
 			
 			<control type="image">
 				<description>LOGO</description>
@@ -1394,5 +1066,585 @@
 				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
 			</control>
 		</control>
+		
+		<control type="image" id="0">
+			<posx>370</posx>
+            <posy>269</posy>
+            <width>1180</width>
+            <height>542</height>
+            <texture border="40,100,40,100">dialog_back.png</texture>
+        </control>
+        <control type="label" id="311">
+            <posx>400</posx>
+            <posy>289</posy>
+            <width>1120</width>
+            <height>50</height>
+            <align>center</align>
+            <textoffsetx>15</textoffsetx>
+            <font>font15_title</font>
+            <textcolor>grey3</textcolor>
+			<label>Enter Search String</label>
+        </control>
+        <control type="edit" id="310">
+			<description>Search</description>
+            <posx>400</posx>
+            <posy>739</posy>
+            <width>1120</width>
+            <height>50</height>
+            <align>center</align>
+            <font>font15</font>
+            <textcolor>grey2</textcolor>
+			<emptylabel>-</emptylabel>
+			<emptycolor>FF555555</emptycolor>
+			<aligny>center</aligny>
+			<pagecontrol>300</pagecontrol>
+        </control>
+        <control type="group" id="4000">
+            <posx>400</posx>
+            <posy>339</posy>
+            <width>1120</width>
+            <height>400</height>
+			
+            <!-- Row 1 -->
+            <control type="grouplist" id="350">
+                <orientation>horizontal</orientation>
+                				
+				<!-- 1 Key -->
+                <control type="button" id="92">
+					<description>'1' button</description>
+                    <posx>126</posx>
+                    <onleft>304</onleft>
+                    <onright>50</onright>
+                    <onup>32</onup>
+                    <ondown>81</ondown>
+					<label>[B]1[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 2 Key -->
+                <control type="button" id="93">
+					<description>'2' button</description>
+                    <posx>189</posx>
+                    <onleft>49</onleft>
+                    <onright>51</onright>
+                    <onup>32</onup>
+                    <ondown>87</ondown>
+					<label>[B]2[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 3 Key -->
+                <control type="button" id="94">
+					<description>'3' button</description>
+                    <posx>252</posx>
+                    <onleft>50</onleft>
+                    <onright>52</onright>
+                    <onup>32</onup>
+                    <ondown>69</ondown>
+					<label>[B]3[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 4 Key -->
+                <control type="button" id="95">
+					<description>'4' button</description>
+                    <posx>315</posx>
+                    <onleft>51</onleft>
+                    <onright>53</onright>
+                    <onup>32</onup>
+                    <ondown>82</ondown>
+					<label>[B]4[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 5 Key -->
+                <control type="button" id="96">
+					<description>'5' button</description>
+                    <posx>378</posx>
+                    <onleft>52</onleft>
+                    <onright>54</onright>
+                    <onup>32</onup>
+                    <ondown>84</ondown>
+					<label>[B]5[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 6 Key -->
+                <control type="button" id="97">
+					<description>'6' button</description>
+                    <posx>441</posx>
+                    <onleft>53</onleft>
+                    <onright>55</onright>
+                    <onup>32</onup>
+                    <ondown>89</ondown>
+					<label>[B]6[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 7 Key -->
+                <control type="button" id="98">
+					<description>'7' button</description>
+                    <posx>504</posx>
+                    <onleft>54</onleft>
+                    <onright>56</onright>
+                    <onup>300</onup>
+                    <ondown>85</ondown>
+					<label>[B]7[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 8 Key -->
+                <control type="button" id="99">
+					<description>'8' button</description>
+                    <posx>567</posx>
+                    <onleft>55</onleft>
+                    <onright>57</onright>
+                    <onup>300</onup>
+                    <ondown>73</ondown>
+					<label>[B]8[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 9 Key -->
+                <control type="button" id="100">
+					<description>'9' button</description>
+                    <posx>630</posx>
+                    <onleft>56</onleft>
+                    <onright>48</onright>
+                    <onup>300</onup>
+                    <ondown>79</ondown>
+					<label>[B]9[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- 0 Key -->
+                <control type="button" id="91">
+					<description>'0' button</description>
+                    <posx>693</posx>
+                    <onleft>57</onleft>
+                    <onright>304</onright>
+                    <onup>300</onup>
+                    <ondown>80</ondown>
+					<label>[B]0[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+            </control>
+			
+            <!-- Row 2 -->
+            <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <posy>80</posy>
+                <!--<control type="button" id="307">
+                    <label>1006</label>
+                    <onleft>80</onleft>
+                    <onright>81</onright>
+                    <onup>304</onup>
+                    <ondown>303</ondown>
+                    <include>Objects_DoubleKeyOff</include>
+                </control>-->
+				
+				<!-- Q Key -->
+                <control type="button" id="81">
+					<description>'Q' button</description>
+                    <posx>126</posx>
+                    <onleft>307</onleft>
+                    <onright>87</onright>
+                    <onup>92</onup>
+                    <ondown>65</ondown>
+					<label>[B]Q[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- W Key -->
+                <control type="button" id="87">
+					<description>'W' button</description>
+                    <posx>189</posx>
+                    <onleft>81</onleft>
+                    <onright>69</onright>
+                    <onup>93</onup>
+                    <ondown>83</ondown>
+					<label>[B]W[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- E Key -->
+                <control type="button" id="69">
+					<description>'E' button</description>
+                    <posx>252</posx>
+                    <onleft>87</onleft>
+                    <onright>82</onright>
+                    <onup>94</onup>
+                    <ondown>68</ondown>
+					<label>[B]E[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- R Key -->
+                <control type="button" id="82">
+					<description>'R' button</description>
+                    <posx>315</posx>
+                    <onleft>69</onleft>
+                    <onright>84</onright>
+                    <onup>95</onup>
+                    <ondown>70</ondown>
+					<label>[B]R[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- T Key -->
+                <control type="button" id="84">
+					<description>'T' button</description>
+                    <posx>378</posx>
+                    <onleft>82</onleft>
+                    <onright>89</onright>
+                    <onup>96</onup>
+                    <ondown>71</ondown>
+					<label>[B]T[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- Y Key -->
+                <control type="button" id="89">
+					<description>'Y' button</description>
+                    <posx>441</posx>
+                    <onleft>84</onleft>
+                    <onright>85</onright>
+                    <onup>97</onup>
+                    <ondown>72</ondown>
+					<label>[B]Y[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- U Key -->
+                <control type="button" id="85">
+					<description>'U' button</description>
+                    <posx>504</posx>
+                    <onleft>89</onleft>
+                    <onright>73</onright>
+                    <onup>98</onup>
+                    <ondown>74</ondown>
+					<label>[B]U[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- I Key -->
+                <control type="button" id="73">
+					<description>'I' button</description>
+                    <posx>567</posx>
+                    <onleft>85</onleft>
+                    <onright>79</onright>
+                    <onup>99</onup>
+                    <ondown>75</ondown>
+					<label>[B]I[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- O Key -->
+                <control type="button" id="79">
+					<description>'O' button</description>
+                    <posx>630</posx>
+                    <onleft>73</onleft>
+                    <onright>80</onright>
+                    <onup>100</onup>
+                    <ondown>76</ondown>
+					<label>[B]O[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- P Key -->
+                <control type="button" id="80">
+					<description>'P' button</description>
+                    <posx>693</posx>
+                    <onleft>79</onleft>
+                    <onright>307</onright>
+                    <onup>91</onup>
+                    <ondown>76</ondown>
+					<label>[B]P[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+            </control>
+			
+            <!-- Row 3 -->
+            <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <posy>160</posy>
+				
+                <!--<control type="togglebutton" id="303">
+                    <label>20179</label>
+                    <altlabel>[COLOR=themecolor]$LOCALIZE[20179][/COLOR]</altlabel>
+                    <onleft>76</onleft>
+                    <onright>65</onright>
+                    <onup>307</onup>
+                    <ondown>302</ondown>
+                    <include>Objects_DoubleKeyOff</include>
+                </control>-->
+				
+				<!-- A Key -->
+                <control type="button" id="65">
+					<description>'A' button</description>
+                    <posx>126</posx>
+                    <onleft>303</onleft>
+                    <onright>83</onright>
+                    <onup>81</onup>
+                    <ondown>90</ondown>
+					<label>[B]A[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- S Key -->
+                <control type="button" id="83">
+					<description>'S' button</description>
+                    <posx>189</posx>
+                    <onleft>65</onleft>
+                    <onright>68</onright>
+                    <onup>87</onup>
+                    <ondown>88</ondown>
+					<label>[B]S[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- D Key -->
+                <control type="button" id="68">
+					<description>'D' button</description>
+                    <posx>252</posx>
+                    <onleft>83</onleft>
+                    <onright>70</onright>
+                    <onup>69</onup>
+                    <ondown>67</ondown>
+					<label>[B]D[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- F Key -->
+                <control type="button" id="70">
+					<description>'F' button</description>
+                    <posx>315</posx>
+                    <onleft>68</onleft>
+                    <onright>71</onright>
+                    <onup>82</onup>
+                    <ondown>86</ondown>
+					<label>[B]F[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- G Key -->
+                <control type="button" id="71">
+					<description>'G' button</description>
+                    <posx>378</posx>
+                    <onleft>70</onleft>
+                    <onright>72</onright>
+                    <onup>84</onup>
+                    <ondown>66</ondown>
+					<label>[B]G[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- H Key -->
+                <control type="button" id="72">
+					<description>'H' button</description>
+                    <posx>441</posx>
+                    <onleft>71</onleft>
+                    <onright>74</onright>
+                    <onup>89</onup>
+                    <ondown>78</ondown>
+					<label>[B]H[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- J Key -->
+                <control type="button" id="74">
+					<description>'J' button</description>
+                    <posx>504</posx>
+                    <onleft>72</onleft>
+                    <onright>75</onright>
+                    <onup>85</onup>
+                    <ondown>77</ondown>
+					<label>[B]J[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- K Key -->
+                <control type="button" id="75">
+					<description>'K' button</description>
+                    <posx>567</posx>
+                    <onleft>74</onleft>
+                    <onright>76</onright>
+                    <onup>73</onup>
+                    <ondown>8</ondown>
+					<label>[B]K[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- L Key -->
+                <control type="button" id="76">
+					<description>'L' button</description>
+                    <posx>630</posx>
+                    <onleft>75</onleft>
+                    <onright>303</onright>
+                    <onup>79</onup>
+                    <ondown>8</ondown>
+					<label>[B]L[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- What is this? -->
+                <control type="button" id="8888">
+                    <posx>693</posx>
+                    <label>-</label>
+                    <onleft>76</onleft>
+                    <onright>303</onright>
+                    <onup>80</onup>
+                    <ondown>8</ondown>
+                    <include>Objects_SingleKeyOff</include>
+                    <enable>no</enable>
+                </control>
+            </control>
+			
+            <!-- Row 4 -->
+            <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <posy>240</posy>
+				
+                <!--<control type="togglebutton" id="302">
+                    <label>$LOCALIZE[20178]</label>
+                    <altlabel>[COLOR=themecolor]$LOCALIZE[20178][/COLOR]</altlabel>
+                    <onleft>8</onleft>
+                    <onright>90</onright>
+                    <onup>303</onup>
+                    <ondown>300</ondown>
+                    <include>Objects_DoubleKeyOff</include>
+                </control>-->
+				
+				<!-- Z Key -->
+                <control type="button" id="90">
+					<description>'Z' button</description>
+                    <posx>126</posx>
+                    <onleft>302</onleft>
+                    <onright>88</onright>
+                    <onup>65</onup>
+                    <ondown>32</ondown>
+					<label>[B]Z[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- X Key -->
+                <control type="button" id="88">
+					<description>'X' button</description>
+                    <posx>189</posx>
+                    <onleft>90</onleft>
+                    <onright>67</onright>
+                    <onup>83</onup>
+                    <ondown>32</ondown>
+					<label>[B]X[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- C Key -->
+                <control type="button" id="67">
+					<description>'C' button</description>
+                    <posx>252</posx>
+                    <onleft>88</onleft>
+                    <onright>86</onright>
+                    <onup>68</onup>
+                    <ondown>32</ondown>
+					<label>[B]C[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- V Key -->
+                <control type="button" id="86">
+					<description>'V' button</description>
+                    <posx>315</posx>
+                    <onleft>67</onleft>
+                    <onright>66</onright>
+                    <onup>70</onup>
+                    <ondown>32</ondown>
+					<label>[B]V[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- B Key -->
+                <control type="button" id="66">
+					<description>'B' button</description>
+                    <posx>378</posx>
+                    <onleft>86</onleft>
+                    <onright>78</onright>
+                    <onup>71</onup>
+                    <ondown>32</ondown>
+					<label>[B]B[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- N Key -->
+                <control type="button" id="78">
+					<description>'N' button</description>
+                    <posx>441</posx>
+                    <onleft>66</onleft>
+                    <onright>77</onright>
+                    <onup>72</onup>
+                    <ondown>32</ondown>
+					<label>[B]N[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- M Key -->
+                <control type="button" id="77">
+					<description>'M' button</description>
+                    <posx>504</posx>
+                    <onleft>78</onleft>
+                    <onright>8</onright>
+                    <onup>74</onup>
+                    <ondown>300</ondown>
+					<label>[B]M[/B]</label>
+                    <include>Objects_SingleKeyOff</include>
+                </control>
+				
+				<!-- Backspace Key -->
+                <control type="button" id="8">
+                    <posx>567</posx>
+                    <width>240</width>
+                    <height>80</height>
+                    <texturefocus border="4">button_middle_focus.png</texturefocus>
+                    <texturenofocus border="4">thumbs/panel_border.png</texturenofocus>
+                    <label>20181</label>
+                    <onleft>77</onleft>
+                    <onright>302</onright>
+                    <onup>76</onup>
+                    <ondown>300</ondown>
+                    <include>Objects_KeyOffVars</include>
+                </control>
+            </control>
+			
+            <!-- Row 5 -->
+            <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <posy>320</posy>
+                
+				<control type="button" id="32">
+                    <posx>126</posx>
+                    <width>480</width>
+                    <height>80</height>
+                    <texturefocus border="4">button_middle_focus.png</texturefocus>
+                    <texturenofocus border="4">thumbs/panel_border.png</texturenofocus>
+                    <label>$LOCALIZE[20182]</label>
+                    <onleft>300</onleft>
+                    <onright>305</onright>
+                    <onup>90</onup>
+                    <ondown>92</ondown>
+                    <include>Objects_KeyOffVars</include>
+                </control>
+				
+				<control type="button" id="300">
+                    <label>$LOCALIZE[20177]</label>
+                    <onleft>306</onleft>
+                    <onright>32</onright>
+                    <onup>77</onup>
+                    <ondown>98</ondown>
+                    <include>Objects_DoubleKeyOff</include>
+                </control>
+                
+            </control>
+        </control>
+		
 	</controls>
 </window>
