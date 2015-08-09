@@ -79,34 +79,10 @@
 			<height>30</height>
 			<posx>1670</posx>
 			<posy>3</posy>
-			<control type="label" id="110">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="210">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="120">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="130">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="140">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="150">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="160">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="170">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="180">
-				<include>HiddenObject</include>
-			</control>
+			
 		</control>
+		
+		 
 		<control type="group">
 			<posx>0</posx>
 			<posy>128</posy>
@@ -116,16 +92,13 @@
 			
 			
 			
-			
-			
-			
         <control type="panel" id="9000">
 				<posx>82</posx>
 				<posy>32</posy>
 				<width>356</width>
 				<height>720</height>
-				<onleft>60</onleft>
-				<onright>101</onright>
+				<!--<onleft>60</onleft>-->
+				<onright>5100</onright>
 				<onup>9000</onup>
 				<ondown>9000</ondown>
 				<pagecontrol>60</pagecontrol>
@@ -183,8 +156,8 @@
 					<item id="1">
 						<visible>!IsEmpty(Container(9001).ListItem.Label)</visible>
 						<label>$LOCALIZE[342] ($INFO[Container(9001).NumItems])</label>
-						<onclick>noop</onclick>
-						<onright>111</onright>
+						<onclick>9001</onclick>
+						<onright>9001</onright>
 						<icon>-</icon>
 					</item>
 					
@@ -192,7 +165,8 @@
 					<item id="2">
 						<visible>!IsEmpty(Container(9002).ListItem.Label)</visible>
 						<label>$LOCALIZE[20343] ($INFO[Container(9002).NumItems])</label>
-						<onclick>noop</onclick>
+						<onclick>9002</onclick>
+						<onright>9002</onright>
 						<icon>-</icon>
 					</item>
 					
@@ -236,14 +210,23 @@
 						<icon>-</icon>
 					</item>
 					
+					<!--<item id="9">
+						<visible>Control.IsVisible(198)</visible>
+						<label>[B]NEW SEARCH[/B]</label>
+						<onclick>SetFocus(4000)</onclick>
+						<icon>-</icon>
+					</item>-->
 				</content>
 			</control>
+			
+			
+			
 			<control type="scrollbar" id="60">
 				<posx>65</posx>
 				<posy>32</posy>
 				<width>14</width>
 				<height>720</height>
-				<onleft>101</onleft>
+				<onleft>5100</onleft>
 				<onright>9000</onright>
 				<ondown>60</ondown>
 				<onup>60</onup>
@@ -292,19 +275,14 @@
 				<posy>5</posy>
 				<width>960</width>
 				<height>25</height>
-				<label>$INFO[Control.GetLabel(310)]$INFO[Control.GetLabel(191), ]</label>
+				
 				<font>font13_title</font>
 				<textcolor>grey2</textcolor>
 				<align>right</align>
 				<aligny>center</aligny>
 				<textoffsetx>15</textoffsetx>
 			</control>-->
-			<control type="label" id="190">
-				<include>HiddenObject</include>
-			</control>
-			<control type="label" id="191">
-				<include>HiddenObject</include>
-			</control>
+			
 		</control>
 		<control type="group" id="5000">
 			<animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0">WindowOpen</animation>
@@ -321,10 +299,10 @@
 				<include>VisibleFadeEffect</include>
 				<visible>IsEmpty(Container(9001).ListItem.Label)</visible>
 			</control>-->
-			<control type="button" id="198">
+			<!--<control type="button" id="198">
 				<onfocus>SetFocus(9000,9)</onfocus>
 				<include>HiddenObject</include>
-			</control>
+			</control>-->
 			<visible>true</visible>
 			<control type="grouplist" id="5100">
 				<posx>522</posx>
@@ -335,18 +313,19 @@
 				
 				<!-- Movies -->
 				<control type="group" id="7001">
-					<visible>Container(9000).HasFocus(1)</visible>
+					<visible>Container(9000).HasFocus(1) | [ControlGroup(4000).HasFocus + !IsEmpty(Container(9001).ListItem.Label)]</visible>
 					<include>SettingsFadeEffect</include>
+					
 					<control type="panel" id="9001">
 						<posx>0</posx>
 						<posy>0</posy>
 						<width>1316</width>
 						<height>658</height>
 						<pagecontrol>61</pagecontrol>
-						<onleft>350</onleft>
+						<onleft>9000</onleft>
 						<onright>noop</onright>
-						<onup>111</onup>
-						<ondown>111</ondown>
+						<onup>9001</onup>
+						<ondown>9001</ondown>
 						<orientation>vertical</orientation>
 						<viewtype label="535">list</viewtype>
 						<preloaditems>2</preloaditems>
@@ -415,102 +394,9 @@
 					</control>
 				</control>
 				
-				<!-- Actors -->
-				<control type="group" id="7013">
-					<visible>Container(9000).HasFocus(11)</visible>
-					<include>SettingsFadeEffect</include>
-					<control type="panel" id="9013">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>1316</width>
-						<height>658</height>
-						<pagecontrol>61</pagecontrol>
-						<onleft>Control.SetFocus(9000,1)</onleft>
-						<onright>61</onright>
-						<onup>111</onup>
-						<ondown>111</ondown>
-						<orientation>vertical</orientation>
-						<viewtype label="535">list</viewtype>
-						<preloaditems>2</preloaditems>
-						<itemlayout width="219" height="329">
-							<control type="image">
-								<width>219</width>
-								<height>329</height>
-								<aspectratio>scale</aspectratio>
-								<texture background="true">$INFO[ListItem.Icon]</texture>
-								<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-								<bordersize>2</bordersize>
-								<colordiffuse>BAffffff</colordiffuse>
-							</control>
-						</itemlayout>
-						<focusedlayout width="219" height="329">
-							<control type="group">
-								<animation type="Focus">
-									<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-									<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-								</animation>
-								<control type="image">
-									<posx>0</posx>
-									<posy>0</posy>
-									<width>219</width>
-									<height>329</height>
-									<aspectratio>scale</aspectratio>
-									<texture background="true">$INFO[ListItem.Icon]</texture>
-									<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-									<bordersize>8</bordersize>
-								</control>
-							</control>
-						</focusedlayout>
-					</control>
-					<control type="group">
-						<control type="label">
-							<posx>0</posx>
-							<posy>670</posy>
-							<width>1316</width>
-							<height>40</height>
-							<label>$INFO[Container(211).ListItem.Label]</label>
-							<font>font15</font>
-							<textcolor>labelheader</textcolor>
-							<textoffsetx>15</textoffsetx>
-						</control>
-						<control type="label">
-							<posx>0</posx>
-							<posy>670</posy>
-							<width>1316</width>
-							<height>40</height>
-							<align>right</align>
-							<label>$INFO[Container(211).ListItem.Property(Year),, • ]$INFO[Container(211).ListItem.Property(Duration),, $LOCALIZE[12391]]</label>
-							<font>font15</font>
-							<textcolor>grey2</textcolor>
-							<textoffsetx>15</textoffsetx>
-						</control>
-						<control type="textbox">
-							<posx>15</posx>
-							<posy>720</posy>
-							<width>1286</width>
-							<height>116</height>
-							<label>$INFO[Container(211).ListItem.Property(PlotOutline)]</label>
-							<font>font15_textbox</font>
-							<textcolor>grey2</textcolor>
-							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-						</control>
-						<control type="textbox">
-							<posx>15</posx>
-							<posy>720</posy>
-							<width>1286</width>
-							<height>116</height>
-							<label>$INFO[Container(211).ListItem.Property(Plot)]</label>
-							<font>font15_textbox</font>
-							<textcolor>grey2</textcolor>
-							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-							<visible>IsEmpty(Container(211).ListItem.Property(PlotOutline))</visible>
-						</control>
-					</control>
-				</control>
-				
 				<!-- TV Shows -->
 				<control type="group" id="7002">
-					<visible>Container(9000).HasFocus(2)</visible>
+					<visible>Container(9000).HasFocus(2) | [ControlGroup(4000).HasFocus + IsEmpty(Container(9001).ListItem.Label)]</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9002">
 						<posx>0</posx>
@@ -518,10 +404,9 @@
 						<width>1316</width>
 						<height>658</height>
 						<pagecontrol>61</pagecontrol>
-						<onleft>Control.SetFocus(9000,2)</onleft>
-						<onright>61</onright>
-						<onup>121</onup>
-						<ondown>121</ondown>
+						<onleft>9000</onleft>
+						<onup>9002</onup>
+						<ondown>9002</ondown>
 						<orientation>vertical</orientation>
 						<viewtype label="535">list</viewtype>
 						<preloaditems>2</preloaditems>
@@ -591,7 +476,7 @@
 				</control>
 								
 				<!-- Episodes -->
-				<control type="group" id="7004">
+				<!--<control type="group" id="7004">
 					<visible>Container(9000).HasFocus(4)</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9004">
@@ -670,10 +555,10 @@
 							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						</control>
 					</control>
-				</control>
+				</control>-->
 				
 				<!-- Clips -->
-				<control type="group" id="7012">
+				<!--<control type="group" id="7012">
 					<visible>Container(9000).HasFocus(5)</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9012">
@@ -752,10 +637,10 @@
 							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						</control>
 					</control>
-				</control>
+				</control>-->
 				
 				<!-- Artists -->
-				<control type="group" id="7008">
+				<!--<control type="group" id="7008">
 					<visible>Container(9000).HasFocus(6)</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9008">
@@ -823,10 +708,10 @@
 							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						</control>
 					</control>
-				</control>
+				</control>-->
 				
 				<!-- Albums -->
-				<control type="group" id="7009">
+				<!--<control type="group" id="7009">
 					<visible>Container(9000).HasFocus(7)</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9009">
@@ -894,10 +779,10 @@
 							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						</control>
 					</control>
-				</control>
+				</control>-->
 				
 				<!-- Songs -->
-				<control type="group" id="7010">
+				<!--<control type="group" id="7010">
 					<visible>Container(9000).HasFocus(8)</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9010">
@@ -965,7 +850,7 @@
 							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						</control>
 					</control>
-				</control>
+				</control>-->
 				
 			</control>
 			<control type="scrollbar" id="61">
@@ -987,6 +872,7 @@
 		
 		<control type="group">
 		<animation effect="fade" start="100" end="0" time="200" condition="!ControlGroup(4000).HasFocus">Conditional</animation>
+		<zorder>10</zorder>
 		<control type="image" id="0">
 			<posx>370</posx>
             <posy>269</posy>
@@ -1034,9 +920,9 @@
                 <control type="button" id="92">
 					<description>'1' button</description>
                     <posx>126</posx>
-                    <onleft>304</onleft>
+                    <onleft>5100</onleft>
                     <onright>50</onright>
-                    <onup>9000</onup>
+                    <onup>5100</onup>
                     <ondown>81</ondown>
 					<label>[B]1[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1048,7 +934,7 @@
                     <posx>189</posx>
                     <onleft>49</onleft>
                     <onright>51</onright>
-                    <onup>32</onup>
+                    <onup>5100</onup>
                     <ondown>87</ondown>
 					<label>[B]2[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1060,7 +946,7 @@
                     <posx>252</posx>
                     <onleft>50</onleft>
                     <onright>52</onright>
-                    <onup>32</onup>
+                    <onup>5100</onup>
                     <ondown>69</ondown>
 					<label>[B]3[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1072,7 +958,7 @@
                     <posx>315</posx>
                     <onleft>51</onleft>
                     <onright>53</onright>
-                    <onup>32</onup>
+                    <onup>5100</onup>
                     <ondown>82</ondown>
 					<label>[B]4[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1084,7 +970,7 @@
                     <posx>378</posx>
                     <onleft>52</onleft>
                     <onright>54</onright>
-                    <onup>32</onup>
+                    <onup>5100</onup>
                     <ondown>84</ondown>
 					<label>[B]5[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1096,7 +982,7 @@
                     <posx>441</posx>
                     <onleft>53</onleft>
                     <onright>55</onright>
-                    <onup>32</onup>
+                    <onup>5100</onup>
                     <ondown>89</ondown>
 					<label>[B]6[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1108,7 +994,7 @@
                     <posx>504</posx>
                     <onleft>54</onleft>
                     <onright>56</onright>
-                    <onup>300</onup>
+                    <onup>5100</onup>
                     <ondown>85</ondown>
 					<label>[B]7[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1120,7 +1006,7 @@
                     <posx>567</posx>
                     <onleft>55</onleft>
                     <onright>57</onright>
-                    <onup>300</onup>
+                    <onup>5100</onup>
                     <ondown>73</ondown>
 					<label>[B]8[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1132,7 +1018,7 @@
                     <posx>630</posx>
                     <onleft>56</onleft>
                     <onright>48</onright>
-                    <onup>300</onup>
+                    <onup>5100</onup>
                     <ondown>79</ondown>
 					<label>[B]9[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1143,8 +1029,8 @@
 					<description>'0' button</description>
                     <posx>693</posx>
                     <onleft>57</onleft>
-                    <onright>304</onright>
-                    <onup>300</onup>
+                    <onright>5100</onright>
+                    <onup>5100</onup>
                     <ondown>80</ondown>
 					<label>[B]0[/B]</label>
                     <include>Objects_SingleKeyOff</include>
@@ -1529,7 +1415,7 @@
                     <texturenofocus border="4">thumbs/panel_border.png</texturenofocus>
                     <label>20181</label>
                     <onleft>77</onleft>
-                    <onright>302</onright>
+                    <onright>5100</onright>
                     <onup>76</onup>
                     <ondown>300</ondown>
                     <include>Objects_KeyOffVars</include>
@@ -1548,7 +1434,7 @@
                     <texturefocus border="4">button_middle_focus.png</texturefocus>
                     <texturenofocus border="4">thumbs/panel_border.png</texturenofocus>
                     <label>$LOCALIZE[20182]</label>
-                    <onleft>300</onleft>
+                    <onleft>5100</onleft>
                     <onright>305</onright>
                     <onup>90</onup>
                     <ondown>92</ondown>
@@ -1558,11 +1444,12 @@
 				<control type="button" id="300">
                     <label>$LOCALIZE[20177]</label>
                     <onleft>306</onleft>
-                    <onright>32</onright>
+                    <onright>5100</onright>
                     <onup>77</onup>
                     <ondown>98</ondown>
                     <include>Objects_DoubleKeyOff</include>
-					<onclick>SetFocus(9000)</onclick>
+					<onclick>5100</onclick>
+					
                 </control>
                 
             </control>
