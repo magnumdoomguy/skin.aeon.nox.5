@@ -313,10 +313,11 @@
 				
 				<!-- Movies -->
 				<control type="group" id="7001">
-					<visible>Container(9000).HasFocus(1) | [ControlGroup(4000).HasFocus + !IsEmpty(Container(9001).ListItem.Label)]</visible>
+					<visible>Container(9000).HasFocus(1) | [ControlGroup(4000).HasFocus + !IsEmpty(Control(9001).ListItem.label)]</visible> <!-- Container(9000).HasFocus(1) |  -->
 					<include>SettingsFadeEffect</include>
 					
 					<control type="panel" id="9001">
+						<visible>!IsEmpty(Container(9001).ListItem.Label)</visible>
 						<posx>0</posx>
 						<posy>0</posy>
 						<width>1316</width>
@@ -396,7 +397,7 @@
 				
 				<!-- TV Shows -->
 				<control type="group" id="7002">
-					<visible>Container(9000).HasFocus(2) | [ControlGroup(4000).HasFocus + IsEmpty(Container(9001).ListItem.Label)]</visible>
+					<visible>Container(9000).HasFocus(2) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !IsEmpty(Container(9002).ListItem.Label)]</visible> <!-- Container(9000).HasFocus(2)  |  -->
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9002">
 						<posx>0</posx>
@@ -405,6 +406,7 @@
 						<height>658</height>
 						<pagecontrol>61</pagecontrol>
 						<onleft>9000</onleft>
+						<onright>noop</onright>
 						<onup>9002</onup>
 						<ondown>9002</ondown>
 						<orientation>vertical</orientation>
@@ -446,18 +448,18 @@
 							<posy>670</posy>
 							<width>1316</width>
 							<height>40</height>
-							<label>$INFO[Container(121).ListItem.Label]</label>
+							<label>$INFO[Container(9002).ListItem.Label]</label>
 							<font>font15</font>
 							<textcolor>labelheader</textcolor>
 							<textoffsetx>15</textoffsetx>
 						</control>
 						<control type="label">
-							<posx>0</posx>
+							<posx>1316</posx>
 							<posy>670</posy>
 							<width>1316</width>
 							<height>40</height>
 							<align>right</align>
-							<label>$INFO[Container(121).ListItem.Property(Premiered)]</label>
+							<label>$INFO[Container(9002).ListItem.Date]</label>
 							<font>font15</font>
 							<textcolor>grey2</textcolor>
 							<textoffsetx>15</textoffsetx>
@@ -467,7 +469,7 @@
 							<posy>720</posy>
 							<width>1286</width>
 							<height>116</height>
-							<label>$INFO[Container(121).ListItem.Property(Plot)]</label>
+							<label>$INFO[Container(9002).ListItem.Plot]</label>
 							<font>font15_textbox</font>
 							<textcolor>grey2</textcolor>
 							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
