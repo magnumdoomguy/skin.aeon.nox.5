@@ -313,7 +313,7 @@
 				
 				<!-- Movies -->
 				<control type="group" id="7001">
-					<visible>Container(9000).HasFocus(1) | [ControlGroup(4000).HasFocus + !IsEmpty(Control(9001).ListItem.label)]</visible> <!-- Container(9000).HasFocus(1) |  -->
+					<visible>Container(9000).HasFocus(1) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !IsEmpty(Control(9001).ListItem.label)]</visible> <!-- Container(9000).HasFocus(1) |  -->
 					<include>SettingsFadeEffect</include>
 					
 					<control type="panel" id="9001">
@@ -397,7 +397,7 @@
 				
 				<!-- TV Shows -->
 				<control type="group" id="7002">
-					<visible>Container(9000).HasFocus(2) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !IsEmpty(Container(9002).ListItem.Label)]</visible> <!-- Container(9000).HasFocus(2)  |  -->
+					<visible>Container(9000).HasFocus(2) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7004) + !IsEmpty(Container(9002).ListItem.Label)]</visible> <!-- Container(9000).HasFocus(2)  |  -->
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9002">
 						<posx>0</posx>
@@ -478,8 +478,8 @@
 				</control>
 								
 				<!-- Episodes -->
-				<!--<control type="group" id="7004">
-					<visible>Container(9000).HasFocus(4)</visible>
+				<control type="group" id="7004">
+					<visible>Container(9000).HasFocus(4) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !IsEmpty(Container(9004).ListItem.Label)]</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9004">
 						<posx>0</posx>
@@ -487,10 +487,10 @@
 						<width>1316</width>
 						<height>658</height>
 						<pagecontrol>61</pagecontrol>
-						<onleft>Control.SetFocus(9000,4)</onleft>
-						<onright>61</onright>
-						<onup>141</onup>
-						<ondown>141</ondown>
+						<onleft>9000</onleft>
+						<onright>noop</onright>
+						<onup>9004</onup>
+						<ondown>9004</ondown>
 						<orientation>vertical</orientation>
 						<viewtype label="535">list</viewtype>
 						<preloaditems>2</preloaditems>
@@ -557,7 +557,7 @@
 							<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						</control>
 					</control>
-				</control>-->
+				</control>
 				
 				<!-- Clips -->
 				<!--<control type="group" id="7012">
