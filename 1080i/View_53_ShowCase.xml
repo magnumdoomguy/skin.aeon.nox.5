@@ -427,11 +427,11 @@
                     <posx>137</posx>
                     <posy>162</posy>
                     <visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
-                    <control type="button">
+                    <!--<control type="button">
                         <label>[COLOR labelheader]$LOCALIZE[126]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.Status)]</label>
                         <include>ShowCaseInfoPanelButtonsValues</include>
                         <visible>!IsEmpty(Window(Home).Property(NextAired.Status))</visible>
-                    </control>
+                    </control>-->
                     <control type="button">
                         <label>[COLOR labelheader]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
                         <include>ShowCaseInfoPanelButtonsValues</include>
@@ -511,9 +511,14 @@
                         <visible>Container.Content(tvshows)</visible>
                     </control>
                     <control type="button">
-                        <label>[COLOR labelheader]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.Property(TotalEpisodes)]</label>
+                        <label>[COLOR labelheader]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.Episode]</label>
                         <include>ShowCaseInfoPanelButtonsValues</include>
-                        <visible>Container.Content(seasons)</visible>
+                        <visible>Container.Content(seasons) + !stringcompare(ListItem.Label,All Episodes)</visible>
+                    </control>
+					<control type="button">
+                        <label>-</label>
+                        <include>ShowCaseInfoPanelButtonsValues</include>
+                        <visible>Container.Content(seasons) + stringcompare(ListItem.Label,All Episodes)</visible>
                     </control>
                     <control type="group">
                         <!--<control type="button">
