@@ -254,27 +254,19 @@
                             <height>60</height>
                             <texture border="1">separator2.png</texture>
                         </control>
+						
+						<!-- Episode Thumb -->
                         <control type="image">
                             <posx>15</posx>
                             <posy>8</posy>
                             <width>105</width>
                             <height>105</height>
-                            <aspectratio>scale</aspectratio>
-                            <texture background="true">$INFO[ListItem.Icon,views/list/]</texture>
-                            <fadetime>IconCrossfadeTime</fadetime>
-                            <colordiffuse>grey2</colordiffuse>
-                            <visible>SubString(ListItem.Icon,Default,left)</visible>
-                        </control>
-                        <control type="image">
-                            <posx>15</posx>
-                            <posy>8</posy>
-                            <width>105</width>
-                            <height>105</height>
-                            <aspectratio>scale</aspectratio>
+                            <aspectratio>keep</aspectratio>
                             <texture background="true">$INFO[ListItem.Icon]</texture>
                             <fadetime>IconCrossfadeTime</fadetime>
-                            <visible>!SubString(ListItem.Icon,Default,left)</visible>
                         </control>
+						
+						<!-- Episode Title -->
                         <control type="label">
                             <posx>135</posx>
                             <posy>0</posy>
@@ -285,8 +277,10 @@
                             <selectedcolor>selected</selectedcolor>
                             <align>left</align>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.Label]</label>
+                            <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
                         </control>
+						
+						<!-- First Aired Date -->
                         <control type="label">
                             <posx>135</posx>
                             <posy>55</posy>
@@ -299,16 +293,19 @@
                             <aligny>center</aligny>
                             <label>$INFO[ListItem.Date]</label>
                         </control>
+						
+						<!-- Resolution Indicator -->
                         <control type="image">
                             <posx>935</posx>
                             <posy>46</posy>
                             <width>42</width>
                             <height>28</height>
                             <aspectratio>scale</aspectratio>
-                            <texture>$VAR[UnFocusHDIndicator]</texture>
+                            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
                             <colordiffuse>grey2</colordiffuse>
-                            <visible>StringCompare(ListItem.Label2,ListItem.Rating)</visible>
                         </control>
+						
+						<!-- Rating -->
                         <control type="label">
                             <posx>1060</posx>
                             <posy>0</posy>
@@ -319,21 +316,7 @@
                             <textcolor>grey2</textcolor>
                             <selectedcolor>selected</selectedcolor>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.Label2]</label>
-                            <visible>StringCompare(ListItem.Label2,ListItem.Rating)</visible>
-                        </control>
-                        <control type="label">
-                            <posx>1060</posx>
-                            <posy>0</posy>
-                            <width>1060</width>
-                            <height>116</height>
-                            <font>font15</font>
-                            <align>right</align>
-                            <textcolor>grey2</textcolor>
-                            <selectedcolor>selected</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$INFO[ListItem.Label2]</label>
-                            <visible>!StringCompare(ListItem.Label2,ListItem.Rating)</visible>
+                            <label>$INFO[ListItem.RatingAndVotes]</label>
                         </control>
                         <control type="image">
                             <posx>1076</posx>
@@ -357,29 +340,21 @@
                             <width>1140</width>
                             <height>120</height>
                             <texture border="4">listselect_fo.png</texture>
-                            <!--<visible>Control.HasFocus(50)</visible>-->
                             <include>VisibleFadeEffect</include>
                         </control>
+                        
+						<!-- Episode Thumb -->
                         <control type="image">
                             <posx>15</posx>
                             <posy>8</posy>
                             <width>105</width>
                             <height>105</height>
-                            <aspectratio>scale</aspectratio>
-                            <texture background="true">$INFO[ListItem.Icon,views/list/]</texture>
-                            <fadetime>IconCrossfadeTime</fadetime>
-                            <visible>SubString(ListItem.Icon,Default,left)</visible>
-                        </control>
-                        <control type="image">
-                            <posx>15</posx>
-                            <posy>8</posy>
-                            <width>105</width>
-                            <height>105</height>
-                            <aspectratio>scale</aspectratio>
+                            <aspectratio>keep</aspectratio>
                             <texture background="true">$INFO[ListItem.Icon]</texture>
                             <fadetime>IconCrossfadeTime</fadetime>
-                            <visible>!SubString(ListItem.Icon,Default,left)</visible>
                         </control>
+						
+						<!-- Episode Title -->
                         <control type="label">
                             <posx>135</posx>
                             <posy>0</posy>
@@ -390,7 +365,7 @@
                             <selectedcolor>selected</selectedcolor>
                             <align>left</align>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.Label]</label>
+                            <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
                             <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
                         </control>
                         <control type="label">
@@ -406,16 +381,19 @@
                             <label>$INFO[ListItem.Date]</label>
                             <animation effect="fade" start="100" end="30" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
                         </control>
+						
+						<!-- Resolution Indicator -->
                         <control type="image">
                             <posx>935</posx>
                             <posy>46</posy>
                             <width>42</width>
                             <height>28</height>
                             <aspectratio>scale</aspectratio>
-                            <texture>$VAR[UnFocusHDIndicator]</texture>
+                            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
                             <animation effect="fade" start="100" end="60" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
-                            <visible>StringCompare(ListItem.Label2,ListItem.Rating)</visible>
                         </control>
+						
+						<!-- Episode Rating -->
                         <control type="label">
                             <posx>1060</posx>
                             <posy>0</posy>
@@ -426,23 +404,8 @@
                             <textcolor>white</textcolor>
                             <selectedcolor>selected</selectedcolor>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.Label2]</label>
+                            <label>$INFO[ListItem.RatingAndVotes]</label>
                             <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
-                            <visible>StringCompare(ListItem.Label2,ListItem.Rating)</visible>
-                        </control>
-                        <control type="label">
-                            <posx>1060</posx>
-                            <posy>0</posy>
-                            <width>1060</width>
-                            <height>116</height>
-                            <font>font15</font>
-                            <align>right</align>
-                            <textcolor>white</textcolor>
-                            <selectedcolor>selected</selectedcolor>
-                            <aligny>center</aligny>
-                            <label>$INFO[ListItem.Label2]</label>
-                            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
-                            <visible>!StringCompare(ListItem.Label2,ListItem.Rating)</visible>
                         </control>
                         <control type="image">
                             <posx>1076</posx>
@@ -1155,7 +1118,7 @@
             <control type="group">
                 <posx>1296</posx>
                 <posy>155</posy>
-                <visible>!Container.Content(genres)</visible>
+                <visible>!Container.Content(episodes)</visible>
                 <control type="image">
                     <width>570</width>
                     <height>835</height>
@@ -1176,28 +1139,80 @@
                 </control>
             </control>
             <control type="group">
-                <posx>1296</posx>
-                <posy>155</posy>
-                <visible>Container.Content(genres)</visible>
-                <control type="image">
-                    <width>570</width>
-                    <height>835</height>
-                    <aspectratio aligny="bottom">keep</aspectratio>
-                    <texture background="true" fallback="special://skin/extras/moviegenres/Default.jpg">$INFO[ListItem.Label,special://skin/extras/moviegenres/,.jpg]</texture>
-                    <fadetime>IconCrossfadeTime</fadetime>
-                    <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-                    <bordersize>20</bordersize>
-                </control>
-                <control type="image">
-                    <posy>795</posy>
-                    <width>570</width>
-                    <height>835</height>
-                    <aspectratio aligny="top">keep</aspectratio>
-                    <fadetime>IconCrossfadeTime</fadetime>
-                    <texture diffuse="thumbs/thumb_reflect.png" flipy="true" background="true" fallback="special://skin/extras/moviegenres/Default.jpg">$INFO[ListItem.Label,special://skin/extras/moviegenres/,.jpg]</texture>
-                    <bordersize>20</bordersize>
-                </control>
-            </control>
+				<posx>1280</posx>
+				<posy>-40</posy>
+				<visible>Container.Content(episodes)</visible>
+				<include>VisibleFadeEffect</include>
+				<control type="image">
+					<description>background image</description>
+					<posy>1020</posy>
+					<width>570</width>
+					<height>904</height>
+					<texture border="40">panel_reflect.png</texture>
+				</control>
+				<control type="image">
+					<description>background image</description>
+					<posy>148</posy>
+					<width>570</width>
+					<height>904</height>
+					<texture border="40">listpanel_back.png</texture>
+				</control>
+				<control type="image">
+					<posy>148</posy>
+					<width>570</width>
+					<height>348</height>
+					<aspectratio>scale</aspectratio>
+					<texture background="true">$INFO[ListItem.Icon]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>32</bordersize>
+				</control>
+				<control type="image">
+					<posx>32</posx>
+					<posy>406</posy>
+					<width>506</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+				<control type="image">
+					<posx>32</posx>
+					<posy>500</posy>
+					<width>506</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+				<control type="group">
+					<posy>465</posy>
+					<control type="image">
+						<posx>32</posx>
+						<colordiffuse>grey2</colordiffuse>
+						<include>MediaFlagVars</include>
+						<texture>$VAR[ResolutionFlag]</texture>
+					</control>
+					<control type="image">
+						<posx>217</posx>
+						<colordiffuse>grey2</colordiffuse>
+						<include>MediaFlagVars</include>
+						<texture>$VAR[AudioCodecFlag]</texture>
+					</control>
+					<control type="image">
+						<posx>402</posx>
+						<colordiffuse>grey2</colordiffuse>
+						<include>MediaFlagVars</include>
+						<texture>$VAR[VideoCodecFlag]</texture>
+					</control>
+				</control>
+				<control type="textbox" id="70">
+					<label>$VAR[VideoPlotVar]</label>
+					<posy>560</posy>
+					<posx>47</posx>
+					<width>476</width>
+					<height>458</height>
+					<font>font15_textbox</font>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<pagecontrol>62</pagecontrol>
+				</control>
+			</control>
         </control>
     </include>
 	
