@@ -52,10 +52,10 @@
                 <control type="grouplist">
                     <visible>Container.Content(episodes)</visible>
                     <control type="label">
-                        <label>[COLOR labelheader]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Premiered]</label>
+                        <label>[COLOR labelheader]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
                         <width>650</width>
                         <include>RighListButtonsValues</include>
-                        <visible>!IsEmpty(ListItem.Premiered)</visible>
+                        <visible>!IsEmpty(ListItem.Date)</visible>
                     </control>
                     <control type="label">
                         <label>[COLOR labelheader]$LOCALIZE[2050]:[/COLOR][CR]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
@@ -117,7 +117,7 @@
                     <width>200</width>
                     <include>MediaFlagVars</include>
                     <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-                    <visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
+                    <visible>!Container.Content(tvshows) + !Container.Content(seasons) + +!Container.Content(episodes) + !IsEmpty(ListItem.Title)</visible>
                 </control>
                 <control type="image">
                     <posx>400</posx>
@@ -955,14 +955,14 @@
                         <texture border="1">separator2.png</texture>
                     </control>
                     <control type="label">
-                        <posx>30</posx>
+                        <posx>730</posx>
                         <width>700</width>
                         <height>68</height>
                         <font>font15</font>
                         <align>right</align>
                         <textcolor>grey</textcolor>
                         <selectedcolor>selected</selectedcolor>
-                        <label>$INFO[ListItem.Label]</label>
+                        <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
                     </control>
                     <control type="image">
                         <posx>742</posx>
@@ -993,19 +993,19 @@
                     </control>
                     <control type="label">
                         <posy>-12</posy>
-                        <posx>30</posx>
+                        <posx>730</posx>
                         <width>700</width>
                         <height>68</height>
                         <font>font16</font>
                         <align>right</align>
                         <selectedcolor>selected</selectedcolor>
-                        <label>$INFO[ListItem.Label]</label>
+                        <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
                         <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
                         <visible>!IsEmpty(ListItem.RatingAndVotes)</visible>
                     </control>
                     <control type="label">
                         <posy>8</posy>
-                        <posx>30</posx>
+                        <posx>730</posx>
                         <width>700</width>
                         <height>68</height>
                         <font>font16</font>
@@ -1016,7 +1016,7 @@
                         <visible>IsEmpty(ListItem.RatingAndVotes)</visible>
                     </control>
                     <control type="label">
-                        <posx>30</posx>
+                        <posx>730</posx>
                         <posy>27</posy>
                         <width>700</width>
                         <height>68</height>
