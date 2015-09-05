@@ -36,12 +36,7 @@
                         <include>ShowCaseInfoPanelButtonsValues</include>
                         <visible>!IsEmpty(ListItem.Director)</visible>
                     </control>
-                    <!--<control type="button">
-                        <label>[COLOR labelheader]$LOCALIZE[126]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.Status)]</label>
-                        <width>448</width>
-                        <include>ShowCaseInfoPanelButtonsValues</include>
-                        <visible>[Container.Content(tvshows) | Container.Content(seasons)] + !IsEmpty(Window(Home).Property(NextAired.Status))</visible>
-                    </control>-->
+                    
                     <control type="button">
                         <label>[COLOR labelheader]$LOCALIZE[31019]:[/COLOR][CR]$INFO[ListItem.Property(mediaTag-Studio)]</label>
                         <width>448</width>
@@ -54,16 +49,7 @@
                         <include>ShowCaseInfoPanelButtonsValues</include>
                         <visible>!IsEmpty(ListItem.Date) + [Container.Content(episodes) | [[Container.Content(tvshows) | Container.Content(seasons)] + Skin.HasSetting(Disable.NextAired)]]</visible>
                     </control>
-                    <!--<control type="button">
-                        <label>[COLOR labelheader]$LOCALIZE[31010]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.NextDate),,: ]$INFO[Window(Home).Property(NextAired.NextTitle)]</label>
-                        <include>ShowCaseInfoPanelButtonsValues</include>
-                        <visible>[Container.Content(tvshows) | Container.Content(seasons)] + !IsEmpty(Window(Home).Property(NextAired.NextDate)) + !Skin.HasSetting(Disable.NextAired)</visible>
-                    </control>-->
-                    <!--<control type="button">
-                        <label>[COLOR labelheader]$LOCALIZE[31011]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.LatestNumber),, - ]$INFO[Window(Home).Property(NextAired.LatestTitle)]</label>
-                        <include>ShowCaseInfoPanelButtonsValues</include>
-                        <visible>[Container.Content(tvshows) | Container.Content(seasons)] + !IsEmpty(Window(Home).Property(NextAired.LatestDate)) + IsEmpty(Window(Home).Property(NextAired.NextDate)) + !Skin.HasSetting(Disable.NextAired)</visible>
-                    </control>-->
+                    
                     <control type="button">
                         <label>[COLOR labelheader]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
                         <width>448</width>
@@ -246,7 +232,6 @@
                             <width>806</width>
                             <height>70</height>
                             <texture border="4">listselect_fo.png</texture>
-                            <!--<visible>Control.HasFocus(55)</visible>-->
                             <include>VisibleFadeEffect</include>
                         </control>
                         <control type="label">
@@ -401,7 +386,6 @@
                             <width>806</width>
                             <height>70</height>
                             <texture border="4">listselect_fo.png</texture>
-                            <!--<visible>Control.HasFocus(55)</visible>-->
                             <include>VisibleFadeEffect</include>
                         </control>
                         <control type="label">
@@ -499,7 +483,7 @@
                             <font>font15</font>
                             <textcolor>grey2</textcolor>
                             <selectedcolor>selected</selectedcolor>
-                            <label>$INFO[ListItem.Label]</label>
+                            <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
                             <textoffsetx>15</textoffsetx>
                         </control>
                         <control type="image">
@@ -508,7 +492,7 @@
                             <width>42</width>
                             <height>28</height>
                             <aspectratio>keep</aspectratio>
-                            <texture>$VAR[UnFocusHDIndicator]</texture>
+                            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
                             <colordiffuse>grey2</colordiffuse>
                         </control>
                         <control type="label">
@@ -521,7 +505,7 @@
                             <textcolor>grey2</textcolor>
                             <selectedcolor>selected</selectedcolor>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.Rating]</label>
+                            <label>$INFO[ListItem.RatingAndVotes]</label>
                         </control>
                         <control type="image">
                             <posx>742</posx>
@@ -530,33 +514,6 @@
                             <height>64</height>
                             <aspectratio>keep</aspectratio>
                             <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
-                        </control>
-                        <control type="group">
-                            <description>Unwatched episodes</description>
-                            <posx>742</posx>
-                            <posy>0</posy>
-                            <visible>Container.Content(tvshows)</visible>
-                            <control type="image">
-                                <posx>0</posx>
-                                <posy>3</posy>
-                                <width>64</width>
-                                <height>64</height>
-                                <texture>overlays/list/OverlayUnWatched.png</texture>
-                                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-                            </control>
-                            <control type="label">
-                                <posx>32</posx>
-                                <posy>0</posy>
-                                <width>100</width>
-                                <height>68</height>
-                                <font>font12_title</font>
-                                <align>center</align>
-                                <aligny>center</aligny>
-                                <label>$VAR[ListOverlayEpisodesVar]</label>
-                                <textcolor>grey3</textcolor>
-                                <textoffsetx>18</textoffsetx>
-                                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-                            </control>
                         </control>
                     </itemlayout>
                     <focusedlayout height="70" width="806" condition="Container.Content(episodes)">
@@ -570,7 +527,6 @@
                             <width>806</width>
                             <height>70</height>
                             <texture border="4">listselect_fo.png</texture>
-                            <!--<visible>Control.HasFocus(55)</visible>-->
                             <include>VisibleFadeEffect</include>
                         </control>
                         <control type="label">
@@ -578,7 +534,7 @@
                             <height>68</height>
                             <font>font15</font>
                             <selectedcolor>selected</selectedcolor>
-                            <label>$INFO[ListItem.Label]</label>
+                            <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
                             <textoffsetx>15</textoffsetx>
                             <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
                         </control>
@@ -588,7 +544,7 @@
                             <width>42</width>
                             <height>28</height>
                             <aspectratio>keep</aspectratio>
-                            <texture>$VAR[UnFocusHDIndicator]</texture>
+                            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
                             <animation effect="fade" start="100" end="60" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
                         </control>
                         <control type="label">
@@ -600,7 +556,7 @@
                             <align>right</align>
                             <selectedcolor>selected</selectedcolor>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.Rating]</label>
+                            <label>$INFO[ListItem.RatingAndVotes]</label>
                             <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
                         </control>
                         <control type="image">
@@ -610,33 +566,6 @@
                             <height>64</height>
                             <aspectratio>keep</aspectratio>
                             <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
-                        </control>
-                        <control type="group">
-                            <description>Unwatched episodes</description>
-                            <posx>742</posx>
-                            <posy>0</posy>
-                            <visible>Container.Content(tvshows)</visible>
-                            <control type="image">
-                                <posx>0</posx>
-                                <posy>3</posy>
-                                <width>64</width>
-                                <height>64</height>
-                                <texture>overlays/list/OverlayUnWatched.png</texture>
-                                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-                            </control>
-                            <control type="label">
-                                <posx>32</posx>
-                                <posy>0</posy>
-                                <width>64</width>
-                                <height>68</height>
-                                <font>font12_title</font>
-                                <align>center</align>
-                                <aligny>center</aligny>
-                                <label>$VAR[ListOverlayEpisodesVar]</label>
-                                <textcolor>white</textcolor>
-                                <textoffsetx>18</textoffsetx>
-                                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-                            </control>
                         </control>
                     </focusedlayout>
                     <itemlayout height="70" width="806" condition="Container.Content(seasons)">
