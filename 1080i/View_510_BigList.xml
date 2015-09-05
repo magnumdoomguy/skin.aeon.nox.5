@@ -1,417 +1,324 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-    <include name="Video_510_BigList">
-        <control type="group">
-            <visible>Control.IsVisible(510) + !Window.IsActive(addoninformation)</visible>
-            <include>ViewAnimation</include>
-            <control type="group">
-                <posx>100</posx>
-                <posy>-20</posy>
-                <control type="image">
-                    <description>background image</description>
-                    <posx>-32</posx>
-                    <posy>870</posy>
-                    <width>1788</width>
-                    <height>934</height>
-                    <texture border="40">panel_reflect.png</texture>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <posx>-32</posx>
-                    <posy>118</posy>
-                    <width>1788</width>
-                    <height>934</height>
-                    <texture border="40">listpanel_back.png</texture>
-                </control>
-                <control type="list" id="510">
-                    <viewtype label="BigList">biglist</viewtype>
-                    <posx>0</posx>
-                    <posy>151</posy>
-                    <width>1725</width>
-                    <height>868</height>
-                    <onleft>SetProperty(MediaMenu,True,home)</onleft>
-                    <onleft>SetFocus(9050)</onleft>
-                    <onright>60</onright>
-                    <onup>510</onup>
-                    <ondown>510</ondown>
-                    <preloaditems>2</preloaditems>
-                    <pagecontrol>60</pagecontrol>
-                    <orientation>vertical</orientation>
-                    <scrolltime tween="quadratic" easing="out">300</scrolltime>
-                    <visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)]</visible>
-                    <itemlayout width="1808" height="217" condition="Container.Content(movies)">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture border="5">separator2.png</texture>
-                        </control>
-                        <include>BigList_Landscape</include>
-                        <control type="group">
-                            <posx>375</posx>
-                            <posy>10</posy>
-							
-                            <!-- Title -->
-                            <control type="label">
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Label]</label>
-                                <font>font16_title_bold</font>
-                                <textcolor>grey</textcolor>
-								<visible>!Container.Content(episodes)</visible>
-                            </control>
-							
-                            <!-- Genre -->
-                            <control type="label">
-                                <posy>45</posy>
-                                <width>980</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Genre]</label>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                            </control>
-                            <!-- Year, Rating and Runtime -->
-                            <control type="label">
-                                <posy>45</posy>
-                                <posx>1330</posx>
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Year] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Rating] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
-                                <align>right</align>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                                <visible>!IsEmpty(ListItem.Year) + !IsEmpty(ListItem.Rating)</visible>
-                            </control>
-                            <!-- Year and Runtime -->
-                            <control type="label">
-                                <posy>45</posy>
-                                <posx>1330</posx>
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Year] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
-                                <align>right</align>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                                <visible>!IsEmpty(ListItem.Year) + IsEmpty(ListItem.Rating)</visible>
-                            </control>
-                            <!-- Rating and Runtime -->
-                            <control type="label">
-                                <posy>45</posy>
-                                <posx>1330</posx>
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Rating] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
-                                <align>right</align>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                                <visible>IsEmpty(ListItem.Year) + !IsEmpty(ListItem.Rating)</visible>
-                            </control>
-                            <!-- Runtime -->
-                            <control type="label">
-                                <posy>45</posy>
-                                <posx>1330</posx>
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Duration] Minutes</label>
-                                <align>right</align>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                                <visible>IsEmpty(ListItem.Year) + IsEmpty(ListItem.Rating)</visible>
-                            </control>
-                            <!-- Plot Summary -->
-                            <control type="textbox">
-                                <posy>95</posy>
-                                <width>1330</width>
-                                <height>108</height>
-                                <label>$VAR[VideoPlotVar]</label>
-                                <autoscroll>false</autoscroll>
-                                <font>font14_textbox</font>
-                                <textcolor>grey</textcolor>
-                            </control>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout width="1808" height="217" condition="Container.Content(movies)">
-                        <!-- Display Separator -->
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture border="5">separator2.png</texture>
-                        </control>
-                        <!-- Display Focus Indicator -->
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture>listselect_fo.png</texture>
-                            <include>VisibleFadeEffect</include>
-                        </control>
-                        <include>BigList_Landscape</include>
-                        <control type="group">
-                            <posx>375</posx>
-                            <posy>10</posy>
-                            <control type="group">
-                                <!-- Title -->
-                                <control type="label">
-                                    <width>1330</width>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Label]</label>
-                                    <font>font16_title_bold</font>
-                                </control>
-                                <!-- Genre -->
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>980</width>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Genre]</label>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                </control>
-                                <!-- Year, Rating and Runtime -->
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>1330</width>
-                                    <posx>1330</posx>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Year] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Rating] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
-                                    <align>right</align>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                    <visible>!IsEmpty(ListItem.Year) + !IsEmpty(ListItem.Rating)</visible>
-                                </control>
-                                <!-- Year and Runtime -->
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>1330</width>
-                                    <posx>1330</posx>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Year] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
-                                    <align>right</align>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                    <visible>!IsEmpty(ListItem.Year) + IsEmpty(ListItem.Rating)</visible>
-                                </control>
-                                <!-- Rating and Runtime -->
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>1330</width>
-                                    <posx>1330</posx>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Rating] [COLOR labelheader]|[/COLOR] $INFO[ListItem.Duration] Minutes</label>
-                                    <align>right</align>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                    <visible>IsEmpty(ListItem.Year) + !IsEmpty(ListItem.Rating)</visible>
-                                </control>
-                                <!-- Runtime -->
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>1330</width>
-                                    <posx>1330</posx>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Duration] Minutes</label>
-                                    <align>right</align>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                    <visible>IsEmpty(ListItem.Year) + IsEmpty(ListItem.Rating)</visible>
-                                </control>
-                                <!-- Plot Summary -->
-                                <control type="textbox">
-                                    <posy>95</posy>
-                                    <width>1330</width>
-                                    <height>108</height>
-                                    <label>$VAR[VideoPlotVar]</label>
-                                    <font>font14_textbox</font>
-                                    <autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-                                </control>
-                            </control>
-                        </control>
-                    </focusedlayout>
-					<itemlayout width="1808" height="217" condition="Container.Content(tvshows)">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture border="5">separator2.png</texture>
-                        </control>
-                        <include>BigList_Landscape</include>
-                        <control type="group">
-                            <posx>375</posx>
-                            <posy>10</posy>
-                            <!-- Title -->
-                            <control type="label">
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Label]</label>
-                                <font>font16_title_bold</font>
-                                <textcolor>grey</textcolor>
-                            </control>
-							
-							 <!-- Number of Episodes -->
-                            <control type="label">
-                                <posy>45</posy>
-                                <width>980</width>
-                                <height>50</height>
-                                <label>[COLOR=blue]Episodes:[/COLOR] $INFO[ListItem.episode] ($INFO[ListItem.Property(UnWatchedEpisodes)] Unwatched)</label>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                            </control>
-							
-                            <!-- Genre -->
-                            <control type="label">
-                                <posy>45</posy>
-								<posx>1330</posx>
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Genre]</label>
-								<align>right</align>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                            </control>
-							                          
-                            <!-- Plot Summary -->
-                            <control type="textbox">
-                                <posy>95</posy>
-                                <width>1330</width>
-                                <height>108</height>
-                                <label>$VAR[VideoPlotVar]</label>
-                                <autoscroll>false</autoscroll>
-                                <font>font14_textbox</font>
-                                <textcolor>grey</textcolor>
-                            </control>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout width="1808" height="217" condition="Container.Content(tvshows)">
-                        
-						<!-- Display Separator -->
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture border="5">separator2.png</texture>
-                        </control>
+	<!--BIG LIST-->
+	<include name="View_510_BigList">
+		<control type="group">
+			<visible>Control.IsVisible(510) + !Window.IsActive(addoninformation)</visible>
+			<include>ViewAnimation</include>
+			<control type="group">
+				<posx>58</posx>
+				<posy>-55</posy>
+				<control type="image">
+					<posx>-58</posx>
+					<posy>550</posy>
+					<width>1920</width>
+					<height>680</height>
+					<texture>floor.png</texture>
+					<visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
+				</control>
+				<control type="image">
+					<description>background image</description>
+					<posx>-32</posx>
+					<posy>118</posy>
+					<width>1867</width>
+					<height>995</height>
+					<texture border="40">listpanel_back.png</texture>
+					<visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
+				</control>
+			</control>
+			
+			<!-- Container -->
+			<control type="list" id="510">
+				<viewtype label="BigList">biglist</viewtype>
+				<posx>58</posx>
+				<posy>95</posy>
+				<width>1808</width>
+				<height>950</height>
+				<onleft>SetProperty(MediaMenu,True,home)</onleft>
+				<onleft>SetFocus(9050)</onleft>
+				<onright>60</onright>
+				<onup>510</onup>
+				<ondown>510</ondown>
+				<preloaditems>2</preloaditems>
+				<pagecontrol>60</pagecontrol>
+				<orientation>vertical</orientation>
+				<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums)]</visible>
+				
+				<!-- Landscape Layout -->
+				<itemlayout width="1808" height="235">
+					<control type="image">
+						<posx>0</posx>
+						<posy>9</posy>
+						<width>1804</width>
+						<height>217</height>
+						<texture border="5">separator2.png</texture>
+						<visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
+					</control>
+					<include>view_BigList-LandscapeCommons</include>
+					<control type="group">
+						<posx>382</posx>
+						<posy>6</posy>
 						
-                        <!-- Display Focus Indicator -->
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture>listselect_fo.png</texture>
-                            <include>VisibleFadeEffect</include>
-                        </control>
+						<!-- Title -->
+						<control type="label">
+							<width>1380</width>
+							<label>$INFO[ListItem.Label]</label>
+							<font>font16_title_bold</font>
+							<textcolor>grey</textcolor>
+							<aligny>top</aligny>
+						</control>
 						
-                        <include>BigList_Landscape</include>
-                        <control type="group">
-                            <posx>375</posx>
-                            <posy>10</posy>
-                            <control type="group">
+						<control type="label">
+							<posy>42</posy>
+							<width>1380</width>
+							<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+							<aligny>top</aligny>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<visible>Container.Content(movies) + !IsEmpty(ListItem.Title)</visible>
+						</control>
+						
+						<!-- Song Duration -->
+						<control type="label">
+							<posy>42</posy>
+							<width>1380</width>
+							<label>$INFO[ListItem.Duration]</label>
+							<aligny>top</aligny>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<visible>Container.Content(songs)</visible>
+						</control>
+						
+						<control type="label">
+							<posy>42</posy>
+							<width>1380</width>
+							<label>[COLOR themecolor_transparent]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Property(TotalEpisodes)] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • $INFO[ListItem.RatingAndVotes]</label>
+							<aligny>top</aligny>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title)</visible>
+						</control>
+						<control type="label">
+							<posy>42</posy>
+							<width>1380</width>
+							<label>($INFO[ListItem.Premiered,,) • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+							<aligny>top</aligny>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title)</visible>
+						</control>
+						<control type="label">
+							<posy>42</posy>
+							<width>1380</width>
+							<label>$INFO[ListItem.Property(Artist_Genre)]</label>
+							<aligny>top</aligny>
+							<font>font15</font>
+							<textcolor>themecolor_transparent</textcolor>
+							<visible>Container.Content(artists) | Container.Content(albums)</visible>
+						</control>
+						<control type="label">
+							<posy>42</posy>
+							<width>1380</width>
+							<label>$INFO[ListItem.Artist]</label>
+							<aligny>top</aligny>
+							<font>font15</font>
+							<textcolor>themecolor_transparent</textcolor>
+							<visible>Container.Content(albums)</visible>
+						</control>
+						
+						<!-- Plot -->
+						<control type="textbox">
+							<posy>90</posy>
+							<width>1380</width>
+							<height>108</height>
+							<label>$INFO[ListItem.Plot]</label>
+							<autoscroll>false</autoscroll>
+							<font>font14_textbox</font>
+							<textcolor>grey</textcolor>
+							<visible>!Container.Content(artists)</visible>
+						</control>
+						<control type="textbox">
+							<posy>90</posy>
+							<width>1380</width>
+							<height>108</height>
+							<label>$VAR[MusicPlotVar]</label>
+							<autoscroll>false</autoscroll>
+							<font>font14_textbox</font>
+							<textcolor>grey</textcolor>
+							<visible>[Container.Content(artists) | Container.Content(albums)]</visible>
+						</control>
+						<control type="image">
+							<posx>1200</posx>
+							<posy>16</posy>
+							<width>192</width>
+							<height>33</height>
+							<texture colordiffuse="themecolor_transparent" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
+							<aspectratio align="right">keep</aspectratio>
+							<visible>Container.Content(albums) | Container.Content(songs)</visible>
+						</control>
+						
+						<!-- Watched Status Indicator -->
+						<control type="image">
+							<posx>1360</posx>
+							<posy>0</posy>
+							<width>64</width>
+							<height>64</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[ListItem.Overlay]</texture>
+						</control>
+						
+						<!-- Resolution Indicator -->
+						<control type="image">
+							<posx>1320</posx>
+							<posy>9</posy>
+							<width>42</width>
+							<height>46.5</height>
+							<colordiffuse>grey</colordiffuse>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+						</control>
+					</control>
+				</itemlayout>
+				<focusedlayout width="1808" height="235">
+					<control type="image">
+						<posx>0</posx>
+						<posy>9</posy>
+						<width>1804</width>
+						<height>217</height>
+						<texture border="5">separator2.png</texture>
+						<visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
+					</control>
+					<control type="image">
+						<posy>-8</posy>
+						<width>1803</width>
+						<height>231</height>
+						<texture>listselect_fo.png</texture>
+						<visible>[Container.Content(albums) + !Skin.HasSetting(alternatebiglistlayout)] | [Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(artists)]</visible>
+					</control>
+					<control type="image">
+						<posx>90</posx>
+						<posy>-8</posy>
+						<width>1713</width>
+						<height>231</height>
+						<texture>listselect_fo.png</texture>
+						<visible>Container.Content(albums) + Skin.HasSetting(alternatebiglistlayout)</visible>
+					</control>
+					<include>view_BigList-LandscapeCommons</include>
+					<control type="group">
+						<posx>382</posx>
+						<posy>6</posy>
+						<control type="group">
+						
+							<!-- Title -->
+							<control type="label">
+								<width>1380</width>
+								<label>$INFO[ListItem.Label]</label>
+								<font>font16_title_bold</font>
+								<textcolor>white</textcolor>
+								<aligny>top</aligny>
+							</control>
 							
-                                <!-- Title -->
-                                <control type="label">
-                                    <width>1330</width>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Label]</label>
-                                    <font>font16_title_bold</font>
-                                </control>
-																
-                                <!-- Number of Episodes -->
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>980</width>                                    
-                                    <height>50</height>
-                                    <label>[COLOR=blue]Episodes:[/COLOR] $INFO[ListItem.episode] ($INFO[ListItem.Property(UnWatchedEpisodes)] Unwatched)</label>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                </control>
-                                
-                                <!-- Genre -->
-                                <control type="label">
-                                    <posy>45</posy>
-									<posx>1330</posx>
-                                    <width>1330</width>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Genre]</label>
-									<align>right</align>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                </control>
-								
-                                <!-- Plot Summary -->
-                                <control type="textbox">
-                                    <posy>95</posy>
-                                    <width>1330</width>
-                                    <height>108</height>
-                                    <label>$VAR[VideoPlotVar]</label>
-                                    <font>font14_textbox</font>
-                                    <autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-                                </control>
-                            </control>
-                        </control>
-                    </focusedlayout>
-					<itemlayout width="1808" height="217" condition="Container.Content(episodes)">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture border="5">separator2.png</texture>
-                        </control>
-                        <include>BigList_Landscape</include>
-                        <control type="group">
-                            <posx>375</posx>
-                            <posy>10</posy>
+							<!-- Movie Info -->
+							<control type="label">
+								<posy>42</posy>
+								<width>1380</width>
+								<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+								<aligny>top</aligny>
+								<font>font15</font>
+								<textcolor>white</textcolor>
+								<visible>Container.Content(movies) + !IsEmpty(ListItem.Title)</visible>
+							</control>
 							
-                            <!-- Title -->
-                            <control type="label">
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-                                <font>font16_title_bold</font>
-                                <textcolor>grey</textcolor>
-                            </control>
+							<!-- Song Duration -->
+							<control type="label">
+								<posy>42</posy>
+								<width>1380</width>
+								<label>$INFO[ListItem.Duration]</label>
+								<aligny>top</aligny>
+								<font>font15</font>
+								<textcolor>white</textcolor>
+								<visible>Container.Content(songs)</visible>
+							</control>
+							<control type="label">
+								<posy>42</posy>
+								<width>1380</width>
+								<label>[COLOR themecolor]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Property(TotalEpisodes)] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • $INFO[ListItem.RatingAndVotes]</label>
+								<aligny>top</aligny>
+								<font>font15</font>
+								<textcolor>white</textcolor>
+								<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title)</visible>
+								<visible>!ListItem.IsCollection</visible>
+							</control>
+							<control type="label">
+								<posy>42</posy>
+								<width>1380</width>
+								<label>($INFO[ListItem.Premiered,,) • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+								<aligny>top</aligny>
+								<font>font15</font>
+								<textcolor>white</textcolor>
+								<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title)</visible>
+								<visible>!ListItem.IsCollection</visible>
+							</control>
+							<control type="label">
+								<posy>42</posy>
+								<width>1380</width>
+								<label>$INFO[ListItem.Property(Artist_Genre)]</label>
+								<aligny>top</aligny>
+								<font>font15</font>
+								<textcolor>themecolor</textcolor>
+								<visible>Container.Content(artists)</visible>
+							</control>
+							<control type="label">
+								<posy>42</posy>
+								<width>1380</width>
+								<label>$INFO[ListItem.Artist]</label>
+								<aligny>top</aligny>
+								<font>font15</font>
+								<textcolor>themecolor</textcolor>
+								<visible>Container.Content(albums)</visible>
+							</control>
 							
-							 <!-- Aired Date, Rating and Duration -->
-                            <control type="label">
-                                <posy>45</posy>
-                                <width>980</width>
-                                <height>50</height>
-                                <label>$VAR[VideoSubLabelVar]</label>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                            </control>
-							                     
-                            <!-- Plot Summary -->
-                            <control type="textbox">
-                                <posy>95</posy>
-                                <width>1330</width>
-                                <height>108</height>
-                                <label>$VAR[VideoPlotVar]</label>
-                                <autoscroll>false</autoscroll>
-                                <font>font14_textbox</font>
-                                <textcolor>grey</textcolor>
-                            </control>
+							<!-- Plot -->
+							<control type="textbox">
+								<visible>!Container.Content(artists)</visible>
+								<posy>90</posy>
+								<width>1380</width>
+								<height>108</height>
+								<label>$INFO[ListItem.Plot]</label>
+								<textcolor>white</textcolor>
+								<font>font14_textbox</font>
+								<autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+							</control>
+							<control type="textbox">
+								<posy>90</posy>
+								<width>1380</width>
+								<height>108</height>
+								<label>$VAR[MusicPlotVar]</label>
+								<font>font14_textbox</font>
+								<textcolor>white</textcolor>
+								<autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+								<visible>[Container.Content(artists) | Container.Content(albums)]</visible>
+							</control>
+							<control type="image">
+								<posx>1200</posx>
+								<posy>16</posy>
+								<width>192</width>
+								<height>33</height>
+								<texture colordiffuse="themecolor" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
+								<aspectratio align="right">keep</aspectratio>
+								<visible>Container.Content(albums) | Container.Content(songs)</visible>
+							</control>
+							<control type="image">
+								<posx>-390</posx>
+								<posy>10</posy>
+								<width>85</width>
+								<height>60</height>
+								<aspectratio>keep</aspectratio>
+								<texture background="true">oscars.png</texture>
+								<visible>Skin.HasSetting(oscars510) + [SubString(ListItem.FileName,.oscars) | StringCompare(Container.FolderPath,special://profile/playlists/video/BestPicture.xsp)]</visible>
+							</control>
 							
+							<!-- Watched Status Indicator -->
 							<control type="image">
 								<posx>1360</posx>
 								<posy>0</posy>
@@ -421,340 +328,66 @@
 								<texture>$VAR[ListItem.Overlay]</texture>
 							</control>
 							
+							<!-- Resolution Indicator -->
 							<control type="image">
 								<posx>1320</posx>
 								<posy>9</posy>
 								<width>42</width>
 								<height>46.5</height>
-								<colordiffuse>grey</colordiffuse>
 								<aspectratio>keep</aspectratio>
 								<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
 							</control>
-							
-                        </control>
-                    </itemlayout>
-                    <focusedlayout width="1808" height="217" condition="Container.Content(episodes)">
-                        
-						<!-- Display Separator -->
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture border="5">separator2.png</texture>
-                        </control>
-						
-                        <!-- Display Focus Indicator -->
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture>listselect_fo.png</texture>
-                            <include>VisibleFadeEffect</include>
-                        </control>
-						
-                        <include>BigList_Landscape</include>
-                        <control type="group">
-                            <posx>375</posx>
-                            <posy>10</posy>
-                            <control type="group">
-							
-                                <!-- Title -->
-                                <control type="label">
-                                    <width>1330</width>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-                                    <font>font16_title_bold</font>
-                                </control>
-																
-                                <!-- Aired Date, Rating and Duration -->
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>980</width>                                    
-                                    <height>50</height>
-                                    <label>$VAR[VideoSubLabelVar]</label>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                </control>
-                                
-                                <!-- Plot Summary -->
-                                <control type="textbox">
-                                    <posy>95</posy>
-                                    <width>1330</width>
-                                    <height>108</height>
-                                    <label>$VAR[VideoPlotVar]</label>
-                                    <font>font14_textbox</font>
-                                    <autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-                                </control>
-                            </control>
-                        </control>
-                    </focusedlayout>
-                </control>
-				
-                <!-- Display Scrollbar -->
-                <control type="scrollbar" id="60">
-                    <posx>1725</posx>
-                    <posy>151</posy>
-                    <width>12</width>
-                    <height>868</height>
-					<colordiffuse>55ffffff</colordiffuse>
-                    <onup>60</onup>
-                    <ondown>60</ondown>
-                    <onleft>510</onleft>
-                    <onright>SetProperty(MediaMenu,True,home)</onright>
-                    <onright>SetFocus(9050)</onright>
-                    <texturesliderbackground>-</texturesliderbackground>
-                    <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-                    <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-                    <showonepage>false</showonepage>
-                    <orientation>vertical</orientation>
-                    <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-                </control>
-            </control>
-        </control>
-    </include>
-    <include name="Music_510_BigList">
-        <control type="group">
-            <visible>Control.IsVisible(510) + !Window.IsActive(addoninformation)</visible>
-            <include>ViewAnimation</include>
-            <control type="group">
-                <posx>100</posx>
-                <posy>-20</posy>
-                <control type="image">
-                    <description>background image</description>
-                    <posx>-32</posx>
-                    <posy>870</posy>
-                    <width>1788</width>
-                    <height>934</height>
-                    <texture border="40">panel_reflect.png</texture>
-                </control>
-                <control type="image">
-                    <description>background image</description>
-                    <posx>-32</posx>
-                    <posy>118</posy>
-                    <width>1788</width>
-                    <height>934</height>
-                    <texture border="40">listpanel_back.png</texture>
-                </control>
-                <control type="list" id="510">
-                    <viewtype label="BigList">biglist</viewtype>
-                    <posx>0</posx>
-                    <posy>151</posy>
-                    <width>1725</width>
-                    <height>868</height>
-                    <onleft>SetProperty(MediaMenu,True,home)</onleft>
-                    <onleft>SetFocus(9050)</onleft>
-                    <onright>60</onright>
-                    <onup>510</onup>
-                    <ondown>510</ondown>
-                    <preloaditems>2</preloaditems>
-                    <pagecontrol>60</pagecontrol>
-                    <orientation>vertical</orientation>
-                    <scrolltime tween="quadratic" easing="out">300</scrolltime>
-                    <visible>[Container.Content(artists) | Container.Content(albums)]</visible>
-                    <itemlayout width="1725" height="217">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture border="5">separator2.png</texture>
-                        </control>
-                        <control type="image">
-                            <posx>12</posx>
-                            <posy>11</posy>
-                            <width>195</width>
-                            <height>195</height>
-                            <aspectratio>stretch</aspectratio>
-                            <texture background="true">$INFO[ListItem.Icon]</texture>
-                            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-                            <bordersize>2</bordersize>
-                        </control>
-                        <control type="group">
-                            <posx>225</posx>
-                            <posy>10</posy>
-                            <control type="label">
-                                <width>1330</width>
-                                <height>50</height>
-                                <label>$INFO[ListItem.Label]</label>
-                                <font>font16_title_bold</font>
-                                <textcolor>grey</textcolor>
-                            </control>
-                            <control type="label">
-                                <posy>45</posy>
-                                <width>980</width>
-                                <height>50</height>
-                                <label>$VAR[BigListInfoVar]</label>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                            </control>
-                            <control type="label">
-                                <posy>45</posy>
-                                <width>1480</width>
-                                <height>50</height>
-                                <label>$VAR[BigListInfoVar2]</label>
-                                <align>right</align>
-                                <aligny>center</aligny>
-                                <font>font14</font>
-                                <textcolor>grey2</textcolor>
-                            </control>
-                            <control type="textbox">
-                                <posy>95</posy>
-                                <width>1480</width>
-                                <height>108</height>
-                                <label>$VAR[MusicPlotVar]</label>
-                                <autoscroll>false</autoscroll>
-                                <font>font14_textbox</font>
-                                <textcolor>grey</textcolor>
-                            </control>
-                            <control type="image">
-                                <posx>1290</posx>
-                                <posy>10</posy>
-                                <width>192</width>
-                                <height>33</height>
-								<colordiffuse>themecolor_transparent</colordiffuse>
-                                <texture fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
-                                <aspectratio align="right">keep</aspectratio>
-                                <visible>Container.Content(albums)</visible>
-                            </control>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout width="1725" height="217">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture border="5">separator2.png</texture>
-                        </control>
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>1725</width>
-                            <height>217</height>
-                            <texture>listselect_fo.png</texture>
-                            <!--<visible>Control.HasFocus(510)</visible>-->
-                            <include>VisibleFadeEffect</include>
-                        </control>
-                        <control type="image">
-                            <posx>12</posx>
-                            <posy>11</posy>
-                            <width>195</width>
-                            <height>195</height>
-                            <aspectratio>stretch</aspectratio>
-                            <texture background="true">$INFO[ListItem.Icon]</texture>
-                            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-                            <bordersize>2</bordersize>
-                        </control>
-                        <control type="group">
-                            <posx>225</posx>
-                            <posy>10</posy>
-                            <control type="group">
-                                <control type="label">
-                                    <width>1330</width>
-                                    <height>50</height>
-                                    <label>$INFO[ListItem.Label]</label>
-                                    <font>font16_title_bold</font>
-                                </control>
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>980</width>
-                                    <height>50</height>
-                                    <label>$VAR[BigListInfoVar]</label>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                </control>
-                                <control type="label">
-                                    <posy>45</posy>
-                                    <width>1480</width>
-                                    <height>50</height>
-                                    <label>$VAR[BigListInfoVar2]</label>
-                                    <align>right</align>
-                                    <aligny>center</aligny>
-                                    <font>font14</font>
-                                    <textcolor>grey</textcolor>
-                                </control>
-                                <control type="textbox">
-                                    <posy>95</posy>
-                                    <width>1480</width>
-                                    <height>108</height>
-                                    <label>$VAR[MusicPlotVar]</label>
-                                    <font>font14_textbox</font>
-                                    <autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-                                </control>
-                                <control type="image">
-                                    <posx>1290</posx>
-                                    <posy>10</posy>
-                                    <width>192</width>
-                                    <height>33</height>
-									<colordiffuse>themecolor</colordiffuse>
-                                    <texture fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
-                                    <aspectratio align="right">keep</aspectratio>
-                                    <visible>Container.Content(albums)</visible>
-                                </control>
-                            </control>
-                        </control>
-                    </focusedlayout>
-                </control>
-                <control type="scrollbar" id="60">
-                    <posx>1725</posx>
-                    <posy>151</posy>
-                    <width>12</width>
-                    <height>868</height>
-					<colordiffuse>55ffffff</colordiffuse>
-                    <onup>60</onup>
-                    <ondown>60</ondown>
-                    <onleft>510</onleft>
-                    <onright>SetProperty(MediaMenu,True,home)</onright>
-                    <onright>SetFocus(9050)</onright>
-                    <texturesliderbackground>-</texturesliderbackground>
-                    <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-                    <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-                    <showonepage>false</showonepage>
-                    <orientation>vertical</orientation>
-                    <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-                </control>
-            </control>
-        </control>
-    </include>
-    <include name="BigList_Landscape">
-        <control type="group">
-            <posx>12</posx>
-            <posy>11</posy>
-            <!-- Display Fanart as Thumb -->
-            <control type="image">
-                <width>346</width>
-                <height>195</height>
-                <texture background="true">$INFO[ListItem.Art(fanart)]</texture>
-                <aspectratio>scale</aspectratio>
-                <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-                <bordersize>2</bordersize>
-                <visible>!Container.Content(episodes)</visible>
-            </control>
-            <!-- Display Episode Thumb -->
-            <control type="image">
-                <width>346</width>
-                <height>195</height>
-                <texture background="true">$INFO[ListItem.thumb]</texture>
-                <aspectratio>scale</aspectratio>
-                <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-                <bordersize>2</bordersize>
-                <visible>Container.Content(episodes)</visible>
-            </control>
-            <!-- Watched Status Overlay -->
-            <control type="image">
-                <posx>286</posx>
-                <posy>2</posy>
-                <width>60</width>
-                <height>60</height>
-                <texture>$INFO[ListItem.Overlay]</texture>
-                <aspectratio align="right" aligny="top">keep</aspectratio>
-				<visible>!Container.Content(episodes)</visible>
-            </control>
-        </control>
-    </include>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60">
+				<posx>1860</posx>
+				<posy>200</posy>
+				<width>14</width>
+				<height>780</height>
+				<onup>60</onup>
+				<ondown>60</ondown>
+				<onleft>510</onleft>
+				<onright>SetProperty(MediaMenu,True,home)</onright>
+				<onright>SetFocus(9050)</onright>
+				<texturesliderbackground>-</texturesliderbackground>
+				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+				<showonepage>false</showonepage>
+				<orientation>vertical</orientation>
+				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+			</control>
+		</control>
+	</include>
+	<!--landscape layout commons-->
+	<include name="view_BigList-LandscapeCommons">
+		<control type="group">
+			<posx>18</posx>
+			<posy>10</posy>
+			<control type="image">
+				<posx>100</posx>
+				<posy>-2</posy>
+				<width>200</width>
+				<height>200</height>
+				<aspectratio>scale</aspectratio>
+				<texture background="true">$INFO[ListItem.Icon]</texture>
+				<visible>Container.Content(albums) | Container.Content(songs)</visible>
+			</control>
+			<control type="image">
+				<width>346</width>
+				<height>195</height>
+				<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+				<aspectratio>scale</aspectratio>
+				<visible>![Container.Content(episodes) | Container.Content(albums) | Container.Content(songs)]</visible>
+			</control>
+			<control type="image">
+				<width>346</width>
+				<height>195</height>
+				<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+				<aspectratio>scale</aspectratio>
+				<visible>Container.Content(episodes)</visible>
+			</control>
+		</control>
+	</include>
 </includes>
