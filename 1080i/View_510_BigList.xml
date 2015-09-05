@@ -51,6 +51,7 @@
                         <control type="group">
                             <posx>375</posx>
                             <posy>10</posy>
+							
                             <!-- Title -->
                             <control type="label">
                                 <width>1330</width>
@@ -58,7 +59,9 @@
                                 <label>$INFO[ListItem.Label]</label>
                                 <font>font16_title_bold</font>
                                 <textcolor>grey</textcolor>
+								<visible>!Container.Content(episodes)</visible>
                             </control>
+							
                             <!-- Genre -->
                             <control type="label">
                                 <posy>45</posy>
@@ -365,7 +368,131 @@
                             </control>
                         </control>
                     </focusedlayout>
+					<itemlayout width="1808" height="217" condition="Container.Content(episodes)">
+                        <control type="image">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>1725</width>
+                            <height>217</height>
+                            <texture border="5">separator2.png</texture>
+                        </control>
+                        <include>BigList_Landscape</include>
+                        <control type="group">
+                            <posx>375</posx>
+                            <posy>10</posy>
+							
+                            <!-- Title -->
+                            <control type="label">
+                                <width>1330</width>
+                                <height>50</height>
+                                <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+                                <font>font16_title_bold</font>
+                                <textcolor>grey</textcolor>
+                            </control>
+							
+							 <!-- Aired Date, Rating and Duration -->
+                            <control type="label">
+                                <posy>45</posy>
+                                <width>980</width>
+                                <height>50</height>
+                                <label>$VAR[VideoSubLabelVar]</label>
+                                <aligny>center</aligny>
+                                <font>font14</font>
+                                <textcolor>grey2</textcolor>
+                            </control>
+							                     
+                            <!-- Plot Summary -->
+                            <control type="textbox">
+                                <posy>95</posy>
+                                <width>1330</width>
+                                <height>108</height>
+                                <label>$VAR[VideoPlotVar]</label>
+                                <autoscroll>false</autoscroll>
+                                <font>font14_textbox</font>
+                                <textcolor>grey</textcolor>
+                            </control>
+							
+							<control type="image">
+								<posx>1360</posx>
+								<posy>0</posy>
+								<width>64</width>
+								<height>64</height>
+								<aspectratio>keep</aspectratio>
+								<texture>$VAR[ListItem.Overlay]</texture>
+							</control>
+							
+							<control type="image">
+								<posx>1320</posx>
+								<posy>9</posy>
+								<width>42</width>
+								<height>46.5</height>
+								<colordiffuse>grey</colordiffuse>
+								<aspectratio>keep</aspectratio>
+								<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+							</control>
+							
+                        </control>
+                    </itemlayout>
+                    <focusedlayout width="1808" height="217" condition="Container.Content(episodes)">
+                        
+						<!-- Display Separator -->
+                        <control type="image">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>1725</width>
+                            <height>217</height>
+                            <texture border="5">separator2.png</texture>
+                        </control>
+						
+                        <!-- Display Focus Indicator -->
+                        <control type="image">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>1725</width>
+                            <height>217</height>
+                            <texture>listselect_fo.png</texture>
+                            <include>VisibleFadeEffect</include>
+                        </control>
+						
+                        <include>BigList_Landscape</include>
+                        <control type="group">
+                            <posx>375</posx>
+                            <posy>10</posy>
+                            <control type="group">
+							
+                                <!-- Title -->
+                                <control type="label">
+                                    <width>1330</width>
+                                    <height>50</height>
+                                    <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+                                    <font>font16_title_bold</font>
+                                </control>
+																
+                                <!-- Aired Date, Rating and Duration -->
+                                <control type="label">
+                                    <posy>45</posy>
+                                    <width>980</width>                                    
+                                    <height>50</height>
+                                    <label>$VAR[VideoSubLabelVar]</label>
+                                    <aligny>center</aligny>
+                                    <font>font14</font>
+                                    <textcolor>grey</textcolor>
+                                </control>
+                                
+                                <!-- Plot Summary -->
+                                <control type="textbox">
+                                    <posy>95</posy>
+                                    <width>1330</width>
+                                    <height>108</height>
+                                    <label>$VAR[VideoPlotVar]</label>
+                                    <font>font14_textbox</font>
+                                    <autoscroll time="3500" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+                                </control>
+                            </control>
+                        </control>
+                    </focusedlayout>
                 </control>
+				
                 <!-- Display Scrollbar -->
                 <control type="scrollbar" id="60">
                     <posx>1725</posx>
@@ -626,6 +753,7 @@
                 <height>60</height>
                 <texture>$INFO[ListItem.Overlay]</texture>
                 <aspectratio align="right" aligny="top">keep</aspectratio>
+				<visible>!Container.Content(episodes)</visible>
             </control>
         </control>
     </include>
