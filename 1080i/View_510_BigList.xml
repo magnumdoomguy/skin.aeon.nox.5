@@ -66,6 +66,17 @@
 							<font>font16_title_bold</font>
 							<textcolor>grey</textcolor>
 							<aligny>top</aligny>
+							<visible>!Container.Content(episodes)</visible>
+						</control>
+						
+						<!-- Episode Title -->
+						<control type="label">
+							<width>1380</width>
+							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+							<font>font16_title_bold</font>
+							<textcolor>grey</textcolor>
+							<aligny>top</aligny>
+							<visible>Container.Content(episodes)</visible>
 						</control>
 						
 						<!-- Movie Info -->
@@ -101,15 +112,17 @@
 							<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title)</visible>
 						</control>
 						
+						<!-- Episode Info -->
 						<control type="label">
 							<posy>42</posy>
 							<width>1380</width>
-							<label>($INFO[ListItem.Premiered,,) • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+							<label>($INFO[ListItem.Date,,) • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
 							<aligny>top</aligny>
 							<font>font15</font>
 							<textcolor>grey</textcolor>
 							<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title)</visible>
 						</control>
+						
 						<control type="label">
 							<posy>42</posy>
 							<width>1380</width>
@@ -170,6 +183,7 @@
 							<texture>$VAR[ListItem.Overlay]</texture>
 						</control>
 						<control type="group">
+							<visible>!Container.Content(episodes)</visible>
 							<description>Unwatched episodes</description>
 							<posx>1360</posx>
 							<posy>-28</posy>
@@ -245,6 +259,17 @@
 								<font>font16_title_bold</font>
 								<textcolor>white</textcolor>
 								<aligny>top</aligny>
+								<visible>!Container.Content(episodes)</visible>
+							</control>
+							
+							<!-- Episode Title -->
+							<control type="label">
+								<width>1380</width>
+								<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+								<font>font16_title_bold</font>
+								<textcolor>white</textcolor>
+								<aligny>top</aligny>
+								<visible>Container.Content(episodes)</visible>
 							</control>
 							
 							<!-- Movie Info -->
@@ -280,16 +305,17 @@
 								<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title)</visible>
 							</control>
 							
+							<!-- Episode Info -->
 							<control type="label">
 								<posy>42</posy>
 								<width>1380</width>
-								<label>($INFO[ListItem.Premiered,,) • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+								<label>($INFO[ListItem.Date,,) • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
 								<aligny>top</aligny>
 								<font>font15</font>
 								<textcolor>white</textcolor>
 								<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title)</visible>
-								<visible>!ListItem.IsCollection</visible>
 							</control>
+							
 							<control type="label">
 								<posy>42</posy>
 								<width>1380</width>
@@ -360,6 +386,7 @@
 							</control>
 							<control type="group">
 								<description>Unwatched episodes</description>
+								<visible>!Container.Content(episodes)</visible>
 								<posx>1360</posx>
 								<posy>-28</posy>
 								<control type="image">
