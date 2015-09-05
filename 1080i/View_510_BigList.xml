@@ -68,6 +68,7 @@
 							<aligny>top</aligny>
 						</control>
 						
+						<!-- Movie Info -->
 						<control type="label">
 							<posy>42</posy>
 							<width>1380</width>
@@ -89,15 +90,17 @@
 							<visible>Container.Content(songs)</visible>
 						</control>
 						
+						<!-- TV Show Info -->
 						<control type="label">
 							<posy>42</posy>
 							<width>1380</width>
-							<label>[COLOR themecolor_transparent]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Property(TotalEpisodes)] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • $INFO[ListItem.RatingAndVotes]</label>
+							<label>[COLOR themecolor_transparent]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)]$INFO[ListItem.RatingAndVotes, • ,]</label>
 							<aligny>top</aligny>
 							<font>font15</font>
 							<textcolor>grey</textcolor>
 							<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title)</visible>
 						</control>
+						
 						<control type="label">
 							<posy>42</posy>
 							<width>1380</width>
@@ -165,6 +168,32 @@
 							<height>64</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[ListItem.Overlay]</texture>
+						</control>
+						<control type="group">
+							<description>Unwatched episodes</description>
+							<posx>1360</posx>
+							<posy>-28</posy>
+							<control type="image">
+								<posx>0</posx>
+								<posy>28</posy>
+								<width>64</width>
+								<height>64</height>
+								<texture>overlays/list/OverlayUnWatched.png</texture>
+								<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+							</control>
+							<control type="label">
+								<posx>32</posx>
+								<posy>0</posy>
+								<width>100</width>
+								<height>120</height>
+								<font>font12_title</font>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$VAR[ListOverlayEpisodesVar]</label>
+								<textcolor>grey3</textcolor>
+								<textoffsetx>18</textoffsetx>
+								<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+							</control>
 						</control>
 						
 						<!-- Resolution Indicator -->
@@ -239,16 +268,18 @@
 								<textcolor>white</textcolor>
 								<visible>Container.Content(songs)</visible>
 							</control>
+							
+							<!-- TV Show Info -->
 							<control type="label">
 								<posy>42</posy>
 								<width>1380</width>
-								<label>[COLOR themecolor]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Property(TotalEpisodes)] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • $INFO[ListItem.RatingAndVotes]</label>
+								<label>[COLOR themecolor]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)]$INFO[ListItem.RatingAndVotes, • ,]</label>
 								<aligny>top</aligny>
 								<font>font15</font>
 								<textcolor>white</textcolor>
 								<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title)</visible>
-								<visible>!ListItem.IsCollection</visible>
 							</control>
+							
 							<control type="label">
 								<posy>42</posy>
 								<width>1380</width>
@@ -326,6 +357,32 @@
 								<height>64</height>
 								<aspectratio>keep</aspectratio>
 								<texture>$VAR[ListItem.Overlay]</texture>
+							</control>
+							<control type="group">
+								<description>Unwatched episodes</description>
+								<posx>1360</posx>
+								<posy>-28</posy>
+								<control type="image">
+									<posx>0</posx>
+									<posy>28</posy>
+									<width>64</width>
+									<height>64</height>
+									<texture>overlays/list/OverlayUnWatched.png</texture>
+									<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+								</control>
+								<control type="label">
+									<posx>32</posx>
+									<posy>0</posy>
+									<width>100</width>
+									<height>120</height>
+									<font>font12_title</font>
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$VAR[ListOverlayEpisodesVar]</label>
+									<textcolor>white</textcolor>
+									<textoffsetx>18</textoffsetx>
+									<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+								</control>
 							</control>
 							
 							<!-- Resolution Indicator -->
