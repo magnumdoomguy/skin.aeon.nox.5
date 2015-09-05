@@ -100,39 +100,6 @@
 						</control>
 					</control>
 				</focusedlayout>
-				<itemlayout height="360" width="240" condition="Container.Content(genres)">
-					<control type="image">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>240</width>
-						<height>360</height>
-						<aspectratio>scale</aspectratio>
-						<texture background="true" fallback="special://skin/extras/moviegenres/Default.jpg">$INFO[ListItem.Label,special://skin/extras/moviegenres/,.jpg]</texture>
-						<fadetime>400</fadetime>
-						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-						<bordersize>2</bordersize>
-						<colordiffuse>BAffffff</colordiffuse>
-					</control>
-				</itemlayout>
-				<focusedlayout height="360" width="240" condition="Container.Content(genres)">
-					<control type="group">
-						<animation type="Focus">
-							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-						</animation>
-						<control type="image">
-							<posx>0</posx>
-							<posy>0</posy>
-							<width>240</width>
-							<height>360</height>
-							<aspectratio>scale</aspectratio>
-							<texture background="true" fallback="special://skin/extras/moviegenres/Default.jpg">$INFO[ListItem.Label,special://skin/extras/moviegenres/,.jpg]</texture>
-							<fadetime>400</fadetime>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-							<bordersize>8</bordersize>
-						</control>
-					</control>
-				</focusedlayout>
 				<itemlayout height="240" width="240" condition="Container.Content(addons)">
 					<control type="image">
 						<posx>0</posx>
@@ -165,6 +132,8 @@
 					</control>
 				</focusedlayout>
 				<itemlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(genres) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets)]">
+					
+					<!-- Thumb -->
 					<control type="image">
 						<posx>0</posx>
 						<posy>0</posy>
@@ -176,7 +145,24 @@
 						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
 						<bordersize>2</bordersize>
 						<colordiffuse>BAffffff</colordiffuse>
+						<visible>!Container.Content(episodes)</visible>
 					</control>
+					
+					<!-- Episode Thumb -->
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>420</width>
+						<height>360</height>
+						<aspectratio>scale</aspectratio>
+						<texture background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+						<fadetime>400</fadetime>
+						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+						<bordersize>2</bordersize>
+						<colordiffuse>BAffffff</colordiffuse>
+						<visible>Container.Content(episodes)</visible>
+					</control>
+					
 					<control type="image">
 						<posx>320</posx>
 						<posy>0</posy>
@@ -194,6 +180,8 @@
 						<bordersize>2</bordersize>
 						<colordiffuse>88ffffff</colordiffuse>
 					</control>
+					
+					<!-- Title -->
 					<control type="label">
 						<posx>210</posx>
 						<posy>310</posy>
@@ -202,7 +190,21 @@
 						<align>center</align>
 						<textoffsetx>10</textoffsetx>
 						<textcolor>grey2</textcolor>
-						<info>ListItem.Label</info>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>!Container.Content(episodes)</visible>
+					</control>
+					
+					<!-- Episode Title -->
+					<control type="label">
+						<posx>210</posx>
+						<posy>310</posy>
+						<width>420</width>
+						<height>40</height>
+						<align>center</align>
+						<textoffsetx>10</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+						<visible>Container.Content(episodes)</visible>
 					</control>
 				</itemlayout>
 				<focusedlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(genres) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets)]">
@@ -211,6 +213,8 @@
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
+						
+						<!-- Thumbnail -->
 						<control type="image">
 							<posx>0</posx>
 							<posy>0</posy>
@@ -221,7 +225,23 @@
 							<fadetime>400</fadetime>
 							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>8</bordersize>
+							<visible>!Container.Content(episodes)</visible>
 						</control>
+						
+						<!-- Thumbnail -->
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>420</width>
+							<height>360</height>
+							<aspectratio>scale</aspectratio>
+							<texture background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+							<fadetime>400</fadetime>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<visible>Container.Content(episodes)</visible>
+						</control>
+						
 						<control type="image">
 							<posx>320</posx>
 							<posy>0</posy>
@@ -240,6 +260,8 @@
 							<bordersize>2</bordersize>
 							<colordiffuse>88ffffff</colordiffuse>
 						</control>
+						
+						<!-- Title -->
 						<control type="label">
 							<posx>210</posx>
 							<posy>310</posy>
@@ -247,7 +269,20 @@
 							<height>40</height>
 							<align>center</align>
 							<textoffsetx>10</textoffsetx>
-							<info>ListItem.Label</info>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>!Container.Content(episodes)</visible>
+						</control>
+						
+						<!-- Episode Title -->
+						<control type="label">
+							<posx>210</posx>
+							<posy>310</posy>
+							<width>420</width>
+							<height>40</height>
+							<align>center</align>
+							<textoffsetx>10</textoffsetx>
+							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+							<visible>Container.Content(episodes)</visible>
 						</control>
 					</control>
 				</focusedlayout>
