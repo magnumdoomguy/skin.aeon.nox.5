@@ -53,7 +53,17 @@
 				<width>729</width>
 				<height>1080</height>
 				<aspectratio aligny="top">scale</aspectratio>
-				<texture background="true" fallback="black.png">$INFO[ListItem.Art(bigThumb)]</texture> <!-- $INFO[ListItem.Art(bigThumb)] Looks better but doesn't work for TV $VAR[PosterVar] is original-->
+				<texture background="true" fallback="black.png">$INFO[ListItem.Art(bigThumb)]</texture> 
+				<visible>!Container.Content(episode)</visible>
+			</control>
+			
+			<!-- Display Episode Poster -->
+			<control type="image">
+				<width>729</width>
+				<height>1080</height>
+				<aspectratio aligny="top">scale</aspectratio>
+				<texture background="true" fallback="black.png">$INFO[ListItem.Art(bigGrandparentThumb)]</texture> 
+				<visible>Container.Content(episode)</visible>
 			</control>
 			
 			<!-- Display Watched Status Overlay (On the Poster, instead of next to the title) -->
@@ -176,6 +186,20 @@
 						<textcolor>grey</textcolor>
 						<scroll>true</scroll>
 						<label>$INFO[ListItem.Label]</label>
+						<visible>!Container.Content(episode)</visible>
+					</control>
+					
+					<!-- Display Episode Title -->
+					<control type="label">
+						<width>1100</width>
+						<height>60</height>
+						<aligny>center</aligny>
+						<align>left</align>
+						<font>font30_title_bold</font>
+						<textcolor>grey</textcolor>
+						<scroll>true</scroll>
+						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+						<visible>Container.Content(episode)</visible>
 					</control>
 					
 					<!-- Display Genre -->
@@ -201,7 +225,7 @@
 						<textcolor>labelheader</textcolor>
 						<scroll>true</scroll>
 						<label>$INFO[ListItem.TvShowTitle]</label>
-						<visible>Container.Content(episodes) + !IsEmpty(ListItem.TvShowTitle)</visible>
+						<visible>Container.Content(episode)</visible>
 					</control>
 					
 					<!-- Display Artist Title -->
@@ -245,18 +269,32 @@
 						<label>[B]$INFO[ListItem.Year][/B]</label>
 						<font>font35_title</font>
 						<textcolor>grey</textcolor>
+						<visible>!Container.Content(episode)</visible>
 					</control>
 					
+					<!-- Display First Aired Date -->
+					<control type="label">
+						<width>300</width>
+						<height>90</height>
+						<align>left</align>
+						<label>[B]$INFO[ListItem.Date][/B]</label>
+						<font>font35_title</font>
+						<textcolor>grey</textcolor>
+						<visible>Container.Content(episode)</visible>
+					</control>
+										
 					<!-- Item Separator -->
 					<control type="image">
 						<width>2</width>
 						<height>90</height>
 						<texture border="1">separator3.png</texture>
+						<visible>!Container.Content(episode)</visible>
 					</control>
 					
 					<!-- Display Studio Logo -->
 					<control type="group">
 						<width>198</width>
+						<visible>!Container.Content(episode)</visible>
 						<control type="group">
 							<width>198</width>
 							<control type="image" id="20011">
@@ -349,52 +387,31 @@
 						<texture border="1">separator3.png</texture>
 					</control>
 					
-					<!-- Star Rating -->
+					<!-- Rating -->
 					<control type="group">
-						<visible>!Container.Content(movie)</visible>
-						<width>424</width>
-						
-						<!-- No User Rating -->
-						<control type="image">
-							<width>424</width>
-							<height>50</height>
-							<posy>20</posy>
-							<texture align="right" aligny="center" fallback="flags/rating/0.png">$VAR[StarRatingFlag]</texture>
-							<aspectratio align="right" aligny="center">keep</aspectratio>
-							<colordiffuse>grey</colordiffuse>
-							<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
+						<width>200</width>
+						<control type="label">
+							<posx>275</posx>
+							<posy>2</posy>
+							<width>200</width>
+							<height>60</height>
+							<align>center</align>
+							<label>$INFO[ListItem.RatingAndVotes]</label>
+							<font>font48_bold</font>
+							<textcolor>grey</textcolor>
 						</control>
-						
-						<!-- User Rating -->
-						<control type="image">
-							<width>424</width>
-							<height>50</height>
-							<posy>20</posy>
-							<texture align="right" aligny="center">$INFO[ListItem.StarRating]</texture>
-							<aspectratio align="right" aligny="center">keep</aspectratio>
-							<colordiffuse>blue</colordiffuse>
-							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+						<control type="label">
+							<posx>275</posx>
+							<posy>52</posy>
+							<width>200</width>
+							<height>30</height>
+							<align>center</align>
+							<label>[LOWERCASE]rating[/LOWERCASE]</label>
+							<font>font12</font>
+							<textcolor>grey</textcolor>
 						</control>
-						
 					</control>
 					
-					<!-- IMDB Rating -->
-					<control type="group">
-						<visible>Container.Content(movie)</visible>
-						<width>424</width>
-						
-						<!-- No User Rating -->
-						<control type="image">
-							<width>424</width>
-							<height>65</height>
-							<posy>10</posy>
-							<texture align="right" aligny="center" fallback="flags/imdb/empty.png">$VAR[IMDBRatingFlag]</texture>
-							<aspectratio align="right" aligny="center">keep</aspectratio>
-							<colordiffuse>grey</colordiffuse>
-							<!--<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>-->
-						</control>
-					</control>
-
 				</control>
 				
 				<!-- Item Separator -->
