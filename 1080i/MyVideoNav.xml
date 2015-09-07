@@ -181,21 +181,21 @@
 				</control>
 				<control type="group">
 					<posx>0</posx>
-					<posy>1010</posy>
+					<posy>1020</posy>
 					<width>1920</width>
 					<align>center</align>
-					<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+					<visible>[Control.IsVisible(52) + Container.Content(movies)] | [Control.IsVisible(52) + Container.Content(tvshows)] | [Control.IsVisible(52) + Container.Content(episodes)] | [Control.IsVisible(53) + Container.Content(movies)] | [Control.IsVisible(53) + Container.Content(tvshows)] | [Control.IsVisible(53) + Container.Content(seasons)] | [Control.IsVisible(59) + Container.Content(movies)] | [Control.IsVisible(59) + Container.Content(tvshows)] | [Control.IsVisible(503) + Container.Content(movies)] | [Control.IsVisible(503) + Container.Content(tvshows)] | [Control.IsVisible(503) + Container.Content(seasons)]</visible>
 					
 					<!-- Display Studio -->
 					<control type="group">
-						<posx>120</posx>
+						<posx>65</posx>
+						<orientation>horizontal</orientation>
 						
 						<!-- Display Studio Flag -->
-						<control type="image" id="800011">
-							<colordiffuse>white</colordiffuse>
+						<control type="image" id="8011">
 							<include>MediaFlagVars</include>
 							<bordersize>2</bordersize>
-							<texture align="center" aligny="center">$VAR[StudioFlag]</texture>
+							<texture>$VAR[StudioFlag]</texture>
 						</control>
 						
 						<!-- Fallback to Text If No Studio Flag Present -->
@@ -204,41 +204,68 @@
 							<width>155</width>
 							<height>90</height>
 							<align>center</align>
-							<label>$INFO[ListItem.Studio]</label>
+							<label>$INFO[Listitem.Property(mediaTag-Studio)]</label>
 							<font>font10</font>
 							<textcolor>white</textcolor>
 							<wrapmultiline>true</wrapmultiline>
-							<visible>IsEmpty(Control.GetLabel(800011))</visible>
+							<visible>IsEmpty(Control.GetLabel(8011))</visible>
+						</control>
+						
+						<!-- Content Rating -->
+						<control type="image">
+							<posx>1655</posx>
+							<include>MediaFlagVars</include>
+							<texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+							<visible>!Container.Content(episodes)</visible>
 						</control>
 						
 					</control>
-					
-					<!-- Display Audio Codec Flag -->
-					<control type="image">
-						<posx>1470</posx>
-						<colordiffuse>white</colordiffuse>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
-						<visible>!IsEmpty(ListItem.AudioCodec)</visible>
+					<control type="grouplist">
+						<posx>45</posx>
+						<orientation>horizontal</orientation>
+						<visible>[Control.IsVisible(52) + Container.Content(movies)] | [Control.IsVisible(52) + Container.Content(episodes)] | [Control.IsVisible(53) + Container.Content(movies)] | [Control.IsVisible(59) + Container.Content(movies)] | [Control.IsVisible(503) + Container.Content(movies)]</visible>
+						<control type="label">
+							<width>158</width>
+							<include>HiddenObject</include>
+						</control>
+						
+						<!-- Resolution Flag -->
+						<control type="image">
+							<width>158</width>
+							<bordersize>2</bordersize>
+							<texture>$VAR[ResolutionFlag]</texture>
+							<include>MediaFlagVars</include>
+						</control>
+						
+						<!-- Video Codec Flag -->
+						<control type="image">
+							<width>158</width>
+							<bordersize>2</bordersize>
+							<texture>$VAR[VideoCodecFlag]</texture>
+							<include>MediaFlagVars</include>
+						</control>
+						
+						<!-- Spacer -->
+						<control type="label">
+							<width>880</width>
+							<include>HiddenObject</include>
+						</control>
+						
+						<!-- Audio Codec Flag -->
+						<control type="image">
+							<width>158</width>
+							<include>MediaFlagVars</include>
+							<texture>$VAR[AudioCodecFlag]</texture>
+						</control>
+						
+						<!-- Audio Channel Flag -->
+						<control type="image">
+							<width>158</width>
+							<include>MediaFlagVars</include>
+							<texture>$VAR[AudioChannelsFlag]</texture>
+						</control>
 					</control>
 					
-					<!-- Display Video Codec Flag -->
-					<control type="image">
-						<posx>1675</posx>
-						<colordiffuse>white</colordiffuse>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
-						<visible>!IsEmpty(ListItem.VideoCodec)</visible>
-					</control>
-					
-					<!-- Display Content Rating Flag -->
-					<control type="image">
-						<posx>1675</posx>
-						<colordiffuse>white</colordiffuse>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-						<!--<animation effect="slide" start="0" end="-1350" time="200" tween="cubic" easing="inout" condition="Container.Content(movies) | Container.Content(episodes)">Conditional</animation>-->
-					</control>
 					
 				</control>
 				<control type="group">
