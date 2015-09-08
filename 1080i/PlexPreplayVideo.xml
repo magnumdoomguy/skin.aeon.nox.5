@@ -10,6 +10,8 @@
 	
 	<controls>
 	
+		<include>CommonBackground</include>
+		
 		<!-- PrePlay Hack -->
 		<control type="group">
 			<visible>Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99)</visible>
@@ -423,7 +425,9 @@
 					<texture border="1">separator2.png</texture>
 				</control>
 				
+				<!-- Video Information with Extras (shorter) -->
 				<control type="panel" id="300">
+					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)</visible>
 					<posx>-36</posx>
 					<posy>184</posy>
 					<width>594</width>
@@ -574,8 +578,8 @@
 						</item>
 					</content>
 				</control>
-				
 				<control type="panel" id="300">
+					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)</visible>
 					<posx>558</posx>
 					<posy>184</posy>
 					<width>594</width>
@@ -666,7 +670,161 @@
 					</content>
 					
 				</control>
-
+				
+				<!-- Video Information without Extras (longer) -->
+				<control type="panel" id="300">
+					<visible>IsEmpty(ListItem.Property(PlexExtras)</visible>
+					<posx>-36</posx>
+					<posy>184</posy>
+					<width>1188</width>
+					<height>306</height>
+					<orientation>vertical</orientation>
+					<scrolltime tween="quadratic" easing="out">200</scrolltime>
+					<itemlayout height="102" width="594">
+						<control type="image">
+							<posy>42</posy>
+							<width>594</width>
+							<height>60</height>
+							<texture border="1">separator2.png</texture>
+						</control>
+						<control type="label">
+							<posy>50</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<textoffsetx>36</textoffsetx>
+						</control>
+						<control type="label">
+							<posy>5</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>labelheader</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<label>$INFO[ListItem.Label2]</label>
+							<textoffsetx>36</textoffsetx>
+						</control>
+					</itemlayout>
+					<focusedlayout height="102" width="594">
+						<control type="image">
+							<posy>42</posy>
+							<width>594</width>
+							<height>60</height>
+							<texture border="1">separator2.png</texture>
+						</control>
+						<control type="image">
+							<posy>1</posy>
+							<width>594</width>
+							<height>100</height>
+							<texture border="4">listselect_fo.png</texture>
+							<include>VisibleFadeEffect</include>
+						</control>
+						<control type="label">
+							<posy>50</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>white</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(300)">Conditional</animation>
+							<textoffsetx>36</textoffsetx>
+						</control>
+						<control type="label">
+							<posy>5</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>white</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<label>$INFO[ListItem.Label2]</label>
+							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(300)">Conditional</animation>
+							<textoffsetx>36</textoffsetx>
+						</control>
+					</focusedlayout>
+					<content>
+											
+						<!-- Display Director -->
+						<item>
+							<label>$INFO[ListItem.Director]</label>
+							<label2>$LOCALIZE[20339]:</label2>
+							<onclick>SendClick(2003,13)</onclick>
+							<visible>!IsEmpty(ListItem.Director)</visible>
+						</item>
+						
+						<!-- Display Cast -->
+						<item>
+							<label>$INFO[ListItem.Property(Cast)]</label>
+							<label2>$LOCALIZE[31134]:</label2>
+							<onclick>noop</onclick>
+							<visible>!IsEmpty(ListItem.Property(Cast))</visible>
+						</item>
+						
+						<!-- Display Writer -->
+						<item>
+							<label>$INFO[ListItem.Writer]</label>
+							<label2>$LOCALIZE[20417]:</label2>
+							<onclick>noop</onclick>
+							<visible>!IsEmpty(ListItem.Writer)</visible>
+						</item>
+						
+						<!-- Display Original Title -->
+						<item>
+							<label>$INFO[ListItem.OriginalTitle]</label>
+							<label2>$LOCALIZE[20376]:</label2>
+							<onclick>noop</onclick>
+							<visible>!IsEmpty(ListItem.OriginalTitle) + !StringCompare(ListItem.OriginalTitle,ListItem.Title)</visible>
+						</item>
+												
+						<!-- Display Date Premiered -->
+						<item>
+							<label>$INFO[ListItem.Premiered]</label>
+							<label2>$LOCALIZE[20416]:</label2>
+							<onclick>noop</onclick>
+							<visible>!IsEmpty(ListItem.Premiered)</visible>
+						</item>
+						
+						<!-- Display Country -->
+						<item>
+							<label>$INFO[ListItem.Country]</label>
+							<label2>$LOCALIZE[574]:</label2>
+							<onclick>noop</onclick>
+							<visible>!IsEmpty(ListItem.Country)</visible>
+						</item>
+						
+						<!-- Display Date Added -->
+						<item>
+							<label>$INFO[ListItem.DateAdded]</label>
+							<label2>$LOCALIZE[570]:</label2>
+							<onclick>noop</onclick>
+							<visible>!IsEmpty(ListItem.DateAdded)</visible>
+						</item>
+						
+						<!-- Display Play Count -->						
+						<item>
+							<label>$INFO[ListItem.PlayCount]</label>
+							<label2>$LOCALIZE[567]:</label2>
+							<onclick>noop</onclick>
+							<visible>!IsEmpty(ListItem.PlayCount)</visible>
+						</item>
+						<item>
+							<label>$INFO[ListItem.PercentPlayed,,%]</label>
+							<label2 fallback="-">$LOCALIZE[575]:</label2>
+							<onclick>noop</onclick>
+							<visible>ListItem.IsResumable</visible>
+						</item>
+						<item>
+							<label>$INFO[ListItem.LastPlayed]</label>
+							<label2 fallback="-">$LOCALIZE[568]:</label2>
+							<onclick>noop</onclick>
+							<visible>!IsEmpty(ListItem.LastPlayed)</visible>
+						</item>
+					</content>
+				</control>
+				
 				<!-- Plot Textbox-->
 				<control type="button" id="4003">
 					<posx>0</posx>
@@ -685,9 +843,9 @@
 				<control type="textbox" id="400">
 					<description>Plot</description>
 					<posx>0</posx>
-					<posy>458</posy>
+					<posy>560</posy>
 					<width>1132</width>
-					<height>502</height>
+					<height>402</height>
 					<font>font15_textbox</font>
 					<align>left</align>
 					<label>$INFO[ListItem.Plot]</label>
@@ -701,9 +859,9 @@
 				<control type="textbox" id="400">
 					<description>Plot</description>
 					<posx>0</posx>
-					<posy>458</posy>
+					<posy>560</posy>
 					<width>1132</width>
-					<height>502</height>
+					<height>402</height>
 					<font>font11_textbox</font>
 					<align>left</align>
 					<label>$INFO[ListItem.Plot]</label>
@@ -719,9 +877,9 @@
 				<control type="textbox" id="400">
 					<description>NoPlot</description>
 					<posx>0</posx>
-					<posy>458</posy>
+					<posy>560</posy>
 					<width>1132</width>
-					<height>502</height>
+					<height>402</height>
 					<font>font15_textbox</font>
 					<align>left</align>
 					<label>$LOCALIZE[32103]$VAR[NoPlotDefaultItem].[CR] $LOCALIZE[32104]</label>
@@ -734,9 +892,9 @@
 				<control type="textbox" id="400">
 					<description>NoPlot</description>
 					<posx>0</posx>
-					<posy>458</posy>
+					<posy>560</posy>
 					<width>1132</width>
-					<height>502</height>
+					<height>402</height>
 					<font>font11_textbox</font>
 					<align>left</align>
 					<label>$LOCALIZE[32103]$VAR[NoPlotDefaultItem].[CR] $LOCALIZE[32104]</label>
@@ -977,7 +1135,7 @@
 						<control type="image">
 							<width>198</width>
 							<include>MediaFlagVars</include>
-							<texture align="center" aligny="center" fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture> <!-- $INFO[Listitem.Art(mediaTag::videoResolution)] -->
+							<texture align="center" aligny="center" fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture> 
 							<visible>!IsEmpty(ListItem.Property(mediaTag-videoResolution))</visible>
 						</control>
 												
@@ -1066,8 +1224,9 @@
 				</control>
 			</control>
 
-			<!-- Preplay Menu -->
+			<!-- Preplay Menu (with Extras) -->
 			<control type="group">
+				<visible>!IsEmpty(ListItem.Property(PlexExtras)</visible>
 				<posx>3</posx>
 				<posy>0</posy>
 				
@@ -1160,31 +1319,6 @@
 						<texture border="1">separator3.png</texture>
 					</control>
 					
-					<!-- Extras Button -->
-					<!--<control type="button" id="110">
-						<description>Extras</description>
-						<height>60</height>
-						<width>196</width>
-						<textoffsetx>0</textoffsetx>
-						<align>center</align>
-						<aligny>center</aligny>
-						<textcolor>grey</textcolor>
-						<focusedcolor>white</focusedcolor>
-						<label>Extras</label>
-						<font>font15</font>
-						<width>80</width>
-						<onclick>Control.SetFocus(3)</onclick>
-						<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
-					</control>-->
-					
-					<!-- Item Separator -->
-					<!-- <control type="image" id="203">
-						<width>2</width>
-						<height>58</height>
-						<texture border="1">separator3.png</texture>
-						<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
-					</control> -->
-					
 					<!-- Ratings Button -->
 					<control type="button" id="105">
 						<description>Ratings</description>
@@ -1251,6 +1385,314 @@
 					<visible>!Container.Content(movie)</visible>
 					<posx>1</posx>
 					<posy>408</posy>
+					<width>1192</width>
+					<height>60</height>
+					<itemgap>0</itemgap>
+					<onleft>9000</onleft>
+					<onright>9000</onright>
+					<onup>XBMC.PrevItem</onup>
+					<align>left</align>
+					<ondown>XBMC.NextItem</ondown>
+					<orientation>horizontal</orientation>
+					
+					<!-- Play Button -->
+					<control type="button" id="102">
+						<description>Play/browse to Show</description>
+						<height>60</height>
+						<width>236</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>208</label>
+						<altlabel>1024</altlabel>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="200">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Button -->
+					<control type="button" id="103">
+						<description>Audio</description>
+						<height>60</height>
+						<width>236</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Audio</label>
+						<font>font15</font>
+						<width>80</width>
+						<onfocus>Skin.SetString(DialogPos,audiostreampicker)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+						<onclick>ActivateWindow(10205)</onclick>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="201">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Subtitles Button -->
+					<control type="button" id="104">
+						<description>Subtitles</description>
+						<height>60</height>
+						<width>236</width>
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Subtitles</label>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>ActivateWindow(10204)</onclick>
+						<onfocus>Skin.SetString(DialogPos,subtitlestreampicker)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="202">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Ratings Button -->
+					<control type="button" id="105">
+						<description>Ratings</description>
+						<height>60</height>
+						<width>236</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Rate</label>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>ActivateWindow(10200,$INFO[ListItem(0).Path])</onclick>
+						<onfocus>Skin.SetString(DialogPos,rate)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="204">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Mark as Watched Button -->
+					<control type="button" id="108">
+						<description>Mark as Watched</description>
+						<height>60</height>
+						<width>236</width>
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Unwatched</label>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>markaswatched</onclick>
+						<visible>ListItem.Status(unwatched) | ListItem.Status(inprogress)</visible>
+					</control>
+					
+					<!-- Watched Status Button -->
+					<control type="button" id="109">
+						<description>Mark as Unwatched</description>
+						<height>60</height>
+						<width>236</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Watched</label>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>markasunwatched</onclick>
+						<visible>ListItem.Status(watched)</visible>
+					</control>
+					
+				</control>
+						
+			</control>
+			
+			<!-- Preplay Menu (without Extras) -->
+			<control type="group">
+				<visible>IsEmpty(ListItem.Property(PlexExtras)</visible>
+				<posx>3</posx>
+				<posy>0</posy>
+				
+				<!-- For Movies -->
+				<control type="grouplist" id="9000">
+					<visible>Container.Content(movie)</visible>
+					<posx>1</posx>
+					<posy>510</posy>
+					<width>1192</width>
+					<height>60</height>
+					<itemgap>0</itemgap>
+					<onleft>9000</onleft>
+					<onright>9000</onright>
+					<onup>30</onup>
+					<align>left</align>
+					<ondown>30</ondown>
+					<orientation>horizontal</orientation>
+					
+					<!-- Play Button -->
+					<control type="button" id="102">
+						<description>Play/browse to Show</description>
+						<height>60</height>
+						<width>236</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>208</label>
+						<altlabel>1024</altlabel>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="200">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Button -->
+					<control type="button" id="103">
+						<description>Audio</description>
+						<height>60</height>
+						<width>236</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Audio</label>
+						<font>font15</font>
+						<width>80</width>
+						<onfocus>Skin.SetString(DialogPos,audiostreampicker)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+						<onclick>ActivateWindow(10205)</onclick>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="201">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Subtitles Button -->
+					<control type="button" id="104">
+						<description>Subtitles</description>
+						<height>60</height>
+						<width>236</width>
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Subtitles</label>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>ActivateWindow(10204)</onclick>
+						<onfocus>Skin.SetString(DialogPos,subtitlestreampicker)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="202">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Ratings Button -->
+					<control type="button" id="105">
+						<description>Ratings</description>
+						<height>60</height>
+						<width>236</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Rate</label>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>ActivateWindow(10200,$INFO[ListItem(0).Path])</onclick>
+						<onfocus>Skin.SetString(DialogPos,rate)</onfocus>
+						<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image" id="204">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Mark as Watched Button -->
+					<control type="button" id="108">
+						<description>Mark as Watched</description>
+						<height>60</height>
+						<width>236</width>
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Unwatched</label>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>markaswatched</onclick>
+						<visible>ListItem.Status(unwatched) | ListItem.Status(inprogress)</visible>
+					</control>
+					
+					<!-- Watched Status Button -->
+					<control type="button" id="109">
+						<description>Mark as Unwatched</description>
+						<height>60</height>
+						<width>236</width>-->
+						<textoffsetx>0</textoffsetx>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<focusedcolor>white</focusedcolor>
+						<label>Watched</label>
+						<font>font15</font>
+						<width>80</width>
+						<onclick>markasunwatched</onclick>
+						<visible>ListItem.Status(watched)</visible>
+					</control>
+					
+				</control>
+				
+				<!-- For TV -->
+				<control type="grouplist" id="9000">
+					<visible>!Container.Content(movie)</visible>
+					<posx>1</posx>
+					<posy>510</posy>
 					<width>1192</width>
 					<height>60</height>
 					<itemgap>0</itemgap>
@@ -1422,7 +1864,7 @@
 				</control>
 						
 			</control>
-				
+			
 		</control>
 	</controls>
 </window>
