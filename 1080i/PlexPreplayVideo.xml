@@ -37,6 +37,7 @@
 				<width>166</width>
 				<height>166</height>
 				<texture>$INFO[ListItem.Overlay]</texture>
+				<visible>!Container.Content(episode)</visible>
 			</control>	
 		</control>
 		
@@ -410,14 +411,35 @@
 				
 				<!-- Video Information without Extras (Episodes) -->
 				<control type="panel" id="300">
-					<visible>IsEmpty(ListItem.Property(PlexExtras) + Container.Content(episode)</visible>
+					<visible>Container.Content(episode)</visible>
 					<posx>-36</posx>
 					<posy>184</posy>
-					<width>1188</width>
+					<width>594</width>
 					<height>306</height>
 					<orientation>horizontal</orientation>
 					<include>VideoInfo</include>
 				</control>
+				
+				<!-- Episode Thumbnail -->
+				<control type="image">
+					<visible>Container.Content(episode)</visible>
+					<posx>608</posx>
+					<posy>184</posy>
+					<width>544</width>
+					<height>306</height>
+					<aspectratio>scale</aspectratio>
+					<texture background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+				</control>
+				
+				<!-- Display Episode Watched Status Overlay  -->
+				<control type="image">
+					<posx>1058</posx>
+					<posy>184</posy>
+					<width>87</width>
+					<height>87</height>
+					<texture>$INFO[ListItem.Overlay]</texture>
+					<visible>Container.Content(episode)</visible>
+				</control>	
 				
 				<!-- Plot Textbox-->
 				<control type="button" id="4003">
