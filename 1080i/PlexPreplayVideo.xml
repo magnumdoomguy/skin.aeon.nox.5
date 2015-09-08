@@ -430,9 +430,9 @@
 					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)</visible>
 					<posx>-36</posx>
 					<posy>184</posy>
-					<width>594</width>
+					<width>1188</width>
 					<height>204</height>
-					<orientation>vertical</orientation>
+					<orientation>horizontal</orientation>
 					<scrolltime tween="quadratic" easing="out">200</scrolltime>
 					<itemlayout height="102" width="594">
 						<control type="image">
@@ -500,7 +500,21 @@
 						</control>
 					</focusedlayout>
 					<content>
-											
+						
+						<!-- Display Audio Stream -->
+						<item>
+							<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
+							<label2>Audio:</label2>
+							<onclick>noop</onclick>
+						</item>
+						
+						<!-- Display Subtitles -->
+						<item>
+							<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
+							<label2>Subtitles:</label2>
+							<onclick>noop</onclick>
+						</item>
+						
 						<!-- Display Director -->
 						<item>
 							<label>$INFO[ListItem.Director]</label>
@@ -535,10 +549,10 @@
 												
 						<!-- Display Date Premiered -->
 						<item>
-							<label>$INFO[ListItem.Premiered]</label>
+							<label>$INFO[ListItem.Date]</label>
 							<label2>$LOCALIZE[20416]:</label2>
 							<onclick>noop</onclick>
-							<visible>!IsEmpty(ListItem.Premiered)</visible>
+							<visible>!IsEmpty(ListItem.Date)</visible>
 						</item>
 						
 						<!-- Display Country -->
@@ -578,99 +592,7 @@
 						</item>
 					</content>
 				</control>
-				<control type="panel" id="300">
-					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)</visible>
-					<posx>558</posx>
-					<posy>184</posy>
-					<width>594</width>
-					<height>204</height>
-					<orientation>vertical</orientation>
-					<scrolltime tween="quadratic" easing="out">200</scrolltime>
-					<itemlayout height="102" width="594">
-						<control type="image">
-							<posy>42</posy>
-							<width>594</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-						</control>
-						<control type="label">
-							<posy>50</posy>
-							<width>594</width>
-							<height>40</height>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<selectedcolor>selected</selectedcolor>
-							<label>$INFO[ListItem.Label]</label>
-							<textoffsetx>36</textoffsetx>
-						</control>
-						<control type="label">
-							<posy>5</posy>
-							<width>594</width>
-							<height>40</height>
-							<font>font15</font>
-							<textcolor>labelheader</textcolor>
-							<selectedcolor>selected</selectedcolor>
-							<label>$INFO[ListItem.Label2]</label>
-							<textoffsetx>36</textoffsetx>
-						</control>
-					</itemlayout>
-					<focusedlayout height="102" width="594">
-						<control type="image">
-							<posy>42</posy>
-							<width>594</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-						</control>
-						<control type="image">
-							<posy>1</posy>
-							<width>594</width>
-							<height>100</height>
-							<texture border="4">listselect_fo.png</texture>
-							<include>VisibleFadeEffect</include>
-						</control>
-						<control type="label">
-							<posy>50</posy>
-							<width>594</width>
-							<height>40</height>
-							<font>font15</font>
-							<textcolor>white</textcolor>
-							<selectedcolor>selected</selectedcolor>
-							<label>$INFO[ListItem.Label]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(300)">Conditional</animation>
-							<textoffsetx>36</textoffsetx>
-						</control>
-						<control type="label">
-							<posy>5</posy>
-							<width>594</width>
-							<height>40</height>
-							<font>font15</font>
-							<textcolor>white</textcolor>
-							<selectedcolor>selected</selectedcolor>
-							<label>$INFO[ListItem.Label2]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(300)">Conditional</animation>
-							<textoffsetx>36</textoffsetx>
-						</control>
-					</focusedlayout>
-					
-					<content>
-					
-						<!-- Display Audio Stream -->
-						<item>
-							<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
-							<label2>Audio:</label2>
-							<onclick>noop</onclick>
-						</item>
-						
-						<!-- Display Subtitles -->
-						<item>
-							<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
-							<label2>Subtitles:</label2>
-							<onclick>noop</onclick>
-						</item>
-					</content>
-					
-				</control>
-				
+							
 				<!-- Video Information without Extras (longer) -->
 				<control type="panel" id="300">
 					<visible>IsEmpty(ListItem.Property(PlexExtras)</visible>
@@ -746,7 +668,21 @@
 						</control>
 					</focusedlayout>
 					<content>
-											
+							
+						<!-- Display Audio Stream -->
+						<item>
+							<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
+							<label2>Audio:</label2>
+							<onclick>noop</onclick>
+						</item>
+						
+						<!-- Display Subtitles -->
+						<item>
+							<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
+							<label2>Subtitles:</label2>
+							<onclick>noop</onclick>
+						</item>
+							
 						<!-- Display Director -->
 						<item>
 							<label>$INFO[ListItem.Director]</label>
@@ -1776,31 +1712,6 @@
 						<height>58</height>
 						<texture border="1">separator3.png</texture>
 					</control>
-					
-					<!-- Extras Button -->
-					<!--<control type="button" id="110">
-						<description>Extras</description>
-						<height>60</height>
-						<width>196</width>
-						<textoffsetx>0</textoffsetx>
-						<align>center</align>
-						<aligny>center</aligny>
-						<textcolor>grey</textcolor>
-						<focusedcolor>white</focusedcolor>
-						<label>Extras</label>
-						<font>font15</font>
-						<width>80</width>
-						<onclick>Control.SetFocus(3)</onclick>
-						<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
-					</control>-->
-					
-					<!-- Item Separator -->
-					<!-- <control type="image" id="203">
-						<width>2</width>
-						<height>58</height>
-						<texture border="1">separator3.png</texture>
-						<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
-					</control> -->
 					
 					<!-- Ratings Button -->
 					<control type="button" id="105">
