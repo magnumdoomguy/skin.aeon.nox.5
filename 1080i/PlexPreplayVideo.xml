@@ -169,40 +169,18 @@
 					
 					<control type="group">
 					
-					<!-- Display TV Show Title -->
-					<control type="label">
-						<width>1100</width>
-						<height>30</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font15</font>
-						<textcolor>labelheader</textcolor>
-						<scroll>true</scroll>
-						<label>$INFO[ListItem.TvShowTitle]</label>
-						<visible>Container.Content(episode)</visible>
-						<animation type="Conditional" reversible="false" condition="Container.Content(episode)" loop="true">
-						<effect type="fade" start="0" end="100" time="500" delay="0" />
-						<effect type="fade" start="100" end="0" time="500" delay="7000" />
-						<effect type="fade" start="100" end="0" time="500" delay="14000" />
-					</animation>
-					</control>
-					
-					<!-- Display Season and Episode Numbers -->
-					<control type="label">
-						<width>1100</width>
-						<height>30</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font15</font>
-						<textcolor>labelheader</textcolor>
-						<scroll>true</scroll>
-						<label>Season $INFO[ListItem.Season] Episode $INFO[ListItem.Episode]</label>
-						<visible>Container.Content(episode)</visible>
-						<animation type="Conditional" reversible="false" condition="Container.Content(episode)" loop="true">
-						<effect type="fade" start="0" end="100" time="500" delay="7500" />
-						<effect type="fade" start="100" end="0" time="500" delay="14000" />
-					</animation>
-					</control>
+						<!-- Display Season and Episode Numbers -->
+						<control type="label">
+							<width>1100</width>
+							<height>30</height>
+							<aligny>center</aligny>
+							<align>left</align>
+							<font>font15</font>
+							<textcolor>labelheader</textcolor>
+							<scroll>true</scroll>
+							<label>Season $INFO[ListItem.Season] [COLOR=grey]&#xB7;[/COLOR] Episode $INFO[ListItem.Episode]</label>
+							<visible>Container.Content(episode)</visible>
+						</control>
 					
 					</control>
 					
@@ -229,8 +207,9 @@
 					<texture border="1">separator2.png</texture>
 				</control>
 				
-				<!-- Top Information Line Under Title -->
+				<!-- Top Information Line Under Title (Movies) -->
 				<control type="grouplist">
+					<visible>!Container.Content(episode)</visible>
 					<posx>0</posx>
 					<posy>95</posy>
 					<width>1188</width>
@@ -390,6 +369,128 @@
 					
 				</control>
 				
+				<!-- Top Information Line Under Title (Episodes) -->
+				<control type="grouplist">
+					<visible>Container.Content(episode)</visible>
+					<posx>0</posx>
+					<posy>95</posy>
+					<width>302</width>
+					<height>90</height>
+					<itemgap>0</itemgap>
+					<align>left</align>
+					<orientation>horizontal</orientation>
+										
+					<!-- Display First Aired Date -->
+					<control type="label">
+						<width>300</width>
+						<height>90</height>
+						<align>left</align>
+						<label>[B]$INFO[ListItem.Date][/B]</label>
+						<font>font35_title</font>
+						<textcolor>grey</textcolor>
+						<visible>Container.Content(episode)</visible>
+					</control>
+					
+					<!-- Separator between items -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					
+				</control>
+				
+				<control type="grouplist">
+					<visible>Container.Content(episode)</visible>
+					<posx>568</posx>
+					<posy>95</posy>
+					<width>544</width>
+					<height>90</height>
+					<itemgap>0</itemgap>
+					<align>left</align>
+					<orientation>horizontal</orientation>				
+					<!-- Content Rating -->
+					<control type="group">
+						<width>187</width>
+						<control type="image">
+							<width>187</width>
+							<height>90</height>
+							<fadetime>250</fadetime>
+							<colordiffuse>grey</colordiffuse>
+							<animation effect="fade" time="200">VisibleChange</animation>
+							<bordersize>2</bordersize>
+							<texture align="center" aligny="center" fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+						</control>
+					</control>
+					<!-- Separator between Items -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+						<visible>![Container.Content(tvshows) + Skin.HasSetting(Disable.NextAired)]</visible>
+					</control>
+					
+					<!-- Display Duration -->
+					<control type="group">
+						<width>187</width>
+						<control type="label">
+							<posx>0</posx>
+							<posy>2</posy>
+							<width>187</width>
+							<height>60</height>
+							<align>center</align>
+							<label>[B]$VAR[DurationVar][/B]</label>
+							<font>font48</font>
+							<textcolor>grey</textcolor>
+						</control>
+						
+						<control type="label">
+							<posy>52</posy>
+							<width>187</width>
+							<height>30</height>
+							<align>center</align>
+							<label>[LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</label>
+							<font>font12</font>
+							<textcolor>grey</textcolor>
+						</control>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>90</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Rating -->
+					<control type="group">
+						<width>187</width>
+						<control type="label">
+							<posx>0</posx>
+							<posy>2</posy>
+							<width>187</width>
+							<height>60</height>
+							<align>center</align>
+							<label>$INFO[ListItem.RatingAndVotes]</label>
+							<font>font48_bold</font>
+							<textcolor>grey</textcolor>
+						</control>
+						<control type="label">
+							<posy>52</posy>
+							<width>187</width>
+							<height>30</height>
+							<align>center</align>
+							<label>[LOWERCASE]rating[/LOWERCASE]</label>
+							<font>font12</font>
+							<textcolor>grey</textcolor>
+						</control>
+					</control>
+					
+				</control>
+				
+				
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>-37</posx>
@@ -401,7 +502,7 @@
 				
 				<!-- Video Information with Extras (shorter) -->
 				<control type="panel" id="300">
-					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)</visible>
+					<visible>!IsEmpty(ListItem.Property(PlexExtras)</visible>
 					<posx>-36</posx>
 					<posy>184</posy>
 					<width>1188</width>
@@ -426,7 +527,7 @@
 					<visible>Container.Content(episode)</visible>
 					<posx>-36</posx>
 					<posy>184</posy>
-					<width>594</width>
+					<width>594</width> <!-- 594 -->
 					<height>306</height>
 					<orientation>horizontal</orientation>
 					<include>VideoInfo</include>
@@ -435,7 +536,7 @@
 				<!-- Episode Thumbnail -->
 				<control type="image">
 					<visible>Container.Content(episode)</visible>
-					<posx>608</posx>
+					<posx>568</posx> <!-- 608 -->
 					<posy>184</posy>
 					<width>544</width>
 					<height>306</height>
@@ -445,7 +546,7 @@
 				
 				<!-- Display Episode Watched Status Overlay  -->
 				<control type="image">
-					<posx>1058</posx>
+					<posx>982</posx>
 					<posy>184</posy>
 					<width>87</width>
 					<height>87</height>
