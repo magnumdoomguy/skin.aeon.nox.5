@@ -110,7 +110,7 @@
 		<control type="group">
 			<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
-			<!--<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic" condition="!Window.IsVisible(script-Actors-DialogVideoInfo.xml)|!Window.IsVisible(script-Actors-DialogInfo.xml)">Conditional</animation>-->
+			
 			<posx>729</posx>
 			<control type="image">
 				<width>1192</width>
@@ -152,22 +152,8 @@
 						<textcolor>grey</textcolor>
 						<scroll>true</scroll>
 						<label>$INFO[ListItem.Label]</label>
-						<visible>!Container.Content(episode)</visible>
 					</control>
-					
-					<!-- Display Episode Title -->
-					<control type="label">
-						<width>1100</width>
-						<height>60</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font30_title_bold</font>
-						<textcolor>grey</textcolor>
-						<scroll>true</scroll>
-						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-						<visible>Container.Content(episode)</visible>
-					</control>
-					
+										
 					<!-- Display Genre -->
 					<control type="label">
 						<width>1100</width>
@@ -180,7 +166,9 @@
 						<label>$INFO[ListItem.Genre]</label>
 						<visible>!IsEmpty(ListItem.Genre)</visible>
 					</control>
-														
+					
+					<control type="group">
+					
 					<!-- Display TV Show Title -->
 					<control type="label">
 						<width>1100</width>
@@ -192,6 +180,30 @@
 						<scroll>true</scroll>
 						<label>$INFO[ListItem.TvShowTitle]</label>
 						<visible>Container.Content(episode)</visible>
+						<animation type="Conditional" reversible="false" condition="Container.Content(episode)" loop="true">
+						<effect type="fade" start="0" end="100" time="500" delay="0" />
+						<effect type="fade" start="100" end="0" time="500" delay="7000" />
+						<effect type="fade" start="100" end="0" time="500" delay="14000" />
+					</animation>
+					</control>
+					
+					<!-- Display Season and Episode Numbers -->
+					<control type="label">
+						<width>1100</width>
+						<height>30</height>
+						<aligny>center</aligny>
+						<align>left</align>
+						<font>font15</font>
+						<textcolor>labelheader</textcolor>
+						<scroll>true</scroll>
+						<label>Season $INFO[ListItem.Season] Episode $INFO[ListItem.Episode]</label>
+						<visible>Container.Content(episode)</visible>
+						<animation type="Conditional" reversible="false" condition="Container.Content(episode)" loop="true">
+						<effect type="fade" start="0" end="100" time="500" delay="7500" />
+						<effect type="fade" start="100" end="0" time="500" delay="14000" />
+					</animation>
+					</control>
+					
 					</control>
 					
 					<!-- Display Artist Title -->
