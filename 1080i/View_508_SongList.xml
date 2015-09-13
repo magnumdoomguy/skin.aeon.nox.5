@@ -32,17 +32,35 @@
 					<animation effect="slide" end="0,0" time="160" condition="Container(508).Row(4)">Conditional</animation>
 					<animation effect="slide" end="0,0" time="160" condition="Container(508).Row(5)">Conditional</animation>
 					<itemlayout height="100" width="1300" condition="Container.Content(songs)">
-						<control type="label">
+						<control type="group">
 							<posy>15</posy>
 							<posx>275</posx>
 							<width>1000</width>
 							<height>70</height>
-							<font>font30</font>
-							<textcolor>grey</textcolor>
-							<selectedcolor>selected</selectedcolor>
 							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.TrackNumber]. $INFO[ListItem.Title]</label>
+							
+							<orientation>horizontal</orientation>
+							<control type="label">
+								<width max="895" min="10">auto</width>
+								<height>70</height>
+								<font>font30</font>
+								<textcolor>grey</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<aligny>center</aligny>
+								<label>$VAR[TrackNumber]. $INFO[ListItem.Title]</label>
+							</control>
+							<control type="label">
+								<posx>1000</posx>
+								<align>right</align>
+								<font>IconSmall</font>
+								<width>105</width>
+								<height>70</height>
+								<aligny>center</aligny>
+								<textcolor>grey2</textcolor>
+								<selectedcolor>selected</selectedcolor>
+								<label></label>
+								<visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
+							</control>
 						</control>
 					</itemlayout>
 					<focusedlayout height="275" width="1300" condition="Container.Content(songs)">
@@ -71,8 +89,21 @@
 							<selectedcolor>selected</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
-							<label>[B]$INFO[ListItem.TrackNumber]. $INFO[ListItem.Title][/B]</label>
+							<label>[B]$VAR[TrackNumber]. $INFO[ListItem.Title][/B]</label>
 							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
+						</control>
+						<control type="label">
+							<posx>1275</posx>
+							<posy>0</posy>
+							<align>right</align>
+							<font>IconSmall</font>
+							<width>105</width>
+							<height>70</height>
+							<aligny>center</aligny>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>selected</selectedcolor>
+							<label></label>
+							<visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
 						</control>
 						<control type="label">
 							<posx>275</posx>
@@ -112,15 +143,6 @@
 							<aligny>center</aligny>
 							<label fallback="• • • •">$VAR[MusicListLabel4Var]</label>
 							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
-						</control>
-						<control type="image">
-							<posx>175</posx>
-							<posy>220</posy>
-							<width>400</width>
-							<height>45</height>
-							<colordiffuse>grey</colordiffuse>
-							<aspectratio>keep</aspectratio>
-							<texture colordiffuse="themecolor" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
 						</control>
 					</focusedlayout>
 				</control>
