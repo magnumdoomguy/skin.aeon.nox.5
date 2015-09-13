@@ -878,6 +878,12 @@
                     <include>ShowCaseInfoPanelButtonsValues</include>
                     <visible>!IsEmpty(ListItem.Genre)</visible>
                 </control>
+				<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[180]:[/COLOR][CR]$INFO[ListItem.Duration]</label>
+					<width>650</width>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(ListItem.Duration)</visible>
+				</control>
             </control>
             <control type="group">
                 <posx>1270</posx>
@@ -1037,7 +1043,7 @@
                         <selectedcolor>selected</selectedcolor>
                         <align>left</align>
                         <aligny>center</aligny>
-                        <label fallback="• •">$INFO[ListItem.TrackNumber]</label>
+                        <label fallback="• •">$VAR[TrackNumber]</label>
                         <visible>!IsEmpty(ListItem.Title)</visible>
                     </control>
                     <control type="label">
@@ -1062,15 +1068,18 @@
                         <label>$INFO[ListItem.Label]</label>
                         <visible>IsEmpty(ListItem.Title)</visible>
                     </control>
-                    <control type="image">
-                        <posx>610</posx>
+                    <control type="label">
+                        <posx>790</posx>
                         <posy>17</posy>
                         <width>180</width>
                         <height>34</height>
-                        <aspectratio>keep</aspectratio>
-                        <texture fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
-                        <colordiffuse>grey2</colordiffuse>
-                        <visible>!IsEmpty(ListItem.Title)</visible>
+                        <font>IconSmall</font>
+                        <align>right</align>
+						<aligny>center</aligny>
+                        <textcolor>grey2</textcolor>
+                        <selectedcolor>selected</selectedcolor>
+                        <label></label>
+                        <visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
                     </control>
                 </itemlayout>
                 <focusedlayout height="68" width="806" condition="Container.Content(songs)">
@@ -1095,7 +1104,7 @@
                         <selectedcolor>selected</selectedcolor>
                         <align>left</align>
                         <aligny>center</aligny>
-                        <label fallback="• •">$INFO[ListItem.TrackNumber]</label>
+                        <label fallback="• •">$VAR[TrackNumber]</label>
                         <visible>!IsEmpty(ListItem.Title)</visible>
                         <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
                     </control>
@@ -1121,15 +1130,18 @@
                         <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
                         <visible>IsEmpty(ListItem.Title)</visible>
                     </control>
-                    <control type="image">
-                        <posx>610</posx>
+                    <control type="label">
+                        <posx>790</posx>
                         <posy>17</posy>
                         <width>180</width>
                         <height>34</height>
-                        <aspectratio>keep</aspectratio>
-                        <texture fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
-                        <visible>!IsEmpty(ListItem.Title)</visible>
-                        <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+                        <font>IconSmall</font>
+                        <align>right</align>
+						<aligny>center</aligny>
+                        <textcolor>grey2</textcolor>
+                        <selectedcolor>selected</selectedcolor>
+                        <label></label>
+                        <visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
                     </control>
                 </focusedlayout>
                 <itemlayout height="68" width="806" condition="![Container.Content(albums) | Container.Content(songs)]">
