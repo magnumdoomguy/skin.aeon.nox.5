@@ -1004,6 +1004,41 @@
 		<value condition="Stringcompare(ListItem.Tracknumber,999)">1000</value>
 	</variable>
 	
+	<!-- OSD Variables -->
+	
+	<variable name="PlayerTitleLabelVar">
+		<value condition="Player.ChapterCount">$INFO[player.chapter,$LOCALIZE[21396] ]$INFO[player.chaptercount, / ,] • $INFO[Player.Title]</value>
+		<value>$INFO[Player.Title]</value>
+	</variable>
+	
+	<variable name="SeekLabelVar">
+		<value condition="Player.Playing + !Player.Seeking + !Player.DisplayAfterSeek | [Player.Paused + !Player.Caching] | [Player.ShowTime + !Player.Seeking]">$INFO[System.Time]$INFO[player.FinishTime, [,]]</value>
+		<value condition="[Player.Paused + Player.Caching] + !Player.Seeking + !Player.DisplayAfterSeek">$INFO[Player.CacheLevel,$LOCALIZE[15107] ,%]</value>
+		<value condition="Player.Seeking">$INFO[Player.SeekStepSize]</value>
+		<value condition="Player.DisplayAfterSeek + ![player.forwarding | player.rewinding]">$INFO[Player.SeekOffset,$LOCALIZE[31046][COLOR=themecolor] ,[/COLOR]]</value>
+	</variable>
+	
+	<variable name="OSDRightLabelVar">
+		<value condition="Player.ShowTime + !VideoPlayer.Content(livetv)">$INFO[Player.Time]$INFO[Player.TimeRemaining, / ]</value>
+		<value condition="!VideoPlayer.Content(livetv) + IsEmpty(Skin.String(Seekbar.RightLabel))">$INFO[Player.Time]$INFO[Player.Duration, / ]</value>
+		<value condition="!VideoPlayer.Content(livetv) + StringCompare(Skin.String(Seekbar.RightLabel),1)">$INFO[Player.Time]$INFO[Player.TimeRemaining, / ]</value>
+		<value condition="!VideoPlayer.Content(livetv) + StringCompare(Skin.String(Seekbar.RightLabel),2)">$INFO[Player.TimeRemaining]$INFO[Player.Duration, / ]</value>
+		<value condition="VideoPlayer.Content(livetv)">$INFO[VideoPlayer.NextTitle,$LOCALIZE[19031]: ]</value>
+	</variable>
+	
+	<variable name="PlayerPosterArtworkVar">
+		<value condition="VideoPlayer.Content(episodes) + [IsEmpty(Player.Art(tvshow.clearlogo)) + IsEmpty(Player.Art(tvshow.clearart))]">$INFO[Player.Art(tvshow.poster)]</value>
+		<value condition="VideoPlayer.Content(movies) + [IsEmpty(Player.Art(clearlogo)) + IsEmpty(Player.Art(clearart))]">$INFO[Player.Art(poster)]</value>
+	</variable>
+	
+	<variable name="VideoPlayerForwardRewindVar">
+		<value condition="Player.Forwarding2x | Player.Rewinding2x">2x</value>
+		<value condition="Player.Forwarding4x | Player.Rewinding4x">4x</value>
+		<value condition="Player.Forwarding8x | Player.Rewinding8x">8x</value>
+		<value condition="Player.Forwarding16x | Player.Rewinding16x">16x</value>
+		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
+	</variable>
+	
 	<variable name="SearchBackgroundVar">
 		<value condition="Control.IsVisible(7001)">$INFO[Container(9001).ListItem.Art(fanart)]</value>
 		<value condition="Control.IsVisible(7002)">$INFO[Container(9002).ListItem.Art(fanart)]</value>
