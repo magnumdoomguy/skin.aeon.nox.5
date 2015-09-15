@@ -21,7 +21,7 @@
 					<width>1920</width>
 					<height>540</height>
 					<texture border="2">gradient_floor.png</texture>
-					<visible>[!IsEmpty(VideoPlayer.Plot) | !IsEmpty(VideoPlayer.PlotOutline) | !IsEmpty(VideoPlayer.CastandRole)]</visible>
+					<visible>!IsEmpty(VideoPlayer.Plot) | !IsEmpty(VideoPlayer.CastandRole)</visible>
 				</control>
 				
 				<!-- Cast -->
@@ -48,9 +48,10 @@
 					</animation>
 					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
 				</control>
+				
 				<!-- Plot -->
 				<control type="textbox">
-					<label>$VAR[VideoPlayerPlotVar]</label>
+					<label>$INFO[VideoPlayer.Plot]</label>
 					<posx>20</posx>
 					<posy>778</posy>
 					<width>645</width>
@@ -58,7 +59,8 @@
 					<font>font15</font>
 					<pagecontrol>65</pagecontrol>
 					<textcolor>white</textcolor>
-					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(65)</autoscroll>
+					<aligny>bottom</aligny>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 					<animation type="VisibleChange" reversible="false">
 						<effect type="fade" start="0" end="100" time="500" />
 					</animation>
@@ -70,22 +72,7 @@
 					</animation>
 				</control>
 			</control>
-			<control type="scrollbar" id="63">
-				<posx>1900</posx>
-				<posy>778</posy>
-				<width>14</width>
-				<height>252</height>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-				<showonepage>false</showonepage>
-				<orientation>vertical</orientation>
-				<onup>63</onup>
-				<ondown>63</ondown>
-				<onleft>64</onleft>
-				<onright>64</onright>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(63) + !Container.Scrolling">Conditional</animation>
-			</control>
+			
 			<control type="scrollbar" id="65">
 				<posx>685</posx>
 				<posy>778</posy>
