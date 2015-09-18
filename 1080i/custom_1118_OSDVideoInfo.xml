@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window id="1118" type="dialog">
+	<zorder>0</zorder>
+	
+	<controls>
+				
+		<!-- Panel Background (Movies + Episodes) -->
+		<control type="image">
+			<visible>[VideoPlayer.Content(episodes) | VideoPlayer.Content(movies)] + !Window.IsActive(videoosd)</visible>
+			<width>1920</width>
+			<height>150</height>
+			<texture border="1,1,1,40">topbar.png</texture>
+		</control>
+		
+		<!-- Plot -->
+		<control type="group">
+			<control type="group">
+				<visible>!Window.IsActive(videoosd)</visible>
+				<control type="image">
+					<posy>540</posy>
+					<width>1920</width>
+					<height>540</height>
+					<texture border="2">gradient_floor.png</texture>
+					<visible>!IsEmpty(VideoPlayer.Plot)</visible>
+				</control>
+				
+				<!-- Plot -->
+				<control type="textbox">
+					<label>$INFO[VideoPlayer.Plot]</label>
+					<posx>1200</posx>
+					<posy>778</posy>
+					<width>645</width>
+					<height>252</height>
+					<font>font15</font>
+					<pagecontrol>65</pagecontrol>
+					<textcolor>white</textcolor>
+					<aligny>bottom</aligny>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<animation type="VisibleChange" reversible="false">
+						<effect type="fade" start="0" end="100" time="500" />
+					</animation>
+					<animation type="WindowOpen" reversible="false">
+						<effect type="fade" start="0" end="100" time="400" />
+					</animation>
+					<animation type="WindowClose" reversible="false">
+						<effect type="fade" start="100" end="0" time="000" />
+					</animation>
+				</control>
+			</control>
+			
+			<control type="scrollbar" id="65">
+				<posx>685</posx>
+				<posy>778</posy>
+				<width>14</width>
+				<height>252</height>
+				<texturesliderbackground>-</texturesliderbackground>
+				<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+				<showonepage>false</showonepage>
+				<orientation>vertical</orientation>
+				<onup>65</onup>
+				<ondown>65</ondown>
+				<onleft>64</onleft>
+				<onright>64</onright>
+				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(65) + !Container.Scrolling">Conditional</animation>
+			</control>
+		</control>		
+		
+		<!-- Movies -->
+		<control type="group">
+			<visible>VideoPlayer.Content(movies) + [!Window.IsActive(videoosd)]</visible>
+			<control type="group">
+				<control type="label">
+					<align>center</align>
+					<label>[B]$INFO[Player.Title][/B] $INFO[VideoPlayer.Year,(,)]</label>
+					<posx>505</posx>
+					<width>910</width>
+					<font>font28_title</font>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(Player.Title) + !IsEmpty(VideoPlayer.Genre)</visible>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<align>center</align>
+					<label>[B]$INFO[Player.Title][/B] $INFO[VideoPlayer.Year,(,)]</label>
+					<posx>505</posx>
+					<posy>30</posy>
+					<width>910</width>
+					<font>font28_title</font>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(Player.Title) + IsEmpty(VideoPlayer.Genre)</visible>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<align>center</align>
+					<posy>55</posy>
+					<posx>500</posx>
+					<label>[COLOR themecolor]$INFO[VideoPlayer.Genre][/COLOR]</label>
+					<font>font16</font>
+					<width>920</width>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(VideoPlayer.Genre)</visible>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<posx>44</posx>
+					<posy>20</posy>
+					<label>$INFO[VideoPlayer.Director,[COLOR themecolor]$LOCALIZE[20339]: [/COLOR],]</label>
+					<align>left</align>
+					<width>490</width>
+					<font>font13</font>
+					<textcolor>grey2</textcolor>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<posy>20</posy>
+					<align>right</align>
+					<label>$INFO[VideoPlayer.RatingAndVotes,[COLOR themecolor]Rating:[/COLOR] ,]</label>
+					<posx>1890</posx>
+					<width>600</width>
+					<font>font13</font>
+					<textcolor>grey2</textcolor>
+					<visible>!IsEmpty(VideoPlayer.RatingAndVotes)</visible>
+				</control>
+			</control>
+		</control>
+		
+		<!-- Episodes -->
+		<control type="group">
+			<visible>VideoPlayer.Content(episodes) + [!Window.IsActive(videoosd)]</visible>
+			<control type="group">
+				<control type="label">
+					<posy>0</posy>
+					<posx>475</posx>
+					<width>970</width>
+					<font>font28_title</font>
+					<label>[B]$INFO[VideoPlayer.TvShowTitle][/B]</label>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(VideoPlayer.TvShowTitle)</visible>
+					<align>center</align>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<posy>55</posy>
+					<posx>500</posx>
+					<width>920</width>
+					<font>font16</font>
+					<label>[COLOR themecolor]$INFO[Player.Title][/COLOR]</label>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(Player.Title)</visible>
+					<align>center</align>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<posx>44</posx>
+					<posy>20</posy>
+					<label>$INFO[VideoPlayer.Director,[COLOR themecolor]$LOCALIZE[20339]: [/COLOR],[COLOR themecolor] • [/COLOR]]$INFO[VideoPlayer.RatingAndVotes,[COLOR themecolor]$LOCALIZE[563]: [/COLOR],]</label>
+					<width>610</width>
+					<font>font13</font>
+					<textcolor>grey2</textcolor>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<posy>20</posy>
+					<label>[COLOR themecolor]$INFO[VideoPlayer.Season,$LOCALIZE[20373] ,], $LOCALIZE[36906] $INFO[VideoPlayer.Episode][/COLOR]</label>
+					<posx>1890</posx>
+					<width>600</width>
+					<font>font13</font>
+					<align>right</align>
+				</control>
+			</control>
+		</control>
+		
+		<!-- MediaFlags -->
+		<control type="group">
+			<visible>!Window.IsActive(videoosd)</visible>
+			<posx>10</posx>
+			<posy>32</posy>
+			<height>90</height>
+			
+			<!-- Left -->
+			<control type="image">
+				<width>155</width>
+				<include>MediaFlagVars</include>
+				<bordersize>2</bordersize>
+				<texture>$INFO[VideoPlayer.videoResolution,flags/resolution/,.png]</texture>
+			</control>
+			<control type="image">
+				<posx>150</posx>
+				<posy>6</posy>
+				<width>155</width>
+				<height>80</height>
+				<aspectratio>keep</aspectratio>
+				<align>center</align>
+				<aligny>center</aligny>
+				<texture>$INFO[VideoPlayer.VideoCodec,flags/video/,.png]</texture>
+			</control>
+			
+			<!-- Right -->
+			<control type="image">
+				<posx>1600</posx>
+				<posy>4</posy>
+				<width>155</width>
+				<height>85</height>
+				<include>MediaFlagVars</include>
+				<texture>$INFO[VideoPlayer.AudioCodec,flags/audio/,.png]</texture>
+			</control>
+			<control type="image">
+				<posx>1750</posx>
+				<posy>2</posy>
+				<width>155</width>
+				<height>85</height>
+				<include>MediaFlagVars</include>
+				<texture>$INFO[VideoPlayer.AudioChannels,flags/channels/,.png]</texture>
+			</control>
+		</control>
+	</controls>
+</window>
