@@ -29,7 +29,7 @@
 		</control>
 		
 		<include>CommonBackground</include>
-
+	
 		<control type="group">
 			<visible>Control.IsVisible(52) | Control.IsVisible(53) | Control.IsVisible(601)</visible>
 			<posy>-30</posy>
@@ -1149,7 +1149,7 @@
 					<ondown>19001</ondown>
 					<itemgap>0</itemgap>
 					<textwidth>250</textwidth>
-					<visible>Container.Content(movies)</visible>
+					<visible>Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- Primary Filters List TV -->
@@ -1171,6 +1171,25 @@
 					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
 				</control>
 				
+				<!-- Primary Filters List Home Videos -->
+				<control type="grouplist" id="19000">
+					<posy>160</posy>
+					<height>240</height>
+					<width>350</width>
+					<font>font12</font>
+					<onright>9050</onright>
+					<onleft>1300</onleft>
+					<onup>1300</onup>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<ondown>19001</ondown>
+					<onclick>19000</onclick>
+					<onclick>Control.SetFocus(19000)</onclick>
+					<itemgap>0</itemgap>
+					<textwidth>250</textwidth>
+					<visible>Container.PlexContent(homemovies)</visible>
+				</control>
+				
 				<!-- Secondary Filters List Title Movies -->
 				<control type="label" id="19009">
 					<posy>280</posy>
@@ -1182,7 +1201,7 @@
 					<textcolor>themecolor</textcolor>
 					<aligny>center</aligny>
 					<label>FILTER</label>
-					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + Container.Content(movies)</visible>
+					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- Secondary Filters List Title TV -->
@@ -1199,6 +1218,20 @@
 					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 				</control>
 				
+				<!-- Secondary Filters List Title Home Videos -->
+				<control type="label" id="19009">
+					<posy>400</posy>
+					<description>Secondary Title</description>
+					<width>350</width>
+					<height>52</height>
+					<textoffsetx>15</textoffsetx>
+					<font>font13_title</font>
+					<textcolor>themecolor</textcolor>
+					<aligny>center</aligny>
+					<label>FILTER</label>
+					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + Container.PlexContent(homemovies)</visible>
+				</control>
+				
 				<!-- Secondary Filters List Movies -->
 				<control type="grouplist" id="19001">
 					<posy>340</posy>
@@ -1213,7 +1246,7 @@
 					<ondown>19010</ondown>
 					<radioposx>300</radioposx>
 					<textwidth>250</textwidth>
-					<visible>Container.Content(movies)</visible>
+					<visible>Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- Secondary Filters List TV -->
@@ -1231,6 +1264,23 @@
 					<radioposx>300</radioposx>
 					<textwidth>250</textwidth>
 					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+				</control>
+				
+				<!-- Secondary Filters List Home Videos -->
+				<control type="grouplist" id="19001">
+					<posy>460</posy>
+					<height>240</height>
+					<width>350</width>
+					<font>font12</font>
+					<onright>9050</onright>
+					<onleft>1300</onleft>
+					<onup>19000</onup>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<ondown>19010</ondown>
+					<radioposx>300</radioposx>
+					<textwidth>250</textwidth>
+					<visible>Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- filters buttons -->
@@ -1292,7 +1342,7 @@
 					<aligny>center</aligny>
 					<label>SORT</label>
 					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
-					<visible>Container.Content(movies)</visible>
+					<visible>Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- Sorting List Title TV -->
@@ -1308,6 +1358,21 @@
 					<label>SORT</label>
 					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
 					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+				</control>
+				
+				<!-- Sorting List Title Home Videos -->
+				<control type="label" id="19019">
+					<posy>700</posy>
+					<description>Title</description>
+					<width>350</width>
+					<height>52</height>
+					<textoffsetx>15</textoffsetx>
+					<font>font13_title</font>
+					<textcolor>themecolor</textcolor>
+					<aligny>center</aligny>
+					<label>SORT</label>
+					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
+					<visible>Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- Sorting List Movies -->
@@ -1326,7 +1391,7 @@
 					<textwidth>250</textwidth>
 					<aligny>center</aligny>
 					<font>font12</font>
-					<visible>Container.Content(movies)</visible>
+					<visible>Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- Sorting List TV -->
@@ -1346,6 +1411,25 @@
 					<aligny>center</aligny>
 					<font>font12</font>
 					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+				</control>
+				
+				<!-- Sorting List Home Videos -->
+				<control type="grouplist" id="19010">
+					<posy>760</posy><!-- 780 -->
+					<height>300</height>
+					<width>350</width>
+					<onright>9050</onright>
+					<onleft>1300</onleft>
+					<onup>19001</onup>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<ondown>1300</ondown>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>250</textwidth>
+					<aligny>center</aligny>
+					<font>font12</font>
+					<visible>Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- Sorting Buttons -->
