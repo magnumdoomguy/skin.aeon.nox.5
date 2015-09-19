@@ -7,7 +7,7 @@
     <onload>Skin.SetString(SectionType,photos)</onload>
     <onunload>Skin.Reset(SectionType)</onunload>
     <onunload>ClearProperty(Window.HasSettings,Home)</onunload>
-    <views>50,501</views>
+    <views>50</views>
     <controls>
         
 		<!-- Background -->
@@ -16,30 +16,61 @@
             <animation effect="fade" time="600">WindowClose</animation>
 			<control type="image">
 				<description>Normal Default Background Image</description>
-				<include>FullscreenDimensions</include>
-				<aspectratio>scale</aspectratio>
-				<texture background="true">$INFO[ListItem.CompositeImage(width=1920;height=1080;cols=6;rows=2)]</texture>
-			</control>
-			<control type="image">
 				<posx>0</posx>
 				<posy>0</posy>
 				<width>1920</width>
 				<height>1080</height>
-				<texture>black-back.png</texture>
+				<aspectratio>scale</aspectratio>
+				<texture background="true">$INFO[ListItem.Property(Fanart_Image)]</texture>
+				<visible>ListItem.type(movie) | ListItem.type(episode)</visible>
 			</control>
+			<control type="image">
+				<description>Normal Default Background Image</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>1080</height>
+				<aspectratio>scale</aspectratio>
+				<texture background="true">$INFO[ListItem.PicturePath]</texture>
+				<visible>ListItem.Type(photo)</visible>
+			</control>
+			<control type="image">
+				<description>Normal Default Background Image</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>1080</height>
+				<aspectratio>scale</aspectratio>
+				<texture fallback="special://skin/backgrounds/music.jpg" background="true">$INFO[ListItem.Property(Fanart_Image)]</texture>
+				<visible>![ListItem.type(movie) | ListItem.type(episode) | ListItem.Type(photo)]</visible>
+			</control>
+			
 			<control type="group">
 				<include>Window_OpenClose_Animation</include>
 				<include>ViewAnimation</include>
-				<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.isVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55)  | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(57)  | Control.IsVisible(58)]">Conditional</animation>
-				
-				
+				<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="true">Conditional</animation>
+				<control type="image">
+					<posx>0</posx>
+					<posy>-40</posy>
+					<width>696</width>
+					<height>914</height>
+					<texture border="1">vignette.png</texture>
+					<animation effect="slide" tween="cubic" time="720" start="-696" end="0,0">VisibleChange</animation>
+				</control>
+				<control type="image">
+					<posx>1224</posx>
+					<posy>-40</posy>
+					<width>696</width>
+					<height>914</height>
+					<texture border="1">vignetteflipx.png</texture>
+					<animation effect="slide" tween="cubic" time="720" start="696" end="0,0">VisibleChange</animation>
+				</control>
 				<control type="image">
 					<posx>0</posx>
 					<posy>400</posy>
 					<width>1920</width>
 					<height>680</height>
 					<texture>floor.png</texture>
-					<visible>!Control.IsVisible(504)</visible>
 				</control>
 			</control>
 			
@@ -49,10 +80,8 @@
             <include>Window_OpenClose_Animation</include>
             <include>PlaylistList</include>
             <!-- view id = 50 -->
-			<include>PictureWall</include>
-            <!-- view id = 501 -->
         </control>
-        <include>ScrollOffsetLabel</include>
+		
         <include>Topbar</include>
  
         <control type="group">
