@@ -4,7 +4,42 @@
     <allowoverlay>no</allowoverlay>
     <views>50</views>
     <controls>
-        <include>CommonBackground</include>
+        
+		<!-- Background -->
+		<control type="group">
+            <animation effect="fade" time="600">WindowOpen</animation>
+            <animation effect="fade" time="600">WindowClose</animation>
+			<control type="image">
+				<description>Normal Default Background Image</description>
+				<include>FullscreenDimensions</include>
+				<aspectratio>scale</aspectratio>
+				<texture background="true">special://skin/backgrounds/network.jpg</texture>
+			</control>
+			<control type="image">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>1080</height>
+				<texture>black-back.png</texture>
+			</control>
+			<control type="group">
+				<include>Window_OpenClose_Animation</include>
+				<include>ViewAnimation</include>
+				<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.isVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55)  | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(57)  | Control.IsVisible(58)]">Conditional</animation>
+				
+				
+				<control type="image">
+					<posx>0</posx>
+					<posy>400</posy>
+					<width>1920</width>
+					<height>680</height>
+					<texture>floor.png</texture>
+					<visible>!Control.IsVisible(504)</visible>
+				</control>
+			</control>
+			
+		</control>
+		
         <control type="group">
             <include>Window_OpenClose_Animation</include>
             <include>SharedList</include>
