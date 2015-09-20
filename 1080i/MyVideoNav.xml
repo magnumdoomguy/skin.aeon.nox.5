@@ -942,7 +942,7 @@
 			
 			<!-- Options Menu -->
 			<control type="grouplist" id="200">
-				<visible allowhiddenfocus="true">ControlGroup(200).HasFocus</visible>
+				<visible allowhiddenfocus="true">ControlGroup(200).HasFocus | Container.Content(clips)</visible>
 				<posx>0</posx>
 				<posy>100</posy>
 				<zorder>10</zorder>
@@ -1098,9 +1098,14 @@
 		
 			</control>
 			
+			<control type="button" id="1300">
+				<include>HiddenObject</include>
+				<visible>Container.Content(clips)</visible>
+				<onfocus>Control.SetFocus(200)</onfocus>
+			</control>
 			<!-- Filters -->
 			<control type="group" id="1300"> 
-				<visible allowhiddenfocus="true">!ControlGroup(200).HasFocus</visible>
+				<visible allowhiddenfocus="true">!ControlGroup(200).HasFocus + !Container.Content(clips)</visible>
 				<animation type="Conditional" condition="!Window.IsActive(10202)" reversible="false">
 					<effect type="rotatey" center="220" start="80" end="0" time="300"/>
 					<effect type="fade" start="0" end="100" time="0" delay="0"/>
@@ -1456,6 +1461,8 @@
 				</control>
 				
 			</control>
+			
+			
         </control>
     </controls>
 </window>
