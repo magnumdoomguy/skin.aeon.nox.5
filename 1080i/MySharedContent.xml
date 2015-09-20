@@ -94,7 +94,100 @@
 		</control>
 		
         <include>ScrollOffsetLabel</include>
-        <include>Topbar</include>
+		
+        <control type="group">
+            <animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
+            <animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
+            <visible>!Control.IsVisible(609)</visible>
+            <control type="image">
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1920</width>
+                <height>66</height>
+                <texture border="1">topbar.png</texture>
+            </control>
+            <control type="label">
+                <width>900</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>left</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>Shared Content</label>
+            </control>
+            <control type="label">
+                <posx>1920</posx>
+                <width>900</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>right</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>$INFO[Container.NumItems,, $LOCALIZE[31025]]$INFO[Container.CurrentPage,[COLOR grey3] | ,]$INFO[Container.NumPages,/,[/COLOR]]</label>
+            </control>
+            <control type="label">
+                <posx>0</posx>
+                <width>1920</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>center</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>$INFO[System.Time]</label>
+            </control>
+            <control type="group">
+                <visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
+                <animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
+                <animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
+                <posx>1080</posx>
+                <control type="progress">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>37</height>
+                    <texturebg border="2">osd/texturebg.png</texturebg>
+                    <lefttexture>-</lefttexture>
+                    <midtexture border="2">osd/midtexture_cache.png</midtexture>
+                    <righttexture>-</righttexture>
+                    <overlaytexture>-</overlaytexture>
+                    <info>Player.ProgressCache</info>
+                </control>
+                <control type="progress">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>35</height>
+                    <texturebg border="1">osd/texturebg_cache.png</texturebg>
+                    <lefttexture>-</lefttexture>
+                    <midtexture border="2">osd/midtexture.png</midtexture>
+                    <righttexture>-</righttexture>
+                    <overlaytexture>-</overlaytexture>
+                    <info>Player.Progress</info>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>90</height>
+                    <font>font13_title</font>
+                    <textoffsetx>10</textoffsetx>
+                    <textcolor>grey</textcolor>
+                    <shadowcolor>AA000000</shadowcolor>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <textoffsety>-2</textoffsety>
+                    <scroll>true</scroll>
+                    <label>$INFO[Player.Title]</label>
+                </control>
+            </control>
+        </control>
+		
         <control type="group">
             <posx>-440</posx>
             <animation effect="slide" start="440,0" end="0,0" time="400" tween="quadratic" easing="out" condition="IsEmpty(Window(home).Property(MediaMenu))">Conditional</animation>
@@ -140,10 +233,10 @@
                     <focusedcolor>blue</focusedcolor>
                     <textwidth>300</textwidth>
                     <aligny>center</aligny>
-                    <onleft>1300</onleft>
+                    <onleft>200</onleft>
                     <onright>ClearProperty(MediaMenu,Home)</onright>
                     <onright>50</onright>
-                    <onup>109</onup>
+                    <onup>108</onup>
                     <ondown>105</ondown>
                     <onback>ClearProperty(MediaMenu,Home)</onback>
                     <onback>50</onback>
@@ -154,6 +247,7 @@
                     <onclick>Control.SetFocus(50)</onclick>
                     <visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
                 </control>
+				
                 <!-- Home Button -->
                 <control type="button" id="105">
                     <texturefocus border="0"></texturefocus>
@@ -166,11 +260,11 @@
                     <focusedcolor>blue</focusedcolor>
                     <textwidth>300</textwidth>
                     <aligny>center</aligny>
-                    <onleft>1300</onleft>
+                    <onleft>200</onleft>
                     <onright>ClearProperty(MediaMenu,Home)</onright>
                     <onright>50</onright>
                     <onup>104</onup>
-                    <ondown>106</ondown>
+                    <ondown>108</ondown>
                     <onback>ClearProperty(MediaMenu,Home)</onback>
                     <onback>50</onback>
                     <font>IconTiny</font>
@@ -178,10 +272,12 @@
                     <onclick>ActivateWindow(home)</onclick>
                     <visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
                 </control>
-                <!-- Play All -->
-                <control type="button" id="106">
+                
+                <!-- Change Viewtype -->
+                <control type="button" id="108">
                     <texturefocus border="0"></texturefocus>
                     <texturenofocus border="0"></texturenofocus>
+                    <description>View As button</description>
                     <posy>130</posy>
                     <width>60</width>
                     <height>35</height>
@@ -190,94 +286,22 @@
                     <focusedcolor>blue</focusedcolor>
                     <textwidth>300</textwidth>
                     <aligny>center</aligny>
-                    <onleft>1300</onleft>
+                    <font>IconTiny</font>
+                    <onleft>200</onleft>
                     <onright>ClearProperty(MediaMenu,Home)</onright>
                     <onright>50</onright>
                     <onup>105</onup>
-                    <ondown>107</ondown>
-                    <onback>ClearProperty(MediaMenu,Home)</onback>
-                    <onback>50</onback>
-                    <font>IconTiny</font>
-                    <label></label>
-                    <onclick>Plex.PlayAll()</onclick>
-                    <visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
-                </control>
-                <!-- Shuffle All -->
-                <control type="button" id="107">
-                    <texturefocus border="0"></texturefocus>
-                    <texturenofocus border="0"></texturenofocus>
-                    <posy>165</posy>
-                    <width>60</width>
-                    <height>35</height>
-                    <textoffsetx>15</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <focusedcolor>blue</focusedcolor>
-                    <textwidth>300</textwidth>
-                    <aligny>center</aligny>
-                    <font>IconTiny</font>
-                    <label></label>
-                    <onleft>1300</onleft>
-                    <onright>ClearProperty(MediaMenu,Home)</onright>
-                    <onright>50</onright>
-                    <onup>106</onup>
-                    <ondown>108</ondown>
-                    <onback>ClearProperty(MediaMenu,Home)</onback>
-                    <onback>50</onback>
-                    <onclick>Plex.ShuffleAll()</onclick>
-                    <visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
-                </control>
-                <!-- Change Viewtype -->
-                <control type="button" id="108">
-                    <texturefocus border="0"></texturefocus>
-                    <texturenofocus border="0"></texturenofocus>
-                    <description>View As button</description>
-                    <posy>200</posy>
-                    <width>60</width>
-                    <height>35</height>
-                    <textoffsetx>15</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <focusedcolor>blue</focusedcolor>
-                    <textwidth>300</textwidth>
-                    <aligny>center</aligny>
-                    <font>IconTiny</font>
-                    <onleft>1300</onleft>
-                    <onright>ClearProperty(MediaMenu,Home)</onright>
-                    <onright>50</onright>
-                    <onup>107</onup>
-                    <ondown>109</ondown>
+                    <ondown>104</ondown>
                     <onback>ClearProperty(MediaMenu,Home)</onback>
                     <onback>50</onback>
                     <onclick>Container.NextViewMode</onclick>
                     <label></label>
                 </control>
-                <!-- Options Button -->
-                <control type="button" id="109">
-                    <texturefocus border="0"></texturefocus>
-                    <texturenofocus border="0"></texturenofocus>
-                    <description>Options</description>
-                    <posy>235</posy>
-                    <width>60</width>
-                    <height>35</height>
-                    <textoffsetx>15</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <focusedcolor>blue</focusedcolor>
-                    <textwidth>300</textwidth>
-                    <aligny>center</aligny>
-                    <font>IconTiny</font>
-                    <onleft>1300</onleft>
-                    <onright>ClearProperty(MediaMenu,Home)</onright>
-                    <onright>50</onright>
-                    <onup>108</onup>
-                    <ondown>104</ondown>
-                    <onback>ClearProperty(MediaMenu,Home)</onback>
-                    <onback>50</onback>
-                    <onclick>Control.SetFocus(200)</onclick>
-                    <label></label>
-                </control>
+                
             </control>
+			
             <!-- Options Menu -->
             <control type="grouplist" id="200">
-                <visible allowhiddenfocus="true">ControlGroup(200).HasFocus</visible>
                 <posx>0</posx>
                 <posy>100</posy>
                 <zorder>10</zorder>
@@ -286,6 +310,7 @@
                 <onright>9050</onright>
                 <onback>9050</onback>
                 <onleft>9050</onleft>
+				
                 <!-- View Options Title -->
                 <control type="label" id="201">
                     <width>350</width>
@@ -296,6 +321,7 @@
                     <textcolor>themecolor</textcolor>
                     <aligny>center</aligny>
                 </control>
+				
                 <!-- Change View type -->
                 <control type="button" id="2">
                     <description>View As button</description>
@@ -311,198 +337,7 @@
                     <onclick>Container.NextViewMode</onclick>
                     <label>-</label>
                 </control>
-                <!-- Toggle Background -->
-                <control type="button" id="203">
-                    <description>Toggle Background</description>
-                    <posy>120</posy>
-                    <!--<textwidth>200</textwidth>-->
-                    <width>350</width>
-                    <height>60</height>
-                    <textoffsetx>15</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <focusedcolor>white</focusedcolor>
-                    <textwidth>300</textwidth>
-                    <aligny>center</aligny>
-                    <font>font13</font>
-                    <label>$LOCALIZE[33068]</label>
-                    <label2>[COLOR labelheader]$VAR[BackgroundLabelVar][/COLOR]</label2>
-                    <onclick>$VAR[VideoBackgroundClickVar]</onclick>
-                    <visible>!Container.Content(genres)</visible>
-                </control>
-            </control>
-            <!-- Filters -->
-            <control type="group" id="1300">
-                <visible allowhiddenfocus="true">!ControlGroup(200).HasFocus</visible>
-                <animation type="Conditional" condition="!Window.IsActive(10202)" reversible="false">
-                    <effect type="rotatey" center="220" start="80" end="0" time="300" />
-                    <effect type="fade" start="0" end="100" time="0" delay="0" />
-                </animation>
-                <animation type="Conditional" condition="Window.IsActive(10202)" reversible="false">
-                    <effect type="rotatey" center="220" start="0" end="80" time="300" />
-                    <effect type="fade" start="100" end="0" time="250" />
-                </animation>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>350</width>
-                <height>1080</height>
-                <onleft>1300</onleft>
-                <onright>9050</onright>
-                <onup>19000</onup>
-                <ondown>19000</ondown>
-                <onback>ClearProperty(MediaMenu,Home)</onback>
-                <onback>50</onback>
-                <itemgap>0</itemgap>
-                <orientation>vertical</orientation>
-                <include condition="Skin.HasSetting(KioskMode.Enabled)">KioskModeButton</include>
-                <!-- primary filter list title -->
-                <control type="label" id="19008">
-                    <posy>100</posy>
-                    <description>Title</description>
-                    <width>350</width>
-                    <height>52</height>
-                    <textoffsetx>15</textoffsetx>
-                    <font>font13_title</font>
-                    <textcolor>themecolor</textcolor>
-                    <aligny>center</aligny>
-                </control>
-                <!-- primary filters list -->
-                <control type="grouplist" id="19000">
-                    <posy>160</posy>
-                    <height>120</height>
-                    <width>350</width>
-                    <font>font12</font>
-                    <onright>9050</onright>
-                    <onleft>1300</onleft>
-                    <onup>1300</onup>
-                    <onback>ClearProperty(MediaMenu,Home)</onback>
-                    <onback>50</onback>
-                    <ondown>19001</ondown>
-                    <itemgap>0</itemgap>
-                    <textwidth>250</textwidth>
-                </control>
-                <!-- secondary filters list title -->
-                <control type="label" id="19009">
-                    <posy>280</posy>
-                    <description>Secondary Title</description>
-                    <width>350</width>
-                    <height>52</height>
-                    <textoffsetx>15</textoffsetx>
-                    <font>font13_title</font>
-                    <textcolor>themecolor</textcolor>
-                    <aligny>center</aligny>
-                    <label>FILTER</label>
-                    <visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
-                </control>
-                <!-- secondary filters list -->
-                <control type="grouplist" id="19001">
-                    <posy>340</posy>
-                    <height>435</height>
-                    <width>350</width>
-                    <font>font12</font>
-                    <onright>9050</onright>
-                    <onleft>1300</onleft>
-                    <onup>19000</onup>
-                    <onback>ClearProperty(MediaMenu,Home)</onback>
-                    <onback>50</onback>
-                    <ondown>19010</ondown>
-                    <radioposx>300</radioposx>
-                    <textwidth>250</textwidth>
-                </control>
-                <!-- filters buttons -->
-                <control type="button" id="19005">
-                    <texturenofocus border="0"></texturenofocus>
-                    <width>350</width>
-                    <height>35</height>
-                    <textoffsetx>15</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <focusedcolor>white</focusedcolor>
-                    <textwidth>250</textwidth>
-                    <aligny>center</aligny>
-                    <font>font12</font>
-                    <!--<texturefocus>bg-b-clear-subfilters-s.png</texturefocus>-->
-                </control>
-                <control type="radiobutton" id="19006">
-                    <texturenofocus border="0"></texturenofocus>
-                    <radiowidth>50</radiowidth>
-                    <radioheight>50</radioheight>
-                    <!-- overlays/list/OverlayUnwatched.png -->
-                    <texturefocus border="1">listselect_fo.png</texturefocus>
-                    <!-- separator2.png -->
-                    <label>-</label>
-                    <disabledcolor>grey4</disabledcolor>
-                    <pulseonselect>false</pulseonselect>
-                    <width>350</width>
-                    <height>35</height>
-                    <textoffsetx>15</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <focusedcolor>white</focusedcolor>
-                    <textwidth>250</textwidth>
-                    <aligny>center</aligny>
-                    <font>font12</font>
-                    <radioposx>300</radioposx>
-                </control>
-                <control type="label" id="19007">
-                    <width>350</width>
-                    <height>35</height>
-                    <textoffsetx>15</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <aligny>center</aligny>
-                    <font>font12</font>
-                </control>
-                <!-- SORTING -->
-                <!-- sorting list title -->
-                <control type="label" id="19019">
-                    <posy>775</posy>
-                    <description>Title</description>
-                    <width>350</width>
-                    <height>52</height>
-                    <textoffsetx>15</textoffsetx>
-                    <font>font13_title</font>
-                    <textcolor>themecolor</textcolor>
-                    <aligny>center</aligny>
-                    <label>SORT</label>
-                    <visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
-                </control>
-                <!-- sorting list -->
-                <control type="grouplist" id="19010">
-                    <posy>835</posy>
-                    <!-- 780 -->
-                    <height>300</height>
-                    <width>350</width>
-                    <onright>9050</onright>
-                    <onleft>1300</onleft>
-                    <onup>19001</onup>
-                    <onback>ClearProperty(MediaMenu,Home)</onback>
-                    <onback>50</onback>
-                    <ondown>2</ondown>
-                    <textcolor>grey</textcolor>
-                    <focusedcolor>white</focusedcolor>
-                    <textwidth>250</textwidth>
-                    <aligny>center</aligny>
-                    <font>font12</font>
-                </control>
-                <!-- sorting buttons -->
-                <control type="filterorderbutton" id="19011">
-                    <texturenofocus border="0"></texturenofocus>
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>350</width>
-                    <height>35</height>
-                    <radiowidth>35</radiowidth>
-                    <radioheight>35</radioheight>
-                    <radioposx>300</radioposx>
-                    <textureorderascending>android/numberpicker_up_longpressed_holo_dark.png</textureorderascending>
-                    <textureorderdescending>android/numberpicker_down_longpressed_holo_dark.png</textureorderdescending>
-                    <texturefocus border="1">listselect_fo.png</texturefocus>
-                    <font>font12</font>
-                    <label>-</label>
-                    <textcolor>grey2</textcolor>
-                    <focusedcolor>white</focusedcolor>
-                    <disabledcolor>grey4</disabledcolor>
-                    <textoffsetx>15</textoffsetx>
-                    <aligny>center</aligny>
-                    <pulseonselect>false</pulseonselect>
-                </control>
+                
             </control>
         </control>
     </controls>
