@@ -45,6 +45,7 @@
             <!-- view id = 50 -->
 			<include>SharedShift</include>
 			<!-- view id = 57 -->
+			<include>SharedWall</include>
         </control>
 		
 		
@@ -77,16 +78,36 @@
 							<textoffsety>-2</textoffsety>
 							<textoffsetx>30</textoffsetx>
 						</control>
-						<control type="label">
+						<control type="grouplist">
 							<posx>0</posx>
 							<posy>45</posy>
-							<width>1100</width>
-							<height>30</height>
-							<align>left</align>
-							<font>font13_title</font>
-							<textcolor>white</textcolor>
-							<label>$INFO[ListItem.Property(serverOwner)] &#xB7; $INFO[ListItem.Property(serverName)]</label>
-							<textoffsetx>30</textoffsetx>
+							<orientation>horizontal</orientation>
+							<control type="label">
+								<width min="10" max="1100">auto</width>
+								<height>30</height>
+								<font>font13_title</font>
+								<textcolor>white</textcolor>
+								<label>$INFO[ListItem.Property(serverOwner)] &#xB7; $INFO[ListItem.Property(serverName)]</label>
+								<textoffsetx>30</textoffsetx>
+							</control>
+							<control type="label">
+								<visible>IsEmpty(ListItem.Property(isSecure))</visible>
+								<width min="10" max="1100">auto</width>
+								<height>30</height>
+								<label> </label>
+								<textoffsetx>30</textoffsetx>
+								<font>IconSmaller</font>
+								<textcolor>themecolor</textcolor>
+							</control>
+							<control type="label">
+								<visible>!IsEmpty(ListItem.Property(isSecure))</visible>
+								<width min="10" max="1100">auto</width>
+								<height>30</height>
+								<label> </label>
+								<textoffsetx>30</textoffsetx>
+								<font>IconSmaller</font>
+								<textcolor>themecolor</textcolor>
+							</control>
 						</control>
 					</control>
 				</control>
