@@ -1,5 +1,3 @@
-Aeon-Nox 5 for Plex
-
 Aeon Nox 5 for Plex is a port Bignoid's beautiful Kodi skin Aeon Nox 5 modified to work on Plex Home Theater.
 
 Credits:
