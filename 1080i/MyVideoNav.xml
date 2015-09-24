@@ -30,6 +30,19 @@
 		
 		<include>CommonBackground</include>
 	
+		<control type="label">
+			<visible>Container.Content(empty)</visible>
+			<posx>0</posx>
+			<posy>0</posy>
+			<align>center</align>
+			<aligny>center</aligny>
+			<width>1920</width>
+			<height>1080</height>
+			<label>No Videos Matching Filters.</label>
+			<font>font35_title</font>
+			<textcolor>grey</textcolor>
+		</control>
+	
 		<control type="group">
 			<visible>Control.IsVisible(52) | Control.IsVisible(53) | Control.IsVisible(601)</visible>
 			<posy>-30</posy>
@@ -40,6 +53,7 @@
 			<include>ShowCaseInfoPanel</include>
 		</control>
 		<control type="group">
+			<visible>!Container.Content(empty)</visible>
 			<animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0">WindowOpen</animation>
 			<animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0">WindowClose</animation>
 			
@@ -93,10 +107,10 @@
 			<!-- view id = 700 -->	
 			<include>Shelf</include>
 			<!-- view id = 708 -->
-			
 		</control>
 		
-		<control type="button" id="9003">
+		<control type="group" id="9003">
+		<control type="button" id="9004">
 			<include>HiddenObject</include>
 			<description>Button to pass through navigation when list is empty</description>
 			
@@ -110,11 +124,12 @@
                     <ondown>SetFocus(9050)</ondown>
 			<visible>Container.Content(empty)</visible>
 		</control>
-		<control type="button" id="9003">
+		<control type="button" id="9005">
 			<include>HiddenObject</include>
 			<description>Button to pass through navigation when list is NOT empty</description>
 			<onfocus>SetFocus(50)</onfocus>
 			<visible>!Container.Content(empty)</visible>
+		</control>
 		</control>
 		
 		<control type="group">
@@ -670,6 +685,7 @@
             <posx>-440</posx>
             <animation effect="slide" start="440,0" end="0,0" time="400" tween="quadratic" easing="out" condition="IsEmpty(Window(home).Property(MediaMenu))">Conditional</animation>
 			<animation effect="slide" start="0,0" end="-440,0" time="400" tween="quadratic" easing="out">WindowClose</animation>
+			<animation effect="slide" start="0,0" end="-440,0" time="400" tween="quadratic" easing="out" condition="ControlGroup(1300).HasFocus() + Container.Content(secondary)">Conditional</animation>
 			<posy>0</posy>
 				
 			<!-- Display Side Blade Menu Background -->
