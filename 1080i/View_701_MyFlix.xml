@@ -13,7 +13,6 @@
 					<font>font_musicviz</font>
 					<textcolor>grey</textcolor>
 					<label>$INFO[ListItem.Title]</label>
-					<visible>Container.Content(movies) | Container.Content(tvshows)</visible>
 				</control>
 				<control type="label">
 					<posx>25</posx>
@@ -32,7 +31,7 @@
 					<textcolor>grey</textcolor>
 					<visible></visible>
 					<control type="group">
-						<animation effect="slide" start="0" end="0,-50" time="620" tween="cubic" easing="inout" condition="true">Conditional</animation>
+						<animation effect="slide" start="0" end="0,-50" time="620" tween="cubic" easing="inout" condition="IsEmpty(ListItem.Top250)">Conditional</animation>
 						<control type="grouplist">
 							<visible>Container.Content(movies)</visible>
 							<control type="label">
@@ -57,24 +56,24 @@
 						</control>
 						<control type="grouplist">
 							<visible>[Container.Content(tvshows) | Container.Content(seasons)]</visible>
-							<!--<control type="label">
+							<control type="label">
 								<label>[COLOR labelheader]$LOCALIZE[126]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.Status)]</label>
 								<width>800</width>
 								<include>RighListButtonsValues</include>
 								<visible>[Container.Content(tvshows) | Container.Content(seasons)] + !IsEmpty(Window(Home).Property(NextAired.Status))</visible>
-							</control>-->
-							<!--<control type="label">
+							</control>
+							<control type="label">
 								<label>[COLOR labelheader]$LOCALIZE[31010]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.NextDate),,: ]$INFO[Window(Home).Property(NextAired.NextTitle)]</label>
 								<width>800</width>
 								<include>RighListButtonsValues</include>
 								<visible>!IsEmpty(Window(Home).Property(NextAired.NextDate)) + !Skin.HasSetting(Disable.NextAired)</visible>
-							</control>-->
-							<!--<control type="label">
+							</control>
+							<control type="label">
 								<label>[COLOR labelheader]$LOCALIZE[31011]:[/COLOR][CR]$INFO[Window(Home).Property(NextAired.LatestNumber),, - ]$INFO[Window(Home).Property(NextAired.LatestTitle)]</label>>
 								<width>800</width>
 								<include>RighListButtonsValues</include>
 								<visible>Container.Content(tvshows) + !IsEmpty(Window(Home).Property(NextAired.LatestDate)) + IsEmpty(Window(Home).Property(NextAired.NextDate))</visible>
-							</control>-->
+							</control>
 							<control type="label">
 								<label>[COLOR labelheader]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
 								<width>800</width>
@@ -129,7 +128,7 @@
 							<textcolor>grey</textcolor>
 							<autoscroll delay="3000" time="3000" repeat="4000">true</autoscroll>
 							<animation effect="slide" start="0" end="0,40" time="620" tween="cubic" easing="inout" condition="!IsEmpty(Window(Home).Property(NextAired.Status))">Conditional</animation>
-							<visible>Container.Content(movies) | Container.Content(tvshows)</visible>
+							<visible>[Container.Content(movies) + !ListItem.IsCollection] | [Container.Content(tvshows) + !Skin.HasSetting(Enable.MyFlix.TVLandscape)]</visible>
 						</control>
 						<control type="textbox">
 							<posy>240</posy>
@@ -141,7 +140,18 @@
 							<textcolor>grey</textcolor>
 							<autoscroll delay="3000" time="3000" repeat="4000">true</autoscroll>
 							<animation effect="slide" start="0" end="0,40" time="620" tween="cubic" easing="inout" condition="true">Conditional</animation>
-							<visible>Container.Content(episodes)</visible>
+							<visible>Container.Content(episodes) | [Container.Content(tvshows) + Skin.HasSetting(Enable.MyFlix.TVLandscape)]</visible>
+						</control>
+						<control type="textbox">
+							<posy>190</posy>
+							<posx>15</posx>
+							<label>$VAR[VideoPlotVar3]</label>
+							<width>800</width>
+							<height>205</height>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<autoscroll delay="3000" time="2500" repeat="4000">true</autoscroll>
+							<visible>ListItem.IsCollection</visible>
 						</control>
 					</control>
 				</control>
@@ -170,12 +180,16 @@
 						<posy>75</posy>
 						<width>268</width>
 						<height>390</height>
-						<texture border="1" colordiffuse="99FFFFFF">black.png</texture>
+						<aspectratio>stretch</aspectratio>
+						<colordiffuse>99FFFFFF</colordiffuse>
+						<texture border="1">black.png</texture>
 						<bordersize>20</bordersize>
 					</control>
 					<control type="image">
 						<include>FlixCaseVars</include>
-						<texture background="true" colordiffuse="99FFFFFF">$VAR[CaseTypePathVar]$VAR[GlobalCaseVar]</texture>
+						<colordiffuse>99FFFFFF</colordiffuse>
+						<aspectratio>stretch</aspectratio>
+						<texture background="true">$INFO[ListItem.Art(bigThumb)]</texture>
 					</control>
 					<include>FlixPosterReflection</include>
 					<include>FlixPosterCaseReflection</include>
@@ -383,7 +397,7 @@
 				<width>1680</width>
 				<height>12</height>
 				<onup>53</onup>
-				<ondown>noop</ondown>
+				<ondown>ActivateWindow(1113)</ondown>
 				<texturesliderbackground border="1">-</texturesliderbackground>
 				<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
 				<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
@@ -401,13 +415,13 @@
 			<posy>75</posy>
 			<width>268</width>
 			<height>390</height>
-			<texture background="true">$VAR[PosterThumbVar]</texture>
+			<texture background="true">$VAR[PosterThumb]</texture>
 			<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
 			<bordersize>20</bordersize>
 		</control>
 	</include>
 	<include name="FlixPosterOverlay">
-		<control type="image">
+		<!--<control type="image">
 			<posx>206</posx>
 			<posy>95</posy>
 			<width>60</width>
@@ -415,7 +429,7 @@
 			<texture>$VAR[OverlayVar]</texture>
 			<aspectratio align="center" aligny="top">keep</aspectratio>
 			<visible>[!IsEmpty(Skin.String(701.Movies.DisableOverlay)) + Container.Content(movies)] | [!IsEmpty(Skin.String(701.TV.DisableOverlay)) + Container.Content(tvshows)]</visible>
-		</control>
+		</control>-->
 	</include>
 	<include name="FlixPosterReflection">
 		<control type="image">
@@ -423,7 +437,7 @@
 			<posy>465</posy>
 			<width>228</width>
 			<height>402</height>
-			<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png">$VAR[PosterThumbVar]</texture>
+			<texture background="true" flipy="true" diffuse="thumbs/thumb_reflect.png">$VAR[PosterThumbVar]</texture>
 		</control>
 	</include>
 	<include name="FlixLandscape">
