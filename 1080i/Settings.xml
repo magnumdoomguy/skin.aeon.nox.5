@@ -3,17 +3,20 @@
     <defaultcontrol always="true">9000</defaultcontrol>
     <allowoverlay>no</allowoverlay>
     <controls>
+	
         <!-- NOWALL Settings Background -->
         <control type="image">
             <include>FullscreenDimensions</include>
             <texture>special://skin/backgrounds/system.jpg</texture>
         </control>
+		
         <!-- Visualization Background -->
         <control type="visualisation">
             <include>FullscreenDimensions</include>
             <visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
             <visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
         </control>
+		
         <!-- Video Background -->
         <control type="image">
             <include>FullscreenDimensions</include>
@@ -24,7 +27,100 @@
             <include>FullscreenDimensions</include>
             <visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
         </control>
-        <include>Topbar</include>
+		
+        <control type="group">
+            <animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
+            <animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
+            <visible>!Control.IsVisible(609)</visible>
+            <control type="image">
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1920</width>
+                <height>66</height>
+                <texture border="1">topbar.png</texture>
+            </control>
+            <control type="label">
+                <width>900</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>left</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>Preferences</label>
+            </control>
+            <control type="label">
+                <posx>1920</posx>
+                <width>900</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>right</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>$INFO[Container.NumItems,, $LOCALIZE[31025]]$INFO[Container.CurrentPage,[COLOR grey3] | ,]$INFO[Container.NumPages,/,[/COLOR]]</label>
+            </control>
+            <control type="label">
+                <posx>0</posx>
+                <width>1920</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>center</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>$INFO[System.Time]</label>
+            </control>
+            <control type="group">
+                <visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
+                <animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
+                <animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
+                <posx>1080</posx>
+                <control type="progress">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>37</height>
+                    <texturebg border="2">osd/texturebg.png</texturebg>
+                    <lefttexture>-</lefttexture>
+                    <midtexture border="2">osd/midtexture_cache.png</midtexture>
+                    <righttexture>-</righttexture>
+                    <overlaytexture>-</overlaytexture>
+                    <info>Player.ProgressCache</info>
+                </control>
+                <control type="progress">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>35</height>
+                    <texturebg border="1">osd/texturebg_cache.png</texturebg>
+                    <lefttexture>-</lefttexture>
+                    <midtexture border="2">osd/midtexture.png</midtexture>
+                    <righttexture>-</righttexture>
+                    <overlaytexture>-</overlaytexture>
+                    <info>Player.Progress</info>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>90</height>
+                    <font>font13_title</font>
+                    <textoffsetx>10</textoffsetx>
+                    <textcolor>grey</textcolor>
+                    <shadowcolor>AA000000</shadowcolor>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <textoffsety>-2</textoffsety>
+                    <scroll>true</scroll>
+                    <label>$INFO[Player.Title]</label>
+                </control>
+            </control>
+        </control>
+		
         <control type="group">
             <posx>0</posx>
             <posy>128</posy>
@@ -93,6 +189,7 @@
                     </control>
                 </focusedlayout>
                 <content>
+				
                     <!-- Appearance Settings -->
                     <item id="1">
                         <label>480</label>
@@ -101,6 +198,7 @@
                         <onclick>ActivateWindow(AppearanceSettings)</onclick>
                         <icon>-</icon>
                     </item>
+					
                     <!-- Playback Settings -->
                     <item id="2">
                         <label>31610</label>
@@ -109,6 +207,7 @@
                         <onclick>ActivateWindow(VideosSettings)</onclick>
                         <icon>-</icon>
                     </item>
+					
                     <!-- System Settings -->
                     <item id="8">
                         <label>13000</label>
@@ -117,6 +216,7 @@
                         <onclick>ActivateWindow(SystemSettings)</onclick>
                         <icon>-</icon>
                     </item>
+					
                     <!-- Network Settings -->
                     <item id="9">
                         <label>31602</label>
@@ -127,6 +227,7 @@
                     </item>
                 </content>
             </control>
+			
             <!-- Display Scrollbar -->
             <control type="scrollbar" id="61">
                 <posx>65</posx>
@@ -143,6 +244,7 @@
                 <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
                 <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
             </control>
+			
             <!-- Display Aeon Nox logo -->
             <control type="image">
                 <description>LOGO</description>
@@ -153,6 +255,7 @@
                 <aspectratio>keep</aspectratio>
                 <texture>aeon-nox-logo.png</texture>
             </control>
+			
             <!-- Display Right Panel -->
             <include>SystemRightPanel</include>
             <control type="image">
@@ -172,6 +275,7 @@
                 <texture>black.png</texture>
                 <animation effect="fade" start="45" end="45" time="0" condition="true">conditional</animation>
             </control>
+			
             <!-- Display Description -->
             <control type="textbox">
                 <description>description area</description>
