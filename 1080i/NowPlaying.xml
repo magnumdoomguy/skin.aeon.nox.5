@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <window id="50">
+	<defaultcontrol always="true">711</defaultcontrol>
     <controls>
         
         <control type="group">
-			<!--<visible>!StringCompare(Skin.String(Viz.Background),1)</visible>-->
 			<visible>!Skin.HasSetting(HideVisualizationFanart)</visible>
 			<include>SettingsFadeEffect</include>
 			<control type="image">
@@ -11,7 +11,7 @@
 				<include>FullscreenDimensions</include>
 				<timeperimage>10000</timeperimage>
 				<fadetime>750</fadetime>
-				<texture background="true" fallback="special://skin/backgrounds/fallback_music.jpg">$VAR[VizBackgroundVar]</texture>
+				<texture background="true" fallback="special://skin/backgrounds/music.jpg">$VAR[VizBackgroundVar]</texture>
 				<animation effect="fade" start="100" end="20" time="0">Visible</animation>
 				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
 				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
@@ -300,6 +300,219 @@
 					<font>font14</font>
 					<label>$INFO[Visualisation.Preset,$LOCALIZE[13388]: ]</label>
 					<textcolor>grey2</textcolor>
+				</control>
+			</control>
+		</control>
+		
+		<!-- osd -->
+		<control type="group">
+			<!-- move if flipped -->
+			<!--<animation effect="slide" start="0,0" end="-430,0" time="1000" condition="MusicPlayer.NowPlayingFlipped">Conditional</animation>-->
+			<posy>550</posy>
+			<posx>1250</posx>
+			<control type="image">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>600</width>
+				<height>100</height>
+				<texture border="5">base-rounded.png</texture>
+				<colordiffuse>FF000000</colordiffuse>
+				<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="group" id="300">
+				<posy>0</posy>
+				<posx>0</posx>
+				
+				<!-- repeat -->
+				<control type="group">
+					<posy>0</posy>
+					<posx>0</posx>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdrepeatnf.png</texture>
+						<visible>!Control.HasFocus(708) + !Playlist.IsRepeat + !Playlist.IsRepeatOne</visible>
+					</control>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdrepeatonenf.png</texture>
+						<visible>!Control.HasFocus(708) + Playlist.IsRepeatOne</visible>
+					</control>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdrepeatallnf.png</texture>
+						<visible>!Control.HasFocus(708) + Playlist.IsRepeat</visible>
+					</control>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdrepeatfo.png</texture>
+						<visible>Control.HasFocus(708) + !Playlist.IsRepeat + !Playlist.IsRepeatOne</visible>
+					</control>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdrepeatonefo.png</texture>
+						<visible>Control.HasFocus(708) + Playlist.IsRepeatOne</visible>
+					</control>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdrepeatallfo.png</texture>	
+						<visible>Control.HasFocus(708) + Playlist.IsRepeat</visible>
+					</control>
+					<control type="button" id="708">
+						<width>100</width>
+						<height>100</height>
+						<onleft condition="Window.IsActive(playercontrols) | Window.IsActive(nowplaying)">715</onleft>
+						<onleft condition="Window.IsActive(plexplayqueue)">714</onleft>
+						<onright>710</onright>
+						<texturefocus>-</texturefocus>
+						<texturenofocus>-</texturenofocus>
+						<onclick>XBMC.PlayerControl(Repeat)</onclick>
+						<onup condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</onup>
+						<ondown condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</ondown>
+						<visible allowhiddenfocus="true">Control.HasFocus(708)</visible>
+					</control>
+				</control>
+			
+				<!-- previous -->
+				<control type="group">
+					<posy>0</posy>
+					<posx>100</posx>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdprevtracknf.png</texture>
+						<visible>!Control.HasFocus(710)</visible>
+					</control>
+					<control type="button" id="710">
+						<width>100</width>
+						<height>100</height>
+						<texturefocus>osd/buttons/osdprevtrackfo.png</texturefocus>
+						<texturenofocus>osd/buttons/osdprevtracknf.png</texturenofocus>
+						<onleft>708</onleft>
+						<onright>711</onright>
+						<onup condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</onup>
+						<ondown condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</ondown>
+						<onclick>PlayerControl(Previous)</onclick>
+						<visible allowhiddenfocus="true">Control.HasFocus(710)</visible>
+					</control>
+				</control>
+			
+				<!-- play/pause -->
+				<control type="group">
+					<posy>0</posy>
+					<posx>200</posx>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdpausenf.png</texture>
+						<visible>!Control.HasFocus(711) + !Player.Paused</visible>
+					</control>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdplaynf.png</texture>
+						<visible>!Control.HasFocus(711) + Player.Paused</visible>
+					</control>
+					<control type="togglebutton" id="711">
+						<width>100</width>
+						<height>100</height>
+						<texturefocus>osd/buttons/osdpausefo.png</texturefocus>
+						<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+						<alttexturefocus>osd/buttons/osdplayfo.png</alttexturefocus>
+						<onleft>710</onleft>
+						<onright>713</onright>
+						<onup condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</onup>
+						<ondown condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</ondown>
+						<onclick>PlayerControl(Play)</onclick>
+						<visible allowhiddenfocus="true">Control.HasFocus(711)</visible>
+					</control>
+				</control>
+				
+				<!-- stop -->
+				<control type="group">
+					<posy>0</posy>
+					<posx>300</posx>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdstopnf.png</texture>
+						<visible>!Control.HasFocus(713)</visible>
+					</control>
+					<control type="button" id="713">
+						<width>100</width>
+						<height>100</height>
+						<texturefocus>osd/buttons/osdstopfo.png</texturefocus>
+						<texturenofocus>osd/buttons/osdstopnf.png</texturenofocus>
+						<onleft>711</onleft>
+						<onright condition="Window.IsActive(playercontrols) | Window.IsActive(plexplayqueue)">712</onright>
+						<onright condition="Window.IsActive(nowplaying)">712</onright>
+						<onup condition="Window.IsActive(plexplayqueue)">54</onup>
+						<ondown condition="Window.IsActive(plexplayqueue)">54</ondown>
+						<onup condition="Window.IsActive(playercontrols)">3</onup>
+						<ondown condition="Window.IsActive(playercontrols)">3</ondown>
+						<onclick>PlayerControl(Stop)</onclick>
+						<onclick>Dialog.Close(playercontrols)</onclick>
+						<visible allowhiddenfocus="true">Control.HasFocus(713)</visible>
+					</control>
+				</control>
+			
+				<!-- next -->
+				<control type="group">
+					<posy>0</posy>
+					<posx>400</posx>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osdnexttracknf.png</texture>
+						<visible>!Control.HasFocus(712)</visible>
+					</control>
+					<control type="button" id="712">
+						<width>100</width>
+						<height>100</height>
+						<texturefocus>osd/buttons/osdnexttrackfo.png</texturefocus>
+						<texturenofocus>osd/buttons/osdnexttracknf.png</texturenofocus>
+						<onleft>713</onleft>
+						<onright>715</onright>
+						<onup condition="Window.IsActive(plexplayqueue)">54</onup>
+						<ondown condition="Window.IsActive(plexplayqueue)">54</ondown>
+						<onup condition="Window.IsActive(playercontrols)">3</onup>
+						<ondown condition="Window.IsActive(playercontrols)">3</ondown>
+						<onclick>PlayerControl(Next)</onclick>
+						<visible allowhiddenfocus="true">Control.HasFocus(712)</visible>
+					</control>
+				</control>
+			
+				<!-- pq -->
+				<control type="group">
+					<posy>0</posy>
+					<posx>500</posx>
+					<control type="image">
+						<width>100</width>
+						<height>100</height>
+						<texture>osd/buttons/osddvdnf.png</texture>
+						<visible>!Control.HasFocus(715)</visible>
+					</control>
+					<control type="button" id="715">
+						<width>100</width>
+						<height>100</height>
+						<texturefocus>osd/buttons/osddvdfo.png</texturefocus>
+						<texturenofocus>osd/buttons/osddvdnf.png</texturenofocus>
+						<onleft condition="Window.IsActive(playercontrols)">712</onleft>
+						<onleft condition="Window.IsActive(nowplaying)">712</onleft>
+						<onright condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</onright>
+						<onright condition="Window.IsActive(nowplaying)">708</onright>
+						<onup condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</onup>
+						<ondown condition="Window.IsActive(plexplayqueue) | Window.IsActive(playercontrols)">555</ondown>
+						<enable>System.PlexPlayQueue(music)</enable>
+						<onclick>Dialog.Close(PlayerControls)</onclick>
+						<onclick>ReplaceWindow(10094, plexserver://playqueue/audio)</onclick>
+						<visible allowhiddenfocus="true">Control.HasFocus(715)</visible>
+					</control>
 				</control>
 			</control>
 		</control>
