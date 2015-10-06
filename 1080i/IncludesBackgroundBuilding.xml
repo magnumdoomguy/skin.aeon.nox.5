@@ -127,7 +127,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>!Skin.HasSetting(CustomMovieSectionBackground) + !Skin.HasSetting(CustomMovieSectionSlideshow)</visible>
+			<visible>[!Skin.HasSetting(CustomMovieSectionBackground) + !Skin.HasSetting(CustomMovieSectionSlideshow) + Container.Content(movies)] | [!Skin.HasSetting(CustomTVSectionBackground) + !Skin.HasSetting(CustomTVSectionSlideshow) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]]</visible>
         </control>
 		<control type="image">
             <info>Skin.String(CustomMovieSectionBackgroundFile)</info>
@@ -136,7 +136,16 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomMovieSectionBackground)</visible>
+			<visible>Skin.HasSetting(CustomMovieSectionBackground) + Container.Content(movies)</visible>
+        </control>
+		<control type="image">
+            <info>Skin.String(CustomTVSectionBackgroundFile)</info>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1920</width>
+			<height>1080</height>
+            <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>Skin.HasSetting(CustomTVSectionBackground) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
         </control>
 		<control type="multiimage">
             <info>Skin.String(CustomMovieSectionSlideshowPath)</info>
@@ -145,7 +154,16 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomMovieSectionSlideshow)</visible>
+			<visible>Skin.HasSetting(CustomMovieSectionSlideshow) + Container.Content(movies)</visible>
+        </control>
+		<control type="multiimage">
+            <info>Skin.String(CustomTVSectionSlideshowPath)</info>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1920</width>
+			<height>1080</height>
+            <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>Skin.HasSetting(CustomTVSectionSlideshow) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
         </control>
 		<control type="image">
             <texture fallback="special://skin/backgrounds/fallback_movies.jpg" background="true">$INFO[ListItem.Icon]</texture>
