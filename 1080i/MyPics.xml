@@ -19,14 +19,28 @@
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<texture fallback="special://skin/backgrounds/pictures.jpg" background="true">$INFO[ListItem.PicturePath]</texture>
-				<visible>!ListItem.Type(photoAlbum)</visible>
+				<visible>!ListItem.Type(photoAlbum) + ![Skin.HasSetting(CustomPhotoSectionBackground) | Skin.HasSetting(CustomPhotoSectionSlideshow)]</visible>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<texture fallback="special://skin/backgrounds/pictures.jpg" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
-				<visible>ListItem.Type(photoAlbum)</visible>
+				<visible>ListItem.Type(photoAlbum) + ![Skin.HasSetting(CustomPhotoSectionBackground) | Skin.HasSetting(CustomPhotoSectionSlideshow)]</visible>
+			</control>
+			<control type="image">
+				<description>Custom Background Image</description>
+				<include>FullscreenDimensions</include>
+				<aspectratio>scale</aspectratio>
+				<info>Skin.String(CustomPhotoSectionBackgroundFile)</info>
+				<visible>Skin.HasSetting(CustomPhotoSectionBackground)</visible>
+			</control>
+			<control type="multiimage">
+				<description>Custom Slideshow Background</description>
+				<include>FullscreenDimensions</include>
+				<aspectratio>scale</aspectratio>
+				<info>Skin.String(CustomPhotoSectionSlideshowPath)</info>
+				<visible>Skin.HasSetting(CustomPhotoSectionSlideshow)</visible>
 			</control>
 			<control type="image">
 				<posx>0</posx>
@@ -39,8 +53,7 @@
 				<include>Window_OpenClose_Animation</include>
 				<include>ViewAnimation</include>
 				<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.isVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55)  | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(57)  | Control.IsVisible(58)]">Conditional</animation>
-				
-				
+						
 				<control type="image">
 					<posx>0</posx>
 					<posy>400</posy>
@@ -50,7 +63,6 @@
 					<visible>!Control.IsVisible(504)</visible>
 				</control>
 			</control>
-			
 		</control>
 		
         <control type="group">
@@ -417,9 +429,8 @@
 					<aligny>center</aligny>
 					<font>font13</font>
 					<radioposx>340</radioposx>
-					<label>$LOCALIZE[33068]</label>
-					<label2>[COLOR labelheader]$VAR[BackgroundLabelVar][/COLOR]</label2>
-					<onclick>$VAR[VideoBackgroundClickVar]</onclick>
+					<label>Set Background</label>
+					<onclick>ActivateWindow(1122)</onclick>
 					<visible>!Container.Content(genres)</visible>
 				</control>
 		
