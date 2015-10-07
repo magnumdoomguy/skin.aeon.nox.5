@@ -14,6 +14,21 @@
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<texture background="true">special://skin/backgrounds/sharedcontent.jpg</texture>
+				<visible>![Skin.HasSetting(CustomSharedSectionBackground) | Skin.HasSetting(CustomSharedSectionSlideshow)]</visible>
+			</control>
+			<control type="image">
+				<description>Custom Background Image</description>
+				<include>FullscreenDimensions</include>
+				<aspectratio>scale</aspectratio>
+				<info>Skin.String(CustomSharedSectionBackgroundFile)</info>
+				<visible>Skin.HasSetting(CustomSharedSectionBackground)</visible>
+			</control>
+			<control type="multiimage">
+				<description>Normal Default Background Image</description>
+				<include>FullscreenDimensions</include>
+				<aspectratio>scale</aspectratio>
+				<info>Skin.String(CustomPhotoSectionSlideshowPath)</info>
+				<visible>Skin.HasSetting(CustomSharedSectionSlideshow)</visible>
 			</control>
 			<control type="image">
 				<posx>0</posx>
@@ -25,8 +40,7 @@
 			<control type="group">
 				<include>Window_OpenClose_Animation</include>
 				<include>ViewAnimation</include>
-				<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.isVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55)  | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(57)  | Control.IsVisible(58)]">Conditional</animation>
-				
+				<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.isVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55)  | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(57)  | Control.IsVisible(58)]">Conditional</animation>			
 				<control type="image">
 					<posx>0</posx>
 					<posy>400</posy>
@@ -46,11 +60,9 @@
 			<include>SharedShift</include>
 			<!-- view id = 57 -->
 			<include>SharedWall</include>
-			<!-- view id = 500 -->
-			
+			<!-- view id = 500 -->	
         </control>
-		
-		
+				
 		<control type="group">
 			<visible>Control.IsVisible(500) | Control.IsVisible(57)</visible>
 			<visible>!Window.IsActive(addoninformation)</visible>
@@ -236,6 +248,7 @@
                 <aspectratio>keep</aspectratio>
                 <texture>aeon-nox-logo.png</texture>
             </control>
+			
             <!-- Icon Menu -->
             <control type="group" id="9050">
                 <visible>!Container.PlexContent(Movie) + !Container.PlexContent(Episode) + !Container.PlexContent(Clip)</visible>
@@ -244,6 +257,7 @@
                 <width>35</width>
                 <orientation>vertical</orientation>
                 <itemgap>0</itemgap>
+				
                 <!-- Close Sideblade -->
                 <control type="button" id="104">
                     <texturefocus border="0"></texturefocus>
@@ -361,6 +375,22 @@
                     <label>-</label>
                 </control>
                 
+				<!-- Toggle Background -->
+				<control type="button" id="203">
+					<description>Toggle Background</description>
+					<posy>120</posy>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>Set Background</label>
+					<onclick>ActivateWindow(1125)</onclick>
+				</control>
             </control>
         </control>
     </controls>
