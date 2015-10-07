@@ -22,7 +22,25 @@
 				<height>1080</height>
 				<aspectratio>scale</aspectratio>
 				<texture background="true">$INFO[ListItem.Property(Fanart_Image)]</texture>
-				<visible>ListItem.type(movie) | ListItem.type(episode)</visible>
+				<visible>[ListItem.type(movie) | ListItem.type(episode)] + ![Skin.HasSetting(CustomPlaylistSectionBackground) | Skin.HasSetting(CustomPlaylistSectionSlideshow)]</visible>
+			</control>
+			<control type="image">
+				<description>Custom Background Image</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>1080</height>
+				<info>Skin.String(CustomPlaylistSectionBackgroundFile)</info>
+				<visible>Skin.HasSetting(CustomPlaylistSectionBackground)</visible>
+			</control>
+			<control type="multiimage">
+				<description>Custom Background Image</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>1080</height>
+				<info>Skin.String(CustomPlaylistSectionSlideshowPath)</info>
+				<visible>Skin.HasSetting(CustomPlaylistSectionSlideshow)</visible>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
@@ -32,7 +50,7 @@
 				<height>1080</height>
 				<aspectratio>scale</aspectratio>
 				<texture background="true">$INFO[ListItem.PicturePath]</texture>
-				<visible>ListItem.Type(photo)</visible>
+				<visible>ListItem.Type(photo) + ![Skin.HasSetting(CustomPlaylistSectionBackground) | Skin.HasSetting(CustomPlaylistSectionSlideshow)]</visible>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
@@ -42,7 +60,7 @@
 				<height>1080</height>
 				<aspectratio>scale</aspectratio>
 				<texture fallback="special://skin/backgrounds/music.jpg" background="true">$INFO[ListItem.Property(Fanart_Image)]</texture>
-				<visible>![ListItem.type(movie) | ListItem.type(episode) | ListItem.Type(photo)]</visible>
+				<visible>![ListItem.type(movie) | ListItem.type(episode) | ListItem.Type(photo)] + ![Skin.HasSetting(CustomPlaylistSectionBackground) | Skin.HasSetting(CustomPlaylistSectionSlideshow)]</visible>
 			</control>
 			
 			<control type="group">
@@ -259,7 +277,7 @@
 				</control>
 				
 				<!-- Toggle Background -->
-				<!--<control type="button" id="203">
+				<control type="button" id="203">
 					<description>Toggle Background</description>
 					<posy>120</posy>
 					<width>350</width>
@@ -271,11 +289,9 @@
 					<aligny>center</aligny>
 					<font>font13</font>
 					<radioposx>340</radioposx>
-					<label>$LOCALIZE[33068]</label>
-					<label2>[COLOR labelheader]$VAR[BackgroundLabelVar][/COLOR]</label2>
-					<onclick>$VAR[VideoBackgroundClickVar]</onclick>
-					<visible>!Container.Content(genres)</visible>
-				</control>-->
+					<label>Set Background</label>
+					<onclick>ActivateWindow(1124)</onclick>
+				</control>
 				
 			</control>
         </control>
