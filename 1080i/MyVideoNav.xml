@@ -7,11 +7,12 @@
 	<onload>SetProperty(Window.HasSettings,True,home)</onload>
     <onload>ClearProperty(MediaMenu,Home)</onload>
 	<onload condition="Container.PlexContent(movies)">Skin.SetString(SectionType,movies)</onload>
-	<onload condition="Container.Content(tvshows)">Skin.SetString(SectionType,tvshows)</onload>
-	<onload condition="Container.Content(seasons)">Skin.SetString(SectionType,tvshows)</onload>
-	<onload condition="Container.Content(episodes)">Skin.SetString(SectionType,tvshows)</onload>
-	<onload condition="Container.Content(clips)">Skin.SetString(SectionType,clips)</onload>
+	<onload condition="Container.PlexContent(tvshows)">Skin.SetString(SectionType,tvshows)</onload>
+	<onload condition="Container.PlexContent(seasons)">Skin.SetString(SectionType,tvshows)</onload>
+	<onload condition="Container.PlexContent(episodes)">Skin.SetString(SectionType,tvshows)</onload>
+	<onload condition="Container.PlexContent(clips)">Skin.SetString(SectionType,clips)</onload>
 	<onload condition="Container.PlexContent(homemovies)">Skin.SetString(SectionType,homemovies)</onload>
+	<onload condition="Container.PlexContent(empty)">Skin.SetString(SectionType,empty)</onload>
 	<onunload>Skin.Reset(SectionType)</onunload>
 	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
 		
@@ -1281,21 +1282,7 @@
 					<textwidth>250</textwidth>
 				</control>
 				
-				<!-- Secondary Filters List Title Movies -->
-				<control type="label" id="19009">
-					<posy>265</posy>
-					<description>Secondary Title</description>
-					<width>350</width>
-					<height>52</height>
-					<textoffsetx>15</textoffsetx>
-					<font>font13_title</font>
-					<textcolor>themecolor</textcolor>
-					<aligny>center</aligny>
-					<label>FILTER</label>
-					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + StringCompare(Skin.String(SectionType),movies)</visible>
-				</control>
-				
-				<!-- Secondary Filters List Title TV -->
+				<!-- Secondary Filters List Title -->
 				<control type="label" id="19009">
 					<posy>385</posy>
 					<description>Secondary Title</description>
@@ -1306,12 +1293,13 @@
 					<textcolor>themecolor</textcolor>
 					<aligny>center</aligny>
 					<label>FILTER</label>
-					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.PlexContent(homemovies)]</visible>
+					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + ![Skin.String(SectionType,empty) + Container.PlexContent(empty)]</visible>
+					<animation effect="slide" end="0,-120" time="0" condition="Skin.String(SectionType,movies) | Container.PlexContent(Movies)">Conditional</animation>
 				</control>
 				
-				<!-- Secondary Filters List Movies -->
+				<!-- Secondary Filters List -->
 				<control type="grouplist" id="19001">
-					<posy>310</posy>
+					<posy>430</posy>
 					<height>455</height>
 					<width>350</width>
 					<font>font12</font>
@@ -1323,41 +1311,7 @@
 					<ondown>19010</ondown>
 					<radioposx>300</radioposx>
 					<textwidth>250</textwidth>
-					<visible>Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
-				</control>
-				
-				<!-- Secondary Filters List TV -->
-				<control type="grouplist" id="19001">
-					<posy>430</posy>
-					<height>280</height>
-					<width>350</width>
-					<font>font12</font>
-					<onright>9050</onright>
-					<onleft>1300</onleft>
-					<onup>19000</onup>
-					<onback>ClearProperty(MediaMenu,Home)</onback>
-					<onback>50</onback>
-					<ondown>19010</ondown>
-					<radioposx>300</radioposx>
-					<textwidth>250</textwidth>
-					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				</control>
-				
-				<!-- Secondary Filters List Home Videos -->
-				<control type="grouplist" id="19001">
-					<posy>430</posy>
-					<height>210</height>
-					<width>350</width>
-					<font>font12</font>
-					<onright>9050</onright>
-					<onleft>1300</onleft>
-					<onup>19000</onup>
-					<onback>ClearProperty(MediaMenu,Home)</onback>
-					<onback>50</onback>
-					<ondown>19010</ondown>
-					<radioposx>300</radioposx>
-					<textwidth>250</textwidth>
-					<visible>Container.PlexContent(homemovies)</visible>
+					<animation effect="slide" end="0,-120" time="0" condition="Skin.String(SectionType,movies) | Container.PlexContent(Movies)">Conditional</animation>
 				</control>
 				
 				<!-- filters buttons -->
@@ -1406,22 +1360,7 @@
 					<texturenofocus border="0"></texturenofocus>
 				</control>
 				
-				<!-- Sorting List Title Movies -->
-				<control type="label" id="19019">
-					<posy>780</posy>
-					<description>Title</description>
-					<width>350</width>
-					<height>52</height>
-					<textoffsetx>15</textoffsetx>
-					<font>font13_title</font>
-					<textcolor>themecolor</textcolor>
-					<aligny>center</aligny>
-					<label>SORT</label>
-					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
-					<visible>Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
-				</control>
-				
-				<!-- Sorting List Title TV -->
+				<!-- Sorting List Title -->
 				<control type="label" id="19019">
 					<posy>725</posy>
 					<description>Title</description>
@@ -1433,44 +1372,11 @@
 					<aligny>center</aligny>
 					<label>SORT</label>
 					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
-					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+					<animation effect="slide" end="0,55" time="0" condition="Skin.String(SectionType,movies) | Container.PlexContent(Movies)">Conditional</animation>
+					<animation effect="slide" end="0,-70" time="0" condition="Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)">Conditional</animation>
 				</control>
 				
-				<!-- Sorting List Title Home Videos -->
-				<control type="label" id="19019">
-					<posy>655</posy>
-					<description>Title</description>
-					<width>350</width>
-					<height>52</height>
-					<textoffsetx>15</textoffsetx>
-					<font>font13_title</font>
-					<textcolor>themecolor</textcolor>
-					<aligny>center</aligny>
-					<label>SORT</label>
-					<visible>!IsEmpty(Container.Property(HasAdvancedFilters))</visible>
-					<visible>Container.PlexContent(homemovies)</visible>
-				</control>
-				
-				<!-- Sorting List Movies -->
-				<control type="grouplist" id="19010">
-					<posy>825</posy><!-- 780 -->
-					<height>300</height>
-					<width>350</width>
-					<onright>9050</onright>
-					<onleft>1300</onleft>
-					<onup>19001</onup>
-					<onback>ClearProperty(MediaMenu,Home)</onback>
-					<onback>50</onback>
-					<ondown>1300</ondown>
-					<textcolor>grey</textcolor>
-					<focusedcolor>white</focusedcolor>
-					<textwidth>250</textwidth>
-					<aligny>center</aligny>
-					<font>font12</font>
-					<visible>Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
-				</control>
-				
-				<!-- Sorting List TV -->
+				<!-- Sorting List -->
 				<control type="grouplist" id="19010">
 					<posy>770</posy>
 					<height>300</height>
@@ -1486,26 +1392,8 @@
 					<textwidth>250</textwidth>
 					<aligny>center</aligny>
 					<font>font12</font>
-					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				</control>
-				
-				<!-- Sorting List Home Videos -->
-				<control type="grouplist" id="19010">
-					<posy>700</posy>
-					<height>300</height>
-					<width>350</width>
-					<onright>9050</onright>
-					<onleft>1300</onleft>
-					<onup>19001</onup>
-					<onback>ClearProperty(MediaMenu,Home)</onback>
-					<onback>50</onback>
-					<ondown>1300</ondown>
-					<textcolor>grey</textcolor>
-					<focusedcolor>white</focusedcolor>
-					<textwidth>250</textwidth>
-					<aligny>center</aligny>
-					<font>font12</font>
-					<visible>Container.PlexContent(homemovies)</visible>
+					<animation effect="slide" end="0,55" time="0" condition="Skin.String(SectionType,movies) | Container.PlexContent(Movies)">Conditional</animation>
+					<animation effect="slide" end="0,-70" time="0" condition="Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)">Conditional</animation>
 				</control>
 				
 				<!-- Sorting Buttons -->
@@ -1525,16 +1413,12 @@
 					<label>-</label>
 					<textcolor>grey2</textcolor>
 					<focusedcolor>white</focusedcolor>
-					<disabledcolor>grey4</disabledcolor>
 					<textoffsetx>15</textoffsetx>
 					<aligny>center</aligny>
 					<pulseonselect>false</pulseonselect>				
 				</control>
 				
 			</control>
-			
-			
-        </control>
-		
+        </control>	
     </controls>
 </window>
