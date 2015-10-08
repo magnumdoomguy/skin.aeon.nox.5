@@ -6,9 +6,12 @@
 	<onload condition="Window.Previous(home)">Skin.SetString(preplay_helper,home)</onload>
 	<onload>SetProperty(Window.HasSettings,True,home)</onload>
     <onload>ClearProperty(MediaMenu,Home)</onload>
-	<onload condition="Container.PlexContent(Movies)">Skin.SetString(SectionType,movies)</onload>
-	<onload condition="Container.PlexContent(TVShows)">Skin.SetString(SectionType,tvshows)</onload>
-	<onload condition="Container.PlexContent(Clips)">Skin.SetString(SectionType,clips)</onload>
+	<onload condition="Container.PlexContent(movies)">Skin.SetString(SectionType,movies)</onload>
+	<onload condition="Container.Content(tvshows)">Skin.SetString(SectionType,tvshows)</onload>
+	<onload condition="Container.Content(seasons)">Skin.SetString(SectionType,tvshows)</onload>
+	<onload condition="Container.Content(episodes)">Skin.SetString(SectionType,tvshows)</onload>
+	<onload condition="Container.Content(clips)">Skin.SetString(SectionType,clips)</onload>
+	<onload condition="Container.PlexContent(homemovies)">Skin.SetString(SectionType,homemovies)</onload>
 	<onunload>Skin.Reset(SectionType)</onunload>
 	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
 		
@@ -1274,7 +1277,7 @@
 					<ondown>19001</ondown>
 					<itemgap>0</itemgap>
 					<textwidth>250</textwidth>
-					<visible>Container.PlexContent(movies) | Container.Content(empty)</visible>
+					<visible>Container.PlexContent(movies) | StringCompare(Container.NumItems,0)</visible>
 				</control>
 				
 				<!-- Primary Filters List TV -->
@@ -1293,7 +1296,7 @@
 					<onclick>Control.SetFocus(19000)</onclick>
 					<itemgap>0</itemgap>
 					<textwidth>250</textwidth>
-					<visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)</visible>
+					<visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes) | Container.PlexContent(homemovies)</visible>
 				</control>
 				
 				<!-- Secondary Filters List Title Movies -->
@@ -1307,7 +1310,7 @@
 					<textcolor>themecolor</textcolor>
 					<aligny>center</aligny>
 					<label>FILTER</label>
-					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + Container.Content(movies) + !Container.PlexContent(homemovies)</visible>
+					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + StringCompare(Skin.String(SectionType),movies)</visible>
 				</control>
 				
 				<!-- Secondary Filters List Title TV -->
