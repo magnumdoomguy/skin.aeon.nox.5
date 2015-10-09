@@ -7,7 +7,7 @@
     <onload>Skin.SetString(SectionType,photos)</onload>
     <onunload>Skin.Reset(SectionType)</onunload>
     <onunload>ClearProperty(Window.HasSettings,Home)</onunload>
-    <views>50,501,504</views>
+    <views>50,501,504,66</views>
     <controls>
         
 		<!-- Background -->
@@ -21,6 +21,17 @@
 				<texture fallback="special://skin/backgrounds/pictures.jpg" background="true">$INFO[ListItem.PicturePath]</texture>
 				<visible>!ListItem.Type(photoAlbum) + ![Skin.HasSetting(CustomPhotoSectionBackground) | Skin.HasSetting(CustomPhotoSectionSlideshow)]</visible>
 			</control>
+					
+			<!-- Background for Empty List -->
+			<control type="image">
+				<texture background="true">special://skin/backgrounds/pictures.jpg</texture>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>1080</height>
+				<visible>Container.Content(empty)</visible>
+			</control>
+					
 			<control type="image">
 				<description>Normal Default Background Image</description>
 				<include>FullscreenDimensions</include>
@@ -69,7 +80,7 @@
 				<width>1920</width>
 				<height>1080</height>
 				<texture>black-back.png</texture>
-				<visible>![Skin.HasSetting(CustomPhotoSectionBackground) + Container.PlexContent(photos)] + ![Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + ![Skin.HasSetting(CustomPhotoSectionSlideshow) + Container.PlexContent(photos)] + ![Skin.HasSetting(CustomChannelSectionSlideshow) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+				<visible>![Skin.HasSetting(CustomPhotoSectionBackground) + Container.PlexContent(photos)] + ![Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + ![Skin.HasSetting(CustomPhotoSectionSlideshow) + Container.PlexContent(photos)] + ![Skin.HasSetting(CustomChannelSectionSlideshow) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
 			</control>
 			<control type="group">
 				<include>Window_OpenClose_Animation</include>
@@ -87,6 +98,19 @@
 			</control>
 		</control>
 		
+		<control type="label">
+			<visible>Container.Content(empty)</visible>
+			<posx>0</posx>
+			<posy>0</posy>
+			<align>center</align>
+			<aligny>center</aligny>
+			<width>1920</width>
+			<height>1080</height>
+			<label>No Photos Matching Filters.</label>
+			<font>font35_title</font>
+			<textcolor>grey</textcolor>
+		</control>
+		
         <control type="group">
             <include>Window_OpenClose_Animation</include>
             <include>PictureList</include>
@@ -95,6 +119,8 @@
             <!-- view id = 501 -->
 			<include>View_504_Gallery</include>
 			<!-- view id = 504 -->
+			<include>FilteredEmpty</include>
+			<!-- view id = 66 -->
         </control>
 		
         <include>ScrollOffsetLabel</include>
