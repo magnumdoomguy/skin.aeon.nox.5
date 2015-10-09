@@ -241,7 +241,10 @@
             <visible>!Control.IsVisible(4980) + Container.Content(clips)</visible>
         </control>
     </include>
+	
     <include name="GlobalFanart">
+		
+		<!-- Fanart Background -->
         <control type="image">
             <description>Normal Default Background Image</description>
             <posx>0</posx>
@@ -249,8 +252,19 @@
 			<width>1920</width>
 			<height>1080</height>
             <texture fallback="special://skin/backgrounds/default_bg.jpg" background="true">$INFO[ListItem.Property(Fanart_Image)]</texture>
-			<visible>![Skin.HasSetting(CustomMusicSectionBackground) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+			<visible>![Skin.HasSetting(CustomMusicSectionBackground) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
         </control>
+				
+		<!-- Background for Empty List -->
+		<control type="image">
+            <texture background="true">special://skin/backgrounds/fallback_movies.jpg</texture>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1920</width>
+			<height>1080</height>
+            <visible>Container.Content(empty)</visible>
+        </control>
+				
 		<control type="image">
             <description>Custom Background Image</description>
             <posx>0</posx>
