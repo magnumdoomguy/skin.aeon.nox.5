@@ -19,7 +19,7 @@
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<texture fallback="special://skin/backgrounds/pictures.jpg" background="true">$INFO[ListItem.PicturePath]</texture>
-				<visible>!ListItem.Type(photoAlbum) + ![Skin.HasSetting(CustomPhotoSectionBackground) | Skin.HasSetting(CustomPhotoSectionSlideshow)]</visible>
+				<visible>!ListItem.Type(photoAlbum) + ![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
 			</control>
 					
 			<!-- Background for Empty List -->
@@ -37,42 +37,42 @@
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<texture fallback="special://skin/backgrounds/pictures.jpg" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
-				<visible>ListItem.Type(photoAlbum) + ![Skin.HasSetting(CustomPhotoSectionBackground) | Skin.HasSetting(CustomPhotoSectionSlideshow)]</visible>
+				<visible>ListItem.Type(photoAlbum) + ![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<texture fallback="special://skin/backgrounds/channels.jpg" background="true">$INFO[ListItem.Property(Fanart_Image)]</texture>
-				<visible>[Container.PlexContent(channels) | Container.PlexContent(channel)] + ![Skin.HasSetting(CustomChannelSectionBackground) | Skin.HasSetting(CustomChannelSectionSlideshow)]</visible>
+				<visible>[Container.PlexContent(channels) | Container.PlexContent(channel)] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomChannelSectionSlideshowPath))]</visible>
 			</control>
 			<control type="image">
 				<description>Custom Background Image</description>
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<info>Skin.String(CustomPhotoSectionBackgroundFile)</info>
-				<visible>Skin.HasSetting(CustomPhotoSectionBackground) + Container.PlexContent(photos)</visible>
+				<visible>!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) + Container.PlexContent(photos)</visible>
 			</control>
 			<control type="image">
 				<description>Custom Background Image</description>
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<info>Skin.String(CustomChannelSectionBackgroundFile)</info>
-				<visible>Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+				<visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 			</control>
 			<control type="multiimage">
 				<description>Custom Slideshow Background</description>
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<info>Skin.String(CustomPhotoSectionSlideshowPath)</info>
-				<visible>Skin.HasSetting(CustomPhotoSectionSlideshow) + Container.PlexContent(photos)</visible>
+				<visible>!IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath)) + Container.PlexContent(photos)</visible>
 			</control>
 			<control type="multiimage">
 				<description>Custom Slideshow Background</description>
 				<include>FullscreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<info>Skin.String(CustomChannelSectionSlideshowPath)</info>
-				<visible>Skin.HasSetting(CustomChannelSectionSlideshow) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+				<visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 			</control>
 			<control type="image">
 				<posx>0</posx>
@@ -80,7 +80,7 @@
 				<width>1920</width>
 				<height>1080</height>
 				<texture>black-back.png</texture>
-				<visible>![Skin.HasSetting(CustomPhotoSectionBackground) + Container.PlexContent(photos)] + ![Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + ![Skin.HasSetting(CustomPhotoSectionSlideshow) + Container.PlexContent(photos)] + ![Skin.HasSetting(CustomChannelSectionSlideshow) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
+				<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) + Container.PlexContent(photos)] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + ![!IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath)) + Container.PlexContent(photos)] + ![!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
 			</control>
 			<control type="group">
 				<include>Window_OpenClose_Animation</include>

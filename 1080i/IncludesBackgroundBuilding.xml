@@ -22,7 +22,7 @@
 				<width>1920</width>
 				<height>1080</height>
                 <texture>black.png</texture>
-                <visible>Player.HasVideo | Control.IsVisible(502) | Container.PlexContent(homemovies)</visible>
+                <visible>Player.HasVideo | Control.IsVisible(502) | [Container.PlexContent(homemovies) + IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath))]</visible>
 				<animation effect="fade" start="100" end="70" time="300" condition="Control.IsVisible(502) | Container.PlexContent(homemovies)">conditional</animation>
             </control>
             <control type="videowindow">
@@ -129,7 +129,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>[!Skin.HasSetting(CustomMovieSectionBackground) + !Skin.HasSetting(CustomMovieSectionSlideshow) + Container.Content(movies)] | [!Skin.HasSetting(CustomTVSectionBackground) + !Skin.HasSetting(CustomTVSectionSlideshow) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [!Skin.HasSetting(CustomHomeVideoSectionBackground) + !Skin.HasSetting(CustomHomeVideoSectionSlideshow) + Container.PlexContent(homemovies)] | [!Skin.HasSetting(CustomChannelSectionBackground) + !Skin.HasSetting(CustomChannelSectionSlideshow) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+			<visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
         </control>
 		
 		<!-- Background for Empty List -->
@@ -150,7 +150,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomMovieSectionBackground) + Container.Content(movies)</visible>
+			<visible>!IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + Container.Content(movies)</visible>
         </control>
 		
 		<!-- Custom TV Background Image -->
@@ -161,7 +161,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomTVSectionBackground) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+			<visible>!IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
         </control>
 		
 		<!-- Custom Home Video Background Image -->
@@ -172,7 +172,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomHomeVideoSectionBackground) + Container.PlexContent(homemovies)</visible>
+			<visible>!IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + Container.PlexContent(homemovies)</visible>
         </control>
 		
 		<!-- Custom Channel Background Image -->
@@ -183,7 +183,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+			<visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
         </control>
 		
 		<!-- Custom Movie Slideshow -->
@@ -194,7 +194,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomMovieSectionSlideshow) + Container.Content(movies)</visible>
+			<visible>!IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)</visible>
         </control>
 		
 		<!-- Custom TV Slideshow -->
@@ -205,7 +205,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomTVSectionSlideshow) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+			<visible>!IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
         </control>
 		
 		<!-- Custom Home Video Slideshow -->
@@ -216,7 +216,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomHomeVideoSectionSlideshow) + Container.PlexContent(homemovies)</visible>
+			<visible>!IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)</visible>
         </control>
 		
 		<!-- Custom Channel Slideshow -->
@@ -227,7 +227,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
-			<visible>Skin.HasSetting(CustomChannelSectionSlideshow) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+			<visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
         </control>
 		
 		<!-- Background for Clips -->
@@ -252,7 +252,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <texture fallback="special://skin/backgrounds/default_bg.jpg" background="true">$INFO[ListItem.Property(Fanart_Image)]</texture>
-			<visible>![Skin.HasSetting(CustomMusicSectionBackground) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
+			<visible>![!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
         </control>
 				
 		<!-- Background for Empty List -->
@@ -272,7 +272,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <info>Skin.String(CustomMusicSectionBackgroundFile)</info>
-			<visible>Skin.HasSetting(CustomMusicSectionBackground) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+			<visible>!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
         </control>
 		<control type="image">
             <description>Custom Background Image</description>
@@ -281,7 +281,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
-			<visible>Skin.HasSetting(CustomChannelSectionBackground) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+			<visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
         </control>
 		<control type="multiimage">
             <description>Custom Slideshow Background</description>
@@ -290,7 +290,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <info>Skin.String(CustomMusicSectionSlideshowPath)</info>
-			<visible>Skin.HasSetting(CustomMusicSectionSlideshow) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+			<visible>!IsEmpty(Skin.String(CustomMusicSectionSlideshowPath)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
         </control>
 		<control type="multiimage">
             <description>Custom Slideshow Background</description>
@@ -299,7 +299,7 @@
 			<width>1920</width>
 			<height>1080</height>
             <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
-			<visible>Skin.HasSetting(CustomChannelSectionSlideshow) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+			<visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
         </control>
     </include>
     <include name="HomeBGinOtherWindows">
