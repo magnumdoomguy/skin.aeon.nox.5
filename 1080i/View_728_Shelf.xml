@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	
+	<!-- Shelf 3D Music -->
+	<include name="Shelf3Dm">
+		<control type="group"><!-- default group -->
+			<visible>Control.IsVisible(728)</visible>
+			<control type="group">
+				<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+				<posy>-30</posy>
+				<control type="image">
+				<description>background image</description>
+				<posx>106</posx>
+				<posy>834</posy>
+				<width>1706</width>
+				<height>734</height>
+				<colordiffuse>D8FFFFFF</colordiffuse>
+				<texture border="40">panel_reflect.png</texture>
+			</control>
+			<control type="image">
+				<description>background image</description>
+				<posx>106</posx>
+				<posy>130</posy>
+				<width>1706</width>
+				<height>734</height>
+				<colordiffuse>D8FFFFFF</colordiffuse>
+				<texture border="40">listpanel_back.png</texture>
+			</control>
+			<control type="group">
+				<include>SettingsFadeEffect</include>
+				<control type="grouplist">
+					<posx>137</posx>
+					<posy>162</posy>
+					<visible>Container.Content(albums)</visible>
+					<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
+					<width>486</width>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(ListItem.Genre)</visible>
+				</control>
+				<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[515]:[/COLOR][CR]$LOCALIZE[31103]</label>
+					<width>486</width>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+				</control>
+				<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[21899]:[/COLOR][CR]$INFO[ListItem.Property(Album_Label)]</label>
+					<width>486</width>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(ListItem.Property(Album_Label))</visible>
+				</control>
+				<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[21899]:[/COLOR][CR]$LOCALIZE[31103]</label>
+					<width>486</width>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>IsEmpty(ListItem.Property(Album_Label))</visible>
+				</control>
+			</control>
+			<control type="grouplist">
+				<posx>625</posx>
+				<posy>162</posy>
+				<visible>Container.Content(albums)</visible>
+				<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[175]:[/COLOR][CR]$INFO[ListItem.Property(Album_Mood)]</label>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(ListItem.Property(Album_Mood))</visible>
+				</control>
+				<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[175]:[/COLOR][CR]$LOCALIZE[31103]</label>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>IsEmpty(ListItem.Property(Album_Mood))</visible>
+				</control>
+				<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[176]:[/COLOR][CR]$INFO[ListItem.Property(Album_Style)]</label>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>!IsEmpty(ListItem.Property(Album_Style))</visible>
+				</control>
+				<control type="button">
+					<label>[COLOR labelheader]$LOCALIZE[176]:[/COLOR][CR]$LOCALIZE[31103]</label>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+					<visible>IsEmpty(ListItem.Property(Album_Style))</visible>
+				</control>
+			</control>
+			<control type="image">
+				<posx>638</posx>
+				<posy>162</posy>
+				<width>2</width>
+				<height>179</height>
+				<texture border="1">separator3.png</texture>
+			</control>
+			<control type="textbox">
+				<label>$VAR[OtherPlotVar,[COLOR labelheader]$LOCALIZE[183]:[CR][/COLOR]]</label>
+				<posy>342</posy>
+				<posx>152</posx>
+				<width>970</width>
+				<height>180</height>
+				<font>font14_textbox2</font>
+				<pagecontrol>62</pagecontrol>
+				<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+				<include>ShowCaseInfoPanelButtonsValues</include>
+				<visible>Container.Content(albums)</visible>
+			</control>
+			<control type="textbox">
+				<label>$VAR[OtherPlotVar,[COLOR labelheader]$LOCALIZE[21887]:[CR][/COLOR]]</label>
+				<posy>162</posy>
+				<posx>152</posx>
+				<width>940</width>
+				<height>350</height>
+				<font>font14_textbox</font>
+				<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+				<pagecontrol>62</pagecontrol>
+				<include>ShowCaseInfoPanelButtonsValues</include>
+				<visible>Container.Content(artists)</visible>
+			</control>
+			<control type="scrollbar" id="62">
+				<posy>342</posy>
+				<posx>1128</posx>
+				<width>14</width>
+				<height>180</height>
+				<onup>SetProperty(MediaMenu,True,home)</onup>
+				<onup>SetFocus(9050)</onup>
+				<onleft>50</onleft>
+				<onright>50</onright>
+				<ondown>50</ondown>
+				<texturesliderbackground>scrollbar/texturesliderbackground3.png</texturesliderbackground>
+				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar3.png</texturesliderbar>
+				<texturesliderbarfocus border="1">scrollbar/texturesliderbar3.png</texturesliderbarfocus>
+				<showonepage>false</showonepage>
+				<orientation>vertical</orientation>
+			</control>
+			<control type="image">
+				<posx>1142</posx>
+				<posy>162</posy>
+				<width>640</width>
+				<height>360</height>
+				<fadetime>200</fadetime>
+				<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+				<bordertexture border="1,1,2,1">thumbs/panel_border.png</bordertexture>
+				<bordersize>1,1,2,1</bordersize>
+			</control>
+			<control type="image">
+				<posx>137</posx>
+				<posy>464</posy>
+				<width>1643</width>
+				<height>60</height>
+				<texture border="1">separator2.png</texture>
+</control>
+<control type="image">
+<posx>137</posx>
+<posy>103</posy>
+<width>1643</width>
+<height>60</height>
+<texture border="2">separator2.png</texture>
+</control>
+</control>
+</control>
+<control type="group">
+<control type="scrollbar" id="788">
+<posx>110</posx>
+<posy>1060</posy>
+<width>1680</width>
+<height>13</height>
+<onup>728</onup>
+<ondown>728</ondown>
+<texturesliderbackground border="1">-</texturesliderbackground>
+<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+<textureslidernib>-</textureslidernib>
+<textureslidernibfocus>-</textureslidernibfocus>
+<showonepage>false</showonepage>
+<orientation>horizontal</orientation>
+<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(788) + !Container.Scrolling">Conditional</animation>
+</control>
+<control type="fixedlist" id="728">
+<viewtype label="Shelf 3D">list</viewtype>
+<posx>-18</posx>
+<posy>380</posy>
+<height>920</height>
+<width>2250</width>
+<onleft>728</onleft>
+<onright>728</onright>
+<onup>SetProperty(MediaMenu,True,home)</onup>
+<onup>SetFocus(9050)</onup>
+<ondown>788</ondown>
+<orientation>horizontal</orientation>
+<focusposition>3</focusposition>
+<scrolltime>100</scrolltime>
+<preloaditems>2</preloaditems>
+<pagecontrol>788</pagecontrol>
+<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+<itemlayout width="335" height="534">
+<control type="group">
+<posx>150</posx>
+<posy>-20</posy>
+<control type="image"><!-- Poster lados reflejo -->
+<visible>Container.Content(albums)</visible>
+<posx>-63</posx>
+<posy>564</posy>
+<width>281</width>
+<height>308</height>
+<colordiffuse>65FFFFFF</colordiffuse>
+<texture flipy="true" diffuse="views/shelf/reflect_poster2.png" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio>stretch</aspectratio>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>-63</posx>
+<posy>564</posy>
+<width>281</width>
+<height>308</height>
+<colordiffuse>65FFFFFF</colordiffuse>
+<texture flipy="true" diffuse="views/shelf/reflect_poster2.png" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio>scale</aspectratio>
+</control>
+<control type="image"><!-- Poster lados -->
+<visible>Container.Content(albums)</visible>
+<posx>-63</posx>
+<posy>251</posy>
+<width>281</width>
+<height>308</height>
+<texture diffuse="views/shelf/diffuse_box.png" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio>stretch</aspectratio>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>-63</posx>
+<posy>251</posy>
+<width>281</width>
+<height>308</height>
+<texture diffuse="views/shelf/diffuse_box.png" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio>scale</aspectratio>
+</control>
+<control type="image"><!-- Estuche lados -->
+<posx>-100</posx>
+<posy>247</posy>
+<width>330</width>
+<height>317</height>
+<texture background="true">views/shelf/caja_cd.png</texture>
+<aspectratio>stretch</aspectratio>
+</control>
+<control type="label">
+<posx>70</posx>
+<posy>400</posy>
+<width>310</width>
+<height>13</height>
+<align>center</align>
+    <aligny>top</aligny>
+<scroll>false</scroll>
+<animation effect="rotate" center="auto" start="90" end="90" time="0" condition="true">Conditional</animation>
+<font>spiner2</font>
+<label>$INFO[ListItem.Artist]</label>
+<textcolor>white</textcolor>
+</control>
+<control type="image"><!-- Estuche lados reflejo -->
+<posx>-100</posx>
+<posy>557</posy>
+<width>330</width>
+<height>317</height>
+<colordiffuse>65FFFFFF</colordiffuse>
+<texture diffuse="views/shelf/reflect_poster2.png" background="true" >views/shelf/caja_cdr.png</texture>
+<aspectratio>stretch</aspectratio>
+</control>
+</control>
+</itemlayout>
+<focusedlayout width="335" height="534">
+<control type="button" id="6548">
+<include>HiddenObject</include>
+<onfocus>ClearProperty(MediaMane,home)</onfocus>
+<onfocus>AlarmClock(Turnbox,SetProperty(MediaMane,True,home),00:04,silent)</onfocus>
+</control>
+<control type="group"><!--Portada-->
+<visible>IsEmpty(Window(home).Property(MediaMane))</visible>
+<animation type="Hidden" reversible="true">
+<effect type="rotatey" delay="0" center="185" start="0" end="180" time="800" tween="quadratic" easing="out" />
+<effect type="fade" delay="200" start="100" end="0" time="100" />
+<effect type="zoom" delay="200" center="50,180" start="100" end="20" time="200" tween="cubic" easing="out" />
+</animation>
+<posx>90</posx>
+<posy>95</posy>
+<control type="image"><!-- Poster  -->
+<visible>Container.Content(albums)</visible>
+<posx>-58</posx>
+<posy>12</posy>
+<width>419</width>
+<height>473</height>
+<texture diffuse="views/shelf/diffuse_box.png" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio scalediffuse="false">stretch</aspectratio>
+<animation type="Focus" reversible="false">
+<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
+</animation>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>-58</posx>
+<posy>12</posy>
+<width>419</width>
+<height>473</height>
+<texture diffuse="views/shelf/diffuse_box.png" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio scalediffuse="false">scale</aspectratio>
+<animation type="Focus" reversible="false">
+<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
+</animation>
+</control>
+<control type="image">
+<visible>Container.Content(albums) + IsEmpty(ListItem.Album)</visible>
+<posx>-58</posx>
+<posy>12</posy>
+<width>419</width>
+<height>473</height>
+<texture diffuse="views/shelf/diffuse_box.png" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio scalediffuse="false">scale</aspectratio>
+<animation type="Focus" reversible="false">
+<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
+</animation>
+</control>
+<control type="image"><!-- Poster reflejo  -->
+<visible>Container.Content(albums)</visible>
+<posx>-58</posx>
+<posy>491</posy>
+<width>419</width>
+<height>473</height>
+<colordiffuse>45FFFFFF</colordiffuse>
+<texture flipy="true" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio scalediffuse="false">stretch</aspectratio>
+<animation type="Focus" reversible="false">
+<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
+</animation>
+</control>
+<control type="image"><!-- Poster reflejo  -->
+<visible>Container.Content(artists)</visible>
+<posx>-58</posx>
+<posy>491</posy>
+<width>419</width>
+<height>473</height>
+<colordiffuse>45FFFFFF</colordiffuse>
+<texture flipy="true" background="true">$VAR[PosterThumbVar]</texture>
+<aspectratio scalediffuse="false">scale</aspectratio>
+<animation type="Focus" reversible="false">
+<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
+</animation>
+</control>
+<control type="image"><!-- Estuche -->
+<posx>-114</posx>
+<posy>5</posy>
+<width>498</width>
+<height>487</height>
+<texture background="true">views/shelf/caja_cd.png</texture>
+<aspectratio>stretch</aspectratio>
+<animation type="Focus" reversible="false">
+<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
+</animation>
+</control>
+<control type="image"><!-- Estuche reflejo -->
+<posx>-114</posx>
+<posy>480</posy>
+<width>498</width>
+<height>487</height>
+<colordiffuse>89FFFFFF</colordiffuse>
+<texture>views/shelf/caja_cdr.png</texture>
+<aspectratio>stretch</aspectratio>
+<animation type="Focus" reversible="false">
+<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
+</animation>
+</control>
+<control type="label">
+<posx>218</posx>
+<posy>245</posy>
+<width>310</width>
+<height>13</height>
+<align>center</align>
+    <aligny>top</aligny>
+<scroll>false</scroll>
+<animation type="Focus" reversible="false">
+<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+</animation>
+<animation effect="rotate" center="auto" start="90" end="90" time="0" condition="true">Conditional</animation>
+<font>spiner</font>
+<label>$INFO[ListItem.Artist]</label>
+<textcolor>white</textcolor>
+</control>
+</control>
+</focusedlayout>
+</control>
+<control type="group"><!--Logo-->
+<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+<control type="label">
+<posx>150</posx>
+<posy>508</posy>
+<width>787</width>
+<height>80</height>
+<font>font_musictit2</font>
+<align>right</align>
+<textcolor>white</textcolor>
+<shadowcolor>black</shadowcolor>
+<label>$INFO[ListItem.Artist]</label>
+<scroll>true</scroll>
+<scrollspeed>50</scrollspeed>
+<scrollsuffix> - </scrollsuffix>
+<visible>Substring(Control.GetLabel(9977),empty.png) | IsEmpty(Skin.String(pathlogosartists))</visible>
+</control>
+<control type="image" id="9977">
+<posx>647</posx>
+<posy>495</posy>
+<align>right</align>
+<aligny>bottom</aligny>
+<description>Artist Logo</description>
+<width>300</width>
+<height>105</height>
+<aspectratio>keep</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Skin.String(pathlogosartists)]$INFO[ListItem.Artist,,/logo.png]</texture>
+<fadetime>50</fadetime>
+<visible>!IsEmpty(Skin.String(pathlogosartists))</visible>
+</control>
+<control type="label"><!--Informacion artista/album-->
+<posx>25</posx>
+<posy>960</posy>
+<width>915</width>
+<height>40</height>
+<align>right</align>
+<font>font_movietit</font>
+<scroll>true</scroll>
+<scrollspeed>50</scrollspeed>
+<textcolor>white</textcolor>
+<scrollsuffix> - </scrollsuffix>
+<shadowcolor>black</shadowcolor>
+<visible>Container.Content(artists)</visible>
+<label>$INFO[ListItem.Property(Artist_Genre)]</label>
+</control>
+<control type="label">
+<posx>25</posx>
+<posy>960</posy>
+<width>915</width>
+<height>40</height>
+<align>right</align>
+<font>font_movietit</font>
+<scroll>true</scroll>
+<scrollspeed>50</scrollspeed>
+<textcolor>white</textcolor>
+<scrollsuffix> - </scrollsuffix>
+<shadowcolor>black</shadowcolor>
+<visible>Container.Content(albums)</visible>
+<label>$VAR[FloorLabelVar]</label>
+</control>
+</control>
+</control>
+</control>
+<control type="group"><!--Disco-->
+<visible>Control.IsVisible(728) + !IsEmpty(ListItem.Album)</visible>
+<posx>1260</posx>
+<posy>520</posy>
+<width>490</width>
+<height>490</height>
+<control type="image" id="2333">
+<visible>!IsEmpty(Window(home).Property(MediaMane)) + Container.Content(albums)</visible>
+<animation effect="slide" start="-200,0" end="0,0" time="1000" delay="1000" tween="sine" easing="inout">Visible</animation>
+<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="true">Conditional</animation>
+<texture background="true">$VAR[MusicAlbumDiscVar]</texture>
+<aspectratio align="center" aligny="center">keep</aspectratio>
+</control>
+<control type="image">
+<visible>!IsEmpty(Window(home).Property(MediaMane)) + IsEmpty(Control.GetLabel(2333)) + Container.Content(albums)</visible>
+<animation effect="slide" start="-200,0" end="0,0" time="1000" delay="1000" tween="sine" easing="inout">Visible</animation>
+<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="true">Conditional</animation>
+<texture background="true">$VAR[alblistcdARTVar]</texture>
+<aspectratio align="center" aligny="center">keep</aspectratio>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(MediaMane)) + IsEmpty(Control.GetLabel(2333)) + Container.Content(albums)</visible>
+<animation effect="slide" start="-200,0" end="0,0" time="1000" delay="1000" tween="sine" easing="inout">Visible</animation>
+<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="true">Conditional</animation>
+<posx>87</posx>
+<posy>60</posy>
+<width>330</width>
+<height>380</height>
+<align>center</align>
+<aligny>top</aligny>
+<font>fontCDartist2</font>
+<label>$INFO[ListItem.Artist]</label>
+<textcolor>black</textcolor>
+<wrapmultiline>true</wrapmultiline>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(MediaMane)) + IsEmpty(Control.GetLabel(2333)) + Container.Content(albums)</visible>
+<animation effect="slide" start="-200,0" end="0,0" time="1000" delay="1000" tween="sine" easing="inout">Visible</animation>
+<animation effect="rotate" end="-360" center="auto" time="4800" loop="true" reversible="false" condition="true">Conditional</animation>
+<posx>83</posx>
+<posy>50</posy>
+<width>330</width>
+<height>400</height>
+<align>center</align>
+<aligny>center</aligny>
+<font>fontCDartist2</font>
+<label>[CR][CR][CR][CR][CR][CR]$INFO[ListItem.Album]</label>
+<textcolor>black</textcolor>
+<wrapmultiline>true</wrapmultiline>
+</control>
+</control>
+<control type="group"><!--Trasera caja-->
+<posy>380</posy>
+<posx>987</posx>
+<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+<visible>!IsEmpty(Window(home).Property(MediaMane)) + Control.IsVisible(728)</visible>
+<animation type="Visible" reversible="true">
+<effect type="rotatey" delay="0" center="1212" start="-180" end="0" time="800" tween="quadratic" easing="out"/>
+<effect type="fade" start="0" end="100" delay="200" time="100"/>
+</animation>
+<control type="group">
+<posx>-20</posx>
+<posy>108</posy>
+<control type="image">
+<width>478</width>
+<height>472</height>
+<texture background="true">views/shelf/backw.png</texture>
+<aspectratio scalediffuse="false">stretch</aspectratio>
+</control>
+<control type="image">
+<width>478</width>
+<height>472</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<visible>Container.Content(albums)</visible>
+<texture background="true" fallback="empty.png">$INFO[Skin.String(pathlogosartists)]$INFO[ListItem.Artist,,/folder.jpg]</texture>
+</control>
+<control type="image">
+<width>478</width>
+<height>472</height>
+<colordiffuse>E8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<visible>Container.Content(artists)</visible>
+<texture background="true" fallback="empty.png">views/shelf/artists.png</texture>
+</control>
+<control type="image">
+<width>478</width>
+<height>472</height>
+<colordiffuse>E8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<visible>Container.Content(albums) + IsEmpty(ListItem.Album)</visible>
+<texture diffuse="views/shelf/diffuse_box.png" background="true">$VAR[PosterThumbVar]</texture>
+</control>
+<control type="image">
+<width>475</width>
+<height>472</height>
+<aspectratio scalediffuse="false">stretch</aspectratio>
+<texture background="true">side_fade.png</texture>
+</control>
+<control type="image">
+<width>475</width>
+<height>472</height>
+<aspectratio scalediffuse="false">stretch</aspectratio>
+<texture background="true">views/shelf/barr.png</texture>
+</control>
+</control>
+<control type="image"><!--Contraportada artistas-->
+<visible>Container.Content(artists)</visible>
+<posx>1</posx>
+<posy>125</posy>
+<width>100</width>
+<height>100</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Window(home).Property(Artist.Album.1.Thumb)]</texture>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>1</posx>
+<posy>225</posy>
+<width>100</width>
+<height>100</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Window(home).Property(Artist.Album.2.Thumb)]</texture>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>1</posx>
+<posy>325</posy>
+<width>100</width>
+<height>100</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Window(home).Property(Artist.Album.3.Thumb)]</texture>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>1</posx>
+<posy>425</posy>
+<width>100</width>
+<height>100</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Window(home).Property(Artist.Album.4.Thumb)]</texture>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>225</posx>
+<posy>125</posy>
+<width>100</width>
+<height>100</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Window(home).Property(Artist.Album.5.Thumb)]</texture>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>225</posx>
+<posy>225</posy>
+<width>100</width>
+<height>100</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Window(home).Property(Artist.Album.6.Thumb)]</texture>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>225</posx>
+<posy>325</posy>
+<width>100</width>
+<height>100</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Window(home).Property(Artist.Album.7.Thumb)]</texture>
+</control>
+<control type="image">
+<visible>Container.Content(artists)</visible>
+<posx>225</posx>
+<posy>425</posy>
+<width>100</width>
+<height>100</height>
+<colordiffuse>C8FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" fallback="empty.png">$INFO[Window(home).Property(Artist.Album.8.Thumb)]</texture>
+</control>
+<control type="textbox">
+<posx>3</posx>
+<posy>130</posy>
+    <width>260</width>
+    <height>424</height>
+<align>left</align>
+<aligny>top</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Album.Songs.TrackList]</label>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(Artist.Album.1.Title))</visible>
+<posx>105</posx>
+<posy>125</posy>
+    <width>130</width>
+    <height>100</height>
+<align>left</align>
+<aligny>center</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Artist.Album.1.Title)] ($INFO[Window(home).Property(Artist.Album.1.Year)])</label>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(Artist.Album.2.Title))</visible>
+<posx>105</posx>
+<posy>225</posy>
+    <width>130</width>
+    <height>100</height>
+<align>left</align>
+<aligny>center</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Artist.Album.2.Title)] ($INFO[Window(home).Property(Artist.Album.2.Year)])</label>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(Artist.Album.3.Title))</visible>
+<posx>105</posx>
+<posy>325</posy>
+    <width>130</width>
+    <height>100</height>
+<align>left</align>
+<aligny>center</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Artist.Album.3.Title)] ($INFO[Window(home).Property(Artist.Album.3.Year)])</label>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(Artist.Album.4.Title))</visible>
+<posx>105</posx>
+<posy>425</posy>
+    <width>130</width>
+    <height>100</height>
+<align>left</align>
+<aligny>center</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Artist.Album.4.Title)] ($INFO[Window(home).Property(Artist.Album.4.Year)])</label>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(Artist.Album.5.Title))</visible>
+<posx>330</posx>
+<posy>125</posy>
+    <width>120</width>
+    <height>100</height>
+<align>left</align>
+<aligny>center</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Artist.Album.5.Title)] ($INFO[Window(home).Property(Artist.Album.5.Year)])</label>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(Artist.Album.6.Title))</visible>
+<posx>330</posx>
+<posy>225</posy>
+    <width>120</width>
+    <height>100</height>
+<align>left</align>
+<aligny>center</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Artist.Album.6.Title)] ($INFO[Window(home).Property(Artist.Album.6.Year)])</label>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(Artist.Album.7.Title))</visible>
+<posx>330</posx>
+<posy>325</posy>
+    <width>120</width>
+    <height>100</height>
+<align>left</align>
+<aligny>center</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Artist.Album.7.Title)] ($INFO[Window(home).Property(Artist.Album.7.Year)])</label>
+</control>
+<control type="textbox">
+<visible>!IsEmpty(Window(home).Property(Artist.Album.8.Title))</visible>
+<posx>330</posx>
+<posy>425</posy>
+    <width>120</width>
+    <height>100</height>
+<align>left</align>
+<aligny>center</aligny>
+<font>Bluback3</font>
+<textcolor>white</textcolor>
+<label>$INFO[Window(home).Property(Artist.Album.8.Title)] ($INFO[Window(home).Property(Artist.Album.8.Year)])</label>
+</control>
+<control type="image"><!-- Estuche trasera-->
+<posx>-24</posx>
+<posy>100</posy>
+<width>498</width>
+<height>487</height>
+<texture background="true">views/shelf/caja_cd_b.png</texture>
+<aspectratio>stretch</aspectratio>
+</control>
+<control type="group">
+<posy>-100</posy>
+<control type="label">
+<posx>308</posx>
+<posy>445</posy>
+<width>310</width>
+<height>13</height>
+<align>center</align>
+    <aligny>top</aligny>
+<scroll>false</scroll>
+<animation effect="rotate" center="auto" start="90" end="90" time="0" condition="true">Conditional</animation>
+<font>spiner</font>
+<label>$INFO[ListItem.Title]</label>
+<textcolor>white</textcolor>
+</control>
+<control type="label">
+<visible>Container.Content(artists)</visible>
+<posx>308</posx>
+<posy>445</posy>
+<width>310</width>
+<height>13</height>
+<align>center</align>
+    <aligny>top</aligny>
+<scroll>false</scroll>
+<animation effect="rotate" center="auto" start="90" end="90" time="0" condition="true">Conditional</animation>
+<font>spiner</font>
+<label>$INFO[ListItem.Artist]</label>
+<textcolor>white</textcolor>
+</control>
+</control>
+</control>
+<control type="group"><!--Trasera caja reflejo-->
+<posx>987</posx>
+<posy>380</posy>
+<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+<visible>!IsEmpty(Window(home).Property(MediaMane)) + Control.IsVisible(728)</visible>
+<animation type="Visible" reversible="true">
+<effect type="rotatey" delay="0" center="1212" start="-180" end="0" time="800" tween="quadratic" easing="out"/>
+<effect type="fade" start="0" end="100" delay="200" time="100"/>
+</animation>
+<control type="group">
+<posx>-20</posx>
+<posy>586</posy>
+<control type="image">
+<width>475</width>
+<height>462</height>
+<colordiffuse>35FFFFFF</colordiffuse>
+<texture background="true">views/shelf/backw.png</texture>
+<aspectratio scalediffuse="false">stretch</aspectratio>
+</control>
+<control type="image">
+<visible>Container.Content(albums)</visible>
+<width>475</width>
+<height>462</height>
+<colordiffuse>20FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<texture background="true" flipy="true" fallback="empty.png">$INFO[Skin.String(pathlogosartists)]$INFO[ListItem.Artist,,/folder.jpg]</texture>
+</control>
+<control type="image">
+<width>475</width>
+<height>462</height>
+<colordiffuse>20FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<visible>Container.Content(artists)</visible>
+<texture background="true" flypy="true">views/shelf/artists.png</texture>
+</control>
+<control type="image">
+<width>475</width>
+<height>462</height>
+<colordiffuse>20FFFFFF</colordiffuse>
+<aspectratio align="center" aligny="top">scale</aspectratio>
+<visible>Container.Content(albums) + IsEmpty(ListItem.Album)</visible>
+<texture diffuse="views/shelf/diffuse_box.png" flipy="true" background="true">$VAR[PosterThumbVar]</texture>
+</control>
+<control type="image">
+<width>475</width>
+<height>462</height>
+<colordiffuse>45FFFFFF</colordiffuse>
+<aspectratio scalediffuse="false">stretch</aspectratio>
+<texture background="true">side_fade.png</texture>
+</control>
+<control type="image">
+<width>475</width>
+<height>462</height>
+<colordiffuse>25FFFFFF</colordiffuse>
+<aspectratio scalediffuse="false">stretch</aspectratio>
+<texture flipy="true" background="true">views/shelf/barr.png</texture>
+</control>
+</control>
+<control type="image"><!-- Estuche trasera-->
+<posx>-24</posx>
+<posy>575</posy>
+<width>498</width>
+<height>477</height>
+<colordiffuse>69FFFFFF</colordiffuse>
+<texture background="true">views/shelf/caja_cd_br.png</texture>
+<aspectratio>stretch</aspectratio>
+</control>
+</control>
+<control type="label">
+<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+<visible>Control.IsVisible(728)</visible>
+<posx>1495</posx>
+<posy>525</posy>
+<width>150</width>
+<height>40</height>
+<align>left</align>
+<font>font_movietit</font>
+<textcolor>white</textcolor>
+<shadowcolor>black</shadowcolor>
+<label>$INFO[ListItem.Year]</label>
+</control>
+<control type="label">
+<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+<visible>Control.IsVisible(728)</visible>
+<posx>1490</posx>
+<posy>525</posy>
+<width>260</width>
+<height>40</height>
+<align>left</align>
+<font>font_movietit</font>
+<textcolor>white</textcolor>
+<shadowcolor>black</shadowcolor>
+<scroll>true</scroll>
+<scrollspeed>50</scrollspeed>
+<scrollsuffix> | </scrollsuffix>
+<label>$INFO[ListItem.Property(Artist_YearsActive)]</label>
+</control>
+</include>
+</includes>
