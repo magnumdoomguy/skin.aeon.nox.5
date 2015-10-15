@@ -1351,11 +1351,14 @@
         <value>$VAR[GlobalBackground4Var]</value>
     </variable>
     <variable name="OverlayVar">
-        <value condition="Container.ListItem.IsResumable + IsEmpty(Window(Home).Property(Overlay.Resumable))">overlays/showcase/resumable.png</value>
-        <value condition="StringCompare(Window(Home).Property(Overlay.Path),overlays/showcase/3/)">$INFO[ListItem.Overlay,overlays/showcase/3/]</value>
-        <value condition="StringCompare(Window(Home).Property(Overlay.Path),overlays/showcase/2/)">$INFO[ListItem.Overlay,overlays/showcase/2/]</value>
-        <value condition="StringCompare(Window(Home).Property(Overlay.Path),overlays/showcase/1/)">$INFO[ListItem.Overlay,overlays/showcase/1/]</value>
-        <value>$INFO[ListItem.Overlay,overlays/showcase/]</value>
+        <value condition="Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched)">overlays/showcase/0/$INFO[ListItem.Overlay]</value>
+        <value condition="!Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched)">overlays/showcase/1/$INFO[ListItem.Overlay]</value>
+        <value condition="!Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched)">overlays/showcase/2/$INFO[ListItem.Overlay]</value>
+        <value condition="!Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched)">overlays/showcase/3/$INFO[ListItem.Overlay]</value>
+        <value condition="!Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched)">overlays/showcase/4/$INFO[ListItem.Overlay]</value>
+		<value condition="Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched)">overlays/showcase/5/$INFO[ListItem.Overlay]</value>
+		<value condition="Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched)">overlays/showcase/6/$INFO[ListItem.Overlay]</value>
+		<value condition="Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched)">overlays/showcase/7/$INFO[ListItem.Overlay]</value>
     </variable>
     <variable name="ListItem.Overlay">
         <value condition="ListItem.IsResumable">overlays/list/resumable.png</value>
@@ -1661,6 +1664,7 @@
 		<value condition="Control.HasFocus(501)">$LOCALIZE[31940]</value>
 		<value condition="Control.HasFocus(502)">$LOCALIZE[31942]</value>
 		<value condition="Control.HasFocus(503)">$LOCALIZE[31916]</value>
+		<value condition="Control.HasFocus(504)">$LOCALIZE[31944]</value>
 		<value condition="Control.HasFocus(90000) + IsEmpty(Container(90000).ListItem.Property(Path))">$LOCALIZE[31923]</value>
         <value condition="Control.HasFocus(90012)">$LOCALIZE[31925]</value>
         <value condition="Control.HasFocus(90013)">$LOCALIZE[31926]</value>
