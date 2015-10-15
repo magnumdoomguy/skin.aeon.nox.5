@@ -6,38 +6,21 @@
         <posx>457</posx>
         <posy>240</posy>
     </coordinates>
-    <onload condition="IsEmpty(Skin.String(Overlay.Toggle))">SetProperty(OverlayUnwatched,True,home)</onload>
-    <onload condition="IsEmpty(Skin.String(Overlay.Toggle))">ClearProperty(OverlayWatched,home)</onload>
-    <onload condition="StringCompare(Skin.String(Overlay.Toggle),1)">SetProperty(OverlayUnwatched,True,home)</onload>
-    <onload condition="StringCompare(Skin.String(Overlay.Toggle),1)">SetProperty(OverlayWatched,True,home)</onload>
-    <onload condition="StringCompare(Skin.String(Overlay.Toggle),2)">ClearProperty(OverlayUnwatched,home)</onload>
-    <onload condition="StringCompare(Skin.String(Overlay.Toggle),2)">SetProperty(OverlayWatched,True,home)</onload>
-    <onload condition="StringCompare(Skin.String(Overlay.Toggle),3)">ClearProperty(OverlayUnwatched,home)</onload>
-    <onload condition="StringCompare(Skin.String(Overlay.Toggle),3)">ClearProperty(OverlayWatched,home)</onload>
-    <onunload condition="Skin.HasSetting(Disable.Resumable)">SetProperty(Overlay.Resumable,True,home)</onunload>
-    <onunload condition="!Skin.HasSetting(Disable.Resumable)">ClearProperty(Overlay.Resumable,home)</onunload>
-    <onunload condition="!IsEmpty(Window(Home).Property(OverlayUnwatched)) + !IsEmpty(Window(Home).Property(OverlayWatched))">Skin.SetString(Overlay.Toggle,1)</onunload>
-    <onunload condition="!IsEmpty(Window(Home).Property(OverlayUnwatched)) + !IsEmpty(Window(Home).Property(OverlayWatched))">SetProperty(Overlay.Path,overlays/showcase/1/,home)</onunload>
-    <onunload condition="!IsEmpty(Window(Home).Property(OverlayUnwatched)) + IsEmpty(Window(Home).Property(OverlayWatched))">Skin.Reset(Overlay.Toggle)</onunload>
-    <onunload condition="!IsEmpty(Window(Home).Property(OverlayUnwatched)) + IsEmpty(Window(Home).Property(OverlayWatched))">SetProperty(Overlay.Path,overlays/showcase/,home)</onunload>
-    <onunload condition="IsEmpty(Window(Home).Property(OverlayUnwatched)) + !IsEmpty(Window(Home).Property(OverlayWatched))">Skin.SetString(Overlay.Toggle,2)</onunload>
-    <onunload condition="IsEmpty(Window(Home).Property(OverlayUnwatched)) + !IsEmpty(Window(Home).Property(OverlayWatched))">SetProperty(Overlay.Path,overlays/showcase/2/,home)</onunload>
-    <onunload condition="IsEmpty(Window(Home).Property(OverlayUnwatched)) + IsEmpty(Window(Home).Property(OverlayWatched))">Skin.SetString(Overlay.Toggle,3)</onunload>
-    <onunload condition="IsEmpty(Window(Home).Property(OverlayUnwatched)) + IsEmpty(Window(Home).Property(OverlayWatched))">SetProperty(Overlay.Path,overlays/showcase/3/,home)</onunload>
+    
     <include>dialogeffect</include>
     <controls>
         <control type="image">
             <posx>157</posx>
             <posy>0</posy>
             <width>692</width>
-            <height>600</height>
+            <height>620</height>
             <texture border="40">dialogs/default/bg.png</texture>
         </control>
         <control type="image">
             <posx>187</posx>
             <posy>86</posy>
             <width>632</width>
-            <height>482</height>
+            <height>502</height>
             <texture border="5">dialogs/default/inner.png</texture>
         </control>
         <control type="label" id="1">
@@ -55,7 +38,7 @@
             <posx>189</posx>
             <posy>88</posy>
             <width>630</width>
-            <height>480</height>
+            <height>500</height>
             <onup>90100</onup>
             <ondown>90100</ondown>
             <onleft>90100</onleft>
@@ -143,42 +126,84 @@
                     <icon>overlayinprogress.png</icon>
                     <onclick>Skin.SetBool(Disable.Resumable)</onclick>
                     <property name="Radio">android/btn_radio_on_holo_dark.png</property>
-                    <visible>!Skin.HasSetting(Disable.Resumable)</visible>
+                    <visible>!Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Enable.Circles)</visible>
                 </item>
                 <item>
                     <label>$LOCALIZE[13404]</label>
                     <icon>overlayinprogress.png</icon>
                     <onclick>Skin.Reset(Disable.Resumable)</onclick>
                     <property name="Radio">android/btn_radio_off_holo_dark.png</property>
-                    <visible>Skin.HasSetting(Disable.Resumable)</visible>
+                    <visible>Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Enable.Circles)</visible>
+                </item>
+				<item>
+                    <label>$LOCALIZE[13404]</label>
+                    <icon>dialogs/settings/circleinprogress.png</icon>
+                    <onclick>Skin.SetBool(Disable.Resumable)</onclick>
+                    <property name="Radio">android/btn_radio_on_holo_dark.png</property>
+                    <visible>!Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Enable.Circles)</visible>
+                </item>
+                <item>
+                    <label>$LOCALIZE[13404]</label>
+                    <icon>dialogs/settings/circleinprogress.png</icon>
+                    <onclick>Skin.Reset(Disable.Resumable)</onclick>
+                    <property name="Radio">android/btn_radio_off_holo_dark.png</property>
+                    <visible>Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Enable.Circles)</visible>
                 </item>
                 <item>
                     <label>$LOCALIZE[16102]</label>
                     <icon>overlaywatched.png</icon>
                     <onclick>Skin.SetBool(Disable.Watched)</onclick>
                     <property name="Radio">android/btn_radio_on_holo_dark.png</property>
-                    <visible>!Skin.HasSetting(Disable.Watched)</visible>
+                    <visible>!Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)</visible>
                 </item>
                 <item>
                     <label>$LOCALIZE[16102]</label>
                     <icon>overlaywatched.png</icon>
                     <onclick>Skin.Reset(Disable.Watched)</onclick>
                     <property name="Radio">android/btn_radio_off_holo_dark.png</property>
-                    <visible>Skin.HasSetting(Disable.Watched)</visible>
+                    <visible>Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)</visible>
+                </item>
+				<item>
+                    <label>$LOCALIZE[16102]</label>
+                    <icon>dialogs/settings/circlewatched.png</icon>
+                    <onclick>Skin.SetBool(Disable.Watched)</onclick>
+                    <property name="Radio">android/btn_radio_on_holo_dark.png</property>
+                    <visible>!Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)</visible>
+                </item>
+                <item>
+                    <label>$LOCALIZE[16102]</label>
+                    <icon>dialogs/settings/circlewatched.png</icon>
+                    <onclick>Skin.Reset(Disable.Watched)</onclick>
+                    <property name="Radio">android/btn_radio_off_holo_dark.png</property>
+                    <visible>Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)</visible>
                 </item>
                 <item>
                     <label>$LOCALIZE[16101]</label>
                     <icon>overlayunwatched.png</icon>
                     <onclick>Skin.SetBool(Disable.Unwatched)</onclick>
                     <property name="Radio">android/btn_radio_on_holo_dark.png</property>
-                    <visible>!Skin.HasSetting(Disable.Unwatched)</visible>
+                    <visible>!Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Enable.Circles)</visible>
                 </item>
                 <item>
                     <label>$LOCALIZE[16101]</label>
                     <icon>overlayunwatched.png</icon>
                     <onclick>Skin.Reset(Disable.Unwatched)</onclick>
                     <property name="Radio">android/btn_radio_off_holo_dark.png</property>
-                    <visible>Skin.HasSetting(Disable.Unwatched)</visible>
+                    <visible>Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Enable.Circles)</visible>
+                </item>
+				<item>
+                    <label>$LOCALIZE[16101]</label>
+                    <icon>dialogs/settings/circleunwatched.png</icon>
+                    <onclick>Skin.SetBool(Disable.Unwatched)</onclick>
+                    <property name="Radio">android/btn_radio_on_holo_dark.png</property>
+                    <visible>!Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Enable.Circles)</visible>
+                </item>
+                <item>
+                    <label>$LOCALIZE[16101]</label>
+                    <icon>dialogs/settings/circleunwatched.png</icon>
+                    <onclick>Skin.Reset(Disable.Unwatched)</onclick>
+                    <property name="Radio">android/btn_radio_off_holo_dark.png</property>
+                    <visible>Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Enable.Circles)</visible>
                 </item>
                 <item>
                     <label>$LOCALIZE[31109]</label>
@@ -193,6 +218,20 @@
                     <onclick>Skin.SetBool(Disable.UnwatchedIcon)</onclick>
                     <property name="Radio">android/btn_radio_off_holo_dark.png</property>
                     <visible>!Skin.HasSetting(Disable.UnwatchedIcon)</visible>
+                </item>
+				<item>
+                    <label>Use Circles</label>
+                    <icon>dialogs/settings/circleunwatched.png</icon>
+                    <onclick>Skin.Reset(Enable.Circles)</onclick>
+                    <property name="Radio">android/btn_radio_on_holo_dark.png</property>
+                    <visible>Skin.HasSetting(Enable.Circles)</visible>
+                </item>
+				<item>
+                    <label>Use Circles</label>
+                    <icon>dialogs/settings/circleunwatched.png</icon>
+                    <onclick>Skin.SetBool(Enable.Circles)</onclick>
+                    <property name="Radio">android/btn_radio_off_holo_dark.png</property>
+                    <visible>!Skin.HasSetting(Enable.Circles)</visible>
                 </item>
             </content>
         </control>
