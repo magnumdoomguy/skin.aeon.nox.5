@@ -21,6 +21,8 @@
             <animation effect="fade" start="100" end="30" time="160">Focus</animation>
             <animation effect="fade" start="30" end="100" time="160">UnFocus</animation>
         </control>
+		
+		<!-- Ribbon Watched Status -->
         <control type="image">
             <posx>200</posx>
             <posy>149</posy>
@@ -29,11 +31,41 @@
             <texture>$VAR[OverlayVar]</texture>
             <aspectratio align="center" aligny="top">keep</aspectratio>
             <bordersize>1</bordersize>
+			<visible>!Skin.HasSetting(Enable.Circles)</visible>
         </control>
+		
+		<!-- Circle Watched Status (Upper) -->
+		<control type="image">
+			<posx>250</posx>
+			<posy>170</posy>
+			<width>36</width>
+			<height>36</height>
+			<aspectratio>keep</aspectratio>
+			<texture>$VAR[OverlayVar]</texture>
+			<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+		</control>
+		
+		<!-- Circle Watched Status (Lower) -->
+		<control type="image">
+			<posx>250</posx>
+			<posy>544</posy>
+			<width>36</width>
+			<height>36</height>
+			<aspectratio>keep</aspectratio>
+			<texture>$VAR[OverlayVar]</texture>
+			<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+		</control>
+		
         <control type="group">
             <posx>30</posx>
             <posy>170</posy>
-            <include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+            <include condition="!Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+        </control>
+		
+		<control type="group">
+            <posx>30</posx>
+            <posy>544</posy>
+            <include condition="Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
         </control>
     </include>
     <include name="ShiftSquareThumbs">
