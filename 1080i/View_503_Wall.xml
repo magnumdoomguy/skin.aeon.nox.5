@@ -24,6 +24,7 @@
                 <itemlayout width="320" height="460" condition="![Container.Content(albums) | Container.Content(addons)]">
                     <control type="group">
                         <posy>80</posy>
+						
                         <!-- Poster -->
                         <control type="image">
                             <posx>0</posx>
@@ -35,7 +36,8 @@
                             <fadetime>400</fadetime>
                             <bordersize>20</bordersize>
                         </control>
-                        <!-- Watched Status Overlay -->
+						
+                        <!-- Ribbon Watched Status Overlay -->
                         <control type="image">
                             <posx>200</posx>
                             <posy>19</posy>
@@ -44,13 +46,45 @@
                             <texture>$VAR[OverlayVar]</texture>
                             <aspectratio align="center" aligny="top">keep</aspectratio>
                             <bordersize>1</bordersize>
+							<visible>!Skin.HasSetting(Enable.Circles)</visible>
                         </control>
+										
+						<!-- Watched Status Upper Circle -->
+						<control type="image">
+							<posx>254</posx>
+							<posy>45</posy>
+							<width>36</width>
+							<height>36</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[OverlayVar]</texture>
+							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+					
+						<!-- Watched Status Lower Circle -->
+						<control type="image">
+							<posx>254</posx>
+							<posy>379</posy>
+							<width>36</width>
+							<height>36</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[OverlayVar]</texture>
+							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+											
                         <!-- Unwatched Episode Count -->
                         <control type="group">
                             <posx>30</posx>
                             <posy>45</posy>
-                            <include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+                            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
                         </control>
+						
+						<!-- Unwatched Episode Count -->
+                        <control type="group">
+                            <posx>30</posx>
+                            <posy>379</posy>
+                            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+                        </control>
+						
                         <!-- Fade Unfocussed Items -->
                         <control type="image">
                             <posx>0</posx>
@@ -65,6 +99,7 @@
                 <focusedlayout width="320" height="460" condition="![Container.Content(albums) | Container.Content(addons)]">
                     <control type="group">
                         <posy>80</posy>
+						
                         <!-- Poster -->
                         <control type="image">
                             <posx>0</posx>
@@ -76,6 +111,7 @@
                             <fadetime>400</fadetime>
                             <bordersize>20</bordersize>
                         </control>
+						
                         <!-- Set Focus -->
                         <control type="image">
                             <posy>4</posy>
@@ -87,6 +123,7 @@
                             <animation effect="fade" start="100" end="0" time="200" reversible="false">UnFocus</animation>
                             <animation effect="fade" start="0" end="100" time="200" reversible="false">Focus</animation>
                         </control>
+						
                         <!-- Watched Status Overlay -->
                         <control type="image">
                             <posx>200</posx>
@@ -96,13 +133,45 @@
                             <texture>$VAR[OverlayVar]</texture>
                             <aspectratio align="center" aligny="top">keep</aspectratio>
                             <bordersize>1</bordersize>
+							<visible>!Skin.HasSetting(Enable.Circles)</visible>
                         </control>
+						
+                        <!-- Watched Status Upper Circle -->
+						<control type="image">
+							<posx>254</posx>
+							<posy>45</posy>
+							<width>36</width>
+							<height>36</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[OverlayVar]</texture>
+							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+					
+						<!-- Watched Status Lower Circle -->
+						<control type="image">
+							<posx>254</posx>
+							<posy>379</posy>
+							<width>36</width>
+							<height>36</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[OverlayVar]</texture>
+							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+											
                         <!-- Unwatched Episode Count -->
                         <control type="group">
                             <posx>30</posx>
                             <posy>45</posy>
-                            <include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+                            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
                         </control>
+						
+						<!-- Unwatched Episode Count -->
+                        <control type="group">
+                            <posx>30</posx>
+                            <posy>379</posy>
+                            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+                        </control>
+						
                         <!-- Fade Unfocussed Items -->
                         <control type="image">
                             <posx>0</posx>
