@@ -49,6 +49,8 @@
                         <bordersize>2</bordersize>
                         <colordiffuse>BAffffff</colordiffuse>
                     </control>
+					
+					<!-- Watched Status Ribbon -->
                     <control type="image">
                         <posx>105</posx>
                         <posy>0</posy>
@@ -57,11 +59,41 @@
                         <texture>$VAR[OverlayVar]</texture>
                         <aspectratio align="center" aligny="top">keep</aspectratio>
                         <bordersize>1</bordersize>
+						<visible>!Skin.HasSetting(Enable.Circles)</visible>
                     </control>
+					
+					<!-- Watched Status Upper Circle -->
+					<control type="image">
+						<posx>141</posx>
+						<posy>8</posy>
+						<width>36</width>
+						<height>36</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[OverlayVar]</texture>
+						<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+					</control>
+					
+					<!-- Watched Status Lower Circle -->
+					<control type="image">
+						<posx>141</posx>
+						<posy>241</posy>
+						<width>36</width>
+						<height>36</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[OverlayVar]</texture>
+						<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+					</control>
+					
                     <control type="group">
                         <posx>8</posx>
                         <posy>8</posy>
-                        <include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+                        <include condition="!Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+                    </control>
+					
+					<control type="group">
+                        <posx>8</posx>
+                        <posy>241</posy>
+                        <include condition="Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
                     </control>
                 </itemlayout>
                 <focusedlayout height="285" width="185">
@@ -78,6 +110,8 @@
                             <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
                             <bordersize>8</bordersize>
                         </control>
+						
+						<!-- Watched Status Ribbon -->
                         <control type="image">
                             <posx>105</posx>
                             <posy>5</posy>
@@ -86,12 +120,42 @@
                             <texture>$VAR[OverlayVar]</texture>
                             <aspectratio align="center" aligny="top">keep</aspectratio>
                             <bordersize>2</bordersize>
+							<visible>!Skin.HasSetting(Enable.Circles)</visible>
                         </control>
+						
+						<!-- Watched Status Upper Circle -->
+						<control type="image">
+							<posx>141</posx>
+							<posy>8</posy>
+							<width>36</width>
+							<height>36</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[OverlayVar]</texture>
+							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+					
+						<!-- Watched Status Lower Circle -->
+						<control type="image">
+							<posx>141</posx>
+							<posy>241</posy>
+							<width>36</width>
+							<height>36</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[OverlayVar]</texture>
+							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+					
                         <control type="group">
-                            <posx>8</posx>
-                            <posy>8</posy>
-                            <include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
-                        </control>
+							<posx>8</posx>
+							<posy>8</posy>
+							<include condition="!Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+						</control>
+					
+						<control type="group">
+							<posx>8</posx>
+							<posy>241</posy>
+							<include condition="Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+						</control>
                     </control>
                 </focusedlayout>
             </control>
