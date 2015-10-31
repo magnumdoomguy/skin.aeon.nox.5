@@ -17,7 +17,7 @@
 			<control type="image">
 				<width>729</width>
 				<height>1080</height>
-				<aspectratio aligny="top">scale</aspectratio>
+				<aspectratio aligny="top">stretch</aspectratio>
 				<texture background="true" fallback="black.png">$INFO[ListItem.Art(bigThumb)]</texture> 
 				<visible>!Container.Content(episode)</visible>
 			</control>
@@ -26,7 +26,7 @@
 			<control type="image">
 				<width>729</width>
 				<height>1080</height>
-				<aspectratio aligny="top">scale</aspectratio>
+				<aspectratio aligny="top">stretch</aspectratio>
 				<texture background="true" fallback="black.png">$INFO[ListItem.Art(bigGrandparentThumb)]</texture> 
 				<visible>Container.Content(episode)</visible>
 			</control>
@@ -37,8 +37,30 @@
 				<width>166</width>
 				<height>166</height>
 				<texture>$VAR[OverlayVar]</texture>
-				<visible>!Container.Content(episode)</visible>
+				<visible>!Container.Content(episode) + !Skin.HasSetting(Enable.Circles)</visible>
 			</control>	
+			
+			<!-- Watched Status Upper Circle -->
+			<control type="image">
+				<posx>627</posx>
+				<posy>30</posy>
+				<width>72</width>
+				<height>72</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[OverlayVar]</texture>
+				<visible>!Container.Content(episode) + Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+			</control>
+			
+			<!-- Watched Status Lower Circle -->
+			<control type="image">
+				<posx>627</posx>
+				<posy>978</posy>
+				<width>72</width>
+				<height>72</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[OverlayVar]</texture>
+				<visible>!Container.Content(episode) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+			</control>
 		</control>
 		
 		<control type="group" id="1200">
@@ -550,8 +572,30 @@
 					<width>87</width>
 					<height>87</height>
 					<texture>$VAR[OverlayVar]</texture>
-					<visible>Container.Content(episode)</visible>
+					<visible>Container.Content(episode) + !Skin.HasSetting(Enable.Circles)</visible>
 				</control>	
+				
+				<!-- Watched Status Upper Circle -->
+				<control type="image">
+					<posx>1061</posx>
+					<posy>199</posy>
+					<width>36</width>
+					<height>36</height>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[OverlayVar]</texture>
+					<visible>Container.Content(episode) + Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+				</control>
+				
+				<!-- Watched Status Lower Circle -->
+				<control type="image">
+					<posx>1061</posx>
+					<posy>439</posy>
+					<width>36</width>
+					<height>36</height>
+					<aspectratio>keep</aspectratio>
+					<texture>$VAR[OverlayVar]</texture>
+					<visible>Container.Content(episode) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+				</control>
 				
 				<!-- Plot Textbox-->
 				<control type="button" id="4003">
