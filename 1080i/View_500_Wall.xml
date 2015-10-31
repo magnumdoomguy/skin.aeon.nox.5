@@ -230,41 +230,76 @@
 						<texture>$VAR[OverlayVar]</texture>
 						<aspectratio align="center" aligny="top">keep</aspectratio>
 						<bordersize>1</bordersize>
-					</control>
-					<control type="image">
-						<posy>310</posy>
-						<width>420</width>
-						<height>50</height>
-						<texture>black.png</texture>
-						<bordersize>2</bordersize>
-						<colordiffuse>88ffffff</colordiffuse>
+						<visible>!Skin.HasSetting(Enable.Circles)</visible>
 					</control>
 					
-					<!-- Title -->
+					<!-- Watched Status Upper Circle -->
+					<control type="image">
+						<posx>369</posx>
+						<posy>10</posy>
+						<width>36</width>
+						<height>36</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[OverlayVar]</texture>
+						<colordiffuse>grey2</colordiffuse>
+						<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+					</control>
+					
+					<control type="image">
+						<width>420</width>
+						<height>360</height>
+						<texture>thumbs/poster_black.png</texture>
+						<bordersize>2</bordersize>
+					</control>
+					
+					<control type="label">
+						<posx>0</posx>
+						<posy>310</posy>
+						<width>359</width>
+						<height>40</height>
+						<align>left</align>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+						<visible>Container.Content(episodes) + Skin.HasSetting(Enable.LowerCircles)</visible>
+					</control>
+					
+					<control type="label">
+						<posx>0</posx>
+						<posy>310</posy>
+						<width>420</width>
+						<height>40</height>
+						<align>left</align>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+						<visible>Container.Content(episodes) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+					</control>
+					
 					<control type="label">
 						<posx>210</posx>
 						<posy>310</posy>
 						<width>420</width>
 						<height>40</height>
 						<align>center</align>
-						<textoffsetx>10</textoffsetx>
+						<textoffsetx>15</textoffsetx>
 						<textcolor>grey2</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 						<visible>!Container.Content(episodes)</visible>
 					</control>
 					
-					<!-- Episode Title -->
-					<control type="label">
-						<posx>210</posx>
-						<posy>310</posy>
-						<width>420</width>
-						<height>40</height>
-						<align>center</align>
-						<textoffsetx>10</textoffsetx>
-						<textcolor>grey2</textcolor>
-						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-						<visible>Container.Content(episodes)</visible>
+					<!-- Watched Status Lower Circle -->
+					<control type="image">
+						<posx>369</posx>
+						<posy>314</posy>
+						<width>36</width>
+						<height>36</height>
+						<aspectratio>keep</aspectratio>
+						<texture>$VAR[OverlayVar]</texture>
+						<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+						<colordiffuse>grey2</colordiffuse>
 					</control>
+					
 				</itemlayout>
 				<focusedlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(genres) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets)]">
 					<control type="group">
@@ -309,39 +344,69 @@
 							<texture>$VAR[OverlayVar]</texture>
 							<aspectratio align="center" aligny="top">keep</aspectratio>
 							<bordersize>8</bordersize>
-						</control>
-						<control type="image">
-							<posx>6</posx>
-							<posy>310</posy>
-							<width>408</width>
-							<height>44</height>
-							<texture>black.png</texture>
-							<bordersize>2</bordersize>
-							<colordiffuse>88ffffff</colordiffuse>
+							<visible>!Skin.HasSetting(Enable.Circles)</visible>
 						</control>
 						
-						<!-- Title -->
+						<!-- Watched Status Upper Circle -->
+						<control type="image">
+							<posx>369</posx>
+							<posy>10</posy>
+							<width>36</width>
+							<height>36</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[OverlayVar]</texture>
+							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+					
+						<control type="image">
+							<width>420</width>
+							<height>360</height>
+							<texture>thumbs/poster_black.png</texture>
+							<bordersize>2</bordersize>
+						</control>
+						
+						<control type="label">
+							<posx>0</posx>
+							<posy>310</posy>
+							<width>359</width>
+							<height>40</height>
+							<align>left</align>
+							<textoffsetx>15</textoffsetx>
+							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+							<visible>Container.Content(episodes) + Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+					
+						<control type="label">
+							<posx>0</posx>
+							<posy>310</posy>
+							<width>420</width>
+							<height>40</height>
+							<align>left</align>
+							<textoffsetx>15</textoffsetx>
+							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+							<visible>Container.Content(episodes) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+						</control>
+					
 						<control type="label">
 							<posx>210</posx>
 							<posy>310</posy>
 							<width>420</width>
 							<height>40</height>
 							<align>center</align>
-							<textoffsetx>10</textoffsetx>
+							<textoffsetx>15</textoffsetx>
 							<label>$INFO[ListItem.Label]</label>
 							<visible>!Container.Content(episodes)</visible>
 						</control>
-						
-						<!-- Episode Title -->
-						<control type="label">
-							<posx>210</posx>
-							<posy>310</posy>
-							<width>420</width>
-							<height>40</height>
-							<align>center</align>
-							<textoffsetx>10</textoffsetx>
-							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-							<visible>Container.Content(episodes)</visible>
+					
+						<!-- Watched Status Lower Circle -->
+						<control type="image">
+							<posx>369</posx>
+							<posy>314</posy>
+							<width>36</width>
+							<height>36</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[OverlayVar]</texture>
+							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					</control>
 				</focusedlayout>
@@ -623,6 +688,10 @@
 						</animation>
 					</control>
 					<control type="group">
+						<animation type="Focus">
+							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
+						</animation>
 						<control type="image">
 							<width>240</width>
 							<height>240</height>
