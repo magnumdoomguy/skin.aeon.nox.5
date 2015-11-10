@@ -1228,7 +1228,7 @@
 			</control>
 			
 			<!-- Filters -->
-			<control type="group" id="1300"> 
+			<control type="grouplist" id="1300"> 
 				<visible allowhiddenfocus="true">!ControlGroup(200).HasFocus + !Container.Content(clips) + !Container.PlexContent(channels) + !Container.PlexContent(channel)</visible>
 				<animation type="Conditional" condition="!Window.IsActive(10202)" reversible="false">
 					<effect type="rotatey" center="220" start="80" end="0" time="300"/>
@@ -1239,13 +1239,13 @@
 					<effect type="fade" start="100" end="0" time="250"/>
 				</animation>
 				<posx>0</posx>
-				<posy>0</posy>
+				<posy>100</posy>
 				<width>350</width>
 				<height>1080</height>
-				<onleft>1300</onleft>
+				<onleft>noop</onleft>
 				<onright>9050</onright>
-				<onup>19000</onup>
-				<ondown>19000</ondown>
+				<onup>noop</onup>
+				<ondown>noop</ondown>
 				<onback>ClearProperty(MediaMenu,Home)</onback>
 				<onback>50</onback>
 				<itemgap>0</itemgap>
@@ -1254,7 +1254,7 @@
 								
 				<!-- Primary Filter List Title -->
 				<control type="label" id="19008">
-					<posy>100</posy>
+					
 					<description>Title</description>
 					<width>350</width>
 					<height>52</height>
@@ -1266,16 +1266,15 @@
 								
 				<!-- Primary Filters -->
 				<control type="grouplist" id="19000">
-					<posy>145</posy>
-					<height>210</height>
+					<height max="1000">auto</height>
 					<width>370</width>
 					<font>font12</font>
 					<onright>9050</onright>
-					<onleft>1300</onleft>
-					<onup>1300</onup>
+					<onleft>noop</onleft>
+					<onup>noop</onup>
 					<onback>ClearProperty(MediaMenu,Home)</onback>
 					<onback>50</onback>
-					<ondown>19001</ondown>
+					<ondown>29999</ondown>
 					<onclick>19000</onclick>
 					<onclick>Control.SetFocus(19000)</onclick>
 					<itemgap>0</itemgap>
@@ -1284,7 +1283,7 @@
 				
 				<!-- Secondary Filters List Title -->
 				<control type="label" id="19009">
-					<posy>385</posy>
+					
 					<description>Secondary Title</description>
 					<width>350</width>
 					<height>52</height>
@@ -1294,26 +1293,75 @@
 					<aligny>center</aligny>
 					<label>$LOCALIZE[587]</label>
 					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + ![Skin.String(SectionType,empty) + Container.PlexContent(empty)]</visible>
-					<animation effect="slide" end="0,-120" time="0" condition="Skin.String(SectionType,movies) | Container.PlexContent(Movies)">Conditional</animation>
+					<!--<animation effect="slide" end="0,-120" time="0" condition="Skin.String(SectionType,movies) | Container.PlexContent(Movies)">Conditional</animation>-->
 				</control>
 				
 				<!-- Secondary Filters List -->
 				<control type="grouplist" id="19001">
-					<posy>430</posy>
-					<height>455</height>
+					
+					<height max="1000">auto</height>
 					<width>350</width>
 					<font>font12</font>
 					<onright>9050</onright>
-					<onleft>1300</onleft>
+					<onleft>noop</onleft>
 					<onup>19000</onup>
 					<onback>ClearProperty(MediaMenu,Home)</onback>
 					<onback>50</onback>
-					<ondown>19010</ondown>
+					<ondown>32000</ondown>
 					<radioposx>300</radioposx>
 					<textwidth>250</textwidth>
-					<animation effect="slide" end="0,-120" time="0" condition="Skin.String(SectionType,movies) | Container.PlexContent(Movies)">Conditional</animation>
+					<!--<animation effect="slide" end="0,-120" time="0" condition="Skin.String(SectionType,movies) | Container.PlexContent(Movies)">Conditional</animation>-->
 				</control>
 				
+				
+				
+				<!-- Sorting List Title -->
+				<control type="label" id="19019">
+					
+					<description>Title</description>
+					<width>350</width>
+					<height>52</height>
+					<textoffsetx>15</textoffsetx>
+					<font>font13_title</font>
+					<textcolor>themecolor</textcolor>
+					<aligny>center</aligny>
+					<label>$LOCALIZE[42015]</label>
+					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + IsEmpty(Container.Property(PrimaryFilterActivated))</visible>
+					<!--<animation effect="slide" end="0,20" time="0" condition="[Skin.String(SectionType,movies) | Container.PlexContent(Movies)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
+					<animation effect="slide" end="0,-105" time="0" condition="[Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
+					<animation effect="slide" end="0,-35" time="0" condition="[Skin.String(SectionType,tvshows) | Container.PlexContent(tvshows)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
+					<animation effect="slide" end="0,55" time="0" condition="[Skin.String(SectionType,movies) | Container.PlexContent(Movies)] + !IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
+					<animation effect="slide" end="0,-70" time="0" condition="[Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)] + !IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>-->
+				</control>
+				
+				<!-- Sorting List -->
+				<control type="grouplist" id="19010">
+					
+					<height max="1000">auto</height>
+					<width>350</width>
+					<onright>9050</onright>
+					<onleft>noop</onleft>
+					<onup>19001</onup>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<ondown>noop</ondown>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>250</textwidth>
+					<aligny>center</aligny>
+					<font>font12</font>
+					<!--<animation effect="slide" end="0,20" time="0" condition="[Skin.String(SectionType,movies) | Container.PlexContent(Movies)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
+					<animation effect="slide" end="0,-105" time="0" condition="[Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
+					<animation effect="slide" end="0,-35" time="0" condition="[Skin.String(SectionType,tvshows) | Container.PlexContent(tvshows)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
+					<animation effect="slide" end="0,55" time="0" condition="[Skin.String(SectionType,movies) | Container.PlexContent(Movies)] + !IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
+					<animation effect="slide" end="0,-70" time="0" condition="[Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)] + !IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>-->
+				</control>
+				
+				
+				
+			</control>
+			<control type="group">
+				<visible>false</visible>
 				<!-- filters buttons -->
 				<control type="button" id="19005">
 					<width>350</width>
@@ -1359,49 +1407,6 @@
 					<radioposx>300</radioposx>
 					<texturenofocus border="0"></texturenofocus>
 				</control>
-				
-				<!-- Sorting List Title -->
-				<control type="label" id="19019">
-					<posy>725</posy>
-					<description>Title</description>
-					<width>350</width>
-					<height>52</height>
-					<textoffsetx>15</textoffsetx>
-					<font>font13_title</font>
-					<textcolor>themecolor</textcolor>
-					<aligny>center</aligny>
-					<label>$LOCALIZE[42015]</label>
-					<visible>!IsEmpty(Container.Property(HasAdvancedFilters)) + IsEmpty(Container.Property(PrimaryFilterActivated))</visible>
-					<animation effect="slide" end="0,20" time="0" condition="[Skin.String(SectionType,movies) | Container.PlexContent(Movies)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-					<animation effect="slide" end="0,-105" time="0" condition="[Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-					<animation effect="slide" end="0,-35" time="0" condition="[Skin.String(SectionType,tvshows) | Container.PlexContent(tvshows)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-					<animation effect="slide" end="0,55" time="0" condition="[Skin.String(SectionType,movies) | Container.PlexContent(Movies)] + !IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-					<animation effect="slide" end="0,-70" time="0" condition="[Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)] + !IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-				</control>
-				
-				<!-- Sorting List -->
-				<control type="grouplist" id="19010">
-					<posy>770</posy>
-					<height>300</height>
-					<width>350</width>
-					<onright>9050</onright>
-					<onleft>1300</onleft>
-					<onup>19001</onup>
-					<onback>ClearProperty(MediaMenu,Home)</onback>
-					<onback>50</onback>
-					<ondown>1300</ondown>
-					<textcolor>grey</textcolor>
-					<focusedcolor>white</focusedcolor>
-					<textwidth>250</textwidth>
-					<aligny>center</aligny>
-					<font>font12</font>
-					<animation effect="slide" end="0,20" time="0" condition="[Skin.String(SectionType,movies) | Container.PlexContent(Movies)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-					<animation effect="slide" end="0,-105" time="0" condition="[Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-					<animation effect="slide" end="0,-35" time="0" condition="[Skin.String(SectionType,tvshows) | Container.PlexContent(tvshows)] + IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-					<animation effect="slide" end="0,55" time="0" condition="[Skin.String(SectionType,movies) | Container.PlexContent(Movies)] + !IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-					<animation effect="slide" end="0,-70" time="0" condition="[Skin.String(SectionType,homemovies) | Container.PlexContent(homemovies)] + !IsEmpty(Container.Property(secondaryFilterActivated)">Conditional</animation>
-				</control>
-				
 				<!-- Sorting Buttons -->
 				<control type="filterorderbutton" id="19011">
 					<posx>0</posx>
@@ -1423,7 +1428,6 @@
 					<aligny>center</aligny>
 					<pulseonselect>false</pulseonselect>				
 				</control>
-				
 			</control>
         </control>	
     </controls>
