@@ -64,9 +64,9 @@
             <include>Animation_FadedByOSDSettings</include>
             <control type="image">
                 <posx>0</posx>
-                <posy>818</posy>
+                <posy>777</posy>
                 <width>1920</width>
-                <height>262</height>
+                <height>303</height>
                 <texture flipy="true" border="1,40,1,1">topbar.png</texture>
                 <colordiffuse>E6FFFFFF</colordiffuse>
             </control>
@@ -121,8 +121,9 @@
                 <align>right</align>
                 <font>font14</font>
                 <textcolor>themecolor</textcolor>
-                <label>$INFO[VideoPlayer.Time] [COLOR TextNF]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
+                <label>$INFO[VideoPlayer.Time] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
             </control>
+			
             <!-- Finish Time -->
             <control type="label">
                 <posx>1875</posx>
@@ -131,27 +132,29 @@
                 <height>60</height>
                 <aligny>center</aligny>
                 <align>right</align>
-                <font>METF_OSDTime</font>
-                <textcolor>OSDFinishTime</textcolor>
-                <label>$LOCALIZE[31409]:  $INFO[Player.FinishTime]</label>
+                <font>font14</font>
+                <textcolor>white</textcolor>
+                <label>$LOCALIZE[42104]:  $INFO[Player.FinishTime]</label>
             </control>
+			
             <!-- Title -->
             <control type="fadelabel">
                 <posx>450</posx>
                 <posy>832</posy>
                 <width>1425</width>
                 <height>60</height>
-                <font>METF_TitleTextMedium</font>
-                <textcolor>TitleText</textcolor>
+                <font>font26_title</font>
+                <textcolor>white</textcolor>
                 <align>left</align>
                 <aligny>center</aligny>
                 <scrollout>false</scrollout>
                 <pauseatend>3800</pauseatend>
                 <scrollspeed>40</scrollspeed>
                 <scroll>true</scroll>
-                <label>$VAR[VideoPlayerTitle]</label>
+                <label>$INFO[Player.Title]</label>
                 <animation effect="slide" end="0,38" condition="[!VideoPlayer.Content(MusicVideos) + IsEmpty(VideoPlayer.Tagline) + !IntegerGreaterThan(Player.ChapterCount,1)] | [VideoPlayer.Content(MusicVideos) + IsEmpty(VideoPlayer.Artist) + IsEmpty(VideoPlayer.Album)]">Conditional</animation>
             </control>
+			
             <!-- Chapter Info, Movie Tagline, or Music Video Artist/Album -->
             <control type="fadelabel">
                 <posx>450</posx>
@@ -169,7 +172,7 @@
                 <label>$VAR[VideoPlayerTitle2]</label>
             </control>
             <control type="group">
-                <visible>!SubString(Player.FolderPath,http,Left)</visible>
+                				
                 <!-- TV Show Poster / Logo / Clearart -->
                 <control type="image">
                     <description>TV Show Thumbnail</description>
@@ -190,16 +193,7 @@
                     <texture>frames/ClassicFrame_PosterSmall.png</texture>
                     <visible>VideoPlayer.Content(Episodes) + !SubString(VideoPlayer.Cover,default) + !Skin.HasSetting(Enable_OSDClearArt)</visible>
                 </control>
-                <control type="image">
-                    <description>TV Show Clear Art/Logo</description>
-                    <posx>38</posx>
-                    <posy>675</posy>
-                    <width>375</width>
-                    <height>345</height>
-                    <texture background="true">$VAR[PlayerTVShowClearartClearlogo]</texture>
-                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
-                    <visible>Skin.HasSetting(Enable_OSDClearArt) + VideoPlayer.Content(Episodes)</visible>
-                </control>
+                
                 <!-- Movie Poster -->
                 <control type="image">
                     <description>Movie Poster</description>
@@ -208,18 +202,12 @@
                     <width>306</width>
                     <height>450</height>
                     <texture background="true">$INFO[VideoPlayer.Cover]</texture>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+				<bordersize>20</bordersize>
                     <aspectratio scalediffuse="false">stretch</aspectratio>
                     <visible>VideoPlayer.Content(Movies) + !SubString(VideoPlayer.Cover,default)</visible>
                 </control>
-                <control type="image">
-                    <description>Movie Poster Frame</description>
-                    <posx>28</posx>
-                    <posy>550</posy>
-                    <width>380</width>
-                    <height>514</height>
-                    <texture>frames/ClassicFrame_PosterSmall.png</texture>
-                    <visible>VideoPlayer.Content(Movies) + !SubString(VideoPlayer.Cover,default)</visible>
-                </control>
+				
                 <!-- Music Video Thumbnail -->
                 <control type="image">
                     <description>Music Video Thumbnail</description>
@@ -233,20 +221,11 @@
                     <texture diffuse="frames/EpisodeMatte.png">$INFO[VideoPlayer.Cover]</texture>
                     <visible>VideoPlayer.Content(MusicVideos) + !SubString(VideoPlayer.Cover,default)</visible>
                 </control>
-                <!-- LiveTV Channel Icon -->
-                <control type="image">
-                    <description>LiveTV Channel</description>
-                    <posx>105</posx>
-                    <posy>840</posy>
-                    <width>225</width>
-                    <height>225</height>
-                    <aspectratio aligny="bottom">keep</aspectratio>
-                    <info>VideoPlayer.Cover</info>
-                    <visible>VideoPlayer.Content(LiveTV)</visible>
-                </control>
+				
             </control>
             <control type="group">
                 <visible>SubString(Player.FolderPath,http,Left)</visible>
+				
                 <!-- Default Thumbnail -->
                 <control type="image">
                     <description>Default Thumbnail</description>
