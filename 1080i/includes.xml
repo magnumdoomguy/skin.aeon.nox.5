@@ -58,6 +58,384 @@
     <include file="Variables.xml" />
 	<include file="Variables_MediaFlags.xml" />
 	<include file="Variables_Icons.xml" />
+	<include name="OSD_Progress_Bar2">
+        <control type="group">
+            <include>Animation_CommonFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+            <control type="image">
+                <posx>0</posx>
+                <posy>818</posy>
+                <width>1920</width>
+                <height>262</height>
+                <texture>osd/OSDdialogback.png</texture>
+                <colordiffuse>OSDBackgroundColor</colordiffuse>
+            </control>
+            <control type="progress" id="23">
+                <description>ProgressbarCache</description>
+                <posx>442</posx>
+                <posy>940</posy>
+                <width>1440</width>
+                <height>22</height>
+                <info>Player.ProgressCache</info>
+                <reveal>true</reveal>
+                <texturebg>osd/osd_progress_back.png</texturebg>
+                <lefttexture>osd/osd_progress_left.png</lefttexture>
+                <midtexture>osd/osd_progress_mid.png</midtexture>
+                <righttexture>osd/osd_progress_right.png</righttexture>
+                <colordiffuse>OSDFinishTime</colordiffuse>
+            </control>
+            <control type="progress" id="23">
+                <description>Progressbar</description>
+                <posx>442</posx>
+                <posy>940</posy>
+                <width>1440</width>
+                <height>22</height>
+                <info>Player.Progress</info>
+                <reveal>true</reveal>
+                <texturebg>osd/osd_progress_back.png</texturebg>
+                <lefttexture>osd/osd_progress_left.png</lefttexture>
+                <midtexture>osd/osd_progress_mid.png</midtexture>
+                <righttexture>osd/osd_progress_right.png</righttexture>
+                <colordiffuse>OSDProgressBar</colordiffuse>
+                <overlaytexture>-</overlaytexture>
+            </control>
+            <control type="slider" id="87">
+                <description>Seek Slider</description>
+                <posx>442</posx>
+                <posy>940</posy>
+                <width>1440</width>
+                <height>22</height>
+                <action>seek</action>
+                <visible>![Window.IsVisible(SliderDialog)]</visible>
+            </control>
+            <!-- Current position / Total Time -->
+            <control type="label">
+                <posx>1875</posx>
+                <posy>960</posy>
+                <width>375</width>
+                <height>60</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <font>METF_OSDTime</font>
+                <textcolor>OSDPlayingDuration</textcolor>
+                <label>$INFO[VideoPlayer.Time] [COLOR TextNF]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
+            </control>
+            <!-- Finish Time -->
+            <control type="label">
+                <posx>1875</posx>
+                <posy>1005</posy>
+                <width>375</width>
+                <height>60</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <font>METF_OSDTime</font>
+                <textcolor>OSDFinishTime</textcolor>
+                <label>$LOCALIZE[31409]:  $INFO[Player.FinishTime]</label>
+            </control>
+            <!-- Title -->
+            <control type="fadelabel">
+                <posx>450</posx>
+                <posy>832</posy>
+                <width>1425</width>
+                <height>60</height>
+                <font>METF_TitleTextMedium</font>
+                <textcolor>TitleText</textcolor>
+                <align>left</align>
+                <aligny>center</aligny>
+                <scrollout>false</scrollout>
+                <pauseatend>3800</pauseatend>
+                <scrollspeed>40</scrollspeed>
+                <scroll>true</scroll>
+                <label>$VAR[VideoPlayerTitle]</label>
+                <animation effect="slide" end="0,38" condition="[!VideoPlayer.Content(MusicVideos) + IsEmpty(VideoPlayer.Tagline) + !IntegerGreaterThan(Player.ChapterCount,1)] | [VideoPlayer.Content(MusicVideos) + IsEmpty(VideoPlayer.Artist) + IsEmpty(VideoPlayer.Album)]">Conditional</animation>
+            </control>
+            <!-- Chapter Info, Movie Tagline, or Music Video Artist/Album -->
+            <control type="fadelabel">
+                <posx>450</posx>
+                <posy>885</posy>
+                <width>1425</width>
+                <height>45</height>
+                <font>METF_PlotText</font>
+                <textcolor>TextFO</textcolor>
+                <align>left</align>
+                <aligny>center</aligny>
+                <scroll>true</scroll>
+                <scrollout>false</scrollout>
+                <pauseatend>3800</pauseatend>
+                <scrollspeed>40</scrollspeed>
+                <label>$VAR[VideoPlayerTitle2]</label>
+            </control>
+            <control type="group">
+                <visible>!SubString(Player.FolderPath,http,Left)</visible>
+                <!-- TV Show Poster / Logo / Clearart -->
+                <control type="image">
+                    <description>TV Show Thumbnail</description>
+                    <posx>60</posx>
+                    <posy>590</posy>
+                    <width>306</width>
+                    <height>450</height>
+                    <texture background="true">$INFO[Player.Art(tvshow.poster)]</texture>
+                    <aspectratio scalediffuse="false">stretch</aspectratio>
+                    <visible>VideoPlayer.Content(Episodes) + !SubString(VideoPlayer.Cover,default) + !Skin.HasSetting(Enable_OSDClearArt)</visible>
+                </control>
+                <control type="image">
+                    <description>TV Show Thumbnail Frame</description>
+                    <posx>28</posx>
+                    <posy>550</posy>
+                    <width>380</width>
+                    <height>514</height>
+                    <texture>frames/ClassicFrame_PosterSmall.png</texture>
+                    <visible>VideoPlayer.Content(Episodes) + !SubString(VideoPlayer.Cover,default) + !Skin.HasSetting(Enable_OSDClearArt)</visible>
+                </control>
+                <control type="image">
+                    <description>TV Show Clear Art/Logo</description>
+                    <posx>38</posx>
+                    <posy>675</posy>
+                    <width>375</width>
+                    <height>345</height>
+                    <texture background="true">$VAR[PlayerTVShowClearartClearlogo]</texture>
+                    <aspectratio align="center" aligny="bottom">keep</aspectratio>
+                    <visible>Skin.HasSetting(Enable_OSDClearArt) + VideoPlayer.Content(Episodes)</visible>
+                </control>
+                <!-- Movie Poster -->
+                <control type="image">
+                    <description>Movie Poster</description>
+                    <posx>60</posx>
+                    <posy>590</posy>
+                    <width>306</width>
+                    <height>450</height>
+                    <texture background="true">$INFO[VideoPlayer.Cover]</texture>
+                    <aspectratio scalediffuse="false">stretch</aspectratio>
+                    <visible>VideoPlayer.Content(Movies) + !SubString(VideoPlayer.Cover,default)</visible>
+                </control>
+                <control type="image">
+                    <description>Movie Poster Frame</description>
+                    <posx>28</posx>
+                    <posy>550</posy>
+                    <width>380</width>
+                    <height>514</height>
+                    <texture>frames/ClassicFrame_PosterSmall.png</texture>
+                    <visible>VideoPlayer.Content(Movies) + !SubString(VideoPlayer.Cover,default)</visible>
+                </control>
+                <!-- Music Video Thumbnail -->
+                <control type="image">
+                    <description>Music Video Thumbnail</description>
+                    <posx>38</posx>
+                    <posy>846</posy>
+                    <width>375</width>
+                    <height>210</height>
+                    <aspectratio align="right" aligny="center">keep</aspectratio>
+                    <bordertexture border="6">frames/thumb_border.png</bordertexture>
+                    <bordersize>6</bordersize>
+                    <texture diffuse="frames/EpisodeMatte.png">$INFO[VideoPlayer.Cover]</texture>
+                    <visible>VideoPlayer.Content(MusicVideos) + !SubString(VideoPlayer.Cover,default)</visible>
+                </control>
+                <!-- LiveTV Channel Icon -->
+                <control type="image">
+                    <description>LiveTV Channel</description>
+                    <posx>105</posx>
+                    <posy>840</posy>
+                    <width>225</width>
+                    <height>225</height>
+                    <aspectratio aligny="bottom">keep</aspectratio>
+                    <info>VideoPlayer.Cover</info>
+                    <visible>VideoPlayer.Content(LiveTV)</visible>
+                </control>
+            </control>
+            <control type="group">
+                <visible>SubString(Player.FolderPath,http,Left)</visible>
+                <!-- Default Thumbnail -->
+                <control type="image">
+                    <description>Default Thumbnail</description>
+                    <posx>38</posx>
+                    <posy>846</posy>
+                    <width>375</width>
+                    <height>210</height>
+                    <aspectratio align="right" aligny="center">keep</aspectratio>
+                    <bordertexture border="6">frames/thumb_border.png</bordertexture>
+                    <bordersize>6</bordersize>
+                    <texture diffuse="frames/EpisodeMatte.png">$INFO[VideoPlayer.Cover]</texture>
+                    <visible>!SubString(VideoPlayer.Cover,default)</visible>
+                </control>
+            </control>
+        </control>
+    </include>
+	<include name="OSD_Player_Details">
+        <control type="group">
+            <include>Animation_CommonFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),5)">Animation_FadeOSD5</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),10)">Animation_FadeOSD10</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),15)">Animation_FadeOSD15</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),20)">Animation_FadeOSD20</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),25)">Animation_FadeOSD25</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),30)">Animation_FadeOSD30</include>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[112][/UPPERCASE]</label>
+                <visible>Player.Paused</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31159][/UPPERCASE]</label>
+                <visible>Player.Forwarding2x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31160][/UPPERCASE]</label>
+                <visible>Player.Forwarding4x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31161][/UPPERCASE]</label>
+                <visible>Player.Forwarding8x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31162][/UPPERCASE]</label>
+                <visible>Player.Forwarding16x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31163][/UPPERCASE]</label>
+                <visible>Player.Forwarding32x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31164][/UPPERCASE]</label>
+                <visible>Player.Rewinding2x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31165][/UPPERCASE]</label>
+                <visible>Player.Rewinding4x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31166][/UPPERCASE]</label>
+                <visible>Player.Rewinding8x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31167][/UPPERCASE]</label>
+                <visible>Player.Rewinding16x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31168][/UPPERCASE]</label>
+                <visible>Player.Rewinding32x</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$LOCALIZE[31244][/UPPERCASE]</label>
+                <visible>Player.Playing + ![Player.SeekBar | Player.DisplayAfterSeek]</visible>
+            </control>
+            <control type="label">
+                <include>OSD_Player_Labels</include>
+                <label>[UPPERCASE]$INFO[Player.SeekOffset][/UPPERCASE]</label>
+                <visible>!Player.Paused + Player.DisplayAfterSeek</visible>
+            </control>
+        </control>
+    </include>
+	<include name="OSD_Player_Time">
+        <control type="label" id="0">
+            <include>OSD_Player_Labels_Left</include>
+            <label>$INFO[System.Time]</label>
+            <include>Animation_CommonFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),5)">Animation_FadeOSD5</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),10)">Animation_FadeOSD10</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),15)">Animation_FadeOSD15</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),20)">Animation_FadeOSD20</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),25)">Animation_FadeOSD25</include>
+            <include condition="StringCompare(Skin.String(OSDFade),Complete) + StringCompare(Skin.String(OSDFadeTime),30)">Animation_FadeOSD30</include>
+        </control>
+    </include>
+	<include name="OSD_Player_Banner">
+        <control type="group">
+            <posx>0</posx>
+            <posy>0</posy>
+            <include>Animation_OpenCloseFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+            <include condition="!StringCompare(Skin.String(OSDFade),Disabled) + StringCompare(Skin.String(OSDFadeTime),5)">Animation_FadeOSD5</include>
+            <include condition="!StringCompare(Skin.String(OSDFade),Disabled) + StringCompare(Skin.String(OSDFadeTime),10)">Animation_FadeOSD10</include>
+            <include condition="!StringCompare(Skin.String(OSDFade),Disabled) + StringCompare(Skin.String(OSDFadeTime),15)">Animation_FadeOSD15</include>
+            <include condition="!StringCompare(Skin.String(OSDFade),Disabled) + StringCompare(Skin.String(OSDFadeTime),20)">Animation_FadeOSD20</include>
+            <include condition="!StringCompare(Skin.String(OSDFade),Disabled) + StringCompare(Skin.String(OSDFadeTime),25)">Animation_FadeOSD25</include>
+            <include condition="!StringCompare(Skin.String(OSDFade),Disabled) + StringCompare(Skin.String(OSDFadeTime),30)">Animation_FadeOSD30</include>
+            <!-- Background Image -->
+            <control type="image">
+                <width>1920</width>
+                <height>120</height>
+                <texture>osd/OSDdialogback_top.png</texture>
+                <colordiffuse>OSDBackgroundColor</colordiffuse>
+            </control>
+            <control type="group">
+                <posx>338</posx>
+                <posy>9</posy>
+                <visible>Window.IsActive(FullscreenInfo) | [Player.SeekBar + !Skin.HasSetting(Slim_Seekbar)]</visible>
+                <!-- Plot -->
+                <control type="textbox">
+                    <width>1245</width>
+                    <height>99</height>
+                    <align>justify</align>
+                    <font>METF_PlotTextSmall</font>
+                    <textcolor>TextNF</textcolor>
+                    <label>$INFO[VideoPlayer.Plot]</label>
+                    <include condition="!Skin.HasSetting(AutoScrollFast)">AutoScrollShort</include>
+                    <include condition="Skin.HasSetting(AutoScrollFast)">AutoScrollShortFast</include>
+                    <visible>Skin.HasSetting(ShowVideoPlotFullscreen) + !IsEmpty(VideoPlayer.Plot)</visible>
+                </control>
+                <control type="grouplist">
+                    <orientation>vertical</orientation>
+                    <itemgap>0</itemgap>
+                    <visible>!Skin.HasSetting(ShowVideoPlotFullscreen) | IsEmpty(VideoPlayer.Plot)</visible>
+                    <!-- Director -->
+                    <control type="grouplist">
+                        <width>1245</width>
+                        <height>36</height>
+                        <align>center</align>
+                        <orientation>horizontal</orientation>
+                        <itemgap>12</itemgap>
+                        <visible>!IsEmpty(VideoPlayer.Director)</visible>
+                        <control type="label">
+                            <width max="1245">auto</width>
+                            <font>METF_PlotTextSmall</font>
+                            <textcolor>TextFO</textcolor>
+                            <label>[B]$LOCALIZE[20339]:[/B]</label>
+                        </control>
+                        <control type="label">
+                            <width max="1245">auto</width>
+                            <font>METF_PlotTextSmall</font>
+                            <textcolor>TextNF</textcolor>
+                            <label>$INFO[VideoPlayer.Director]</label>
+                        </control>
+                    </control>
+                    <!-- Genre -->
+                    <control type="grouplist">
+                        <width>1245</width>
+                        <height>36</height>
+                        <align>center</align>
+                        <orientation>horizontal</orientation>
+                        <itemgap>12</itemgap>
+                        <visible>!IsEmpty(VideoPlayer.Genre)</visible>
+                        <control type="label">
+                            <width max="1245">auto</width>
+                            <font>METF_PlotTextSmall</font>
+                            <textcolor>TextFO</textcolor>
+                            <label>[B]$LOCALIZE[515]:[/B]</label>
+                        </control>
+                        <control type="label">
+                            <width max="1245">auto</width>
+                            <font>METF_PlotTextSmall</font>
+                            <textcolor>TextNF</textcolor>
+                            <label>$INFO[VideoPlayer.Genre]</label>
+                        </control>
+                    </control>
+                </control>
+            </control>
+        </control>
+    </include>
 	
 	<!-- Constants -->
     <constant name="FanartCrossfadeTime">500</constant>

@@ -1,145 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window>
-	<coordinates>
-		<system>1</system>
-		<posx>0</posx>
-		<posy>0</posy>
-	</coordinates>
-	<onload>SetFocus(602)</onload>
-	<controls>
-		<control type="slider">
-			<description>Seek Slider</description>
-			<posx>0</posx>
-			<posy>1014</posy>
-			<width>1920</width>
-			<height>64</height>
-			<texturesliderbar>seekslider2.png</texturesliderbar>
-			<textureslidernib>-</textureslidernib>
-			<textureslidernibfocus>-</textureslidernibfocus>
-			<action>seek</action>
-		</control>
-		<control type="group">
-			<animation effect="slide" end="0,-238" time="240" tween="quadratic" condition="Window.IsVisible(SliderDialog) | Window.IsVisible(OSDVideoSettings) | Window.IsVisible(OSDAudioSettings) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1118)">Conditional</animation>
-			<animation effect="slide" start="0,-238" end="0,0" time="240" tween="quadratic">WindowOpen</animation>
-			<animation effect="slide" end="0,-238" start="0,0" time="240" tween="quadratic">WindowClose</animation>
-			<posy>0</posy>
-			<control type="image">
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>136</height>
-				<texture colordiffuse="E6FFFFFF" border="1,1,1,40">topbar.png</texture>
-			</control>
-			<control type="grouplist" id="202">
-				<posy>0</posy>
-				<height>144</height>
-				<width>1920</width>
-				<align>center</align>
-				<itemgap>0</itemgap>
-				<scrolltime tween="sine">200</scrolltime>
-				<orientation>horizontal</orientation>
-				<onup>703</onup>
-				<ondown>701</ondown>
-				<onleft>202</onleft>
-				<onright>202</onright>
-				<control type="button" id="701">
-					<texturefocus>osd/buttons/OSDAudioFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDAudioNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>ActivateWindow(osdaudiosettings)</onclick>
-				</control>
-				<control type="button" id="702">
-					<texturefocus>osd/buttons/OSDVideoFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDVideoNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>ActivateWindow(osdvideosettings)</onclick>
-				</control>
-				<control type="button" id="600">
-					<texturefocus>osd/buttons/OSDPrevTrackFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDPrevTrackNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>PlayerControl(Previous)</onclick>
-				</control>
-				<control type="button" id="601">
-					<texturefocus>osd/buttons/OSDRewindFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDRewindNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>PlayerControl(Rewind)</onclick>
-				</control>
-				<control type="togglebutton" id="602">
-					<texturefocus>osd/buttons/OSDPauseFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDPauseNF.png</texturenofocus>
-					<alttexturefocus>osd/buttons/OSDPlayFO.png</alttexturefocus>
-					<alttexturenofocus>osd/buttons/OSDPlayNF.png</alttexturenofocus>
-					<label>-</label>
-					<altlabel>208</altlabel>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
-					<onclick>PlayerControl(Play)</onclick>
-				</control>
-				<control type="button" id="603">
-					<texturefocus>osd/buttons/OSDStopFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDStopNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>PlayerControl(Stop)</onclick>
-				</control>
-				<control type="button" id="604">
-					<texturefocus>osd/buttons/OSDForwardFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDForwardNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>PlayerControl(Forward)</onclick>
-				</control>
-				<control type="button" id="605">
-					<texturefocus>osd/buttons/OSDNextTrackFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDNextTrackNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>PlayerControl(Next)</onclick>
-				</control>
-				<control type="button" id="704">
-					<texturefocus>osd/buttons/OSDDvdFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDDvdNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>PlayerControl(ShowVideoMenu)</onclick>
-					<visible>VideoPlayer.HasMenu</visible>
-				</control>
-				<control type="button" id="705">
-					<texturefocus>osd/buttons/OSDStereoscopicFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDStereoscopicNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>StereoMode</onclick>
-					<visible>VideoPlayer.IsStereoscopic</visible>
-				</control>
-				
-			</control>
-		</control>
-	</controls>
+<window id="2901">
+    <defaultcontrol always="true">410</defaultcontrol>
+    <controls>
+        <control type="button" id="410">
+            <onfocus>Dialog.Close(FullscreenInfo)</onfocus>
+            <onfocus condition="!Skin.HasSetting(OneButtonSubtitles) + IsEmpty(Skin.String(SubtitlesPath)) + SubString(Skin.String(DefaultOSD),714)">SetFocus(14)</onfocus>
+            <onfocus condition="!Skin.HasSetting(OneButtonSubtitles) + !IsEmpty(Skin.String(SubtitlesPath)) + SubString(Skin.String(DefaultOSD),714)">SetFocus(17)</onfocus>
+            <onfocus condition="Skin.HasSetting(OneButtonSubtitles) + !VideoPlayer.HasSubtitles + SubString(Skin.String(DefaultOSD),714)">SetFocus(15)</onfocus>
+            <onfocus condition="Skin.HasSetting(OneButtonSubtitles) + VideoPlayer.HasSubtitles + SubString(Skin.String(DefaultOSD),714)">SetFocus(16)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),711)">SetFocus(11)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),712)">SetFocus(12)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),79)">SetFocus(9)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),73)">SetFocus(3)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),75)">SetFocus(5)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),74)">SetFocus(4)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),76)">SetFocus(6)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),710)">SetFocus(10)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),713)">SetFocus(13)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),800)">SetFocus(800)</onfocus>
+            <onfocus condition="SubString(Skin.String(DefaultOSD),801)">SetFocus(801)</onfocus>
+            <onfocus condition="!SubString(Skin.String(DefaultOSD),714) + !SubString(Skin.String(DefaultOSD),713) + !SubString(Skin.String(DefaultOSD),710) + !SubString(Skin.String(DefaultOSD),76) + !SubString(Skin.String(DefaultOSD),74) + !SubString(Skin.String(DefaultOSD),75) + !SubString(Skin.String(DefaultOSD),73) + !SubString(Skin.String(DefaultOSD),79) + !SubString(Skin.String(DefaultOSD),712) + !SubString(Skin.String(DefaultOSD),711) + !SubString(Skin.String(DefaultOSD),800) + !SubString(Skin.String(DefaultOSD),801)">SetFocus(4)</onfocus>
+        </control>
+        <control type="group">
+            <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks)]</visible>
+            <include>Animation_OpenCloseFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+            <include>OSD_Player_Banner</include>
+            <include>OSD_Progress_Bar2</include>
+            <include>OSD_Player_Details</include>
+            <include>OSD_Player_Time</include>
+            <control type="grouplist" id="2001">
+                <posx>438</posx>
+                <posy>975</posy>
+                <width>1162</width>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <onleft>800</onleft>
+                <onright>11</onright>
+                <onup>Close</onup>
+                <ondown>Close</ondown>
+                <control type="button" id="11">
+                    <description>Playlists</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_playlist_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_playlist_nf.png</texturenofocus>
+                    <onclick>ActivateWindow(videoplaylist)</onclick>
+                </control>
+                <control type="button" id="12">
+                    <description>Bookmarks</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_book_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_book_nf.png</texturenofocus>
+                    <onclick>ActivateWindow(videobookmarks)</onclick>
+                </control>
+                <control type="button" id="14">
+                    <description>OSD Subtitles</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_sub_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_sub_nf.png</texturenofocus>
+                    <onclick>Close</onclick>
+                    <onclick>Dialog.Close(VideoOSD)</onclick>
+                    <onclick>ActivateWindow(SubtitleSearch)</onclick>
+                    <visible>!Skin.HasSetting(OneButtonSubtitles) + IsEmpty(Skin.String(SubtitlesPath))</visible>
+                </control>
+                <control type="button" id="17">
+                    <description>OSD Subtitles</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_sub_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_sub_nf.png</texturenofocus>
+                    <onclick>Close</onclick>
+                    <onclick>Dialog.Close(VideoOSD)</onclick>
+                    <onclick>ActivateWindow(SubtitleSearch)</onclick>
+                    <visible>!Skin.HasSetting(OneButtonSubtitles) + !IsEmpty(Skin.String(SubtitlesPath))</visible>
+                </control>
+                <control type="button" id="15">
+                    <description>One Button OSD Subtitles</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_sub_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_sub_nf.png</texturenofocus>
+                    <onclick>Close</onclick>
+                    <onclick>Dialog.Close(VideoOSD)</onclick>
+                    <onclick>ActivateWindow(SubtitleSearch)</onclick>
+                    <visible>Skin.HasSetting(OneButtonSubtitles) + !VideoPlayer.HasSubtitles</visible>
+                </control>
+                <control type="button" id="16">
+                    <description>One Button OSD Subtitles</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_sub_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_sub_nf.png</texturenofocus>
+                    <onclick>Dialog.Close(VideoOSD,true)</onclick>
+                    <onclick>ShowSubtitles</onclick>
+                    <visible>Skin.HasSetting(OneButtonSubtitles) + VideoPlayer.HasSubtitles</visible>
+                </control>
+                <control type="button" id="7">
+                    <description>DVD Menu</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_dvd_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_dvd_nf.png</texturenofocus>
+                    <onclick>PlayerControl(ShowVideoMenu)</onclick>
+                    <visible>VideoPlayer.HasMenu</visible>
+                </control>
+                <control type="button" id="9">
+                    <description>Previous</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_prev_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_prev_nf.png</texturenofocus>
+                    <onclick>PlayerControl(Previous)</onclick>
+                </control>
+                <control type="button" id="3">
+                    <description>Rewind</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_rew_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_rew_nf.png</texturenofocus>
+                    <onclick>PlayerControl(rewind)</onclick>
+                </control>
+                <control type="button" id="5">
+                    <description>Stop</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_stop_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_stop_nf.png</texturenofocus>
+                    <onclick>PlayerControl(stop)</onclick>
+                </control>
+                <control type="togglebutton" id="4">
+                    <description>Play</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_pause_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_pause_nf.png</texturenofocus>
+                    <usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+                    <alttexturefocus>osd/osd_button_play_fo.png</alttexturefocus>
+                    <alttexturenofocus>osd/osd_button_play_nf.png</alttexturenofocus>
+                    <disabledcolor>-</disabledcolor>
+                    <colordiffuse>-</colordiffuse>
+                    <onclick>PlayerControl(play)</onclick>
+                </control>
+                <control type="button" id="6">
+                    <description>Forward</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_ff_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_ff_nf.png</texturenofocus>
+                    <onclick>PlayerControl(forward)</onclick>
+                </control>
+                <control type="button" id="10">
+                    <description>Next</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_next_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_next_nf.png</texturenofocus>
+                    <onclick>PlayerControl(Next)</onclick>
+                </control>
+                <control type="button" id="801">
+                    <description>Repeat</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <label>-</label>
+                    <texturefocus>-</texturefocus>
+                    <texturenofocus>-</texturenofocus>
+                    <onclick>PlayerControl(Repeat)</onclick>
+                </control>
+                <control type="group" id="802">
+                    <control type="image">
+                        <posx>-90</posx>
+                        <height>90</height>
+                        <width>90</width>
+                        <texture>osd/osd_button_repeat_nf.png</texture>
+                        <visible>!Playlist.IsRepeat | !Playlist.IsRepeatOne</visible>
+                        <visible>!Control.HasFocus(801)</visible>
+                    </control>
+                    <control type="image">
+                        <posx>-90</posx>
+                        <height>90</height>
+                        <width>90</width>
+                        <texture>osd/osd_button_repeat_fo.png</texture>
+                        <visible>!Playlist.IsRepeat + !Playlist.IsRepeatOne</visible>
+                        <visible>Control.HasFocus(801)</visible>
+                    </control>
+                    <control type="image">
+                        <posx>-90</posx>
+                        <height>90</height>
+                        <width>90</width>
+                        <texture>osd/osd_button_repeat_one_nf.png</texture>
+                        <visible>Playlist.IsRepeatOne</visible>
+                        <visible>!Control.HasFocus(801)</visible>
+                    </control>
+                    <control type="image">
+                        <posx>-90</posx>
+                        <height>90</height>
+                        <width>90</width>
+                        <texture>osd/osd_button_repeat_one_fo.png</texture>
+                        <visible>Playlist.IsRepeatOne</visible>
+                        <visible>Control.HasFocus(801)</visible>
+                    </control>
+                    <control type="image">
+                        <posx>-90</posx>
+                        <height>90</height>
+                        <width>90</width>
+                        <texture>osd/osd_button_repeat_all_nf.png</texture>
+                        <visible>Playlist.IsRepeat</visible>
+                        <visible>!Control.HasFocus(801)</visible>
+                    </control>
+                    <control type="image">
+                        <posx>-90</posx>
+                        <height>90</height>
+                        <width>90</width>
+                        <texture>osd/osd_button_repeat_all_fo.png</texture>
+                        <visible>Playlist.IsRepeat</visible>
+                        <visible>Control.HasFocus(801)</visible>
+                    </control>
+                </control>
+                <control type="button" id="13">
+                    <description>Video Settings</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_settings_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_settings_nf.png</texturenofocus>
+                    <onclick>ActivateWindow(osdvideosettings)</onclick>
+                </control>
+                <control type="button" id="800">
+                    <description>Audio Settings</description>
+                    <include>Animation_ButtonFocus</include>
+                    <height>90</height>
+                    <width>90</width>
+                    <texturefocus>osd/osd_button_audio_fo.png</texturefocus>
+                    <texturenofocus>osd/osd_button_audio_nf.png</texturenofocus>
+                    <onclick>ActivateWindow(osdaudiosettings)</onclick>
+                </control>
+            </control>
+        </control>
+        
+        
+    </controls>
 </window>
