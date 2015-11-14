@@ -58,17 +58,17 @@
     <include file="Variables.xml" />
 	<include file="Variables_MediaFlags.xml" />
 	<include file="Variables_Icons.xml" />
+	
 	<include name="OSD_Progress_Bar2">
         <control type="group">
-            <include>Animation_CommonFade</include>
             <include>Animation_FadedByOSDSettings</include>
             <control type="image">
                 <posx>0</posx>
                 <posy>818</posy>
                 <width>1920</width>
                 <height>262</height>
-                <texture>osd/OSDdialogback.png</texture>
-                <colordiffuse>OSDBackgroundColor</colordiffuse>
+                <texture flipy="true" border="1,40,1,1">topbar.png</texture>
+                <colordiffuse>E6FFFFFF</colordiffuse>
             </control>
             <control type="progress" id="23">
                 <description>ProgressbarCache</description>
@@ -356,7 +356,8 @@
         <control type="group">
             <posx>0</posx>
             <posy>0</posy>
-            <include>Animation_OpenCloseFade</include>
+            <animation effect="slide" start="0,-90" end="0,0" time="480">WindowOpen</animation>
+            <animation effect="slide" end="0,-90" start="0,0" time="480">WindowClose</animation>
             <include>Animation_FadedByOSDSettings</include>
             <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42100])">Animation_FadeOSD5</include>
             <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42101])">Animation_FadeOSD10</include>
@@ -367,74 +368,11 @@
             
 			<!-- Background Image -->
             <control type="image">
+                <posx>0</posx>
+                <posy>0</posy>
                 <width>1920</width>
-                <height>120</height>
-                <texture>osd/OSDdialogback_top.png</texture>
-                <colordiffuse>OSDBackgroundColor</colordiffuse>
-            </control>
-            <control type="group">
-                <posx>338</posx>
-                <posy>9</posy>
-                <visible>Window.IsActive(FullscreenInfo) | [Player.SeekBar + !Skin.HasSetting(Slim_Seekbar)]</visible>
-                <!-- Plot -->
-                <control type="textbox">
-                    <width>1245</width>
-                    <height>99</height>
-                    <align>justify</align>
-                    <font>METF_PlotTextSmall</font>
-                    <textcolor>TextNF</textcolor>
-                    <label>$INFO[VideoPlayer.Plot]</label>
-                    <include condition="!Skin.HasSetting(AutoScrollFast)">AutoScrollShort</include>
-                    <include condition="Skin.HasSetting(AutoScrollFast)">AutoScrollShortFast</include>
-                    <visible>Skin.HasSetting(ShowVideoPlotFullscreen) + !IsEmpty(VideoPlayer.Plot)</visible>
-                </control>
-                <control type="grouplist">
-                    <orientation>vertical</orientation>
-                    <itemgap>0</itemgap>
-                    <visible>!Skin.HasSetting(ShowVideoPlotFullscreen) | IsEmpty(VideoPlayer.Plot)</visible>
-                    <!-- Director -->
-                    <control type="grouplist">
-                        <width>1245</width>
-                        <height>36</height>
-                        <align>center</align>
-                        <orientation>horizontal</orientation>
-                        <itemgap>12</itemgap>
-                        <visible>!IsEmpty(VideoPlayer.Director)</visible>
-                        <control type="label">
-                            <width max="1245">auto</width>
-                            <font>METF_PlotTextSmall</font>
-                            <textcolor>TextFO</textcolor>
-                            <label>[B]$LOCALIZE[20339]:[/B]</label>
-                        </control>
-                        <control type="label">
-                            <width max="1245">auto</width>
-                            <font>METF_PlotTextSmall</font>
-                            <textcolor>TextNF</textcolor>
-                            <label>$INFO[VideoPlayer.Director]</label>
-                        </control>
-                    </control>
-                    <!-- Genre -->
-                    <control type="grouplist">
-                        <width>1245</width>
-                        <height>36</height>
-                        <align>center</align>
-                        <orientation>horizontal</orientation>
-                        <itemgap>12</itemgap>
-                        <visible>!IsEmpty(VideoPlayer.Genre)</visible>
-                        <control type="label">
-                            <width max="1245">auto</width>
-                            <font>METF_PlotTextSmall</font>
-                            <textcolor>TextFO</textcolor>
-                            <label>[B]$LOCALIZE[515]:[/B]</label>
-                        </control>
-                        <control type="label">
-                            <width max="1245">auto</width>
-                            <font>METF_PlotTextSmall</font>
-                            <textcolor>TextNF</textcolor>
-                            <label>$INFO[VideoPlayer.Genre]</label>
-                        </control>
-                    </control>
-                </control>
+                <height>66</height>
+                <texture border="1">topbar.png</texture>
             </control>
         </control>
     </include>
