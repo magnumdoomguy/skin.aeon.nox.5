@@ -61,7 +61,14 @@
 	
 	<include name="OSD_Progress_Bar2">
         <control type="group">
+			<include>VisibleFadeEffect</include>
             <include>Animation_FadedByOSDSettings</include>
+            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42100])">Animation_FadeOSD5</include>
+            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42101])">Animation_FadeOSD10</include>
+            <include condition="!IsEmpty(Skin.String(OSDFade)) + IsEmpty(Skin.String(OSDFadeTime))">Animation_FadeOSD15</include>
+            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42097])">Animation_FadeOSD20</include>
+            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42098])">Animation_FadeOSD25</include>
+            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42099])">Animation_FadeOSD30</include>
             <control type="image">
                 <posx>0</posx>
                 <posy>777</posy>
@@ -356,6 +363,19 @@
                 <height>66</height>
                 <texture border="1">topbar.png</texture>
             </control>
+			
+			<control type="label">
+                <width>900</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>left</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>$VAR[OSDStatus]</label>
+            </control>
+			
         </control>
     </include>
 	
