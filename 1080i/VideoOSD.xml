@@ -20,7 +20,7 @@
             <onfocus condition="IsEmpty(Skin.String(DefaultOSD))">SetFocus(4)</onfocus>
         </control>
         <control type="group">
-            <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks)]</visible>
+            <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115)]</visible>
             <include>Animation_OpenCloseFade</include>
             <include>Animation_FadedByOSDSettings</include>
             <include>OSD_Player_Banner</include>
@@ -33,8 +33,8 @@
                 <orientation>horizontal</orientation>
                 <onleft>709</onleft>
                 <onright>11</onright>
-                <onup>Close</onup>
-                <ondown>Close</ondown>
+                <onup>noop</onup>
+                <ondown>noop</ondown>
 				
 				<!-- OSD Playlist Button -->
                 <control type="button" id="11">
@@ -67,7 +67,6 @@
                     <texturefocus>osd/buttons/osdsubtitlesfo.png</texturefocus>
                     <texturenofocus>osd/buttons/osdsubtitlesnf.png</texturenofocus>
                     <onclick>ActivateWindow(10204)</onclick>
-                    <visible>!Skin.HasSetting(OneButtonSubtitles)</visible>
                 </control>
 				
 				<!-- OSD Previous Button -->
@@ -171,9 +170,7 @@
 					<width>100</width>
 					<height>100</height>
 					<font>-</font>
-					<onclick>Dialog.Close(videoosd)</onclick>
 					<onclick>ActivateWindow(1115)</onclick>
-					<onclick>SetProperty(OSD.Settings,True,home)</onclick>
 				</control>
             </control>
 			
@@ -190,7 +187,7 @@
 				</animation>
 				<posx>867</posx>
 				<posy>447</posy>
-				<visible>Player.Paused + !Player.Seeking + !Player.Caching</visible>
+				<visible>Player.Paused + !Player.Seeking + !Player.Caching + !Skin.HasSetting(DisablePauseSymbol)</visible>
 				
 				<control type="image">
 					<posx>0</posx>
