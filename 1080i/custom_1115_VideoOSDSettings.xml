@@ -44,8 +44,8 @@
 			<pagecontrol>6</pagecontrol>
 			<onup>90200</onup>
 			<ondown>90200</ondown>
-			<onleft>9001</onleft>
-			<onright>6</onright>
+			<onleft>noop</onleft>
+			<onright>9001</onright>
 			
 			<!-- Fade OSD when Paused -->
 			<control type="button" id="90201">
@@ -56,7 +56,7 @@
             </control>
 			
 			<!-- Fade Delay -->
-            <control type="button" id="402">
+            <control type="button" id="90202">
                 <width>1138</width>
                 <label>$LOCALIZE[42095]</label>
                 <label2>[COLOR labelheader]$VAR[OSDFadeTimeLabel][/COLOR]</label2>
@@ -64,35 +64,17 @@
 				<enable>!IsEmpty(Skin.String(OSDFade))</enable>
             </control>
 			
-			<control type="button" id="90202">
-				<description>Clearart/clearlogo/poster</description>
-				<width>1138</width>
-				<label>$LOCALIZE[31223]</label>
-				<label2>$VAR[VideoFullscreenImagesLabelVar,[COLOR labelheader],[/COLOR]]</label2>
-				<onclick>$VAR[VideoFullscreenImagesOnClickVar]</onclick>
-			</control>
+			<!-- Default OSD Button -->
 			<control type="button" id="90203">
-				<description>Seekbar time format</description>
-				<width>1138</width>
-				<label>$LOCALIZE[31224]</label>
-				<label2>$VAR[OSDRightLabelOnDownLabelVar,[COLOR labelheader],[/COLOR]]</label2>
-				<onclick>$VAR[OSDRightLabelOnDownVar]</onclick>
-			</control>
-			<control type="button" id="90204">
-				<description>Player time remaining label</description>
-				<width>1138</width>
-				<label>$LOCALIZE[31225]</label>
-				<label2>$VAR[PlayerTimeRemainingOnUpLabelVar,[COLOR labelheader],[/COLOR]]</label2>
-				<onclick>$VAR[PlayerTimeRemainingOnUpVar]</onclick>
-			</control>
-			<control type="radiobutton" id="90205">
-				<description>Hide Player Control Buttons</description>
-				<width>1138</width>
-				<label>Hide player control buttons</label>
-				<onclick>Skin.ToggleSetting(Disable.PlayerControlButtons)</onclick>
-				<selected>Skin.HasSetting(Disable.PlayerControlButtons)</selected>
-			</control>
+                <width>1138</width>
+                <label>$LOCALIZE[42108]</label>
+                <label2>[COLOR labelheader]$VAR[DefaultOSDButtonLabel][/COLOR]</label2>
+                <onclick>$VAR[DefaultOSDButtonSetting]</onclick>
+            </control>
+			
 		</control>
+		
+		<!-- Scrollbar -->
 		<control type="scrollbar" id="6">
 			<posx>1170</posx>
 			<posy>88</posy>
@@ -106,7 +88,8 @@
 			<showonepage>false</showonepage>
 			<orientation>vertical</orientation>
 		</control>
-		<!-- right group -->
+		
+		<!-- Right Group -->
 		<control type="group">
 			<posx>1182</posx>
 			<posy>88</posy>
