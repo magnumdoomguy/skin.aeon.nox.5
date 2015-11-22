@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="115">
 <visible>[Window.IsActive(fullscreenvideo) | Window.IsActive(Visualisation)] + !Window.IsVisible(10153)</visible>
-	<visible>![Window.IsActive(VideoOSD) | Window.IsActive(MusicOSD)] + !Window.IsActive(FullscreenInfo) + [!SubString(Window(Videos).Property(CinemaExperienceRunning),True) | [SubString(Window(Videos).Property(CinemaExperienceRunning),True) + !Player.Caching]] + [Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding]</visible>
+	<visible>![Window.IsActive(VideoOSD) | Window.IsActive(MusicOSD)] + !Window.IsActive(FullscreenInfo) + [Player.Seeking | Player.DisplayAfterSeek | Player.Forwarding | Player.Rewinding]</visible>
 	<controls>
 		<include>OSD_Player_Banner</include>
 		
@@ -16,6 +16,47 @@
 			<include condition="Skin.HasSetting(Slim_Seekbar)">OSD_Progress_Bar3</include>
 			<include condition="!Skin.HasSetting(Slim_Seekbar)">MediaInfo2</include>
 			<visible>!Player.ShowInfo + !Window.IsActive(Visualisation)</visible>
+		</control>
+		<control type="grouplist">
+			<posx>30</posx>
+			<posy>120</posy>
+			<width>748</width>
+			<height>150</height>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<include>VisibleFadeEffect</include>
+			<visible>Player.Forwarding | Player.Rewinding</visible>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<posy>3</posy>
+				<width>90</width>
+				<height>87</height>
+				<aspectratio>keep</aspectratio>
+				<texture flipx="true">osd/ff.png</texture>
+				<colordiffuse>FFe5e5e5</colordiffuse>
+				<animation effect="fade" start="100" end="60" time="800" pulse="true" condition="true">Conditional</animation>
+				<visible>Player.Rewinding</visible>
+			</control>
+			<control type="label">
+				<label>$VAR[VideoPlayerForwardRewindVar]</label>
+				<width min="10" max="300">auto</width>
+				<height>90</height>
+				<textoffsetx>0</textoffsetx>
+				<aligny>center</aligny>
+				<font>font_MainMenu</font>
+				<shadowcolor>44000000</shadowcolor>
+				<textcolor>DDe5e5e5</textcolor>
+			</control>
+			<control type="image">
+				<posy>3</posy>
+				<width>90</width>
+				<height>87</height>
+				<aspectratio>keep</aspectratio>
+				<texture>osd/ff.png</texture>
+				<colordiffuse>FFe5e5e5</colordiffuse>
+				<animation effect="fade" start="100" end="60" time="800" pulse="true" condition="true">Conditional</animation>
+				<visible>Player.Forwarding</visible>
+			</control>
 		</control>
 	</controls>
 </window>
