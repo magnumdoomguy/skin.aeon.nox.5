@@ -1,131 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window id="115">
-<visible>[Window.IsActive(fullscreenvideo) | Window.IsActive(Visualisation)] + !Window.IsVisible(10153)</visible>
-	<visible>![Window.IsActive(VideoOSD) | Window.IsActive(MusicOSD)] + !Window.IsActive(FullscreenInfo) + [Player.Seeking | Player.DisplayAfterSeek | Player.Forwarding | Player.Rewinding]</visible>
+<window>
+	<defaultcontrol>1</defaultcontrol>
+	<visible>[Window.IsActive(videoosd) | Window.IsActive(fullscreeninfo) | Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding] + !Window.IsVisible(MusicOSD) + VideoPlayer.IsFullscreen</visible>
 	<controls>
-		<include>OSD_Player_Banner</include>
-		
 		<control type="group">
-			 <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42100])">Animation_FadeOSD5</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42101])">Animation_FadeOSD10</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + IsEmpty(Skin.String(OSDFadeTime))">Animation_FadeOSD15</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42097])">Animation_FadeOSD20</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42098])">Animation_FadeOSD25</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42099])">Animation_FadeOSD30</include>
-			<include condition="!Skin.HasSetting(Slim_Seekbar)">OSD_Progress_Bar2</include> 
-			<include condition="Skin.HasSetting(Slim_Seekbar)">OSD_Progress_Bar3</include>
-			<include condition="!Skin.HasSetting(Slim_Seekbar)">MediaInfo2</include>
-			<visible>!Player.ShowInfo + !Window.IsActive(Visualisation)</visible>
-			
-			<control type="grouplist" id="2001">
-                <posx>298</posx>
-                <posy>975</posy>
-                <width>1577</width>
-                <itemgap>0</itemgap>
-                <orientation>horizontal</orientation>
-                <onleft>709</onleft>
-                <onright>11</onright>
-                <onup>noop</onup>
-                <ondown>noop</ondown>
-				
-				<!-- Fake OSD Playlist Button -->
-                <control type="image">
-                    <description>Playlists</description>
-                    <height>100</height>
-                    <width>100</width>
-					<texture>osd/buttons/osdplaylistnf.png</texture>
-                </control>  
-								
-				<!-- Fake OSD Bookmarks Button -->
-                <control type="image">
-                    <description>Bookmarks</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdbookmarksnf.png</texture>
-                </control>
-								
-				<!-- Fake OSD Subtitles Button -->
-                <control type="image">
-                    <description>OSD Subtitles</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdsubtitlesnf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Previous Button -->
-                <control type="image">
-                    <description>Previous</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdprevtracknf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Rewind Button -->
-                <control type="image">
-                    <description>Rewind</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdrewindnf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Stop Button -->
-                <control type="image">
-                    <description>Stop</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdstopnf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Pause Button -->
-                <control type="image">
-                    <description>Pause</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdpausenf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Fast Forward Button -->
-                <control type="image">
-                    <description>Forward</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdforwardnf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Next Button -->
-                <control type="image">
-                    <description>Next</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdnexttracknf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Video Settings -->
-                <control type="image">
-                    <description>Video Settings</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdvideonf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Audio Settings -->
-                <control type="image">
-                    <description>Audio Settings</description>
-                    <height>100</height>
-                    <width>100</width>
-                    <texture>osd/buttons/osdaudionf.png</texture>
-                </control>
-				
-				<!-- Fake OSD Options -->
-				<control type="image">
-					<description>OSD Options</description>
-					<width>100</width>
-					<height>100</height>
-					<texture>osd/buttons/OSDSkinNF.png</texture>
-				</control>
-            </control>
+			<posy>1014</posy>
+			<control type="image">
+				<posx>0</posx>
+				<posy>4</posy>
+				<width>1920</width>
+				<height>70</height>
+				<texture border="1,32,1,1">bottombar.png</texture>
+			</control>
+			<control type="progress">
+				<posx>0</posx>
+				<posy>27</posy>
+				<width>1920</width>
+				<height>38</height>
+				<texturebg border="2">osd/texturebg.png</texturebg>
+				<lefttexture>-</lefttexture>
+				<midtexture border="2">osd/midtexture_cache.png</midtexture>
+				<righttexture>-</righttexture>
+				<overlaytexture>-</overlaytexture>
+				<info>Player.ProgressCache</info>
+			</control>
+			<control type="progress">
+				<posx>0</posx>
+				<posy>28</posy>
+				<width>1920</width>
+				<height>35</height>
+				<texturebg border="1">osd/texturebg_cache.png</texturebg>
+				<lefttexture>-</lefttexture>
+				<midtexture border="2">osd/midtexture.png</midtexture>
+				<righttexture>-</righttexture>
+				<overlaytexture>-</overlaytexture>
+				<info>Player.Progress</info>
+				<colordiffuse>AAffffff</colordiffuse>
+			</control>
+			<control type="label">
+				<posy>24</posy>
+				<width>830</width>
+				<height>90</height>
+				<font>font14_title</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>grey2</textcolor>
+				<shadowcolor>shadow</shadowcolor>
+				<align>left</align>
+				<aligny>top</aligny>
+				<textoffsety>-2</textoffsety>
+				<label>$INFO[Player.Title]</label>
+				<scroll>true</scroll>
+			</control>
+			<control type="label">
+				<posy>24</posy>
+				<posx>0</posx>
+				<width>1920</width>
+				<height>90</height>
+				<font>font14_title</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>grey2</textcolor>
+				<shadowcolor>shadow</shadowcolor>
+				<align>center</align>
+				<aligny>top</aligny>
+				<textoffsety>-2</textoffsety>
+				<label>$VAR[SeekLabelVar]</label>
+			</control>
+			<control type="label">
+				<posy>24</posy>
+				<posx>1920</posx>
+				<width>900</width>
+				<height>90</height>
+				<font>font14_title</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>grey2</textcolor>
+				<shadowcolor>shadow</shadowcolor>
+				<align>right</align>
+				<aligny>top</aligny>
+				<textoffsety>-2</textoffsety>
+				<label>$VAR[OSDRightLabelVar]</label>
+			</control>
+			<control type="slider" id="401">
+				<description>Seek Slider</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>12</height>
+				<texturesliderbar>seekslider2.png</texturesliderbar>
+				<textureslidernib>osd_slider_nib.png</textureslidernib>
+				<textureslidernibfocus>osd_slider_nib.png</textureslidernibfocus>
+				<visible>Player.Seeking</visible>
+			</control>
 		</control>
-		
-		
+		<control type="group">
+			<animation type="WindowOpen" reversible="false">
+				<effect type="fade" start="0" end="100" time="500" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="fade" start="100" end="0" time="0" />
+			</animation>
+			<animation type="VisibleChange" reversible="false">
+				<effect type="fade" start="0" end="100" time="500" />
+			</animation>
+			<control type="image">
+				<posx>50</posx>
+				<posy>578</posy>
+				<width>284</width>
+				<height>425</height>
+				<aspectratio aligny="bottom" align="center">stretch</aspectratio>
+				<texture background="true">$VAR[PlayerPosterArtworkVar]</texture>
+				<animation effect="slide" end="818" time="0" condition="!Skin.HasSetting(ShowPlotCast) + StringCompare(Skin.String(VideoOSDImages),$LOCALIZE[31218])">Conditional</animation>
+				<animation effect="slide" end="-818" time="0" condition="!Skin.HasSetting(ShowPlotCast) + StringCompare(Skin.String(VideoOSDImages),$LOCALIZE[31219])">Conditional</animation>
+				<visible>Window.IsActive(fullscreeninfo) + !Player.Paused</visible>
+			</control>
+			
+			<!-- Display Large Pause Symbol -->
+			<control type="group">
+				<posx>867</posx>
+				<posy>447</posy>
+				<visible>Player.Paused + !Player.Seeking + !Player.Caching</visible>
+				
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>186</width>
+					<height>186</height>
+					<texture>osd/bg_play_large.png</texture>
+				</control>
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>186</width>
+					<height>186</height>
+					<texture>osd/btn_pause.png</texture>
+				</control>
+			</control>
+		</control>
+		<control type="grouplist">
+			<posx>30</posx>
+			<posy>120</posy>
+			<width>748</width>
+			<height>150</height>
+			<itemgap>10</itemgap>
+			<orientation>horizontal</orientation>
+			<include>VisibleFadeEffect</include>
+			<visible>Player.Forwarding | Player.Rewinding</visible>
+			<usecontrolcoords>true</usecontrolcoords>
+			<control type="image">
+				<posy>3</posy>
+				<width>90</width>
+				<height>87</height>
+				<aspectratio>keep</aspectratio>
+				<texture flipx="true">osd/ff.png</texture>
+				<colordiffuse>FFe5e5e5</colordiffuse>
+				<animation effect="fade" start="100" end="60" time="800" pulse="true" condition="true">Conditional</animation>
+				<visible>Player.Rewinding</visible>
+			</control>
+			<control type="label">
+				<label>$VAR[VideoPlayerForwardRewindVar]</label>
+				<width min="10" max="300">auto</width>
+				<height>90</height>
+				<textoffsetx>0</textoffsetx>
+				<aligny>center</aligny>
+				<font>font_MainMenu</font>
+				<shadowcolor>44000000</shadowcolor>
+				<textcolor>DDe5e5e5</textcolor>
+			</control>
+			<control type="image">
+				<posy>3</posy>
+				<width>90</width>
+				<height>87</height>
+				<aspectratio>keep</aspectratio>
+				<texture>osd/ff.png</texture>
+				<colordiffuse>FFe5e5e5</colordiffuse>
+				<animation effect="fade" start="100" end="60" time="800" pulse="true" condition="true">Conditional</animation>
+				<visible>Player.Forwarding</visible>
+			</control>
+		</control>
 	</controls>
 </window>
