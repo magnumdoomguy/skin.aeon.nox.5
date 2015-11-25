@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol>1</defaultcontrol>
-	<visible>[Window.IsActive(videoosd) | Window.IsActive(fullscreeninfo) | Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding] + !Window.IsVisible(MusicOSD) + VideoPlayer.IsFullscreen</visible>
+	<visible>[Player.Seeking | Player.DisplayAfterSeek] + Window.IsActive(FullScreenVideo)</visible>
 	<controls>
 		<control type="group">
 			<posy>1014</posy>
@@ -91,90 +91,7 @@
 				<visible>Player.Seeking</visible>
 			</control>
 		</control>
-		<control type="group">
-			<animation type="WindowOpen" reversible="false">
-				<effect type="fade" start="0" end="100" time="500" />
-			</animation>
-			<animation type="WindowClose" reversible="false">
-				<effect type="fade" start="100" end="0" time="0" />
-			</animation>
-			<animation type="VisibleChange" reversible="false">
-				<effect type="fade" start="0" end="100" time="500" />
-			</animation>
-			<control type="image">
-				<posx>50</posx>
-				<posy>578</posy>
-				<width>284</width>
-				<height>425</height>
-				<aspectratio aligny="bottom" align="center">stretch</aspectratio>
-				<texture background="true">$VAR[PlayerPosterArtworkVar]</texture>
-				<animation effect="slide" end="818" time="0" condition="!Skin.HasSetting(ShowPlotCast) + StringCompare(Skin.String(VideoOSDImages),$LOCALIZE[31218])">Conditional</animation>
-				<animation effect="slide" end="-818" time="0" condition="!Skin.HasSetting(ShowPlotCast) + StringCompare(Skin.String(VideoOSDImages),$LOCALIZE[31219])">Conditional</animation>
-				<visible>Window.IsActive(fullscreeninfo) + !Player.Paused</visible>
-			</control>
-			
-			<!-- Display Large Pause Symbol -->
-			<control type="group">
-				<posx>867</posx>
-				<posy>447</posy>
-				<visible>Player.Paused + !Player.Seeking + !Player.Caching</visible>
-				
-				<control type="image">
-					<posx>0</posx>
-					<posy>0</posy>
-					<width>186</width>
-					<height>186</height>
-					<texture>osd/bg_play_large.png</texture>
-				</control>
-				<control type="image">
-					<posx>0</posx>
-					<posy>0</posy>
-					<width>186</width>
-					<height>186</height>
-					<texture>osd/btn_pause.png</texture>
-				</control>
-			</control>
-		</control>
-		<control type="grouplist">
-			<posx>30</posx>
-			<posy>120</posy>
-			<width>748</width>
-			<height>150</height>
-			<itemgap>10</itemgap>
-			<orientation>horizontal</orientation>
-			<include>VisibleFadeEffect</include>
-			<visible>Player.Forwarding | Player.Rewinding</visible>
-			<usecontrolcoords>true</usecontrolcoords>
-			<control type="image">
-				<posy>3</posy>
-				<width>90</width>
-				<height>87</height>
-				<aspectratio>keep</aspectratio>
-				<texture flipx="true">osd/ff.png</texture>
-				<colordiffuse>FFe5e5e5</colordiffuse>
-				<animation effect="fade" start="100" end="60" time="800" pulse="true" condition="true">Conditional</animation>
-				<visible>Player.Rewinding</visible>
-			</control>
-			<control type="label">
-				<label>$VAR[VideoPlayerForwardRewindVar]</label>
-				<width min="10" max="300">auto</width>
-				<height>90</height>
-				<textoffsetx>0</textoffsetx>
-				<aligny>center</aligny>
-				<font>font_MainMenu</font>
-				<shadowcolor>44000000</shadowcolor>
-				<textcolor>DDe5e5e5</textcolor>
-			</control>
-			<control type="image">
-				<posy>3</posy>
-				<width>90</width>
-				<height>87</height>
-				<aspectratio>keep</aspectratio>
-				<texture>osd/ff.png</texture>
-				<colordiffuse>FFe5e5e5</colordiffuse>
-				<animation effect="fade" start="100" end="60" time="800" pulse="true" condition="true">Conditional</animation>
-				<visible>Player.Forwarding</visible>
-			</control>
-		</control>
+		
+		
 	</controls>
 </window>
