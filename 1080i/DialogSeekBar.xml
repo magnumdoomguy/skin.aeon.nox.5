@@ -1,97 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol>1</defaultcontrol>
-	<visible>[Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Player.Forwarding + !Player.Rewinding</visible>
+	<visible>[Window.IsActive(VideoOSD) | Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Player.Forwarding + !Player.Rewinding</visible>
+	<zorder>1</zorder>
 	<controls>
 		<control type="group">
-			<posy>1014</posy>
-			<control type="image">
-				<posx>0</posx>
-				<posy>4</posy>
-				<width>1920</width>
-				<height>70</height>
-				<texture border="1,32,1,1">bottombar.png</texture>
-			</control>
-			<control type="progress">
-				<posx>0</posx>
-				<posy>27</posy>
-				<width>1920</width>
-				<height>38</height>
-				<texturebg border="2">osd/texturebg.png</texturebg>
-				<lefttexture>-</lefttexture>
-				<midtexture border="2">osd/midtexture_cache.png</midtexture>
-				<righttexture>-</righttexture>
-				<overlaytexture>-</overlaytexture>
-				<info>Player.ProgressCache</info>
-			</control>
-			<control type="progress">
-				<posx>0</posx>
-				<posy>28</posy>
-				<width>1920</width>
-				<height>35</height>
-				<texturebg border="1">osd/texturebg_cache.png</texturebg>
-				<lefttexture>-</lefttexture>
-				<midtexture border="2">osd/midtexture.png</midtexture>
-				<righttexture>-</righttexture>
-				<overlaytexture>-</overlaytexture>
-				<info>Player.Progress</info>
-				<colordiffuse>AAffffff</colordiffuse>
-			</control>
-			<control type="label">
-				<posy>24</posy>
-				<width>830</width>
-				<height>90</height>
-				<font>font14_title</font>
-				<textoffsetx>15</textoffsetx>
-				<textcolor>grey2</textcolor>
-				<shadowcolor>shadow</shadowcolor>
-				<align>left</align>
-				<aligny>top</aligny>
-				<textoffsety>-2</textoffsety>
-				<label>$INFO[Player.Title]</label>
-				<scroll>true</scroll>
-			</control>
-			<control type="label">
-				<posy>24</posy>
-				<posx>0</posx>
-				<width>1920</width>
-				<height>90</height>
-				<font>font14_title</font>
-				<textoffsetx>15</textoffsetx>
-				<textcolor>grey2</textcolor>
-				<shadowcolor>shadow</shadowcolor>
-				<align>center</align>
-				<aligny>top</aligny>
-				<textoffsety>-2</textoffsety>
-				<label>$VAR[SeekLabelVar]</label>
-			</control>
-			<control type="label">
-				<posy>24</posy>
-				<posx>1920</posx>
-				<width>900</width>
-				<height>90</height>
-				<font>font14_title</font>
-				<textoffsetx>15</textoffsetx>
-				<textcolor>grey2</textcolor>
-				<shadowcolor>shadow</shadowcolor>
-				<align>right</align>
-				<aligny>top</aligny>
-				<textoffsety>-2</textoffsety>
-				<label>$VAR[OSDRightLabelVar]</label>
-			</control>
-			<control type="slider" id="401">
-				<description>Seek Slider</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>12</height>
-				<texturesliderbar>seekslider2.png</texturesliderbar>
-				<textureslidernib>osd_slider_nib.png</textureslidernib>
-				<textureslidernibfocus>osd_slider_nib.png</textureslidernibfocus>
-				<visible>Player.Seeking</visible>
-			</control>
+			<include>Animation_OpenCloseFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+			<include>OSD_Player_Banner</include>
+			<include>OSD_Progress_Bar2</include> 
+			<include>MediaInfo2</include>
+			
+			
 		</control>
 		
+		<control type="grouplist" id="2001">
+		<animation effect="fade" start="0" end="100" time="200">Visible</animation>
+        <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+		<include>Animation_OpenCloseFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+		
+                <posx>298</posx>
+                <posy>975</posy>
+                <width>1577</width>
+                <itemgap>0</itemgap>
+                <orientation>horizontal</orientation>
+                <onleft>709</onleft>
+                <onright>11</onright>
+                <onup>noop</onup>
+                <ondown>noop</ondown>
+				<visible>!Window.IsActive(VideoOSD)</visible>
+				
+				<!-- OSD Playlist Button -->
+                <control type="image">
+                    <description>Playlists</description>
+                    <height>100</height>
+                    <width>100</width>
+					<texture>osd/buttons/osdplaylistnf.png</texture>
+                </control>  
+								
+				<!-- OSD Bookmarks Button -->
+                <control type="image">
+                    <description>Bookmarks</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdbookmarksnf.png</texture>
+                </control>
+								
+				<!-- OSD Subtitles Button -->
+                <control type="image">
+                    <description>OSD Subtitles</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdsubtitlesnf.png</texture>
+                </control>
+				
+				<!-- OSD Previous Button -->
+                <control type="image">
+                    <description>Previous</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdprevtracknf.png</texture>
+                </control>
+				
+				<!-- OSD Rewind Button -->
+                <control type="image">
+                    <description>Rewind</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdrewindnf.png</texture>
+                </control>
+				
+				<!-- OSD Stop Button -->
+                <control type="image">
+                    <description>Stop</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdstopnf.png</texture>
+                </control>
+				
+				<!-- OSD Play/Pause Button -->
+                <control type="image">
+                    <description>Play</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdpausenf.png</texture>
+                </control>
+				
+				<!-- OSD Fast Forward Button -->
+                <control type="image">
+                    <description>Forward</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdforwardnf.png</texture>
+                </control>
+				
+				<!-- OSD Next Button -->
+                <control type="image">
+                    <description>Next</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdnexttracknf.png</texture>
+                </control>
+				
+				<!-- OSD Video Settings -->
+                <control type="image">
+                    <description>Video Settings</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdvideonf.png</texture>
+                </control>
+				
+				<!-- OSD Audio Settings -->
+                <control type="image">
+                    <description>Audio Settings</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texture>osd/buttons/osdaudionf.png</texture>
+                </control>
+				
+				<!-- OSD Options -->
+				<control type="image">
+					<texture>osd/buttons/OSDSkinNF.png</texture>
+					<width>100</width>
+					<height>100</height>
+				</control>
+            </control>	
 		
 	</controls>
 </window>
