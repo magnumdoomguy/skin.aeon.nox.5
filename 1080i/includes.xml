@@ -84,9 +84,27 @@
 				<aspectratio align="left">keep</aspectratio>
 				<fadetime>300</fadetime>
 				<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
-				<texture background="true" diffuse="thumbs/cdart_mask.png">cdart/default.png</texture>
+				<texture background="true" diffuse="thumbs/cdart_mask.png">$INFO[VideoPlayer.videoResolution,cdart/,.png]</texture>
 				<bordersize>30</bordersize>
 			</control>
+				
+			<control type="group">
+                				
+                <!-- Movie Poster -->
+                <control type="image">
+                    <description>Movie Poster</description>
+                    <posx>18</posx>
+                    <posy>688</posy>
+                    <width>277</width>
+                    <height>392</height>
+                    <texture>$VAR[PlayerPosterArtworkVar]</texture>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+                    <aspectratio scalediffuse="false">stretch</aspectratio>
+                    <visible>VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)</visible>
+                </control>
+				
+            </control>
 			
 			<control type="progress" id="23">
                 <description>ProgressbarCache</description>
@@ -311,23 +329,7 @@
 				</control>
 			</control>
 			
-            <control type="group">
-                				
-                <!-- Movie Poster -->
-                <control type="image">
-                    <description>Movie Poster</description>
-                    <posx>18</posx>
-                    <posy>688</posy>
-                    <width>277</width>
-                    <height>392</height>
-                    <texture background="true">$VAR[PlayerPosterArtworkVar]</texture>
-					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-					<bordersize>20</bordersize>
-                    <aspectratio scalediffuse="false">stretch</aspectratio>
-                    <visible>VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)</visible>
-                </control>
-				
-            </control>
+            
             
         </control>
     </include>
