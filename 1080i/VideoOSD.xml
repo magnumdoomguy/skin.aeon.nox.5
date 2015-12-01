@@ -3,6 +3,8 @@
     <defaultcontrol always="true">410</defaultcontrol>
 	<zorder>2</zorder>
     <controls>
+	
+		<!-- Set Default OSD Button -->
         <control type="button" id="410">
 			<include>HiddenObject</include>
             <onfocus>Dialog.Close(FullscreenInfo)</onfocus>
@@ -20,8 +22,9 @@
             <onfocus condition="SubString(Skin.String(DefaultOSD),801)">SetFocus(801)</onfocus>
             <onfocus condition="IsEmpty(Skin.String(DefaultOSD))">SetFocus(4)</onfocus>
         </control>
+		
         <control type="group">
-            <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)]</visible>
+            <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
             <include>Animation_OpenCloseFade</include>
             <include>Animation_FadedByOSDSettings</include>
             
@@ -139,6 +142,22 @@
                     <texturenofocus>osd/buttons/osdnexttracknf.png</texturenofocus>
                     <onclick>PlayerControl(Next)</onclick>
                 </control>
+				
+				<!-- Screenshot Button -->
+				<control type="button" id="707">
+					<texturefocus>osd/buttons/osdscreenshotfo.png</texturefocus>
+					<texturenofocus>osd/buttons/osdscreenshotnf.png</texturenofocus>
+					<label>-</label>
+					<width>100</width>
+					<height>100</height>
+					<font>-</font>
+					<onclick>Dialog.Close(2901)</onclick>
+					<onclick>Skin.ToggleSetting(Enable.ScreenshotMode)</onclick>
+					<onclick>Notification($LOCALIZE[19098]:,$LOCALIZE[42123],1500,camera.png)</onclick>
+					<onclick>AlarmClock(Take a Screenshot,TakeScreenshot,00:03,silent)</onclick>
+					<onclick>AlarmClock(Reset ScreenshotMode,Skin.Reset(Enable.ScreenshotMode),00:04,silent)</onclick>
+					<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)</visible>
+				</control>
 				
 				<!-- OSD Video Settings -->
                 <control type="button" id="13">
