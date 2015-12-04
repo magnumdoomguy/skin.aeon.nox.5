@@ -75,8 +75,8 @@
             </control>
 			
 			<!-- Spinning Disc -->
-			<control type="image">
-				<visible>!Skin.HasSetting(Disable.SpinningDisc)</visible>
+			<control type="image" id="666">
+				<visible>!Skin.HasSetting(Disable.SpinningDisc) + VideoPlayer.Content(Movies)</visible>
 				<posx>137</posx>
 				<posy>746</posy>
 				<width>277</width>
@@ -95,11 +95,11 @@
 				<animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
 				<animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
 				<animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-				<texture background="true" diffuse="thumbs/cdart_mask.png">special://skin/extras/disc/$INFO[Player.Title] $INFO[VideoPlayer.Year,(,)].png</texture>
+				<texture diffuse="thumbs/cdart_mask.png">special://skin/extras/disc/$INFO[Player.Title] $INFO[VideoPlayer.Year,(,)].png</texture>
 				<bordersize>30</bordersize>
 			</control>
-			<!--<control type="image">
-				<visible>!Skin.HasSetting(Disable.SpinningDisc)</visible>
+			<control type="image">
+				<visible>!Skin.HasSetting(Disable.SpinningDisc) + IsEmpty(Control.GetLabel(666))</visible>
 				<posx>137</posx>
 				<posy>746</posy>
 				<width>277</width>
@@ -120,7 +120,7 @@
 				<animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
 				<texture background="true" diffuse="thumbs/cdart_mask.png">$INFO[VideoPlayer.videoResolution,cdart/,.png]</texture>
 				<bordersize>30</bordersize>
-			</control>-->
+			</control>
 				
 			<control type="group">
                 				
@@ -295,7 +295,7 @@
 					<pauseatend>3800</pauseatend>
 					<scrollspeed>40</scrollspeed>
 					<scroll>true</scroll>
-					<label>$VAR[OSDTitle]</label> 
+					<label>@$INFO[Control.GetLabel(666)]@</label> 
 				</control>
 				<control type="image">
 					<height max="60" min="1">auto</height>
