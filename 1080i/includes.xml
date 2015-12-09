@@ -56,6 +56,7 @@
 	<include file="View_66_Empty.xml" />
 	
     <include file="Variables.xml" />
+	<include file="Variables_OSD.xml" />
 	<include file="Variables_MediaFlags.xml" />
 	<include file="Variables_Icons.xml" />
 	
@@ -288,7 +289,7 @@
 					<width>44</width>
 					<aspectratio>keep</aspectratio>
 					<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
-					<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSDFullResolutionFlag)</visible>
+					<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
 				</control>
 			</control>
 			<control type="grouplist">
@@ -318,7 +319,7 @@
 					<width>44</width>
 					<aspectratio>keep</aspectratio>
 					<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
-					<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSDFullResolutionFlag)</visible>
+					<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
 				</control>
 			</control>
 			<control type="grouplist">
@@ -348,7 +349,7 @@
 					<width>44</width>
 					<aspectratio>keep</aspectratio>
 					<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
-					<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSDFullResolutionFlag)</visible>
+					<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
 				</control>
 			</control>
 			
@@ -392,20 +393,20 @@
 				<orientation>horizontal</orientation>
 				<visible>!Skin.HasSetting(DisableOSDMediaFlags)</visible>
 				<control type="image">
-					<width>95</width>
+					<width>118</width>
 					<height>80</height>
 					<bordersize>2</bordersize>
 					<texture>$INFO[VideoPlayer.videoResolution,flags/resolution/,.png]</texture>
 					<include>MediaFlagVars</include>
-					<visible>Skin.HasSetting(OSDFullResolutionFlag)</visible>
+					<visible>Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
 				</control>
 				<control type="image">
-					<width>95</width>
+					<width>118</width>
 					<height>80</height>
 					<bordersize>2</bordersize>
 					<texture>-</texture>
 					<include>MediaFlagVars</include>
-					<visible>!Skin.HasSetting(OSDFullResolutionFlag)</visible>
+					<visible>!Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
 				</control>
 				<control type="image">
 					<width>118</width>
@@ -439,12 +440,12 @@
             <animation effect="slide" start="0,-90" end="0,0" time="480">WindowOpen</animation>
             <animation effect="slide" end="0,-90" start="0,0" time="480">WindowClose</animation>
             <include>Animation_FadedByOSDSettings</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42100])">Animation_FadeOSD5</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42101])">Animation_FadeOSD10</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + IsEmpty(Skin.String(OSDFadeTime))">Animation_FadeOSD15</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42097])">Animation_FadeOSD20</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42098])">Animation_FadeOSD25</include>
-            <include condition="!IsEmpty(Skin.String(OSDFade)) + StringCompare(Skin.String(OSDFadeTime),$LOCALIZE[42099])">Animation_FadeOSD30</include>
+            <include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),5)">Animation_FadeOSD5</include>
+            <include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),10)">Animation_FadeOSD10</include>
+            <include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + IsEmpty(Skin.String(OSD.TopBarHide.Delay))">Animation_FadeOSD15</include>
+            <include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),20">Animation_FadeOSD20</include>
+            <include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),25">Animation_FadeOSD25</include>
+            <include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),30">Animation_FadeOSD30</include>
             
 			<!-- Background Image -->
             <control type="image">
