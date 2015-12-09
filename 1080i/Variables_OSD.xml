@@ -31,10 +31,11 @@
 		<value>$LOCALIZE[42121]</value> <!-- STRING: Full -->
 	</variable>
 	
-	<variable name="OSDTitle">
-		<value condition="VideoPlayer.Content(movies)">[B]$INFO[Player.Title][/B] $INFO[VideoPlayer.Year,(,)]</value>
-		<value condition="VideoPlayer.Content(episodes)">[COLOR=blue]S$INFO[VideoPlayer.Season][/COLOR] [COLOR=grey2]&#xB7;[/COLOR] [COLOR=blue]E$INFO[VideoPlayer.Episode][/COLOR] [COLOR=grey2]-[/COLOR] [B]$INFO[Player.Title][/B]</value>
-		<value>$INFO[Player.Title]</value>
+	<variable name="OSDTitleVar">
+		<value condition="VideoPlayer.Content(movies)">[B][UPPERCASE]$INFO[Player.Title][/UPPERCASE] $INFO[VideoPlayer.Year,(,)][/B]</value> <!-- Display Movie Title -->
+		<value condition="VideoPlayer.Content(episodes) + !IsEmpty(VideoPlayer.Season)">[B]$INFO[VideoPlayer.Season]x$INFO[VideoPlayer.Episode]. [UPPERCASE]$INFO[Player.Title][/UPPERCASE][/B]</value> <!-- Display TV Episode Title -->
+		<value condition="VideoPlayer.Content(episodes) + IsEmpty(VideoPlayer.Season)">[B]S$INFO[VideoPlayer.Episode]. [UPPERCASE]$INFO[Player.Title][/UPPERCASE][/B]</value> <!-- Display TV Special Title -->
+		<value>[UPPERCASE]$INFO[Player.Title][/UPPERCASE]</value> <!-- Display Other Video Title -->
 	</variable>
 	
 	<variable name="OSDStatus">
