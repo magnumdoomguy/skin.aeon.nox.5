@@ -78,7 +78,7 @@
 						
 			<!-- Spinning Disc -->
 			<control type="image">
-				<visible>!Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])</visible>
+				<visible>!Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
 				<posx>137</posx>
 				<posy>746</posy>
 				<width>277</width>
@@ -114,7 +114,7 @@
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
                     <aspectratio scalediffuse="false">stretch</aspectratio>
-                    <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + IsEmpty(Skin.String(VideoOSDPosterStyle))</visible>
+                    <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + IsEmpty(Skin.String(OSD.VideoIconStyle))</visible>
                 </control>
 				
 				<!-- Glass Case -->
@@ -126,7 +126,7 @@
                     <height>346</height>
                     <texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[PlayerPosterArtworkVar]</texture>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-                    <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42056])</visible>
+                    <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Glass)</visible>
                 </control>
 				<control type="image">
 					<description>Glass Overlay</description>
@@ -137,7 +137,7 @@
 					<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
 					<fadetime>200</fadetime>	
 					<texture>thumbs/boxes/poster_shadow.png</texture>
-					<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42056])</visible>													
+					<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Glass)</visible>													
 				</control>
 
 				<!-- DVD / Bluray Cases -->
@@ -149,7 +149,7 @@
                     <height>316</height>
                     <texture>$VAR[PlayerPosterArtworkVar]</texture>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-                    <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42057])</visible>
+                    <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>
                 </control>				
 				<control type="image">
 					<description>Glass Overlay</description>
@@ -160,7 +160,7 @@
 					<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
 					<fadetime>200</fadetime>	
 					<texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/,.png]</texture>
-					<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42057])</visible>												
+					<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>												
 				</control>	
 				
 				<!-- Clear Cases -->
@@ -172,7 +172,7 @@
                     <height>346</height>
                     <texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[PlayerPosterArtworkVar]</texture>
 					<aspectratio scalediffuse="false">stretch</aspectratio>
-                    <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42125])</visible>
+                    <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Clear)</visible>
                 </control>
 				<control type="image">
 					<description>Glass Overlay</description>
@@ -183,14 +183,14 @@
 					<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
 					<fadetime>200</fadetime>	
 					<texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/clearcases/,.png]</texture>
-					<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42125])</visible>
+					<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Clear)</visible>
 				</control>
             </control>
 			
 			<control type="progress" id="23">
                 <description>ProgressbarCache</description>
-				<animation effect="slide" end="-338,0" time="0" condition="StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])">Conditional</animation>
-				<animation effect="slide" end="-70,0" time="0" condition="Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])">Conditional</animation>
+				<animation effect="slide" end="-338,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+				<animation effect="slide" end="-70,0" time="0" condition="Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
                 <posx>383</posx>
                 <posy>953</posy>
                 <width>1499</width>
@@ -205,8 +205,8 @@
             </control>
             <control type="progress" id="23">
                 <description>Progressbar</description>
-				<animation effect="slide" end="-338,0" time="0" condition="StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])">Conditional</animation>
-				<animation effect="slide" end="-70,0" time="0" condition="Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])">Conditional</animation>
+				<animation effect="slide" end="-338,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+				<animation effect="slide" end="-70,0" time="0" condition="Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
                 <posx>383</posx>
                 <posy>954</posy>
                 <width>1499</width>
@@ -221,8 +221,8 @@
             </control>
 			<control type="slider" id="87">
                 <description>Seek Slider</description>
-				<animation effect="slide" end="-338,0" time="0" condition="StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])">Conditional</animation>
-				<animation effect="slide" end="-70,0" time="0" condition="Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])">Conditional</animation>
+				<animation effect="slide" end="-338,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+				<animation effect="slide" end="-70,0" time="0" condition="Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
                 <posx>383</posx>
                 <posy>930</posy>
                 <width>1499</width>
@@ -272,7 +272,7 @@
 				<aligny>center</aligny>
 				<itemgap>18</itemgap>
 				<orientation>horizontal</orientation>
-				<visible>!Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])</visible>
+				<visible>!Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
 				<control type="label">
 					<width max="1146" min="1">auto</width>
 					<height max="60" min="1">auto</height>
@@ -302,7 +302,7 @@
 				<aligny>center</aligny>
 				<itemgap>18</itemgap>
 				<orientation>horizontal</orientation>
-				<visible>Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])</visible>
+				<visible>Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
 				<control type="label">
 					<width max="1146" min="1">auto</width>
 					<height max="60" min="1">auto</height>
@@ -332,7 +332,7 @@
 				<aligny>center</aligny>
 				<itemgap>18</itemgap>
 				<orientation>horizontal</orientation>
-				<visible>StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])</visible>
+				<visible>StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
 				<control type="label">
 					<width max="1146" min="1">auto</width>
 					<height max="60" min="1">auto</height>

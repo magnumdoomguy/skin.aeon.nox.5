@@ -80,22 +80,22 @@
 		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Video Settings)">Skin.SetString(OSD.DefaultButton,Audio Settings)</value>
 	</variable>
 	
-	<variable name="VideoOSDPosterLabel">
-		<value condition="IsEmpty(Skin.String(VideoOSDPosterStyle))">$LOCALIZE[42058]</value>  <!-- Poster -->
-		<value>$INFO[Skin.String(VideoOSDPosterStyle)]</value> 
+	<!-- Label for Video Icon Setting -->
+	<variable name="OSDVideoIconLabelVar">
+		<value condition="IsEmpty(Skin.String(OSD.VideoIconStyle))">$LOCALIZE[42058]</value>  <!-- STRING: Poster -->
+		<value condition="StringCompare(Skin.String(OSD.VideoIconStyle),Clear)">$LOCALIZE[42125]</value> <!-- STRING: Clear -->
+		<value condition="StringCompare(Skin.String(OSD.VideoIconStyle),Glass)">$LOCALIZE[42056]</value> <!-- STRING: Glass -->
+		<value condition="StringCompare(Skin.String(OSD.VideoIconStyle),DVD/Bluray)">$LOCALIZE[42057]</value> <!-- STRING: DVD/Bluray -->
+		<value condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">$LOCALIZE[42093]</value> <!-- STRING: Disabled -->
 	</variable>
 	
-	<variable name="VideoOSDPosterSetting">
-		<value condition="IsEmpty(Skin.String(VideoOSDPosterStyle))">Skin.SetString(VideoOSDPosterStyle,$LOCALIZE[42125])</value>
-		<value condition="StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42125])">Skin.SetString(VideoOSDPosterStyle,$LOCALIZE[42056])</value> <!-- Glass -->
-		<value condition="StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42056])">Skin.SetString(VideoOSDPosterStyle,$LOCALIZE[42057])</value>
-		<value condition="StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42057])">Skin.SetString(VideoOSDPosterStyle,$LOCALIZE[42093])</value>
-		<value condition="StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])">Skin.Reset(VideoOSDPosterStyle)</value>
-	</variable>
-	
-	<variable name="VideoOSDButtonPosition">
-		<value condition="!StringCompare(Skin.String(VideoOSDPosterStyle),$LOCALIZE[42093])">298</value>
-		<value>300</value>
+	<!-- Setting for Video Icon Style -->
+	<variable name="OSDVideoIconSettingVar">
+		<value condition="IsEmpty(Skin.String(OSD.VideoIconStyle))">Skin.SetString(OSD.VideoIconStyle,Clear)</value>
+		<value condition="StringCompare(Skin.String(OSD.VideoIconStyle),Clear)">Skin.SetString(OSD.VideoIconStyle,Glass)</value>
+		<value condition="StringCompare(Skin.String(OSD.VideoIconStyle),Glass)">Skin.SetString(OSD.VideoIconStyle,DVD/Bluray)</value>
+		<value condition="StringCompare(Skin.String(OSD.VideoIconStyle),DVD/Bluray)">Skin.SetString(OSD.VideoIconStyle,Disabled)</value>
+		<value condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Skin.Reset(OSD.VideoIconStyle)</value> <!-- DEFAULT: Poster -->
 	</variable>
 	
 </includes>
