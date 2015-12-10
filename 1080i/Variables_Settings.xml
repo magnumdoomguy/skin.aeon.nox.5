@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	
-	<!-- Dummy Variable to Allow the Number 4 to be Displayed in the Watched Status Indicator Settings without being Localized -->
+	<!-- Hack to Allow the Number 4 to be Displayed in the Watched Status Indicator Settings without being Localized -->
 	<variable name="TVSample1Var">
 		<value>4</value>
 	</variable>
@@ -13,7 +13,7 @@
 	</variable>
 	
 	<!-- On Deck Movie Icon Type -->
-	<variable name="OnDeckMovieIconTypeSetting">
+	<variable name="OnDeckMovieIconTypeSettingVar">
 		<value condition="IsEmpty(Skin.String(OnDeck.MovieIconType))">Skin.SetString(OnDeck.MovieIconType,Clear)</value>
         <value condition="StringCompare(Skin.String(OnDeck.MovieIconType),Clear)">Skin.SetString(OnDeck.MovieIconType,Glass)</value>
         <value condition="StringCompare(Skin.String(OnDeck.MovieIconType),Glass)">Skin.SetString(OnDeck.MovieIconType,DVD/Bluray)</value>
@@ -21,11 +21,23 @@
     </variable>
 		
 	<!-- Label for On Deck Movie Icon Type -->
-	<variable name="WidgetMovieCasesLabel">
+	<variable name="OnDeckMovieIconTypeLabelVar">
 		<value condition="IsEmpty(Skin.String(OnDeck.MovieIconType))">$LOCALIZE[42058]</value> <!-- DEFAULT: Poster -->
 		<value condition="StringCompare(Skin.String(OnDeck.MovieIconType),Clear)">$LOCALIZE[192]</value>
 		<value condition="StringCompare(Skin.String(OnDeck.MovieIconType),Glass)">$LOCALIZE[42056]</value>
 		<value condition="StringCompare(Skin.String(OnDeck.MovieIconType),DVD/Bluray)">$LOCALIZE[42057]</value>
+    </variable>
+	
+	<!-- On Deck TV Icon Type -->
+	<variable name="OnDeckTVIconTypeSettingVar">
+		<value condition="IsEmpty(Skin.String(OnDeck.TVIconType))">Skin.SetString(OnDeck.TVIconType,Glass)</value>
+		<value condition="StringCompare(Skin.String(OnDeck.TVIconType),Glass)">Skin.Reset(OnDeck.TVIconType)</value>
+    </variable>
+	
+	<!-- Label for On Deck TV Icon Type -->
+	<variable name="OnDeckTVIconTypeLabelVar">
+		<value condition="IsEmpty(Skin.String(OnDeck.TVIconType))">$LOCALIZE[42058]</value> <!-- STRING: Poster -->
+        <value>$LOCALIZE[42056]</value>
     </variable>
 	
 </includes>
