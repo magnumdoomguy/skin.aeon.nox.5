@@ -31,6 +31,7 @@
 		<value>$LOCALIZE[42121]</value> <!-- STRING: Full -->
 	</variable>
 	
+	<!-- Video Title -->
 	<variable name="OSDTitleVar">
 		<value condition="VideoPlayer.Content(movies)">[B][UPPERCASE]$INFO[Player.Title][/UPPERCASE] $INFO[VideoPlayer.Year,(,)][/B]</value> <!-- Display Movie Title -->
 		<value condition="VideoPlayer.Content(episodes) + !IsEmpty(VideoPlayer.Season)">[B]$INFO[VideoPlayer.Season]x$INFO[VideoPlayer.Episode]. [UPPERCASE]$INFO[Player.Title][/UPPERCASE][/B]</value> <!-- Display TV Episode Title -->
@@ -38,40 +39,45 @@
 		<value>[UPPERCASE]$INFO[Player.Title][/UPPERCASE]</value> <!-- Display Other Video Title -->
 	</variable>
 	
-	<variable name="OSDStatus">
-		<value condition="Player.Paused + !Player.Seeking + !Player.Caching">$LOCALIZE[112]</value>
-		<value condition="Player.Forwarding2x | Player.Forwarding4x | Player.Forwarding8x | Player.Forwarding16x | Player.Forwarding32x">$LOCALIZE[42105]</value>
-		<value condition="Player.Rewinding2x | Player.Rewinding4x | Player.Rewinding8x | Player.Rewinding16x | Player.Rewinding32x">$LOCALIZE[42106]</value>
-		<value condition="Player.Playing + !Player.DisplayAfterSeek">$LOCALIZE[42107]</value>
-		<value condition="!Player.Paused + Player.DisplayAfterSeek">$LOCALIZE[31046]</value>
+	<!-- Display Current State of Video Player -->
+	<variable name="OSDStatusVar">
+		<value condition="Player.Paused + !Player.Seeking + !Player.Caching">$LOCALIZE[112]</value> <!-- STRING: Paused -->
+		<value condition="Player.Forwarding2x | Player.Forwarding4x | Player.Forwarding8x | Player.Forwarding16x | Player.Forwarding32x">$LOCALIZE[42105]</value> <!-- STRING: Fast Forward -->
+		<value condition="Player.Rewinding2x | Player.Rewinding4x | Player.Rewinding8x | Player.Rewinding16x | Player.Rewinding32x">$LOCALIZE[42106]</value> <!-- STRING: Rewind -->
+		<value condition="Player.Playing + !Player.DisplayAfterSeek">$LOCALIZE[42107]</value> <!-- STRING: Playing -->
+		<value condition="!Player.Paused + Player.DisplayAfterSeek">$LOCALIZE[31046]</value> <!-- STRING: Seeking -->
 	</variable>
 	
-	<variable name="DefaultOSDButtonLabel">
-		<value condition="IsEmpty(Skin.String(DefaultOSD))">$LOCALIZE[42109]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),711)">$LOCALIZE[42110]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),712)">$LOCALIZE[42111]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),714)">$LOCALIZE[31133]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),79)">$LOCALIZE[42112]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),73)">$LOCALIZE[42106]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),75)">$LOCALIZE[42113]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),76)">$LOCALIZE[42105]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),710)">$LOCALIZE[42114]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),713)">$LOCALIZE[42115]</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),800)">$LOCALIZE[42116]</value>
+	<!-- Label for OSD Buttons -->
+	<variable name="OSDDefaultButtonLabelVar">
+		<value condition="IsEmpty(Skin.String(OSD.DefaultButton))">$LOCALIZE[42109]</value> <!-- STRING: Play -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Playlists)">$LOCALIZE[42110]</value> <!-- STRING: Playlists -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Bookmarks)">$LOCALIZE[42111]</value> <!-- STRING: Bookmarks -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Subtitles)">$LOCALIZE[31133]</value> <!-- STRING: Subtitles -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Previous)">$LOCALIZE[42112]</value> <!-- STRING: Previous -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Rewind)">$LOCALIZE[42106]</value> <!-- STRING: Rewind -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Stop)">$LOCALIZE[42113]</value> <!-- STRING: Stop -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Fast Forward)">$LOCALIZE[42105]</value> <!-- STRING: Fast Forward -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Next)">$LOCALIZE[42114]</value> <!-- STRING: Next -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Screenshot)">$LOCALIZE[42127]</value> <!-- STRING: Screenshot -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Video Settings)">$LOCALIZE[42115]</value> <!-- STRING: Video Settings -->
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Audio Settings)">$LOCALIZE[42116]</value> <!-- STRING: Audio Settings -->
 	</variable>
 	
+	<!-- Setting for Default OSD Button -->
 	<variable name="DefaultOSDButtonSetting">
-		<value condition="StringCompare(Skin.String(DefaultOSD),800)">Skin.SetString(DefaultOSD,711)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),711)">Skin.SetString(DefaultOSD,712)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),712)">Skin.SetString(DefaultOSD,714)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),714)">Skin.SetString(DefaultOSD,79)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),79)">Skin.SetString(DefaultOSD,73)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),73)">Skin.SetString(DefaultOSD,75)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),75)">Skin.Reset(DefaultOSD)</value>
-		<value condition="IsEmpty(Skin.String(DefaultOSD))">Skin.SetString(DefaultOSD,76)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),76)">Skin.SetString(DefaultOSD,710)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),710)">Skin.SetString(DefaultOSD,713)</value>
-		<value condition="StringCompare(Skin.String(DefaultOSD),713)">Skin.SetString(DefaultOSD,800)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Audio Settings)">Skin.SetString(OSD.DefaultButton,Playlists)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Playlists)">Skin.SetString(OSD.DefaultButton,Bookmarks)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Bookmarks)">Skin.SetString(OSD.DefaultButton,Subtitles)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Subtitles)">Skin.SetString(OSD.DefaultButton,Previous)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Previous)">Skin.SetString(OSD.DefaultButton,Rewind)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Rewind)">Skin.SetString(OSD.DefaultButton,Stop)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Stop)">Skin.Reset(OSD.DefaultButton)</value> 
+		<value condition="IsEmpty(Skin.String(OSD.DefaultButton))">Skin.SetString(OSD.DefaultButton,Fast Forward)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Fast Forward)">Skin.SetString(OSD.DefaultButton,Next)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Next)">Skin.SetString(OSD.DefaultButton,Screenshot)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Screenshot)">Skin.SetString(OSD.DefaultButton,Video Settings)</value>
+		<value condition="StringCompare(Skin.String(OSD.DefaultButton),Video Settings)">Skin.SetString(OSD.DefaultButton,Audio Settings)</value>
 	</variable>
 	
 	<variable name="VideoOSDPosterLabel">
