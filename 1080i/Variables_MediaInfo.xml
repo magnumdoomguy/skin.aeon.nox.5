@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<!-- List Item Poster -->
+    <variable name="PosterVar">
+        <value condition="Container.Content(episodes) + !IsEmpty(ListItem.Art(season.poster))">$INFO[ListItem.Art(season.poster)]</value>
+        <value condition="Container.Content(episodes) + !IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
+        <value condition="!IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+        <value>$INFO[ListItem.Icon]</value>
+    </variable>
+	
+	<!-- Duration -->
+    <variable name="DurationVar">
+        <value condition="!IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration]</value>
+        <value>?</value>
+    </variable>
+	
+    <variable name="OneOrMoreSeasonsVar">
+        <value condition="StringCompare(ListItem.Property(TotalSeasons),1)">$LOCALIZE[20373]</value> <!-- STRING: Season -->
+        <value>$LOCALIZE[33054]</value> <!-- STRING: Seasons -->
+    </variable>
+	
+    <variable name="OneOrMoreEpisodesVar">
+        <value condition="StringCompare(ListItem.Property(TotalEpisodes),1)">$LOCALIZE[20359]</value> <!-- STRING: Episode -->
+        <value>$LOCALIZE[20360]</value> <!-- String: Episodes -->
+    </variable>
+	
+	<variable name="VideoPlotVar">
+        <value condition="Container.Content(seasons)">$INFO[Container.ShowPlot]</value>
+        <value>$INFO[ListItem.Plot]</value>
+    </variable>
+	
+</includes>
