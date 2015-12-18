@@ -257,7 +257,7 @@
 					<label>$INFO[VideoPlayer.Time] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
 				</control>
 			
-				<!-- Finish Time -->
+				<!-- End Time -->
 				<control type="label">
 					<posx>1875</posx>
 					<posy>1015</posy>
@@ -392,7 +392,7 @@
 				</control>
 				<control type="textbox">
 					<posx>403</posx>
-					<posy>745</posy>
+					<posy>755</posy>
 					<label>$VAR[OSDPlot]</label>
 					<width>1033</width>
 					<height>208</height>
@@ -402,6 +402,164 @@
 					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
 					<font>font14_textbox</font>
 					<visible>Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle)</visible>
+				</control>
+				
+				<!-- Other Video Info -->
+				<control type="panel" id="300">
+					<posx>1436</posx>
+					<posy>685</posy>
+					<width>472</width>
+					<height>204</height>
+					<orientation>vertical</orientation>
+					<scrolltime tween="quadratic" easing="out">200</scrolltime>
+		<itemlayout height="102" width="594">
+			<control type="image">
+				<posy>42</posy>
+				<width>594</width>
+				<height>60</height>
+				<texture border="1">separator2.png</texture>
+			</control>
+			<control type="label">
+				<posy>50</posy>
+				<width>594</width>
+				<height>40</height>
+				<font>font15</font>
+				<textcolor>grey</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<label>$INFO[ListItem.Label]</label>
+				<textoffsetx>36</textoffsetx>
+			</control>
+			<control type="label">
+				<posy>5</posy>
+				<width>594</width>
+				<height>40</height>
+				<font>font15</font>
+				<textcolor>labelheader</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<label>$INFO[ListItem.Label2]</label>
+				<textoffsetx>36</textoffsetx>
+			</control>
+		</itemlayout>
+		<focusedlayout height="102" width="594">
+			<control type="image">
+				<posy>42</posy>
+				<width>594</width>
+				<height>60</height>
+				<texture border="1">separator2.png</texture>
+			</control>
+			<control type="image">
+				<posy>1</posy>
+				<width>594</width>
+				<height>100</height>
+				<texture border="4">listselect_fo.png</texture>
+				<include>VisibleFadeEffect</include>
+			</control>
+			<control type="label">
+				<posy>50</posy>
+				<width>594</width>
+				<height>40</height>
+				<font>font15</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<label>$INFO[ListItem.Label]</label>
+				<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(300)">Conditional</animation>
+				<textoffsetx>36</textoffsetx>
+			</control>
+			<control type="label">
+				<posy>5</posy>
+				<width>594</width>
+				<height>40</height>
+				<font>font15</font>
+				<textcolor>white</textcolor>
+				<selectedcolor>selected</selectedcolor>
+				<label>$INFO[ListItem.Label2]</label>
+				<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(300)">Conditional</animation>
+				<textoffsetx>36</textoffsetx>
+			</control>
+		</focusedlayout>
+		<content>
+						
+			
+				
+			<!-- Display Director -->
+			<item>
+				<label>$INFO[VideoPlayer.Director]</label>
+				<label2>$LOCALIZE[20339]:</label2>
+				<onclick>SendClick(2003,13)</onclick>
+				<visible>!IsEmpty(VideoPlayer.Director)</visible>
+			</item>
+						
+			<!-- Display Cast -->
+			<item>
+				<label>$INFO[VideoPlayer.Property(Cast)]</label>
+				<label2>$LOCALIZE[31134]:</label2>
+				<onclick>noop</onclick>
+				<visible>!IsEmpty(VideoPlayer.Property(Cast))</visible>
+			</item>
+						
+			<!-- Display Writer -->
+			<item>
+				<label>$INFO[VideoPlayer.Writer]</label>
+				<label2>$LOCALIZE[20417]:</label2>
+				<onclick>noop</onclick>
+				<visible>!IsEmpty(VideoPlayer.Writer)</visible>
+			</item>
+						
+			<!-- Display Original Title -->
+			<item>
+				<label>$INFO[ListItem.OriginalTitle]</label>
+				<label2>$LOCALIZE[20376]:</label2>
+				<onclick>noop</onclick>
+				<visible>!IsEmpty(ListItem.OriginalTitle) + !StringCompare(ListItem.OriginalTitle,ListItem.Title)</visible>
+			</item>
+												
+			<!-- Display Date Premiered -->
+			<item>
+				<label>$INFO[ListItem.Date]</label>
+				<label2>$LOCALIZE[172]:</label2>
+				<onclick>noop</onclick>
+				<visible>!IsEmpty(ListItem.Date)</visible>
+			</item>
+						
+			<!-- Display Country -->
+			<item>
+				<label>$INFO[ListItem.Country]</label>
+				<label2>$LOCALIZE[574]:</label2>
+				<onclick>noop</onclick>
+				<visible>!IsEmpty(ListItem.Country)</visible>
+			</item>
+						
+			<!-- Display Date Added -->
+			<item>
+				<label>$INFO[ListItem.DateAdded]</label>
+				<label2>$LOCALIZE[570]:</label2>
+				<onclick>noop</onclick>
+				<visible>!IsEmpty(ListItem.DateAdded)</visible>
+			</item>
+						
+			<!-- Display Play Count -->						
+			<item>
+				<label>$INFO[ListItem.PlayCount]</label>
+				<label2>$LOCALIZE[567]:</label2>
+				<onclick>noop</onclick>
+				<visible>!IsEmpty(ListItem.PlayCount)</visible>
+			</item>
+
+			<item>
+				<label>$INFO[ListItem.PercentPlayed,,%]</label>
+				<label2 fallback="-">$LOCALIZE[575]:</label2>
+				<onclick>noop</onclick>
+				<visible>ListItem.IsResumable</visible>
+			</item>
+
+			<item>
+				<label>$INFO[ListItem.LastPlayed]</label>
+				<label2 fallback="-">$LOCALIZE[568]:</label2>
+				<onclick>noop</onclick>
+				<visible>!IsEmpty(ListItem.LastPlayed)</visible>
+			</item>
+
+		</content>
 				</control>
 				
 				<!-- Media Flags -->
