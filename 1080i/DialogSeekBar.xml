@@ -168,15 +168,15 @@
 						<height>47</height>
 						<aspectratio>keep</aspectratio>
 						<texture align="left">$INFO[VideoPlayer.videoResolution,cdart/source/,.png]</texture>
+					</control>
+					<control type="image">
+						<posx>156</posx>
+						<posy>103</posy>
+						<width>47</width>
+						<height>47</height>
+						<aspectratio>keep</aspectratio>
+						<texture align="left">$INFO[VideoPlayer.AudioCodec,flags/white/audio/,.png]</texture>
 					</control><!--
-	<control type="image">
-	<left>200</left>
-	<top>132</top>
-	<width>60</width>
-	<height>60</height>
-	<aspectratio>keep</aspectratio>
-	<texture align="left">$VAR[PathFlagsAudio]</texture>
-	</control>
 	<control type="image">
 	<left>80</left>
 	<top>30</top>
@@ -507,7 +507,7 @@
 					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
 					<font>font14_textbox</font>
-					<visible>Window.IsActive(fullscreeninfo) + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)]</visible>
+					<visible>Window.IsActive(fullscreeninfo) + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText)</visible>
 				</control>
 				<control type="textbox">
 					<posx>403</posx>
@@ -520,7 +520,33 @@
 					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
 					<font>font14_textbox</font>
-					<visible>Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle)</visible>
+					<visible>Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText)</visible>
+				</control>
+				<control type="textbox">
+					<posx>403</posx>
+					<posy>805</posy>
+					<label>$VAR[OSDPlot]</label>
+					<width>1033</width>
+					<height>148</height>
+					<align>left</align>
+					<textcolor>white</textcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+					<font>font14_textbox_OSDSmall</font>
+					<visible>Window.IsActive(fullscreeninfo) + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText)</visible>
+				</control>
+				<control type="textbox">
+					<posx>403</posx>
+					<posy>755</posy>
+					<label>$VAR[OSDPlot]</label>
+					<width>1033</width>
+					<height>208</height>
+					<align>left</align>
+					<textcolor>white</textcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+					<font>font14_textbox_OSDSmallNoGenre</font>
+					<visible>Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText)</visible>
 				</control>
 				
 				<!-- Other Video Info -->
