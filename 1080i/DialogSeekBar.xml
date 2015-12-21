@@ -93,8 +93,7 @@
 					<posy>766</posy>
 					<width>226</width>
 					<height>226</height>
-					
-					
+						
 					<fadetime>300</fadetime>
 					<animation effect="rotate" end="-360" center="275,879" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
 					<animation effect="rotate" end="360" center="275,879" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
@@ -222,8 +221,6 @@
 						<wrapmultiline>false</wrapmultiline>
 					</control>
 				</control>
-				
-				
 				
 				<!--<control type="image">
 					<visible>!Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
@@ -420,7 +417,7 @@
 					<aligny>center</aligny>
 					<itemgap>18</itemgap>
 					<orientation>horizontal</orientation>
-					<visible>!Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+					<visible>!Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
 					<control type="label">
 						<width max="1146" min="1">auto</width>
 						<height max="60" min="1">auto</height>
@@ -450,7 +447,7 @@
 					<aligny>center</aligny>
 					<itemgap>18</itemgap>
 					<orientation>horizontal</orientation>
-					<visible>Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+					<visible>Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
 					<control type="label">
 						<width max="1146" min="1">auto</width>
 						<height max="60" min="1">auto</height>
@@ -480,7 +477,7 @@
 					<aligny>center</aligny>
 					<itemgap>18</itemgap>
 					<orientation>horizontal</orientation>
-					<visible>StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+					<visible>StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
 					<control type="label">
 						<width max="1146" min="1">auto</width>
 						<height max="60" min="1">auto</height>
@@ -500,6 +497,85 @@
 						<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
 					</control>
 				</control>
+				
+				<control type="label">
+					<animation effect="slide" end="-90,-193" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
+					<visible>!Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)</visible>
+					<posx>403</posx>
+					<posy>893</posy>
+					<width>1562</width>
+					<height>60</height>
+					<font>font26</font>
+					<align>left</align>
+					<aligny>center</aligny>
+					<textcolor>white</textcolor>
+					<scrollout>false</scrollout>
+					<pauseatend>3800</pauseatend>
+					<scrollspeed>40</scrollspeed>
+					<scroll>true</scroll>
+					<label>$VAR[OSDTitleVar]</label> 
+				</control>
+				<control type="grouplist">
+					<animation effect="slide" end="0,-193" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
+					<posx>313</posx>
+					<posy>893</posy>
+					<width>1208</width>
+					<height>60</height>
+					<align>left</align>
+					<aligny>center</aligny>
+					<itemgap>18</itemgap>
+					<orientation>horizontal</orientation>
+					<visible>Skin.HasSetting(Disable.SpinningDisc) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)</visible>
+					<control type="label">
+						<width max="1146" min="1">auto</width>
+						<height max="60" min="1">auto</height>
+						<font>font26</font>
+						<textcolor>white</textcolor>
+						<scrollout>false</scrollout>
+						<pauseatend>3800</pauseatend>
+						<scrollspeed>40</scrollspeed>
+						<scroll>true</scroll>
+						<label>$VAR[OSDTitleVar]</label>
+					</control>
+					<control type="image">
+						<height max="60" min="1">auto</height>
+						<width>44</width>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
+						<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
+					</control>
+				</control>
+				<control type="grouplist">
+					<animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
+					<posx>45</posx>
+					<posy>893</posy>
+					<width>1208</width>
+					<height>60</height>
+					<align>left</align>
+					<aligny>center</aligny>
+					<itemgap>18</itemgap>
+					<orientation>horizontal</orientation>
+					<visible>StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)</visible>
+					<control type="label">
+						<width max="1146" min="1">auto</width>
+						<height max="60" min="1">auto</height>
+						<font>font26</font>
+						<textcolor>white</textcolor>
+						<scrollout>false</scrollout>
+						<pauseatend>3800</pauseatend>
+						<scrollspeed>40</scrollspeed>
+						<scroll>true</scroll>
+						<label>$VAR[OSDTitleVar]</label>
+					</control>
+					<control type="image">
+						<height max="60" min="1">auto</height>
+						<width>44</width>
+						<aspectratio>keep</aspectratio>
+						<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
+						<visible>!Skin.HasSetting(DisableOSDMediaFlags) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
+					</control>
+				</control>
+			
 			
 				<!-- Genre / Show Name -->
 				<control type="label">
