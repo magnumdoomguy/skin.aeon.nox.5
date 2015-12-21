@@ -975,23 +975,19 @@
 			</control>
 		</control>
 		
-		<control type="grouplist" id="2001">
+		<control type="grouplist">
 			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
 			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
 			<animation effect="slide" end="-268,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
 			<include>Animation_OpenCloseFade</include>
             <include>Animation_FadedByOSDSettings</include>
 		
-			<posx>355</posx>
+			<posx>285</posx>
             <posy>980</posy>
             <width>1577</width>
-            <itemgap>0</itemgap>
+            <itemgap>27</itemgap>
             <orientation>horizontal</orientation>
-            <onleft>709</onleft>
-            <onright>11</onright>
-            <onup>noop</onup>
-            <ondown>noop</ondown>
-			<visible>!Window.IsActive(VideoOSD) + [Player.Seeking | Player.DisplayAfterSeek | Player.Caching | Window.IsActive(fullscreeninfo)] + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
+            <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
 			
 			<!-- Resolution Flag -->
 			<control type="image">
@@ -1000,7 +996,6 @@
 				<bordersize>2</bordersize>
 				<texture>$INFO[VideoPlayer.videoResolution,flags/resolution/,.png]</texture>
 				<include>MediaFlagVars</include>
-				<visible>Window.IsActive(fullscreeninfo)</visible>
 			</control>
 			
 			<!-- Video Codec Flag -->
@@ -1010,7 +1005,6 @@
 				<bordersize>2</bordersize>
 				<texture>$INFO[VideoPlayer.VideoCodec,flags/video/,.png]</texture>
 				<include>MediaFlagVars</include>
-				<visible>Window.IsActive(fullscreeninfo)</visible>
 			</control>
 			
 			<!-- Aspect Ratio Flag -->
@@ -1020,7 +1014,6 @@
 				<bordersize>2</bordersize>
 				<texture>$INFO[Skin.String(OSD.AspectRatio)]</texture>
 				<include>MediaFlagVars</include>
-				<visible>Window.IsActive(fullscreeninfo)</visible>
 			</control>
 			
 			<!-- Framerate Flag -->
@@ -1030,7 +1023,6 @@
 				<bordersize>2</bordersize>
 				<texture>$INFO[Skin.String(OSD.Framerate)]</texture>
 				<include>MediaFlagVars</include>
-				<visible>Window.IsActive(fullscreeninfo)</visible>
 			</control>
 			
 			<!-- Audio Codec Flag -->
@@ -1040,7 +1032,6 @@
 				<bordersize>2</bordersize>
 				<texture>$INFO[VideoPlayer.AudioCodec,flags/audio/,.png]</texture>
 				<include>MediaFlagVars</include>
-				<visible>Window.IsActive(fullscreeninfo)</visible>
 			</control>
 			
 			<!-- Audio Channels Flag -->
@@ -1050,7 +1041,6 @@
 				<bordersize>2</bordersize>
 				<texture fallback="flags/mpaa/NR.png">$INFO[VideoPlayer.AudioChannels,flags/channels/,.png]</texture>
 				<include>MediaFlagVars</include>
-				<visible>Window.IsActive(fullscreeninfo)</visible>
 			</control>
 			
 			<!-- Content Rating Flag -->
@@ -1060,7 +1050,6 @@
 				<bordersize>2</bordersize>
 				<texture>$INFO[Skin.String(OSD.ContentRating),flags/mpaa/,.png]</texture>
 				<include>MediaFlagVars</include>
-				<visible>Window.IsActive(fullscreeninfo)</visible>
 			</control>
 			
 			<!-- Studio Flag -->
@@ -1070,8 +1059,23 @@
 				<bordersize>2</bordersize>
 				<texture>$INFO[Skin.String(OSD.Studio),flags/studios/,.png]</texture>
 				<include>MediaFlagVars</include>
-				<visible>Window.IsActive(fullscreeninfo)</visible>
 			</control>
+		
+		</control>
+		
+		<control type="grouplist">
+			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+			<animation effect="slide" end="-268,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+			<include>Animation_OpenCloseFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+		
+			<posx>298</posx>
+            <posy>975</posy>
+            <width>1577</width>
+            <itemgap>0</itemgap>
+            <orientation>horizontal</orientation>
+            <visible>!Window.IsActive(VideoOSD) + [Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !Window.IsActive(fullscreeninfo)</visible>
 			
 			<!-- Dummy OSD Playlist Button -->
             <control type="image">
@@ -1079,7 +1083,6 @@
                 <height>100</height>
                 <width>100</width>
 				<texture>osd/buttons/osdplaylistnf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>  
 								
 			<!-- Dummy OSD Bookmarks Button -->
@@ -1088,7 +1091,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdbookmarksnf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 								
 			<!-- Dummy OSD Subtitles Button -->
@@ -1097,7 +1099,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdsubtitlesnf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 				
 			<!-- Dummy OSD Previous Button -->
@@ -1106,7 +1107,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdprevtracknf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 				
 			<!-- Dummy OSD Rewind Button -->
@@ -1115,7 +1115,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdrewindnf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 				
 			<!-- Dummy OSD Stop Button -->
@@ -1124,7 +1123,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdstopnf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 				
 			<!-- Dummy OSD Play/Pause Button -->
@@ -1133,7 +1131,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdpausenf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 				
 			<!-- Dummy OSD Fast Forward Button -->
@@ -1142,7 +1139,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdforwardnf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 				
 			<!-- Dummy OSD Next Button -->
@@ -1151,7 +1147,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdnexttracknf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 			
 			<!-- Dummy Screenshot Button -->
@@ -1159,7 +1154,6 @@
 				<texture>osd/buttons/osdscreenshotnf.png</texture>
 				<width>100</width>
 				<height>100</height>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
 			</control>
 			
 			<!-- Dummy OSD Video Settings -->
@@ -1168,7 +1162,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdvideonf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 				
 			<!-- Dummy OSD Audio Settings -->
@@ -1177,7 +1170,6 @@
                 <height>100</height>
                 <width>100</width>
                 <texture>osd/buttons/osdaudionf.png</texture>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
             </control>
 				
 			<!-- Dummy OSD Options -->
@@ -1185,7 +1177,6 @@
 				<texture>osd/buttons/OSDSkinNF.png</texture>
 				<width>100</width>
 				<height>100</height>
-				<visible>!Window.IsActive(fullscreeninfo)</visible>
 			</control>
         </control>	
 		
