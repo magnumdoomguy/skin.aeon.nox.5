@@ -16,10 +16,17 @@
 	
 	<!-- Label for Spinning Disc Options -->
 	<variable name="OSDSpinningDiscLabelVar">
-		<value condition="!Skin.HasSetting(OSD.TopBarHide.Enable)">$LOCALIZE[42093]</value> <!-- STRING: Disabled -->
-		<value condition="IsEmpty(Skin.String(OSD.TopBarHide.Delay))">15 $LOCALIZE[31090]</value> <!-- STRING: 15 Seconds -->
-		<value>$INFO[Skin.String(OSD.TopBarHide.Delay)] $LOCALIZE[31090]</value> <!-- STRING: XX Seconds -->
+		<value condition="StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled)">$LOCALIZE[42093]</value> <!-- STRING: Disabled -->
+		<value condition="StringCompare(Skin.String(OSD.SpinningDiscStyle),DVD/Bluray)">$LOCALIZE[42057]</value> <!-- STRING: DVD/Bluray -->
+		<value condition="IsEmpty(Skin.String(OSD.SpinningDiscStyle))">$LOCALIZE[42130]</value> <!-- STRING: Discart -->
 	</variable>
+	
+	<!-- Setting for Spinning Disc -->
+	<variable name="OSDSpinningDiscSettingVar">
+		<value condition="IsEmpty(Skin.String(OSD.SpinningDiscStyle))">Skin.SetString(OSD.SpinningDiscStyle,Disabled)</value>
+        <value condition="StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled)">Skin.SetString(OSD.SpinningDiscStyle,DVD/Bluray)</value>
+		<value condition="StringCompare(Skin.String(OSD.SpinningDiscStyle),DVD/Bluray)">Skin.Reset(OSD.SpinningDiscStyle)</value>
+    </variable>
 	
 	<!-- Setting for the Delay in Hiding the Topbar in OSD -->
 	<!-- Values range from 5 Seconds to 30 Seconds -->
