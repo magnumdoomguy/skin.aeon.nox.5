@@ -71,7 +71,7 @@
                 <onclick>$VAR[OSDVideoIconSettingVar]</onclick>
             </control>
 			
-			<!-- Enable / Disable Spinning Disc -->
+			<!-- Spinning Disc -->
 			<control type="button" id="90203">
                 <posx>0</posx>
 				<posy>0</posy>
@@ -101,8 +101,8 @@
 				<height>75</height>
 				<width>1136</width>
                 <label>$LOCALIZE[42118]</label>
-                <onclick>Skin.ToggleSetting(DisableOSDMediaFlags)</onclick>
-				<selected>!Skin.HasSetting(DisableOSDMediaFlags)</selected>
+                <onclick>Skin.ToggleSetting(OSD.MediaFlags.Disable)</onclick>
+				<selected>!Skin.HasSetting(OSD.MediaFlags.Disable)</selected>
             </control>
 					
 			<!-- Resolution Flag -->
@@ -114,7 +114,7 @@
                 <label>$LOCALIZE[42119]</label> <!-- STRING: Resolution Flag Style -->
                 <label2>[COLOR labelheader]$VAR[OSDResolutionFlagLabelVar][/COLOR]</label2>
                 <onclick>Skin.ToggleSetting(OSD.FullResolutionFlag.Enable)</onclick>
-				<enable>!Skin.HasSetting(DisableOSDMediaFlags)</enable>
+				<enable>!Skin.HasSetting(OSD.MediaFlags.Disable)</enable>
             </control>
 			
 			<!-- Disable End Time -->
@@ -124,8 +124,8 @@
 				<height>75</height>
 				<width>1136</width>
                 <label>$LOCALIZE[42126]</label>
-                <onclick>Skin.ToggleSetting(DisableEndTime)</onclick>
-				<selected>!Skin.HasSetting(DisableEndTime)</selected>
+                <onclick>Skin.ToggleSetting(OSD.EndTime.Disable)</onclick>
+				<selected>!Skin.HasSetting(OSD.EndTime.Disable)</selected>
             </control>
 			
 			<!-- Show Large Pause Symbol When Paused -->
@@ -135,8 +135,8 @@
 				<height>75</height>
 				<width>1136</width>
                 <label>$LOCALIZE[42117]</label>
-                <onclick>Skin.ToggleSetting(DisablePauseSymbol)</onclick>
-				<selected>!Skin.HasSetting(DisablePauseSymbol)</selected>
+                <onclick>Skin.ToggleSetting(OSD.PauseSymbol.Disable)</onclick>
+				<selected>!Skin.HasSetting(OSD.PauseSymbol.Disable)</selected>
             </control>
 			
 			<!-- Hide Topbar when Paused -->
@@ -160,6 +160,26 @@
                 <label2>[COLOR labelheader]$VAR[OSDTopBarHideDelayLabelVar][/COLOR]</label2>
                 <onclick>$VAR[OSDTopBarHideDelaySettingVar]</onclick>
 				<enable>Skin.HasSetting(OSD.TopBarHide.Enable)</enable>
+            </control>
+			
+			<!-- Reset -->
+            <control type="button" id="90211">
+               <posx>0</posx>
+				<posy>0</posy>
+				<height>75</height>
+				<width>1136</width>
+                <label>$LOCALIZE[42134]</label> <!-- STRING: Hide Delay -->
+                <onclick>Skin.Reset(OSD.DefaultButton)</onclick>
+				<onclick>Skin.Reset(OSD.VideoIconStyle)</onclick>
+				<onclick>Skin.Reset(OSD.SpinningDiscStyle)</onclick>
+				<onclick>Skin.Reset(OSD.Plot)</onclick>
+				<onclick>Skin.Reset(OSD.MediaFlags.Disable)</onclick>
+				<onclick>Skin.Reset(OSD.FullResolutionFlag.Enable)</onclick>
+				<onclick>Skin.Reset(OSD.EndTime.Disable)</onclick>
+				<onclick>Skin.Reset(OSD.PauseSymbol.Disable)</onclick>
+				<onclick>Skin.Reset(OSD.TopBarHide.Enable)</onclick>
+				<onclick>Skin.Reset(OSD.TopBarHide.Delay)</onclick>
+				<enable>!IsEmpty(Skin.String(OSD.DefaultButton)) | !IsEmpty(Skin.String(OSD.VideoIconStyle)) | !IsEmpty(Skin.String(OSD.SpinningDiscStyle)) | !IsEmpty(Skin.String(OSD.Plot)) | Skin.HasSetting(OSD.MediaFlags.Disable) | Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.EndTime.Disable) | Skin.HasSetting(OSD.PauseSymbol.Disable) | Skin.HasSetting(OSD.TopBarHide.Enable) | !IsEmpty(Skin.String(OSD.TopBarHide.Delay))</enable>
             </control>
 		</control>
 		
