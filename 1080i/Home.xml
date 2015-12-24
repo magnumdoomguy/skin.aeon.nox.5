@@ -3,11 +3,15 @@
     <defaultcontrol always="true">299</defaultcontrol>
     <allowoverlay>no</allowoverlay>
     <onload>SetProperty(Window.HasSettings,True,Home)</onload>
-    <onload condition="Container.PlexContent(Movies)">Skin.SetString(SectionType,movies)</onload>
-    <onload condition="Container.PlexContent(TVShows)">Skin.SetString(SectionType,tvshows)</onload>
-    <onload condition="Container.PlexContent(Clips)">Skin.SetString(SectionType,clips)</onload>
-		
-    <onunload>Skin.Reset(SectionType)</onunload>
+    <onload>Skin.Reset(SectionType)</onload>
+	<onunload condition="Container.PlexContent(movies)">Skin.SetString(SectionType,movies)</onunload>
+	<onunload condition="Container.PlexContent(tvshows)">Skin.SetString(SectionType,tvshows)</onunload>
+	<onunload condition="Container.PlexContent(seasons)">Skin.SetString(SectionType,tvshows)</onunload>
+	<onunload condition="Container.PlexContent(episodes)">Skin.SetString(SectionType,tvshows)</onunload>
+	<onunload condition="Container.PlexContent(clips)">Skin.SetString(SectionType,clips)</onunload>
+	<onunload condition="Container.PlexContent(empty)">Skin.SetString(SectionType,empty)</onunload>
+	<onunload condition="StringCompare(Container(300).ListItem.Label,$LOCALIZE[42137])">Skin.SetString(SectionType,homemovies)</onunload>
+	<onunload condition="Container.PlexContent(homemovies)">Skin.SetString(SectionType,homemovies)</onunload>
     <onunload>ClearProperty(Window.HasSettings,Home)</onunload>
 		
 	<animation effect="fade" time="600">WindowOpen</animation>
