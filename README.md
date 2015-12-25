@@ -4,10 +4,6 @@ I'm very pleased to announce the release of my port of the Aeon Nox 5 from Kodi 
 
 Aeon Nox 5 for Plex has 28 different viewtypes, an intuitive and graceful GUI and lots of configuration options.  
 
-Version 5.0.1 of Aeon Nox (for PHT 1.4.1) is available here:
-
-Aeon Nox 5.0.1 Download
-
 Installation:
 
 Extract the zip file then move the skin.aeon.nox.5 folder inside the zip to:
@@ -32,6 +28,7 @@ Mr. V for the homemenu widgets
 neurosis13 for the color media flags
 Tgx for fanart from his Black Glass Nova skin
 Aeon MQ for fanart
+Metropolis for some of the OSD options
 
 Special Thanks to Arjan1105 and FREAKJAM for testing
 Extra special thanks to i/o for his help during the early stages of this project.
