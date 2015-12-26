@@ -120,13 +120,6 @@
 				<texture>separator3.png</texture>
 			</control>
 			<control type="image">
-				<posx>783</posx>
-				<posy>283</posy>
-				<width>2</width>
-				<height>164</height>
-				<texture>separator3.png</texture>
-			</control>
-			<control type="image">
 				<posx>1110</posx>
 				<posy>51</posy>
 				<width>2</width>
@@ -171,6 +164,7 @@
 					<posy>41</posy>
 					<width>200</width>
 					<height>200</height>
+					<aspectratio>stretch</aspectratio>
 					<texture>$INFO[MusicPlayer.offset(1).Cover]</texture>
 					<visible>!Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 				</control>
@@ -228,12 +222,23 @@
 				<height>410</height>
 				
 				<control type="image">
-					<posx>669</posx>
-					<posy>303</posy>
+					<posx>5</posx>
+					<posy>210</posy>
 					<width>133</width>
 					<aspectratio align="left">keep</aspectratio>
 					<texture fallback="flags/music/default.png">$INFO[MusicPlayer.Codec,flags/music/,.png]</texture>
 					<colordiffuse>labelheader</colordiffuse>
+				</control>
+				<control type="label">
+					<posx>138</posx>
+					<posy>240</posy>
+					<width>667</width>
+					<height>50</height>
+					<font>font10</font>
+					<align>left</align>
+					<textcolor>grey</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[MusicPlayer.Bitrate,,[COLOR=labelheader] kbps[/COLOR]]$INFO[MusicPlayer.Samplerate, ,[COLOR=labelheader] kHz[/COLOR]][CR]$INFO[MusicPlayer.BitsPerSample,,[COLOR=labelheader] Bits[/COLOR]]$INFO[MusicPlayer.Channels, ,[COLOR=labelheader] Ch[/COLOR]]</label>
 				</control>
 				<control type="label"> <!--Song Info Text-->
 					<posx>810</posx>
@@ -311,15 +316,7 @@
 						<textoffsetx>13</textoffsetx>
 						<label>$INFO[Player.Time]$INFO[Player.Duration,[COLOR=labelheader]/[/COLOR]]</label>
 					</control>
-					<control type="label">
-						<width>667</width>
-						<height>50</height>
-						<font>font10</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[MusicPlayer.Bitrate,,[COLOR=labelheader] kbps[/COLOR]]$INFO[MusicPlayer.Samplerate, ,[COLOR=labelheader] kHz[/COLOR]][CR]$INFO[MusicPlayer.BitsPerSample,,[COLOR=labelheader] Bits[/COLOR]]$INFO[MusicPlayer.Channels, ,[COLOR=labelheader] Ch[/COLOR]]</label>
-					</control>
+					
 				</control>
 			</control>
 			<control type="group"> <!--CD Art Display-->
@@ -390,7 +387,7 @@
 					<include>VisibleFadeEffect</include>
 					<width>500</width>
 					<height>500</height>
-					<aspectratio align="right">keep</aspectratio>
+					<aspectratio align="right">stretch</aspectratio>
 					<texture>$INFO[Player.Art(thumb)]</texture>
 					<visible>!Substring(Player.Art(thumb),DefaultAlbumCover.png)</visible>
 				</control>
@@ -405,7 +402,51 @@
 						
 			</control>
 		</control>
-		
+		<control type="group"> <!-- RSS Feed: similar artists-->
+            <include>VisibleFadeEffect</include>
+                        
+            <control type="group">
+                <!--<visible>[Player.ShowInfo + Skin.HasSetting(Enable.VizInfo)] | Skin.HasSetting(Enable.VizPersistent)</visible>-->
+                <animation effect="slide" end="794,-959" time="0" reversible="false" condition="!Player.ShowInfo + Skin.HasSetting(Enable.VizPersistent)">Conditional</animation>
+                <animation effect="slide" start="0,0" end="0,-80" time="200" reversible="true" condition="!Player.ShowInfo + Window.IsActive(volumebar) + Skin.HasSetting(Enable.VizPersistent)">Conditional</animation>
+                <posx>214</posx>
+                <posy>1003</posy>
+                <control type="image">
+                    <posx>90</posx>
+                    <width>822</width>
+                    <height>55</height>
+                    <texture>submenu_bar.png</texture>
+                </control>
+                <control type="image">
+                    <width>90</width>
+                    <height>55</height>
+                    <texture>submenu_end.png</texture>
+                </control>
+                <control type="label">
+                    <posx>68</posx>
+                    <posy>2</posy>
+                    <width>20</width>
+                    <height>20</height>
+                    <label></label>
+                    <font>CloseButton</font>
+                    <textcolor>labelheader</textcolor>
+                    <shadowcolor>shadow</shadowcolor>
+                </control>
+                <control type="label">
+                    <posx>86</posx>
+                    <posy>1</posy>
+                    <height>20</height>
+                    <width>826</width>
+                    <scroll>true</scroll>
+                    <font>font10</font>
+                    <scrollspeed>40</scrollspeed>
+                    <textcolor>grey</textcolor>
+                    <shadowcolor>shadow</shadowcolor>
+                    <scrollsuffix> </scrollsuffix>
+                    <label>                                                                                                                                                                          $LOCALIZE[42138] : [COLOR blue] 1.[/COLOR] $INFO[MusicPlayer.offset(1).Artist,, - ] $INFO[MusicPlayer.offset(1).Title]      [COLOR blue]2.[/COLOR] $INFO[MusicPlayer.offset(2).Artist,, - ] $INFO[MusicPlayer.offset(2).Title]     [COLOR blue]3.[/COLOR] $INFO[MusicPlayer.offset(3).Artist,, - ] $INFO[MusicPlayer.offset(3).Title]      [COLOR blue]4.[/COLOR] $INFO[MusicPlayer.offset(4).Artist,, - ] $INFO[MusicPlayer.offset(4).Title]     [COLOR blue]5.[/COLOR] $INFO[MusicPlayer.offset(5).Artist,, - ] $INFO[MusicPlayer.offset(5).Title]  </label>
+                </control>
+            </control>
+		</control>
 		<control type="group" id="0"> <!-- codec & viz infos start-->
 			<animation effect="slide" start="0,-340" end="0,45" time="400">VisibleChange</animation>
 			<animation effect="fade" time="400">VisibleChange</animation>
@@ -465,7 +506,7 @@
 			<!-- move if flipped -->
 			<!--<animation effect="slide" start="0,0" end="-430,0" time="1000" condition="MusicPlayer.NowPlayingFlipped">Conditional</animation>-->
 			<posy>886</posy>
-			<posx>301</posx>
+			<posx>292</posx>
 			
 			<control type="grouplist" id="202">
                 <posy>0</posy>
