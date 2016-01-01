@@ -7,11 +7,29 @@
 			<visible>!Skin.HasSetting(HideVisualizationFanart)</visible>
 			<include>SettingsFadeEffect</include>
 			<control type="image">
+				<visible>IsEmpty(Skin.String(NowPlaying.CustomBackgroundFile)) + IsEmpty(Skin.String(NowPlaying.CustomSlideshowPath))</visible>
 				<description>Fanart image</description>
 				<include>FullscreenDimensions</include>
 				<fadetime>750</fadetime>
 				<texture background="true" fallback="special://skin/backgrounds/music.jpg">$INFO[Player.Art(fanart)]</texture>
-				<animation effect="fade" start="100" end="20" time="0">Visible</animation>
+				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
+				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
+			</control>
+			<control type="image">
+				<visible>!IsEmpty(Skin.String(NowPlaying.CustomBackgroundFile))</visible>
+				<description>Fanart image</description>
+				<include>FullscreenDimensions</include>
+				<fadetime>750</fadetime>
+				<info>Skin.String(NowPlaying.CustomBackgroundFile)</info>
+				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
+				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
+			</control>
+			<control type="multiimage">
+				<visible>!IsEmpty(Skin.String(NowPlaying.CustomSlideshowPath))</visible>
+				<description>Fanart image</description>
+				<include>FullscreenDimensions</include>
+				<fadetime>750</fadetime>
+				<info>Skin.String(NowPlaying.CustomSlideshowPath)</info>
 				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
 				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
 			</control>
@@ -596,7 +614,7 @@
                     <height>100</height>
                     <font>-</font>
                     <onclick>Dialog.Close(musicosd)</onclick>
-                    <onclick>ActivateWindow(1120)</onclick>
+                    <onclick>ActivateWindow(1121)</onclick>
                     <onclick>SetProperty(MusicOSD.Settings,True,home)</onclick>
                 </control>
             </control>
