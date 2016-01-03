@@ -3,6 +3,7 @@
 	<defaultcontrol always="true">602</defaultcontrol>
     <controls>
 		
+		<!-- Background -->
 		<control type="group">
 			<visible>!Skin.HasSetting(HideVisualizationFanart)</visible>
 			<include>SettingsFadeEffect</include>
@@ -35,6 +36,7 @@
 			</control>
 		</control>		
 		
+		<!-- Large Scrolling Info -->
 		<control type="group">
 			<control type="fadelabel">
 				<posx>0</posx>
@@ -54,7 +56,9 @@
 				<visible>Skin.HasSetting(BigAssLabel)</visible>
 			</control>
 		</control>
-		<control type="group"> <!--TopBar-->
+		
+		<!-- Topbar -->
+		<control type="group">
 			<visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
 			<animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
 			<animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
@@ -102,20 +106,34 @@
 				<aligny>top</aligny>
 				<label>PLAYLIST: $INFO[MusicPlayer.PlaylistPosition]/$INFO[MusicPlayer.PlaylistLength]</label>
 			</control>
-			
 		</control>
-		<control type="group"> <!--OnScreen Info-->
+		
+		<!--OnScreen Info-->
+		<control type="group"> 
 			<posx>0</posx>
 			<posy>540</posy>
 			<include>VisibleFadeEffect</include>
 			<include>Window_OpenClose_Animation</include>
-			<control type="image"> <!--Set Panel-->
+			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
+			
+			<!--Set Panel-->
+			<control type="image"> 
+				<visible>!StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 				<posy>20</posy>
 				<width>1920</width>
 				<height>460</height>
 				<texture border="40">listpanel_back.png</texture>
 				<colordiffuse>E0FFFFFF</colordiffuse>
 			</control>
+			<control type="image"> 
+				<visible>StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+				<posy>20</posy>
+				<width>1682</width>
+				<height>460</height>
+				<texture border="40">listpanel_back.png</texture>
+				<colordiffuse>E0FFFFFF</colordiffuse>
+			</control>
+			
 			<control type="image">
 				<posx>293</posx>
 				<posy>51</posy>
@@ -430,9 +448,11 @@
 						
 			</control>
 		</control>
+		
+		<!-- Next Up Scrolling Text -->
 		<control type="group">
+			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
             <include>VisibleFadeEffect</include>
-                        
             <control type="group">
                 <visible>!IsEmpty(MusicPlayer.offset(1).Title)</visible>
                 <animation effect="slide" end="794,-959" time="0" reversible="false" condition="!Player.ShowInfo + Skin.HasSetting(Enable.VizPersistent)">Conditional</animation>
@@ -533,6 +553,7 @@
 		<control type="group">
 			<!-- move if flipped -->
 			<!--<animation effect="slide" start="0,0" end="-430,0" time="1000" condition="MusicPlayer.NowPlayingFlipped">Conditional</animation>-->
+			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
 			<posy>886</posy>
 			<posx>292</posx>
 			
