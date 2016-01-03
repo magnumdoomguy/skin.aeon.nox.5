@@ -1030,6 +1030,26 @@
 	
 	<!-- Now Playing Next Up -->
 	<variable name="NowPlayingNextUpVar">
-		<value>                                                                                                                                                                                                                       $LOCALIZE[42138] : [COLOR blue] 1.[/COLOR] $INFO[MusicPlayer.offset(1).Artist,, - ] $INFO[MusicPlayer.offset(1).Title]      [COLOR blue]2.[/COLOR] $INFO[MusicPlayer.offset(2).Artist,, - ] $INFO[MusicPlayer.offset(2).Title]     [COLOR blue]3.[/COLOR] $INFO[MusicPlayer.offset(3).Artist,, - ] $INFO[MusicPlayer.offset(3).Title]      [COLOR blue]4.[/COLOR] $INFO[MusicPlayer.offset(4).Artist,, - ] $INFO[MusicPlayer.offset(4).Title]     [COLOR blue]5.[/COLOR] $INFO[MusicPlayer.offset(5).Artist,, - ] $INFO[MusicPlayer.offset(5).Title]  </value>
+		<value condition="!IsEmpty(MusicPlayer.offset(5).Title)">                                                                                                                                                                                                                       $LOCALIZE[42138] : [COLOR blue] 1.[/COLOR] $INFO[MusicPlayer.offset(1).Artist,, - ] $INFO[MusicPlayer.offset(1).Title]      [COLOR blue]2.[/COLOR] $INFO[MusicPlayer.offset(2).Artist,, - ] $INFO[MusicPlayer.offset(2).Title]     [COLOR blue]3.[/COLOR] $INFO[MusicPlayer.offset(3).Artist,, - ] $INFO[MusicPlayer.offset(3).Title]      [COLOR blue]4.[/COLOR] $INFO[MusicPlayer.offset(4).Artist,, - ] $INFO[MusicPlayer.offset(4).Title]     [COLOR blue]5.[/COLOR] $INFO[MusicPlayer.offset(5).Artist,, - ] $INFO[MusicPlayer.offset(5).Title]  </value>
+		<value condition="!IsEmpty(MusicPlayer.offset(4).Title)">                                                                                                                                                                                                                       $LOCALIZE[42138] : [COLOR blue] 1.[/COLOR] $INFO[MusicPlayer.offset(1).Artist,, - ] $INFO[MusicPlayer.offset(1).Title]      [COLOR blue]2.[/COLOR] $INFO[MusicPlayer.offset(2).Artist,, - ] $INFO[MusicPlayer.offset(2).Title]     [COLOR blue]3.[/COLOR] $INFO[MusicPlayer.offset(3).Artist,, - ] $INFO[MusicPlayer.offset(3).Title]      [COLOR blue]4.[/COLOR] $INFO[MusicPlayer.offset(4).Artist,, - ] $INFO[MusicPlayer.offset(4).Title]</value>
+		<value condition="!IsEmpty(MusicPlayer.offset(3).Title)">                                                                                                                                                                                                                       $LOCALIZE[42138] : [COLOR blue] 1.[/COLOR] $INFO[MusicPlayer.offset(1).Artist,, - ] $INFO[MusicPlayer.offset(1).Title]      [COLOR blue]2.[/COLOR] $INFO[MusicPlayer.offset(2).Artist,, - ] $INFO[MusicPlayer.offset(2).Title]     [COLOR blue]3.[/COLOR] $INFO[MusicPlayer.offset(3).Artist,, - ] $INFO[MusicPlayer.offset(3).Title]</value>
+		<value condition="!IsEmpty(MusicPlayer.offset(2).Title)">                                                                                                                                                                                                                       $LOCALIZE[42138] : [COLOR blue] 1.[/COLOR] $INFO[MusicPlayer.offset(1).Artist,, - ] $INFO[MusicPlayer.offset(1).Title]      [COLOR blue]2.[/COLOR] $INFO[MusicPlayer.offset(2).Artist,, - ] $INFO[MusicPlayer.offset(2).Title]</value>
+		<value condition="!IsEmpty(MusicPlayer.offset(1).Title)">                                                                                                                                                                                                                       $LOCALIZE[42138] : [COLOR blue] 1.[/COLOR] $INFO[MusicPlayer.offset(1).Artist,, - ] $INFO[MusicPlayer.offset(1).Title]</value>
+		<value></value>
 	</variable>
+	
+	<!-- Label for Spinning Disc Options -->
+	<variable name="MusicSpinningDiscLabelVar">
+		<value condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">$LOCALIZE[42093]</value> <!-- STRING: Disabled -->
+		<value condition="StringCompare(Skin.String(Music.SpinningDiscStyle),CD)">$LOCALIZE[42143]</value> <!-- STRING: DVD/Bluray -->
+		<value condition="IsEmpty(Skin.String(Music.SpinningDiscStyle))">$LOCALIZE[42144]</value> <!-- STRING: Discart -->
+	</variable>
+	
+	<!-- Setting for Spinning Disc -->
+	<variable name="MusicSpinningDiscSettingVar">
+		<value condition="IsEmpty(Skin.String(Music.SpinningDiscStyle))">Skin.SetString(Music.SpinningDiscStyle,Disabled)</value>
+        <value condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Skin.SetString(Music.SpinningDiscStyle,CD)</value>
+		<value condition="StringCompare(Skin.String(Music.SpinningDiscStyle),CD)">Skin.Reset(Music.SpinningDiscStyle)</value>
+    </variable>
+	
 </includes>

@@ -323,7 +323,9 @@
 					
 				</control>
 			</control>
-			<control type="group"> <!--CD Art Display-->
+			
+			<!-- CD Case -->
+			<control type="group">
 				<posx>1180</posx>
 				<posy>0</posy>
 				<height>500</height>
@@ -334,47 +336,69 @@
 					<aspectratio align="right">keep</aspectratio>
 					<texture>cdinside.png</texture>
 				</control>
+				
+				<!-- CD-R Spinning Disc -->
 				<control type="group">
-				<posy>-23</posy>
-				<control type="image" id="88888">
-					<posx>220</posx>
-					<posy>3</posy>
-					<width>545</width>
-					<height>545</height>
-					<aligny>top</aligny>
-					<aspectratio align="left">keep</aspectratio>
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
-					<texture background="true" diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
-					<bordersize>30</bordersize>
+					<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle))</visible>
+					<posy>-23</posy>
+					<control type="image" id="88888">
+						<posx>220</posx>
+						<posy>3</posy>
+						<width>545</width>
+						<height>545</height>
+						<aligny>top</aligny>
+						<aspectratio align="left">keep</aspectratio>
+						<fadetime>300</fadetime>
+						<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+						<texture background="true" diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
+						<bordersize>30</bordersize>
+					</control>
+					<control type="label">
+						<posx>360</posx>
+						<posy>80</posy>
+						<width>265</width>
+						<height>89</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>fontCDartist</font>
+						<label>$INFO[MusicPlayer.Artist, ,]</label>
+						<animation effect="rotate" end="-360" center="495,275" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+						<textcolor>black</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+					</control>
+					<control type="label">
+						<posx>350</posx>
+						<posy>370</posy>
+						<width>280</width>
+						<height>99</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>fontCDalbum</font>
+						<label>$INFO[MusicPlayer.Album, ,]</label>
+						<animation effect="rotate" end="-360" center="495,275" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+						<textcolor>black</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+					</control>
 				</control>
-				<control type="label">
-					<posx>360</posx>
-					<posy>80</posy>
-					<width>265</width>
-					<height>89</height>
-					<align>center</align>
-					<aligny>center</aligny>
-					<font>fontCDartist</font>
-					<label>$INFO[MusicPlayer.Artist, ,]</label>
-					<animation effect="rotate" end="-360" center="495,275" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
-					<textcolor>black</textcolor>
-					<wrapmultiline>true</wrapmultiline>
+				
+				<!-- CD Spinning Disc -->
+				<control type="group">
+					<visible>StringCompare(Skin.String(Music.SpinningDiscStyle),CD)</visible>
+					<posy>-23</posy>
+					<control type="image" id="88888">
+						<posx>220</posx>
+						<posy>3</posy>
+						<width>545</width>
+						<height>545</height>
+						<aligny>top</aligny>
+						<aspectratio align="left">keep</aspectratio>
+						<fadetime>300</fadetime>
+						<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+						<texture background="true">cdart/sd.png</texture>
+						<bordersize>30</bordersize>
+					</control>
 				</control>
-				<control type="label">
-					<posx>350</posx>
-					<posy>370</posy>
-					<width>280</width>
-					<height>99</height>
-					<align>center</align>
-					<aligny>center</aligny>
-					<font>fontCDalbum</font>
-					<label>$INFO[MusicPlayer.Album, ,]</label>
-					<animation effect="rotate" end="-360" center="495,275" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
-					<textcolor>black</textcolor>
-					<wrapmultiline>true</wrapmultiline>
-				</control>
-			</control>
+				
 				<control type="label">
 					<posx>-226</posx>
 					<posy>235</posy>
