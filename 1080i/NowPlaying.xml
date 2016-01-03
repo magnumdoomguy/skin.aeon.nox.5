@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="50">
-	<defaultcontrol always="true">602</defaultcontrol>
+	<defaultcontrol always="true">410</defaultcontrol>
     <controls>
+		
+		<!-- Set Default OSD Button -->
+        <control type="button" id="410">
+			<include>HiddenObject</include>
+            <onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Playlists)">SetFocus(700)</onfocus>
+            <onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Previous)">SetFocus(600)</onfocus>
+            <onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Stop)">SetFocus(603)</onfocus>
+			<onfocus condition="IsEmpty(Skin.String(NowPlaying.DefaultButton))">SetFocus(602)</onfocus>
+            <onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Next)">SetFocus(605)</onfocus>
+			<onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Random)">SetFocus(704)</onfocus>
+			<onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Repeat)">SetFocus(707)</onfocus>
+			<onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Options)">SetFocus(706)</onfocus>
+        </control>
 		
 		<!-- Background -->
 		<control type="group">
@@ -565,11 +578,7 @@
                 <itemgap>1</itemgap>
                 <scrolltime tween="sine">200</scrolltime>
                 <orientation>horizontal</orientation>
-                <onup>700</onup>
-                <ondown>706</ondown>
-                <onleft>202</onleft>
-                <onright>202</onright>
-				
+                				
                 <!-- Play Queue -->
                 <control type="button" id="700">
 					<textoffsety>60</textoffsety>
@@ -578,6 +587,8 @@
 					<label>-</label>
 					<width>100</width>
 					<height>100</height>
+					<onleft>706</onleft>
+					<onright>600</onright>
 					<font>-</font>
 					<onclick>Dialog.Close(PlayerControls)</onclick>
 					<onclick>ReplaceWindow(10094, plexserver://playqueue/audio)</onclick>
@@ -589,10 +600,24 @@
                     <label>-</label>
                     <width>100</width>
                     <height>100</height>
+					<onleft>700</onleft>
+					<onright>603</onright>
                     <font>-</font>
                     <onclick>PlayerControl(Previous)</onclick>
                 </control>
                 
+				<control type="button" id="603">
+                    <texturefocus>osd/buttons/OSDStopFO.png</texturefocus>
+                    <texturenofocus>osd/buttons/OSDStopNF.png</texturenofocus>
+                    <label>-</label>
+                    <width>100</width>
+                    <height>100</height>
+					<onleft>600</onleft>
+					<onright>602</onright>
+                    <font>-</font>
+                    <onclick>PlayerControl(Stop)</onclick>
+                </control>
+				
                 <control type="togglebutton" id="602">
                     <texturefocus>osd/buttons/OSDPauseFO.png</texturefocus>
                     <texturenofocus>osd/buttons/OSDPauseNF.png</texturenofocus>
@@ -602,26 +627,21 @@
                     <altlabel>208</altlabel>
                     <width>100</width>
                     <height>100</height>
+					<onleft>603</onleft>
+					<onright>605</onright>
                     <font>-</font>
                     <usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
                     <onclick>PlayerControl(Play)</onclick>
                 </control>
-                <control type="button" id="603">
-                    <texturefocus>osd/buttons/OSDStopFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDStopNF.png</texturenofocus>
-                    <label>-</label>
-                    <width>100</width>
-                    <height>100</height>
-                    <font>-</font>
-                    <onclick>PlayerControl(Stop)</onclick>
-                </control>
-                
+                                
                 <control type="button" id="605">
                     <texturefocus>osd/buttons/OSDNextTrackFO.png</texturefocus>
                     <texturenofocus>osd/buttons/OSDNextTrackNF.png</texturenofocus>
                     <label>-</label>
                     <width>100</width>
                     <height>100</height>
+					<onleft>602</onleft>
+					<onright>704</onright>
                     <font>-</font>
                     <onclick>PlayerControl(Next)</onclick>
                 </control>
@@ -633,6 +653,8 @@
                     <label>-</label>
                     <width>100</width>
                     <height>100</height>
+					<onleft>605</onleft>
+					<onright>707</onright>
                     <font>-</font>
                     <usealttexture>Playlist.IsRandom</usealttexture>
                     <onclick>PlayerControl(Random)</onclick>
@@ -640,6 +662,8 @@
                 <control type="button" id="707">
                     <width>0.1</width>
                     <height>0.1</height>
+					<onleft>704</onleft>
+					<onright>706</onright>
                     <texturefocus>-</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
@@ -657,6 +681,8 @@
                     <label>-</label>
                     <width>100</width>
                     <height>100</height>
+					<onleft>707</onleft>
+					<onright>600</onright>
                     <font>-</font>
                     <onclick>Dialog.Close(musicosd)</onclick>
                     <onclick>ActivateWindow(1121)</onclick>
