@@ -187,7 +187,21 @@
 					<shadowcolor>black</shadowcolor>
 					<label>• • • $LOCALIZE[19031]</label>
 				</control>
+				
+				<!-- Poster -->
 				<control type="image">
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle))</visible>
+					<width>227</width>
+					<height>227</height>
+					<posy>37</posy>
+					<aspectratio>stretch</aspectratio>
+					<texture>$INFO[MusicPlayer.offset(1).Cover]</texture>
+					<visible>!Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+				</control>				
+				
+				<!-- Clear Case -->
+				<control type="image">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<posx>22</posx>
 					<posy>41</posy>
 					<width>200</width>
@@ -195,6 +209,7 @@
 					<texture>cdinside.png</texture>
 				</control>
 				<control type="image">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<posx>22</posx>
 					<posy>41</posy>
 					<width>200</width>
@@ -204,13 +219,16 @@
 					<visible>!Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 				</control>
 				<control type="image">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<posy>37</posy>
 					<width>227</width>
 					<height>208</height>
 					<aspectratio align="right">keep</aspectratio>
 					<texture>cdcase.png</texture>
 				</control>
+				
 				<control type="grouplist">
+					<animation effect="slide" end="0,19" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle))">Conditional</animation>
 					<posy>247</posy>
 					<height>140</height>
 					<itemgap>10</itemgap>
@@ -256,6 +274,7 @@
 				<width>810</width>
 				<height>410</height>
 				
+				<!-- Audio Codec Flag -->
 				<control type="image">
 					<visible>!Skin.HasSetting(Music.DisableCodecFlag)</visible>
 					<posx>5</posx>
@@ -277,6 +296,7 @@
 					<shadowcolor>black</shadowcolor>
 					<label>$INFO[MusicPlayer.Bitrate,,[COLOR=labelheader] kbps[/COLOR]]$INFO[MusicPlayer.Samplerate, ,[COLOR=labelheader] kHz[/COLOR]][CR]$INFO[MusicPlayer.BitsPerSample,,[COLOR=labelheader] Bits[/COLOR]]$INFO[MusicPlayer.Channels, ,[COLOR=labelheader] Ch[/COLOR]]</label>
 				</control>
+				
 				<control type="label"> <!--Song Info Text-->
 					<posx>810</posx>
 					<height>80</height>
@@ -474,7 +494,7 @@
 				<!-- Album Cover -->
 				<control type="image">
 					<posx>-28</posx>
-					<posy>-28</posy>
+					<posy>-26</posy>
 					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>556</width>
