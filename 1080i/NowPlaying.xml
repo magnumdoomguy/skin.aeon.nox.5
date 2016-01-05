@@ -363,7 +363,10 @@
 				<posy>0</posy>
 				<height>500</height>
 				<width>500</width>
+				
+				<!-- Inside of Glass Case -->
 				<control type="image">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<width>500</width>
 					<height>500</height>
 					<aspectratio align="right">keep</aspectratio>
@@ -467,8 +470,32 @@
 						<bordersize>30</bordersize>
 					</control>
 				</control>
+								
+				<!-- Album Cover -->
+				<control type="image">
+					<posx>-28</posx>
+					<posy>-28</posy>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)</visible>
+					<include>VisibleFadeEffect</include>
+					<width>556</width>
+					<height>556</height>
+					<aspectratio align="right">stretch</aspectratio>
+					<texture diffuse="thumbs/cdcover_mask2.png">$INFO[Player.Art(thumb)]</texture>
+					<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+					<bordersize>28</bordersize>
+				</control>				
 				
+				<!-- Glass Case -->
+				<control type="image">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)</visible>
+					<include>VisibleFadeEffect</include>
+					<width>500</width>
+					<height>500</height>
+					<aspectratio align="right">stretch</aspectratio>
+					<texture>$INFO[Player.Art(thumb)]</texture>
+				</control>
 				<control type="label">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<posx>-226</posx>
 					<posy>235</posy>
 					<width>400</width>
@@ -481,14 +508,7 @@
 					<label>[UPPERCASE]$INFO[MusicPlayer.Album][/UPPERCASE]</label>
 				</control>
 				<control type="image">
-					<include>VisibleFadeEffect</include>
-					<width>500</width>
-					<height>500</height>
-					<aspectratio align="right">stretch</aspectratio>
-					<texture>$INFO[Player.Art(thumb)]</texture>
-					<visible>!Substring(Player.Art(thumb),DefaultAlbumCover.png)</visible>
-				</control>
-				<control type="image">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<posx>-54</posx>
 					<posy>-10</posy>
 					<width>566</width>
