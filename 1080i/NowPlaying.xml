@@ -579,7 +579,7 @@
 					<width>556</width>
 					<height>556</height>
 					<aspectratio align="right">stretch</aspectratio>
-					<texture>$INFO[Player.Art(thumb)]</texture>
+					<texture diffuse="thumbs/cdcover_mask_aa.png">$INFO[Player.Art(thumb)]</texture>
 					<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
 					<bordersize>28</bordersize>
 				</control>					
@@ -623,7 +623,7 @@
 					<width>500</width>
 					<height>500</height>
 					<aspectratio align="right">stretch</aspectratio>
-					<texture>$INFO[Player.Art(thumb)]</texture>
+					<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Player.Art(thumb)]</texture>
 				</control>
 				<control type="image">
 					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),CD)</visible>
@@ -640,7 +640,8 @@
 		
 		<!-- Next Up Scrolling Text -->
 		<control type="group">
-			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
+			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled) + !IsEmpty(Skin.String(NowPlaying.IconStyle))">Conditional</animation>
+			<animation effect="slide" end="106,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled) + IsEmpty(Skin.String(NowPlaying.IconStyle))">Conditional</animation>
 			<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
             <include>VisibleFadeEffect</include>
             <control type="group">
