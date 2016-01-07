@@ -536,6 +536,25 @@
 					<aspectratio align="right">keep</aspectratio>
 					<texture>cdcase.png</texture>
 				</control>
+				
+				<!-- CD Case -->
+				<control type="image">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),CD) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)</visible>
+					<include>VisibleFadeEffect</include>
+					<width>500</width>
+					<height>500</height>
+					<aspectratio align="right">stretch</aspectratio>
+					<texture>$INFO[Player.Art(thumb)]</texture>
+				</control>
+				<control type="image">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),CD)</visible>
+					<posx>-54</posx>
+					<posy>-10</posy>
+					<width>566</width>
+					<height>520</height>
+					<aspectratio align="right">keep</aspectratio>
+					<texture>thumbs/boxes/cd.png</texture>
+				</control>
 						
 			</control>
 		</control>
@@ -543,6 +562,7 @@
 		<!-- Next Up Scrolling Text -->
 		<control type="group">
 			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
+			<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
             <include>VisibleFadeEffect</include>
             <control type="group">
                 <visible>!IsEmpty(MusicPlayer.offset(1).Title) + !Skin.HasSetting(NowPlaying.DisableNextUpScrollbar)</visible>
