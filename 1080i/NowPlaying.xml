@@ -17,37 +17,7 @@
         </control>
 		
 		<!-- Background -->
-		<control type="group">
-			<visible>!Skin.HasSetting(HideVisualizationFanart)</visible>
-			<include>SettingsFadeEffect</include>
-			<control type="image">
-				<visible>IsEmpty(Skin.String(NowPlaying.CustomBackgroundFile)) + IsEmpty(Skin.String(NowPlaying.CustomSlideshowPath))</visible>
-				<description>Fanart image</description>
-				<include>FullscreenDimensions</include>
-				<fadetime>750</fadetime>
-				<texture background="true" fallback="special://skin/backgrounds/music.jpg">$INFO[Player.Art(fanart)]</texture>
-				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
-				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
-			</control>
-			<control type="image">
-				<visible>!IsEmpty(Skin.String(NowPlaying.CustomBackgroundFile))</visible>
-				<description>Fanart image</description>
-				<include>FullscreenDimensions</include>
-				<fadetime>750</fadetime>
-				<info>Skin.String(NowPlaying.CustomBackgroundFile)</info>
-				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
-				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
-			</control>
-			<control type="multiimage">
-				<visible>!IsEmpty(Skin.String(NowPlaying.CustomSlideshowPath))</visible>
-				<description>Fanart image</description>
-				<include>FullscreenDimensions</include>
-				<fadetime>750</fadetime>
-				<info>Skin.String(NowPlaying.CustomSlideshowPath)</info>
-				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
-				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Enable.AnimatedBackgrounds)">Conditional</animation>
-			</control>
-		</control>		
+		<include>NowPlaying_Background</include>		
 		
 		<!-- Large Scrolling Info -->
 		<control type="group">
@@ -154,15 +124,20 @@
 				<height>396</height>
 				<texture>separator3.png</texture>
 			</control>
+			
+			<!-- Separator to left of Album Image -->
 			<control type="image">
-				<posx>1110</posx>
+				<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
+            	<posx>1110</posx>
 				<posy>51</posy>
 				<width>2</width>
 				<height>396</height>
 				<texture>separator3.png</texture>
 			</control>	
+			
+			<!-- Progress Bar -->
 			<control type="progress">
-				<visible>Player.HasDuration</visible>
+				<visible>Player.HasDuration + StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 				<posx>306</posx>
 				<posy>278</posy>
 				<width>791</width>
@@ -171,6 +146,17 @@
 				<texturebg border="2">osd/texturebg2.png</texturebg>
 				<colordiffuse>grey2</colordiffuse>
 			</control>
+			<control type="progress">
+				<visible>Player.HasDuration + IsEmpty(Skin.String(NowPlaying.IconStyle))</visible>
+				<posx>306</posx>
+				<posy>278</posy>
+				<width>844</width>
+				<height>11</height>
+				<info>Player.Progress</info>
+				<texturebg border="2">osd/texturebg2.png</texturebg>
+				<colordiffuse>grey2</colordiffuse>
+			</control>
+			
 			<control type="group"> <!--Next Up Info-->
 				<posx>48</posx>
 				<posy>54</posy>
@@ -268,7 +254,9 @@
 					</control>
 				</control>
 			</control>
-			<control type="group"> <!--Song Info Panel--> 
+			
+			<!-- Song Info -->
+			<control type="group"> 
 				<posx>297</posx>
 				<posy>60</posy>
 				<width>810</width>
@@ -297,7 +285,9 @@
 					<label>$INFO[MusicPlayer.Bitrate,,[COLOR=labelheader] kbps[/COLOR]]$INFO[MusicPlayer.Samplerate, ,[COLOR=labelheader] kHz[/COLOR]][CR]$INFO[MusicPlayer.BitsPerSample,,[COLOR=labelheader] Bits[/COLOR]]$INFO[MusicPlayer.Channels, ,[COLOR=labelheader] Ch[/COLOR]]</label>
 				</control>
 				
-				<control type="label"> <!--Song Info Text-->
+				<!-- Artist Label -->
+				<control type="label">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<posx>810</posx>
 					<height>80</height>
 					<font>font_MainMenu</font>
@@ -311,22 +301,28 @@
 					<label>$INFO[MusicPlayer.Artist]</label>
 				</control>	
 				<control type="label">
-					<visible>IsEmpty(MusicPlayer.Artist)</visible>
-					<posx>810</posx>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle))</visible>
+					<posx>863</posx>
 					<height>80</height>
 					<font>font_MainMenu</font>
-					<width>810</width>
-					<align>right</align>
+					<width>863</width>
+					<align>right</align>	
 					<textoffsetx>13</textoffsetx>
 					<textcolor>grey</textcolor>
 					<shadowcolor>black</shadowcolor>
-					<label>$LOCALIZE[42137]</label>
-				</control>	
+					<scroll>true</scroll>
+					<scrollsuffix>   •   </scrollsuffix>
+					<label>$INFO[MusicPlayer.Artist]</label>
+				</control>					
+				
 				<control type="grouplist">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<posy>90</posy>
 					<width>813</width>
 					<height>450</height>
-					<itemgap>10</itemgap>			
+					<itemgap>10</itemgap>	
+
+					<!-- Album Title -->
 					<control type="label">
 						<posx>813</posx>
 						<height>40</height>
@@ -341,10 +337,13 @@
 						<scrollsuffix>   •   </scrollsuffix>
 						<label>$INFO[MusicPlayer.Album]</label>
 					</control>
+										
 					<control type="label">
 						<height>11</height>
 						<label>-</label>
 					</control>
+					
+					<!-- Song Title -->
 					<control type="label">
 						<posx>813</posx>
 						<height>40</height>
@@ -358,12 +357,16 @@
 						<scrollsuffix>   •   </scrollsuffix>
 						<label>[COLOR labelheader]$INFO[MusicPlayer.TrackNumber,,. ][/COLOR]$INFO[Player.Title]</label>
 					</control>
+					
 					<control type="label">
 						<height>17</height>
 						<label>-</label>
 					</control>
+					
+					<!-- Player Time / Duration -->
 					<control type="label">
-						<posx>813</posx>
+						<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle))">Conditional</animation>
+            			<posx>813</posx>
 						<height>50</height>
 						<width>813</width>
 						<align>right</align>
@@ -375,6 +378,70 @@
 					</control>
 					
 				</control>
+				
+				<control type="grouplist">
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle))</visible>
+					<posy>90</posy>
+					<width>866</width>
+					<height>450</height>
+					<itemgap>10</itemgap>	
+
+					<!-- Album Title -->
+					<control type="label">
+						<posx>866</posx>
+						<height>40</height>
+						<width>866</width>
+						<align>right</align>
+						<aligny>top</aligny>
+						<font>font48</font>
+						<textoffsetx>13</textoffsetx>
+						<textcolor>grey</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<scroll>true</scroll>
+						<scrollsuffix>   •   </scrollsuffix>
+						<label>$INFO[MusicPlayer.Album]</label>
+					</control>
+										
+					<control type="label">
+						<height>11</height>
+						<label>-</label>
+					</control>
+					
+					<!-- Song Title -->
+					<control type="label">
+						<posx>866</posx>
+						<height>40</height>
+						<font>font48</font>
+						<width>866</width>
+						<align>right</align>
+						<textoffsetx>13</textoffsetx>
+						<textcolor>grey</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<scroll>true</scroll>
+						<scrollsuffix>   •   </scrollsuffix>
+						<label>[COLOR labelheader]$INFO[MusicPlayer.TrackNumber,,. ][/COLOR]$INFO[Player.Title]</label>
+					</control>
+					
+					<control type="label">
+						<height>17</height>
+						<label>-</label>
+					</control>
+					
+					<!-- Player Time / Duration -->
+					<control type="label">
+						<posx>866</posx>
+						<height>50</height>
+						<width>866</width>
+						<align>right</align>
+						<font>font48</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<textoffsetx>13</textoffsetx>
+						<label>$INFO[Player.Time]$INFO[Player.Duration,[COLOR=labelheader]/[/COLOR]]</label>
+					</control>
+					
+				</control>
+				
 			</control>
 			
 			<!-- CD Case -->
@@ -662,6 +729,7 @@
 		
 		<!-- osd -->
 		<control type="group">
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 			<!-- move if flipped -->
 			<!--<animation effect="slide" start="0,0" end="-430,0" time="1000" condition="MusicPlayer.NowPlayingFlipped">Conditional</animation>-->
 			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
@@ -673,119 +741,33 @@
                 <height>144</height>
                 <width>1920</width>
                 <align>left</align>
-                <itemgap>1</itemgap>
+                <itemgap>2</itemgap>
                 <scrolltime tween="sine">200</scrolltime>
                 <orientation>horizontal</orientation>
                 				
-                <!-- Play Queue -->
-                <control type="button" id="700">
-					<textoffsety>60</textoffsety>
-					<texturefocus>osd/buttons/OSDPlaylistFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDPlaylistNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<onleft>706</onleft>
-					<onright>600</onright>
-					<font>-</font>
-					<onclick>Dialog.Close(PlayerControls)</onclick>
-					<onclick>ReplaceWindow(10094, plexserver://playqueue/audio)</onclick>
-				</control>
-                
-                <control type="button" id="600">
-                    <texturefocus>osd/buttons/OSDPrevTrackFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDPrevTrackNF.png</texturenofocus>
-                    <label>-</label>
-                    <width>100</width>
-                    <height>100</height>
-					<onleft>700</onleft>
-					<onright>603</onright>
-                    <font>-</font>
-                    <onclick>PlayerControl(Previous)</onclick>
-                </control>
-                
-				<control type="button" id="603">
-                    <texturefocus>osd/buttons/OSDStopFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDStopNF.png</texturenofocus>
-                    <label>-</label>
-                    <width>100</width>
-                    <height>100</height>
-					<onleft>600</onleft>
-					<onright>602</onright>
-                    <font>-</font>
-                    <onclick>PlayerControl(Stop)</onclick>
-                </control>
-				
-                <control type="togglebutton" id="602">
-                    <texturefocus>osd/buttons/OSDPauseFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDPauseNF.png</texturenofocus>
-                    <alttexturefocus>osd/buttons/OSDPlayFO.png</alttexturefocus>
-                    <alttexturenofocus>osd/buttons/OSDPlayNF.png</alttexturenofocus>
-                    <label>-</label>
-					<altlabel>208</altlabel>
-                    <width>100</width>
-                    <height>100</height>
-					<onleft>603</onleft>
-					<onright>605</onright>
-                    <font>-</font>
-                    <usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
-                    <onclick>PlayerControl(Play)</onclick>
-                </control>
-                                
-                <control type="button" id="605">
-                    <texturefocus>osd/buttons/OSDNextTrackFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDNextTrackNF.png</texturenofocus>
-                    <label>-</label>
-                    <width>100</width>
-                    <height>100</height>
-					<onleft>602</onleft>
-					<onright>704</onright>
-                    <font>-</font>
-                    <onclick>PlayerControl(Next)</onclick>
-                </control>
-                <control type="togglebutton" id="704">
-                    <texturefocus>osd/buttons/OSDRandomOffFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDRandomOffNF.png</texturenofocus>
-                    <alttexturefocus>osd/buttons/OSDRandomOnFO.png</alttexturefocus>
-                    <alttexturenofocus>osd/buttons/OSDRandomOnNF.png</alttexturenofocus>
-                    <label>-</label>
-                    <width>100</width>
-                    <height>100</height>
-					<onleft>605</onleft>
-					<onright>707</onright>
-                    <font>-</font>
-                    <usealttexture>Playlist.IsRandom</usealttexture>
-                    <onclick>PlayerControl(Random)</onclick>
-                </control>
-                <control type="button" id="707">
-                    <width>0.1</width>
-                    <height>0.1</height>
-					<onleft>704</onleft>
-					<onright>706</onright>
-                    <texturefocus>-</texturefocus>
-                    <texturenofocus>-</texturenofocus>
-                    <label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
-                    <font>-</font>
-                    <onclick>PlayerControl(Repeat)</onclick>
-                </control>
-                <control type="image" id="708">
-                    <texture>$VAR[MusicOSDRepeatButtonVar]</texture>
-                    <width>100</width>
-                    <height>100</height>
-                </control>
-                <control type="button" id="706">
-                    <texturefocus>osd/buttons/OSDSkinFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDSkinNF.png</texturenofocus>
-                    <label>-</label>
-                    <width>100</width>
-                    <height>100</height>
-					<onleft>707</onleft>
-					<onright>600</onright>
-                    <font>-</font>
-                    <onclick>Dialog.Close(musicosd)</onclick>
-                    <onclick>ActivateWindow(1121)</onclick>
-                    <onclick>SetProperty(MusicOSD.Settings,True,home)</onclick>
-                </control>
+                <include>NowPlaying_Buttons</include>
+            </control>
+		</control>
+		
+		<control type="group">
+			<visible>IsEmpty(Skin.String(NowPlaying.IconStyle))</visible>
+					
+			<!-- move if flipped -->
+			<!--<animation effect="slide" start="0,0" end="-430,0" time="1000" condition="MusicPlayer.NowPlayingFlipped">Conditional</animation>-->
+			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
+			<posy>886</posy>
+			<posx>292</posx>
+			
+			<control type="grouplist" id="202">
+                <posy>0</posy>
+                <height>144</height>
+                <width>1920</width>
+                <align>left</align>
+                <itemgap>9</itemgap>
+                <scrolltime tween="sine">200</scrolltime>
+                <orientation>horizontal</orientation>
+                				
+                <include>NowPlaying_Buttons</include>
             </control>
 		</control>
 	</controls>
