@@ -128,6 +128,7 @@
 			<!-- Separator to left of Album Image -->
 			<control type="image">
 				<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
+				<animation effect="slide" end="38,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),CD)">Conditional</animation>
             	<posx>1110</posx>
 				<posy>51</posy>
 				<width>2</width>
@@ -156,8 +157,19 @@
 				<texturebg border="2">osd/texturebg2.png</texturebg>
 				<colordiffuse>grey2</colordiffuse>
 			</control>
+			<control type="progress">
+				<visible>Player.HasDuration + StringCompare(Skin.String(NowPlaying.IconStyle),CD)</visible>
+				<posx>306</posx>
+				<posy>278</posy>
+				<width>829</width>
+				<height>11</height>
+				<info>Player.Progress</info>
+				<texturebg border="2">osd/texturebg2.png</texturebg>
+				<colordiffuse>grey2</colordiffuse>
+			</control>
 			
-			<control type="group"> <!--Next Up Info-->
+			<!--Next Up Info-->
+			<control type="group"> 
 				<posx>48</posx>
 				<posy>54</posy>
 				<width>227</width>
@@ -326,6 +338,20 @@
 					<height>80</height>
 					<font>font_MainMenu</font>
 					<width>863</width>
+					<align>right</align>	
+					<textoffsetx>13</textoffsetx>
+					<textcolor>grey</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<scrollsuffix>   •   </scrollsuffix>
+					<label>$INFO[MusicPlayer.Artist]</label>
+				</control>
+				<control type="label">
+					<visible>StringCompare(Skin.String(NowPlaying.IconStyle),CD)</visible>
+					<posx>848</posx>
+					<height>80</height>
+					<font>font_MainMenu</font>
+					<width>848</width>
 					<align>right</align>	
 					<textoffsetx>13</textoffsetx>
 					<textcolor>grey</textcolor>
@@ -665,6 +691,7 @@
 			<animation effect="slide" end="104,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled) + !IsEmpty(Skin.String(NowPlaying.IconStyle))">Conditional</animation>
 			<animation effect="slide" end="106,0" time="0" condition="StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled) + IsEmpty(Skin.String(NowPlaying.IconStyle))">Conditional</animation>
 			<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
+			<animation effect="slide" end="38,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),CD)">Conditional</animation>
             <include>VisibleFadeEffect</include>
             <control type="group">
                 <visible>!IsEmpty(MusicPlayer.offset(1).Title) + !Skin.HasSetting(NowPlaying.DisableNextUpScrollbar)</visible>
