@@ -905,7 +905,7 @@
             <include>VisibleFadeEffect</include>
 			
             <control type="group">
-                <visible>!IsEmpty(MusicPlayer.offset(1).Title) + !Skin.HasSetting(NowPlaying.DisableNextUpScrollbar)</visible>
+                <visible>!IsEmpty(MusicPlayer.offset(1).Title) + !Skin.HasSetting(NowPlaying.DisableNextUpScrollbar) + !StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
                 <animation effect="slide" end="794,-959" time="0" reversible="false" condition="!Player.ShowInfo + Skin.HasSetting(Enable.VizPersistent)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="0,-80" time="200" reversible="true" condition="!Player.ShowInfo + Window.IsActive(volumebar) + Skin.HasSetting(Enable.VizPersistent)">Conditional</animation>
                 <posx>214</posx>
@@ -920,6 +920,55 @@
                     <width>90</width>
                     <height>55</height>
                     <texture>submenu_end.png</texture>
+                </control>
+                <control type="label">
+                    <posx>68</posx>
+                    <posy>2</posy>
+                    <width>20</width>
+                    <height>20</height>
+                    <label></label>
+                    <font>CloseButton</font>
+                    <textcolor>labelheader</textcolor>
+                    <shadowcolor>shadow</shadowcolor>
+                </control>
+                <control type="label">
+                    <posx>86</posx>
+                    <posy>1</posy>
+                    <height>20</height>
+                    <width>826</width>
+                    <scroll>true</scroll>
+                    <font>font10</font>
+                    <scrollspeed>40</scrollspeed>
+                    <textcolor>grey</textcolor>
+                    <shadowcolor>shadow</shadowcolor>
+                    <scrollsuffix> </scrollsuffix>
+                    <label>$VAR[NowPlayingNextUpVar]</label>
+                </control>
+            </control>
+			
+			<!-- Next Up Scroller for Disabled Poster -->
+			<control type="group">
+                <visible>!IsEmpty(MusicPlayer.offset(1).Title) + !Skin.HasSetting(NowPlaying.DisableNextUpScrollbar) + StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
+                <animation effect="slide" end="794,-959" time="0" reversible="false" condition="!Player.ShowInfo + Skin.HasSetting(Enable.VizPersistent)">Conditional</animation>
+                <animation effect="slide" start="0,0" end="0,-80" time="200" reversible="true" condition="!Player.ShowInfo + Window.IsActive(volumebar) + Skin.HasSetting(Enable.VizPersistent)">Conditional</animation>
+                <posx>1014</posx>
+                <posy>1003</posy>
+                <control type="image">
+                    <posx>90</posx>
+                    <width>779</width>
+                    <height>55</height>
+                    <texture>submenu_bar.png</texture>
+                </control>
+                <control type="image">
+                    <width>90</width>
+                    <height>55</height>
+                    <texture>submenu_end.png</texture>
+                </control>
+				<control type="image">
+					<posx>869</posx>
+                    <width>90</width>
+                    <height>55</height>
+                    <texture flipx="true">submenu_square.png</texture>
                 </control>
                 <control type="label">
                     <posx>68</posx>
