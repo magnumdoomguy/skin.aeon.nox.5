@@ -10,6 +10,8 @@
 	</coordinates>
     <include>dialogeffect</include>
     <controls>
+		<control type="group">
+			<visible>!Window.IsActive(1123)</visible>
         <control type="image">
             <description>background image</description>
             <posx>0</posx>
@@ -117,6 +119,15 @@
                 <onclick>Skin.ToggleSetting(Music.DisableCodecFlag)</onclick>
                 <selected>!Skin.HasSetting(Music.DisableCodecFlag)</selected>
             </control>
+			
+			<!-- Reset -->
+            <control type="button" id="90208">
+            	<width>1138</width>
+                <label>$LOCALIZE[42153]</label> <!-- STRING: Reset All "Now Playing" Settings to Default -->
+                <onclick>ActivateWindow(1117)</onclick>
+				<enable>!IsEmpty(Skin.String(NowPlaying.DefaultButton)) | !IsEmpty(Skin.String(NowPlaying.CustomBackgroundFile)) | !IsEmpty(Skin.String(NowPlaying.CustomSlideshowPath)) | !IsEmpty(Skin.String(NowPlaying.IconStyle)) | !IsEmpty(Skin.String(Music.SpinningDiscStyle)) | Skin.HasSetting(BigAssLabel) | Skin.HasSetting(NowPlaying.DisableNextUpScrollbar) | Skin.HasSetting(Music.DisableCodecFlag)</enable>
+				<!--<enable>!IsEmpty(Skin.String(NowPlaying.DefaultButton)) | Skin.HasSetting(NowPlaying.CustomBackground) | Skin.HasSetting(NowPlaying.CustomSlideshow) | !IsEmpty(Skin.String(NowPlaying.IconStyle)) | !IsEmpty(Skin.String(Music.SpinningDiscStyle)) | Skin.HasSetting(BigAssLabel) | Skin.HasSetting(NowPlaying.DisableNextUpScrollbar) | Skin.HasSetting(Music.DisableCodecFlag)</enable>-->
+            </control>
         </control>
 		
 		<!-- Scrollbar -->
@@ -134,6 +145,6 @@
             <showonepage>false</showonepage>
             <orientation>vertical</orientation>
         </control>
-        
+        </control>
     </controls>
 </window>
