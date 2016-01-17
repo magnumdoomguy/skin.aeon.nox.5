@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-    <defaultcontrol always="true">602</defaultcontrol>
-    <coordinates>
-        <system>1</system>
-        <posx>0</posx>
-        <posy>0</posy>
-    </coordinates>
+    <defaultcontrol always="true">410</defaultcontrol>
+	<zorder>2</zorder>
     <controls>
+	
+		<!-- Set Default OSD Button -->
+        <control type="button" id="410">
+			<include>HiddenObject</include>
+            <onfocus>Dialog.Close(FullscreenInfo)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Playlists)">SetFocus(11)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Bookmarks)">SetFocus(12)</onfocus>
+			<onfocus condition="SubString(Skin.String(OSD.DefaultButton),Subtitles)">SetFocus(14)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Previous)">SetFocus(9)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Rewind)">SetFocus(3)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Stop)">SetFocus(5)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Fast Forward)">SetFocus(6)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Next)">SetFocus(10)</onfocus>
+			<onfocus condition="SubString(Skin.String(OSD.DefaultButton),Screenshot)">SetFocus(707)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Video Settings)">SetFocus(13)</onfocus>
+            <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Audio Settings)">SetFocus(800)</onfocus>
+            <onfocus condition="IsEmpty(Skin.String(OSD.DefaultButton))">SetFocus(4)</onfocus>
+        </control>
+		
         <control type="group">
-            <animation effect="slide" end="0,-238" time="240" tween="quadratic" condition="Window.IsVisible(VisualisationSettings) | Window.IsVisible(VisualisationPresetList) | Window.IsVisible(1100) | Window.IsVisible(script-XBMC_Lyrics-main.xml)">Conditional</animation>
-            <animation effect="slide" start="0,-238" end="0,0" time="240" tween="quadratic">WindowOpen</animation>
-            <animation effect="slide" end="0,-238" start="0,0" time="240" tween="quadratic">WindowClose</animation>
-			<visible>!StringCompare(Visualisation.Name,Now Playing)</visible>
-			
-            <!-- Display the top bar -->
-            <control type="image">
-                <posx>0</posx>
-                <posy>-1</posy>
-                <width>1920</width>
-                <height>137</height>
-                <texture border="1,0,1,40">topbar.png</texture>
-            </control>
-            <control type="grouplist" id="202">
-                <posy>0</posy>
-                <height>144</height>
-                <width>1920</width>
-                <align>center</align>
+            <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
+            <include>Animation_OpenCloseFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+            
+            <control type="grouplist" id="2001">
+				<animation effect="slide" end="-268,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+                <posx>298</posx>
+                <posy>975</posy>
+                <width>1577</width>
                 <itemgap>0</itemgap>
-                <scrolltime tween="sine">200</scrolltime>
                 <orientation>horizontal</orientation>
-                <onup>700</onup>
-                <ondown>706</ondown>
-                <onleft>202</onleft>
-                <onright>202</onright>
+                <onleft>709</onleft>
+                <onright>11</onright>
+                <onup>noop</onup>
+                <ondown>noop</ondown>
 				
-                <!-- Play Queue -->
-                <control type="button" id="700">
-					<textoffsety>60</textoffsety>
-					<texturefocus>osd/buttons/OSDPlaylistFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDPlaylistNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>Dialog.Close(PlayerControls)</onclick>
-						<onclick>ReplaceWindow(10094, plexserver://playqueue/audio)</onclick>
-				</control>
+				<!-- OSD Playlist Button -->
+                <control type="button" id="11">
+                    <description>Playlists</description>
+                    <height>100</height>
+                    <width>100</width>
+					<texturefocus>osd/buttons/osdplaylistfo.png</texturefocus>
+					<texturenofocus>osd/buttons/osdplaylistnf.png</texturenofocus>
+					<onclick>ReplaceWindow(10094, plexserver://playqueue/audio)</onclick>
+                </control>  
+								
+				<!-- Visualization Button -->
                 <control type="button" id="500">
                     <texturefocus>osd/buttons/OSDVizFO.png</texturefocus>
                     <texturenofocus>osd/buttons/OSDVizNF.png</texturenofocus>
@@ -54,6 +58,8 @@
                     <height>100</height>
                     <font>-</font>
                 </control>
+								
+				<!-- Visualization Settings Button -->
                 <control type="button" id="702">
                     <texturefocus>osd/buttons/OSDSettingsFO.png</texturefocus>
                     <texturenofocus>osd/buttons/OSDSettingsNF.png</texturenofocus>
@@ -63,110 +69,194 @@
                     <font>-</font>
                     <onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
                 </control>
-                <control type="button" id="705">
-                    <texturefocus>osd/buttons/OSDVideoFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDVideoNF.png</texturenofocus>
-                    <width>100</width>
+				
+				<!-- OSD Previous Button -->
+                <control type="button" id="9">
+                    <description>Previous</description>
                     <height>100</height>
-                    <font>-</font>
-                    <onclick>ActivateWindow(122)</onclick>
-                </control>
-                <control type="button" id="600">
-                    <texturefocus>osd/buttons/OSDPrevTrackFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDPrevTrackNF.png</texturenofocus>
-                    <label>-</label>
                     <width>100</width>
-                    <height>100</height>
-                    <font>-</font>
+                    <texturefocus>osd/buttons/osdprevtrackfo.png</texturefocus>
+                    <texturenofocus>osd/buttons/osdprevtracknf.png</texturenofocus>
                     <onclick>PlayerControl(Previous)</onclick>
                 </control>
-                <control type="button" id="601">
-                    <texturefocus>osd/buttons/OSDRewindFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDRewindNF.png</texturenofocus>
-                    <label>-</label>
-                    <width>100</width>
+				
+				<!-- OSD Rewind Button -->
+                <control type="button" id="3">
+                    <description>Rewind</description>
                     <height>100</height>
-                    <font>-</font>
-                    <onclick>PlayerControl(Rewind)</onclick>
+                    <width>100</width>
+                    <texturefocus>osd/buttons/osdrewindfo.png</texturefocus>
+                    <texturenofocus>osd/buttons/osdrewindnf.png</texturenofocus>
+                    <onclick>PlayerControl(rewind)</onclick>
                 </control>
-                <control type="togglebutton" id="602">
-                    <texturefocus>osd/buttons/OSDPauseFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDPauseNF.png</texturenofocus>
-                    <alttexturefocus>osd/buttons/OSDPlayFO.png</alttexturefocus>
-                    <alttexturenofocus>osd/buttons/OSDPlayNF.png</alttexturenofocus>
-                    <label>-</label>
-                    <altlabel>208</altlabel>
-                    <width>100</width>
+				
+				<!-- OSD Stop Button -->
+                <control type="button" id="5">
+                    <description>Stop</description>
                     <height>100</height>
-                    <font>-</font>
+                    <width>100</width>
+                    <texturefocus>osd/buttons/osdstopfo.png</texturefocus>
+                    <texturenofocus>osd/buttons/osdstopnf.png</texturenofocus>
+                    <onclick>PlayerControl(stop)</onclick>
+                </control>
+				
+				<!-- OSD Play/Pause Button -->
+                <control type="togglebutton" id="4">
+                    <description>Play</description>
+                    <height>100</height>
+                    <width>100</width>
+                    <texturefocus>osd/buttons/osdpausefo.png</texturefocus>
+                    <texturenofocus>osd/buttons/osdpausenf.png</texturenofocus>
                     <usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
-                    <onclick>PlayerControl(Play)</onclick>
+                    <alttexturefocus>osd/buttons/osdplayfo.png</alttexturefocus>
+                    <alttexturenofocus>osd/buttons/osdplaynf.png</alttexturenofocus>
+                    <disabledcolor>-</disabledcolor>
+                    <colordiffuse>-</colordiffuse>
+                    <onclick>PlayerControl(play)</onclick>
                 </control>
-                <control type="button" id="603">
-                    <texturefocus>osd/buttons/OSDStopFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDStopNF.png</texturenofocus>
-                    <label>-</label>
-                    <width>100</width>
+				
+				<!-- OSD Fast Forward Button -->
+                <control type="button" id="6">
+                    <description>Forward</description>
                     <height>100</height>
-                    <font>-</font>
-                    <onclick>PlayerControl(Stop)</onclick>
+                    <width>100</width>
+                    <texturefocus>osd/buttons/osdforwardfo.png</texturefocus>
+                    <texturenofocus>osd/buttons/osdforwardnf.png</texturenofocus>
+                    <onclick>PlayerControl(forward)</onclick>
                 </control>
-                <control type="button" id="604">
-                    <texturefocus>osd/buttons/OSDForwardFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDForwardNF.png</texturenofocus>
-                    <label>-</label>
-                    <width>100</width>
+				
+				<!-- OSD Next Button -->
+                <control type="button" id="10">
+                    <description>Next</description>
                     <height>100</height>
-                    <font>-</font>
-                    <onclick>PlayerControl(Forward)</onclick>
-                </control>
-                <control type="button" id="605">
-                    <texturefocus>osd/buttons/OSDNextTrackFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDNextTrackNF.png</texturenofocus>
-                    <label>-</label>
                     <width>100</width>
-                    <height>100</height>
-                    <font>-</font>
+                    <texturefocus>osd/buttons/osdnexttrackfo.png</texturefocus>
+                    <texturenofocus>osd/buttons/osdnexttracknf.png</texturenofocus>
                     <onclick>PlayerControl(Next)</onclick>
                 </control>
-                <control type="togglebutton" id="704">
-                    <texturefocus>osd/buttons/OSDRandomOffFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDRandomOffNF.png</texturenofocus>
-                    <alttexturefocus>osd/buttons/OSDRandomOnFO.png</alttexturefocus>
-                    <alttexturenofocus>osd/buttons/OSDRandomOnNF.png</alttexturenofocus>
-                    <label>-</label>
-                    <width>100</width>
+				
+				<!-- Screenshot Button -->
+				<control type="button" id="707">
+					<texturefocus>osd/buttons/osdscreenshotfo.png</texturefocus>
+					<texturenofocus>osd/buttons/osdscreenshotnf.png</texturenofocus>
+					<label>-</label>
+					<width>100</width>
+					<height>100</height>
+					<font>-</font>
+					<onclick>Dialog.Close(2901)</onclick>
+					<onclick>Skin.ToggleSetting(Enable.ScreenshotMode)</onclick>
+					<onclick>Notification($LOCALIZE[19098]:,$LOCALIZE[42123],1500,camera.png)</onclick>
+					<onclick>AlarmClock(Take a Screenshot,TakeScreenshot,00:03,silent)</onclick>
+					<onclick>AlarmClock(Reset ScreenshotMode,Skin.Reset(Enable.ScreenshotMode),00:04,silent)</onclick>
+					<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)</visible>
+				</control>
+				
+				<!-- OSD Video Settings -->
+                <control type="button" id="13">
+                    <description>Video Settings</description>
                     <height>100</height>
-                    <font>-</font>
-                    <usealttexture>Playlist.IsRandom</usealttexture>
-                    <onclick>PlayerControl(Random)</onclick>
-                </control>
-                <control type="button" id="707">
-                    <width>0.1</width>
-                    <height>0.1</height>
-                    <texturefocus>-</texturefocus>
-                    <texturenofocus>-</texturenofocus>
-                    <label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
-                    <font>-</font>
-                    <onclick>PlayerControl(Repeat)</onclick>
-                </control>
-                <control type="image" id="708">
-                    <texture>$VAR[MusicOSDRepeatButtonVar]</texture>
                     <width>100</width>
-                    <height>100</height>
+                    <texturefocus>osd/buttons/osdvideofo.png</texturefocus>
+                    <texturenofocus>osd/buttons/osdvideonf.png</texturenofocus>
+                    <onclick>ActivateWindow(osdvideosettings)</onclick>
                 </control>
-                <control type="button" id="706">
-                    <texturefocus>osd/buttons/OSDSkinFO.png</texturefocus>
-                    <texturenofocus>osd/buttons/OSDSkinNF.png</texturenofocus>
-                    <label>-</label>
+				
+				<!-- OSD Audio Settings -->
+                <control type="button" id="800">
+                    <description>Audio Settings</description>
+                    <height>100</height>
                     <width>100</width>
-                    <height>100</height>
-                    <font>-</font>
-                    <onclick>Dialog.Close(musicosd)</onclick>
-                    <onclick>ActivateWindow(1120)</onclick>
-                    <onclick>SetProperty(MusicOSD.Settings,True,home)</onclick>
+                    <texturefocus>osd/buttons/osdaudiofo.png</texturefocus>
+                    <texturenofocus>osd/buttons/osdaudionf.png</texturenofocus>
+                    <onclick>ActivateWindow(osdaudiosettings)</onclick>
                 </control>
+				
+				<!-- OSD Options -->
+				<control type="button" id="709">
+					<texturefocus>osd/buttons/OSDSkinFO.png</texturefocus>
+					<texturenofocus>osd/buttons/OSDSkinNF.png</texturenofocus>
+					<label>-</label>
+					<width>100</width>
+					<height>100</height>
+					<font>-</font>
+					<onclick>ActivateWindow(1115)</onclick>
+				</control>
             </control>
-        </control>
+			
+			<!-- Display Large Pause Symbol -->
+			<control type="group">
+				<animation type="WindowOpen" reversible="false">
+					<effect type="fade" start="0" end="100" time="500" />
+				</animation>
+				<animation type="WindowClose" reversible="false">
+					<effect type="fade" start="100" end="0" time="0" />
+				</animation>
+				<animation type="VisibleChange" reversible="false">
+					<effect type="fade" start="0" end="100" time="500" />
+				</animation>
+				<animation effect="slide" end="0,-100" time="0" condition="[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused] | StringCompare(Skin.String(OSD.Plot),Always)">Conditional</animation>
+				<posx>867</posx>
+				<posy>370</posy>
+				<visible>Player.Paused + !Player.Seeking + !Player.Caching + !Skin.HasSetting(OSD.PauseSymbol.Disable)</visible>
+				
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>186</width>
+					<height>186</height>
+					<texture>osd/bg_play_large.png</texture>
+				</control>
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>186</width>
+					<height>186</height>
+					<texture>osd/btn_pause.png</texture>
+				</control>
+			</control>
+			
+			<!-- Rewind / Fast Forward -->
+			<control type="grouplist">
+				<posx>30</posx>
+				<posy>66</posy>
+				<width>748</width>
+				<height>150</height>
+				<itemgap>10</itemgap>
+				<orientation>horizontal</orientation>
+				<include>VisibleFadeEffect</include>
+				<visible>Player.Forwarding | Player.Rewinding</visible>
+				<usecontrolcoords>true</usecontrolcoords>
+				<control type="image">
+					<posy>3</posy>
+					<width>90</width>
+					<height>87</height>
+					<aspectratio>keep</aspectratio>
+					<texture flipx="true">osd/ff.png</texture>
+					<colordiffuse>FFe5e5e5</colordiffuse>
+					<animation effect="fade" start="100" end="60" time="800" pulse="true" condition="true">Conditional</animation>
+					<visible>Player.Rewinding</visible>
+				</control>
+				<control type="label">
+					<label>$VAR[OSDForwardRewindVar]</label>
+					<width min="10" max="300">auto</width>
+					<height>90</height>
+					<textoffsetx>0</textoffsetx>
+					<aligny>center</aligny>
+					<font>font_MainMenu</font>
+					<shadowcolor>44000000</shadowcolor>
+					<textcolor>DDe5e5e5</textcolor>
+				</control>
+				<control type="image">
+					<posy>3</posy>
+					<width>90</width>
+					<height>87</height>
+					<aspectratio>keep</aspectratio>
+					<texture>osd/ff.png</texture>
+					<colordiffuse>FFe5e5e5</colordiffuse>
+					<animation effect="fade" start="100" end="60" time="800" pulse="true" condition="true">Conditional</animation>
+					<visible>Player.Forwarding</visible>
+				</control>
+			</control>
+        </control>  
     </controls>
 </window>
