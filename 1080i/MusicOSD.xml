@@ -135,52 +135,48 @@
                     <onclick>PlayerControl(Next)</onclick>
                 </control>
 				
-				<!-- Screenshot Button -->
-				<control type="button" id="707">
-					<texturefocus>osd/buttons/osdscreenshotfo.png</texturefocus>
-					<texturenofocus>osd/buttons/osdscreenshotnf.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>Dialog.Close(2901)</onclick>
-					<onclick>Skin.ToggleSetting(Enable.ScreenshotMode)</onclick>
-					<onclick>Notification($LOCALIZE[19098]:,$LOCALIZE[42123],1500,camera.png)</onclick>
-					<onclick>AlarmClock(Take a Screenshot,TakeScreenshot,00:03,silent)</onclick>
-					<onclick>AlarmClock(Reset ScreenshotMode,Skin.Reset(Enable.ScreenshotMode),00:04,silent)</onclick>
-					<visible>VideoPlayer.Content(movies) | VideoPlayer.Content(episodes)</visible>
-				</control>
-				
-				<!-- OSD Video Settings -->
-                <control type="button" id="13">
-                    <description>Video Settings</description>
-                    <height>100</height>
+				<!-- Random Button -->
+				<control type="togglebutton" id="704">
+                    <texturefocus>osd/buttons/OSDRandomOffFO.png</texturefocus>
+                    <texturenofocus>osd/buttons/OSDRandomOffNF.png</texturenofocus>
+                    <alttexturefocus>osd/buttons/OSDRandomOnFO.png</alttexturefocus>
+                    <alttexturenofocus>osd/buttons/OSDRandomOnNF.png</alttexturenofocus>
+                    <label>-</label>
                     <width>100</width>
-                    <texturefocus>osd/buttons/osdvideofo.png</texturefocus>
-                    <texturenofocus>osd/buttons/osdvideonf.png</texturenofocus>
-                    <onclick>ActivateWindow(osdvideosettings)</onclick>
+                    <height>100</height>
+                    <font>-</font>
+                    <usealttexture>Playlist.IsRandom</usealttexture>
+                    <onclick>PlayerControl(Random)</onclick>
                 </control>
 				
-				<!-- OSD Audio Settings -->
-                <control type="button" id="800">
-                    <description>Audio Settings</description>
-                    <height>100</height>
+				<!-- Repeat Button -->
+                <control type="button" id="707">
+                    <width>0.1</width>
+                    <height>0.1</height>
+                    <texturefocus>-</texturefocus>
+                    <texturenofocus>-</texturenofocus>
+                    <label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
+                    <font>-</font>
+                    <onclick>PlayerControl(Repeat)</onclick>
+                </control>
+                <control type="image" id="708">
+                    <texture>$VAR[MusicOSDRepeatButtonVar]</texture>
                     <width>100</width>
-                    <texturefocus>osd/buttons/osdaudiofo.png</texturefocus>
-                    <texturenofocus>osd/buttons/osdaudionf.png</texturenofocus>
-                    <onclick>ActivateWindow(osdaudiosettings)</onclick>
+                    <height>100</height>
                 </control>
 				
 				<!-- OSD Options -->
-				<control type="button" id="709">
-					<texturefocus>osd/buttons/OSDSkinFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDSkinNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>ActivateWindow(1115)</onclick>
-				</control>
+				<control type="button" id="706">
+                    <texturefocus>osd/buttons/OSDSkinFO.png</texturefocus>
+                    <texturenofocus>osd/buttons/OSDSkinNF.png</texturenofocus>
+                    <label>-</label>
+                    <width>100</width>
+                    <height>100</height>
+                    <font>-</font>
+                    <onclick>Dialog.Close(musicosd)</onclick>
+                    <onclick>ActivateWindow(1120)</onclick>
+                    <onclick>SetProperty(MusicOSD.Settings,True,home)</onclick>
+                </control>
             </control>
 			
 			<!-- Display Large Pause Symbol -->
