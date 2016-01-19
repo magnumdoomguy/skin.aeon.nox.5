@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window>
+<window id="120">
     <defaultcontrol always="true">410</defaultcontrol>
 	<zorder>2</zorder>
     <controls>
@@ -21,6 +21,139 @@
             <onfocus condition="SubString(Skin.String(OSD.DefaultButton),Audio Settings)">SetFocus(800)</onfocus>
             <onfocus condition="IsEmpty(Skin.String(OSD.DefaultButton))">SetFocus(4)</onfocus>
         </control>
+		
+		<control type="group">
+			<visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
+			<include>Animation_OpenCloseFade</include>
+            <include>Animation_FadedByOSDSettings</include>
+			<control type="group">
+				<posx>0</posx>
+				<posy>0</posy>
+				<animation effect="slide" start="0,-90" end="0,0" time="480">WindowOpen</animation>
+				<animation effect="slide" end="0,-90" start="0,0" time="480">WindowClose</animation>
+				<include>Animation_FadedByOSDSettings</include>
+				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),5)">Animation_FadeOSD5</include>
+				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),10)">Animation_FadeOSD10</include>
+				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + IsEmpty(Skin.String(OSD.TopBarHide.Delay))">Animation_FadeOSD15</include>
+				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),20">Animation_FadeOSD20</include>
+				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),25">Animation_FadeOSD25</include>
+				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),30">Animation_FadeOSD30</include>
+		
+		<!-- Topbar -->
+		<include>Music_Topbar</include>
+		</control>
+		
+		<control type="group">
+				<include>VisibleFadeEffect</include>
+				<include>Animation_FadedByOSDSettings</include>
+            
+				<!-- OSD Background -->	
+				<control type="image">
+					<animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)">Conditional</animation>
+					<posx>0</posx>
+					<posy>878</posy>
+					<width>1920</width>
+					<height>427</height>
+					<texture flipy="true" border="1,40,1,1">black.png</texture>
+					<visible>Skin.HasSetting(OSD.OpaqueBackground.Enable)</visible>
+				</control>
+				<control type="image">
+					<animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)">Conditional</animation>
+					<posx>0</posx>
+					<posy>853</posy>
+					<width>1920</width>
+					<height>427</height>
+					<texture flipy="true" border="1,40,1,1">topbar.png</texture>
+					<colordiffuse>E6FFFFFF</colordiffuse>
+				</control>
+				
+				<control type="group">
+                				
+					<!-- Poster -->
+					<control type="image">
+						<description>Movie Poster</description>
+						<posx>18</posx>
+						<posy>688</posy>
+						<width>277</width>
+						<height>277</height>
+						<texture>$INFO[MusicPlayer.offset(0).Cover]</texture>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					</control>
+				
+					<!-- Glass Case -->
+					<control type="image">
+						<description>Movie Poster</description>
+						<posx>43</posx>
+						<posy>710</posy>
+						<width>229</width>
+						<height>346</height>
+						<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[OSDPosterArtworkVar]</texture>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Glass)</visible>
+					</control>
+					<control type="image">
+						<description>Glass Overlay</description>
+						<posx>29</posx>
+						<posy>701</posy>
+						<width>255</width>
+						<height>370</height>
+						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+						<fadetime>200</fadetime>	
+						<texture>thumbs/boxes/poster_shadow.png</texture>
+						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Glass)</visible>													
+					</control>
+
+					<!-- DVD / Bluray Cases -->
+					<control type="image">
+						<description>Movie Poster</description>
+						<posx>44</posx>
+						<posy>739</posy>
+						<width>225</width>
+						<height>316</height>
+						<texture>$VAR[OSDPosterArtworkVar]</texture>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>
+					</control>				
+					<control type="image">
+						<description>Glass Overlay</description>
+						<posx>-2</posx>
+						<posy>706</posy>
+						<width>290</width>
+						<height>370</height>
+						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+						<fadetime>200</fadetime>	
+						<texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/,.png]</texture>
+						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>												
+					</control>	
+				
+					<!-- Clear Cases -->
+					<control type="image">
+						<description>Movie Poster</description>
+						<posx>41</posx>
+						<posy>712</posy>
+						<width>231</width>
+						<height>346</height>
+						<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[OSDPosterArtworkVar]</texture>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Clear)</visible>
+					</control>
+					<control type="image">
+						<description>Glass Overlay</description>
+						<posx>4</posx>
+						<posy>684</posy>
+						<width>281</width>
+						<height>391</height>
+						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+						<fadetime>200</fadetime>	
+						<texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/clearcases/,.png]</texture>
+						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Clear)</visible>
+					</control>
+				</control>
+		</control>
+		
+		</control>
+		
 		
         <control type="group">
             <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
@@ -254,5 +387,6 @@
 				</control>
 			</control>
         </control>  
+		
     </controls>
 </window>
