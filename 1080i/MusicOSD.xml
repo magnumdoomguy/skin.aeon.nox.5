@@ -69,7 +69,7 @@
 				
 				<!-- Spinning Disc -->
 				<control type="group">
-					<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle)) + !StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
+					<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle)) + !StringCompare(Skin.String(NowPlaying.IconStyle),Disabled) + !StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
 					<posx>119</posx>
 					<posy>799</posy>
 					<width>286</width>
@@ -124,6 +124,65 @@
 						<wrapmultiline>true</wrapmultiline>
 					</control>
 				</control>
+				
+				<!-- Spinning Disc with Clear Case -->
+				<control type="group">
+					<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle)) + !StringCompare(Skin.String(NowPlaying.IconStyle),Disabled) + StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+					<posx>139</posx>
+					<posy>826</posy>
+					<width>256</width>
+					<height>256</height>
+						
+					<fadetime>300</fadetime>
+					<animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+					<animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+					<animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+					<animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+					<animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+					<animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+					
+					<bordersize>30</bordersize>
+					
+					<control type="image">
+						<width>256</width>
+						<height>256</height>
+						<aligny>top</aligny>
+						<aspectratio align="left">keep</aspectratio>
+						<fadetime>300</fadetime>
+						<texture background="true" diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
+						<bordersize>30</bordersize>
+					</control>
+					<control type="label">
+						<posx>70</posx>
+						<posy>45</posy>
+						<width>115</width>
+						<height>42</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>fontCDartistClear</font>
+						<label>$INFO[MusicPlayer.Artist, ,]</label>
+						<textcolor>black</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+					</control>
+					<control type="label">
+						<posx>70</posx>
+						<posy>170</posy>
+						<width>114</width>
+						<height>47</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>fontCDalbumClear</font>
+						<label>$INFO[MusicPlayer.Album, ,]</label>
+						<textcolor>black</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+					</control>
+				</control>
+				
 				
 				<!-- CD Disc -->
 				<control type="image">
