@@ -67,6 +67,66 @@
 					<colordiffuse>E6FFFFFF</colordiffuse>
 				</control>
 				
+				<!-- Spinning Disc -->
+				<control type="group">
+					<visible>IsEmpty(Skin.String(OSD.SpinningDiscStyle)) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+					<posx>119</posx>
+					<posy>799</posy>
+					<width>286</width>
+					<height>286</height>
+						
+					<fadetime>300</fadetime>
+					<animation effect="rotate" end="-360" center="262,942" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+					<animation effect="rotate" end="360" center="262,942" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+					<animation effect="rotate" end="360" center="262,942" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+					<animation effect="rotate" end="360" center="262,942" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+					<animation effect="rotate" end="360" center="262,942" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+					<animation effect="rotate" end="360" center="262,942" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="262,942" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="262,942" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="262,942" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="262,942" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="262,942" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+					
+					<bordersize>30</bordersize>
+					
+					<control type="image">
+						<width>286</width>
+						<height>286</height>
+						<aligny>top</aligny>
+						<aspectratio align="left">keep</aspectratio>
+						<fadetime>300</fadetime>
+						<texture background="true" diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
+						<bordersize>30</bordersize>
+					</control>
+					
+				</control>
+				
+				<!-- DVD/Bluray Disc -->
+				<control type="image">
+					<visible>StringCompare(Skin.String(OSD.SpinningDiscStyle),DVD/Bluray) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+					<posx>137</posx>
+					<posy>746</posy>
+					<width>277</width>
+					<height>277</height>
+					<aligny>top</aligny>
+					<aspectratio align="left">keep</aspectratio>
+					<fadetime>300</fadetime>
+					<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+					<animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+					<animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+					<animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+					<animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+					<animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+					<animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+					<texture background="true" diffuse="thumbs/cdart_mask.png">$INFO[VideoPlayer.videoResolution,cdart/,.png]</texture>
+					<bordersize>30</bordersize>
+				</control>
+				
 				<control type="group">
                 				
 					<!-- Poster -->
@@ -76,8 +136,8 @@
 						<posy>803</posy>
 						<width>277</width>
 						<height>277</height>
-						<texture>$INFO[MusicPlayer.offset(0).Cover]</texture>
-						<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+						<texture diffuse="thumbs/cdcover_mask2.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
+						<bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
 						<bordersize>20</bordersize>
 						<aspectratio scalediffuse="false">stretch</aspectratio>
 						<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
