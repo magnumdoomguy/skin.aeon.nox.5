@@ -35,8 +35,9 @@
 				<texture border="1">nowplaying_shadow.png</texture>
 			</control>
 			<control type="grouplist">
-				<animation effect="slide" end="-40,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Clear)">Conditional</animation>
-				<animation effect="slide" end="735,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+				<animation effect="slide" end="-40,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Clear) + !StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
+				<animation effect="slide" end="735,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Disabled) + !StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
+				<animation effect="slide" end="185,0" time="0" condition="!StringCompare(Skin.String(NowPlaying.IconStyle),Disabled) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
 				<posx>-10</posx>
 				<posy>20</posy>
 				<width>1180</width>
@@ -90,6 +91,7 @@
 				<description>Time Label</description>
 				<animation effect="slide" end="-40,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Clear)">Conditional</animation>
 				<animation effect="slide" end="735,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+				<animation effect="slide" end="185,0" time="0" condition="!StringCompare(Skin.String(NowPlaying.IconStyle),Disabled) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
 				<posx>1160</posx>
 				<posy>460</posy>
 				<height>50</height>
@@ -103,6 +105,7 @@
 			<control type="label">
 				<animation effect="slide" end="-40,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Clear)">Conditional</animation>
 				<animation effect="slide" end="735,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+				<animation effect="slide" end="185,0" time="0" condition="!StringCompare(Skin.String(NowPlaying.IconStyle),Disabled) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
 				<posx>1180</posx>
 				<posy>40</posy>
 				<width>1180</width>
@@ -116,6 +119,7 @@
 			</control>
 			<control type="group">
 				<visible>!StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
+				<animation effect="slide" end="185,0" time="0" condition="!StringCompare(Skin.String(NowPlaying.IconStyle),Disabled) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)">Conditional</animation>
 				<posx>1170</posx>
 				<posy>-12</posy>
 				
@@ -210,7 +214,7 @@
 				<!-- Poster -->
 				<control type="image">
 					<description>Cover image</description>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + !StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<width>550</width>
 					<height>550</height>
 					<aspectratio align="right">stretch</aspectratio>
@@ -220,7 +224,7 @@
 				</control>
 				<control type="image">
 					<description>Cover image</description>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + !StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<width>550</width>
 					<height>550</height>
 					<aspectratio align="right">stretch</aspectratio>
@@ -230,11 +234,41 @@
 				</control>
 				<control type="image">
 					<description>Cover image</description>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + !StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<width>550</width>
 					<height>550</height>
 					<aspectratio align="right">stretch</aspectratio>
 					<texture diffuse="thumbs/cdcover_mask2.png" fallback="DefaultAlbumCover.png">defaultmusicalbums.png</texture>
+					<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+					<bordersize>28</bordersize>
+				</control>
+				<control type="image">
+					<description>Cover image</description>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<width>550</width>
+					<height>550</height>
+					<aspectratio align="right">stretch</aspectratio>
+					<texture diffuse="thumbs/cdcover_mask_aa.png" fallback="DefaultAlbumCover.png">$INFO[Player.Art(thumb)]</texture>
+					<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+					<bordersize>28</bordersize>
+				</control>
+				<control type="image">
+					<description>Cover image</description>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<width>550</width>
+					<height>550</height>
+					<aspectratio align="right">stretch</aspectratio>
+					<texture diffuse="thumbs/cdcover_mask_aa.png" fallback="DefaultAlbumCover.png">black.png</texture>
+					<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+					<bordersize>28</bordersize>
+				</control>
+				<control type="image">
+					<description>Cover image</description>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<width>550</width>
+					<height>550</height>
+					<aspectratio align="right">stretch</aspectratio>
+					<texture diffuse="thumbs/cdcover_mask_aa.png" fallback="DefaultAlbumCover.png">defaultmusicalbums.png</texture>
 					<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
 					<bordersize>28</bordersize>
 				</control>
