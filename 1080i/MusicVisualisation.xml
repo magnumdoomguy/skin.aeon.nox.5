@@ -23,6 +23,7 @@
 		<!-- Big Scrolling Text -->
 		<include>Music_LargeScrollingInfo</include>
 		
+		<!-- Standard Version -->
 		<control type="group">
 			<posy>520</posy>
 			<visible>Player.ShowInfo + ![Window.IsVisible(AddonSettings) | Window.IsVisible(SelectDialog) | Window.IsVisible(VisualisationPresetList) | Window.IsActive(MusicOSD)] + !Skin.HasSetting(Enable.AlternateMusicLayout)</visible>
@@ -412,6 +413,189 @@
 					<aspectratio align="right">stretch</aspectratio>
 					<texture>thumbs/boxes/cd.png</texture>
 					<bordersize>28</bordersize>
+				</control>
+			</control>
+		</control>
+		
+		<!-- Alternate Version -->
+		<control type="group">
+			<visible>Skin.HasSetting(Enable.AlternateMusicLayout)</visible>
+			<posy>520</posy>
+			<include>VisibleFadeEffect</include>
+			<include>Window_OpenClose_Animation</include>
+			<control type="image">
+				<posy>-200</posy>
+				<width>1920</width>
+				<height>760</height>
+				<texture border="1">nowplaying_shadow.png</texture>
+			</control>
+			<control type="group">
+				<posx>300</posx>
+				<posy>100</posy>
+				<control type="label">
+					<posx>478</posx>
+					<posy>-80</posy>
+					<width>755</width>
+					<height>80</height>
+					<font>font_musicviz</font>
+					<align>left</align>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[MusicPlayer.Artist]</label>
+					<scroll>true</scroll>
+					<scrollsuffix>  -  </scrollsuffix>
+				</control>
+				<control type="label">
+					<posx>475</posx>
+					<posy>70</posy>
+					<width>755</width>
+					<height>20</height>
+					<align>left</align>
+					<font>font30</font>
+					<label>$INFO[MusicPlayer.TrackNumber,[COLOR labelheader],. [/COLOR]]$INFO[Player.Title]</label>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+				</control>
+				<control type="label">
+					<posx>475</posx>
+					<posy>140</posy>
+					<width>755</width>
+					<height>20</height>
+					<align>left</align>
+					<font>font30</font>
+					<label>$INFO[MusicPlayer.Album]</label>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<scrollsuffix>  -  </scrollsuffix>
+				</control>
+				<control type="label">
+					<posx>475</posx>
+					<posy>210</posy>
+					<width>740</width>
+					<height>18</height>
+					<align>left</align>
+					<font>font30</font>
+					<label>$INFO[Player.Time]$INFO[Player.Duration,[COLOR=labelheader] / [/COLOR]]</label>
+					<textcolor>white</textcolor>
+					<shadowcolor>black</shadowcolor>
+				</control>
+				<control type="label">
+					<posx>475</posx>
+					<posy>250</posy>
+					<width>780</width>
+					<height>65</height>
+					<textcolor>white</textcolor>
+					<font>font13</font>
+					<scroll>true</scroll>
+					<scrollsuffix>  -  </scrollsuffix>
+					<label>[LOWERCASE]$INFO[MusicPlayer.Genre,, · ][COLOR labelheader]$INFO[MusicPlayer.Codec,,[/COLOR] ·]$INFO[MusicPlayer.Bitrate, ,[COLOR labelheader] kbps[/COLOR] ·]$INFO[MusicPlayer.BitsPerSample, ,[COLOR labelheader] $LOCALIZE[612][/LOWERCASE][/COLOR] ·]$INFO[MusicPlayer.Samplerate, ,[COLOR labelheader] kHz[/COLOR]]</label>
+				</control>
+			</control>
+			<control type="group">
+				<posy>-12</posy>
+				<control type="image" id="88888">
+					<posx>220</posx>
+					<posy>3</posy>
+					<width>545</width>
+					<height>545</height>
+					<aligny>top</aligny>
+					<aspectratio align="left">keep</aspectratio>
+					<fadetime>300</fadetime>
+					<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+					<texture background="true" diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
+					<bordersize>30</bordersize>
+				</control>
+				<control type="label">
+					<posx>360</posx>
+					<posy>80</posy>
+					<width>265</width>
+					<height>89</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>fontCDartist</font>
+					<label>$INFO[MusicPlayer.Artist, ,]</label>
+					<animation effect="rotate" end="-360" center="495,275" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+					<textcolor>black</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+				</control>
+				<control type="label">
+					<posx>350</posx>
+					<posy>370</posy>
+					<width>280</width>
+					<height>99</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>fontCDalbum</font>
+					<label>$INFO[MusicPlayer.Album, ,]</label>
+					<animation effect="rotate" end="-360" center="495,275" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+					<textcolor>black</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+				</control>
+				<control type="image">
+					<description>Cover image</description>
+					<width>550</width>
+					<height>550</height>
+					<aspectratio align="right">scale</aspectratio>
+					<texture diffuse="thumbs/cdcover_mask2.png" fallback="DefaultAlbumCover.png">$INFO[Player.Art(thumb)]</texture>
+					<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+					<bordersize>28</bordersize>
+				</control>
+			</control>
+			<control type="group">
+				<posx>1840</posx>
+				<posy>-133</posy>
+				<animation effect="rotate" end="-2" center="auto" condition="true">Conditional</animation>
+				<animation effect="rotatey" end="45" center="auto" condition="true">Conditional</animation>
+				<visible>MusicPlayer.Offset(1).Exists + !Skin.HasSetting(Disable.MusicPlayerNextTrack)</visible>
+				<control type="group">
+					<control type="image">
+						<posy>158</posy>
+						<posx>122</posx>
+						<width>222</width>
+						<height>270</height>
+						<texture background="true">black.png</texture>
+					</control>
+					<control type="image">
+						<posy>158</posy>
+						<posx>122</posx>
+						<width>222</width>
+						<height>270</height>
+						<texture background="true">$INFO[MusicPlayer.offset(1).Cover]</texture>
+					</control>
+					<control type="image">
+						<posy>45</posy>
+						<posx>54</posx>
+						<width>400</width>
+						<height>651</height>
+						<texture background="true">thumbs/1mp3.png</texture>
+					</control>
+					<control type="label">
+						<posx>133</posx>
+						<posy>425</posy>
+						<width>222</width>
+						<height>36</height>
+						<align>center</align>
+						<aligny>top</aligny>
+						<font>font11</font>
+						<scroll>true</scroll>
+						<textcolor>white</textcolor>
+						<label>$INFO[MusicPlayer.offset(1).Artist,$LOCALIZE[19031] - ,]</label>
+					</control>
+					<control type="label">
+						<posx>133</posx>
+						<posy>450</posy>
+						<width>222</width>
+						<height>36</height>
+						<align>center</align>
+						<aligny>top</aligny>
+						<font>font11</font>
+						<scroll>true</scroll>
+						<pauseatend>true</pauseatend>
+						<textcolor>white</textcolor>
+						<label>$INFO[MusicPlayer.offset(1).TrackNumber]$INFO[MusicPlayer.offset(1).Title, - ,]</label>
+					</control>
 				</control>
 			</control>
 		</control>
