@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="WallBackPanel2">
+		<control type="image">
+			<description>background image</description>
+			<posx>30</posx>
+			<posy>900</posy>
+			<width>1860</width>
+			<height>784</height>
+			<texture border="40">panel_reflect.png</texture>
+		</control>
+		<control type="image">
+			<description>background image</description>
+			<posx>30</posx>
+			<posy>148</posy>
+			<width>1860</width>
+			<height>784</height>
+			<texture border="40">listpanel_back.png</texture>
+		</control>
+	</include>
+	
+	<!-- Music Wall -->
+	<include name="MusicWallBig">
+		<control type="group">
+			<visible>Control.IsVisible(590) + !Window.IsActive(addoninformation)</visible>
+			<posy>0</posy>
+			<include>ViewAnimation</include>
+			<include>WallBackPanel2</include>
+			<control type="panel" id="590">
+				<viewtype label="Big Icons">icon</viewtype>
+				<posx>60</posx>
+				<posy>179</posy>
+				<width>1800</width>
+				<height>720</height>
+				<onleft>SetProperty(MediaMenu,True,home)</onleft>
+				<onleft>SetFocus(9050)</onleft>
+				<onright>noop</onright>
+				<onup>500</onup>
+				<ondown>500</ondown>
+				<pagecontrol>60</pagecontrol>
+				<scrolltime tween="quadratic" easing="out">300</scrolltime>
+				<visible>!Container.Content(songs) + !Container.Content(empty)</visible>
+				<itemlayout height="360" width="360">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>360</width>
+						<height>360</height>
+						<aspectratio>scale</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<fadetime>400</fadetime>
+						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+						<bordersize>2</bordersize>
+						<colordiffuse>BAffffff</colordiffuse>
+					</control>
+					<control type="group">
+						<visible>Container.Content(artists)</visible>
+						<control type="image">
+							<posy>310</posy>
+							<width>360</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posx>180</posx>
+							<posy>320</posy>
+							<width>360</width>
+							<height>30</height>
+							<align>center</align>
+							<textoffsetx>4</textoffsetx>
+							<textcolor>grey2</textcolor>
+							<info>ListItem.Label</info>
+						</control>
+					</control>
+				</itemlayout>
+				<focusedlayout height="360" width="360" condition="!Container.Content(genres)">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>360</width>
+						<height>360</height>
+						<aspectratio>scale</aspectratio>
+						<texture background="true">$INFO[ListItem.Icon]</texture>
+						<fadetime>400</fadetime>
+						<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+						<bordersize>8</bordersize>
+						<animation type="Focus">
+							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
+						</animation>
+					</control>
+					<control type="group">
+						<visible>Container.Content(artists)</visible>
+						<control type="image">
+							<posx>6</posx>
+							<posy>310</posy>
+							<width>348</width>
+							<height>44</height>
+							<texture>black.png</texture>
+							<bordersize>2</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posx>180</posx>
+							<posy>320</posy>
+							<width>360</width>
+							<height>30</height>
+							<align>center</align>
+							<textoffsetx>4</textoffsetx>
+							<textcolor>white</textcolor>
+							<info>ListItem.Label</info>
+						</control>
+					</control>
+					
+					<control type="group">
+						<visible>Container.Content(artists)</visible>
+						<animation type="Focus">
+							<effect type="fade" start="100" end="0" time="100" tween="sine" easing="in" />
+							<effect type="slide" start="0,0" end="0,30" time="200" tween="sine" easing="in" />
+						</animation>
+						<control type="image">
+							<posy>310</posy>
+							<width>360</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>8</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<posx>180</posx>
+							<posy>320</posy>
+							<width>360</width>
+							<height>30</height>
+							<align>center</align>
+							<textoffsetx>10</textoffsetx>
+							<textcolor>grey2</textcolor>
+							<info>ListItem.Label</info>
+						</control>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60">
+				<posx>1801</posx>
+				<posy>179</posy>
+				<width>8</width>
+				<height>720</height>
+				<colordiffuse>55ffffff</colordiffuse>
+				<onleft>50</onleft>
+				<onright>SetProperty(MediaMenu,True,home)</onright>
+				<onright>SetFocus(9050)</onright>
+				<ondown>60</ondown>
+				<onup>60</onup>
+				<showonepage>false</showonepage>
+				<texturesliderbackground>-</texturesliderbackground>
+				<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+			</control>
+		</control>
+	</include>
+	
+</includes>
