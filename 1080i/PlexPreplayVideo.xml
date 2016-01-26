@@ -41,8 +41,8 @@
 		<visible>![ Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99) ]</visible>
 		<control type="button" id="102">
 			<include>HiddenObject</include>
-			<onfocus>ActivateWindow($INFO[Skin.String(preplay_helper)])</onfocus>
-			<visible>Container.Content(movie) + [ Skin.HasSetting(preplay_after_movie) | Skin.HasSetting(Spoiler_Preplay) + !StringCompare(ListItem.Overlay,OverlayWatched.png) ]</visible>
+			<onfocus>ActivateWindow($INFO[Skin.String(Preplay.Previous)])</onfocus>
+			<visible>Container.Content(movie) + Skin.HasSetting(Postplay.MovieDisable)</visible>
 		</control>
 		<control type="button" id="102">
 			<include>HiddenObject</include>
@@ -56,12 +56,15 @@
 		</control>
 	</control>
 	
-		<!-- Display Normal Background, before Shutter Animation -->
-		<include>CommonBackground</include>
+		
+		
 	
 <control type="group">
 <visible>![[Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99)] + [[Container.Content(movie) + Skin.HasSetting(Preplay.MovieDisable)] | [Container.Content(episode) + Skin.HasSetting(Preplay.EpisodeDisable)] | [Container.Content(clip) + Skin.HasSetting(Preplay.ClipDisable)]]]</visible>	
-		<control type="group">
+
+<!-- Display Normal Background, before Shutter Animation -->
+<include>CommonBackground</include>	
+	<control type="group">
 			<animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
 			
