@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window type="dialog" id="10090">
-	<onload condition="Window.Previous(videolibrary)">Skin.SetString(preplay_helper,videolibrary)</onload>
-	<onload condition="Window.Previous(home)">Skin.SetString(preplay_helper,home)</onload>
-	<onload condition="Window.Previous(51)">Skin.SetString(preplay_helper,51)</onload>
-	<onload condition="Window.Previous(99)">Skin.SetString(preplay_helper,99)</onload>
+	<onload condition="Window.Previous(videolibrary)">Skin.SetString(Preplay.Previous,videolibrary)</onload>
+	<onload condition="Window.Previous(home)">Skin.SetString(Preplay.Previous,home)</onload>
+	<onload condition="Window.Previous(51)">Skin.SetString(Preplay.Previous,51)</onload>
+	<onload condition="Window.Previous(99)">Skin.SetString(Preplay.Previous,99)</onload>
 	<onload condition="Window.Previous(fullscreenvideo) + ListItem.Type(episode) + ListItem.Status(watched)">XBMC.NextItem</onload>
 	<onunload>Skin.SetString(OSD.AspectRatio,$INFO[ListItem.Property(mediaTag-aspectRatio),flags/aspectratio/,.png])</onunload>
 	<onunload>Skin.SetString(OSD.Framerate,$INFO[Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png])</onunload>
@@ -16,35 +16,41 @@
 	
 	<controls>
 	
-		<!-- PrePlay Hack -->
+	<!-- Disable PrePlay -->
 	<control type="group">
 		<visible>Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99)</visible>
 		<control type="button" id="102">
+			<include>HiddenObject</include>
 			<onfocus>Plex.PlayWith(VideoDefaultPlayer)</onfocus>
 			<visible>Container.Content(movie) + Skin.HasSetting(Preplay.MovieDisable)</visible>
 		</control>
 		<control type="button" id="102">
+			<include>HiddenObject</include>
 			<onfocus>Plex.PlayWith(VideoDefaultPlayer)</onfocus>
-			<visible>Container.Content(episode) + [ Skin.HasSetting(preplay_off_episode) | Skin.HasSetting(Spoiler_Preplay) + !StringCompare(ListItem.Overlay,OverlayWatched.png) ]</visible>
+			<visible>Container.Content(episode) + Skin.HasSetting(Preplay.EpisodeDisable)</visible>
 		</control>
 		<control type="button" id="102">
+			<include>HiddenObject</include>
 			<onfocus>Plex.PlayWith(VideoDefaultPlayer)</onfocus>
 			<visible>Container.Content(clip) + Skin.HasSetting(preplay_off_clip)</visible>
 		</control>
 	</control>
 
-	<!-- PostPlay Hack -->
+	<!-- Disable PostPlay -->
 	<control type="group">
 		<visible>![ Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99) ]</visible>
 		<control type="button" id="102">
+			<include>HiddenObject</include>
 			<onfocus>ActivateWindow($INFO[Skin.String(preplay_helper)])</onfocus>
 			<visible>Container.Content(movie) + [ Skin.HasSetting(preplay_after_movie) | Skin.HasSetting(Spoiler_Preplay) + !StringCompare(ListItem.Overlay,OverlayWatched.png) ]</visible>
 		</control>
 		<control type="button" id="102">
+			<include>HiddenObject</include>
 			<onfocus>ActivateWindow($INFO[Skin.String(preplay_helper)])</onfocus>
 			<visible>Container.Content(episode) + [ Skin.HasSetting(preplay_after_episode) | Skin.HasSetting(Spoiler_Preplay) + !StringCompare(ListItem.Overlay,OverlayWatched.png) ]</visible>
 		</control>
 		<control type="button" id="102">
+			<include>HiddenObject</include>
 			<onfocus>ActivateWindow($INFO[Skin.String(preplay_helper)])</onfocus>
 			<visible>Container.Content(clip) + Skin.HasSetting(preplay_after_clip)</visible>
 		</control>
@@ -54,7 +60,7 @@
 		<include>CommonBackground</include>
 	
 <control type="group">
-<visible>![[Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99)] + Container.Content(movie) + Skin.HasSetting(Preplay.MovieDisable)]</visible>	
+<visible>![[Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99)] + [[Container.Content(movie) + Skin.HasSetting(Preplay.MovieDisable)] | [Container.Content(episode) + Skin.HasSetting(Preplay.EpisodeDisable)]]]</visible>	
 		<control type="group">
 			<animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
