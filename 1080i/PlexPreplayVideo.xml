@@ -46,17 +46,27 @@
 		</control>
 		<control type="button" id="102">
 			<include>HiddenObject</include>
-			<onfocus>ActivateWindow($INFO[Skin.String(preplay_helper)])</onfocus>
-			<visible>Container.Content(episode) + [ Skin.HasSetting(preplay_after_episode) | Skin.HasSetting(Spoiler_Preplay) + !StringCompare(ListItem.Overlay,OverlayWatched.png) ]</visible>
+			<onfocus>ActivateWindow($INFO[Skin.String(Preplay.Previous)])</onfocus>
+			<visible>Container.Content(episode) + Skin.HasSetting(Postplay.EpisodeDisable)</visible>
 		</control>
 		<control type="button" id="102">
 			<include>HiddenObject</include>
-			<onfocus>ActivateWindow($INFO[Skin.String(preplay_helper)])</onfocus>
-			<visible>Container.Content(clip) + Skin.HasSetting(preplay_after_clip)</visible>
+			<onfocus>ActivateWindow($INFO[Skin.String(Preplay.Previous)])</onfocus>
+			<visible>Container.Content(clip) + Skin.HasSetting(Postplay.ClipDisable)</visible>
 		</control>
 	</control>
 	
-		
+	<control type="image">
+		<animation effect="fade" time="600">WindowOpen</animation>
+        <animation effect="fade" time="600">WindowClose</animation>
+		<visible>[Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99)] + [[Container.Content(movie) + Skin.HasSetting(Preplay.MovieDisable)] | [Container.Content(episode) + Skin.HasSetting(Preplay.EpisodeDisable)] | [Container.Content(clip) + Skin.HasSetting(Preplay.ClipDisable)]]</visible>
+		<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+		<posx>0</posx>
+		<posy>0</posy>
+		<width>1920</width>
+		<height>1080</height>
+		<aspectratio>scale</aspectratio>
+	</control>
 		
 	
 <control type="group">
