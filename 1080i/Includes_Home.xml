@@ -1,105 +1,465 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-    <!-- Main Menu Includes -->
-    <include name="MainMenuListContent">
-		<posx>-290</posx>
-        <posy>62</posy>
-        <width>2800</width>
-        <height>100</height>
-        <onleft>300</onleft>
-        <onright>300</onright>
-		<onup>9027</onup>
-        <ondown>9001</ondown>
-        <pagecontrol>-</pagecontrol>
-        <scrolltime tween="quadratic" easing="out">300</scrolltime>
-        <include condition="Skin.HasSetting(mainmenuicons)">FocusPosition4</include>
-        <include condition="!Skin.HasSetting(mainmenuicons)">FocusPosition2</include>
-        <movement>1</movement>
-        <orientation>Horizontal</orientation>
-        <animation effect="slide" start="0" end="-350,0" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(smallergap)">Conditional</animation>
-        <animation effect="slide" start="0" end="126,0" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(mainmenuicons)">Conditional</animation>
-        <itemlayout height="100" width="500" condition="Skin.HasSetting(smallergap)">
-            <control type="label">
-                <posx>250</posx>
-                <posy>0</posy>
-                <width>500</width>
-                <height>90</height>
-                <font>font_MainMenu</font>
-                <textcolor>grey3</textcolor>
-                <align>center</align>
-                <aligny>center</aligny>
-                <label>$INFO[ListItem.Label]</label>
-            </control>
-        </itemlayout>
-        <focusedlayout height="100" width="500" condition="Skin.HasSetting(smallergap)">
-            <control type="label">
-                <posx>250</posx>
-                <posy>0</posy>
-                <width>500</width>
-                <height>90</height>
-                <font>font_MainMenu</font>
-                <textcolor>grey3</textcolor>
-                <align>center</align>
-                <aligny>center</aligny>
-                <label>$INFO[ListItem.Label]</label>
-            </control>
-            <control type="label">
-                <posx>250</posx>
-                <posy>0</posy>
-                <width>500</width>
-                <height>90</height>
-                <font>font_MainMenu</font>
-                <textcolor>white</textcolor>
-                <align>center</align>
-                <aligny>center</aligny>
-                <label>$INFO[ListItem.Label]</label>
-                <visible>Control.HasFocus(300)</visible>
-                <include>VisibleFadeEffect</include>
-            </control>
-        </focusedlayout>
-        <itemlayout height="100" width="640" condition="!Skin.HasSetting(smallergap)">
-            <control type="label">
-                <posx>320</posx>
-                <posy>0</posy>
-                <width>640</width>
-                <height>90</height>
-                <font>font_MainMenu</font>
-                <textcolor>grey3</textcolor>
-                <align>center</align>
-                <aligny>center</aligny>
-                <label>$INFO[ListItem.Label]</label>
-            </control>
-        </itemlayout>
-        <focusedlayout height="100" width="640" condition="!Skin.HasSetting(smallergap)">
-            <control type="label">
-                <posx>320</posx>
-                <posy>0</posy>
-                <width>640</width>
-                <height>90</height>
-                <font>font_MainMenu</font>
-                <textcolor>grey3</textcolor>
-                <align>center</align>
-                <aligny>center</aligny>
-                <label>$INFO[ListItem.Label]</label>
-            </control>
-            <control type="label">
-                <posx>320</posx>
-                <posy>0</posy>
-                <width>640</width>
-                <height>90</height>
-                <font>font_MainMenu</font>
-                <textcolor>white</textcolor>
-                <align>center</align>
-                <aligny>center</aligny>
-                <label>$INFO[ListItem.Label]</label>
-                <visible>Control.HasFocus(300)</visible>
-                <include>VisibleFadeEffect</include>
-            </control>
-        </focusedlayout>
-		
-		<!-- additional menu items -->
-		<content>
-			<item id="7">
+
+	<!-- Horizontal Homemenu -->
+	<include name="Home_HorizontalMenu">
+		<control type="group">
+			<posy>424</posy>
+			<control type="group">
+				<animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(middlemainmenu)">Conditional</animation>
+				<animation effect="slide" end="-1945,0" time="240">WindowClose</animation>
+				<animation effect="slide" start="-1945,0" end="0,0" delay="300" time="240" condition="!Window.Previous(startup)">WindowOpen</animation>
+				<animation effect="slide" start="-1945" end="0" time="240">VisibleChange</animation>
+				<animation effect="slide" start="-1945,0" end="0,0" delay="800" time="480" condition="Window.Previous(startup)">WindowOpen</animation>
+				<control type="image">
+					<width>1920</width>
+					<height>87</height>
+					<texture flipy="true">submenu_bar.png</texture>
+				</control>
+				
+				<!-- Show Logged in User -->
+				<control type="grouplist">
+					<orientation>horizontal</orientation>
+					<posx>0</posx>
+                    <posy>46</posy>
+					<include>Home_UserServerInfo</include>
+				</control>
+				
+				<!-- Homemenu Upper Bar -->
+				<control type="grouplist" id="9020">
+					<posx>945</posx>
+					<posy>46</posy>
+					<width>960</width>
+					<height>41</height>
+					<align>right</align>
+					<orientation>horizontal</orientation>
+					<onup condition="Control.IsVisible(9003)">9003</onup>
+					<onup condition="!Control.IsVisible(9003) + Control.IsVisible(9004) + !Skin.HasSetting(middlemainmenu)">9004</onup>
+					<ondown>300</ondown>
+					
+					<!-- Search Button -->
+					<control type="button" id="9027">
+						<visible>!Skin.HasSetting(DisableSearchIcon)</visible>
+						<label></label>
+						<textoffsetx>0</textoffsetx>
+						<width>50</width>
+						<height>41</height>
+						<align>center</align>
+						<font>IconTiny</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<onclick>Plex.ActivateWindow(10051)</onclick>
+						<animation type="Visible">
+							<effect type="fade" start="0" end="100" tween="sine" easing="inout" time="300" />
+							<effect type="zoom" start="50" end="100" center="auto" tween="sine" easing="inout" time="300" />
+						</animation>
+						<animation type="Hidden">
+							<effect type="fade" start="100" end="0" tween="sine" easing="inout" time="300" />
+							<effect type="zoom" start="100" end="50" center="auto" tween="sine" easing="inout" time="300" />
+						</animation>
+					</control>
+					
+					<!-- Space -->
+					<control type="label" id="9026">
+						<width>5</width>
+						<height>41</height>
+						<label>-</label>
+						<font>font13_title</font>
+						<textcolor>themecolor</textcolor>
+					</control>
+					
+					<!-- Date & Time -->
+					<control type="label" id="9025">
+						<width min="10" max="1780">auto</width>
+						<height>41</height>
+						<label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
+						<font>font13_title</font>
+						<textcolor>themecolor</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+					</control>
+				</control>
+			</control>
+		</control>
+		<control type="group">
+			<posy>453</posy>
+			<animation effect="slide" end="0,338" time="320" tween="cubic" easing="inout" condition="!Skin.HasSetting(middlemainmenu)">Conditional</animation>
+			<animation type="WindowOpen" reversible="false" condition="Window.Previous(Startup)">
+				<effect type="zoom" start="0" end="100" center="960,540" delay="500" time="300" tween="cubic" />
+			</animation>
+			<animation type="WindowOpen" reversible="false" condition="!Window.Previous(Startup)">
+				<effect type="zoom" start="150" end="100" center="960,540" time="300" tween="cubic" />
+				<effect type="fade" start="50" end="100" time="300" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="fade" start="100" end="0" time="300" />
+				<effect type="zoom" start="100" end="130" center="960,540" time="300" tween="cubic" easing="in" />
+			</animation>
+			<animation effect="slide" end="0,-381" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(middlemainmenu) + Window.IsVisible(1199)">Conditional</animation>
+			<control type="group">
+				<control type="group" id="9001">
+					<posx>0</posx>
+					<posy>159</posy>
+					<onup>300</onup>
+					<ondown condition="Skin.HasSetting(middlemainmenu) + Control.IsVisible(90020)">8002</ondown>
+					<include condition="!Skin.HasSetting(Enable.VisibleSubmenu)">SubMenuAnimation</include>
+					<animation effect="slide" start="1870,0" end="0,0" delay="300" time="240" condition="!Window.Previous(startup)">WindowOpen</animation>
+					<animation effect="slide" start="1870,0" end="0,0" delay="200" time="480" condition="Window.Previous(startup)">WindowOpen</animation>
+					
+					<!-- Submenu -->
+					<control type="image">
+						<posx>0</posx>
+						<width>1920</width>
+						<height>87</height>
+						<texture>submenu_bar.png</texture>
+					</control>
+					<control type="fixedlist" id="9010">
+						<posx>210</posx>
+						<posy>0</posy>
+						<width>1500</width>
+						<height>87</height>
+						<onup>300</onup>
+						<ondown>9002</ondown>
+						<pagecontrol>-</pagecontrol>
+						<scrolltime tween="quadratic" easing="out">300</scrolltime>
+						<focusposition>2</focusposition>
+						<movement>2</movement>
+						<orientation>Horizontal</orientation>
+						<itemlayout height="87" width="300">
+							<control type="label">
+								<posx>150</posx>
+								<posy>0</posy>
+								<width>300</width>
+								<height>41</height>
+								<font>font13_title</font>
+								<textcolor>grey</textcolor>
+								<shadowcolor>shadow</shadowcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+						</itemlayout>
+						<focusedlayout height="87" width="300">
+							<control type="group">
+								<control type="image">
+									<posy>0</posy>
+									<width>300</width>
+									<height>41</height>
+									<texture>listselect_fo.png</texture>
+								</control>
+								<control type="label">
+									<posx>150</posx>
+									<posy>0</posy>
+									<width>300</width>
+									<height>41</height>
+									<font>font13_title</font>
+									<shadowcolor>shadow</shadowcolor>
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+							<control type="group">
+								<control type="label">
+									<posx>150</posx>
+									<posy>0</posy>
+									<width>300</width>
+									<height>41</height>
+									<font>font13_title</font>
+									<textcolor>grey</textcolor>
+									<shadowcolor>shadow</shadowcolor>
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+						</focusedlayout>
+						<content>
+							<include>HomeSubMenu</include>
+						</content>
+					</control>
+					<control type="image">
+						<posx>130</posx>
+						<posy>6</posy>
+						<width>30</width>
+						<height>30</height>
+						<texture flipx="true">arrowright.png</texture>
+						<colordiffuse>white</colordiffuse>
+						<visible>Container(9010).HasPrevious</visible>
+					</control>
+					<control type="image">
+						<posx>1800</posx>
+						<posy>6</posy>
+						<width>30</width>
+						<height>30</height>
+						<texture>arrowright.png</texture>
+						<colordiffuse>white</colordiffuse>
+						<visible>Container(9010).HasNext</visible>
+					</control>
+				</control>
+				<control type="image">
+					<posy>0</posy>
+					<width>1920</width>
+					<height>225</height>
+					<texture>homemenu_back.png</texture>
+				</control>
+			</control>
+			
+			<!-- Main Menu -->
+			<include condition="StringCompare(Skin.String(MainMenu.Layout),1 Item)">OneMainMenuItemListContent</include>
+			<include condition="Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListFixed</include>
+			<include condition="!Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListWrapped</include>
+			
+			<control type="image">
+				<posx>0</posx>
+				<posy>58</posy>
+				<width>100</width>
+				<height>104</height>
+				<texture border="1">side_fade.png</texture>
+			</control>
+			<control type="image">
+				<posx>1820</posx>
+				<posy>58</posy>
+				<width>100</width>
+				<height>104</height>
+				<texture flipx="true" border="1">side_fade.png</texture>
+			</control>
+			<control type="image">
+				<posy>90</posy>
+				<width>1920</width>
+				<height>72</height>
+				<texture border="1">gradient_floor.png</texture>
+			</control>
+		</control>
+	</include>
+
+	<include name="Home_VerticalMenu">
+		<control type="group">
+			<visible>Skin.HasSetting(Homemenu.Vertical)</visible>
+			<control type="group">
+				<animation effect="slide" end="-480,0" time="240">WindowClose</animation>
+				<animation effect="slide" start="-480,0" end="0,0" delay="300" time="240" condition="!window.previous(startup)">WindowOpen</animation>
+				<animation effect="slide" start="-480,0" end="0,0" delay="800" time="480" condition="window.previous(startup)">WindowOpen</animation>
+				<animation effect="slide" end="-299,0" time="320" tween="cubic" easing="inout" condition="Window.IsVisible(1199)">Conditional</animation>
+				<control type="image">
+					<posx>0</posx>
+					<posy>-8</posy>
+					<width>450</width>
+					<height>1088</height>
+					<texture colordiffuse="F2FFFFFF">verticalmenu_back.png</texture>
+				</control>
+				<include condition="Skin.HasSetting(MainHorizontalListNav)">VerticalMainMenuListFixed</include>
+				<include condition="!Skin.HasSetting(MainHorizontalListNav)">VerticalMainMenuListWrapped</include>
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>450</width>
+					<height>1080</height>
+					<texture>verticalmenu_overlay.png</texture>
+				</control>
+			</control>
+			<control type="group" id="9001">
+				<animation effect="slide" end="-500,0" time="240">WindowClose</animation>
+				<animation effect="slide" start="0,0" end="350,0" time="280" delay="0" condition="Control.HasFocus(9010)">conditional</animation>
+				<posx>-350</posx>
+				<onleft>9002</onleft>
+				<control type="image">
+					<width>350</width>
+					<height>1080</height>
+					<texture>verticalsubmenu_back.png</texture>
+				</control>
+				<control type="fixedlist" id="9010">
+					<posy>330</posy>
+					<width>380</width>
+					<height>480</height>
+					<onup>9010</onup>
+					<ondown>9010</ondown>
+					<onright>300</onright>
+					<pagecontrol>-</pagecontrol>
+					<scrolltime tween="quadratic" easing="out">300</scrolltime>
+					<orientation>Vertical</orientation>
+					<focusposition>3</focusposition>
+					<movement>2</movement>
+					<itemlayout height="60" width="375">
+						<control type="label">
+							<posx>15</posx>
+							<width>308</width>
+							<height>60</height>
+							<font>font14_title</font>
+							<textcolor>grey</textcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</itemlayout>
+					<focusedlayout height="60" width="375">
+						<control type="image">
+							<width>338</width>
+							<height>60</height>
+							<texture>listselect_fo.png</texture>
+						</control>
+						<control type="label">
+							<posx>15</posx>
+							<width>308</width>
+							<height>60</height>
+							<font>font14_title</font>
+							<textcolor>grey</textcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+					</focusedlayout>
+					<content>
+						<include>HomeSubMenu</include>
+					</content>
+				</control>
+			</control>
+		</control>
+		<control type="group">
+			<visible>Skin.HasSetting(Homemenu.Vertical)</visible>
+			<animation effect="slide" end="1460,0" time="240">WindowClose</animation>
+			<animation effect="slide" start="1400,0" end="0,0" delay="300" time="240" condition="!window.previous(startup)">WindowOpen</animation>
+			<animation effect="slide" start="1400,0" end="0,0" delay="800" time="480" condition="window.previous(startup)">WindowOpen</animation>
+			<animation effect="slide" end="0,993" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(Homemenu.LowerInfoBar)">Conditional</animation>
+			<posy>0</posy>
+			<control type="image">
+				<posx>510</posx>
+				<width>1410</width>
+				<height>87</height>
+				<texture>submenu_bar.png</texture>
+				<visible>!Skin.HasSetting(Homemenu.LowerInfoBar)</visible>
+			</control>
+			<control type="image">
+				<posx>420</posx>
+				<width>90</width>
+				<height>87</height>
+				<texture>submenu_end.png</texture>
+				<visible>!Skin.HasSetting(Homemenu.LowerInfoBar)</visible>
+			</control>
+			<control type="image">
+				<posx>510</posx>
+				<width>1410</width>
+				<height>87</height>
+				<texture flipy="true">submenu_bar.png</texture>
+				<visible>Skin.HasSetting(Homemenu.LowerInfoBar)</visible>
+			</control>
+			<control type="image">
+				<posx>420</posx>
+				<width>90</width>
+				<height>87</height>
+				<texture flipy="true">submenu_end.png</texture>
+				<visible>Skin.HasSetting(Homemenu.LowerInfoBar)</visible>
+			</control>
+			<control type="grouplist">
+				<animation effect="slide" end="0,45" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(Homemenu.LowerInfoBar)">Conditional</animation>
+				<orientation>horizontal</orientation>
+				<posx>485</posx>
+				<include>Home_UserServerInfo</include>
+			</control>
+			<control type="grouplist" id="9020">
+				<animation effect="slide" end="0,45" time="320" tween="cubic" easing="inout" condition="Skin.HasSetting(Homemenu.LowerInfoBar)">Conditional</animation>
+				<posx>1110</posx>
+				<posy>0</posy>
+				<width>800</width>
+				<height>41</height>
+				<align>right</align>
+				<orientation>horizontal</orientation>
+				<onleft>9000</onleft>
+				<onup condition="StringCompare(Skin.String(VerticalMenuRSS.Position),$LOCALIZE[419]) + Control.IsVisible(8002)">8002</onup>
+				<onup condition="StringCompare(Skin.String(VerticalMenuRSS.Position),$LOCALIZE[419]) + Control.IsVisible(8001) + !Control.IsVisible(8002)">8001</onup>
+				<onup condition="StringCompare(Skin.String(VerticalMenuRSS.Position),$LOCALIZE[419]) + !Control.IsVisible(8001) + !Control.IsVisible(8002)">9000</onup>
+				<ondown condition="!StringCompare(Skin.String(VerticalMenuRSS.Position),$LOCALIZE[419]) + Control.IsVisible(8001)">8001</ondown>
+				<ondown condition="!StringCompare(Skin.String(VerticalMenuRSS.Position),$LOCALIZE[419]) + !Control.IsVisible(8001) + Control.IsVisible(8002)">8002</ondown>
+				<ondown condition="!StringCompare(Skin.String(VerticalMenuRSS.Position),$LOCALIZE[419]) + !Control.IsVisible(8001) + !Control.IsVisible(8002)">9000</ondown>
+				
+				<!-- Search Button -->
+					<control type="button" id="9027">
+						<visible>!Skin.HasSetting(DisableSearchIcon)</visible>
+						<label></label>
+						<textoffsetx>0</textoffsetx>
+						<width>50</width>
+						<height>41</height>
+						<align>center</align>
+						<font>IconTiny</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<onclick>Plex.ActivateWindow(10051)</onclick>
+						<animation type="Visible">
+							<effect type="fade" start="0" end="100" tween="sine" easing="inout" time="300" />
+							<effect type="zoom" start="50" end="100" center="auto" tween="sine" easing="inout" time="300" />
+						</animation>
+						<animation type="Hidden">
+							<effect type="fade" start="100" end="0" tween="sine" easing="inout" time="300" />
+							<effect type="zoom" start="100" end="50" center="auto" tween="sine" easing="inout" time="300" />
+						</animation>
+					</control>
+					
+					<!-- Space -->
+                    <control type="label" id="9026">
+                        <width>5</width>
+                        <height>41</height>
+                        <label>-</label>
+                        <font>font13_title</font>
+                        <textcolor>themecolor</textcolor>
+                    </control>
+				
+				<control type="label" id="9025">
+					<width min="10" max="1780">auto</width>
+					<height>41</height>
+					<label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
+					<font>font13_title</font>
+					<textcolor>themecolor</textcolor>
+					<shadowcolor>shadow</shadowcolor>
+				</control>
+			</control>
+		</control>
+	</include>
+	
+	<!-- User and Server Info -->
+	<include name="Home_UserServerInfo">
+		<control type="label">
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>$INFO[System.CurrentUser]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title</font>
+			<textcolor>grey</textcolor>
+			<shadowcolor>AA000000</shadowcolor>
+		</control>
+		<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo)</visible>
+            <width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>[COLOR grey]  |  [/COLOR]$INFO[Container(300).ListItem(0).Label2]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title</font>
+			<textcolor>themecolor</textcolor>
+			<shadowcolor>AA000000</shadowcolor>
+		</control>
+		<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
+            <width min="10" max="780">auto</width>
+			<height>41</height>
+			<label></label>
+			<textoffsetx>30</textoffsetx>
+			<font>IconSmaller</font>
+			<textcolor>themecolor</textcolor>
+			<shadowcolor>AA000000</shadowcolor>
+		</control>
+		<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
+            <width min="10" max="780">auto</width>
+			<height>41</height>
+			<label></label>
+			<textoffsetx>30</textoffsetx>
+			<font>IconSmaller</font>
+			<textcolor>themecolor</textcolor>
+			<shadowcolor>AA000000</shadowcolor>
+		</control>
+	</include>
+	
+	<!-- Home Menu Content -->
+	<include name="HomeMenuContent">
+		<item id="7">
 				<description>Search</description>
 				<label>$LOCALIZE[137]</label>
 				<onclick>Plex.ActivateWindow(10051)</onclick>
@@ -124,29 +484,211 @@
 			</item>
 			
 			<include>Home_CustomItems</include>
-			
-		</content>
-    </include>
-    <include name="MainMenuListFixed">
-        <control type="fixedlist" id="300">
-			
-            <include>MainMenuListContent</include>
-        </control>
-    </include>
-    <include name="MainMenuListWrapped">
-        <control type="wraplist" id="300">
-			
-            <include>MainMenuListContent</include>
-        </control>
-    </include>
-    <include name="FocusPosition4">
-        <focusposition>4</focusposition>
-    </include>
-    <include name="FocusPosition2">
-        <focusposition>2</focusposition>
-    </include>
+	</include>
 
-    <!-- SubMenu -->
+	<!-- Main Menu Includes -->
+	<include name="MainMenuListContent">
+		<posx>-290</posx>
+		<posy>62</posy>
+		<width>2800</width>
+		<height>100</height>
+		<onleft>300</onleft>
+		<onright>300</onright>
+		<movement>1</movement>
+		<onup condition="Control.IsVisible(9027)">9020</onup>
+		<onup condition="!Skin.HasSetting(middlemainmenu) + Control.IsVisible(90010) + !Control.IsVisible(9027)">8001</onup>
+		<onup condition="!Skin.HasSetting(middlemainmenu) + !Control.IsVisible(90010) + Control.IsVisible(90020) + !Control.IsVisible(9027)">8002</onup>
+		<onup condition="Skin.HasSetting(middlemainmenu) + Control.IsVisible(90010) + !Control.IsVisible(9027)">8001</onup>
+		<ondown>9001</ondown>
+		<pagecontrol>-</pagecontrol>
+		<scrolltime tween="quadratic" easing="out">300</scrolltime>
+		<focusposition>2</focusposition>
+		<orientation>Horizontal</orientation>
+		<animation effect="slide" start="0" end="-350,0" time="320" tween="cubic" easing="inout" condition="IsEmpty(Skin.String(MainMenu.Layout))">Conditional</animation>
+		
+		<itemlayout height="100" width="500" condition="StringCompare(Skin.String(MainMenu.Layout),5 Items)">
+			<control type="label">
+				<posx>250</posx>
+                <posy>0</posy>
+				<width>500</width>
+				<height>90</height>
+				<font>font_MainMenu</font>
+				<textcolor>grey3</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+		</itemlayout>
+		<focusedlayout height="100" width="500" condition="StringCompare(Skin.String(MainMenu.Layout),5 Items)">
+			<control type="label">
+				<posx>250</posx>
+                <posy>0</posy>
+				<width>500</width>
+				<height>90</height>
+				<font>font_MainMenu</font>
+				<textcolor>white</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+				<include>VisibleFadeEffect</include>
+			</control>
+		</focusedlayout>
+		<itemlayout height="100" width="640" condition="IsEmpty(Skin.String(MainMenu.Layout))">
+			<control type="label">
+				<posx>320</posx>
+                <posy>0</posy>
+				<width>640</width>
+				<height>90</height>
+				<font>font_MainMenu</font>
+				<textcolor>grey3</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+		</itemlayout>
+		<focusedlayout height="100" width="640" condition="IsEmpty(Skin.String(MainMenu.Layout))">
+			<control type="label">
+				<posx>320</posx>
+                <posy>0</posy>
+				<width>640</width>
+				<height>90</height>
+				<font>font_MainMenu</font>
+				<textcolor>white</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+				<include>VisibleFadeEffect</include>
+			</control>
+		</focusedlayout>
+		
+		<content>
+			<include>HomeMenuContent</include>
+		</content>
+	</include>
+	
+	<include name="OneMainMenuItemListContent">
+		<control type="wraplist" id="300">
+			<posx>0</posx>
+			<posy>62</posy>
+			<width>1920</width>
+			<height>100</height>
+			<onleft>300</onleft>
+			<onright>300</onright>
+			<onup condition="Control.IsVisible(9027)">9020</onup>
+			<onup condition="!Skin.HasSetting(middlemainmenu) + Control.IsVisible(90010) + !Control.IsVisible(9027)">8001</onup>
+			<onup condition="!Skin.HasSetting(middlemainmenu) + !Control.IsVisible(90010) + Control.IsVisible(90020) + !Control.IsVisible(9027)">8002</onup>
+			<onup condition="Skin.HasSetting(middlemainmenu) + Control.IsVisible(90010) + !Control.IsVisible(9027)">8001</onup>
+		<ondown>9001</ondown>
+			<pagecontrol>-</pagecontrol>
+			<scrolltime tween="quadratic" easing="out">400</scrolltime>
+			<orientation>Horizontal</orientation>
+			<itemlayout height="100" width="1920">
+				<control type="label">
+					<posx>960</posx>
+					<posy>0</posy>
+					<width>1920</width>
+					<height>90</height>
+					<font>font_MainMenu</font>
+					<textcolor>grey3</textcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout height="100" width="1920">
+				<control type="label">
+					<posx>960</posx>
+					<posy>0</posy>
+					<width>1920</width>
+					<height>90</height>
+					<font>font_MainMenu</font>
+					<textcolor>white</textcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]</label>
+					<include>VisibleFadeEffect</include>
+				</control>
+			</focusedlayout>
+			<content>
+				<include>HomeMenuContent</include>
+			</content>
+		</control>
+	</include>
+	
+	<include name="VerticalMainMenuListContent">
+		<posx>0</posx>
+		<posy>48</posy>
+		<width>400</width>
+		<height>980</height>
+		<onup>300</onup>
+		<ondown>300</ondown>
+		<onleft>9001</onleft>
+		<onright condition="Control.IsVisible(9010)">8001</onright>
+		<onright condition="!Control.IsVisible(9010) + Control.IsVisible(9020)">8002</onright>
+		<onright condition="!Control.IsVisible(9010) + !Control.IsVisible(9020) + Control.IsVisible(9027)">9020</onright>
+		<pagecontrol>-</pagecontrol>
+		<focusposition>3</focusposition>
+		<scrolltime tween="quadratic" easing="out">200</scrolltime>
+		<animation effect="fade" time="200" start="100" end="50" reversible="true" condition="Control.HasFocus(9010)">Conditional</animation>
+		<itemlayout height="140" width="430">
+			<control type="label">
+				<posx>380</posx>
+				<posy>0</posy>
+				<width>380</width>
+				<height>140</height>
+				<font>font_VerticalMainMenu</font>
+				<textcolor>grey3</textcolor>
+				<align>right</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+		</itemlayout>
+		<focusedlayout height="140" width="430">
+			<control type="label">
+				<posx>380</posx>
+				<posy>0</posy>
+				<width>380</width>
+				<height>140</height>
+				<font>font_VerticalMainMenu</font>
+				<textcolor>white</textcolor>
+				<align>right</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+				<include>VisibleFadeEffect</include>
+			</control>
+		</focusedlayout>
+		<content>
+			<include>HomeMenuContent</include>
+		</content>
+	</include>
+	<include name="MainMenuListFixed">
+		<control type="fixedlist" id="300">
+			<include>MainMenuListContent</include>
+		</control>
+	</include>
+	<include name="MainMenuListWrapped">
+		<control type="wraplist" id="300">
+			<include>MainMenuListContent</include>
+		</control>
+	</include>
+	<include name="VerticalMainMenuListFixed">
+		<control type="fixedlist" id="300">
+			<include>VerticalMainMenuListContent</include>
+		</control>
+	</include>
+	<include name="VerticalMainMenuListWrapped">
+		<control type="wraplist" id="300">
+			<include>VerticalMainMenuListContent</include>
+		</control>
+	</include>
+	<include name="FocusPosition4">
+		<focusposition>4</focusposition>
+	</include>
+	<include name="FocusPosition2">
+		<focusposition>2</focusposition>
+	</include>
+	
+	<!-- SubMenu -->
     <include name="HomeSubMenu">
 	
         <!-- Switch User -->
@@ -242,17 +784,5 @@
             <onclick>System.Exec(reboot)</onclick>
             <visible>System.isSystem(openelec) + !System.UserIsRestricted</visible>
         </item>
-    </include>
-	
-    <include name="FallbackSubMenu">
-        <content>
-            <include>HomeSubMenu</include>
-        </content>
-    </include>
-	
-    <include name="CustomSubMenu">
-        <content>
-            <include>skinshortcuts-submenu</include>
-        </content>
     </include>
 </includes>
