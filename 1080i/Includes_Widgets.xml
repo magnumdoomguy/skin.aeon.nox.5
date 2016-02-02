@@ -33,6 +33,15 @@
 				<width>1472</width>
 				<height>342</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+				<visible>!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)</visible>
+			</control>
+			<control type="image">
+				<posx>224</posx>
+				<posy>-21</posy>
+				<width>1472</width>
+				<height>308</height>
+				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+				<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)</visible>
 			</control>
 			<control type="label">
 				<posy>-28</posy>
@@ -73,7 +82,7 @@
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
 								
 				<!-- Poster Artwork -->
-				<itemlayout height="300" width="205" condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">
+				<itemlayout height="300" width="205" condition="!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">
 				
 					<!-- Poster -->
 					<control type="image">
@@ -113,7 +122,7 @@
 				</itemlayout>
 				
 				<!-- Clear Case -->
-				<itemlayout height="300" width="205" condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">
+				<itemlayout height="300" width="205" condition="!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">
 									
 					<!-- Poster -->
 					<control type="image">
@@ -162,7 +171,7 @@
 				</itemlayout>
 				
 				<!-- Glass Case -->
-				<itemlayout height="300" width="205" condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)">
+				<itemlayout height="300" width="205" condition="!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)">
 									
 					<!-- Poster -->
 					<control type="image">
@@ -211,7 +220,7 @@
 				</itemlayout>
 				
 				<!-- DVD/Bluray Case -->
-				<itemlayout height="300" width="205" condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)">
+				<itemlayout height="300" width="205" condition="!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)">
 
 					<!-- Poster -->
 					<control type="image">
@@ -260,8 +269,43 @@
 					
 				</itemlayout>
 				
+				<!-- Fanart -->
+				<itemlayout height="266" width="478" condition="Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>473</width>
+						<height>266</height>
+						<aspectratio>scale</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture>$INFO[ListItem.Art(fanart)]</texture>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>166</posy>
+						<width>473</width>
+						<height>100</height>
+						<texture>homewidgets/label.png</texture>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<animation effect="zoom" end="98,89" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
+						<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
+					</control>
+					<control type="label">
+						<posx>236</posx>
+						<posy>196</posy>
+						<width>463</width>
+						<height>70</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font12_title</font>
+						<textcolor>lightgrey</textcolor>
+						<label>$VAR[HomeWidgetTitleVar]</label>
+						<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
+					</control>
+				</itemlayout>
+				
 				<!-- No Case -->
-				<focusedlayout height="300" width="205" condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">
+				<focusedlayout height="300" width="205" condition="!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -308,7 +352,7 @@
 				</focusedlayout>
 				
 				<!-- Clear Case -->
-				<focusedlayout height="300" width="205" condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">
+				<focusedlayout height="300" width="205" condition="!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -371,7 +415,7 @@
 				</focusedlayout>
 				
 				<!-- Glass Case -->
-				<focusedlayout height="300" width="205" condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)">
+				<focusedlayout height="300" width="205" condition="!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -434,7 +478,7 @@
 				</focusedlayout>
 				
 				<!-- DVD/Bluray Case -->
-				<focusedlayout height="300" width="205" condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)">
+				<focusedlayout height="300" width="205" condition="!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -492,6 +536,46 @@
 							<texture>empty.png</texture>
 							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<border>8</border>
+						</control>
+					</control>
+				</focusedlayout>
+				
+				<!-- Fanart -->
+				<focusedlayout height="266" width="478" condition="Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)">
+					<control type="group">
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
+						</animation>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>473</width>
+							<height>266</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Art(fanart)]</texture>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+						<control type="image">
+							<posx>0</posx>
+							<posy>166</posy>
+							<width>473</width>
+							<height>100</height>
+							<texture>homewidgets/label.png</texture>
+							<bordersize>8</bordersize>
+							<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
+						</control>
+						<control type="label">
+							<posx>236</posx>
+							<posy>196</posy>
+							<width>447</width>
+							<height>70</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font12_title</font>
+							<textcolor>themecolor</textcolor>
+							<label>$VAR[HomeWidgetTitleVar]</label>
+							<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
 						</control>
 					</control>
 				</focusedlayout>
