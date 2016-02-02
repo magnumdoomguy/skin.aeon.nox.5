@@ -72,20 +72,21 @@
 				<preloaditems>2</preloaditems>
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
 								
-				<!-- Poster -->
-				<itemlayout height="300" width="205">
+				<!-- Poster Artwork -->
+				<itemlayout height="300" width="205" condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">
+				
+					<!-- Poster -->
 					<control type="image">
 						<posx>0</posx>
 						<posy>0</posy>
 						<width>200</width>
 						<height>300</height>
 						<aspectratio aligny="top">stretch</aspectratio>
-						<!--<animation effect="zoom" end="96,96" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-						<animation effect="zoom" end="95,90" center="100,250" condition="$PARAM[caseVisible]">conditional</animation>
-						<animation effect="zoom" end="94,97" center="auto" condition="$PARAM[clearVisible]">conditional</animation>-->
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$VAR[HomeWidgetPosterVar]</texture>
 					</control>
+					
+					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
 						<posy>200</posy>
@@ -93,8 +94,6 @@
 						<height>100</height>
 						<texture>homewidgets/label.png</texture>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-						<animation effect="zoom" end="95,90" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-						<animation effect="zoom" end="94,90" center="auto" condition="$PARAM[clearVisible]">conditional</animation>
 						<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
 					</control>
 					<control type="label">
@@ -110,33 +109,79 @@
 						<label>$VAR[HomeWidgetTitleVar]</label>
 						<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
 					</control>
+					
+				</itemlayout>
+				
+				<!-- Clear Case -->
+				<itemlayout height="300" width="205" condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">
+									
+					<!-- Poster -->
+					<control type="image">
+						<posx>4</posx>
+						<posy>3</posy>
+						<width>193</width>
+						<height>294</height>
+						<aspectratio aligny="top">stretch</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterVar]</texture>
+					</control>
+										
+					<!-- Text Label -->
+					<control type="image">
+						<posx>0</posx>
+						<posy>200</posy>
+						<width>200</width>
+						<height>100</height>
+						<texture>homewidgets/label.png</texture>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
+					</control>
+					<control type="label">
+						<posx>100</posx>
+						<posy>230</posy>
+						<width>190</width>
+						<height>60</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font12_title</font>
+						<textcolor>lightgrey</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+						<label>$VAR[HomeWidgetTitleVar]</label>
+						<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
+					</control>
+					
+					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
 						<posy>0</posy>
 						<width>200</width>
 						<height>300</height>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-						<texture>$PARAM[Case]</texture>
+						<texture>$VAR[CaseTextureVar]</texture>
 					</control>
 				</itemlayout>
-				<focusedlayout height="300" width="205">
+				
+				<!-- No Case -->
+				<focusedlayout height="300" width="205" condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
+						
+						<!-- Poster -->
 						<control type="image">
 							<posx>0</posx>
 							<posy>0</posy>
 							<width>200</width>
 							<height>300</height>
 							<aspectratio aligny="top">stretch</aspectratio>
-							<animation effect="zoom" end="96,96" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-							<animation effect="zoom" end="95,90" center="100,250" condition="$PARAM[caseVisible]">conditional</animation>
-							<animation effect="zoom" end="94,97" center="auto" condition="$PARAM[clearVisible]">conditional</animation>
 							<texture>$VAR[HomeWidgetPosterVar]</texture>
 							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>8</bordersize>
+							<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))</visible>
 						</control>
+						
+						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
 							<posy>200</posy>
@@ -144,8 +189,6 @@
 							<height>100</height>
 							<texture>homewidgets/label.png</texture>
 							<bordersize>8</bordersize>
-							<animation effect="zoom" end="95,90" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-							<animation effect="zoom" end="94,90" center="auto" condition="$PARAM[clearVisible]">conditional</animation>
 							<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
 						</control>
 						<control type="label">
@@ -161,12 +204,67 @@
 							<label>$VAR[HomeWidgetTitleVar]</label>
 							<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
 						</control>
+						
+					</control>
+				</focusedlayout>
+				<focusedlayout height="300" width="205" condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">
+					<control type="group">
+						<animation  type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
+						</animation>
+											
+						<!-- Clear Case -->
+						<control type="image">
+							<posx>12</posx>
+							<posy>11</posy>
+							<width>177</width>
+							<height>278</height>
+							<aspectratio aligny="top">stretch</aspectratio>
+							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+							<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterVar]</texture>
+						</control>
+						
+						<!-- Text Label -->
+						<control type="image">
+							<posx>0</posx>
+							<posy>200</posy>
+							<width>200</width>
+							<height>100</height>
+							<texture>homewidgets/label.png</texture>
+							<bordersize>8</bordersize>
+							<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
+						</control>
+						<control type="label">
+							<posx>100</posx>
+							<posy>222</posy>
+							<width>190</width>
+							<height>60</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font12_title</font>
+							<textcolor>themecolor</textcolor>
+							<wrapmultiline>true</wrapmultiline>
+							<label>$VAR[HomeWidgetTitleVar]</label>
+							<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
+						</control>
+						
+						<!-- Clear Case -->
+						<control type="image">
+							<posx>8</posx>
+							<posy>8</posy>
+							<width>184</width>
+							<height>284</height>
+							<aspectratio aligny="top">stretch</aspectratio>
+							<texture>$VAR[CaseTextureVar]</texture>
+						</control>
 						<control type="image">
 							<posx>0</posx>
 							<posy>0</posy>
 							<width>200</width>
 							<height>300</height>
-							<texture>$PARAM[Case]</texture>
+							<texture>empty.png</texture>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<border>8</border>
 						</control>
 					</control>
 				</focusedlayout>

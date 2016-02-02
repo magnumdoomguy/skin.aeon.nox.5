@@ -72,4 +72,28 @@
 		<value>$INFO[ListItem.Label]</value>
 	</variable>
 	
+	<!-- Recently Added Movie Case Type -->
+	<variable name="RecentlyAddedMovieCaseTypeSettingVar">
+		<value condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">Skin.SetString(Widget.RecentlyAdded.Movies.Case,Clear)</value>
+        <value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">Skin.SetString(Widget.RecentlyAdded.Movies.Case,Glass)</value>
+        <value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)">Skin.SetString(Widget.RecentlyAdded.Movies.Case,DVD/Bluray)</value>
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)">Skin.Reset(Widget.RecentlyAdded.Movies.Case)</value>
+    </variable>
+		
+	<!-- Label for Recently Added Movie Case Type -->
+	<variable name="RecentlyAddedMovieCaseTypeLabelVar">
+		<value condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">$LOCALIZE[42199]</value> <!-- STRING: None -->
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">$LOCALIZE[42125]</value>
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)">$LOCALIZE[42056]</value>
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)">$LOCALIZE[42057]</value>
+    </variable>
+	
+	<!-- Case Texture -->
+	<variable name="CaseTextureVar">
+		<value condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))"></value>
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</value>
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)">$LOCALIZE[42056]</value>
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)">$LOCALIZE[42057]</value>
+    </variable>
+	
 </includes>
