@@ -33,7 +33,7 @@
 				<width>1472</width>
 				<height>342</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [!Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + Container(11000).ListItem.Type(episode)]</visible>
+				<visible>[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [!StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Container(11000).ListItem.Type(episode)]</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -41,7 +41,7 @@
 				<width>1472</width>
 				<height>308</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + Container(11000).ListItem.Type(episode)]</visible>
+				<visible>[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Container(11000).ListItem.Type(episode)]</visible>
 			</control>
 			<control type="label">
 				<posy>-28</posy>
@@ -352,7 +352,7 @@
 				<!-- Episode ************************************************************************************************************************************************ -->
 				
 				<!-- Poster Artwork -->
-				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Case))">
+				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Case))">
 				
 					<!-- Poster -->
 					<control type="image">
@@ -392,7 +392,7 @@
 				</itemlayout>
 				
 				<!-- Clear Case -->
-				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)">
+				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)">
 									
 					<!-- Poster -->
 					<control type="image">
@@ -441,7 +441,7 @@
 				</itemlayout>
 				
 				<!-- Glass Case -->
-				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)">
+				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)">
 									
 					<!-- Poster -->
 					<control type="image">
@@ -490,7 +490,7 @@
 				</itemlayout>
 				
 				<!-- DVD/Bluray Case -->
-				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)">
+				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)">
 
 					<!-- Poster -->
 					<control type="image">
@@ -540,7 +540,7 @@
 				</itemlayout>
 				
 				<!-- Fanart -->
-				<itemlayout height="266" width="478" condition="Container(11000).ListItem.Type(episode) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)">
+				<itemlayout height="266" width="478" condition="Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)">
 					<control type="image">
 						<posx>0</posx>
 						<posy>0</posy>
@@ -575,7 +575,7 @@
 				</itemlayout>
 				
 				<!-- Fanart Glass -->
-				<itemlayout height="266" width="478" condition="Container(11000).ListItem.Type(episode) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)">
+				<itemlayout height="266" width="478" condition="Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)">
 					<control type="image">
 						<posx>3</posx>
 						<posy>3</posy>
@@ -954,7 +954,7 @@
 				<!-- Episodes ***************************************************************************************************************************************** -->
 				
 				<!-- No Case -->
-				<focusedlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Case))">
+				<focusedlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Case))">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -1001,7 +1001,7 @@
 				</focusedlayout>
 				
 				<!-- Clear Case -->
-				<focusedlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)">
+				<focusedlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -1064,7 +1064,7 @@
 				</focusedlayout>
 				
 				<!-- Glass Case -->
-				<focusedlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)">
+				<focusedlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -1127,7 +1127,7 @@
 				</focusedlayout>
 				
 				<!-- DVD/Bluray Case -->
-				<focusedlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)">
+				<focusedlayout height="300" width="205" condition="Container(11000).ListItem.Type(episode) + !StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)">
 					<control type="group">
 						<animation  type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -1190,7 +1190,7 @@
 				</focusedlayout>
 				
 				<!-- Fanart -->
-				<focusedlayout height="266" width="478" condition="Container(11000).ListItem.Type(episode) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)">
+				<focusedlayout height="266" width="478" condition="Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)">
 					<control type="group">
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -1230,7 +1230,7 @@
 				</focusedlayout>
 				
 				<!-- Fanart Glass -->
-				<focusedlayout height="266" width="478" condition="Container(11000).ListItem.Type(episode) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)">
+				<focusedlayout height="266" width="478" condition="Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)">
 					<control type="group">
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />

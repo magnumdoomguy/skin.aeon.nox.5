@@ -122,8 +122,16 @@
 	
 	<!-- Label for Recently Added Episodes Artwork Type -->
 	<variable name="RecentlyAddedTVArtworkTypeLabelVar">
-		<value condition="Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart)">$LOCALIZE[42205]</value> <!-- STRING: Thumbnail -->
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail)">$LOCALIZE[42205]</value> <!-- STRING: Thumbnail -->
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Banner)">$LOCALIZE[42206]</value> <!-- STRING: Banner -->
 		<value>$LOCALIZE[42058]</value> <!-- STRING: Poster -->
+    </variable>
+	
+	<!-- Setting for Recently Added Episodes Artwork Type -->
+	<variable name="RecentlyAddedTVArtworkTypeSettingVar">
+		<value condition="IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork))">Skin.SetString(Widget.RecentlyAdded.TV.Artwork,Thumbnail)</value>
+        <value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail)">Skin.SetString(Widget.RecentlyAdded.TV.Artwork,Banner)</value>
+        <value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Banner)">Skin.Reset(Widget.RecentlyAdded.TV.Artwork)</value>
     </variable>
 	
 	<!-- Label for Recently Added Episodes Fanart Case Type -->
