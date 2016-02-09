@@ -43,6 +43,14 @@
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
 				<visible>[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Container(11000).ListItem.Type(episode)]</visible>
 			</control>
+			<control type="image">
+				<posx>224</posx>
+				<posy>-21</posy>
+				<width>1472</width>
+				<height>324</height>
+				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+				<visible>Container(11000).ListItem.Type(album)</visible>
+			</control>
 			<control type="label">
 				<posy>-28</posy>
 				<posx>1680</posx>
@@ -57,6 +65,7 @@
 			</control>
 			<control type="label">
 				<animation effect="slide" end="0,-34" condition="[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + Container(11000).ListItem.Type(episode)]">Conditional</animation>
+				<animation effect="slide" end="0,-18" condition="Container(11000).ListItem.Type(album)">Conditional</animation>
 				<posy>310</posy>
 				<posx>240</posx>
 				<width>1440</width>
@@ -615,6 +624,57 @@
 						<texture>homewidgets/glass/landscape.png</texture>
 					</control>
 				</itemlayout>
+				
+				<!-- Music ********************************************************************************************************************************************* -->
+				
+				<itemlayout height="282" width="287" condition="Container(11000).ListItem.Type(album)">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>282</width>
+						<height>282</height>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture>$VAR[HomeWidgetPosterVar]</texture>
+					</control>
+					
+			
+			
+			<!--<control type="image">
+				<posx>0</posx>
+				<posy>182</posy>
+				<width>282</width>
+				<height>100</height>
+				<texture>homewidgets/label.png</texture>
+				<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+				<animation effect="zoom" end="95,88" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
+				<visible>$PARAM[labelVisible]</visible>
+			</control>
+			<control type="textbox">
+				<posx>17</posx>
+				<posy>212</posy>
+				<width>248</width>
+				<height>70</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font12_title</font>
+				<textcolor>lightgrey</textcolor>
+				<label>$VAR[HomeWidgetTitleVar]</label>
+				<animation effect="slide" end="10,0" condition="$PARAM[caseVisible]">conditional</animation>
+				<animation effect="slide" end="10,0" condition="$PARAM[clearVisible]">conditional</animation>
+				<visible>$PARAM[labelVisible]</visible>
+			</control>
+			<control type="image">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>282</width>
+				<height>282</height>
+				<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+				<texture>$PARAM[Case]</texture>
+			</control>-->
+		</itemlayout>
+				
+				
 				
 				<!-- Movies ******************************************************************************************************************************************** -->
 				
@@ -1286,6 +1346,52 @@
 					</control>
 				</focusedlayout>
 				
+				<!-- Music ****************************************************************************************************************************************** -->
+				
+				<focusedlayout height="282" width="287">
+			<control type="group">
+				<animation type="Focus" reversible="false">
+					<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
+				</animation>
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>282</width>
+					<height>282</height>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture>$VAR[HomeWidgetPosterVar]</texture>
+					<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+					<bordersize>8</bordersize>
+				</control>
+				
+				
+				<!--
+				<control type="image">
+					<posx>0</posx>
+					<posy>182</posy>
+					<width>282</width>
+					<height>100</height>
+					<texture>homewidgets/label.png</texture>
+					<animation effect="zoom" end="95,88" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
+					<visible>$PARAM[labelVisible]</visible>
+				</control>
+				<control type="textbox">
+					<posx>17</posx>
+					<posy>212</posy>
+					<width>248</width>
+					<height>70</height>
+					<align>center</align>
+					<aligny>center</aligny>
+					<font>font12_title</font>
+					<textcolor>themecolor</textcolor>
+					<label>$VAR[HomeWidgetTitleVar]</label>
+					<animation effect="slide" end="10,0" condition="$PARAM[caseVisible]">conditional</animation>
+					<animation effect="slide" end="10,0" condition="$PARAM[clearVisible]">conditional</animation>
+					<visible>$PARAM[labelVisible]</visible>
+				</control>-->
+				
+			</control>
+		</focusedlayout>
 			</control>
 		</control>
 	</include>
@@ -2159,144 +2265,5 @@
 			</control>
 		</focusedlayout>
 	</include>
-	<include name="BannerArt">
-		<itemlayout height="137" width="717">
-			<control type="image">
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>712</width>
-				<height>132</height>
-				<aspectratio aligny="top">scale</aspectratio>
-				<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-				<animation effect="zoom" end="99,96" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-				<texture>$PARAM[Texture]</texture>
-			</control>
-			<control type="image">
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>712</width>
-				<height>132</height>
-				<aspectratio>keep</aspectratio>
-				<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-				<texture>$VAR[HomeWidgetClearLogoVar]</texture>
-				<visible>IsEmpty(ListItem.Art(banner)) + IsEmpty(ListItem.Art(tvshow.banner))</visible>
-			</control>
-			<control type="textbox">
-				<posx>20</posx>
-				<posy>20</posy>
-				<width>672</width>
-				<height>92</height>
-				<align>center</align>
-				<aligny>center</aligny>
-				<font>fontCDartist</font>
-				<textcolor>lightgrey</textcolor>
-				<shadowcolor>shadow</shadowcolor>
-				<label>$VAR[HomeWidgetTitle2Var]</label>
-				<visible>IsEmpty(ListItem.Art(banner)) + IsEmpty(ListItem.Art(tvshow.banner)) + IsEmpty(ListItem.Art(clearlogo)) + IsEmpty(ListItem.Art(tvshow.clearlogo))</visible>
-			</control>
-			<control type="image">
-				<posx>0</posx>
-				<posy>82</posy>
-				<width>712</width>
-				<height>50</height>
-				<texture>homewidgets/label.png</texture>
-				<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-				<animation effect="zoom" end="98,89" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-				<visible>$PARAM[labelVisible]</visible>
-			</control>
-			<control type="textbox">
-				<posx>5</posx>
-				<posy>97</posy>
-				<width>712</width>
-				<height>35</height>
-				<align>center</align>
-				<aligny>center</aligny>
-				<font>font12_title</font>
-				<textcolor>lightgrey</textcolor>
-				<label>$VAR[HomeWidgetTitleVar]</label>
-				<visible>$PARAM[labelVisible]</visible>
-			</control>
-			<control type="image">
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>712</width>
-				<height>132</height>
-				<texture>$PARAM[Case]</texture>
-			</control>
-		</itemlayout>
-		<focusedlayout height="137" width="717">
-			<control type="group">
-				<animation type="Focus" reversible="false">
-					<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
-				</animation>
-				<control type="image">
-					<posx>0</posx>
-					<posy>0</posy>
-					<width>712</width>
-					<height>132</height>
-					<aspectratio aligny="top">scale</aspectratio>
-					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-					<animation effect="zoom" end="99,96" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-					<texture>$PARAM[Texture]</texture>
-				</control>
-				<control type="image">
-					<width>712</width>
-					<height>132</height>
-					<animation effect="zoom" end="99,96" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-					<texture border="4">listselect_fo.png</texture>
-				</control>
-				<control type="image">
-					<posx>0</posx>
-					<posy>0</posy>
-					<width>712</width>
-					<height>132</height>
-					<aspectratio>keep</aspectratio>
-					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-					<texture>$VAR[HomeWidgetClearLogoVar]</texture>
-					<visible>IsEmpty(ListItem.Art(banner)) + IsEmpty(ListItem.Art(tvshow.banner))</visible>
-				</control>
-				<control type="textbox">
-					<posx>20</posx>
-					<posy>20</posy>
-					<width>672</width>
-					<height>92</height>
-					<align>center</align>
-					<aligny>center</aligny>
-					<font>fontCDartist</font>
-					<textcolor>lightgrey</textcolor>
-					<shadowcolor>shadow</shadowcolor>
-					<label>$VAR[HomeWidgetTitle2Var]</label>
-					<visible>IsEmpty(ListItem.Art(banner)) + IsEmpty(ListItem.Art(tvshow.banner)) + IsEmpty(ListItem.Art(clearlogo)) + IsEmpty(ListItem.Art(tvshow.clearlogo))</visible>
-				</control>
-				<control type="image">
-					<posx>0</posx>
-					<posy>82</posy>
-					<width>712</width>
-					<height>50</height>
-					<texture>homewidgets/label.png</texture>
-					<animation effect="zoom" end="98,89" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
-					<visible>$PARAM[labelVisible]</visible>
-				</control>
-				<control type="textbox">
-					<posx>5</posx>
-					<posy>97</posy>
-					<width>712</width>
-					<height>35</height>
-					<align>center</align>
-					<aligny>center</aligny>
-					<font>font12_title</font>
-					<textcolor>themecolor</textcolor>
-					<label>$VAR[HomeWidgetTitleVar]</label>
-					<visible>$PARAM[labelVisible]</visible>
-				</control>
-				<control type="image">
-					<posx>0</posx>
-					<posy>0</posy>
-					<width>712</width>
-					<height>132</height>
-					<texture>$PARAM[Case]</texture>
-				</control>
-			</control>
-		</focusedlayout>
-	</include>
+	
 </includes>
