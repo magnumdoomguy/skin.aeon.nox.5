@@ -49,7 +49,7 @@
 				<width>1472</width>
 				<height>324</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))</visible>
+				<visible>[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]</visible>
 			</control>
 			<control type="label">
 				<posy>-28</posy>
@@ -65,7 +65,7 @@
 			</control>
 			<control type="label">
 				<animation effect="slide" end="0,-34" condition="[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + Container(11000).ListItem.Type(episode)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album)]">Conditional</animation>
-				<animation effect="slide" end="0,-18" condition="Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))">Conditional</animation>
+				<animation effect="slide" end="0,-18" condition="[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]">Conditional</animation>
 				<posy>310</posy>
 				<posx>240</posx>
 				<width>1440</width>
@@ -944,6 +944,42 @@
 						<height>266</height>
 						<texture>homewidgets/glass/landscape.png</texture>
 					</control>
+				</itemlayout>
+				
+				<!-- Photos ******************************************************************************************************************************************** -->
+				
+				<itemlayout height="282" width="287" condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Case))">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>282</width>
+						<height>282</height>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture>$VAR[HomeWidgetPosterVar]</texture>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>182</posy>
+						<width>282</width>
+						<height>100</height>
+						<texture>homewidgets/label.png</texture>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<visible>Skin.HasSetting(Widget.RecentlyAdded.Photo.Label)</visible>
+					</control>
+					<control type="label">
+						<posx>141</posx>
+						<posy>212</posy>
+						<width>248</width>
+						<height>70</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font12_title</font>
+						<textcolor>lightgrey</textcolor>
+						<label>$VAR[HomeWidgetTitleVar]</label>
+						<visible>Skin.HasSetting(Widget.RecentlyAdded.Photo.Label)</visible>
+					</control>
+					
 				</itemlayout>
 				
 				<!-- Movies ******************************************************************************************************************************************** -->
@@ -2020,6 +2056,49 @@
 							<texture>empty.png</texture>
 							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>8</bordersize>
+						</control>
+					</control>
+				</focusedlayout>
+				
+				<!-- Photos ****************************************************************************************************************************************** -->
+				
+				<!-- Poster -->
+				<focusedlayout height="282" width="287" condition="IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Case))">
+					<control type="group">
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
+						</animation>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>282</width>
+							<height>282</height>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture>$VAR[HomeWidgetPosterVar]</texture>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+					
+						<control type="image">
+							<posx>0</posx>
+							<posy>182</posy>
+							<width>282</width>
+							<height>100</height>
+							<texture>homewidgets/label.png</texture>
+							<visible>Skin.HasSetting(Widget.RecentlyAdded.Photo.Label)</visible>
+							<bordersize>8</bordersize>
+						</control>
+						<control type="label">
+							<posx>141</posx>
+							<posy>212</posy>
+							<width>248</width>
+							<height>70</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font12_title</font>
+							<textcolor>themecolor</textcolor>
+							<label>$VAR[HomeWidgetTitleVar]</label>
+							<visible>Skin.HasSetting(Widget.RecentlyAdded.Photo.Label)</visible>
 						</control>
 					</control>
 				</focusedlayout>
