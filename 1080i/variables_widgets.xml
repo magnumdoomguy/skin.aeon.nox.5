@@ -69,20 +69,30 @@
 	
 	<!-- Widget Item Title -->
 	<variable name="HomeWidgetTitleVar">
-		<value condition="Container(11000).ListItem.Type(episode) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
-		<value condition="Container(11000).ListItem.Type(episode) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
-		<value condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-		<value condition="Container(11000).ListItem.Type(episode) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container(11000).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11000).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
 		<value condition="!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album)">$INFO[ListItem.Label][CR][COLOR themecolor]$INFO[ListItem.Artist][/COLOR]</value>
 		<value>$INFO[ListItem.Label]</value>
 	</variable>
 	
-	<!-- Widget Recently Added Title -->
-	<variable name="HomeWidgetRecentlyAddedTitleVar">
+	<!-- Widget On Deck Item Title -->
+	<variable name="HomeWidgetOnDeckTitleVar">
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value>$INFO[ListItem.Label]</value>
+	</variable>
+	
+	<!-- Widget 1 Title -->
+	<variable name="HomeWidget1TitleVar">
+		<value condition="Control.IsVisible(11000)">$LOCALIZE[42197] $INFO[Container(300).ListItem.Label]</value>
+		<value condition="Control.IsVisible(11001)">$LOCALIZE[42023] $INFO[Container(300).ListItem.Label]</value>
 		<value condition="Control.IsVisible(11002)">$LOCALIZE[42212]</value>
 		<value condition="Control.IsVisible(11003)">$LOCALIZE[42081]</value>
-		<value condition="Control.IsVisible(11005)">$LOCALIZE[42110]</value>
-		<value>$LOCALIZE[42197] $INFO[Container(300).ListItem.Label]</value>
+		<value condition="Control.IsVisible(11005)">$LOCALIZE[42110]</value>	
 	</variable>
 	
 	<!-- Recently Added Movies Case Type -->
@@ -99,6 +109,22 @@
 		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)">$LOCALIZE[42125]</value>
 		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)">$LOCALIZE[42056]</value>
 		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)">$LOCALIZE[42057]</value>
+    </variable>
+	
+	<!-- On Deck Movies Case Type -->
+	<variable name="OnDeckMovieCaseTypeSettingVar">
+		<value condition="IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))">Skin.SetString(Widget.OnDeck.Movies.Case,Clear)</value>
+        <value condition="StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)">Skin.SetString(Widget.OnDeck.Movies.Case,Glass)</value>
+        <value condition="StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)">Skin.SetString(Widget.OnDeck.Movies.Case,DVD/Bluray)</value>
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.Movies.Case),DVD/Bluray)">Skin.Reset(Widget.OnDeck.Movies.Case)</value>
+    </variable>
+		
+	<!-- Label for On Deck Movies Case Type -->
+	<variable name="OnDeckMovieCaseTypeLabelVar">
+		<value condition="IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))">$LOCALIZE[42199]</value> <!-- STRING: None -->
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)">$LOCALIZE[42125]</value>
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)">$LOCALIZE[42056]</value>
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.Movies.Case),DVD/Bluray)">$LOCALIZE[42057]</value>
     </variable>
 	
 	<!-- Recently Added Music Case Type -->
@@ -169,15 +195,43 @@
 		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)">$LOCALIZE[42057]</value>
     </variable>
 	
+	<!-- On Deck TV Case Type -->
+	<variable name="OnDeckTVCaseTypeSettingVar">
+		<value condition="IsEmpty(Skin.String(Widget.OnDeck.TV.Case))">Skin.SetString(Widget.OnDeck.TV.Case,Clear)</value>
+        <value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Case),Clear)">Skin.SetString(Widget.OnDeck.TV.Case,Glass)</value>
+        <value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Case),Glass)">Skin.SetString(Widget.OnDeck.TV.Case,DVD/Bluray)</value>
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Case),DVD/Bluray)">Skin.Reset(Widget.OnDeck.TV.Case)</value>
+    </variable>
+		
+	<!-- Label for On Deck TV Case Type -->
+	<variable name="OnDeckTVCaseTypeLabelVar">
+		<value condition="IsEmpty(Skin.String(Widget.OnDeck.TV.Case))">$LOCALIZE[42199]</value> <!-- STRING: None -->
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Case),Clear)">$LOCALIZE[42125]</value>
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Case),Glass)">$LOCALIZE[42056]</value>
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Case),DVD/Bluray)">$LOCALIZE[42057]</value>
+    </variable>
+	
 	<!-- Label for Recently Added Movies Artwork Type -->
 	<variable name="RecentlyAddedMovieArtworkTypeLabelVar">
 		<value condition="Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)">$LOCALIZE[31118]</value> <!-- STRING: Fanart -->
 		<value>$LOCALIZE[42058]</value> <!-- STRING: Poster -->
     </variable>
 	
+	<!-- Label for On Deck Movies Artwork Type -->
+	<variable name="OnDeckMovieArtworkTypeLabelVar">
+		<value condition="Skin.HasSetting(Widget.OnDeck.Movies.Fanart)">$LOCALIZE[31118]</value> <!-- STRING: Fanart -->
+		<value>$LOCALIZE[42058]</value> <!-- STRING: Poster -->
+    </variable>
+	
 	<!-- Label for Recently Added Movies Fanart Case Type -->
 	<variable name="RecentlyAddedMovieFanartCaseTypeLabelVar">
 		<value condition="Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart.Glass)">$LOCALIZE[42056]</value> <!-- STRING: Glass -->
+		<value>$LOCALIZE[42199]</value> <!-- STRING: None -->
+    </variable>
+	
+	<!-- Label for On Deck Movies Fanart Case Type -->
+	<variable name="OnDeckMovieFanartCaseTypeLabelVar">
+		<value condition="Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)">$LOCALIZE[42056]</value> <!-- STRING: Glass -->
 		<value>$LOCALIZE[42199]</value> <!-- STRING: None -->
     </variable>
 	
@@ -193,6 +247,20 @@
 		<value condition="IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork))">Skin.SetString(Widget.RecentlyAdded.TV.Artwork,Thumbnail)</value>
 		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail)">Skin.SetString(Widget.RecentlyAdded.TV.Artwork,Fanart)</value>
         <value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)">Skin.Reset(Widget.RecentlyAdded.TV.Artwork)</value>
+    </variable>
+	
+	<!-- Label for On Deck Episodes Artwork Type -->
+	<variable name="OnDeckTVArtworkTypeLabelVar">
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail)">$LOCALIZE[42205]</value> <!-- STRING: Thumbnail -->
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart)">$LOCALIZE[31118]</value> <!-- STRING: Fanart -->
+		<value>$LOCALIZE[42058]</value> <!-- STRING: Poster -->
+    </variable>
+	
+	<!-- Setting for On Deck Episodes Artwork Type -->
+	<variable name="OnDeckTVArtworkTypeSettingVar">
+		<value condition="IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))">Skin.SetString(Widget.OnDeck.TV.Artwork,Thumbnail)</value>
+		<value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail)">Skin.SetString(Widget.OnDeck.TV.Artwork,Fanart)</value>
+        <value condition="StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart)">Skin.Reset(Widget.OnDeck.TV.Artwork)</value>
     </variable>
 	
 	<!-- Label for Recently Added Music Artwork Type -->
@@ -237,9 +305,21 @@
 		<value>$LOCALIZE[42199]</value> <!-- STRING: None -->
     </variable>
 	
+	<!-- Label for On Deck Episodes Fanart Case Type -->
+	<variable name="OnDeckTVFanartCaseTypeLabelVar">
+		<value condition="Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)">$LOCALIZE[42056]</value> <!-- STRING: Glass -->
+		<value>$LOCALIZE[42199]</value> <!-- STRING: None -->
+    </variable>
+	
 	<!-- Label for Recently Added Episodes Thumbnail Case Type -->
 	<variable name="RecentlyAddedTVThumbnailCaseTypeLabelVar">
 		<value condition="Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)">$LOCALIZE[42056]</value> <!-- STRING: Glass -->
+		<value>$LOCALIZE[42199]</value> <!-- STRING: None -->
+    </variable>
+	
+	<!-- Label for On Deck Episodes Thumbnail Case Type -->
+	<variable name="OnDeckTVThumbnailCaseTypeLabelVar">
+		<value condition="Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)">$LOCALIZE[42056]</value> <!-- STRING: Glass -->
 		<value>$LOCALIZE[42199]</value> <!-- STRING: None -->
     </variable>
 	
