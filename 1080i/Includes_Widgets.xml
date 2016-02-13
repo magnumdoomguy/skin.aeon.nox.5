@@ -26,14 +26,14 @@
 		
 		<control type="group">
 			<posy>454</posy>
-			<visible>Control.IsVisible(11000) | Control.IsVisible(11002)</visible>
+			<visible>Control.IsVisible(11000) | Control.IsVisible(11002) | Control.IsVisible(11005)</visible>
 			<control type="image">
 				<posx>224</posx>
 				<posy>-21</posy>
 				<width>1472</width>
 				<height>342</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + Container(11000).ListItem.Type(episode)]] + !Control.IsVisible(11002)</visible>
+				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + Container(11000).ListItem.Type(episode)]] + !Control.IsVisible(11002) + !Control.IsVisible(11005)</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -41,7 +41,7 @@
 				<width>1472</width>
 				<height>308</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + !Control.IsVisible(11002)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + Container(11000).ListItem.Type(episode) + !Control.IsVisible(11002)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + !Control.IsVisible(11002)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo) + !Control.IsVisible(11002)] | [!IsEmpty(Skin.String(Widget.Channels.Artwork)) + Control.IsVisible(11002)]</visible>
+				<visible>[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + !Control.IsVisible(11002) + !Control.IsVisible(11005)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + Container(11000).ListItem.Type(episode) + !Control.IsVisible(11002) + !Control.IsVisible(11005)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + !Control.IsVisible(11002) + !Control.IsVisible(11005)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo) + !Control.IsVisible(11002) + !Control.IsVisible(11005)] | [!IsEmpty(Skin.String(Widget.Channels.Artwork)) + Control.IsVisible(11002)]</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -49,7 +49,7 @@
 				<width>1472</width>
 				<height>324</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))] | [Control.IsVisible(11002) + IsEmpty(Skin.String(Widget.Channels.Artwork))]</visible>
+				<visible>[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))] | [Control.IsVisible(11002) + IsEmpty(Skin.String(Widget.Channels.Artwork))] | [Control.IsVisible(11005) + IsEmpty(Skin.String(Widget.Playlists.Artwork))]</visible>
 			</control>
 			<control type="label">
 				<posy>-28</posy>
@@ -65,7 +65,7 @@
 			</control>
 			<control type="label">
 				<animation effect="slide" end="0,-34" condition="[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + !Control.IsVisible(11002)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + Container(11000).ListItem.Type(episode) + !Control.IsVisible(11002)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + !Control.IsVisible(11002)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo) + !Control.IsVisible(11002)] | [!IsEmpty(Skin.String(Widget.Channels.Artwork)) + Control.IsVisible(11002)]">Conditional</animation>
-				<animation effect="slide" end="0,-18" condition="[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))] | [Control.IsVisible(11002) + IsEmpty(Skin.String(Widget.Channels.Artwork))]">Conditional</animation>
+				<animation effect="slide" end="0,-18" condition="[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))] | [Control.IsVisible(11002) + IsEmpty(Skin.String(Widget.Channels.Artwork))] | Control.IsVisible(11005)">Conditional</animation>
 				<posy>310</posy>
 				<posx>240</posx>
 				<width>1440</width>
@@ -2739,6 +2739,191 @@
 					</control>
 				</focusedlayout>
 				
+			</control>
+			
+			<!-- Playlists -->
+			<control id="11005" type="panel">
+				<posx>242</posx>
+				<posy>0</posy>
+				<width>1435</width>
+				<height>300</height>
+				<include>HorizontalNavigation1</include>
+				<orientation>horizontal</orientation>
+				<preloaditems>2</preloaditems>
+				<scrolltime tween="quadratic" easing="out">300</scrolltime>
+				
+				<itemlayout height="282" width="287" condition="IsEmpty(Skin.String(Widget.Playlists.Case))">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>282</width>
+						<height>282</height>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture fallback="defaultvideoplaylists.png">$INFO[ListItem.CompositeImage(width=282;height=282;cols=2;rows=2)]</texture>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>182</posy>
+						<width>282</width>
+						<height>100</height>
+						<texture>homewidgets/label.png</texture>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					</control>
+					<control type="label">
+						<posx>141</posx>
+						<posy>212</posy>
+						<width>248</width>
+						<height>70</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font12_title</font>
+						<textcolor>lightgrey</textcolor>
+						<label>$VAR[HomeWidgetTitleVar]</label>
+					</control>
+					
+				</itemlayout>
+				
+				<!-- Recently Used Channels: Glass Case -->
+				<itemlayout height="282" width="287" condition="StringCompare(Skin.String(Widget.Channels.Case),Glass)">
+					
+					<control type="image">
+						<posx>3</posx>
+						<posy>3</posy>
+						<width>276</width>
+						<height>276</height>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[ListItem.Art(bigThumb)]</texture>
+					</control>
+					<control type="image">
+						<posx>3</posx>
+						<posy>179</posy>
+						<width>276</width>
+						<height>100</height>
+						<texture>homewidgets/label.png</texture>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
+					</control>
+					<control type="label">
+						<posx>141</posx>
+						<posy>209</posy>
+						<width>206</width>
+						<height>70</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font12_title</font>
+						<textcolor>lightgrey</textcolor>
+						<label>$VAR[HomeWidgetTitleVar]</label>
+						<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>282</width>
+						<height>282</height>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture>homewidgets/glass/square.png</texture>
+					</control>
+				</itemlayout>
+				
+				<!-- Poster -->
+				<focusedlayout height="282" width="287" condition="IsEmpty(Skin.String(Widget.Playlists.Case))">
+					<control type="group">
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
+						</animation>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>282</width>
+							<height>282</height>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture fallback="defaultvideoplaylists.png">$INFO[ListItem.CompositeImage(width=282;height=282;cols=2;rows=2)]</texture>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+						</control>
+					
+						<control type="image">
+							<posx>0</posx>
+							<posy>182</posy>
+							<width>282</width>
+							<height>100</height>
+							<texture>homewidgets/label.png</texture>
+							<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
+							<bordersize>8</bordersize>
+						</control>
+						<control type="label">
+							<posx>141</posx>
+							<posy>212</posy>
+							<width>248</width>
+							<height>70</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font12_title</font>
+							<textcolor>themecolor</textcolor>
+							<label>$VAR[HomeWidgetTitleVar]</label>
+						</control>
+					</control>
+				</focusedlayout>
+				
+				<!-- Recently Used Channels: Glass Case -->
+				<focusedlayout height="282" width="287" condition="StringCompare(Skin.String(Widget.Channels.Case),Glass)">
+					<control type="group">
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
+						</animation>
+						<control type="image">
+							<posx>11</posx>
+							<posy>11</posy>
+							<width>260</width>
+							<height>260</height>
+							<aspectratio scalediffuse="false">scale</aspectratio>
+							<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[ListItem.Art(bigThumb)]</texture>
+						</control>
+					
+						<control type="image">
+							<posx>11</posx>
+							<posy>171</posy>
+							<width>260</width>
+							<height>100</height>
+							<texture>homewidgets/label.png</texture>
+							<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
+						</control>
+						<control type="label">
+							<posx>141</posx>
+							<posy>209</posy>
+							<width>199</width>
+							<height>70</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font12_title</font>
+							<textcolor>themecolor</textcolor>
+							<label>$VAR[HomeWidgetTitleVar]</label>
+							<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
+						</control>
+											
+						<!-- Case -->
+						<control type="image">
+							<posx>8</posx>
+							<posy>8</posy>
+							<width>266</width>
+							<height>266</height>
+							<aspectratio aligny="top">stretch</aspectratio>
+							<texture>homewidgets/glass/square.png</texture>
+						</control>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>282</width>
+							<height>282</height>
+							<texture>empty.png</texture>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<border>8</border>
+						</control>
+					</control>
+				</focusedlayout>
+								
 			</control>
 		</control>
 	</include>
