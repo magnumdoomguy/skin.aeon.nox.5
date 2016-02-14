@@ -34,7 +34,15 @@
 				<width>1472</width>
 				<height>342</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[!Skin.HasSetting(Widget.OnDeck.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000)] | [!Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Container(11001).ListItem.Type(movie) + Control.IsVisible(11001)] | [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000)] | [IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + Container(11001).ListItem.Type(episode) + Control.IsVisible(11001)]</visible>
+				<visible>[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000)] | [!Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Container(11001).ListItem.Type(movie) + Control.IsVisible(11001)] | [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000)] | [IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + Container(11001).ListItem.Type(episode) + Control.IsVisible(11001)]</visible>
+			</control>
+			<control type="image">
+				<posx>224</posx>
+				<posy>-380</posy>
+				<width>1472</width>
+				<height>342</height>
+				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+				<visible>[!Skin.HasSetting(Widget.OnDeck.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000) + Control.IsVisible(11001)]</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -1475,7 +1483,6 @@
 			</control>	
 			
 			<control id="11000" type="panel">
-				<visible>!Control.IsVisible(11001) + !Container(11001).IsUpdating</visible>
 				<posx>242</posx>
 				<posy>0</posy>
 				<width>1435</width>
@@ -1484,14 +1491,13 @@
 				<orientation>horizontal</orientation>
 				<preloaditems>2</preloaditems>
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
-				<animation effect="fade" start="0" end="100" delay="6000" time="400">Visible</animation>			
-
-				
+								
 				<!-- Movies ******************************************************************************************************************************************* -->
 				
 				<!-- Poster Artwork -->
 				<itemlayout height="300" width="205" condition="Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))">
-				
+					<control type="group">
+						<animation effect="slide" end="0,-359" condition="Control.IsVisible(11001)">Conditional</animation>
 					<!-- Poster -->
 					<control type="image">
 						<posx>0</posx>
@@ -1526,7 +1532,7 @@
 						<label>$VAR[HomeWidgetTitleVar]</label>
 						<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
 					</control>
-					
+					</control>
 				</itemlayout>
 				
 				<!-- Clear Case -->
