@@ -39,6 +39,12 @@
 		<value>$INFO[ListItem.Art(thumb)]</value>
 	</variable>
 	
+	<!-- List Widget Poster Image  -->
+	<variable name="HomeWidgetPosterListVar">
+		<value condition="!IsEmpty(Container(11001).ListItem.Label) + Container(11001).ListItem.Type(movie) + Control.IsVisible(11001)">$INFO[Container(11001).ListItem.Art(poster)]</value>
+		<value condition="!IsEmpty(Container(11001).ListItem.Label) + Container(11001).ListItem.Type(episode) + Control.IsVisible(11001)">$INFO[Container(11001).ListItem.Art(bigGrandparentThumb)]</value>
+	</variable>
+	
 	<!-- Widget Transparency -->
 	<variable name="HomeWidgetTransVar">
 		<value condition="StringCompare(Skin.String(Widget.Trans),90)">EEFFFFFF</value>
@@ -85,10 +91,15 @@
 	
 	<!-- Widget On Deck Item Title -->
 	<variable name="HomeWidgetOnDeckTitleVar">
-		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season) + !Skin.HasSetting(Widget.List)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season) + !Skin.HasSetting(Widget.List)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season) + !Skin.HasSetting(Widget.List)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season) + !Skin.HasSetting(Widget.List)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season) + Skin.HasSetting(Widget.List)">$INFO[Container(11001).ListItem.Season]x$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title][CR][COLOR themecolor]$INFO[Container(11001).ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season) + Skin.HasSetting(Widget.List)">S$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title][CR][COLOR themecolor]$INFO[Container(11001).ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season) + Skin.HasSetting(Widget.List)">$INFO[Container(11001).ListItem.Season]x$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season) + Skin.HasSetting(Widget.List)">S$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title]</value>
+		<value condition="Skin.HasSetting(Widget.List)">$INFO[Container(11001).ListItem.Label]</value>
 		<value>$INFO[ListItem.Label]</value>
 	</variable>
 	
@@ -250,12 +261,14 @@
 	<variable name="RecentlyAddedTVArtworkTypeLabelVar">
 		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail)">$LOCALIZE[42205]</value> <!-- STRING: Thumbnail -->
 		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)">$LOCALIZE[31118]</value> <!-- STRING: Fanart -->
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)">$LOCALIZE[42221]</value> <!-- STRING: Season Poster -->
 		<value>$LOCALIZE[42058]</value> <!-- STRING: Poster -->
     </variable>
 	
 	<!-- Setting for Recently Added Episodes Artwork Type -->
 	<variable name="RecentlyAddedTVArtworkTypeSettingVar">
-		<value condition="IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork))">Skin.SetString(Widget.RecentlyAdded.TV.Artwork,Thumbnail)</value>
+		<value condition="IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork))">Skin.SetString(Widget.RecentlyAdded.TV.Artwork,Season Poster)</value>
+		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)">Skin.SetString(Widget.RecentlyAdded.TV.Artwork,Thumbnail)</value>
 		<value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail)">Skin.SetString(Widget.RecentlyAdded.TV.Artwork,Fanart)</value>
         <value condition="StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)">Skin.Reset(Widget.RecentlyAdded.TV.Artwork)</value>
     </variable>
