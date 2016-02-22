@@ -46,6 +46,8 @@
 				<animation easing="inout" effect="fade" time="300" tween="sine">VisibleChange</animation>
 			</control>
 			<control type="group">
+			
+				<!-- Movie Poster -->
 				<control type="image">
 					<posx>-20</posx>
 					<posy>-20</posy>
@@ -55,7 +57,53 @@
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))</visible>
 				</control>
+				
+				<!-- Movie Glass -->
+				<control type="image">
+					<posx>-16</posx>
+					<posy>-17</posy>
+					<width>227</width>
+					<height>343</height>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">homewidgets/glass/portrait.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
+				</control>
+				
+				<!-- Clear Case -->
+				<control type="image">
+					<posx>-16</posx>
+					<posy>-17</posy>
+					<width>227</width>
+					<height>343</height>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				
 				<control type="grouplist">
 					<posx>212</posx>
 					<posy>0</posy>
@@ -207,14 +255,61 @@
 				<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 			</control>
 			<control type="group">
+			
+				<!-- Movie Poster -->
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))</visible>
+				</control>
+				
+				<!-- Glass Case -->
+				<control type="image">
+					<posy>43</posy>
+					<posx>85</posx>
+					<width>130</width>
+					<height>194</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
+				</control>
 				<control type="image">
 					<posy>40</posy>
 					<posx>83</posx>
 					<width>134</width>
 					<height>200</height>
 					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<texture>homewidgets/glass/portrait.png</texture>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
 				</control>
+				
+				<!-- Clear Case -->
+				<control type="image">
+					<posy>43</posy>
+					<posx>86</posx>
+					<width>130</width>
+					<height>194</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				
 			</control>
 		</control>
 		
