@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+	<!-- On Deck Rating -->
+	<variable name="Widget_OnDeckRating">
+		<value condition="!IsEmpty(Container(11001).ListItem.Property(hasUserRating))"> | [COLOR themecolor]$INFO[Container(11001).ListItem.RatingAndVotes][/COLOR]</value>
+		<value condition="IsEmpty(Container(11001).ListItem.Property(hasUserRating))"> | $INFO[Container(11001).ListItem.RatingAndVotes]</value>
+	</variable>
+	
+	<!-- User Rating -->
+	<variable name="Widget_OnDeckUserRating">
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,10.0)">10</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,9.0)">9</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,8.0)">8</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,7.0)">7</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,6.0)">6</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,5.0)">5</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,4.0)">4</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,3.0)">3</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,2.0)">2</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,1.0)">1</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,0.0)">0</value>
+	</variable>
+	
+	<!-- Duration -->
+	<variable name="OnDeck_DurationMin">
+		<value condition="[SubString(Container(11001).ListItem.Duration,1,Right)]">1 [LOWERCASE]$LOCALIZE[42223][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,2,Right)]">2 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,3,Right)]">3 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,4,Right)]">4 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,5,Right)]">5 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,6,Right)]">6 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,7,Right)]">7 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,8,Right)]">8 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,9,Right)]">9 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,0,Right) + !StringCompare(Container(11001).ListItem.Duration,60) + !StringCompare(Container(11001).ListItem.Duration,120) + !StringCompare(Container(11001).ListItem.Duration,180) + !StringCompare(Container(11001).ListItem.Duration,240)]">0 [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+		<value> </value>
+	</variable>
+	<variable name="OnDeck_Duration">
+		<value condition="[!IntegerGreaterThan(Container(11001).ListItem.Duration,59)]">$INFO[Container(11001).ListItem.Duration,, $LOCALIZE[12391]]</value>
+		<value condition="[!IntegerGreaterThan(Container(11001).ListItem.Duration,99) + SubString(Container(11001).ListItem.Duration,6,Left)]">1 $LOCALIZE[42222] $VAR[OnDeck_DurationMin]</value>
+		<value condition="[!IntegerGreaterThan(Container(11001).ListItem.Duration,99) + SubString(Container(11001).ListItem.Duration,7,Left)]">1 $LOCALIZE[42222] 1$VAR[OnDeck_DurationMin]</value>
+		<value condition="[!IntegerGreaterThan(Container(11001).ListItem.Duration,99) + SubString(Container(11001).ListItem.Duration,8,Left)]">1 $LOCALIZE[42222] 2$VAR[OnDeck_DurationMin]</value>
+		<value condition="[!IntegerGreaterThan(Container(11001).ListItem.Duration,99) + SubString(Container(11001).ListItem.Duration,9,Left)]">1 $LOCALIZE[42222] 3$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,10,Left)]">1 $LOCALIZE[42222] 4$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,11,Left)]">1 $LOCALIZE[42222] 5$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,12,Left)]">2 $LOCALIZE[12392] $VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,13,Left)]">2 $LOCALIZE[12392] 1$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,14,Left)]">2 $LOCALIZE[12392] 2$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,15,Left)]">2 $LOCALIZE[12392] 3$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,16,Left)]">2 $LOCALIZE[12392] 4$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,17,Left)]">2 $LOCALIZE[12392] 5$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,18,Left)]">3 $LOCALIZE[12392] $VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,19,Left)]">3 $LOCALIZE[12392] 1$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,20,Left)]">3 $LOCALIZE[12392] 2$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,21,Left)]">3 $LOCALIZE[12392] 3$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,22,Left)]">3 $LOCALIZE[12392] 4$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,23,Left)]">3 $LOCALIZE[12392] 5$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,24,Left)]">4 $LOCALIZE[12392] $VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,25,Left)]">4 $LOCALIZE[12392] 1$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,26,Left)]">4 $LOCALIZE[12392] 2$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,27,Left)]">4 $LOCALIZE[12392] 3$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,28,Left)]">4 $LOCALIZE[12392] 4$VAR[OnDeck_DurationMin]</value>
+		<value condition="[SubString(Container(11001).ListItem.Duration,29,Left)]">4 $LOCALIZE[12392] 5$VAR[OnDeck_DurationMin]</value>
+		<value>$INFO[Container(11001).ListItem.Duration] [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
+	</variable>
+	
 	<!-- Label for Widget Style Type -->
 	<variable name="WidgetStyleLabelVar">
 		<value condition="Skin.HasSetting(Widget.List)">$LOCALIZE[42219]</value> <!-- STRING: List -->
