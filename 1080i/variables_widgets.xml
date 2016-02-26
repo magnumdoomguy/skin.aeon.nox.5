@@ -3,8 +3,18 @@
 
 	<!-- On Deck Rating -->
 	<variable name="Widget_OnDeckRating">
-		<value condition="!IsEmpty(Container(11001).ListItem.Property(hasUserRating))"> | [COLOR themecolor]$INFO[Container(11001).ListItem.RatingAndVotes][/COLOR]</value>
-		<value condition="IsEmpty(Container(11001).ListItem.Property(hasUserRating))"> | $INFO[Container(11001).ListItem.RatingAndVotes]</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,10.0)">10</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,9.0)">9</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,8.0)">8</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,7.0)">7</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,6.0)">6</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,5.0)">5</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,4.0)">4</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,3.0)">3</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,2.0)">2</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,1.0)">1</value>
+		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,0.0)">0</value>
+		<value>$INFO[Container(11001).ListItem.RatingAndVotes]</value>
 	</variable>
 	
 	<!-- User Rating -->
@@ -20,6 +30,7 @@
 		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,2.0)">2</value>
 		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,1.0)">1</value>
 		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,0.0)">0</value>
+		<value>$INFO[Container(11001).ListItem.RatingAndVotes]</value>
 	</variable>
 	
 	<!-- Duration -->
@@ -161,16 +172,25 @@
 	
 	<!-- Widget On Deck Item Title -->
 	<variable name="HomeWidgetOnDeckTitleVar">
-		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season) + !Skin.HasSetting(Widget.List)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season) + !Skin.HasSetting(Widget.List)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season) + !Skin.HasSetting(Widget.List)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season) + !Skin.HasSetting(Widget.List)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season) + Skin.HasSetting(Widget.List)">$INFO[Container(11001).ListItem.Season]x$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title][CR][COLOR themecolor]$INFO[Container(11001).ListItem.TVShowTitle][/COLOR]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season) + Skin.HasSetting(Widget.List)">S$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title][CR][COLOR themecolor]$INFO[Container(11001).ListItem.TVShowTitle][/COLOR]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season) + Skin.HasSetting(Widget.List)">$INFO[Container(11001).ListItem.Season]x$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title]</value>
-		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season) + Skin.HasSetting(Widget.List)">S$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title]</value>
-		<value condition="Skin.HasSetting(Widget.List)">$INFO[Container(11001).ListItem.Label]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title][CR][COLOR themecolor]$INFO[ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + !IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
 		<value>$INFO[ListItem.Label]</value>
+	</variable>
+	
+	<!-- Widget On Deck Item Title (List) -->
+	<variable name="HomeWidgetOnDeckTitleListVar">
+		<value condition="Container(11001).ListItem.Type(episode) + !IsEmpty(Container(11001).ListItem.Season)">$INFO[Container(11001).ListItem.Season]x$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title][CR][COLOR themecolor]$INFO[Container(11001).ListItem.TVShowTitle][/COLOR]</value>
+		<value condition="Container(11001).ListItem.Type(episode) + IsEmpty(Container(11001).ListItem.Season)">S$INFO[Container(11001).ListItem.Episode]. $INFO[Container(11001).ListItem.Title][CR][COLOR themecolor]$INFO[Container(11001).ListItem.TVShowTitle][/COLOR]</value>
+		<value>$INFO[Container(11001).ListItem.Label]</value>
+	</variable>
+	
+	<!-- On Deck Plot -->
+	<variable name="OnDeckPlotVar">
+		<value condition="!IsEmpty(Container(11001).ListItem.Plot)">$INFO[Container(11001).ListItem.Plot]</value>
+		<value condition="Container(11001).ListItem.Content(episode)">$LOCALIZE[42129].[CR]$LOCALIZE[32104].</value> <!-- STRING: There is no description available for this episode. You can add one for it in the Media Manager. -->
+		<value>$LOCALIZE[42128].[CR]$LOCALIZE[32104].</value> <!-- STRING: There is no description available for this video. You can add one for it in the Media Manager. -->
 	</variable>
 	
 	<!-- Widget 1 Title -->

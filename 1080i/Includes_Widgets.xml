@@ -39,7 +39,7 @@
 		<posy>449</posy>
 		<posx>240</posx>
 		<control type="group">
-			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)">Conditional</animation>
+			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + [[Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)] | [Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))]]">Conditional</animation>
 			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11001)]</visible>
 			<control type="image">
 				<width>1440</width>
@@ -162,6 +162,19 @@
 					<bordersize>20</bordersize>
 					<visible>Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
 				</control>
+				
+				<!-- Poster Episodes -->
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(Skin.String(Widget.OnDeck.TV.Case))</visible>
+				</control>
 								
 				<control type="grouplist">
 					<posx>212</posx>
@@ -169,14 +182,18 @@
 					<height>312</height>
 					<itemgap>10</itemgap>
 					<align>center</align>
+					
+					<!-- Title -->
 					<control type="label">
 						<width>898</width>
 						<height>27</height>
 						<font>font14</font>
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
-						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
+						<label>$VAR[HomeWidgetOnDeckTitleListVar]</label>
 					</control>
+					
+					<!-- Movie Genre -->
 					<control type="label">
 						<width>898</width>
 						<height>27</height>
@@ -184,7 +201,20 @@
 						<textcolor>labelheader</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<label>$INFO[Container(11001).ListItem.Genre]</label>
+						<visible>Container(11001).ListItem.Type(movie) + !IsEmpty(Container(11001).ListItem.Genre)</visible>
 					</control>
+					
+					<!-- TV Show Title -->
+					<control type="label">
+						<width>898</width>
+						<height>27</height>
+						<font>font14_title</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11001).ListItem.TVShowTitle]</label>
+						<visible>Container(11001).ListItem.Type(episode)</visible>
+					</control>
+					
 					<control type="label">
 						<height>1</height>
 						<label>-</label>
@@ -197,6 +227,8 @@
 						<orientation>horizontal</orientation>
 						<align>left</align>
 						<aligny>center</aligny>
+						
+						<!-- Year -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
 							<height>28</height>
@@ -206,6 +238,8 @@
 							<label>$INFO[Container(11001).ListItem.Year] [B]•[/B] </label>
 							<visible>!IsEmpty(Container(11001).ListItem.Year)</visible>
 						</control>
+						
+						<!-- User Rating -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
 							<height>28</height>
@@ -214,14 +248,18 @@
 							<label>$VAR[Widget_OnDeckUserRating] [COLOR white2][B]•[/B][/COLOR] </label>
 							<visible>!IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
 						</control>
+						
+						<!-- Standard Rating -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
 							<height>28</height>
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
-							<label>$INFO[Container(11001).ListItem.RatingAndVotes] [B]•[/B] </label>
+							<label>$VAR[Widget_OnDeckRating] [B]•[/B] </label>
 							<visible>IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
 						</control>
+						
+						<!-- Rotten Tomato Ratings -->
 						<control type="image">
 							<width>28</width>
 							<height>28</height>
@@ -248,6 +286,8 @@
 							<label>$INFO[Container(11001).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
 							<visible>!IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
+						
+						<!-- Duration -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
 							<height>28</height>
@@ -260,6 +300,8 @@
 						<height>11</height>
 						<label>-</label>
 					</control>
+					
+					<!-- Plot -->
 					<control type="textbox">
 						<width>898</width>
 						<height max="160">auto</height>
@@ -268,7 +310,7 @@
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-						<label>$INFO[Container(11001).ListItem.Plot]</label>
+						<label>$VAR[OnDeckPlotVar]</label>
 					</control>
 				</control>
 			</control>
@@ -311,7 +353,7 @@
 				<textcolor>grey</textcolor>
 				<shadowcolor>shadow</shadowcolor>
 				<wrapmultiline>true</wrapmultiline>
-				<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
+				<label>$VAR[HomeWidgetOnDeckTitleListVar]</label>
 			</control>
 			<control type="group">
 			
@@ -327,7 +369,7 @@
 					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))</visible>
 				</control>
 				
-				<!-- Glass Case -->
+				<!-- Movie Glass Case -->
 				<control type="image">
 					<posy>43</posy>
 					<posx>85</posx>
@@ -422,7 +464,19 @@
 					<texture>homewidgets/glass/landscape.png</texture>
 					<visible>Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
 				</control>
-							
+					
+				<!-- Episode Poster -->
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(Skin.String(Widget.OnDeck.TV.Case))</visible>
+				</control>
+				
 			</control>
 		</control>
 		
