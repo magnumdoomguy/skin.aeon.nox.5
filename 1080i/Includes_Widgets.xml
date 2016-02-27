@@ -39,8 +39,8 @@
 		<posy>449</posy>
 		<posx>240</posx>
 		<control type="group">
-			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + [[Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)] | [Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))]]">Conditional</animation>
-			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11001)]</visible>
+			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + [[Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)] | [Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))]]">Conditional</animation>
+			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11001)] | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11003)]</visible>
 			<control type="image">
 				<width>1440</width>
 				<height>310</height>
@@ -312,8 +312,20 @@
 					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
 				</control>
 				
+				<!-- Fanart Watch Later -->
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11003) + !Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				
 				<control type="grouplist">
-					<visible>Control.IsVisible(11001)</visible>
 					<posx>212</posx>
 					<posy>0</posy>
 					<height>312</height>
@@ -338,9 +350,9 @@
 						<textcolor>labelheader</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<label>$INFO[Container(11001).ListItem.Genre]</label>
-						<visible>Container(11001).ListItem.Type(movie) + !IsEmpty(Container(11001).ListItem.Genre)</visible>
+						<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !IsEmpty(Container(11001).ListItem.Genre)</visible>
 					</control>
-					
+									
 					<!-- TV Show Title -->
 					<control type="label">
 						<width>898</width>
@@ -349,7 +361,7 @@
 						<textcolor>labelheader</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<label>$INFO[Container(11001).ListItem.TVShowTitle]</label>
-						<visible>Container(11001).ListItem.Type(episode)</visible>
+						<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode)</visible>
 					</control>
 					
 					<control type="label">
@@ -364,7 +376,7 @@
 						<orientation>horizontal</orientation>
 						<align>left</align>
 						<aligny>center</aligny>
-						
+												
 						<!-- Year -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
@@ -373,7 +385,7 @@
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$INFO[Container(11001).ListItem.Year] [B]•[/B] </label>
-							<visible>!IsEmpty(Container(11001).ListItem.Year) + Container(11001).ListItem.Type(movie)</visible>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Year) + Container(11001).ListItem.Type(movie)</visible>
 						</control>
 						
 						<!-- Date -->
@@ -384,7 +396,7 @@
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$INFO[Container(11001).ListItem.Date] [B]•[/B] </label>
-							<visible>!IsEmpty(Container(11001).ListItem.Date) + Container(11001).ListItem.Type(episode)</visible>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Date) + Container(11001).ListItem.Type(episode)</visible>
 						</control>
 						
 						<!-- User Rating -->
@@ -394,7 +406,7 @@
 							<textcolor>themecolor</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$VAR[Widget_OnDeckUserRating] [COLOR white2][B]•[/B][/COLOR] </label>
-							<visible>!IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
 						</control>
 						
 						<!-- Standard Rating -->
@@ -404,7 +416,7 @@
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$VAR[Widget_OnDeckRating] [B]•[/B] </label>
-							<visible>IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+							<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
 						</control>
 						
 						<!-- Rotten Tomato Ratings -->
@@ -413,43 +425,55 @@
 							<height>28</height>
 							<texture>$INFO[Container(11001).ListItem.Property(ratingImage)]</texture>
 							<aspectratio align="left" aligny="center">keep</aspectratio>
-							<visible>!IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
 						<control type="label">
 							<height>28</height>
 							<width min="20" max="121">auto</width>
 							<label>$INFO[Container(11001).ListItem.Property(ratingPercent)]%  </label>
-							<visible>!IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
 						<control type="image">
 							<width>28</width>
 							<height>28</height>
 							<texture>$INFO[Container(11001).ListItem.Property(audienceRatingImage)]</texture>
 							<aspectratio align="left" aligny="center">keep</aspectratio>
-							<visible>!IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
 						<control type="label">
 							<height>28</height>
 							<width min="20" max="121">auto</width>
 							<label>$INFO[Container(11001).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
-							<visible>!IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
 						
-						<!-- Duration -->
+						<!-- Duration On Deck -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
 							<height>28</height>
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$VAR[OnDeck_Duration]</label>
+							<visible>Control.IsVisible(11001)</visible>
 						</control>
+						
+						<!-- Duration Watch Later -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>28</height>
+							<textcolor>white2</textcolor>
+							<shadowcolor>black</shadowcolor>
+							<label>$VAR[WatchLater_Duration]</label>
+							<visible>Control.IsVisible(11003)</visible>
+						</control>
+						
 					</control>
 					<control type="label">
 						<height>11</height>
 						<label>-</label>
 					</control>
 					
-					<!-- Plot -->
+					<!-- Plot On Deck -->
 					<control type="textbox">
 						<width>898</width>
 						<height max="160">auto</height>
@@ -459,26 +483,40 @@
 						<shadowcolor>black</shadowcolor>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<label>$VAR[OnDeckPlotVar]</label>
+						<visible>Control.IsVisible(11001)</visible>
+					</control>
+					
+					<!-- Plot On Deck -->
+					<control type="textbox">
+						<width>898</width>
+						<height max="160">auto</height>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<label>$VAR[WatchLaterPlotVar]</label>
+						<visible>Control.IsVisible(11003)</visible>
 					</control>
 				</control>
 			</control>
 		</control>
 		<control type="image">
-			<visible>[Control.IsVisible(11001) + !Control.IsVisible(11002)] | [Control.IsVisible(11002) + !Control.IsVisible(11001)]</visible>
+			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003)</visible>
 			<posx>1114</posx>
 			<posy>-16</posy>
 			<width>342</width>
 			<height>342</height>
 			<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-			<animation center="1285" condition="Control.HasFocus(11001) | Control.HasFocus(11002)" easing="inout" effect="rotatey" end="180" start="0" time="400" tween="sine">Conditional</animation>
+			<animation center="1285" condition="Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003)" easing="inout" effect="rotatey" end="180" start="0" time="400" tween="sine">Conditional</animation>
 		</control>
 		
 		<control type="group">
-			<visible>[Control.IsVisible(11001) + !Control.IsVisible(11002)] | [Control.IsVisible(11002) + !Control.IsVisible(11001)]</visible>
+			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003)</visible>
 			<posx>1135</posx>
 			<width>300</width>
 			<height>300</height>
-			<animation condition="Control.HasFocus(11001) | Control.HasFocus(11002)" type="Conditional">
+			<animation condition="Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003)" type="Conditional">
 				<effect center="1285" easing="inout" end="180" start="0" time="400" tween="sine" type="rotatey" />
 				<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
 			</animation>
@@ -821,6 +859,39 @@
 					<visible>Control.IsVisible(11002) + StringCompare(Skin.String(Widget.Channels.Artwork),Fanart) + Skin.HasSetting(Widget.Channels.Fanart.Glass)</visible>
 				</control>
 				
+				<!-- Fanart Watch Later -->
+				<control type="image">
+					<posy>58</posy>
+					<posx>0</posx>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+					<visible>Control.IsVisible(11003) + !Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Watch Later -->
+				<control type="image">
+					<posy>61</posy>
+					<posx>3</posx>
+					<width>294</width>
+					<height>163</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>0</posx>
+					<posy>58</posy>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				
 			</control>
 		</control>
 		
@@ -839,12 +910,26 @@
 				<include>List</include>
 			</control>
 			
+			<!-- Channels -->
 			<control id="11002" type="list">
 				<posy>6</posy>
 				<posx>1135</posx>
 			
 				<include>ListWidget1</include>
 				<animation condition="!Control.HasFocus(11002)" type="Conditional">
+					<effect center="1520" easing="inout" end="-180" start="0" time="400" tween="sine" type="rotatey" />
+					<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
+				</animation>
+				<include>List</include>
+			</control>
+			
+			<!-- Watch Later -->
+			<control id="11003" type="list">
+				<posy>6</posy>
+				<posx>1135</posx>
+			
+				<include>ListWidget1</include>
+				<animation condition="!Control.HasFocus(11003)" type="Conditional">
 					<effect center="1520" easing="inout" end="-180" start="0" time="400" tween="sine" type="rotatey" />
 					<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
 				</animation>
