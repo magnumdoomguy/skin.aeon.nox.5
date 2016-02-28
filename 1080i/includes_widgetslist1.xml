@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="Widget1_List">
+		<animation effect="slide" end="196,0" condition="!Skin.HasSetting(Homemenu.Vertical)">Conditional</animation>
+		<posy>449</posy>
+		<posx>240</posx>
+		<control type="group">
+			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + [[Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)] | [Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))]]">Conditional</animation>
+			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11001)] | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11003)]</visible>
+			<control type="image">
+				<width>1440</width>
+				<height>310</height>
+				<texture>homewidgets/list_shadow.png</texture>
+				<animation easing="inout" effect="fade" time="300" tween="sine">VisibleChange</animation>
+			</control>
+			<control type="group">
+			
+				<!-- Poster Movies -->
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))</visible>
+				</control>
+				
+				<!-- Glass Movies -->
+				<control type="image">
+					<posx>-16</posx>
+					<posy>-17</posy>
+					<width>227</width>
+					<height>343</height>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">homewidgets/glass/portrait.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
+				</control>
+				
+				<!-- Clear Case Movies -->
+				<control type="image">
+					<posx>-16</posx>
+					<posy>-17</posy>
+					<width>226</width>
+					<height>343</height>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				
+				<!-- DVD/Bluray Movies -->
+				<control type="image">
+					<posx>-15</posx>
+					<posy>6</posy>
+					<width>223</width>
+					<height>319</height>
+					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),DVD/Bluray)</visible>
+				</control>
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),DVD/Bluray)</visible>
+				</control>
+				
+				<!-- Fanart Movies -->
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Movies -->
+				<control type="image">
+					<posx>-405</posx>
+					<posy>-15</posy>
+					<width>613</width>
+					<height>342</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="thumbs/boxes/landscape_mask.png" background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Poster Episodes -->
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(Skin.String(Widget.OnDeck.TV.Case))</visible>
+				</control>
+				
+				<!-- Glass Episodes -->
+				<control type="image">
+					<posx>-16</posx>
+					<posy>-17</posy>
+					<width>227</width>
+					<height>343</height>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">homewidgets/glass/portrait.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),Glass)</visible>
+				</control>
+				
+				<!-- Clear Case Episodes -->
+				<control type="image">
+					<posx>-16</posx>
+					<posy>-17</posy>
+					<width>226</width>
+					<height>343</height>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),Clear)</visible>
+				</control>
+				
+				<!-- DVD/Bluray Movies -->
+				<control type="image">
+					<posx>-15</posx>
+					<posy>6</posy>
+					<width>223</width>
+					<height>319</height>
+					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),DVD/Bluray)</visible>
+				</control>
+				<control type="image">
+					<posx>-20</posx>
+					<posy>-20</posy>
+					<width>233</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),DVD/Bluray)</visible>
+				</control>
+				
+				<!-- Fanart Episodes -->
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + !Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Episodes -->
+				<control type="image">
+					<posx>-405</posx>
+					<posy>-15</posy>
+					<width>613</width>
+					<height>342</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="thumbs/boxes/landscape_mask.png" background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Thumbnail Episodes -->
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11001).ListItem.Art(thumb)]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
+				</control>
+				
+				<!-- Thumbnail Glass Episodes -->
+				<control type="image">
+					<posx>-405</posx>
+					<posy>-15</posy>
+					<width>613</width>
+					<height>342</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="thumbs/boxes/landscape_mask.png" background="true">$INFO[Container(11001).ListItem.Art(thumb)]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Watch Later -->
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture background="true">$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11003) + !Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				
+				<control type="grouplist">
+					<posx>212</posx>
+					<posy>0</posy>
+					<height>312</height>
+					<itemgap>10</itemgap>
+					<align>center</align>
+					
+					<!-- Title -->
+					<control type="label">
+						<width>898</width>
+						<height>27</height>
+						<font>font14</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$VAR[HomeWidgetOnDeckTitleListVar]</label>
+					</control>
+					
+					<!-- Movie Genre -->
+					<control type="label">
+						<width>898</width>
+						<height>27</height>
+						<font>font14_title</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11001).ListItem.Genre]</label>
+						<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !IsEmpty(Container(11001).ListItem.Genre)</visible>
+					</control>
+									
+					<!-- TV Show Title -->
+					<control type="label">
+						<width>898</width>
+						<height>27</height>
+						<font>font14_title</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11001).ListItem.TVShowTitle]</label>
+						<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode)</visible>
+					</control>
+					
+					<control type="label">
+						<height>1</height>
+						<label>-</label>
+					</control>
+					
+					<control type="grouplist">
+						<width>898</width>
+						<height>28</height>
+						<font>font14</font>
+						<orientation>horizontal</orientation>
+						<align>left</align>
+						<aligny>center</aligny>
+												
+						<!-- Year -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>28</height>
+							<aligny>center</aligny>
+							<textcolor>white2</textcolor>
+							<shadowcolor>black</shadowcolor>
+							<label>$INFO[Container(11001).ListItem.Year] [B]•[/B] </label>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Year) + Container(11001).ListItem.Type(movie)</visible>
+						</control>
+						
+						<!-- Date -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>28</height>
+							<aligny>center</aligny>
+							<textcolor>white2</textcolor>
+							<shadowcolor>black</shadowcolor>
+							<label>$INFO[Container(11001).ListItem.Date] [B]•[/B] </label>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Date) + Container(11001).ListItem.Type(episode)</visible>
+						</control>
+						
+						<!-- User Rating -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>28</height>
+							<textcolor>themecolor</textcolor>
+							<shadowcolor>black</shadowcolor>
+							<label>$VAR[Widget_OnDeckUserRating] [COLOR white2][B]•[/B][/COLOR] </label>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
+						</control>
+						
+						<!-- Standard Rating -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>28</height>
+							<textcolor>white2</textcolor>
+							<shadowcolor>black</shadowcolor>
+							<label>$VAR[Widget_OnDeckRating] [B]•[/B] </label>
+							<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+						</control>
+						
+						<!-- Rotten Tomato Ratings -->
+						<control type="image">
+							<width>28</width>
+							<height>28</height>
+							<texture>$INFO[Container(11001).ListItem.Property(ratingImage)]</texture>
+							<aspectratio align="left" aligny="center">keep</aspectratio>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						</control>
+						<control type="label">
+							<height>28</height>
+							<width min="20" max="121">auto</width>
+							<label>$INFO[Container(11001).ListItem.Property(ratingPercent)]%  </label>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						</control>
+						<control type="image">
+							<width>28</width>
+							<height>28</height>
+							<texture>$INFO[Container(11001).ListItem.Property(audienceRatingImage)]</texture>
+							<aspectratio align="left" aligny="center">keep</aspectratio>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						</control>
+						<control type="label">
+							<height>28</height>
+							<width min="20" max="121">auto</width>
+							<label>$INFO[Container(11001).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+							<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						</control>
+						
+						<!-- Duration On Deck -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>28</height>
+							<textcolor>white2</textcolor>
+							<shadowcolor>black</shadowcolor>
+							<label>$VAR[OnDeck_Duration]</label>
+							<visible>Control.IsVisible(11001)</visible>
+						</control>
+						
+						<!-- Duration Watch Later -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>28</height>
+							<textcolor>white2</textcolor>
+							<shadowcolor>black</shadowcolor>
+							<label>$VAR[WatchLater_Duration]</label>
+							<visible>Control.IsVisible(11003)</visible>
+						</control>
+						
+					</control>
+					<control type="label">
+						<height>11</height>
+						<label>-</label>
+					</control>
+					
+					<!-- Plot On Deck -->
+					<control type="textbox">
+						<width>898</width>
+						<height max="160">auto</height>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<label>$VAR[OnDeckPlotVar]</label>
+						<visible>Control.IsVisible(11001)</visible>
+					</control>
+					
+					<!-- Plot On Deck -->
+					<control type="textbox">
+						<width>898</width>
+						<height max="160">auto</height>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<label>$VAR[WatchLaterPlotVar]</label>
+						<visible>Control.IsVisible(11003)</visible>
+					</control>
+				</control>
+			</control>
+		</control>
+		<control type="image">
+			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11005)</visible>
+			<posx>1114</posx>
+			<posy>-16</posy>
+			<width>342</width>
+			<height>342</height>
+			<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+			<animation center="1285" condition="Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003) | Control.HasFocus(11005)" easing="inout" effect="rotatey" end="180" start="0" time="400" tween="sine">Conditional</animation>
+		</control>
+		
+		<control type="group">
+			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11005)</visible>
+			<posx>1135</posx>
+			<width>300</width>
+			<height>300</height>
+			<animation condition="Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003) | Control.HasFocus(11005)" type="Conditional">
+				<effect center="1285" easing="inout" end="180" start="0" time="400" tween="sine" type="rotatey" />
+				<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
+			</animation>
+			<control type="label">
+				<width>300</width>
+				<posy>9</posy>
+				<height>20</height>
+				<align>center</align>
+				<font>font12_title</font>
+				<textcolor>grey</textcolor>
+				<shadowcolor>shadow</shadowcolor>
+				<label>$VAR[HomeWidget1TitleVar]</label>
+			</control>
+			<control type="label">
+				<width>300</width>
+				<posy>254</posy>
+				<height>40</height>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font12_title</font>
+				<textcolor>grey</textcolor>
+				<shadowcolor>shadow</shadowcolor>
+				<wrapmultiline>true</wrapmultiline>
+				<label>$VAR[HomeWidgetOnDeckTitleListVar]</label>
+			</control>
+			<control type="group">
+			
+				<!-- Movie Poster -->
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))</visible>
+				</control>
+				
+				<!-- Movie Glass Case -->
+				<control type="image">
+					<posy>43</posy>
+					<posx>85</posx>
+					<width>130</width>
+					<height>194</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>homewidgets/glass/portrait.png</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
+				</control>
+				
+				<!-- Movie Clear Case -->
+				<control type="image">
+					<posy>43</posy>
+					<posx>86</posx>
+					<width>130</width>
+					<height>194</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				
+				<!-- DVD/Bluray Movies -->
+				<control type="image">
+					<posy>57</posy>
+					<posx>86</posx>
+					<width>127</width>
+					<height>180</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),DVD/Bluray)</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),DVD/Bluray)</visible>
+				</control>
+				
+				<!-- Fanart Movies -->
+				<control type="image">
+					<posy>58</posy>
+					<posx>0</posx>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Movies -->
+				<control type="image">
+					<posy>61</posy>
+					<posx>3</posx>
+					<width>294</width>
+					<height>163</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>0</posx>
+					<posy>58</posy>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
+				</control>
+					
+				<!-- Episode Poster -->
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(Skin.String(Widget.OnDeck.TV.Case))</visible>
+				</control>
+				
+				<!-- Episode Glass Case -->
+				<control type="image">
+					<posy>43</posy>
+					<posx>85</posx>
+					<width>130</width>
+					<height>194</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),Glass)</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>homewidgets/glass/portrait.png</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),Glass)</visible>
+				</control>
+				
+				<!-- Episode Clear Case -->
+				<control type="image">
+					<posy>43</posy>
+					<posx>86</posx>
+					<width>130</width>
+					<height>194</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),Clear)</visible>
+				</control>
+				
+				<!-- DVD/Bluray Episodes -->
+				<control type="image">
+					<posy>57</posy>
+					<posx>86</posx>
+					<width>127</width>
+					<height>180</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),DVD/Bluray)</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>83</posx>
+					<width>134</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + StringCompare(Skin.String(Widget.OnDeck.TV.Case),DVD/Bluray)</visible>
+				</control>
+				
+				<!-- Fanart Episodes -->
+				<control type="image">
+					<posy>58</posy>
+					<posx>0</posx>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + !Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Episodes -->
+				<control type="image">
+					<posy>61</posy>
+					<posx>3</posx>
+					<width>294</width>
+					<height>163</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>0</posx>
+					<posy>58</posy>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Thumbnail Episodes -->
+				<control type="image">
+					<posy>58</posy>
+					<posx>0</posx>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Art(thumb)]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
+				</control>
+				
+				<!-- Thumbnail Glass Episodes -->
+				<control type="image">
+					<posy>61</posy>
+					<posx>3</posx>
+					<width>294</width>
+					<height>163</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11001).ListItem.Art(thumb)]</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>0</posx>
+					<posy>58</posy>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
+				</control>
+				
+				<!-- Square Icon Channels -->
+				<control type="image">
+					<posy>40</posy>
+					<posx>50</posx>
+					<width>200</width>
+					<height>200</height>
+					<aspectratio aligny="center" scalediffuse="false">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11002).ListItem.Icon]</texture>
+					<visible>Control.IsVisible(11002) + IsEmpty(Skin.String(Widget.Channels.Artwork)) + IsEmpty(Skin.String(Widget.Channels.Case))</visible>
+				</control>
+				
+				<!-- Square Icon Glass Channels -->
+				<control type="image">
+					<posy>43</posy>
+					<posx>53</posx>
+					<width>195</width>
+					<height>195</height>
+					<aspectratio aligny="center" scalediffuse="false">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Container(11002).ListItem.Icon]</texture>
+					<visible>Control.IsVisible(11002) + IsEmpty(Skin.String(Widget.Channels.Artwork)) + StringCompare(Skin.String(Widget.Channels.Case),Glass)</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>50</posx>
+					<width>200</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>homewidgets/glass/square.png</texture>
+					<visible>Control.IsVisible(11002) + IsEmpty(Skin.String(Widget.Channels.Artwork)) + StringCompare(Skin.String(Widget.Channels.Case),Glass)</visible>
+				</control>
+				
+				<!-- Fanart Channels -->
+				<control type="image">
+					<posy>58</posy>
+					<posx>0</posx>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11002).ListItem.Art(fanart)]</texture>
+					<visible>Control.IsVisible(11002) + StringCompare(Skin.String(Widget.Channels.Artwork),Fanart) + !Skin.HasSetting(Widget.Channels.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Channels -->
+				<control type="image">
+					<posy>61</posy>
+					<posx>3</posx>
+					<width>294</width>
+					<height>163</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11002).ListItem.Art(fanart)]</texture>
+					<visible>Control.IsVisible(11002) + StringCompare(Skin.String(Widget.Channels.Artwork),Fanart) + Skin.HasSetting(Widget.Channels.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>0</posx>
+					<posy>58</posy>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<visible>Control.IsVisible(11002) + StringCompare(Skin.String(Widget.Channels.Artwork),Fanart) + Skin.HasSetting(Widget.Channels.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Watch Later -->
+				<control type="image">
+					<posy>58</posy>
+					<posx>0</posx>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+					<visible>Control.IsVisible(11003) + !Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Watch Later -->
+				<control type="image">
+					<posy>61</posy>
+					<posx>3</posx>
+					<width>294</width>
+					<height>163</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>0</posx>
+					<posy>58</posy>
+					<width>300</width>
+					<height>169</height>
+					<aspectratio>stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Playlists -->
+				<control type="image">
+					<posy>40</posy>
+					<posx>50</posx>
+					<width>200</width>
+					<height>200</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture fallback="defaultvideoplaylists.png">$INFO[Container(11005).ListItem.CompositeImage(width=200;height=200;cols=2;rows=2)]</texture>
+					<visible>Control.IsVisible(11005) + IsEmpty(Skin.String(Widget.Playlists.Case))</visible>
+				</control>
+				
+				<!-- Playlists Glass -->
+				<control type="image">
+					<posy>43</posy>
+					<posx>53</posx>
+					<width>195</width>
+					<height>195</height>
+					<aspectratio aligny="center" scalediffuse="false">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/cdcover_mask_aa.png" fallback="defaultvideoplaylists.png">$INFO[Container(11005).ListItem.CompositeImage(width=200;height=200;cols=2;rows=2)]</texture>
+					<visible>Control.IsVisible(11005) + !IsEmpty(Skin.String(Widget.Playlists.Case))</visible>
+				</control>
+				<control type="image">
+					<posy>40</posy>
+					<posx>50</posx>
+					<width>200</width>
+					<height>200</height>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>homewidgets/glass/square.png</texture>
+					<visible>Control.IsVisible(11005) + !IsEmpty(Skin.String(Widget.Playlists.Case))</visible>
+				</control>
+				
+			</control>
+		</control>
+		
+		<control id="8001" type="group">
+		
+			<!-- On Deck -->
+			<control id="11001" type="list">
+				<posy>6</posy>
+				<posx>1135</posx>
+			
+				<include>ListWidget1</include>
+				<animation condition="!Control.HasFocus(11001)" type="Conditional">
+					<effect center="1520" easing="inout" end="-180" start="0" time="400" tween="sine" type="rotatey" />
+					<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
+				</animation>
+				<include>List</include>
+			</control>
+			
+			<!-- Channels -->
+			<control id="11002" type="list">
+				<posy>6</posy>
+				<posx>1135</posx>
+			
+				<include>ListWidget1</include>
+				<animation condition="!Control.HasFocus(11002)" type="Conditional">
+					<effect center="1520" easing="inout" end="-180" start="0" time="400" tween="sine" type="rotatey" />
+					<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
+				</animation>
+				<include>List</include>
+			</control>
+			
+			<!-- Watch Later -->
+			<control id="11003" type="list">
+				<posy>6</posy>
+				<posx>1135</posx>
+			
+				<include>ListWidget1</include>
+				<animation condition="!Control.HasFocus(11003)" type="Conditional">
+					<effect center="1520" easing="inout" end="-180" start="0" time="400" tween="sine" type="rotatey" />
+					<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
+				</animation>
+				<include>List</include>
+			</control>
+			
+			<!-- Playlists -->
+			<control id="11005" type="list">
+				<posy>6</posy>
+				<posx>1135</posx>
+			
+				<include>ListWidget1</include>
+				<animation condition="!Control.HasFocus(11005)" type="Conditional">
+					<effect center="1520" easing="inout" end="-180" start="0" time="400" tween="sine" type="rotatey" />
+					<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
+				</animation>
+				<include>List</include>
+			</control>
+			
+		</control>
+	</include>
+</includes>
