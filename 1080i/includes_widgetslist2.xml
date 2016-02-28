@@ -5,7 +5,7 @@
 		<posy>90</posy>
 		<posx>240</posx>
 		<control type="group">
-			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + [[Control.IsVisible(11000) + Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork))]]">Conditional</animation>
+			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + [[Control.IsVisible(11000) + Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)]]]">Conditional</animation>
 			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11000)]</visible>
 			<control type="image">
 				<width>1440</width>
@@ -21,7 +21,7 @@
 					<posy>-20</posy>
 					<width>233</width>
 					<height>350</height>
-					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<texture background="true">$VAR[HomeWidgetPosterList2Var]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
@@ -34,7 +34,7 @@
 					<posy>-17</posy>
 					<width>227</width>
 					<height>343</height>
-					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterList2Var]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
 					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)</visible>
@@ -56,7 +56,7 @@
 					<posy>-17</posy>
 					<width>226</width>
 					<height>343</height>
-					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterList2Var]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
 					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)</visible>
@@ -78,7 +78,7 @@
 					<posy>6</posy>
 					<width>223</width>
 					<height>319</height>
-					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<texture background="true">$VAR[HomeWidgetPosterList2Var]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
 					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)</visible>
@@ -135,11 +135,11 @@
 					<posy>-20</posy>
 					<width>233</width>
 					<height>350</height>
-					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<texture background="true">$VAR[HomeWidgetPosterList2Var]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Case))</visible>
+					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Case))</visible>
 				</control>
 				
 				<!-- Glass Episodes -->
@@ -148,10 +148,10 @@
 					<posy>-17</posy>
 					<width>227</width>
 					<height>343</height>
-					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterList2Var]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)</visible>
+					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)</visible>
 				</control>
 				<control type="image">
 					<posx>-20</posx>
@@ -161,7 +161,7 @@
 					<texture background="true">homewidgets/glass/portrait.png</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)</visible>
+					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)</visible>
 				</control>
 				
 				<!-- Clear Case Episodes -->
@@ -170,10 +170,10 @@
 					<posy>-17</posy>
 					<width>226</width>
 					<height>343</height>
-					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png" background="true">$VAR[HomeWidgetPosterList2Var]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)</visible>
+					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)</visible>
 				</control>
 				<control type="image">
 					<posx>-20</posx>
@@ -183,7 +183,7 @@
 					<texture background="true">$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)</visible>
+					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)</visible>
 				</control>
 				
 				<!-- DVD/Bluray Movies -->
@@ -192,10 +192,10 @@
 					<posy>6</posy>
 					<width>223</width>
 					<height>319</height>
-					<texture background="true">$VAR[HomeWidgetPosterListVar]</texture>
+					<texture background="true">$VAR[HomeWidgetPosterList2Var]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)</visible>
+					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)</visible>
 				</control>
 				<control type="image">
 					<posx>-20</posx>
@@ -205,7 +205,7 @@
 					<texture background="true">$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
 					<fadetime>IconCrossfadeTime</fadetime>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)</visible>
+					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)</visible>
 				</control>
 				
 				<!-- Fanart Episodes -->
@@ -400,7 +400,7 @@
 							<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
 						
-						<!-- Duration On Deck -->
+						<!-- Duration -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
 							<height>28</height>
@@ -409,17 +409,7 @@
 							<label>$VAR[RecentlyAdded_Duration]</label>
 							<visible>Control.IsVisible(11000)</visible>
 						</control>
-						
-						<!-- Duration Watch Later -->
-						<control type="label">
-							<width min="20" max="299">auto</width>
-							<height>28</height>
-							<textcolor>white2</textcolor>
-							<shadowcolor>black</shadowcolor>
-							<label>$VAR[WatchLater_Duration]</label>
-							<visible>Control.IsVisible(11003)</visible>
-						</control>
-						
+												
 					</control>
 					<control type="label">
 						<height>11</height>
