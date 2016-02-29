@@ -1,5 +1,507 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+
+	<include name="Widget_PanelInfo">
+		
+			
+		<control type="image">
+			<posx>90</posx>
+			<posy>90</posy>
+			<width>1740</width>
+			<height>669</height>
+			<texture colordiffuse="EEFFFFFF">back.png</texture>
+			<visible>false</visible>
+		</control>
+		
+		<!-- Portrait -->
+		<control type="group">
+			<visible>false</visible>
+			<control type="image">
+				<posx>90</posx>
+				<posy>90</posy>
+				<width>1740</width>
+				<height>669</height>
+				<texture>homewidgets/Info_Separator1.png</texture>
+			</control>
+			<control type="image">
+				<posx>100</posx>
+				<posy>100</posy>
+				<width>446</width>
+				<height>649</height>
+				<texture>$VAR[HomeWidgetPosterListVar]</texture>
+			</control>
+			
+			<!-- Header -->
+			<control type="grouplist">
+				<posy>99</posy>
+				<posx>554</posx>
+				
+				<!-- Title -->
+				<control type="label">
+					<width>1266</width>
+					<height>35</height>
+					<font>font30_title_bold</font>
+					<textcolor>grey</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<label>$VAR[HomeWidgetOnDeckTitleListVar]</label>
+				</control>
+				
+				<!-- Genre -->
+				<control type="label">
+					<width>1266</width>
+					<height>53</height>
+					<font>font30</font>
+					<textcolor>labelheader</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<label>$INFO[Container(11001).ListItem.Genre]</label>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !IsEmpty(Container(11001).ListItem.Genre)</visible>
+				</control>
+				
+				<!-- TV Show Title -->
+				<control type="label">
+					<width>1266</width>
+					<height>53</height>
+					<font>font30</font>
+					<textcolor>labelheader</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<label>$INFO[Container(11001).ListItem.TVShowTitle]</label>
+					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode)</visible>
+				</control>
+			</control>
+			
+			<!-- Flags-->
+			<control type="grouplist">
+				<posy>192</posy>
+				<posx>554</posx>
+				<height>90</height>
+				<orientation>horizontal</orientation>
+				<control type="label">
+					<width>140</width>
+					<height>90</height>
+					<align>left</align>
+					<font>font35_title_bold</font>
+					<textcolor>white</textcolor>
+					<label>$INFO[Container(11001).ListItem.Year]</label>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture fallback="flags/mpaa/NR.png">flags/mpaa/$INFO[Container(11001).Listitem.Property(mediaTag-contentRating)].png</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>flags/studios/$INFO[Container(11001).Listitem.Property(mediaTag-Studio)].png</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-aspectRatio),flags/aspectratio/,.png]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-audioChannels),flags/channels/,.png]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Container(11001).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+				</control>
+			</control>
+			
+			<!-- Info -->
+			<control type="grouplist">
+				<posy>368</posy>
+				<posx>555</posx>
+				<orientation>horizontal</orientation>
+				<width>898</width>
+				<height>28</height>
+				<font>font14</font>
+				<align>left</align>
+				<aligny>center</aligny>
+												
+				<!-- Date -->
+				<control type="label">
+					<width min="20" max="299">auto</width>
+					<height>28</height>
+					<aligny>center</aligny>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$INFO[Container(11001).ListItem.Date] [B]•[/B] </label>
+				</control>
+						
+				<!-- User Rating -->
+				<control type="label">
+					<width min="20" max="299">auto</width>
+					<height>28</height>
+					<textcolor>themecolor</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$VAR[Widget_OnDeckUserRating] [COLOR white2][B]•[/B][/COLOR] </label>
+					<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
+				</control>
+						
+				<!-- Standard Rating -->
+				<control type="label">
+					<width min="20" max="299">auto</width>
+					<height>28</height>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$VAR[Widget_OnDeckRating] [B]•[/B] </label>
+					<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+				</control>
+						
+				<!-- Rotten Tomato Ratings -->
+				<control type="image">
+					<width>28</width>
+					<height>28</height>
+					<texture>$INFO[Container(11001).ListItem.Property(ratingImage)]</texture>
+					<aspectratio align="left" aligny="center">keep</aspectratio>
+					<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+				</control>
+				<control type="label">
+					<height>28</height>
+					<width min="20" max="121">auto</width>
+					<label>$INFO[Container(11001).ListItem.Property(ratingPercent)]%  </label>
+					<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+				</control>
+				<control type="image">
+					<width>28</width>
+					<height>28</height>
+					<texture>$INFO[Container(11001).ListItem.Property(audienceRatingImage)]</texture>
+					<aspectratio align="left" aligny="center">keep</aspectratio>
+					<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+				</control>
+				<control type="label">
+					<height>28</height>
+					<width min="20" max="121">auto</width>
+					<label>$INFO[Container(11001).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+					<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+				</control>
+					
+				<!-- Duration On Deck -->
+				<control type="label">
+					<width min="20" max="299">auto</width>
+					<height>28</height>
+					<textcolor>white2</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<label>$VAR[OnDeck_Duration]</label>
+					<visible>Control.IsVisible(11001)</visible>
+				</control>
+			</control>
+						
+			<!-- Info Plot-->
+			<control type="textbox">
+				<posy>459</posy>
+				<posx>555</posx>
+				<height>290</height>
+				<width>1266</width>
+				<font>font14_textbox</font>
+				<align>justify</align>
+				<textcolor>grey</textcolor>
+				<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+				<label>$VAR[OnDeckPlotVar]</label>
+			</control>
+			
+		</control>
+		
+		<!-- Square -->
+		<control type="group">
+			<visible>StringCompare(Window(Home).Property(Widget.Type),Square)</visible>
+			<control type="image">
+				<posx></posx>
+				<centerleft>50%</centerleft>
+				<posy>90</posy>
+				<width>1740</width>
+				<height>669</height>
+				<texture>homewidgets/Info_Separator1.png</texture>
+			</control>
+			<control type="image">
+				<posx>100</posx>
+				<posy>100</posy>
+				<width>649</width>
+				<height>649</height>
+				<texture>$INFO[Window(Home).Property(Widget.Cover)]</texture>
+			</control>
+			<control type="image" id="8021">
+				<posx>1427</posx>
+				<posy>357</posy>
+				<width>392</width>
+				<height>392</height>
+				<texture>$INFO[Window(Home).Property(Widget.DiscArt)]</texture>
+				<visible>!IsEmpty(Control.GetLabel(8021))</visible>
+			</control>
+			<!--<control type="image">
+				<posx>1480</posx>
+				<posy>368</posy>
+				<width>381</width>
+				<height>381</height>
+				<aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+				<texture diffuse="discart/cdart.png">$INFO[Window(Home).Property(Widget.Cover)]</texture>
+				<visible>IsEmpty(Control.GetLabel(8020))</visible>
+			</control>
+			<control type="image">
+				<posx>1480</posx>
+				<posy>368</posy>
+				<width>381</width>
+				<height>381</height>
+				<texture>discart/$INFO[Window(Home).Property(Widget.DiscArtFake)]</texture>
+				<visible>IsEmpty(Control.GetLabel(8020)) + [StringCompare(Window(Home).Property(Widget.Type),1) | StringCompare(Window(Home).Property(Widget.Type),20)]</visible>
+			</control>-->
+			<control type="grouplist">
+				<posy>99</posy>
+				<posx>757</posx>
+				<control type="label">
+					<width>1063</width>
+					<height>35</height>
+					<font>font30_title_bold</font>
+					<textcolor>grey</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<label>$INFO[Window(Home).Property(Widget.Title)]</label>
+				</control>
+				<control type="label">
+					<width>1063</width>
+					<height>53</height>
+					<font>font30</font>
+					<textcolor>labelheader</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<label>$INFO[Window(Home).Property(Widget.SubTitle)]</label>
+				</control>
+			</control>
+			<!-- Flags-->
+			<control type="grouplist">
+				<posy>192</posy>
+				<posx>757</posx>
+				<height>90</height>
+				<orientation>horizontal</orientation>
+				<control type="label">
+					<width>140</width>
+					<height>90</height>
+					<align>left</align>
+					<font>font35_title_bold</font>
+					<textcolor>white</textcolor>
+					<label>$INFO[Window(Home).Property(Widget.Year)]</label>
+					<visible>!IsEmpty(Window(Home).Property(Widget.Year))</visible>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<colordiffuse>white</colordiffuse>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Window(Home).Property(Widget.FlagsStudio)]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<colordiffuse>white</colordiffuse>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Window(Home).Property(Widget.FlagsSource)]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<colordiffuse>white</colordiffuse>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Window(Home).Property(Widget.FlagsResolution)]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<colordiffuse>white</colordiffuse>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Window(Home).Property(Widget.FlagsAspect)]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<colordiffuse>white</colordiffuse>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Window(Home).Property(Widget.FlagsAudio)]</texture>
+				</control>
+				<control type="image">
+					<width>140</width>
+					<height>90</height>
+					<aspectratio>keep</aspectratio>
+					<colordiffuse>white</colordiffuse>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture>$INFO[Window(Home).Property(Widget.FlagsAudioChannels)]</texture>
+				</control>
+			</control>
+			<!-- Info -->
+			<control type="grouplist">
+				<posy>368</posy>
+				<posx>758</posx>
+				<orientation>horizontal</orientation>
+				<control type="image">
+					<width>30</width>
+					<height>30</height>
+					<colordiffuse>AAFFFFFF</colordiffuse>
+					<texture>homewidgets/WidgetInfoPluginIcon.png</texture>
+				</control>
+				<control type="label">
+					<width>10</width>
+				</control>
+				<control type="label">
+					<width>1027</width>
+					<height>30</height>
+					<font>font14</font>
+					<textcolor>grey</textcolor>
+					<label>$INFO[Window(Home).Property(Widget.Info1)]</label>
+					<visible>IsEmpty(Control.GetLabel(8021))</visible>
+				</control>
+				<control type="label">
+					<width>625</width>
+					<height>30</height>
+					<font>font14</font>
+					<textcolor>grey</textcolor>
+					<label>$INFO[Window(Home).Property(Widget.Info1)]</label>
+					<visible>!IsEmpty(Control.GetLabel(8021))</visible>
+				</control>
+			</control>
+			<control type="grouplist">
+				<posy>412</posy>
+				<posx>758</posx>
+				<orientation>horizontal</orientation>
+				<control type="image">
+					<width>30</width>
+					<height>30</height>
+					<colordiffuse>AAFFFFFF</colordiffuse>
+					<texture>homewidgets/WidgetInfoGenreIcon.png</texture>
+				</control>
+				<control type="label">
+					<width>5</width>
+				</control>
+				<control type="label">
+					<width>1027</width>
+					<height>30</height>
+					<font>font14</font>
+					<textcolor>grey</textcolor>
+					<label>$INFO[Window(Home).Property(Widget.Info2)]</label>
+					<visible>IsEmpty(Control.GetLabel(8021))</visible>
+				</control>
+				<control type="label">
+					<width>625</width>
+					<height>30</height>
+					<font>font14</font>
+					<textcolor>grey</textcolor>
+					<label>$INFO[Window(Home).Property(Widget.Info2)]</label>
+					<visible>!IsEmpty(Control.GetLabel(8021))</visible>
+				</control>
+			</control>
+			<!-- Info Plot-->
+			<control type="textbox">
+				<posy>459</posy>
+				<posx>758</posx>
+				<height>290</height>
+				<width>1063</width>
+				<font>font14_textbox</font>
+				<align>justify</align>
+				<textcolor>grey</textcolor>
+				<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+				<label>$INFO[Window(Home).Property(Widget.Plot)]</label>
+				<visible>IsEmpty(Control.GetLabel(8021))</visible>
+			</control>
+			<control type="textbox">
+				<posy>459</posy>
+				<posx>758</posx>
+				<height>290</height>
+				<width>649</width>
+				<font>font14_textbox</font>
+				<align>justify</align>
+				<textcolor>grey</textcolor>
+				<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+				<label>$INFO[Window(Home).Property(Widget.Plot)]</label>
+				<visible>!IsEmpty(Control.GetLabel(8021))</visible>
+			</control>
+			<!-- Info Buttons-->
+			<control type="grouplist" id="8052">
+				<posx>750</posx>
+				<width>1063</width>
+				<posy>285</posy>
+				<height>60</height>
+				<onup>-</onup>
+				<ondown>8001</ondown>
+				<orientation>horizontal</orientation>
+				<control type="button" id="8053">
+					<description>Close</description>
+					<textoffsetx>10</textoffsetx>
+					<width min="250">auto</width>
+					<align>center</align>
+					<texturenofocus colordiffuse="77FFFFFF">homewidgets/widgetinfo_nofocus.png</texturenofocus>
+					<label>Close</label>
+					<onclick>Dialog.Close(1199)</onclick>
+				</control>
+				<control type="button" id="8054">
+					<description>Play Button</description>
+					<textoffsetx>10</textoffsetx>
+					<width min="250">auto</width>
+					<align>center</align>
+					<texturenofocus colordiffuse="77FFFFFF">homewidgets/widgetinfo_nofocus.png</texturenofocus>
+					<label>Play</label>
+					<onclick>PlayMedia($INFO[Window(Home).Property(Widget.FilePath)],noresume)</onclick>
+					<onclick>Dialog.Close(1199)</onclick>
+					<visible>true</visible>
+				</control>
+			</control>
+		</control>
+		
+	</include>
+	
 	<!-- ******* WIDGETS ******** -->
 	<include name="Widget1">
 		<control type="group" id="90010">
@@ -32,6 +534,8 @@
 			<!-- Widgets -->
 			<include condition="!Skin.HasSetting(Widget.List)">Widget1_Panel</include>
 			<include condition="Skin.HasSetting(Widget.List)">Widget1_List</include>
+			
+			<include>Widget_PanelInfo</include>
 		</control>
 	</include>
 
