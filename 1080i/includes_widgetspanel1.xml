@@ -7,7 +7,6 @@
 			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11005)</visible>
 			<animation effect="fade" start="0" end="100" delay="0" time="400">Visible</animation>
 			<control type="image">
-				
 				<posx>224</posx>
 				<posy>-21</posy>
 				<width>1472</width>
@@ -64,6 +63,29 @@
 					<height>330</height>
 					<aspectratio aligny="top">stretch</aspectratio>
 					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))</visible>
+				</control>
+				
+				<!-- Clear Case -->
+				<control type="image">
+					<posx>251</posx>
+					<posy>-335</posy>
+					<width>212</width>
+					<height>322</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
 				</control>
 			
 				<!-- Item Separator -->
