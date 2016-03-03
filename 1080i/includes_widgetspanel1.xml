@@ -2,6 +2,13 @@
 <includes>
 	<include name="Widget1_Panel">
 		
+		<!-- Flags-->
+		<control type="image" id="9999">
+			<include>HiddenObject</include>
+			<texture>flags/studios/$INFO[Container(11001).Listitem.Property(mediaTag-Studio)].png</texture>
+			<visible>Control.IsVisible(11001)</visible>
+		</control>
+		
 		<control type="group">
 			<posy>454</posy>
 			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11005)</visible>
@@ -165,7 +172,7 @@
 				
 					<!-- Title -->
 					<control type="label">
-						<width>1266</width>
+						<width>1156</width>
 						<height>40</height>
 						<font>font28_title</font>
 						<textcolor>grey</textcolor>
@@ -177,7 +184,7 @@
 				
 					<!-- Genre -->
 					<control type="label">
-						<width>1266</width>
+						<width>1156</width>
 						<height>35</height>
 						<font>font12</font>
 						<textcolor>labelheader</textcolor>
@@ -190,13 +197,13 @@
 				
 					<!-- TV Show Title -->
 					<control type="label">
-						<width>1266</width>
+						<width>1156</width>
 						<height>35</height>
 						<font>font12</font>
 						<textcolor>labelheader</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<scroll>true</scroll>
-						<label>$INFO[Container(11001).ListItem.TVShowTitle]</label>
+						<label>[UPPERCASE]$INFO[Container(11001).ListItem.TVShowTitle][/UPPERCASE]</label>
 						<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode)</visible>
 					</control>
 				</control>
@@ -338,12 +345,6 @@
 					<texture border="1">separator2.png</texture>
 				</control>
 			
-				<!-- Flags-->
-				<control type="image" id="9999">
-					<include>HiddenObject</include>
-					<texture>flags/studios/$INFO[Container(11001).Listitem.Property(mediaTag-Studio)].png</texture>
-				</control>
-								
 				<control type="grouplist">
 					<visible>!IsEmpty(Control.GetLabel(9999))</visible>
 					<posy>-66</posy>
@@ -614,11 +615,34 @@
 					<posy>-305</posy>
 					<width>526</width>
 					<height>296</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
 					<texture background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
-					<fadetime>IconCrossfadeTime</fadetime>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					<visible>Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
 				</control>
-											
+				
+				<!-- Fanart Glass Movies -->
+				<control type="image">
+					<posx>249</posx>
+					<posy>-302</posy>
+					<width>521</width>
+					<height>289</height>
+					<texture diffuse="thumbs/boxes/landscape_mask.png" background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
+				</control>
+															
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>780</posx>
@@ -632,7 +656,7 @@
 				<control type="image">
 					<posx>782</posx>
 					<posy>-66</posy>
-					<width>1201</width>
+					<width>895</width>
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 				</control>
@@ -644,7 +668,7 @@
 				
 					<!-- Title -->
 					<control type="label">
-						<width>1266</width>
+						<width>855</width>
 						<height>40</height>
 						<font>font28_title</font>
 						<textcolor>grey</textcolor>
@@ -656,7 +680,7 @@
 				
 					<!-- Genre -->
 					<control type="label">
-						<width>1266</width>
+						<width>855</width>
 						<height>35</height>
 						<font>font12</font>
 						<textcolor>labelheader</textcolor>
@@ -669,23 +693,23 @@
 				
 					<!-- TV Show Title -->
 					<control type="label">
-						<width>1266</width>
+						<width>855</width>
 						<height>35</height>
 						<font>font12</font>
 						<textcolor>labelheader</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<scroll>true</scroll>
-						<label>$INFO[Container(11001).ListItem.TVShowTitle]</label>
+						<label>[UPPERCASE]$INFO[Container(11001).ListItem.TVShowTitle][/UPPERCASE]</label>
 						<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode)</visible>
 					</control>
 				</control>
 			
 				<!-- Info -->
 				<control type="grouplist">
-					<posy>-263</posy>
-					<posx>496</posx>
+					<posy>-229</posy>
+					<posx>802</posx>
 					<orientation>horizontal</orientation>
-					<width>898</width>
+					<width>855</width>
 					<height>23</height>
 					<font>font12</font>
 					<align>left</align>
@@ -693,7 +717,7 @@
 												
 					<!-- Year -->
 					<control type="label">
-						<width min="20" max="299">auto</width>
+						<width min="20" max="285">auto</width>
 						<height>23</height>
 						<aligny>center</aligny>
 						<font>font12</font>
@@ -705,7 +729,7 @@
 				
 					<!-- Date -->
 					<control type="label">
-						<width min="20" max="299">auto</width>
+						<width min="20" max="285">auto</width>
 						<height>23</height>
 						<aligny>center</aligny>
 						<font>font12</font>
@@ -717,7 +741,7 @@
 						
 					<!-- User Rating -->
 					<control type="label">
-						<width min="20" max="299">auto</width>
+						<width min="20" max="285">auto</width>
 						<height>23</height>
 						<textcolor>themecolor</textcolor>
 						<font>font12</font>
@@ -729,7 +753,7 @@
 						
 					<!-- Standard Rating -->
 					<control type="label">
-						<width min="20" max="299">auto</width>
+						<width min="20" max="285">auto</width>
 						<height>23</height>
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
@@ -750,7 +774,7 @@
 					</control>
 					<control type="label">
 						<height>23</height>
-						<width min="20" max="121">auto</width>
+						<width min="20" max="97">auto</width>
 						<aligny>center</aligny>
 						<font>font12</font>
 						<label>$INFO[Container(11001).ListItem.Property(ratingPercent)]%  </label>
@@ -766,7 +790,7 @@
 					</control>
 					<control type="label">
 						<height>23</height>
-						<width min="20" max="121">auto</width>
+						<width min="20" max="97">auto</width>
 						<font>font12</font>
 						<aligny>center</aligny>
 						<label>$INFO[Container(11001).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
@@ -775,7 +799,7 @@
 					
 					<!-- Duration On Deck -->
 					<control type="label">
-						<width min="20" max="299">auto</width>
+						<width min="20" max="285">auto</width>
 						<height>23</height>
 						<textcolor>white2</textcolor>
 						<font>font12</font>
@@ -788,19 +812,19 @@
 			
 				<!-- Item Separator -->
 				<control type="image">
-					<posx>476</posx>
-					<posy>-286</posy>
-					<width>1201</width>
+					<posx>782</posx>
+					<posy>-252</posy>
+					<width>895</width>
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 				</control>
 				
 				<!-- Info Plot-->
 				<control type="textbox">
-					<posy>-226</posy>
-					<posx>496</posx>
-					<height>145</height>
-					<width>1156</width>
+					<posy>-192</posy>
+					<posx>802</posx>
+					<height>117</height>
+					<width>855</width>
 					<font>font12_textbox</font>
 					<align>justify</align>
 					<textcolor>grey</textcolor>
@@ -810,29 +834,23 @@
 			
 				<!-- Item Separator -->
 				<control type="image">
-					<posx>476</posx>
+					<posx>782</posx>
 					<posy>-126</posy>
-					<width>1201</width>
+					<width>895</width>
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 				</control>
-			
-				<!-- Flags-->
-				<control type="image" id="9999">
-					<include>HiddenObject</include>
-					<texture>flags/studios/$INFO[Container(11001).Listitem.Property(mediaTag-Studio)].png</texture>
-				</control>
-								
+											
 				<control type="grouplist">
 					<visible>!IsEmpty(Control.GetLabel(9999))</visible>
 					<posy>-66</posy>
-					<posx>476</posx>
+					<posx>782</posx>
 					<height>60</height>
 					<orientation>horizontal</orientation>
 					
 					<!-- Video Resolution -->
 					<control type="image">
-						<width>148</width>
+						<width>110</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -849,7 +867,7 @@
 					
 					<!-- Video Codec -->
 					<control type="image">
-						<width>148</width>
+						<width>110</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -866,7 +884,7 @@
 										
 					<!-- Aspect Ratio -->
 					<control type="image">
-						<width>148</width>
+						<width>110</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -883,7 +901,7 @@
 					
 					<!-- Framerate -->
 					<control type="image">
-						<width>148</width>
+						<width>110</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -900,7 +918,7 @@
 					
 					<!-- Audio Codec -->
 					<control type="image">
-						<width>148</width>
+						<width>110</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -917,7 +935,7 @@
 					
 					<!-- Audio Channels -->
 					<control type="image">
-						<width>148</width>
+						<width>110</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -934,7 +952,7 @@
 					
 					<!-- MPAA Rating -->
 					<control type="image">
-						<width>148</width>
+						<width>110</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -951,7 +969,7 @@
 					
 					<!-- Studio -->
 					<control type="image">
-						<width>148</width>
+						<width>110</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -964,13 +982,13 @@
 				<control type="grouplist">
 					<visible>IsEmpty(Control.GetLabel(9999))</visible>
 					<posy>-66</posy>
-					<posx>476</posx>
+					<posx>782</posx>
 					<height>60</height>
 					<orientation>horizontal</orientation>
 					
 					<!-- Video Resolution -->
 					<control type="image">
-						<width>170</width>
+						<width>126</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -987,7 +1005,7 @@
 					
 					<!-- Video Codec -->
 					<control type="image">
-						<width>170</width>
+						<width>126</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -1004,7 +1022,7 @@
 					
 					<!-- Aspect Ratio -->
 					<control type="image">
-						<width>170</width>
+						<width>126</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -1021,7 +1039,7 @@
 					
 					<!-- Framerate -->
 					<control type="image">
-						<width>170</width>
+						<width>126</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -1038,7 +1056,7 @@
 					
 					<!-- Audio Codec -->
 					<control type="image">
-						<width>170</width>
+						<width>126</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -1055,7 +1073,7 @@
 					
 					<!-- Audio Channels -->
 					<control type="image">
-						<width>170</width>
+						<width>126</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
@@ -1072,7 +1090,7 @@
 					
 					<!-- MPAA Rating -->
 					<control type="image">
-						<width>170</width>
+						<width>126</width>
 						<height>60</height>
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
