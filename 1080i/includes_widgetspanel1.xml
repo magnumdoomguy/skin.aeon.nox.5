@@ -684,7 +684,7 @@
 			
 			<!-- Panel Info (Landscape) -->
 			<control type="group">
-				<visible>Control.HasFocus(11001) + Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart)</visible>
+				<visible>Control.HasFocus(11001) + [[Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart)] | [Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail)]]</visible>
 			
 				<!-- Fanart Movies -->
 				<control type="image">
@@ -719,7 +719,19 @@
 					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					<visible>Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)</visible>
 				</control>
-															
+				
+				<!-- TV Thumbnail -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true">$INFO[Container(11001).ListItem.Art(thumb)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
+				</control>
+				
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>780</posx>
