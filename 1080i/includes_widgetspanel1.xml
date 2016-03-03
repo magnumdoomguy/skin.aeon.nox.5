@@ -68,9 +68,9 @@
 					
 			<!-- Panel Info (Portrait) -->
 			<control type="group">
-				<visible>Control.HasFocus(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)</visible>
-			
-				<!-- Item Poster -->
+				<visible>Control.HasFocus(11001) + [[Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)] | [Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))]]</visible>
+						
+				<!-- Movie Poster -->
 				<control type="image">
 					<posx>247</posx>
 					<posy>-339</posy>
@@ -81,7 +81,7 @@
 					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + IsEmpty(Skin.String(Widget.OnDeck.Movies.Case))</visible>
 				</control>
 				
-				<!-- Clear Case -->
+				<!-- Movie Clear Case -->
 				<control type="image">
 					<posx>251</posx>
 					<posy>-335</posy>
@@ -103,7 +103,7 @@
 					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Clear)</visible>
 				</control>
 			
-				<!-- Glass Case -->
+				<!-- Movie Glass Case -->
 				<control type="image">
 					<posx>251</posx>
 					<posy>-335</posy>
@@ -125,7 +125,7 @@
 					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),Glass)</visible>
 				</control>
 				
-				<!-- DVD/Bluray Case -->
+				<!-- Movie DVD/Bluray Case -->
 				<control type="image">
 					<posx>251</posx>
 					<posy>-313</posy>
@@ -146,7 +146,18 @@
 					<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
 					<visible>Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + StringCompare(Skin.String(Widget.OnDeck.Movies.Case),DVD/Bluray)</visible>
 				</control>
-											
+				
+				<!-- TV Poster -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<texture>$VAR[HomeWidgetPosterListVar]</texture>
+					<visible>Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + IsEmpty(Skin.String(Widget.OnDeck.TV.Case))</visible>
+				</control>
+							
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>474</posx>
