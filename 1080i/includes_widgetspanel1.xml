@@ -755,6 +755,95 @@
 					<visible>Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
 				</control>
 				
+				<!-- Fanart TV -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true">$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + !Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart -->
+				<itemlayout height="266" width="478" condition="Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + !Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>473</width>
+						<height>266</height>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture>$INFO[ListItem.Art(fanart)]</texture>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>166</posy>
+						<width>473</width>
+						<height>100</height>
+						<texture>homewidgets/label.png</texture>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<animation effect="zoom" end="98,89" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
+						<visible>Skin.HasSetting(Widget.OnDeck.TV.Label)</visible>
+					</control>
+					<control type="label">
+						<posx>236</posx>
+						<posy>188</posy>
+						<width>463</width>
+						<height>70</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font12_title</font>
+						<textcolor>lightgrey</textcolor>
+						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
+						<visible>Skin.HasSetting(Widget.OnDeck.TV.Label)</visible>
+					</control>
+				</itemlayout>
+				
+				<!-- Fanart Glass -->
+				<itemlayout height="266" width="478" condition="Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)">
+					<control type="image">
+						<posx>3</posx>
+						<posy>3</posy>
+						<width>467</width>
+						<height>260</height>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(fanart)]</texture>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>166</posy>
+						<width>473</width>
+						<height>100</height>
+						<texture>homewidgets/label.png</texture>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<animation effect="zoom" end="98,89" center="auto" condition="$PARAM[glassVisible]">conditional</animation>
+						<visible>Skin.HasSetting(Widget.OnDeck.TV.Label)</visible>
+					</control>
+					<control type="label">
+						<posx>236</posx>
+						<posy>183</posy>
+						<width>463</width>
+						<height>70</height>
+						<align>center</align>
+						<aligny>center</aligny>
+						<font>font12_title</font>
+						<textcolor>lightgrey</textcolor>
+						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
+						<visible>Skin.HasSetting(Widget.OnDeck.TV.Label)</visible>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>473</width>
+						<height>266</height>
+						<texture>homewidgets/glass/landscape.png</texture>
+					</control>
+				</itemlayout>
+				
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>780</posx>
