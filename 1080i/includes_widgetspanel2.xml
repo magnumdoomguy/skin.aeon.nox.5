@@ -59,7 +59,1186 @@
 				<visible>Skin.HasSetting(Homemenu.Vertical)</visible>
 			</control>
 			
+			<!-- Panel Info (Portrait) -->
+			<control type="group">
+				<visible>Control.HasFocus(11000) + [[Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)]]]</visible>
+						
+				<!-- Movie Poster -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<texture>$VAR[HomeWidgetPosterList2Var]</texture>
+					<visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))</visible>
+				</control>
+				
+				<!-- Movie Clear Case -->
+				<control type="image">
+					<posx>251</posx>
+					<posy>-335</posy>
+					<width>212</width>
+					<height>322</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterList2Var]</texture>
+					<visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)</visible>
+				</control>
 			
+				<!-- Movie Glass Case -->
+				<control type="image">
+					<posx>251</posx>
+					<posy>-335</posy>
+					<width>212</width>
+					<height>322</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$VAR[HomeWidgetPosterList2Var]</texture>
+					<visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>homewidgets/glass/portrait.png</texture>
+					<visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)</visible>
+				</control>
+				
+				<!-- Movie DVD/Bluray Case -->
+				<control type="image">
+					<posx>251</posx>
+					<posy>-313</posy>
+					<width>212</width>
+					<height>300</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$VAR[HomeWidgetPosterList2Var]</texture>
+					<visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+					<visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + StringCompare(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)</visible>
+				</control>
+				
+				<!-- TV Poster -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<texture>$VAR[HomeWidgetPosterList2Var]</texture>
+					<visible>Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Case))</visible>
+				</control>
+					
+				<!-- TV Clear Case -->
+				<control type="image">
+					<posx>251</posx>
+					<posy>-335</posy>
+					<width>212</width>
+					<height>322</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$INFO[Container(11000).ListItem.Art(bigGrandparentThumb)]</texture>
+					<visible>Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+					<visible>Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)</visible>
+				</control>
+				
+				<!-- TV Glass Case -->
+				<control type="image">
+					<posx>251</posx>
+					<posy>-335</posy>
+					<width>212</width>
+					<height>322</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture diffuse="thumbs/boxes/movieposter_mask.png">$INFO[Container(11000).ListItem.Art(bigGrandparentThumb)]</texture>
+					<visible>Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>homewidgets/glass/portrait.png</texture>
+					<visible>Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)</visible>
+				</control>
+				
+				<!-- TV DVD/Bluray Case -->
+				<control type="image">
+					<posx>251</posx>
+					<posy>-313</posy>
+					<width>212</width>
+					<height>300</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11000).ListItem.Art(bigGrandparentThumb)]</texture>
+					<visible>Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-339</posy>
+					<width>220</width>
+					<height>330</height>
+					<aspectratio aligny="top">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+					<visible>Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)</visible>
+				</control>
+							
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>474</posx>
+					<posy>-344</posy>
+					<width>2</width>
+					<height>337</height>
+					<texture border="1">separator3.png</texture>
+				</control>
+				
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>476</posx>
+					<posy>-66</posy>
+					<width>1201</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+			
+				<!-- Header -->
+				<control type="grouplist">
+					<posy>-338</posy>
+					<posx>496</posx>
+				
+					<!-- Title -->
+					<control type="label">
+						<width>1156</width>
+						<height>40</height>
+						<font>font28_title</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<scroll>true</scroll>
+						<label>[B]$VAR[HomeWidgetRecentlyAddedTitleListVar][/B]</label>
+					</control>
+				
+					<!-- Genre -->
+					<control type="label">
+						<width>1156</width>
+						<height>35</height>
+						<font>font12</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<scroll>true</scroll>
+						<label>$INFO[Container(11000).ListItem.Genre]</label>
+						<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(movie) + !IsEmpty(Container(11000).ListItem.Genre)</visible>
+					</control>
+				
+					<!-- TV Show Title -->
+					<control type="label">
+						<width>1156</width>
+						<height>35</height>
+						<font>font12</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<scroll>true</scroll>
+						<label>[UPPERCASE]$INFO[Container(11000).ListItem.TVShowTitle][/UPPERCASE]</label>
+						<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode)</visible>
+					</control>
+				</control>
+			
+				<!-- Info -->
+				<control type="grouplist">
+					<posy>-263</posy>
+					<posx>496</posx>
+					<orientation>horizontal</orientation>
+					<width>898</width>
+					<height>23</height>
+					<font>font12</font>
+					<align>left</align>
+					<aligny>center</aligny>
+												
+					<!-- Year -->
+					<control type="label">
+						<width min="20" max="299">auto</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<font>font12</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11000).ListItem.Year] [B]•[/B] </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Year) + Container(11000).ListItem.Type(movie)</visible>
+					</control>
+				
+					<!-- Date -->
+					<control type="label">
+						<width min="20" max="299">auto</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<font>font12</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11000).ListItem.Date] [B]•[/B] </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Date) + Container(11000).ListItem.Type(episode)</visible>
+					</control>
+						
+					<!-- User Rating -->
+					<control type="label">
+						<width min="20" max="299">auto</width>
+						<height>23</height>
+						<textcolor>themecolor</textcolor>
+						<font>font12</font>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<label>$VAR[Widget_RecentlyAddedUserRating] [COLOR white2][B]•[/B][/COLOR] </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(hasUserRating))</visible>
+					</control>
+						
+					<!-- Standard Rating -->
+					<control type="label">
+						<width min="20" max="299">auto</width>
+						<height>23</height>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<label>$VAR[Widget_RecentlyAddedRating] [B]•[/B] </label>
+						<visible>Control.IsVisible(11000) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11000).ListItem.RatingAndVotes)</visible>
+					</control>
+						
+					<!-- Rotten Tomato Ratings -->
+					<control type="image">
+						<width>23</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(ratingImage)]</texture>
+						<aspectratio align="left" aligny="center">keep</aspectratio>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+					</control>
+					<control type="label">
+						<height>23</height>
+						<width min="20" max="121">auto</width>
+						<aligny>center</aligny>
+						<font>font12</font>
+						<label>$INFO[Container(11000).ListItem.Property(ratingPercent)]%  </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+					</control>
+					<control type="image">
+						<width>23</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(audienceRatingImage)]</texture>
+						<aspectratio align="left" aligny="center">keep</aspectratio>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+					</control>
+					<control type="label">
+						<height>23</height>
+						<width min="20" max="121">auto</width>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<label>$INFO[Container(11000).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+					</control>
+					
+					<!-- Duration On Deck -->
+					<control type="label">
+						<width min="20" max="299">auto</width>
+						<height>23</height>
+						<textcolor>white2</textcolor>
+						<font>font12</font>
+						<shadowcolor>black</shadowcolor>
+						<label>$VAR[RecentlyAdded_Duration]</label>
+						<aligny>center</aligny>
+						<visible>Control.IsVisible(11000)</visible>
+					</control>
+				</control>
+			
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>476</posx>
+					<posy>-286</posy>
+					<width>1201</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+				
+				<!-- Info Plot-->
+				<control type="textbox">
+					<posy>-226</posy>
+					<posx>496</posx>
+					<height>145</height>
+					<width>1156</width>
+					<font>font12_textbox</font>
+					<align>justify</align>
+					<textcolor>grey</textcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<label>$VAR[RecentlyAddedPlotVar]</label>
+				</control>
+			
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>476</posx>
+					<posy>-126</posy>
+					<width>1201</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+			
+				<control type="grouplist">
+					<visible>!IsEmpty(Control.GetLabel(9999))</visible>
+					<posy>-66</posy>
+					<posx>476</posx>
+					<height>60</height>
+					<orientation>horizontal</orientation>
+					
+					<!-- Video Resolution -->
+					<control type="image">
+						<width>148</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Video Codec -->
+					<control type="image">
+						<width>148</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+										
+					<!-- Aspect Ratio -->
+					<control type="image">
+						<width>148</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-aspectRatio),flags/aspectratio/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Framerate -->
+					<control type="image">
+						<width>148</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Codec -->
+					<control type="image">
+						<width>148</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Channels -->
+					<control type="image">
+						<width>148</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-audioChannels),flags/channels/,.png]</texture>
+					</control>
+										
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- MPAA Rating -->
+					<control type="image">
+						<width>148</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/mpaa/NR.png">flags/mpaa/$INFO[Container(11000).Listitem.Property(mediaTag-contentRating)].png</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Studio -->
+					<control type="image">
+						<width>148</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>flags/studios/$INFO[Container(11000).Listitem.Property(mediaTag-Studio)].png</texture>
+					</control>
+					
+				</control>
+				
+				<control type="grouplist">
+					<visible>IsEmpty(Control.GetLabel(9999))</visible>
+					<posy>-66</posy>
+					<posx>476</posx>
+					<height>60</height>
+					<orientation>horizontal</orientation>
+					
+					<!-- Video Resolution -->
+					<control type="image">
+						<width>170</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Video Codec -->
+					<control type="image">
+						<width>170</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Aspect Ratio -->
+					<control type="image">
+						<width>170</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-aspectRatio),flags/aspectratio/,.png]</texture>
+					</control>
+										
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Framerate -->
+					<control type="image">
+						<width>170</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Codec -->
+					<control type="image">
+						<width>170</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Channels -->
+					<control type="image">
+						<width>170</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-audioChannels),flags/channels/,.png]</texture>
+					</control>
+															
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- MPAA Rating -->
+					<control type="image">
+						<width>170</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/mpaa/NR.png">flags/mpaa/$INFO[Container(11000).Listitem.Property(mediaTag-contentRating)].png</texture>
+					</control>
+					
+				</control>
+			</control>
+			
+			<!-- Panel Info (Landscape) -->
+			<control type="group">
+				<visible>Control.HasFocus(11000) + [[Container(11000).ListItem.Type(movie) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Container(11000).ListItem.Type(episode) + [StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) | StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)]]]</visible>
+			
+				<!-- Fanart Movies -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(movie) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Movies -->
+				<control type="image">
+					<posx>249</posx>
+					<posy>-302</posy>
+					<width>521</width>
+					<height>289</height>
+					<texture diffuse="thumbs/boxes/landscape_mask.png" background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(movie) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(movie) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- TV Thumbnail -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true">$INFO[Container(11000).ListItem.Art(thumb)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
+				</control>
+				
+				<!-- TV Thumbnail Glass -->
+				<control type="image">
+					<posx>249</posx>
+					<posy>-302</posy>
+					<width>521</width>
+					<height>289</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="thumbs/boxes/landscape_mask.png" background="true">$INFO[Container(11000).ListItem.Art(thumb)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
+				</control>
+				
+				<!-- Fanart TV -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass TV -->
+				<control type="image">
+					<posx>249</posx>
+					<posy>-302</posy>
+					<width>521</width>
+					<height>289</height>
+					<texture diffuse="thumbs/boxes/landscape_mask.png" background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)</visible>
+				</control>
+								
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>780</posx>
+					<posy>-310</posy>
+					<width>2</width>
+					<height>303</height>
+					<texture border="1">separator3.png</texture>
+				</control>
+				
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>782</posx>
+					<posy>-66</posy>
+					<width>895</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+			
+				<!-- Header -->
+				<control type="grouplist">
+					<posy>-304</posy>
+					<posx>802</posx>
+				
+					<!-- Title -->
+					<control type="label">
+						<width>855</width>
+						<height>40</height>
+						<font>font28_title</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<scroll>true</scroll>
+						<label>[B]$VAR[HomeWidgetRecentlyAddedTitleListVar][/B]</label>
+					</control>
+				
+					<!-- Genre -->
+					<control type="label">
+						<width>855</width>
+						<height>35</height>
+						<font>font12</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<scroll>true</scroll>
+						<label>$INFO[Container(11000).ListItem.Genre]</label>
+						<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(movie) + !IsEmpty(Container(11000).ListItem.Genre)</visible>
+					</control>
+				
+					<!-- TV Show Title -->
+					<control type="label">
+						<width>855</width>
+						<height>35</height>
+						<font>font12</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<scroll>true</scroll>
+						<label>[UPPERCASE]$INFO[Container(11000).ListItem.TVShowTitle][/UPPERCASE]</label>
+						<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode)</visible>
+					</control>
+				</control>
+			
+				<!-- Info -->
+				<control type="grouplist">
+					<posy>-229</posy>
+					<posx>802</posx>
+					<orientation>horizontal</orientation>
+					<width>855</width>
+					<height>23</height>
+					<font>font12</font>
+					<align>left</align>
+					<aligny>center</aligny>
+												
+					<!-- Year -->
+					<control type="label">
+						<width min="20" max="285">auto</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<font>font12</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11000).ListItem.Year] [B]•[/B] </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Year) + Container(11000).ListItem.Type(movie)</visible>
+					</control>
+				
+					<!-- Date -->
+					<control type="label">
+						<width min="20" max="285">auto</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<font>font12</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11000).ListItem.Date] [B]•[/B] </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Date) + Container(11000).ListItem.Type(episode)</visible>
+					</control>
+						
+					<!-- User Rating -->
+					<control type="label">
+						<width min="20" max="285">auto</width>
+						<height>23</height>
+						<textcolor>themecolor</textcolor>
+						<font>font12</font>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<label>$VAR[Widget_RecentlyAddedUserRating] [COLOR white2][B]•[/B][/COLOR] </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(hasUserRating))</visible>
+					</control>
+						
+					<!-- Standard Rating -->
+					<control type="label">
+						<width min="20" max="285">auto</width>
+						<height>23</height>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<label>$VAR[Widget_RecentlyAddedRating] [B]•[/B] </label>
+						<visible>Control.IsVisible(11000) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11000).ListItem.RatingAndVotes)</visible>
+					</control>
+						
+					<!-- Rotten Tomato Ratings -->
+					<control type="image">
+						<width>23</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(ratingImage)]</texture>
+						<aspectratio align="left" aligny="center">keep</aspectratio>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+					</control>
+					<control type="label">
+						<height>23</height>
+						<width min="20" max="97">auto</width>
+						<aligny>center</aligny>
+						<font>font12</font>
+						<label>$INFO[Container(11000).ListItem.Property(ratingPercent)]%  </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+					</control>
+					<control type="image">
+						<width>23</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(audienceRatingImage)]</texture>
+						<aspectratio align="left" aligny="center">keep</aspectratio>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+					</control>
+					<control type="label">
+						<height>23</height>
+						<width min="20" max="97">auto</width>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<label>$INFO[Container(11000).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+					</control>
+					
+					<!-- Duration On Deck -->
+					<control type="label">
+						<width min="20" max="285">auto</width>
+						<height>23</height>
+						<textcolor>white2</textcolor>
+						<font>font12</font>
+						<shadowcolor>black</shadowcolor>
+						<label>$VAR[RecentlyAdded_Duration]</label>
+						<aligny>center</aligny>
+						<visible>Control.IsVisible(11000)</visible>
+					</control>
+				</control>
+			
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>782</posx>
+					<posy>-252</posy>
+					<width>895</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+				
+				<!-- Info Plot-->
+				<control type="textbox">
+					<posy>-192</posy>
+					<posx>802</posx>
+					<height>117</height>
+					<width>855</width>
+					<font>font12_textbox</font>
+					<align>justify</align>
+					<textcolor>grey</textcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<label>$VAR[RecentlyAddedPlotVar]</label>
+				</control>
+			
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>782</posx>
+					<posy>-126</posy>
+					<width>895</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+											
+				<control type="grouplist">
+					<visible>!IsEmpty(Control.GetLabel(9999))</visible>
+					<posy>-66</posy>
+					<posx>782</posx>
+					<height>60</height>
+					<orientation>horizontal</orientation>
+					
+					<!-- Video Resolution -->
+					<control type="image">
+						<width>110</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Video Codec -->
+					<control type="image">
+						<width>110</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+										
+					<!-- Aspect Ratio -->
+					<control type="image">
+						<width>110</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-aspectRatio),flags/aspectratio/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Framerate -->
+					<control type="image">
+						<width>110</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Codec -->
+					<control type="image">
+						<width>110</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Channels -->
+					<control type="image">
+						<width>110</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-audioChannels),flags/channels/,.png]</texture>
+					</control>
+										
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- MPAA Rating -->
+					<control type="image">
+						<width>110</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/mpaa/NR.png">flags/mpaa/$INFO[Container(11000).Listitem.Property(mediaTag-contentRating)].png</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Studio -->
+					<control type="image">
+						<width>110</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>flags/studios/$INFO[Container(11000).Listitem.Property(mediaTag-Studio)].png</texture>
+					</control>
+					
+				</control>
+				
+				<control type="grouplist">
+					<visible>IsEmpty(Control.GetLabel(9999))</visible>
+					<posy>-66</posy>
+					<posx>782</posx>
+					<height>60</height>
+					<orientation>horizontal</orientation>
+					
+					<!-- Video Resolution -->
+					<control type="image">
+						<width>126</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Video Codec -->
+					<control type="image">
+						<width>126</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Aspect Ratio -->
+					<control type="image">
+						<width>126</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-aspectRatio),flags/aspectratio/,.png]</texture>
+					</control>
+										
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Framerate -->
+					<control type="image">
+						<width>126</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Codec -->
+					<control type="image">
+						<width>126</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+					</control>
+					
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- Audio Channels -->
+					<control type="image">
+						<width>126</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-audioChannels),flags/channels/,.png]</texture>
+					</control>
+															
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+					
+					<!-- MPAA Rating -->
+					<control type="image">
+						<width>126</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/mpaa/NR.png">flags/mpaa/$INFO[Container(11000).Listitem.Property(mediaTag-contentRating)].png</texture>
+					</control>
+					
+				</control>
+			</control>
 			
 			<!-- Glass Tab -->
 			<control type="image">
@@ -95,7 +1274,8 @@
 				<texture>submenu_end.png</texture>
 				<visible>!Skin.HasSetting(Homemenu.Vertical)</visible>
 			</control>
-						
+			
+			
 			<control type="label">
 				<animation effect="slide" end="0,-34" condition="[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo)]">Conditional</animation>
 				<animation effect="slide" end="0,-18" condition="[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]">Conditional</animation>
