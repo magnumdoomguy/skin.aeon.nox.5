@@ -1250,6 +1250,153 @@
 				</control>
 			</control>
 			
+			<!-- Panel Info (Landscape Music) -->
+			<control type="group">
+				<visible>Control.HasFocus(11000) + [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)]</visible>
+											
+				<!-- Fanart Movies -->
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart) + !Skin.HasSetting(Widget.RecentlyAdded.Music.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Fanart Glass Movies -->
+				<control type="image">
+					<posx>249</posx>
+					<posy>-302</posy>
+					<width>521</width>
+					<height>289</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="thumbs/boxes/landscape_mask.png" background="true">$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart) + Skin.HasSetting(Widget.RecentlyAdded.Music.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart) + Skin.HasSetting(Widget.RecentlyAdded.Music.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>782</posx>
+					<posy>-308</posy>
+					<width>2</width>
+					<height>299</height>
+					<texture border="1">separator3.png</texture>
+				</control>
+				
+				<!-- Header -->
+				<control type="grouplist">
+					<posy>-304</posy>
+					<posx>802</posx>
+				
+					<!-- Title -->
+					<control type="label">
+						<width>855</width>
+						<height>40</height>
+						<font>font28_title</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<scroll>true</scroll>
+						<label>[B]$VAR[HomeWidgetRecentlyAddedTitleListVar][/B]</label>
+					</control>
+				
+					<!-- Artist -->
+					<control type="label">
+						<width>855</width>
+						<height>35</height>
+						<font>font12</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<aligny>center</aligny>
+						<scroll>true</scroll>
+						<label>$INFO[Container(11000).ListItem.Artist]</label>
+					</control>
+				
+				</control>
+			
+				<!-- Info -->
+				<control type="grouplist">
+					<posy>-229</posy>
+					<posx>802</posx>
+					<orientation>horizontal</orientation>
+					<width>855</width>
+					<height>23</height>
+					<font>font12</font>
+					<align>left</align>
+					<aligny>center</aligny>
+												
+					<!-- Year -->
+					<control type="label">
+						<width min="20" max="285">auto</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<font>font12</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11000).ListItem.Year] [B]•[/B] </label>
+					</control>
+				
+					<!-- Genre -->
+					<control type="label">
+						<width min="20" max="285">auto</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<font>font12</font>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11000).ListItem.Genre]</label>
+					</control>
+						
+				</control>
+			
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>782</posx>
+					<posy>-252</posy>
+					<width>895</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>
+				
+				<!-- Info Plot-->
+				<control type="textbox">
+					<posy>-188</posy>
+					<posx>802</posx>
+					<height>152</height>
+					<width>855</width>
+					<font>font12_textbox</font>
+					<align>justify</align>
+					<textcolor>grey</textcolor>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<label>$VAR[RecentlyAddedMusicReviewVar]</label>
+				</control>
+			
+				<!-- Item Separator -->
+				<control type="image">
+					<posx>782</posx>
+					<posy>-68</posy>
+					<width>895</width>
+					<height>60</height>
+					<texture border="1">separator2.png</texture>
+				</control>						
+				
+			</control>
+			
 			<!-- Panel Info (Square) -->
 			<control type="group">
 				<visible>Control.HasFocus(11000) + [Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))]</visible>
