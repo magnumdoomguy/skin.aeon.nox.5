@@ -44,7 +44,15 @@
 				<width>1472</width>
 				<height>616</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000)</visible>
+				<visible>[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000) + Control.IsVisible(11001)</visible>
+			</control>
+			<control type="image">
+				<posx>224</posx>
+				<posy>-329</posy>
+				<width>1472</width>
+				<height>616</height>
+				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+				<visible>[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000) + !Control.IsVisible(11001)</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -678,8 +686,8 @@
 			<!-- Panel Info (Landscape) -->
 			<control type="group">
 				<visible>Control.HasFocus(11000) + [[Container(11000).ListItem.Type(movie) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Container(11000).ListItem.Type(episode) + [StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) | StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)]]]</visible>
-				<posy>580</posy>
-			
+				<animation effect="slide" end="0,580" condition="Control.IsVisible(11001)">Conditional</animation>
+							
 				<!-- Fanart Movies -->
 				<control type="image">
 					<posx>247</posx>
