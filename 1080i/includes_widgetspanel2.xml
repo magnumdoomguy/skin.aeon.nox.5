@@ -20,7 +20,15 @@
 				<width>1472</width>
 				<height>684</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000)</visible>
+				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000) + Control.IsVisible(11001)</visible>
+			</control>
+			<control type="image">
+				<posx>224</posx>
+				<posy>-363</posy>
+				<width>1472</width>
+				<height>684</height>
+				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000) + !Control.IsVisible(11001)</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -62,7 +70,7 @@
 			<!-- Panel Info (Portrait) -->
 			<control type="group">
 				<visible>Control.HasFocus(11000) + [[Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)]]]</visible>
-				<posy>648</posy>
+				<animation effect="slide" end="0,648" condition="Control.IsVisible(11001)">Conditional</animation>
 				
 				<!-- Movie Poster -->
 				<control type="image">
@@ -1232,8 +1240,8 @@
 				<animation effect="slide" end="0,-18" condition="[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]">Conditional</animation>
 								
 				<!-- Focus -->
-				<animation effect="slide" end="0,342" condition="[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000)">Conditional</animation>
-				<animation effect="slide" end="0,308" condition="[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000)">Conditional</animation>
+				<animation effect="slide" end="0,342" condition="[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000) + Control.IsVisible(11001)">Conditional</animation>
+				<animation effect="slide" end="0,308" condition="[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000) + Control.IsVisible(11001)">Conditional</animation>
 				<posy>304</posy>
 				<posx>780</posx>
 				<width>360</width>
@@ -1245,8 +1253,8 @@
 			<control type="image">
 				<animation effect="slide" end="0,-34" condition="[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo)]">Conditional</animation>
 				<animation effect="slide" end="0,-18" condition="[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]">Conditional</animation>
-				<animation effect="slide" end="0,342" condition="[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000)">Conditional</animation>
-				<animation effect="slide" end="0,308" condition="[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000)">Conditional</animation>
+				<animation effect="slide" end="0,342" condition="[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000) + Control.IsVisible(11001)">Conditional</animation>
+				<animation effect="slide" end="0,308" condition="[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000) + Control.IsVisible(11001)">Conditional</animation>
 				<posy>304</posy>
 				<posx>1140</posx>
 				<width>90</width>
@@ -1258,8 +1266,8 @@
 			<control type="image">
 				<animation effect="slide" end="0,-34" condition="[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo)]">Conditional</animation>
 				<animation effect="slide" end="0,-18" condition="[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]">Conditional</animation>
-				<animation effect="slide" end="0,342" condition="[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000)">Conditional</animation>
-				<animation effect="slide" end="0,308" condition="[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000)">Conditional</animation>
+				<animation effect="slide" end="0,342" condition="[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000) + Control.IsVisible(11001)">Conditional</animation>
+				<animation effect="slide" end="0,308" condition="[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000) + Control.IsVisible(11001)">Conditional</animation>
 				<posy>304</posy>
 				<posx>690</posx>
 				<width>90</width>
@@ -1273,8 +1281,8 @@
 			<control type="label">
 				<animation effect="slide" end="0,-34" condition="[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album)] | [!IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo)]">Conditional</animation>
 				<animation effect="slide" end="0,-18" condition="[Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] | [Container(11000).ListItem.Type(photo) + IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]">Conditional</animation>
-				<animation effect="slide" end="0,342" condition="[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000)">Conditional</animation>
-				<animation effect="slide" end="0,308" condition="[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000)">Conditional</animation>
+				<animation effect="slide" end="0,342" condition="[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + Control.HasFocus(11000) + Control.IsVisible(11001)">Conditional</animation>
+				<animation effect="slide" end="0,308" condition="[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + Control.HasFocus(11000) + Control.IsVisible(11001)">Conditional</animation>
 				<posy>309</posy>
 				<posx>240</posx>
 				<width>1440</width>
