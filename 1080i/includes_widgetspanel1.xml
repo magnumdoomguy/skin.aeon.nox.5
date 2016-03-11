@@ -23,11 +23,19 @@
 			</control>
 			<control type="image">
 				<posx>224</posx>
+				<posy>-21</posy>
+				<width>1472</width>
+				<height>684</height>
+				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000) + !Control.IsVisible(11001)] | [!Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Container(11001).ListItem.Type(movie) + Control.IsVisible(11001)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + !Control.IsVisible(11001)] | [IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + Container(11001).ListItem.Type(episode) + Control.IsVisible(11001)]] + [Control.HasFocus(11001) + Skin.HasSetting(Homemenu.Vertical)]]</visible>
+			</control>
+			<control type="image">
+				<posx>224</posx>
 				<posy>-363</posy>
 				<width>1472</width>
 				<height>684</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000) + !Control.IsVisible(11001)] | [!Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Container(11001).ListItem.Type(movie) + Control.IsVisible(11001)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + !Control.IsVisible(11001)] | [IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + Container(11001).ListItem.Type(episode) + Control.IsVisible(11001)]] + Control.HasFocus(11001) + !Skin.HasSetting(middlemainmenu)</visible>
+				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000) + !Control.IsVisible(11001)] | [!Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Container(11001).ListItem.Type(movie) + Control.IsVisible(11001)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + !Control.IsVisible(11001)] | [IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + Container(11001).ListItem.Type(episode) + Control.IsVisible(11001)]] + Control.HasFocus(11001) + !Skin.HasSetting(middlemainmenu) + !Skin.HasSetting(Homemenu.Vertical)</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -57,6 +65,7 @@
 			<!-- Panel Info (Portrait) -->
 			<control type="group">
 				<visible>Control.HasFocus(11001) + [[Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)] | [Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))]] + !Skin.HasSetting(middlemainmenu)</visible>
+				<animation effect="slide" end="0,648" condition="Control.IsVisible(11001) + Skin.HasSetting(Homemenu.Vertical)">Conditional</animation>
 						
 				<!-- Movie Poster -->
 				<control type="image">
