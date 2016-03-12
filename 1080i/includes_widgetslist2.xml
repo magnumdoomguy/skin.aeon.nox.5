@@ -6,7 +6,7 @@
 		<posx>240</posx>
 		<control type="group">
 			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + [[Control.IsVisible(11000) + Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)]]]">Conditional</animation>
-			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11000)]</visible>
+			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11000) + !Container(11000).ListItem.Type(photo)]</visible>
 			<control type="image">
 				<width>1440</width>
 				<height>310</height>
@@ -278,6 +278,19 @@
 					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
 				</control>
 				
+				<!-- Poster Music -->
+				<control type="image">
+					<posx>-137</posx>
+					<posy>-20</posy>
+					<width>350</width>
+					<height>350</height>
+					<texture background="true">$VAR[HomeWidgetPosterList2Var]</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11000) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Case))</visible>
+				</control>
+				
 				<control type="grouplist">
 					<posx>212</posx>
 					<posy>0</posy>
@@ -317,6 +330,17 @@
 						<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode)</visible>
 					</control>
 					
+					<!-- Music Artist -->
+					<control type="label">
+						<width>898</width>
+						<height>27</height>
+						<font>font14_title</font>
+						<textcolor>labelheader</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[Container(11000).ListItem.Artist]</label>
+						<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(album)</visible>
+					</control>
+					
 					<control type="label">
 						<height>1</height>
 						<label>-</label>
@@ -324,7 +348,7 @@
 					
 					<control type="grouplist">
 						<width>898</width>
-						<height>28</height>
+						<height>35</height>
 						<font>font14</font>
 						<orientation>horizontal</orientation>
 						<align>left</align>
@@ -333,18 +357,18 @@
 						<!-- Year -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
-							<height>28</height>
+							<height>35</height>
 							<aligny>center</aligny>
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$INFO[Container(11000).ListItem.Year] [B]•[/B] </label>
-							<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Year) + Container(11000).ListItem.Type(movie)</visible>
+							<visible>Control.IsVisible(11000) + [[!IsEmpty(Container(11000).ListItem.Year) + Container(11000).ListItem.Type(movie)] | [!IsEmpty(Container(11000).ListItem.Year) + Container(11000).ListItem.Type(album)]]</visible>
 						</control>
 						
 						<!-- Date -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
-							<height>28</height>
+							<height>35</height>
 							<aligny>center</aligny>
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
@@ -352,10 +376,20 @@
 							<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Date) + Container(11000).ListItem.Type(episode)</visible>
 						</control>
 						
+						<!-- Music Genre -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>35</height>
+							<textcolor>white2</textcolor>
+							<shadowcolor>black</shadowcolor>
+							<label>$INFO[Container(11000).ListItem.Genre]</label>
+							<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Genre) + Container(11000).ListItem.Type(album)</visible>
+						</control>
+						
 						<!-- User Rating -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
-							<height>28</height>
+							<height>35</height>
 							<textcolor>themecolor</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$VAR[Widget_RecentlyAddedUserRating] [COLOR white2][B]•[/B][/COLOR] </label>
@@ -365,7 +399,7 @@
 						<!-- Standard Rating -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
-							<height>28</height>
+							<height>35</height>
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$VAR[Widget_RecentlyAddedRating] [B]•[/B] </label>
@@ -375,26 +409,26 @@
 						<!-- Rotten Tomato Ratings -->
 						<control type="image">
 							<width>28</width>
-							<height>28</height>
+							<height>35</height>
 							<texture>$INFO[Container(11000).ListItem.Property(ratingImage)]</texture>
 							<aspectratio align="left" aligny="center">keep</aspectratio>
 							<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
 						<control type="label">
-							<height>28</height>
+							<height>35</height>
 							<width min="20" max="121">auto</width>
 							<label>$INFO[Container(11000).ListItem.Property(ratingPercent)]%  </label>
 							<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
 						<control type="image">
 							<width>28</width>
-							<height>28</height>
+							<height>35</height>
 							<texture>$INFO[Container(11000).ListItem.Property(audienceRatingImage)]</texture>
 							<aspectratio align="left" aligny="center">keep</aspectratio>
 							<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 						</control>
 						<control type="label">
-							<height>28</height>
+							<height>35</height>
 							<width min="20" max="121">auto</width>
 							<label>$INFO[Container(11000).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
 							<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(audienceRatingPercent)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
@@ -403,7 +437,7 @@
 						<!-- Duration -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
-							<height>28</height>
+							<height>35</height>
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
 							<label>$VAR[RecentlyAdded_Duration]</label>
@@ -426,7 +460,20 @@
 						<shadowcolor>black</shadowcolor>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<label>$VAR[RecentlyAddedPlotVar]</label>
-						<visible>Control.IsVisible(11000)</visible>
+						<visible>Control.IsVisible(11000) + !Container(11000).ListItem.Type(album)</visible>
+					</control>
+					
+					<!-- Music Review -->
+					<control type="textbox">
+						<width>898</width>
+						<height max="160">auto</height>
+						<font>font14_textbox</font>
+						<align>justify</align>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<label>$VAR[RecentlyAddedMusicReviewVar]</label>
+						<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(album)</visible>
 					</control>
 					
 				</control>
@@ -722,6 +769,18 @@
 					<aspectratio>stretch</aspectratio>
 					<texture>homewidgets/glass/landscape.png</texture>
 					<visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode) + StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
+				</control>
+				
+				<!-- Music Poster -->
+				<control type="image">
+					<posy>40</posy>
+					<posx>50</posx>
+					<width>200</width>
+					<height>200</height>
+					<aspectratio aligny="center" scalediffuse="false">stretch</aspectratio>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<texture>$INFO[Container(11000).ListItem.Icon]</texture>
+					<visible>Control.IsVisible(11000) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Case))</visible>
 				</control>
 				
 				<!-- Square Icon Channels -->
