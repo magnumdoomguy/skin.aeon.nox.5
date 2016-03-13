@@ -1,5 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+	
+	<include name="NowPlayingMusicPanelWidget">
+		<control type="group">
+			<visible>StringCompare(Container(300).ListItem.Label,$LOCALIZE[42137])</visible>
+			
+			<control type="group">
+				<posy>454</posy>
+				<control type="image">
+					<posx>224</posx>
+					<posy>-21</posy>
+					<width>1472</width>
+					<height>324</height>
+					<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
+					<visible>true</visible>
+				</control>
+				
+				<!-- Panel Info (Square) -->
+				<control type="group">
+					<posy>324</posy>
+					
+					<!-- CD-R Spinning Disc -->
+					<control type="group">
+						<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle)) + !StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
+						<posy>-323</posy>
+						<control type="image" id="88888">
+							<posx>1333</posx>
+							<posy>-55</posy>
+							<width>389</width>
+							<height>389</height>
+							<aligny>top</aligny>
+							<aspectratio align="left">keep</aspectratio>
+							<fadetime>300</fadetime>
+							<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+							<texture background="true" diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
+							<bordersize>30</bordersize>
+						</control>
+						<control type="label">
+							<posx>1433</posx>
+							<posy>10</posy>
+							<width>189</width>
+							<height>64</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>fontCDartistSmall2</font>
+							<label>$INFO[MusicPlayer.Artist, ,]</label>
+							<animation effect="rotate" end="-360" center="1528,140" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+							<textcolor>black</textcolor>
+							<wrapmultiline>true</wrapmultiline>
+						</control>
+						<control type="label">
+							<posx>1428</posx>
+							<posy>186</posy>
+							<width>200</width>
+							<height>71</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>fontCDalbumSmall2</font>
+							<label>$INFO[MusicPlayer.Album, ,]</label>
+							<animation effect="rotate" end="-360" center="1528,140" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+							<textcolor>black</textcolor>
+							<wrapmultiline>true</wrapmultiline>
+						</control>
+					</control>
+					
+					<!-- Poster -->
+					<control type="image">
+						<posx>247</posx>
+						<posy>-323</posy>
+						<width>317</width>
+						<height>317</height>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture>$INFO[Player.Art(thumb)]</texture>
+						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Case))</visible>
+					</control>
+					
+					<!-- Clear Case -->
+					<control type="image">
+						<posx>1224</posx>
+						<posy>-352</posy>
+						<width>309</width>
+						<height>337</height>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<texture>$INFO[Player.Art(thumb)]</texture>
+						<!--<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Case),Clear)</visible>-->
+					</control>
+					<control type="image">
+						<posx>1191</posx>
+						<posy>-358</posy>
+						<width>350</width>
+						<height>350</height>
+						<texture>homewidgets/clearcase/cd.png</texture>
+						<!--<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Case),Clear)</visible>-->
+					</control>
+									
+					<!-- Glass Case -->
+					<control type="image">
+						<posx>251</posx>
+						<posy>-319</posy>
+						<width>309</width>
+						<height>309</height>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Container(11000).ListItem.Icon]</texture>
+						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Case),Glass)</visible>
+					</control>
+					<control type="image">
+						<posx>247</posx>
+						<posy>-323</posy>
+						<width>317</width>
+						<height>317</height>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture>homewidgets/glass/square.png</texture>
+						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Case),Glass)</visible>
+					</control>
+					
+					<!-- CD Case -->
+					<control type="image">
+						<posx>282</posx>
+						<posy>-320</posy>
+						<width>280</width>
+						<height>313</height>
+						<aspectratio scalediffuse="false">stretch</aspectratio>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Container(11000).ListItem.Icon]</texture>
+						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Case),CD)</visible>
+					</control>
+					<control type="image">
+						<posx>247</posx>
+						<posy>-323</posy>
+						<width>317</width>
+						<height>317</height>
+						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+						<texture>homewidgets/case/cd.png</texture>
+						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Case),CD)</visible>
+					</control>
+												
+					<!-- Item Separator -->
+				<control type="image">
+					<posx>1171</posx>
+					<posy>-325</posy>
+					<width>2</width>
+					<height>286</height>
+					<texture border="1">separator3.png</texture>
+				</control>
+				</control>
+				
+				
+			</control>
+			
+		</control>
+	</include>	
+	
 	<include name="Widget1_Panel">
 		
 		<!-- Flags-->
