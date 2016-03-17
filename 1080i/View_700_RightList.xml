@@ -338,7 +338,7 @@
                         <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
                         <visible>[SubString(ListItem.Path,videodb://movies/sets) + !Stringcompare(ListItem.Label,..)]</visible>
                     </control>
-                    <control type="label">
+					<control type="label">
                         <posx>630</posx>
                         <posy>27</posy>
                         <width>600</width>
@@ -348,8 +348,65 @@
                         <selectedcolor>selected</selectedcolor>
                         <label>$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
                         <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-                        <visible>![SubString(ListItem.Path,videodb://movies/sets) + !Stringcompare(ListItem.Label,..)]</visible>
+                        <visible>!Container.Content(movies)</visible>
+                    </control>					
+					
+					<!-- No Rating -->
+                    <control type="label">
+                        <posx>630</posx>
+                        <posy>27</posy>
+                        <width>600</width>
+                        <height>68</height>
+                        <font>font13</font>
+                        <align>right</align>
+                        <selectedcolor>selected</selectedcolor>
+                        <label>$VAR[DurationHrMinVar]</label>
+                        <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+                        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
                     </control>
+					
+					<!-- User Rating -->
+					<control type="label">
+                        <posx>630</posx>
+                        <posy>27</posy>
+                        <width>600</width>
+                        <height>68</height>
+                        <font>font13</font>
+                        <align>right</align>
+                        <selectedcolor>selected</selectedcolor>
+                        <label>[COLOR themecolor]$VAR[RatingVar][/COLOR] • $VAR[DurationHrMinVar]</label>
+                        <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+                        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+                    </control>
+					
+					<!-- Standard Rating -->
+					<control type="label">
+                        <posx>630</posx>
+                        <posy>27</posy>
+                        <width>600</width>
+                        <height>68</height>
+                        <font>font13</font>
+                        <align>right</align>
+                        <selectedcolor>selected</selectedcolor>
+                        <label>$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
+                        <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+                        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage))</visible>
+                    </control>
+					
+					<!-- Rotten Tomatoes Rating -->
+					<control type="label">
+                        <posx>630</posx>
+                        <posy>27</posy>
+                        <width>600</width>
+                        <height>68</height>
+                        <font>font13</font>
+                        <align>right</align>
+                        <selectedcolor>selected</selectedcolor>
+                        <label>$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
+                        <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+                        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+                    </control>
+					
                     <control type="label">
                         <posx>730</posx>
                         <posy>8</posy>
