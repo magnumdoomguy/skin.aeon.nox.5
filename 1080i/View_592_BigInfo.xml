@@ -24,16 +24,66 @@
                 <label>$INFO[ListItem.Label]</label>
                 <scroll>true</scroll>
             </control>
+			
+			<control type="label">
+                <posy>82</posy>
+                <posx>290</posx>
+                <width>1200</width>
+                <height>65</height>
+                <font>font28_title</font>
+                <textcolor>grey</textcolor>
+                <label>$VAR[FloorSubLabelVar]</label>
+				<visible>!Container.Content(movies)</visible>
+            </control>
+			
+			<!-- No Rating -->
             <control type="label">
                 <posy>82</posy>
                 <posx>290</posx>
                 <width>1200</width>
                 <height>65</height>
                 <font>font28_title</font>
-                <textcolor>selected</textcolor>
-                <label>$VAR[FloorSubLabelVar]</label>
-                <!--<visible>!Container.Content(tvshows)</visible>-->
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Year,, • ]$VAR[DurationHrMinVar]</label>
+				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
             </control>
+			
+			<!-- User Rating -->
+			<control type="label">
+                <posy>82</posy>
+                <posx>290</posx>
+                <width>1200</width>
+                <height>65</height>
+                <font>font28_title</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Year,, • ][COLOR themecolor]$VAR[RatingVar][/COLOR] • $VAR[DurationHrMinVar]</label>
+				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+            </control>
+			
+			<!-- Standard Rating -->
+			<control type="label">
+                <posy>82</posy>
+                <posx>290</posx>
+                <width>1200</width>
+                <height>65</height>
+                <font>font28_title</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Year,, • ]$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
+				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage))</visible>
+            </control>
+			
+			<!-- Rotten Tomatoes Rating -->
+			<control type="label">
+                <posy>82</posy>
+                <posx>290</posx>
+                <width>1200</width>
+                <height>65</height>
+                <font>font28_title</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
+				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+            </control>
+			
             <control type="textbox">
                 <posy>150</posy>
                 <posx>290</posx>
