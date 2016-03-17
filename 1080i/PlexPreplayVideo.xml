@@ -438,8 +438,34 @@
 						<texture border="1">separator3.png</texture>
 					</control>
 					
-					<!-- Rating -->
+					<!-- User Rating -->
 					<control type="group">
+						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+						<width>200</width>
+						<control type="label">
+							<posx>0</posx>
+							<posy>2</posy>
+							<width>200</width>
+							<height>60</height>
+							<align>center</align>
+							<label>$INFO[ListItem.RatingAndVotes]</label>
+							<font>font48_bold</font>
+							<textcolor>themecolor</textcolor>
+						</control>
+						<control type="label">
+							<posy>52</posy>
+							<width>200</width>
+							<height>30</height>
+							<align>center</align>
+							<label>[LOWERCASE]$LOCALIZE[31225][/LOWERCASE]</label>
+							<font>font12</font>
+							<textcolor>themecolor</textcolor>
+						</control>
+					</control>
+					
+					<!-- Standard Rating -->
+					<control type="group">
+						<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
 						<width>200</width>
 						<control type="label">
 							<posx>0</posx>
@@ -461,6 +487,97 @@
 							<textcolor>grey</textcolor>
 						</control>
 					</control>
+					
+					<!-- Rotten Tomatoes Rating -->
+					<control type="group">
+						<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+						<width>200</width>
+						<align>center</align>
+						<aligny>center</aligny>
+						<control type="grouplist">
+					
+					<orientation>horizontal</orientation>
+					<width>200</width>
+					<height>60</height>
+					<align>center</align>
+					<aligny>center</aligny>
+						<control type="image">
+							<posx>0</posx>
+							<posy>2</posy>
+							<width>45</width>
+							<height>60</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<aspectratio align="left" aligny="center">keep</aspectratio>
+							<texture>$INFO[ListItem.Property(ratingImage)]</texture>
+						</control>
+						<control type="label">
+							<posx>60</posx>
+							<posy>2</posy>
+							<width min="20" max="140">auto</width>
+							<height>60</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Property(ratingPercent)]%</label>
+							<font>font48_bold</font>
+							<textcolor>grey</textcolor>
+						</control>
+						</control>
+						<control type="label">
+							<posy>52</posy>
+							<width>200</width>
+							<height>30</height>
+							<align>center</align>
+							<label>[LOWERCASE]$LOCALIZE[42258][/LOWERCASE]</label>
+							<font>font12</font>
+							<textcolor>grey</textcolor>
+						</control>
+					</control>
+					<control type="group">
+						<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+						<width>200</width>
+						<align>center</align>
+						<aligny>center</aligny>
+						<control type="grouplist">
+					
+					<orientation>horizontal</orientation>
+					<width>200</width>
+					<height>60</height>
+					<align>center</align>
+					<aligny>center</aligny>
+						<control type="image">
+							<posx>0</posx>
+							<posy>2</posy>
+							<width>45</width>
+							<height>60</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<aspectratio align="left" aligny="center">keep</aspectratio>
+							<texture>$INFO[ListItem.Property(audienceRatingImage)]</texture>
+						</control>
+						<control type="label">
+							<posx>60</posx>
+							<posy>2</posy>
+							<width min="20" max="140">auto</width>
+							<height>60</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Property(audienceRatingPercent)]%</label>
+							<font>font48_bold</font>
+							<textcolor>grey</textcolor>
+						</control>
+						</control>
+						<control type="label">
+							<posy>52</posy>
+							<width>200</width>
+							<height>30</height>
+							<align>center</align>
+							<label>[LOWERCASE]$LOCALIZE[42259][/LOWERCASE]</label>
+							<font>font12</font>
+							<textcolor>grey</textcolor>
+						</control>
+					</control>
+					
 					
 				</control>
 				
