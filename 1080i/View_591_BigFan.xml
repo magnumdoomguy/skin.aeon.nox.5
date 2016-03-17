@@ -172,17 +172,114 @@
                             <textoffsety>-2</textoffsety>
                             <textoffsetx>30</textoffsetx>
                         </control>
-                        <control type="label">
-                            <posx>350</posx>
-                            <posy>1000</posy>
-                            <width>1100</width>
-                            <height>30</height>
-                            <align>left</align>
-                            <font>font13_title</font>
-                            <textcolor>grey</textcolor>
-                            <label>$VAR[FloorSubLabelVar]</label>
-                            <textoffsetx>30</textoffsetx>
-                        </control>
+                        						
+						<!-- Movies Info -->
+					<control type="grouplist">
+						<visible>Container.Content(movies)</visible>
+						<orientation>horizontal</orientation>
+						<posx>380</posx>
+						<posy>1000</posy>
+						<width>1100</width>
+						<height>30</height>
+						<align>left</align>
+						<aligny>center</aligny>
+												
+						<!-- Year -->
+						<control type="label">
+							<width min="20" max="366">auto</width>
+							<height>30</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>grey</textcolor>
+							<label>$INFO[ListItem.Year] [B]•[/B] </label>
+							<visible>!IsEmpty(ListItem.Year) + ListItem.Type(movie)</visible>
+						</control>
+				
+						<!-- Date -->
+						<control type="label">
+							<width min="20" max="226">auto</width>
+							<height>30</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>grey</textcolor>
+							<label>$INFO[ListItem.Date] [B]•[/B] </label>
+							<visible>!IsEmpty(Container(11000).ListItem.Date) + ListItem.Type(episode)</visible>
+						</control>
+						
+						<!-- User Rating -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>30</height>
+							<textcolor>themecolor</textcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>themecolor</textcolor>
+							<label>$VAR[RatingVar] [COLOR white2][B]•[/B][/COLOR] </label>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+						</control>
+						
+						<!-- Standard Rating -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>30</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$VAR[RatingVar] [B]•[/B] </label>
+							<font>font13_title</font>
+							<textcolor>grey</textcolor>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+						</control>
+						
+						<!-- Rotten Tomato Ratings -->
+						<control type="image">
+							<width>30</width>
+							<height>30</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<texture>$INFO[ListItem.Property(ratingImage)]</texture>
+							<aspectratio align="left" aligny="center">keep</aspectratio>
+							<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+						</control>
+						<control type="label">
+							<height>30</height>
+							<width min="20" max="121">auto</width>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>grey</textcolor>
+							<label>$INFO[ListItem.Property(ratingPercent)]%  </label>
+							<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+						</control>
+						<control type="image">
+							<width>30</width>
+							<height>30</height>
+							<aligny>center</aligny>
+							<texture>$INFO[ListItem.Property(audienceRatingImage)]</texture>
+							<aspectratio align="left" aligny="center">keep</aspectratio>
+							<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+						</control>
+						<control type="label">
+							<height>30</height>
+							<width min="20" max="121">auto</width>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>grey</textcolor>
+							<label>$INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+							<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+						</control>
+					
+						<!-- Duration On Deck -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>30</height>
+							<label>$VAR[DurationHrMinVar]</label>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>grey</textcolor>
+						</control>
+					</control>
                     </control>
                 </control>
                 <control type="group">
