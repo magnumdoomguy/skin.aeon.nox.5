@@ -12,7 +12,7 @@
 				<width>1472</width>
 				<height>342</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + [!Control.HasFocus(11000) | [Control.HasFocus(11000) + Skin.HasSetting(middlemainmenu)]]</visible>
+				<visible>[[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)]] + [!Control.HasFocus(11000) | [Control.HasFocus(11000) + Skin.HasSetting(middlemainmenu) + !Skin.HasSetting(Homemenu.Vertical)]]</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -36,7 +36,7 @@
 				<width>1472</width>
 				<height>308</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + [[!Control.HasFocus(11000) | [Control.HasFocus(11000) + Skin.HasSetting(middlemainmenu)]] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]]</visible>
+				<visible>[[Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)] | [![IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode)] | [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]] + [[!Control.HasFocus(11000) | [Control.HasFocus(11000) + Skin.HasSetting(middlemainmenu) + !Skin.HasSetting(Homemenu.Vertical)]] | [Container(11000).ListItem.Type(photo) + !IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))]]</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -60,7 +60,7 @@
 				<width>1472</width>
 				<height>324</height>
 				<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-				<visible>[IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo)] | [IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + [!Control.HasFocus(11000) | [Control.HasFocus(11000) + Skin.HasSetting(middlemainmenu)]]]</visible>
+				<visible>[IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo)] | [IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + [!Control.HasFocus(11000) | [Control.HasFocus(11000) + Skin.HasSetting(middlemainmenu) + !Skin.HasSetting(Homemenu.Vertical)]]]</visible>
 			</control>
 			<control type="image">
 				<posx>224</posx>
@@ -81,7 +81,7 @@
 						
 			<!-- Panel Info (Portrait) -->
 			<control type="group">
-				<visible>Control.HasFocus(11000) + [[Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)]]] + !Skin.HasSetting(middlemainmenu)</visible>
+				<visible>Control.HasFocus(11000) + [[Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Container(11000).ListItem.Type(episode) + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)]]] + [!Skin.HasSetting(middlemainmenu) | [Skin.HasSetting(middlemainmenu) + Skin.HasSetting(Homemenu.Vertical)]]</visible>
 				<animation effect="slide" end="0,648" condition="[Control.IsVisible(11001) + !Skin.HasSetting(Homemenu.Vertical)] | [!Control.IsVisible(11001) + Skin.HasSetting(Homemenu.Vertical)]">Conditional</animation>
 				
 				<!-- Movie Poster -->
@@ -704,7 +704,7 @@
 			
 			<!-- Panel Info (Landscape) -->
 			<control type="group">
-				<visible>Control.HasFocus(11000) + [[Container(11000).ListItem.Type(movie) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Container(11000).ListItem.Type(episode) + [StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) | StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)]]] + !Skin.HasSetting(middlemainmenu)</visible>
+				<visible>Control.HasFocus(11000) + [[Container(11000).ListItem.Type(movie) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Container(11000).ListItem.Type(episode) + [StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) | StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)]]] + [!Skin.HasSetting(middlemainmenu) | [Skin.HasSetting(middlemainmenu) + Skin.HasSetting(Homemenu.Vertical)]]</visible>
 				<animation effect="slide" end="0,580" condition="[Control.IsVisible(11001) + !Skin.HasSetting(Homemenu.Vertical)] | [!Control.IsVisible(11001) + Skin.HasSetting(Homemenu.Vertical)]">Conditional</animation>
 							
 				<!-- Fanart Movies -->
@@ -1278,7 +1278,7 @@
 			
 			<!-- Panel Info (Landscape Music) -->
 			<control type="group">
-				<visible>Control.HasFocus(11000) + [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] + !Skin.HasSetting(middlemainmenu)</visible>
+				<visible>Control.HasFocus(11000) + [Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)] + [!Skin.HasSetting(middlemainmenu) | [Skin.HasSetting(middlemainmenu) + Skin.HasSetting(Homemenu.Vertical)]]</visible>
 				<animation effect="slide" end="0,580" condition="[Control.IsVisible(11001) + !Skin.HasSetting(Homemenu.Vertical)] | [!Control.IsVisible(11001) + Skin.HasSetting(Homemenu.Vertical)]">Conditional</animation>
 											
 				<!-- Fanart Movies -->
@@ -1442,7 +1442,7 @@
 			
 			<!-- Panel Info (Square) -->
 			<control type="group">
-				<visible>Control.HasFocus(11000) + [Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] + !Skin.HasSetting(middlemainmenu)</visible>
+				<visible>Control.HasFocus(11000) + [Container(11000).ListItem.Type(album) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))] + [!Skin.HasSetting(middlemainmenu) | [Skin.HasSetting(middlemainmenu) + Skin.HasSetting(Homemenu.Vertical)]]</visible>
 				<animation effect="slide" end="0,612" condition="Skin.HasSetting(Homemenu.Vertical)">Conditional</animation>
 							
 				<!-- Poster -->
