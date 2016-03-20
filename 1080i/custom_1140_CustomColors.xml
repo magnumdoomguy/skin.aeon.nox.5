@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1140">
+	<defaultcontrol always="true">3010</defaultcontrol>
+	<include>dialogeffect</include>
+	<controls>
+	
+		        <!-- NOWALL Background -->
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <texture>special://skin/backgrounds/skinsetting.jpg</texture>
+        </control>
+		
+        <!-- Visualization Background -->
+        <control type="visualisation">
+            <include>FullscreenDimensions</include>
+            <visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
+            <visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
+        </control>
+		
+        <!-- Video Background -->
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <texture>black.png</texture>
+            <visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+        </control>
+        <control type="videowindow">
+            <include>FullscreenDimensions</include>
+            <visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+        </control>
+		
+		<!-- TopBar -->
+        <control type="group">
+            <animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
+            <animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
+            <visible>!Control.IsVisible(609)</visible>
+            <control type="image">
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1920</width>
+                <height>66</height>
+                <texture border="1">topbar.png</texture>
+            </control>
+            <control type="label">
+                <width>900</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>left</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>$LOCALIZE[20077]</label>
+            </control>
+            <control type="label">
+                <posx>1920</posx>
+                <width>900</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>right</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>$INFO[Container.NumItems,, $LOCALIZE[31025]]$INFO[Container.CurrentPage,[COLOR grey3] | ,]$INFO[Container.NumPages,/,[/COLOR]]</label>
+            </control>
+            <control type="label">
+                <posx>0</posx>
+                <width>1920</width>
+                <height>90</height>
+                <font>font13_title</font>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <align>center</align>
+                <aligny>top</aligny>
+                <textoffsety>-2</textoffsety>
+                <label>$INFO[System.Time]</label>
+            </control>
+            <control type="group">
+                <visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
+                <animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
+                <animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
+                <posx>1080</posx>
+                <control type="progress">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>37</height>
+                    <texturebg border="2">osd/texturebg.png</texturebg>
+                    <lefttexture>-</lefttexture>
+                    <midtexture border="2">osd/midtexture_cache.png</midtexture>
+                    <righttexture>-</righttexture>
+                    <overlaytexture>-</overlaytexture>
+                    <info>Player.ProgressCache</info>
+                </control>
+                <control type="progress">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>35</height>
+                    <texturebg border="1">osd/texturebg_cache.png</texturebg>
+                    <lefttexture>-</lefttexture>
+                    <midtexture border="2">osd/midtexture.png</midtexture>
+                    <righttexture>-</righttexture>
+                    <overlaytexture>-</overlaytexture>
+                    <info>Player.Progress</info>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>90</height>
+                    <font>font13_title</font>
+                    <textoffsetx>10</textoffsetx>
+                    <textcolor>grey</textcolor>
+                    <shadowcolor>AA000000</shadowcolor>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <textoffsety>-2</textoffsety>
+                    <scroll>true</scroll>
+                    <label>$INFO[Player.Title]</label>
+                </control>
+            </control>
+        </control>
+	
+		<control type="group">
+			<control type="image">
+				<posx>30</posx>
+				<posy>60</posy>
+				<width>1860</width>
+				<height>960</height>
+				<texture border="40">dialogs/default/bg.png</texture>
+				<animation effect="fade" reversible="false" end="95" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="panel" id="3110">
+				<viewtype label="536">icons</viewtype>
+				<posy>100</posy>
+				<posx>60</posx>
+				<width>1798</width>
+				<height>765</height>
+				<orientation>vertical</orientation>
+				<onleft>3110</onleft>
+				<onright>3110</onright>
+				<onup>3010</onup>
+				<ondown>3010</ondown>
+				<preloaditems>4</preloaditems>
+				<itemlayout height="76" width="128" condition="true">
+					<control type="image">
+						<width>123</width>
+						<height>71</height>
+						<aspectratio>stretch</aspectratio>
+						<texture diffuse="diffuse_color_picker.png">$INFO[ListItem.Icon]</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="76" width="128" condition="true">
+					<control type="group">
+						<animation effect="zoom" time="300" tween="sine" easing="inout" start="100" end="180" center="70,40">Focus</animation>
+						<control type="image">
+							<width>123</width>
+							<height>71</height>
+							<aspectratio>stretch</aspectratio>
+							<texture border="10">color_picker_shadow.png</texture>
+						</control>
+						<control type="image">
+							<posx>4</posx>
+							<posy>4</posy>
+							<width>123</width>
+							<height>71</height>
+							<aspectratio>stretch</aspectratio>
+							<texture diffuse="diffuse_color_picker.png">$INFO[ListItem.Icon]</texture>
+						</control>
+					</control>
+				</focusedlayout>
+				<!--<itemlayout height="45" width="58" condition="!StringCompare(Window.Property(palettename),basic) + !StringCompare(Window.Property(palettename),material-design)">
+					<control type="image">
+						<width>53</width>
+						<height>40</height>
+						<texture diffuse="diffuse_color_picker.png">$INFO[ListItem.Icon]</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="60" width="90" condition="!StringCompare(Window.Property(palettename),basic) + !StringCompare(Window.Property(palettename),material-design)">
+					<control type="group">
+						<animation effect="zoom" time="300" tween="sine" easing="inout" start="100" end="180" center="70,40">Focus</animation>
+						<control type="image">
+							<width>90</width>
+							<height>60</height>
+							<texture border="10">color_picker_shadow.png</texture>
+						</control>
+						<control type="image">
+							<posx>4</posx>
+							<posy>4</posy>
+							<width>82</width>
+							<height>52</height>
+							<texture diffuse="diffuse_color_picker.png">$INFO[ListItem.Icon]</texture>
+						</control>
+					</control>
+				</focusedlayout>
+				<itemlayout height="40" width="125" condition="StringCompare(Window.Property(palettename),material-design)">
+					<control type="image">
+						<width>120</width>
+						<height>35</height>
+						<texture border="5">$INFO[ListItem.Icon]</texture>
+					</control>
+				</itemlayout>
+				<focusedlayout height="40" width="125" condition="StringCompare(Window.Property(palettename),material-design)">
+					<control type="group">
+						<animation effect="zoom" time="300" tween="sine" easing="inout" start="100" end="180" center="70,40">Focus</animation>
+						<control type="image">
+							<width>120</width>
+							<height>35</height>
+							<texture border="10">color_picker_shadow.png</texture>
+						</control>
+						<control type="image">
+							<width>120</width>
+							<height>35</height>
+							<texture border="5">$INFO[ListItem.Icon]</texture>
+						</control>
+					</control>
+				</focusedlayout>-->
+				 <content>
+				
+					<!-- Basic Colours -->
+				
+					<item id="1">
+                        <label>ffe8e8e8</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffe8e8e8.png</icon>
+                    </item>
+					
+					<item id="2">
+                        <label>fff7d6d4</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff7d6d4.png</icon>
+                    </item>
+					
+					<item id="3">
+                        <label>fffce1d0</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fffce1d0.png</icon>
+                    </item>
+					
+					<item id="4">
+                        <label>ffebe2da</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffebe2da.png</icon>
+                    </item>
+				
+					<item id="5">
+                        <label>fffbfbd6</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fffbfbd6.png</icon>
+                    </item>
+					
+					<item id="6">
+                        <label>ffdeefd8</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffdeefd8.png</icon>
+                    </item>
+					
+					<item id="7">
+                        <label>ffd5f6d8</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffd5f6d8.png</icon>
+                    </item>
+					
+					<item id="8">
+                        <label>ffd2ece4</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffd2ece4.png</icon>
+                    </item>
+					
+					<item id="9">
+                        <label>ffddf3f3</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffddf3f3.png</icon>
+                    </item>
+					
+					<item id="10">
+                        <label>ffd5e8f2</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffd5e8f2.png</icon>
+                    </item>
+					
+					<item id="11">
+                        <label>ffd6dfed</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffd6dfed.png</icon>
+                    </item>
+					
+					<item id="12">
+                        <label>ffe5dced</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffe5dced.png</icon>
+                    </item>
+					
+					<item id="13">
+                        <label>ffedd2e1</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffedd2e1.png</icon>
+                    </item>
+					
+					<item id="14">
+                        <label>fff8e5ea</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff8e5ea.png</icon>
+                    </item>
+					
+					<item id="15">
+                        <label>ffd1d1d1</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffd1d1d1.png</icon>
+                    </item>
+					
+					<item id="16">
+                        <label>ffefada9</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffefada9.png</icon>
+                    </item>
+					
+					<item id="17">
+                        <label>fff9c3a2</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff9c3a2.png</icon>
+                    </item>
+					
+					<item id="18">
+                        <label>ffd8c5b6</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffd8c5b6.png</icon>
+                    </item>
+					
+					<item id="19">
+                        <label>fff7f7ad</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff7f7ad.png</icon>
+                    </item>
+					
+					<item id="20">
+                        <label>ffbcdfb1</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffbcdfb1.png</icon>
+                    </item>
+					
+					<item id="21">
+                        <label>ffabecb1</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffabecb1.png</icon>
+                    </item>
+					
+					<item id="22">
+                        <label>ffa5d8c9</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffa5d8c9.png</icon>
+                    </item>
+					
+					<item id="23">
+                        <label>ffbae7e7</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffbae7e7.png</icon>
+                    </item>
+					
+					<item id="24">
+                        <label>ffabd1e5</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffabd1e5.png</icon>
+                    </item>
+					
+					<item id="25">
+                        <label>ffaebedc</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffaebedc.png</icon>
+                    </item>
+					
+					<item id="26">
+                        <label>ffcbb9da</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffcbb9da.png</icon>
+                    </item>
+					
+					<item id="27">
+                        <label>ffdba4c3</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffdba4c3.png</icon>
+                    </item>
+					
+					<item id="28">
+                        <label>fff2ccd5</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff2ccd5.png</icon>
+                    </item>
+					
+					<item id="29">
+                        <label>ffbababa</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffbababa.png</icon>
+                    </item>
+					
+					<item id="30">
+                        <label>ffe7847f</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffe7847f.png</icon>
+                    </item>
+					
+					<item id="31">
+                        <label>fff6a673</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff6a673.png</icon>
+                    </item>
+					
+					<item id="32">
+                        <label>ffc4a891</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffc4a891.png</icon>
+                    </item>
+					
+					<item id="33">
+                        <label>fff4f483</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff4f483.png</icon>
+                    </item>
+					
+					<item id="34">
+                        <label>ff9bd08a</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff9bd08a.png</icon>
+                    </item>
+					
+					<item id="35">
+                        <label>ff80e389</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff80e389.png</icon>
+                    </item>
+					
+					<item id="36">
+                        <label>ff78c5ae</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff78c5ae.png</icon>
+                    </item>
+					
+					<item id="37">
+                        <label>ff98dcdc</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff98dcdc.png</icon>
+                    </item>
+					
+					<item id="38">
+                        <label>ff81bad8</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff81bad8.png</icon>
+                    </item>
+					
+					<item id="39">
+                        <label>ff859ecb</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff859ecb.png</icon>
+                    </item>
+					
+					<item id="40">
+                        <label>ffb096c8</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffb096c8.png</icon>
+                    </item>
+					
+					<item id="41">
+                        <label>ffca76a6</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffca76a6.png</icon>
+                    </item>
+					
+					<item id="42">
+                        <label>ffecb2c0</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffecb2c0.png</icon>
+                    </item>
+					
+					<item id="43">
+                        <label>ffa4a4a4</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffa4a4a4.png</icon>
+                    </item>
+					
+					<item id="44">
+                        <label>ffdf5b54</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffdf5b54.png</icon>
+                    </item>
+					
+					<item id="45">
+                        <label>fff38844</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff38844.png</icon>
+                    </item>
+					
+					<item id="46">
+                        <label>ffb08b6c</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffb08b6c.png</icon>
+                    </item>
+					
+					<item id="47">
+                        <label>fff0f05a</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff0f05a.png</icon>
+                    </item>
+					
+					<item id="48">
+                        <label>ff7ac063</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff7ac063.png</icon>
+                    </item>
+					
+					<item id="49">
+                        <label>ff56da62</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff56da62.png</icon>
+                    </item>
+					
+					<item id="50">
+                        <label>ff4ab293</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff4ab293.png</icon>
+                    </item>
+					
+					<item id="51">
+                        <label>ff76d0d0</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff76d0d0.png</icon>
+                    </item>
+					
+					<item id="52">
+                        <label>ff57a4cb</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff57a4cb.png</icon>
+                    </item>
+					
+					<item id="53">
+                        <label>ff5d7eba</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff5d7eba.png</icon>
+                    </item>
+					
+					<item id="54">
+                        <label>ff9673b6</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff9673b6.png</icon>
+                    </item>
+					
+					<item id="55">
+                        <label>ffb84988</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffb84988.png</icon>
+                    </item>
+					
+					<item id="56">
+                        <label>ffe699ab</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffe699ab.png</icon>
+                    </item>
+					
+					<item id="57">
+                        <label>ff8d8d8d</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff8d8d8d.png</icon>
+                    </item>
+					
+					<item id="58">
+                        <label>ffd73229</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffd73229.png</icon>
+                    </item>
+					
+					<item id="59">
+                        <label>fff16a15</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/fff16a15.png</icon>
+                    </item>
+					
+					<item id="60">
+                        <label>ff9d6e48</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff9d6e48.png</icon>
+                    </item>
+					
+					<item id="61">
+                        <label>ffeded31</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffeded31.png</icon>
+                    </item>
+					
+					<item id="62">
+                        <label>ff59b03c</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff59b03c.png</icon>
+                    </item>
+					
+					<item id="63">
+                        <label>ff2cd13b</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff2cd13b.png</icon>
+                    </item>
+					
+					<item id="64">
+                        <label>ff1d9f78</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff1d9f78.png</icon>
+                    </item>
+					
+					<item id="65">
+                        <label>ff54c4c4</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff54c4c4.png</icon>
+                    </item>
+					
+					<item id="66">
+                        <label>ff2d8dbe</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff2d8dbe.png</icon>
+                    </item>
+					
+					<item id="67">
+                        <label>ff345da9</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff345da9.png</icon>
+                    </item>
+					
+					<item id="68">
+                        <label>ff7c50a4</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff7c50a4.png</icon>
+                    </item>
+					
+					<item id="69">
+                        <label>ffa71b6a</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffa71b6a.png</icon>
+                    </item>
+					
+					<item id="70">
+                        <label>ffe07f96</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffe07f96.png</icon>
+                    </item>
+					
+					<item id="71">
+                        <label>ff727272</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff727272.png</icon>
+                    </item>
+					
+					<item id="72">
+                        <label>ffaf2820</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffaf2820.png</icon>
+                    </item>
+					
+					<item id="73">
+                        <label>ffc55610</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffc55610.png</icon>
+                    </item>
+					
+					<item id="74">
+                        <label>ff7f5939</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff7f5939.png</icon>
+                    </item>
+					
+					<item id="75">
+                        <label>ffc1c127</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffc1c127.png</icon>
+                    </item>
+					
+					<item id="76">
+                        <label>ff479030</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff479030.png</icon>
+                    </item>
+										
+					<item id="77">
+                        <label>ff23ab2f</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff23ab2f.png</icon>
+                    </item>
+					
+					<item id="78">
+                        <label>ff168161</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff168161.png</icon>
+                    </item>
+					
+					<item id="79">
+                        <label>ff43a0a0</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff43a0a0.png</icon>
+                    </item>
+					
+					<item id="80">
+                        <label>ff23729b</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff23729b.png</icon>
+                    </item>
+					
+					<item id="81">
+                        <label>ff294b89</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff294b89.png</icon>
+                    </item>
+					
+					<item id="82">
+                        <label>ff654085</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff654085.png</icon>
+                    </item>
+					
+					<item id="83">
+                        <label>ff881556</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff881556.png</icon>
+                    </item>
+					
+					<item id="84">
+                        <label>ffb7677a</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ffb7677a.png</icon>
+                    </item>
+					
+					<item id="85">
+                        <label>ff575757</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff575757.png</icon>
+                    </item>
+					
+					<item id="86">
+                        <label>ff851e19</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff851e19.png</icon>
+                    </item>
+					
+					<item id="87">
+                        <label>ff95410c</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff95410c.png</icon>
+                    </item>
+					
+					<item id="88">
+                        <label>ff61442c</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff61442c.png</icon>
+                    </item>
+					
+					<item id="89">
+                        <label>ff92921d</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff92921d.png</icon>
+                    </item>
+					
+					<item id="90">
+                        <label>ff366d24</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff366d24.png</icon>
+                    </item>
+					
+					<item id="91">
+                        <label>ff1a8124</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff1a8124.png</icon>
+                    </item>
+					
+					<item id="92">
+                        <label>ff11624a</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff11624a.png</icon>
+                    </item>
+					
+					<item id="93">
+                        <label>ff337979</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff337979.png</icon>
+                    </item>
+					
+					<item id="94">
+                        <label>ff1b5776</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff1b5776.png</icon>
+                    </item>
+					
+					<item id="95">
+                        <label>ff1f3968</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff1f3968.png</icon>
+                    </item>
+					
+					<item id="96">
+                        <label>ff4c3165</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff4c3165.png</icon>
+                    </item>
+					
+					<item id="97">
+                        <label>ff671041</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff671041.png</icon>
+                    </item>
+					
+					<item id="98">
+                        <label>ff8a4e5c</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff8a4e5c.png</icon>
+                    </item>
+					
+					<item id="99">
+                        <label>ff3b3b3b</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff3b3b3b.png</icon>
+                    </item>
+					
+					<item id="100">
+                        <label>ff5a1511</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff5a1511.png</icon>
+                    </item>
+					
+					<item id="101">
+                        <label>ff652c08</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff652c08.png</icon>
+                    </item>
+					
+					<item id="102">
+                        <label>ff422e1e</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff422e1e.png</icon>
+                    </item>
+					
+					<item id="103">
+                        <label>ff636314</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff636314.png</icon>
+                    </item>
+					
+					<item id="104">
+                        <label>ff254a19</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff254a19.png</icon>
+                    </item>
+					
+					<item id="105">
+                        <label>ff125818</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff125818.png</icon>
+                    </item>
+					
+					<item id="106">
+                        <label>ff0c4232</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff0c4232.png</icon>
+                    </item>
+					
+					<item id="107">
+                        <label>ff235252</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff235252.png</icon>
+                    </item>
+					
+					<item id="108">
+                        <label>ff123b50</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff123b50.png</icon>
+                    </item>
+					
+					<item id="109">
+                        <label>ff152747</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff152747.png</icon>
+                    </item>
+					
+					<item id="110">
+                        <label>ff342145</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff342145.png</icon>
+                    </item>
+					
+					<item id="111">
+                        <label>ff460b2c</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff460b2c.png</icon>
+                    </item>
+					
+					<item id="112">
+                        <label>ff5e353f</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff5e353f.png</icon>
+                    </item>
+					
+					<item id="113">
+                        <label>ff181818</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff181818.png</icon>
+                    </item>
+					
+					<item id="114">
+                        <label>ff300b09</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff300b09.png</icon>
+                    </item>
+					
+					<item id="115">
+                        <label>ff351805</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff351805.png</icon>
+                    </item>
+					
+					<item id="116">
+                        <label>ff231810</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff231810.png</icon>
+                    </item>
+										
+					<item id="117">
+                        <label>ff35350b</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff35350b.png</icon>
+                    </item>
+					
+					<item id="118">
+                        <label>ff14270d</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff14270d.png</icon>
+                    </item>
+					
+					<item id="119">
+                        <label>ff0a2e0d</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff0a2e0d.png</icon>
+                    </item>
+					
+					<item id="120">
+                        <label>ff06231b</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff06231b.png</icon>
+                    </item>
+					
+					<item id="121">
+                        <label>ff132c2c</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff132c2c.png</icon>
+                    </item>
+					
+					<item id="122">
+                        <label>ff0a1f2a</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff0a1f2a.png</icon>
+                    </item>
+					
+					<item id="123">
+                        <label>ff0b1525</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff0b1525.png</icon>
+                    </item>
+					
+					<item id="124">
+                        <label>ff1c1224</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff1c1224.png</icon>
+                    </item>
+					
+					<item id="125">
+                        <label>ff250618</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff250618.png</icon>
+                    </item>
+					
+					<item id="126">
+                        <label>ff321c21</label>
+                        <onclick>noop</onclick>
+                        <icon>colors/ff321c21.png</icon>
+                    </item>
+					
+					
+				
+				
+				
+				</content>
+			</control>
+			<!-- Color Swatch -->
+			<control type="image">
+				<posy>870</posy>
+				<posx>61</posx>
+				<width>140</width>
+				<height>140</height>
+				<texture border="5" diffuse="diffuse_color_picker.png">panel.png</texture>
+				<colordiffuse>$INFO[Window.Property(colorstring)]</colordiffuse>
+			</control>
+			<control type="grouplist">
+				<orientation>horizontal</orientation>
+				<itemgap>10</itemgap>
+				<posx>205</posx>
+				<posy>945</posy>
+				<width>1800</width>
+				<control type="button" id="3030">
+					<posy>870</posy>
+					<posx>60</posx>
+					<width>auto</width>
+					<align>left</align>
+					<onup>3110</onup>
+					<ondown>3110</ondown>
+					<label>$ADDON[script.skin.helper.service 32141]: $INFO[Window.Property(palettename)]</label>
+					<visible>!IsEmpty(Window.Property(palettename))</visible>
+				</control>
+				<!-- Edit Button -->
+				<control type="button" id="3010">
+					<width>400</width>
+					<height>60</height>
+					<onup>3110</onup>
+					<ondown>3110</ondown>
+					<align>left</align>
+					<label>$ADDON[script.skin.helper.service 32012]</label>
+					<label2>[UPPERCASE]$INFO[Window.Property(colorstring)][/UPPERCASE]</label2>
+				</control>
+				<!-- Save Button -->
+				<control type="button" id="3012">
+					<width>auto</width>
+					<height>60</height>
+					<onup>3110</onup>
+					<ondown>3110</ondown>
+					<label>190</label>
+				</control>
+				<!-- None Button -->
+				<control type="button" id="3011">
+					<width>auto</width>
+					<height>60</height>
+					<onup>3110</onup>
+					<ondown>3110</ondown>
+					<onright>3020</onright>
+					<label>$ADDON[script.skin.helper.service 32013]</label>
+				</control>
+				<control type="group" id="3020">
+					<width>510</width>
+					<!-- Opacity label + Slider -->
+					<control type="label" id="3016">
+						<width>130</width>
+						<height>60</height>
+						<label>$ADDON[script.skin.helper.service 32049]:</label>
+						<textcolor>white</textcolor>
+					</control>
+					<control type="slider" id="3015">
+						<posx>130</posx>
+						<posy>10</posy>
+						<onup>3011</onup>
+						<ondown>3011</ondown>
+						<width>200</width>
+						<height>30</height>
+						<aligny>center</aligny>
+						<texturefocus>-</texturefocus>
+						<texturenofocus>-</texturenofocus>
+						<texturesliderbar>osd_slider_bg_2.png</texturesliderbar>
+						<textureslidernib>osd_slider_nibNF.png</textureslidernib>
+						<textureslidernibfocus>osd_slider_nib.png</textureslidernibfocus>
+					</control>
+					<control type="label" id="3017">
+						<posx>380</posx>
+						<height>60</height>
+						<label>$INFO[Control.Getlabel(3015)]</label>
+						<textcolor>white</textcolor>
+					</control>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>
