@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	
+	<!-- Colour Set Label -->
+    <variable name="ColourPaletteLabelVar">
+        <value condition="StringCompare(Skin.String(Colour.Palette),rainbow)">$LOCALIZE[42267]</value> <!-- STRING: rainbow -->
+		<value condition="StringCompare(Skin.String(Colour.Palette),webcolours)">$LOCALIZE[42268]</value> <!-- STRING: webcolours -->
+		<value condition="StringCompare(Skin.String(Colour.Palette),material-design)">$LOCALIZE[42269]</value> <!-- STRING: material-design -->
+		<value>$LOCALIZE[42270]</value> <!-- STRING: basic -->
+    </variable>
+	
+	<!-- Colour Set Setting -->
+	<variable name="ColourPaletteSettingVar">
+		<value condition="IsEmpty(Skin.String(Colour.Palette))">Skin.SetString(Colour.Palette,rainbow)</value>
+        <value condition="StringCompare(Skin.String(Colour.Palette),rainbow)">Skin.SetString(Colour.Palette,webcolours)</value>
+		<value condition="StringCompare(Skin.String(Colour.Palette),webcolours)">Skin.SetString(Colour.Palette,material-design)</value>
+        <value condition="StringCompare(Skin.String(Colour.Palette),material-design)">Skin.Reset(Colour.Palette)</value>
+    </variable>
+	
+	<variable name="ColourSwatch">
+        <value>$INFO[Container(3110).ListItem.Label]</value>
+    </variable>
+	
 	<variable name="Homemenu_OrientationVar">
         <value condition="!Skin.HasSetting(Homemenu.Vertical)">$LOCALIZE[42184]</value>
         <value>$LOCALIZE[42183]</value>
