@@ -578,6 +578,84 @@
 		</content>
 	</include>
 	
+	<include name="MainMenuListContent_LinearFont">
+		<posx>-290</posx>
+		<posy>62</posy>
+		<width>2800</width>
+		<height>100</height>
+		<onleft>300</onleft>
+		<onright>300</onright>
+		<movement>1</movement>
+		<onup condition="Control.IsVisible(9027)">9020</onup>
+		<onup condition="Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11005)">8001</onup>
+		<onup condition="!Control.IsVisible(11001) + Control.IsVisible(11000)">11000</onup>
+		<ondown>9001</ondown>
+		<pagecontrol>-</pagecontrol>
+		<scrolltime tween="quadratic" easing="out">300</scrolltime>
+		<focusposition>2</focusposition>
+		<orientation>Horizontal</orientation>
+		<animation effect="slide" start="0" end="-350,0" time="320" tween="cubic" easing="inout" condition="IsEmpty(Skin.String(MainMenu.Layout))">Conditional</animation>
+		
+		<itemlayout height="100" width="500" condition="StringCompare(Skin.String(MainMenu.Layout),5 Items)">
+			<control type="label">
+				<posx>250</posx>
+                <posy>12</posy>
+				<width>500</width>
+				<height>90</height>
+				<font>font_MainMenu_linear</font>
+				<textcolor>grey3</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+		</itemlayout>
+		<focusedlayout height="100" width="500" condition="StringCompare(Skin.String(MainMenu.Layout),5 Items)">
+			<control type="label">
+				<posx>250</posx>
+                <posy>12</posy>
+				<width>500</width>
+				<height>90</height>
+				<font>font_MainMenu_linear</font>
+				<textcolor>white</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+				<include>VisibleFadeEffect</include>
+			</control>
+		</focusedlayout>
+		<itemlayout height="100" width="640" condition="IsEmpty(Skin.String(MainMenu.Layout))">
+			<control type="label">
+				<posx>320</posx>
+                <posy>12</posy>
+				<width>640</width>
+				<height>90</height>
+				<font>font_MainMenu_linear</font>
+				<textcolor>grey3</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+		</itemlayout>
+		<focusedlayout height="100" width="640" condition="IsEmpty(Skin.String(MainMenu.Layout))">
+			<control type="label">
+				<posx>320</posx>
+                <posy>12</posy>
+				<width>640</width>
+				<height>90</height>
+				<font>font_MainMenu_linear</font>
+				<textcolor>white</textcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<label>$INFO[ListItem.Label]</label>
+				<include>VisibleFadeEffect</include>
+			</control>
+		</focusedlayout>
+		
+		<content>
+			<include>HomeMenuContent</include>
+		</content>
+	</include>	
+	
 	<include name="OneMainMenuItemListContent">
 		<control type="wraplist" id="300">
 			<posx>0</posx>
@@ -728,12 +806,14 @@
 	
 	<include name="MainMenuListFixed">
 		<control type="fixedlist" id="300">
-			<include>MainMenuListContent</include>
+			<include condition="StringCompare(Skin.String(MainMenu.Font),Linear)">MainMenuListContent_LinearFont</include>
+			<include condition="IsEmpty(Skin.String(MainMenu.Font))">MainMenuListContent</include>
 		</control>
 	</include>
 	<include name="MainMenuListWrapped">
 		<control type="wraplist" id="300">
-			<include>MainMenuListContent</include>
+			<include condition="StringCompare(Skin.String(MainMenu.Font),Linear)">MainMenuListContent_LinearFont</include>
+			<include condition="IsEmpty(Skin.String(MainMenu.Font))">MainMenuListContent</include>
 		</control>
 	</include>
 	<include name="VerticalMainMenuListFixed">
