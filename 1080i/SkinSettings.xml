@@ -1,370 +1,371 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-    <defaultcontrol always="true">9000</defaultcontrol>
-    
-    <controls>
-	
-        <!-- NOWALL Background -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <texture>special://skin/backgrounds/skinsetting.jpg</texture>
-        </control>
-		
-        <!-- Visualization Background -->
-        <control type="visualisation">
-            <include>FullscreenDimensions</include>
-            <visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
-            <visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
-        </control>
-		
-        <!-- Video Background -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <texture>black.png</texture>
-            <visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
-        </control>
-        <control type="videowindow">
-            <include>FullscreenDimensions</include>
-            <visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
-        </control>
-		
+	<defaultcontrol always="true">9000</defaultcontrol>
+
+	<controls>
+
+		<!-- NOWALL Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>special://skin/backgrounds/skinsetting.jpg</texture>
+		</control>
+
+		<!-- Visualization Background -->
+		<control type="visualisation">
+			<include>FullscreenDimensions</include>
+			<visible>Player.HasAudio + !Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
+			<visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
+		</control>
+
+		<!-- Video Background -->
+		<control type="image">
+			<include>FullscreenDimensions</include>
+			<texture>black.png</texture>
+			<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+		</control>
+		<control type="videowindow">
+			<include>FullscreenDimensions</include>
+			<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+		</control>
+
 		<!-- TopBar -->
-        <control type="group">
-            <animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
-            <animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
-            <visible>!Control.IsVisible(609)</visible>
-            <control type="image">
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>1920</width>
-                <height>66</height>
-                <texture border="1">topbar.png</texture>
-            </control>
-            <control type="label">
-                <width>900</width>
-                <height>90</height>
-                <font>font13_title</font>
-                <textoffsetx>15</textoffsetx>
-                <textcolor>grey2</textcolor>
-                <align>left</align>
-                <aligny>top</aligny>
-                <textoffsety>-2</textoffsety>
-                <label>$LOCALIZE[20077]</label>
-            </control>
-            <control type="label">
-                <posx>1920</posx>
-                <width>900</width>
-                <height>90</height>
-                <font>font13_title</font>
-                <textoffsetx>15</textoffsetx>
-                <textcolor>grey2</textcolor>
-                <align>right</align>
-                <aligny>top</aligny>
-                <textoffsety>-2</textoffsety>
-                <label>$INFO[Container.NumItems,, $LOCALIZE[31025]]$INFO[Container.CurrentPage,[COLOR grey3] | ,]$INFO[Container.NumPages,/,[/COLOR]]</label>
-            </control>
-            <control type="label">
-                <posx>0</posx>
-                <width>1920</width>
-                <height>90</height>
-                <font>font13_title</font>
-                <textoffsetx>15</textoffsetx>
-                <textcolor>grey2</textcolor>
-                <align>center</align>
-                <aligny>top</aligny>
-                <textoffsety>-2</textoffsety>
-                <label>$INFO[System.Time]</label>
-            </control>
-            <control type="group">
-                <visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
-                <animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
-                <animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
-                <posx>1080</posx>
-                <control type="progress">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>500</width>
-                    <height>37</height>
-                    <texturebg border="2">osd/texturebg.png</texturebg>
-                    <lefttexture>-</lefttexture>
-                    <midtexture border="2">osd/midtexture_cache.png</midtexture>
-                    <righttexture>-</righttexture>
-                    <overlaytexture>-</overlaytexture>
-                    <info>Player.ProgressCache</info>
-                </control>
-                <control type="progress">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>500</width>
-                    <height>35</height>
-                    <texturebg border="1">osd/texturebg_cache.png</texturebg>
-                    <lefttexture>-</lefttexture>
-                    <midtexture border="2">osd/midtexture.png</midtexture>
-                    <righttexture>-</righttexture>
-                    <overlaytexture>-</overlaytexture>
-                    <info>Player.Progress</info>
-                </control>
-                <control type="label">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>500</width>
-                    <height>90</height>
-                    <font>font13_title</font>
-                    <textoffsetx>10</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <shadowcolor>AA000000</shadowcolor>
-                    <align>left</align>
-                    <aligny>top</aligny>
-                    <textoffsety>-2</textoffsety>
-                    <scroll>true</scroll>
-                    <label>$INFO[Player.Title]</label>
-                </control>
-            </control>
-        </control>
-		
-        <control type="group">
-            <posx>0</posx>
-            <posy>128</posy>
-            <include>Window_OpenClose_Animation</include>
-            <include>SystemLeftPanel</include>
-            <control type="panel" id="9000">
-                <posx>82</posx>
-                <posy>32</posy>
-                <width>356</width>
-                <height>840</height>
-                <onleft>9010</onleft>
-                <onright>9010</onright>
-                <onup>9000</onup>
-                <ondown>9000</ondown>
-                <pagecontrol>-</pagecontrol>
-                <scrolltime tween="quadratic" easing="out">200</scrolltime>
+		<control type="group">
+			<animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
+			<animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
+			<visible>!Control.IsVisible(609)</visible>
+			<control type="image">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>66</height>
+				<texture border="1">topbar.png</texture>
+			</control>
+			<control type="label">
+				<width>900</width>
+				<height>90</height>
+				<font>font13_title</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>grey2</textcolor>
+				<align>left</align>
+				<aligny>top</aligny>
+				<textoffsety>-2</textoffsety>
+				<label>$LOCALIZE[20077]</label>
+			</control>
+			<control type="label">
+				<posx>1920</posx>
+				<width>900</width>
+				<height>90</height>
+				<font>font13_title</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>grey2</textcolor>
+				<align>right</align>
+				<aligny>top</aligny>
+				<textoffsety>-2</textoffsety>
+				<label>$INFO[Container.NumItems,, $LOCALIZE[31025]]$INFO[Container.CurrentPage,[COLOR grey3] | ,]$INFO[Container.NumPages,/,[/COLOR]]</label>
+			</control>
+			<control type="label">
+				<posx>0</posx>
+				<width>1920</width>
+				<height>90</height>
+				<font>font13_title</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>grey2</textcolor>
+				<align>center</align>
+				<aligny>top</aligny>
+				<textoffsety>-2</textoffsety>
+				<label>$INFO[System.Time]</label>
+			</control>
+			<control type="group">
+				<visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
+				<animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
+				<animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
+				<posx>1080</posx>
+				<control type="progress">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>500</width>
+					<height>37</height>
+					<texturebg border="2">osd/texturebg.png</texturebg>
+					<lefttexture>-</lefttexture>
+					<midtexture border="2">osd/midtexture_cache.png</midtexture>
+					<righttexture>-</righttexture>
+					<overlaytexture>-</overlaytexture>
+					<info>Player.ProgressCache</info>
+				</control>
+				<control type="progress">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>500</width>
+					<height>35</height>
+					<texturebg border="1">osd/texturebg_cache.png</texturebg>
+					<lefttexture>-</lefttexture>
+					<midtexture border="2">osd/midtexture.png</midtexture>
+					<righttexture>-</righttexture>
+					<overlaytexture>-</overlaytexture>
+					<info>Player.Progress</info>
+				</control>
+				<control type="label">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>500</width>
+					<height>90</height>
+					<font>font13_title</font>
+					<textoffsetx>10</textoffsetx>
+					<textcolor>grey</textcolor>
+					<shadowcolor>AA000000</shadowcolor>
+					<align>left</align>
+					<aligny>top</aligny>
+					<textoffsety>-2</textoffsety>
+					<scroll>true</scroll>
+					<label>$INFO[Player.Title]</label>
+				</control>
+			</control>
+		</control>
+
+		<control type="group">
+			<posx>0</posx>
+			<posy>128</posy>
+			<include>Window_OpenClose_Animation</include>
+			<include>SystemLeftPanel</include>
+			<control type="panel" id="9000">
+				<posx>82</posx>
+				<posy>32</posy>
+				<width>356</width>
+				<height>840</height>
+				<onleft>9010</onleft>
+				<onright>9010</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+				<pagecontrol>-</pagecontrol>
+				<scrolltime tween="quadratic" easing="out">200</scrolltime>
 				<visible>!Window.IsActive(1121) + !Window.IsActive(1140)</visible>
-                <include>SettingsFadeEffect</include>
-                <itemlayout height="90" width="356">
-                    <control type="image">
-                        <posy>30</posy>
-                        <width>356</width>
-                        <height>60</height>
-                        <texture border="1">separator2.png</texture>
-                    </control>
-                    <control type="label">
-                        <posx>356</posx>
-                        <posy>0</posy>
-                        <width>356</width>
-                        <height>90</height>
-                        <font>font15</font>
-                        <textoffsetx>20</textoffsetx>
-                        <textcolor>grey2</textcolor>
-                        <selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
-                        <align>right</align>
-                        <aligny>center</aligny>
-                        <label>$INFO[ListItem.Label]</label>
-                    </control>
-                </itemlayout>
-                <focusedlayout height="90" width="356">
-                    <control type="image">
-                        <posy>30</posy>
-                        <width>356</width>
-                        <height>60</height>
-                        <texture border="1">separator2.png</texture>
-                    </control>
-                    <control type="image">
-                        <posx>0</posx>
-                        <posy>0</posy>
-                        <width>356</width>
-                        <height>90</height>
-                        <texture border="4">listselect_fo.png</texture>
+				<include>SettingsFadeEffect</include>
+				<itemlayout height="90" width="356">
+					<control type="image">
+						<posy>30</posy>
+						<width>356</width>
+						<height>60</height>
+						<texture border="1">separator2.png</texture>
+					</control>
+					<control type="label">
+						<posx>356</posx>
+						<posy>0</posy>
+						<width>356</width>
+						<height>90</height>
+						<font>font15</font>
+						<textoffsetx>20</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="90" width="356">
+					<control type="image">
+						<posy>30</posy>
+						<width>356</width>
+						<height>60</height>
+						<texture border="1">separator2.png</texture>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>356</width>
+						<height>90</height>
+						<texture border="4">listselect_fo.png</texture>
 						<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
-                        <include>VisibleFadeEffect</include>
-                    </control>
-                    <control type="label">
-                        <posx>356</posx>
-                        <posy>0</posy>
-                        <width>356</width>
-                        <height>90</height>
-                        <font>font15</font>
-                        <textoffsetx>20</textoffsetx>
-                        <textcolor>white</textcolor>
-                        <selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
-                        <align>right</align>
-                        <aligny>center</aligny>
-                        <label>$INFO[ListItem.Label]</label>
-                        <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(9000)">Conditional</animation>
-                    </control>
-                </focusedlayout>
-                <content>
-				
+						<include>VisibleFadeEffect</include>
+					</control>
+					<control type="label">
+						<posx>356</posx>
+						<posy>0</posy>
+						<width>356</width>
+						<height>90</height>
+						<font>font15</font>
+						<textoffsetx>20</textoffsetx>
+						<textcolor>white</textcolor>
+						<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(9000)">Conditional</animation>
+					</control>
+				</focusedlayout>
+				<content>
+
 					<!-- General -->
 					<item id="1">
-                        <label>16000</label>
-                        <onclick>noop</onclick>
-                        <icon>-</icon>
-                    </item>
-					
+						<label>16000</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+
 					<!-- Colour Customization -->
 					<item id="2">
-                        <label>42263</label>
-                        <onclick>noop</onclick>
-                        <icon>-</icon>
-                    </item>
-					
-					<!-- Home Menu -->
-                    <item id="3">
-                        <label>513</label>
-                        <onclick>noop</onclick>
-                        <icon>-</icon>
-                    </item>
-					
+						<label>42263</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+
+					<!-- Home Window -->
+					<item id="3">
+						<label>513</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+
 					<!-- Widgets -->
 					<item id="4">
-                        <label>$LOCALIZE[42193]</label> <!-- STRING: Widgets -->
-                        <onclick>noop</onclick>
-                        <icon>-</icon>
-                    </item>
-					
-                    <!-- Backgrounds -->
-                    <item id="5">
-                        <label>$LOCALIZE[31656]</label>
-                        <onclick>noop</onclick>
-                        <icon>-</icon>
-                    </item>
-					
+						<label>$LOCALIZE[42193]</label> <!-- STRING: Widgets -->
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+
+					<!-- Backgrounds -->
+					<item id="5">
+						<label>$LOCALIZE[31656]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+
 					<!-- Preplay -->
 					<item id="6">
-                        <label>$LOCALIZE[42156]</label>
-                        <onclick>noop</onclick>
-                        <icon>-</icon>
-                    </item>
-					
-                    <!-- Advanced -->
-                    <item id="7">
-                        <label>31093</label>
-                        <onclick>noop</onclick>
-                        <icon>-</icon>
-                    </item>
-					
-                </content>
-            </control>
-			
+						<label>$LOCALIZE[42156]</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+
+					<!-- Advanced -->
+					<item id="7">
+						<label>31093</label>
+						<onclick>noop</onclick>
+						<icon>-</icon>
+					</item>
+
+				</content>
+			</control>
+
 			<!-- Aeon Nox Logo -->
-            <control type="image">
-                <description>LOGO</description>
-                <posx>82</posx>
-                <posy>752</posy>
-                <width>356</width>
-                <height>120</height>
-                <aspectratio>keep</aspectratio>
-                <texture>aeon-nox-logo.png</texture>
-            </control>
-            <include>SystemRightPanel</include>
-            <control type="image">
-                <description>separator image</description>
-                <posx>522</posx>
-                <posy>692</posy>
-                <width>1316</width>
-                <height>60</height>
-                <texture border="1">separator2.png</texture>
-            </control>
-            <control type="textbox">
-                <description>description area</description>
-                <posx>552</posx>
-                <posy>754</posy>
-                <width>1256</width>
-                <height>115</height>
-                <font>font15_textbox</font>
-                <align>left</align>
-                <textcolor>grey2</textcolor>
-                <label>$VAR[SkinSettingsDescriptionVar]</label>
-                <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-                <animation effect="fade" start="0" end="100" time="300" tween="sine" easing="inout">Visible</animation>
-                <animation effect="fade" start="100" end="0" time="0" tween="sine" easing="inout">Hidden</animation>
-                <visible>!Window.IsActive(1121) + !Window.IsActive(1140)</visible>
-            </control>
-            <control type="group" id="9010">
-                <visible>!Window.IsActive(1121) + !Window.IsActive(1140)</visible>
-                <include>SettingsFadeEffect</include>
-				
+			<control type="image">
+				<description>LOGO</description>
+				<posx>82</posx>
+				<posy>752</posy>
+				<width>356</width>
+				<height>120</height>
+				<aspectratio>keep</aspectratio>
+				<texture>aeon-nox-logo.png</texture>
+			</control>
+			<include>SystemRightPanel</include>
+			<control type="image">
+				<description>separator image</description>
+				<posx>522</posx>
+				<posy>692</posy>
+				<width>1316</width>
+				<height>60</height>
+				<texture border="1">separator2.png</texture>
+			</control>
+			<control type="textbox">
+				<description>description area</description>
+				<posx>552</posx>
+				<posy>754</posy>
+				<width>1256</width>
+				<height>115</height>
+				<font>font15_textbox</font>
+				<align>left</align>
+				<textcolor>grey2</textcolor>
+				<label>$VAR[SkinSettingsDescriptionVar]</label>
+				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+				<animation effect="fade" start="0" end="100" time="300" tween="sine" easing="inout">Visible</animation>
+				<animation effect="fade" start="100" end="0" time="0" tween="sine" easing="inout">Hidden</animation>
+				<visible>!Window.IsActive(1121) + !Window.IsActive(1140)</visible>
+			</control>
+			<control type="group" id="9010">
+				<visible>!Window.IsActive(1121) + !Window.IsActive(1140)</visible>
+				<include>SettingsFadeEffect</include>
+
 				<!-- General Skin Settings -->
-                <control type="grouplist" id="9001">
-                    <description>control area</description>
-                    <posx>522</posx>
-                    <posy>32</posy>
-                    <width>1316</width>
-                    <height>720</height>
-                    <itemgap>0</itemgap>
-                    <pagecontrol>60</pagecontrol>
-                    <onleft>9000</onleft>
-                    <onright>noop</onright>
-                    <onup>9001</onup>
-                    <ondown>9001</ondown>
-                    <visible>Container(9000).HasFocus(1)</visible>
-					
+				<control type="grouplist" id="9001">
+					<description>control area</description>
+					<posx>522</posx>
+					<posy>32</posy>
+					<width>1316</width>
+					<height>720</height>
+					<itemgap>0</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>9001</onup>
+					<ondown>9001</ondown>
+					<visible>Container(9000).HasFocus(1)</visible>
+
 					<!-- Enable Plot Autoscroll -->
-                    <control type="radiobutton" id="101">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>20189</label>
-                        <onclick>Skin.ToggleSetting(Enable.AutoScroll)</onclick>
-                        <selected>Skin.HasSetting(Enable.AutoScroll)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-					
-                    <!-- Smaller Plot Text -->
+					<control type="radiobutton" id="101">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>20189</label>
+						<onclick>Skin.ToggleSetting(Enable.AutoScroll)</onclick>
+						<selected>Skin.HasSetting(Enable.AutoScroll)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
+					<!-- Smaller Plot Text -->
 					<control type="button" id="102">
 						<description>Enable Smaller Plot Text</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42037]</label>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42037]</label>
 						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[SettingSmallPlotLabelVar][/COLOR]</label2>
-                        <onclick condition="!Skin.HasSetting(General.SmallPlotText)">Skin.SetBool(General.SmallPlotText)</onclick>
-                        <onclick condition="Skin.HasSetting(General.SmallPlotText)">Skin.Reset(General.SmallPlotText)</onclick>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-										
+						<onclick condition="!Skin.HasSetting(General.SmallPlotText)">Skin.SetBool(General.SmallPlotText)</onclick>
+						<onclick condition="Skin.HasSetting(General.SmallPlotText)">Skin.Reset(General.SmallPlotText)</onclick>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
 					<!-- Show Plot for Unwatched Videos -->
 					<control type="radiobutton" id="103">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42275]</label>
-                        <onclick>Skin.ToggleSetting(Disable.UnwatchedPlot)</onclick>
-                        <selected>!Skin.HasSetting(Disable.UnwatchedPlot)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-					
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42275]</label>
+						<onclick>Skin.ToggleSetting(Disable.UnwatchedPlot)</onclick>
+						<selected>!Skin.HasSetting(Disable.UnwatchedPlot)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
 					<!-- Disable Scroll Indicator -->
 					<control type="radiobutton" id="104">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42082]</label>
-                        <onclick>Skin.ToggleSetting(Disable.ScrollIndicator)</onclick>
-                        <selected>Skin.HasSetting(Disable.ScrollIndicator)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-					
-                </control>
-				
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42082]</label>
+						<onclick>Skin.ToggleSetting(Disable.ScrollIndicator)</onclick>
+						<selected>Skin.HasSetting(Disable.ScrollIndicator)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
+				</control>
+
 				<control type="grouplist" id="9002">
-                    <description>control area</description>
-                    <posx>522</posx>
-                    <posy>32</posy>
-                    <width>1316</width>
-                    <height>720</height>
-                    <itemgap>0</itemgap>
-                    <pagecontrol>60</pagecontrol>
-                    <onleft>9000</onleft>
-                    <onright>noop</onright>
-                    <onup>9002</onup>
-                    <ondown>9002</ondown>
-                    <visible>Container(9000).HasFocus(2)</visible>
-					
+					<description>control area</description>
+					<posx>522</posx>
+					<posy>32</posy>
+					<width>1316</width>
+					<height>720</height>
+					<itemgap>0</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>9002</onup>
+					<ondown>9002</ondown>
+					<visible>Container(9000).HasFocus(2)</visible>
+
+					<!-- General: Theme Colour -->
 					<control type="button" id="201">
 						<width>1316</width>
 						<height>90</height>
@@ -375,36 +376,46 @@
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
 					
-					
-                </control>
-				
-                <!-- Home Window -->
-                <control type="grouplist" id="9003">
-                    <description>control area</description>
-                    <posx>522</posx>
-                    <posy>32</posy>
-                    <width>1316</width>
-                    <height>720</height>
-                    <itemgap>0</itemgap>
-                    <pagecontrol>60</pagecontrol>
-                    <onleft>9000</onleft>
-                    <onright>noop</onright>
-                    <onup>9003</onup>
-                    <ondown>9003</ondown>
-                    <visible>Container(9000).HasFocus(3)</visible>
-					
+					<!-- Home Window: Theme Colour -->
+					<control type="button" id="202">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42296]</label>
+						<onclick>ActivateWindow(1141)</onclick>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
+				</control>
+
+				<!-- Home Window -->
+				<control type="grouplist" id="9003">
+					<description>control area</description>
+					<posx>522</posx>
+					<posy>32</posy>
+					<width>1316</width>
+					<height>720</height>
+					<itemgap>0</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>9003</onup>
+					<ondown>9003</ondown>
+					<visible>Container(9000).HasFocus(3)</visible>
+
 					<!-- Set Main Menu Orientation -->
-                    <control type="button" id="301">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>42182</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[Homemenu_OrientationVar][/COLOR]</label2>
-                        <onclick>Skin.ToggleSetting(Homemenu.Vertical)</onclick>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-					
+					<control type="button" id="301">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>42182</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[Homemenu_OrientationVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Homemenu.Vertical)</onclick>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
 					<!-- Homemenu Font -->
 					<control type="button" id="302">
 						<width>1316</width>
@@ -416,7 +427,7 @@
 						<onclick>$VAR[FontSettingVar]</onclick>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-										
+
 					<!-- Homemenu Graphic -->
 					<control type="button" id="303">
 						<label>$LOCALIZE[42201]</label>
@@ -429,45 +440,45 @@
 						<texturenofocus border="1">separator5.png</texturenofocus>
 						<visible>!Skin.HasSetting(Homemenu.Vertical)</visible>
 					</control>
-					
-                    <!-- Set Main Menu Position -->
-                    <control type="button" id="304">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>31913</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[middlemainmenuVar][/COLOR]</label2>
-                        <onclick>Skin.ToggleSetting(middlemainmenu)</onclick>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
+
+					<!-- Set Main Menu Position -->
+					<control type="button" id="304">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31913</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[middlemainmenuVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(middlemainmenu)</onclick>
+						<texturenofocus border="1">separator5.png</texturenofocus>
 						<visible>!Skin.HasSetting(Homemenu.Vertical)</visible>
-                    </control>
-					
-                    <!-- Home Menu Size -->
-                    <control type="button" id="305">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>31928</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[MainMenuLayoutVar][/COLOR]</label2>
-                        <onclick>$VAR[MainMenuLayoutSettingVar]</onclick>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
+					<!-- Home Menu Size -->
+					<control type="button" id="305">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31928</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[MainMenuLayoutVar][/COLOR]</label2>
+						<onclick>$VAR[MainMenuLayoutSettingVar]</onclick>
+						<texturenofocus border="1">separator5.png</texturenofocus>
 						<visible>!Skin.HasSetting(Homemenu.Vertical)</visible>
-                    </control>
-					
+					</control>
+
 					<!-- Home Menu Fixed/Wrapped -->
 					<control type="button" id="306">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42038]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[MainHorizontalListNavVar][/COLOR]</label2>
-                        <onclick>Skin.ToggleSetting(MainHorizontalListNav)</onclick>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-					
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42038]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[MainHorizontalListNavVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(MainHorizontalListNav)</onclick>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
 					<!-- Hide Submenu -->
 					<control type="radiobutton" id="307">
 						<width>1316</width>
@@ -480,7 +491,7 @@
 						<texturenofocus border="1">separator5.png</texturenofocus>
 						<visible>!Skin.HasSetting(Homemenu.Vertical)</visible>
 					</control>
-										
+
 					<!-- Search -->
 					<control type="button" id="308">
 						<width>1316</width>
@@ -492,48 +503,48 @@
 						<onclick>$VAR[SearchSettingVar]</onclick>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-                    <!-- Enable User Info -->
+
+					<!-- Enable User Info -->
 					<control type="radiobutton" id="309">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42272]</label>
-                        <onclick>Skin.ToggleSetting(Disable.Userinfo)</onclick>
-                        <selected>!Skin.HasSetting(Disable.Userinfo)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-					
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42272]</label>
+						<onclick>Skin.ToggleSetting(Disable.Userinfo)</onclick>
+						<selected>!Skin.HasSetting(Disable.Userinfo)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
 					<!-- Enable Server Info -->
 					<control type="radiobutton" id="310">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42040]</label>
-                        <onclick>Skin.ToggleSetting(Disable.Serverinfo)</onclick>
-                        <selected>!Skin.HasSetting(Disable.Serverinfo)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-					
-                </control>
-                
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42040]</label>
+						<onclick>Skin.ToggleSetting(Disable.Serverinfo)</onclick>
+						<selected>!Skin.HasSetting(Disable.Serverinfo)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+
+				</control>
+
 				<!-- Widgets -->
 				<control type="grouplist" id="9004">
-                    <description>control area</description>
-                    <posx>522</posx>
-                    <posy>32</posy>
-                    <width>1316</width>
-                    <height>720</height>
-                    <itemgap>0</itemgap>
-                    <pagecontrol>60</pagecontrol>
-                    <onleft>9000</onleft>
-                    <onright>noop</onright>
-                    <onup>9004</onup>
-                    <ondown>9004</ondown>
-                    <visible>Container(9000).HasFocus(4)</visible>
-					
+					<description>control area</description>
+					<posx>522</posx>
+					<posy>32</posy>
+					<width>1316</width>
+					<height>720</height>
+					<itemgap>0</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>9004</onup>
+					<ondown>9004</ondown>
+					<visible>Container(9000).HasFocus(4)</visible>
+
 					<!-- General ************************************************************************************************************************************** -->
 					<control type="label" id="401">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42214][/COLOR]</label>
@@ -543,71 +554,71 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Disable Widgets -->
-						<control type="radiobutton" id="402">
-							<description>Disable Widgets</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42216]</label>
-							<onclick>Skin.ToggleSetting(Widget.Disable)</onclick>
-							<selected>!Skin.HasSetting(Widget.Disable)</selected>
-						</control>
-						
-						<!-- Hide Widgets Until Focussed -->
-						<control type="radiobutton" id="403">
-							<description>Hide Widgets Until Focussed</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42217]</label>
-							<onclick>Skin.ToggleSetting(Enable.WidgetHide)</onclick>
-							<selected>Skin.HasSetting(Enable.WidgetHide)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-						
-						<!-- Widget Style -->
-						<control type="button" id="404">
-							<label>$LOCALIZE[42218]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[WidgetStyleLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.List)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Widget Background -->
-						<control type="button" id="405">
-							<label>$LOCALIZE[42190]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[WidgetBackLabelVar][/COLOR]</label2>
-							<onclick>$VAR[WidgetBackVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Widget Transparency -->
-						<control type="button" id="406">
-							<label>$LOCALIZE[42194]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[WidgetTransLabelVar]%[/COLOR]</label2>
-							<onclick>$VAR[WidgetTransVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
+
+					<!-- Disable Widgets -->
+					<control type="radiobutton" id="402">
+						<description>Disable Widgets</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42216]</label>
+						<onclick>Skin.ToggleSetting(Widget.Disable)</onclick>
+						<selected>!Skin.HasSetting(Widget.Disable)</selected>
+					</control>
+
+					<!-- Hide Widgets Until Focussed -->
+					<control type="radiobutton" id="403">
+						<description>Hide Widgets Until Focussed</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42217]</label>
+						<onclick>Skin.ToggleSetting(Enable.WidgetHide)</onclick>
+						<selected>Skin.HasSetting(Enable.WidgetHide)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Widget Style -->
+					<control type="button" id="404">
+						<label>$LOCALIZE[42218]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[WidgetStyleLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.List)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Widget Background -->
+					<control type="button" id="405">
+						<label>$LOCALIZE[42190]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[WidgetBackLabelVar][/COLOR]</label2>
+						<onclick>$VAR[WidgetBackVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Widget Transparency -->
+					<control type="button" id="406">
+						<label>$LOCALIZE[42194]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[WidgetTransLabelVar]%[/COLOR]</label2>
+						<onclick>$VAR[WidgetTransVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
 					<!-- On Deck Movies ***************************************************************************************************************************** -->
 					<control type="label" id="407">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42213][/COLOR]</label>
@@ -617,62 +628,62 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- On Deck Movies Artwork Style -->
-						<control type="button" id="408">
-							<label>$LOCALIZE[42200]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckMovieArtworkTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.OnDeck.Movies.Fanart)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- On Deck Movies Case Style -->
-						<control type="button" id="409">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckMovieCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[OnDeckMovieCaseTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>!Skin.HasSetting(Widget.OnDeck.Movies.Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- On Deck Movies Fanart Case Style -->
-						<control type="button" id="410">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckMovieFanartCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.OnDeck.Movies.Fanart.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>Skin.HasSetting(Widget.OnDeck.Movies.Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- On Deck Movies Text Label -->
-						<control type="radiobutton" id="411">
-							<description>On Deck Movies Text Label</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42196]</label>
-							<onclick>Skin.ToggleSetting(Widget.OnDeck.Movies.Label)</onclick>
-							<selected>Skin.HasSetting(Widget.OnDeck.Movies.Label)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-							<visible>!Skin.HasSetting(Widget.List)</visible>
-						</control>
-					
+
+					<!-- On Deck Movies Artwork Style -->
+					<control type="button" id="408">
+						<label>$LOCALIZE[42200]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckMovieArtworkTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.OnDeck.Movies.Fanart)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- On Deck Movies Case Style -->
+					<control type="button" id="409">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckMovieCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[OnDeckMovieCaseTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>!Skin.HasSetting(Widget.OnDeck.Movies.Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- On Deck Movies Fanart Case Style -->
+					<control type="button" id="410">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckMovieFanartCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.OnDeck.Movies.Fanart.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>Skin.HasSetting(Widget.OnDeck.Movies.Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- On Deck Movies Text Label -->
+					<control type="radiobutton" id="411">
+						<description>On Deck Movies Text Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42196]</label>
+						<onclick>Skin.ToggleSetting(Widget.OnDeck.Movies.Label)</onclick>
+						<selected>Skin.HasSetting(Widget.OnDeck.Movies.Label)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+						<visible>!Skin.HasSetting(Widget.List)</visible>
+					</control>
+
 					<!-- On Deck Episodes -->
 					<control type="label" id="412">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42215][/COLOR]</label>
@@ -682,76 +693,76 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Artwork Style -->
-						<control type="button" id="413">
-							<label>$LOCALIZE[42200]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVArtworkTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[OnDeckTVArtworkTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- On Deck Episodes Case Style -->
-						<control type="button" id="414">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[OnDeckTVCaseTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- On Deck Episodes Thumbnail Case Style -->
-						<control type="button" id="415">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVThumbnailCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.OnDeck.TV.Thumbnail.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- On Deck Episodes Fanart Case Style -->
-						<control type="button" id="416">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVFanartCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.OnDeck.TV.Fanart.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- On Deck Episodes Text Label -->
-						<control type="radiobutton" id="417">
-							<description>On Deck Episodes Text Label</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42196]</label>
-							<onclick>Skin.ToggleSetting(Widget.OnDeck.TV.DisableLabel)</onclick>
-							<selected>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-							<visible>!Skin.HasSetting(Widget.List)</visible>
-						</control>
-					
+
+					<!-- Artwork Style -->
+					<control type="button" id="413">
+						<label>$LOCALIZE[42200]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVArtworkTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[OnDeckTVArtworkTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- On Deck Episodes Case Style -->
+					<control type="button" id="414">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[OnDeckTVCaseTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- On Deck Episodes Thumbnail Case Style -->
+					<control type="button" id="415">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVThumbnailCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.OnDeck.TV.Thumbnail.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- On Deck Episodes Fanart Case Style -->
+					<control type="button" id="416">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVFanartCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.OnDeck.TV.Fanart.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- On Deck Episodes Text Label -->
+					<control type="radiobutton" id="417">
+						<description>On Deck Episodes Text Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42196]</label>
+						<onclick>Skin.ToggleSetting(Widget.OnDeck.TV.DisableLabel)</onclick>
+						<selected>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+						<visible>!Skin.HasSetting(Widget.List)</visible>
+					</control>
+
 					<!-- Recently Added Movies ****************************************************************************************************************************** -->
 					<control type="label" id="418">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42195][/COLOR]</label>
@@ -761,63 +772,63 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Artwork Style -->
-						<control type="button" id="419">
-							<label>$LOCALIZE[42200]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMovieArtworkTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Movies.Fanart)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<selected>Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Case Style -->
-						<control type="button" id="420">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMovieCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[RecentlyAddedMovieCaseTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Fanart Case Style -->
-						<control type="button" id="421">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMovieFanartCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Movies.Fanart.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Added Movies Text Label -->
-						<control type="radiobutton" id="422">
-							<description>Recently Added Movies Text Label</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42196]</label>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Movies.Label)</onclick>
-							<selected>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-							<visible>!Skin.HasSetting(Widget.List)</visible>
-						</control>
-					
+
+					<!-- Artwork Style -->
+					<control type="button" id="419">
+						<label>$LOCALIZE[42200]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMovieArtworkTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Movies.Fanart)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<selected>Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Case Style -->
+					<control type="button" id="420">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMovieCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[RecentlyAddedMovieCaseTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Fanart Case Style -->
+					<control type="button" id="421">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMovieFanartCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Movies.Fanart.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Added Movies Text Label -->
+					<control type="radiobutton" id="422">
+						<description>Recently Added Movies Text Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42196]</label>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Movies.Label)</onclick>
+						<selected>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+						<visible>!Skin.HasSetting(Widget.List)</visible>
+					</control>
+
 					<!-- Recently Added Episodes -->
 					<control type="label" id="423">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42204][/COLOR]</label>
@@ -827,76 +838,76 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Artwork Style -->
-						<control type="button" id="424">
-							<label>$LOCALIZE[42200]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVArtworkTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[RecentlyAddedTVArtworkTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- TV Recently Added Episodes Case Style -->
-						<control type="button" id="425">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[RecentlyAddedTVCaseTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] | StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- TV Thumbnail Case Style -->
-						<control type="button" id="426">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVThumbnailCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- TV Fanart Case Style -->
-						<control type="button" id="427">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVFanartCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.Fanart.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Added Episodes Text Label -->
-						<control type="radiobutton" id="428">
-							<description>Recently Added Episodes Text Label</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42196]</label>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.DisableLabel)</onclick>
-							<selected>!Skin.HasSetting(Widget.RecentlyAdded.TV.DisableLabel)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-							<visible>!Skin.HasSetting(Widget.List)</visible>
-						</control>
-					
+
+					<!-- Artwork Style -->
+					<control type="button" id="424">
+						<label>$LOCALIZE[42200]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVArtworkTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[RecentlyAddedTVArtworkTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- TV Recently Added Episodes Case Style -->
+					<control type="button" id="425">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[RecentlyAddedTVCaseTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] | StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- TV Thumbnail Case Style -->
+					<control type="button" id="426">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVThumbnailCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- TV Fanart Case Style -->
+					<control type="button" id="427">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVFanartCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.Fanart.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Added Episodes Text Label -->
+					<control type="radiobutton" id="428">
+						<description>Recently Added Episodes Text Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42196]</label>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.DisableLabel)</onclick>
+						<selected>!Skin.HasSetting(Widget.RecentlyAdded.TV.DisableLabel)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+						<visible>!Skin.HasSetting(Widget.List)</visible>
+					</control>
+
 					<!-- Recently Added Albums -->
 					<control type="label" id="429">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42207][/COLOR]</label>
@@ -906,62 +917,62 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Music Artwork Style -->
-						<control type="button" id="430">
-							<label>$LOCALIZE[42200]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMusicArtworkTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[RecentlyAddedMusicArtworkTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Added Albums Case Style -->
-						<control type="button" id="431">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMusicCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[RecentlyAddedMusicCaseTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Added Music Fanart Case Style -->
-						<control type="button" id="432">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMusicFanartCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Music.Fanart.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Added Albums Text Label -->
-						<control type="radiobutton" id="433">
-							<description>Recently Added Episodes Text Label</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42196]</label>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Music.Label)</onclick>
-							<selected>Skin.HasSetting(Widget.RecentlyAdded.Music.Label)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-							<visible>!Skin.HasSetting(Widget.List)</visible>
-						</control>
-					
+
+					<!-- Music Artwork Style -->
+					<control type="button" id="430">
+						<label>$LOCALIZE[42200]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMusicArtworkTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[RecentlyAddedMusicArtworkTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Added Albums Case Style -->
+					<control type="button" id="431">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMusicCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[RecentlyAddedMusicCaseTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork))</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Added Music Fanart Case Style -->
+					<control type="button" id="432">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedMusicFanartCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Music.Fanart.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Added Albums Text Label -->
+					<control type="radiobutton" id="433">
+						<description>Recently Added Episodes Text Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42196]</label>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Music.Label)</onclick>
+						<selected>Skin.HasSetting(Widget.RecentlyAdded.Music.Label)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+						<visible>!Skin.HasSetting(Widget.List)</visible>
+					</control>
+
 					<!-- Recently Added Photos -->
 					<control type="label" id="434">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42211][/COLOR]</label>
@@ -971,62 +982,62 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Recently Added Photos Artwork Style -->
-						<control type="button" id="435">
-							<label>$LOCALIZE[42200]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedPhotoArtworkTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[RecentlyAddedPhotoArtworkTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Added Photos Case Style -->
-						<control type="button" id="436">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedPhotoCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[RecentlyAddedPhotoCaseTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Added Photos Fanart Case Style -->
-						<control type="button" id="437">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedPhotoFanartCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Photo.Fanart.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>StringCompare(Skin.String(Widget.RecentlyAdded.Photo.Artwork),Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Added Photos Text Label -->
-						<control type="radiobutton" id="438">
-							<description>Recently Added Episodes Text Label</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42196]</label>
-							<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Photo.DisableLabel)</onclick>
-							<selected>!Skin.HasSetting(Widget.RecentlyAdded.Photo.DisableLabel)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-							<visible>!Skin.HasSetting(Widget.List)</visible>
-						</control>
-					
+
+					<!-- Recently Added Photos Artwork Style -->
+					<control type="button" id="435">
+						<label>$LOCALIZE[42200]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedPhotoArtworkTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[RecentlyAddedPhotoArtworkTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Added Photos Case Style -->
+					<control type="button" id="436">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedPhotoCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[RecentlyAddedPhotoCaseTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork))</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Added Photos Fanart Case Style -->
+					<control type="button" id="437">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedPhotoFanartCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Photo.Fanart.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>StringCompare(Skin.String(Widget.RecentlyAdded.Photo.Artwork),Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Added Photos Text Label -->
+					<control type="radiobutton" id="438">
+						<description>Recently Added Episodes Text Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42196]</label>
+						<onclick>Skin.ToggleSetting(Widget.RecentlyAdded.Photo.DisableLabel)</onclick>
+						<selected>!Skin.HasSetting(Widget.RecentlyAdded.Photo.DisableLabel)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+						<visible>!Skin.HasSetting(Widget.List)</visible>
+					</control>
+
 					<!-- Recently Used Channels -->
 					<control type="label" id="439">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42212][/COLOR]</label> <!-- STRING: Recently Used Channels -->
@@ -1036,62 +1047,62 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Recently Used Channels Artwork Style -->
-						<control type="button" id="440">
-							<label>$LOCALIZE[42200]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[ChannelsArtworkTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[ChannelsArtworkTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Used Channels Case Style -->
-						<control type="button" id="441">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[ChannelsCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[ChannelsCaseTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>IsEmpty(Skin.String(Widget.Channels.Artwork))</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Used Channels Fanart Case Style -->
-						<control type="button" id="442">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[ChannelsFanartCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.Channels.Fanart.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<visible>StringCompare(Skin.String(Widget.Channels.Artwork),Fanart)</visible>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-						<!-- Recently Used Channels Text Label -->
-						<control type="radiobutton" id="443">
-							<description>Recently Added Episodes Text Label</description>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<label>$LOCALIZE[42196]</label>
-							<onclick>Skin.ToggleSetting(Widget.Channels.Label)</onclick>
-							<selected>Skin.HasSetting(Widget.Channels.Label)</selected>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-							<visible>!Skin.HasSetting(Widget.List)</visible>
-						</control>
-					
+
+					<!-- Recently Used Channels Artwork Style -->
+					<control type="button" id="440">
+						<label>$LOCALIZE[42200]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[ChannelsArtworkTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[ChannelsArtworkTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Used Channels Case Style -->
+					<control type="button" id="441">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[ChannelsCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[ChannelsCaseTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>IsEmpty(Skin.String(Widget.Channels.Artwork))</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Used Channels Fanart Case Style -->
+					<control type="button" id="442">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[ChannelsFanartCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.Channels.Fanart.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<visible>StringCompare(Skin.String(Widget.Channels.Artwork),Fanart)</visible>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+					<!-- Recently Used Channels Text Label -->
+					<control type="radiobutton" id="443">
+						<description>Recently Added Episodes Text Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42196]</label>
+						<onclick>Skin.ToggleSetting(Widget.Channels.Label)</onclick>
+						<selected>Skin.HasSetting(Widget.Channels.Label)</selected>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+						<visible>!Skin.HasSetting(Widget.List)</visible>
+					</control>
+
 					<!-- Playlists -->
 					<control type="label" id="444">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42110][/COLOR]</label> <!-- STRING: Playlists -->
@@ -1101,20 +1112,20 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Playlists Case Style -->
-						<control type="button" id="445">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[PlaylistsCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>$VAR[PlaylistsCaseTypeSettingVar]</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
+
+					<!-- Playlists Case Style -->
+					<control type="button" id="445">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[PlaylistsCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>$VAR[PlaylistsCaseTypeSettingVar]</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
 					<!-- Watch Later -->
 					<control type="label" id="446">
 						<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[42081][/COLOR]</label> <!-- STRING: Playlists -->
@@ -1124,737 +1135,737 @@
 						<font>font15</font>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-						<!-- Watch Later Case Style -->
-						<control type="button" id="447">
-							<label>$LOCALIZE[42198]</label>
-							<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[WatchLaterCaseTypeLabelVar][/COLOR]</label2>
-							<onclick>Skin.ToggleSetting(Widget.WatchLater.Fanart.Glass)</onclick>
-							<width>1316</width>
-							<height>90</height>
-							<textoffsetx>30</textoffsetx>
-							<font>font15</font>
-							<texturenofocus border="1">separator5.png</texturenofocus>
-							<enable>!Skin.HasSetting(Widget.Disable)</enable>
-						</control>
-					
-                </control>
-				
+
+					<!-- Watch Later Case Style -->
+					<control type="button" id="447">
+						<label>$LOCALIZE[42198]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[WatchLaterCaseTypeLabelVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(Widget.WatchLater.Fanart.Glass)</onclick>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+						<enable>!Skin.HasSetting(Widget.Disable)</enable>
+					</control>
+
+				</control>
+
 				<!-- Backgrounds -->
-                <control type="grouplist" id="9005">
-                    <description>control area</description>
-                    <posx>522</posx>
-                    <posy>32</posy>
-                    <width>1316</width>
-                    <height>720</height>
-                    <itemgap>0</itemgap>
-                    <pagecontrol>60</pagecontrol>
-                    <onleft>9000</onleft>
-                    <onright>noop</onright>
-                    <onup>9005</onup>
-                    <ondown>9005</ondown>
-                    <visible>Container(9000).HasFocus(5)</visible>
-					
+				<control type="grouplist" id="9005">
+					<description>control area</description>
+					<posx>522</posx>
+					<posy>32</posy>
+					<width>1316</width>
+					<height>720</height>
+					<itemgap>0</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>9005</onup>
+					<ondown>9005</ondown>
+					<visible>Container(9000).HasFocus(5)</visible>
+
 					<!-- Live Cases Background -->
 					<control type="radiobutton" id="501">
-                        <description>Enable Live Cases</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42046]</label>
-                        <onclick>Skin.ToggleSetting(EnableLive)</onclick>
-                        <selected>Skin.HasSetting(EnableLive)</selected>
-                    </control>
-					
+						<description>Enable Live Cases</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42046]</label>
+						<onclick>Skin.ToggleSetting(EnableLive)</onclick>
+						<selected>Skin.HasSetting(EnableLive)</selected>
+					</control>
+
 					<!-- Universal Home Background -->
 					<control type="radiobutton" id="502">
-                        <description>Enable Universal Home Background</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42047]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeUniversal)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeUniversal)</selected>
+						<description>Enable Universal Home Background</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42047]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeUniversal)</onclick>
+						<selected>Skin.HasSetting(CustomHomeUniversal)</selected>
 						<enable>!Skin.HasSetting(CustomHomeSlideshow)</enable>
-                    </control>
-                    <control type="button" id="503">
-                        <description>Set Image for Universal Home Background</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42048]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeUniversalImage)][/COLOR]</label2>
-                        <onclick>Skin.SetImage(CustomHomeUniversalImage)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeUniversal)</visible>
-                    </control>
-					
+					</control>
+					<control type="button" id="503">
+						<description>Set Image for Universal Home Background</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42048]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeUniversalImage)][/COLOR]</label2>
+						<onclick>Skin.SetImage(CustomHomeUniversalImage)</onclick>
+						<visible>Skin.HasSetting(CustomHomeUniversal)</visible>
+					</control>
+
 					<!-- Universal Home Slideshow -->
 					<control type="radiobutton" id="504">
-                        <description>Enable Universal Home Slideshow</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42049]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeSlideshow)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeSlideshow)</selected>
+						<description>Enable Universal Home Slideshow</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42049]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeSlideshow)</onclick>
+						<selected>Skin.HasSetting(CustomHomeSlideshow)</selected>
 						<enable>!Skin.HasSetting(CustomHomeUniversal)</enable>
-                    </control>
-                    <control type="button" id="505">
-                        <description>Set Path for Universal Home Slideshow</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[573]:</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeSlideshowPath)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeSlideshowPath)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeSlideshow)</visible>
-                    </control>
-					
+					</control>
+					<control type="button" id="505">
+						<description>Set Path for Universal Home Slideshow</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[573]:</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeSlideshowPath)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeSlideshowPath)</onclick>
+						<visible>Skin.HasSetting(CustomHomeSlideshow)</visible>
+					</control>
+
 					<!-- Custom Home Background 1 -->
-                    <control type="radiobutton" id="506">
-                        <description>Enable Custom Home Background 1</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42281]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground1)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground1)</selected>
-                    </control>
-                    <control type="button" id="507">
-                        <description>Set Custom Home Background 1 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground1Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground1Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground1)</visible>
-                    </control>
-                    <control type="button" id="508">
-                        <description>Set Custom Home Background 1 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground1Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground1Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground1)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 2 -->
-                    <control type="radiobutton" id="509">
-                        <description>Enable Custom Home Background 2</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42282]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground2)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground2)</selected>
-                    </control>
-                    <control type="button" id="510">
-                        <description>Set Custom Home Background 2 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground2Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground2Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground2)</visible>
-                    </control>
-                    <control type="button" id="511">
-                        <description>Set Custom Home Background 2 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground2Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground2Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground2)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 3 -->
-                    <control type="radiobutton" id="512">
-                        <description>Enable Custom Home Background 3</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42283]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground3)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground3)</selected>
-                    </control>
-                    <control type="button" id="513">
-                        <description>Set Custom Home Background 3 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground3Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground3Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground3)</visible>
-                    </control>
-                    <control type="button" id="514">
-                        <description>Set Custom Home Background 3 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground3Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground3Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground3)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 4 -->
-                    <control type="radiobutton" id="515">
-                        <description>Enable Custom Home Background 4</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42284]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground4)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground4)</selected>
-                    </control>
-                    <control type="button" id="516">
-                        <description>Set Custom Home Background 4 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground4Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground4Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground4)</visible>
-                    </control>
-                    <control type="button" id="517">
-                        <description>Set Custom Home Background 4 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground4Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground4Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground4)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 5 -->
-                    <control type="radiobutton" id="518">
-                        <description>Enable Custom Home Background 5</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42285]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground5)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground5)</selected>
-                    </control>
-                    <control type="button" id="519">
-                        <description>Set Custom Home Background 5 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground5Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground5Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground5)</visible>
-                    </control>
-                    <control type="button" id="520">
-                        <description>Set Custom Home Background 5 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground5Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground5Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground5)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 6 -->
-                    <control type="radiobutton" id="521">
-                        <description>Enable Custom Home Background 6</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42286]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground6)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground6)</selected>
-                    </control>
-                    <control type="button" id="522">
-                        <description>Set Custom Home Background 6 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground6Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground6Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground6)</visible>
-                    </control>
-                    <control type="button" id="523">
-                        <description>Set Custom Home Background 6 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground6Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground6Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground6)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 7 -->
-                    <control type="radiobutton" id="524">
-                        <description>Enable Custom Home Background 7</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42287]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground7)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground7)</selected>
-                    </control>
-                    <control type="button" id="525">
-                        <description>Set Custom Home Background 7 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground7Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground7Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground7)</visible>
-                    </control>
-                    <control type="button" id="526">
-                        <description>Set Custom Home Background 7 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground7Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground7Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground7)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 8 -->
-                    <control type="radiobutton" id="527">
-                        <description>Enable Custom Home Background 8</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42288]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground8)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground8)</selected>
-                    </control>
-                    <control type="button" id="528">
-                        <description>Set Custom Home Background 8 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground8Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground8Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground8)</visible>
-                    </control>
-                    <control type="button" id="529">
-                        <description>Set Custom Home Background 8 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground8Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground8Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground8)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 9 -->
-                    <control type="radiobutton" id="530">
-                        <description>Enable Custom Home Background 9</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42289]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground9)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground9)</selected>
-                    </control>
-                    <control type="button" id="531">
-                        <description>Set Custom Home Background 9 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground9Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground9Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground9)</visible>
-                    </control>
-                    <control type="button" id="532">
-                        <description>Set Custom Home Background 9 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground9Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground9Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground9)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 10 -->
-                    <control type="radiobutton" id="533">
-                        <description>Enable Custom Home Background 10</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42290]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground10)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground10)</selected>
-                    </control>
-                    <control type="button" id="534">
-                        <description>Set Custom Home Background 10 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground10Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground10Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground10)</visible>
-                    </control>
-                    <control type="button" id="535">
-                        <description>Set Custom Home Background 10 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground10Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground10Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground10)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 11 -->
-                    <control type="radiobutton" id="536">
-                        <description>Enable Custom Home Background 11</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42291]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground11)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground11)</visible>
-                    </control>
-                    <control type="button" id="537">
-                        <description>Set Custom Home Background 11 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground11Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground11Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground11)</visible>
-                    </control>
-                    <control type="button" id="538">
-                        <description>Set Custom Home Background 11 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground11Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground11Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground11)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 12 -->
-                    <control type="radiobutton" id="539">
-                        <description>Enable Custom Home Background 12</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42292]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground12)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground12)</selected>
-                    </control>
-                    <control type="button" id="540">
-                        <description>Set Custom Home Background 12 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground12Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground12Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground12)</visible>
-                    </control>
-                    <control type="button" id="541">
-                        <description>Set Custom Home Background 12 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground12Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground12Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground12)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 13 -->
-                    <control type="radiobutton" id="542">
-                        <description>Enable Custom Home Background 13</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42293]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground13)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground13)</selected>
-                    </control>
-                    <control type="button" id="543">
-                        <description>Set Custom Home Background 13 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground13Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground13Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground13)</visible>
-                    </control>
-                    <control type="button" id="544">
-                        <description>Set Custom Home Background 13 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground13Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground13Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground13)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 14 -->
-                    <control type="radiobutton" id="545">
-                        <description>Enable Custom Home Background 14</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42294]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground14)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground14)</visible>
-                    </control>
-                    <control type="button" id="546">
-                        <description>Set Custom Home Background 14 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground14Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground14Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground14)</visible>
-                    </control>
-                    <control type="button" id="547">
-                        <description>Set Custom Home Background 14 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground14Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground14Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground14)</visible>
-                    </control>
-					
-                    <!-- Custom Home Background 15 -->
-                    <control type="radiobutton" id="548">
-                        <description>Enable Custom Home Background 15</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42295]</label>
-                        <onclick>Skin.ToggleSetting(CustomHomeBackground15)</onclick>
-                        <selected>Skin.HasSetting(CustomHomeBackground15)</selected>
-                    </control>
-                    <control type="button" id="549">
-                        <description>Set Custom Home Background 15 Label</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42051]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground15Label)][/COLOR]</label2>
-                        <onclick>Skin.SetString(CustomHomeBackground15Label)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground15)</visible>
-                    </control>
-                    <control type="button" id="550">
-                        <description>Set Custom Home Background 15 Path</description>
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>$LOCALIZE[42052]</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground15Path)][/COLOR]</label2>
-                        <onclick>Skin.SetPath(CustomHomeBackground15Path)</onclick>
-                        <visible>Skin.HasSetting(CustomHomeBackground15)</visible>
-                    </control>
-                </control>
-								
-                <control type="grouplist" id="9006">
-                    <description>control area</description>
-                    <posx>522</posx>
-                    <posy>32</posy>
-                    <width>1316</width>
-                    <height>720</height>
-                    <itemgap>0</itemgap>
-                    <pagecontrol>60</pagecontrol>
-                    <onleft>9000</onleft>
-                    <onright>noop</onright>
-                    <onup>9006</onup>
-                    <ondown>9006</ondown>
-                    <visible>Container(9000).HasFocus(6)</visible>
-                    <control type="radiobutton" id="601">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>42155</label>
-                        <onclick>Skin.ToggleSetting(Preplay.Blur)</onclick>
-                        <selected>Skin.HasSetting(Preplay.Blur)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
+					<control type="radiobutton" id="506">
+						<description>Enable Custom Home Background 1</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42281]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground1)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground1)</selected>
+					</control>
+					<control type="button" id="507">
+						<description>Set Custom Home Background 1 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground1Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground1Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground1)</visible>
+					</control>
+					<control type="button" id="508">
+						<description>Set Custom Home Background 1 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground1Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground1Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground1)</visible>
+					</control>
+
+					<!-- Custom Home Background 2 -->
+					<control type="radiobutton" id="509">
+						<description>Enable Custom Home Background 2</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42282]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground2)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground2)</selected>
+					</control>
+					<control type="button" id="510">
+						<description>Set Custom Home Background 2 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground2Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground2Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground2)</visible>
+					</control>
+					<control type="button" id="511">
+						<description>Set Custom Home Background 2 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground2Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground2Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground2)</visible>
+					</control>
+
+					<!-- Custom Home Background 3 -->
+					<control type="radiobutton" id="512">
+						<description>Enable Custom Home Background 3</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42283]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground3)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground3)</selected>
+					</control>
+					<control type="button" id="513">
+						<description>Set Custom Home Background 3 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground3Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground3Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground3)</visible>
+					</control>
+					<control type="button" id="514">
+						<description>Set Custom Home Background 3 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground3Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground3Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground3)</visible>
+					</control>
+
+					<!-- Custom Home Background 4 -->
+					<control type="radiobutton" id="515">
+						<description>Enable Custom Home Background 4</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42284]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground4)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground4)</selected>
+					</control>
+					<control type="button" id="516">
+						<description>Set Custom Home Background 4 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground4Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground4Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground4)</visible>
+					</control>
+					<control type="button" id="517">
+						<description>Set Custom Home Background 4 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground4Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground4Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground4)</visible>
+					</control>
+
+					<!-- Custom Home Background 5 -->
+					<control type="radiobutton" id="518">
+						<description>Enable Custom Home Background 5</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42285]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground5)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground5)</selected>
+					</control>
+					<control type="button" id="519">
+						<description>Set Custom Home Background 5 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground5Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground5Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground5)</visible>
+					</control>
+					<control type="button" id="520">
+						<description>Set Custom Home Background 5 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground5Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground5Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground5)</visible>
+					</control>
+
+					<!-- Custom Home Background 6 -->
+					<control type="radiobutton" id="521">
+						<description>Enable Custom Home Background 6</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42286]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground6)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground6)</selected>
+					</control>
+					<control type="button" id="522">
+						<description>Set Custom Home Background 6 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground6Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground6Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground6)</visible>
+					</control>
+					<control type="button" id="523">
+						<description>Set Custom Home Background 6 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground6Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground6Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground6)</visible>
+					</control>
+
+					<!-- Custom Home Background 7 -->
+					<control type="radiobutton" id="524">
+						<description>Enable Custom Home Background 7</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42287]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground7)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground7)</selected>
+					</control>
+					<control type="button" id="525">
+						<description>Set Custom Home Background 7 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground7Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground7Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground7)</visible>
+					</control>
+					<control type="button" id="526">
+						<description>Set Custom Home Background 7 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground7Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground7Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground7)</visible>
+					</control>
+
+					<!-- Custom Home Background 8 -->
+					<control type="radiobutton" id="527">
+						<description>Enable Custom Home Background 8</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42288]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground8)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground8)</selected>
+					</control>
+					<control type="button" id="528">
+						<description>Set Custom Home Background 8 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground8Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground8Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground8)</visible>
+					</control>
+					<control type="button" id="529">
+						<description>Set Custom Home Background 8 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground8Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground8Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground8)</visible>
+					</control>
+
+					<!-- Custom Home Background 9 -->
+					<control type="radiobutton" id="530">
+						<description>Enable Custom Home Background 9</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42289]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground9)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground9)</selected>
+					</control>
+					<control type="button" id="531">
+						<description>Set Custom Home Background 9 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground9Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground9Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground9)</visible>
+					</control>
+					<control type="button" id="532">
+						<description>Set Custom Home Background 9 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground9Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground9Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground9)</visible>
+					</control>
+
+					<!-- Custom Home Background 10 -->
+					<control type="radiobutton" id="533">
+						<description>Enable Custom Home Background 10</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42290]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground10)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground10)</selected>
+					</control>
+					<control type="button" id="534">
+						<description>Set Custom Home Background 10 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground10Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground10Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground10)</visible>
+					</control>
+					<control type="button" id="535">
+						<description>Set Custom Home Background 10 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground10Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground10Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground10)</visible>
+					</control>
+
+					<!-- Custom Home Background 11 -->
+					<control type="radiobutton" id="536">
+						<description>Enable Custom Home Background 11</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42291]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground11)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground11)</visible>
+					</control>
+					<control type="button" id="537">
+						<description>Set Custom Home Background 11 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground11Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground11Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground11)</visible>
+					</control>
+					<control type="button" id="538">
+						<description>Set Custom Home Background 11 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground11Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground11Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground11)</visible>
+					</control>
+
+					<!-- Custom Home Background 12 -->
+					<control type="radiobutton" id="539">
+						<description>Enable Custom Home Background 12</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42292]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground12)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground12)</selected>
+					</control>
+					<control type="button" id="540">
+						<description>Set Custom Home Background 12 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground12Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground12Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground12)</visible>
+					</control>
+					<control type="button" id="541">
+						<description>Set Custom Home Background 12 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground12Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground12Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground12)</visible>
+					</control>
+
+					<!-- Custom Home Background 13 -->
+					<control type="radiobutton" id="542">
+						<description>Enable Custom Home Background 13</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42293]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground13)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground13)</selected>
+					</control>
+					<control type="button" id="543">
+						<description>Set Custom Home Background 13 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground13Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground13Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground13)</visible>
+					</control>
+					<control type="button" id="544">
+						<description>Set Custom Home Background 13 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground13Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground13Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground13)</visible>
+					</control>
+
+					<!-- Custom Home Background 14 -->
+					<control type="radiobutton" id="545">
+						<description>Enable Custom Home Background 14</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42294]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground14)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground14)</visible>
+					</control>
+					<control type="button" id="546">
+						<description>Set Custom Home Background 14 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground14Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground14Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground14)</visible>
+					</control>
+					<control type="button" id="547">
+						<description>Set Custom Home Background 14 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground14Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground14Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground14)</visible>
+					</control>
+
+					<!-- Custom Home Background 15 -->
+					<control type="radiobutton" id="548">
+						<description>Enable Custom Home Background 15</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42295]</label>
+						<onclick>Skin.ToggleSetting(CustomHomeBackground15)</onclick>
+						<selected>Skin.HasSetting(CustomHomeBackground15)</selected>
+					</control>
+					<control type="button" id="549">
+						<description>Set Custom Home Background 15 Label</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42051]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground15Label)][/COLOR]</label2>
+						<onclick>Skin.SetString(CustomHomeBackground15Label)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground15)</visible>
+					</control>
+					<control type="button" id="550">
+						<description>Set Custom Home Background 15 Path</description>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>$LOCALIZE[42052]</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$INFO[Skin.String(CustomHomeBackground15Path)][/COLOR]</label2>
+						<onclick>Skin.SetPath(CustomHomeBackground15Path)</onclick>
+						<visible>Skin.HasSetting(CustomHomeBackground15)</visible>
+					</control>
+				</control>
+
+				<control type="grouplist" id="9006">
+					<description>control area</description>
+					<posx>522</posx>
+					<posy>32</posy>
+					<width>1316</width>
+					<height>720</height>
+					<itemgap>0</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>9006</onup>
+					<ondown>9006</ondown>
+					<visible>Container(9000).HasFocus(6)</visible>
+					<control type="radiobutton" id="601">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>42155</label>
+						<onclick>Skin.ToggleSetting(Preplay.Blur)</onclick>
+						<selected>Skin.HasSetting(Preplay.Blur)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
 					<control type="radiobutton" id="602">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>42169</label>
-                        <onclick>Skin.ToggleSetting(Preplay.MovieDisable)</onclick>
-                        <selected>!Skin.HasSetting(Preplay.MovieDisable)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>42169</label>
+						<onclick>Skin.ToggleSetting(Preplay.MovieDisable)</onclick>
+						<selected>!Skin.HasSetting(Preplay.MovieDisable)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
 					<control type="radiobutton" id="603">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>42170</label>
-                        <onclick>Skin.ToggleSetting(Preplay.EpisodeDisable)</onclick>
-                        <selected>!Skin.HasSetting(Preplay.EpisodeDisable)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>42170</label>
+						<onclick>Skin.ToggleSetting(Preplay.EpisodeDisable)</onclick>
+						<selected>!Skin.HasSetting(Preplay.EpisodeDisable)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
 					<control type="radiobutton" id="604">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>42171</label>
-                        <onclick>Skin.ToggleSetting(Preplay.ClipDisable)</onclick>
-                        <selected>!Skin.HasSetting(Preplay.ClipDisable)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>42171</label>
+						<onclick>Skin.ToggleSetting(Preplay.ClipDisable)</onclick>
+						<selected>!Skin.HasSetting(Preplay.ClipDisable)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
 					<control type="radiobutton" id="605">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>42172</label>
-                        <onclick>Skin.ToggleSetting(Postplay.MovieDisable)</onclick>
-                        <selected>!Skin.HasSetting(Postplay.MovieDisable)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>42172</label>
+						<onclick>Skin.ToggleSetting(Postplay.MovieDisable)</onclick>
+						<selected>!Skin.HasSetting(Postplay.MovieDisable)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
 					<control type="radiobutton" id="606">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>42173</label>
-                        <onclick>Skin.ToggleSetting(Postplay.EpisodeDisable)</onclick>
-                        <selected>!Skin.HasSetting(Postplay.EpisodeDisable)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>42173</label>
+						<onclick>Skin.ToggleSetting(Postplay.EpisodeDisable)</onclick>
+						<selected>!Skin.HasSetting(Postplay.EpisodeDisable)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
 					<control type="radiobutton" id="607">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>42174</label>
-                        <onclick>Skin.ToggleSetting(Postplay.ClipDisable)</onclick>
-                        <selected>!Skin.HasSetting(Postplay.ClipDisable)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-                </control>
-				
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>42174</label>
+						<onclick>Skin.ToggleSetting(Postplay.ClipDisable)</onclick>
+						<selected>!Skin.HasSetting(Postplay.ClipDisable)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+				</control>
+
 				<control type="grouplist" id="9007">
-                    <description>control area</description>
-                    <posx>522</posx>
-                    <posy>32</posy>
-                    <width>1316</width>
-                    <height>720</height>
-                    <itemgap>0</itemgap>
-                    <pagecontrol>60</pagecontrol>
-                    <onleft>9000</onleft>
-                    <onright>noop</onright>
-                    <onup>9007</onup>
-                    <ondown>9007</ondown>
-                    <visible>Container(9000).HasFocus(7)</visible>
-                    <control type="button" id="701">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>31939</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[InfoPanelDelayLocalizeVar][/COLOR]</label2>
-                        <onclick>$VAR[InfoPanelDelayOnClickVar]</onclick>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-                    <control type="radiobutton" id="702">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>31941</label>
-                        <onclick>Skin.ToggleSetting(KioskMode.Enabled)</onclick>
-                        <selected>Skin.HasSetting(KioskMode.Enabled)</selected>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-                    <control type="button" id="703">
-                        <width>1316</width>
-                        <height>90</height>
-                        <textoffsetx>30</textoffsetx>
-                        <font>font15</font>
-                        <label>31915</label>
-                        <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[HorizontalListNavVar][/COLOR]</label2>
-                        <onclick>Skin.ToggleSetting(HorizontalListNav)</onclick>
-                        <texturenofocus border="1">separator5.png</texturenofocus>
-                    </control>
-                    <control type="button" id="704">
+					<description>control area</description>
+					<posx>522</posx>
+					<posy>32</posy>
+					<width>1316</width>
+					<height>720</height>
+					<itemgap>0</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>noop</onright>
+					<onup>9007</onup>
+					<ondown>9007</ondown>
+					<visible>Container(9000).HasFocus(7)</visible>
+					<control type="button" id="701">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31939</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[InfoPanelDelayLocalizeVar][/COLOR]</label2>
+						<onclick>$VAR[InfoPanelDelayOnClickVar]</onclick>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+					<control type="radiobutton" id="702">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31941</label>
+						<onclick>Skin.ToggleSetting(KioskMode.Enabled)</onclick>
+						<selected>Skin.HasSetting(KioskMode.Enabled)</selected>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+					<control type="button" id="703">
+						<width>1316</width>
+						<height>90</height>
+						<textoffsetx>30</textoffsetx>
+						<font>font15</font>
+						<label>31915</label>
+						<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[HorizontalListNavVar][/COLOR]</label2>
+						<onclick>Skin.ToggleSetting(HorizontalListNav)</onclick>
+						<texturenofocus border="1">separator5.png</texturenofocus>
+					</control>
+					<control type="button" id="704">
 						<width>1316</width>
 						<height>90</height>
 						<textoffsetx>30</textoffsetx>
@@ -1863,9 +1874,9 @@
 						<onclick>ActivateWindow(1127)</onclick>
 						<texturenofocus border="1">separator5.png</texturenofocus>
 					</control>
-					
-                </control>
-            </control>
-        </control>
-    </controls>
+
+				</control>
+			</control>
+		</control>
+	</controls>
 </window>
