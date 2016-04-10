@@ -8,11 +8,11 @@
 			<include>HiddenObject</include>
 			<texture>$INFO[Skin.String(OSD.Studio),flags/studios/,.png]</texture>
 		</control>
-	
+
 		<control type="group">
 			<visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
 			<include>Animation_OpenCloseFade</include>
-            <include>Animation_FadedByOSDSettings</include>
+			<include>Animation_FadedByOSDSettings</include>
 			<control type="group">
 				<posx>0</posx>
 				<posy>0</posy>
@@ -25,7 +25,7 @@
 				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),20)">Animation_FadeOSD20</include>
 				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),25)">Animation_FadeOSD25</include>
 				<include condition="Skin.HasSetting(OSD.TopBarHide.Enable) + StringCompare(Skin.String(OSD.TopBarHide.Delay),30)">Animation_FadeOSD30</include>
-            
+
 				<!-- Background Image -->
 				<control type="image">
 					<posx>0</posx>
@@ -43,7 +43,7 @@
 					<texture border="1">topbar.png</texture>
 					<colordiffuse>E6FFFFFF</colordiffuse>
 				</control>
-			
+
 				<!-- Player Status -->
 				<control type="label">
 					<width>900</width>
@@ -56,7 +56,7 @@
 					<textoffsety>-2</textoffsety>
 					<label>$VAR[OSDStatusVar]</label>
 				</control>
-			
+
 				<control type="label">
 					<posx>1920</posx>
 					<width>900</width>
@@ -69,7 +69,7 @@
 					<textoffsety>-2</textoffsety>
 					<label>$INFO[Container.NumItems,, $LOCALIZE[31025]]$INFO[Container.CurrentPage,[COLOR grey3] | ,]$INFO[Container.NumPages,/,[/COLOR]]</label>
 				</control>
-			
+
 				<!-- Time -->
 				<control type="label">
 					<posx>0</posx>
@@ -87,7 +87,7 @@
 			<control type="group">
 				<include>VisibleFadeEffect</include>
 				<include>Animation_FadedByOSDSettings</include>
-            
+
 				<!-- OSD Background -->	
 				<control type="image">
 					<animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)">Conditional</animation>
@@ -107,7 +107,7 @@
 					<texture flipy="true" border="1,40,1,1">topbar.png</texture>
 					<colordiffuse>E6FFFFFF</colordiffuse>
 				</control>
-						
+
 				<!-- Spinning Disc -->
 				<control type="group">
 					<visible>IsEmpty(Skin.String(OSD.SpinningDiscStyle)) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
@@ -115,7 +115,7 @@
 					<posy>766</posy>
 					<width>226</width>
 					<height>226</height>
-						
+
 					<fadetime>300</fadetime>
 					<animation effect="rotate" end="-360" center="275,879" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
 					<animation effect="rotate" end="360" center="275,879" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
@@ -128,9 +128,9 @@
 					<animation effect="rotate" end="-360" center="275,879" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
 					<animation effect="rotate" end="-360" center="275,879" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
 					<animation effect="rotate" end="-360" center="275,879" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-					
+
 					<bordersize>30</bordersize>
-					
+
 					<control type="image">
 						<width>226</width>
 						<height>226</height>
@@ -225,7 +225,7 @@
 						<scroll>false</scroll>
 						<wrapmultiline>true</wrapmultiline>-->
 					</control>
-					
+
 					<!-- TV Show Title -->
 					<control type="label">
 						<visible>VideoPlayer.Content(episodes)</visible>
@@ -243,7 +243,7 @@
 						<wrapmultiline>false</wrapmultiline>
 					</control>
 				</control>
-				
+
 				<!-- DVD/Bluray Disc -->
 				<control type="image">
 					<visible>StringCompare(Skin.String(OSD.SpinningDiscStyle),DVD/Bluray) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
@@ -268,9 +268,22 @@
 					<texture background="true" diffuse="thumbs/cdart_mask.png">$INFO[VideoPlayer.videoResolution,cdart/,.png]</texture>
 					<bordersize>30</bordersize>
 				</control>
-				
+
+				<!-- Index Thumbnail -->
+				<control type="image">
+					<posx>1702</posx>
+					<posy>688</posy>
+					<height>180</height>
+					<width>320</width>
+					<texture>$INFO[VideoPlayer.SeekImage]</texture>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+						<bordersize>20</bordersize>
+						<aspectratio scalediffuse="false">scale</aspectratio>
+					<visible>Player.Seeking + !IsEmpty(VideoPlayer.SeekImage)</visible>
+				</control>
+
 				<control type="group">
-                				
+
 					<!-- Movie Poster -->
 					<control type="image">
 						<description>Movie Poster</description>
@@ -284,7 +297,7 @@
 						<aspectratio scalediffuse="false">stretch</aspectratio>
 						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + IsEmpty(Skin.String(OSD.VideoIconStyle))</visible>
 					</control>
-				
+
 					<!-- Glass Case -->
 					<control type="image">
 						<description>Movie Poster</description>
@@ -330,7 +343,7 @@
 						<texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/,.png]</texture>
 						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>												
 					</control>	
-				
+
 					<!-- Clear Cases -->
 					<control type="image">
 						<description>Movie Poster</description>
@@ -354,7 +367,7 @@
 						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + StringCompare(Skin.String(OSD.VideoIconStyle),Clear)</visible>
 					</control>
 				</control>
-			
+
 				<control type="progress" id="23">
 					<visible>!StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
 					<description>ProgressbarCache</description>
@@ -406,7 +419,7 @@
 					<righttexture>-</righttexture>
 					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
 				</control>
-				
+
 				<control type="progress" id="23">
 					<visible>StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
 					<description>ProgressbarCache</description>
@@ -458,7 +471,7 @@
 					<righttexture>-</righttexture>
 					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
 				</control>
-            			
+
 				<control type="progress" id="23">
 					<visible>StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
 					<description>ProgressbarCache</description>
@@ -510,7 +523,7 @@
 					<righttexture>-</righttexture>
 					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
 				</control>
-						
+
 				<!-- Current position / Total Time -->
 				<control type="label">
 					<posx>1875</posx>
@@ -536,7 +549,7 @@
 					<label>$INFO[Player.SeekTime] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
 					<visible>Player.Seeking</visible>
 				</control>
-			
+
 				<!-- End Time -->
 				<control type="label">
 					<posx>1875</posx>
@@ -550,7 +563,7 @@
 					<label>[UPPERCASE]$LOCALIZE[42104]:  $INFO[Player.FinishTime][/UPPERCASE]</label>
 					<visible>!Skin.HasSetting(OSD.EndTime.Disable)</visible>
 				</control>
-			
+
 				<!-- Title -->
 				<control type="label">
 					<visible>!StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]</visible>
@@ -741,7 +754,7 @@
 					<scroll>true</scroll>
 					<label>$VAR[OSDTitleVar]</label>
 				</control>
-									
+
 				<control type="label">
 					<visible>[!StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)] | [[[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)] + Skin.HasSetting(OSD.MediaFlags.Disable) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)]</visible>
 					<posx>313</posx>
@@ -804,7 +817,7 @@
 					<scroll>true</scroll>
 					<label>$VAR[OSDTitleVar]</label> 
 				</control>
-				
+
 				<control type="label">
 					<visible>[StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)] | [[[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)] + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)] + StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)]</visible>
 					<posx>45</posx>
@@ -851,7 +864,7 @@
 						<visible>!Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
 					</control>
 				</control>
-							
+
 				<!-- Genre / Show Name -->
 				<control type="label">
 					<animation effect="slide" end="-70,0" time="0" condition="StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
@@ -866,7 +879,7 @@
 					<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
 					<visible>[[!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Window.IsActive(fullscreeninfo)] | [[[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)]]</visible>
 				</control>
-			
+
 				<!-- Plot -->
 				<control type="textbox">
 					<posx>403</posx>
@@ -916,7 +929,7 @@
 					<font>font14_textbox_OSDSmallNoGenre</font>
 					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
 				</control>
-								
+
 				<control type="textbox">
 					<posx>403</posx>
 					<posy>798</posy>
@@ -965,7 +978,7 @@
 					<font>font14_textbox_OSDSmallNoGenre</font>
 					<visible>[!Window.IsActive(fullscreeninfo)+ [[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
 				</control>				
-				
+
 				<control type="textbox">
 					<posx>313</posx>
 					<posy>798</posy>
@@ -1014,7 +1027,7 @@
 					<font>font14_textbox_OSDSmallNoGenre</font>
 					<visible>[!Window.IsActive(fullscreeninfo)+ [[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
 				</control>
-				
+
 				<control type="textbox">
 					<posx>313</posx>
 					<posy>798</posy>
@@ -1067,7 +1080,7 @@
 					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + 
 					StringCompare(Skin.String(OSD.SpinningDiscStyle),Disabled) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
 				</control>
-				
+
 				<control type="textbox">
 					<posx>45</posx>
 					<posy>798</posy>
@@ -1116,7 +1129,7 @@
 					<font>font14_textbox_OSDSmallNoGenre</font>
 					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
 				</control>
-				
+
 				<control type="textbox">
 					<posx>45</posx>
 					<posy>798</posy>
@@ -1165,7 +1178,7 @@
 					<font>font14_textbox_OSDSmallNoGenre</font>
 					<visible>[!Window.IsActive(fullscreeninfo)+ [[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + StringCompare(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
 				</control>				
-				
+
 				<!-- Other Video Info -->
 				<control type="panel" id="300">
 					<visible>Window.IsActive(fullscreeninfo) | [[!Window.IsActive(fullscreeninfo)+ [[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]] + Skin.HasSetting(OSD.MediaFlags.Disable)]</visible>
@@ -1177,7 +1190,7 @@
 					<orientation>vertical</orientation>
 					<scrolltime tween="quadratic" easing="out">200</scrolltime>
 					<itemlayout height="102" width="472">
-			
+
 						<!-- Item Type Label -->
 						<control type="label">
 							<posy>53</posy>
@@ -1189,7 +1202,7 @@
 							<label>$INFO[ListItem.Label]</label>
 							<textoffsetx>36</textoffsetx>
 						</control>
-						
+
 						<!-- Item Info Label -->
 						<control type="label">
 							<posy>2</posy>
@@ -1201,14 +1214,14 @@
 							<label>$INFO[ListItem.Label2]</label>
 							<textoffsetx>36</textoffsetx>
 						</control>
-		
+
 					</itemlayout>
-		
+
 					<focusedlayout height="102" width="594">
 					</focusedlayout>
-				
+
 					<content>
-				
+
 						<!-- Display Original Title -->
 						<item>
 							<label>$INFO[VideoPlayer.OriginalTitle]</label>
@@ -1216,7 +1229,7 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.OriginalTitle) + !StringCompare(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
 						</item>
-						
+
 						<!-- Display Director -->
 						<item>
 							<label>$INFO[VideoPlayer.Director]</label>
@@ -1224,7 +1237,7 @@
 							<onclick>SendClick(2003,13)</onclick>
 							<visible>!IsEmpty(VideoPlayer.Director)</visible>
 						</item>
-						
+
 						<!-- Display Writer -->
 						<item>
 							<label>$INFO[VideoPlayer.Writer]</label>
@@ -1232,7 +1245,7 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.Writer)</visible>
 						</item>
-						
+
 						<!-- Display Country -->
 						<item>
 							<label>$INFO[VideoPlayer.Country]</label>
@@ -1240,10 +1253,10 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.Country)</visible>
 						</item>
-						
+
 					</content>
 				</control>
-				
+
 				<control type="panel" id="300">
 					<visible>[!Window.IsActive(fullscreeninfo)+ [[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)]] + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
 					<posx>1436</posx>
@@ -1254,7 +1267,7 @@
 					<orientation>vertical</orientation>
 					<scrolltime tween="quadratic" easing="out">200</scrolltime>
 					<itemlayout height="102" width="472">
-			
+
 						<!-- Item Type Label -->
 						<control type="label">
 							<posy>53</posy>
@@ -1266,7 +1279,7 @@
 							<label>$INFO[ListItem.Label]</label>
 							<textoffsetx>36</textoffsetx>
 						</control>
-						
+
 						<!-- Item Info Label -->
 						<control type="label">
 							<posy>2</posy>
@@ -1278,14 +1291,14 @@
 							<label>$INFO[ListItem.Label2]</label>
 							<textoffsetx>36</textoffsetx>
 						</control>
-		
+
 					</itemlayout>
-		
+
 					<focusedlayout height="102" width="594">
 					</focusedlayout>
-				
+
 					<content>
-				
+
 						<!-- Display Original Title -->
 						<item>
 							<label>$INFO[VideoPlayer.OriginalTitle]</label>
@@ -1293,7 +1306,7 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.OriginalTitle) + !StringCompare(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
 						</item>
-						
+
 						<!-- Display Director -->
 						<item>
 							<label>$INFO[VideoPlayer.Director]</label>
@@ -1301,7 +1314,7 @@
 							<onclick>SendClick(2003,13)</onclick>
 							<visible>!IsEmpty(VideoPlayer.Director)</visible>
 						</item>
-						
+
 						<!-- Display Writer -->
 						<item>
 							<label>$INFO[VideoPlayer.Writer]</label>
@@ -1309,7 +1322,7 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.Writer)</visible>
 						</item>
-						
+
 						<!-- Display Country -->
 						<item>
 							<label>$INFO[VideoPlayer.Country]</label>
@@ -1317,10 +1330,10 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.Country)</visible>
 						</item>
-						
+
 					</content>
 				</control>
-				
+
 				<control type="panel" id="300">
 					<visible>[[[StringCompare(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | StringCompare(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)]</visible>
 					<posx>1534</posx>
@@ -1331,7 +1344,7 @@
 					<orientation>vertical</orientation>
 					<scrolltime tween="quadratic" easing="out">200</scrolltime>
 					<itemlayout height="102" width="354">
-			
+
 						<!-- Item Type Label -->
 						<control type="label">
 							<posy>53</posy>
@@ -1343,7 +1356,7 @@
 							<label>$INFO[ListItem.Label]</label>
 							<textoffsetx>36</textoffsetx>
 						</control>
-						
+
 						<!-- Item Info Label -->
 						<control type="label">
 							<posy>2</posy>
@@ -1355,14 +1368,14 @@
 							<label>$INFO[ListItem.Label2]</label>
 							<textoffsetx>36</textoffsetx>
 						</control>
-		
+
 					</itemlayout>
-		
+
 					<focusedlayout height="102" width="594">
 					</focusedlayout>
-				
+
 					<content>
-				
+
 						<!-- Display Original Title -->
 						<item>
 							<label>$INFO[VideoPlayer.OriginalTitle]</label>
@@ -1370,7 +1383,7 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.OriginalTitle) + !StringCompare(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
 						</item>
-						
+
 						<!-- Display Director -->
 						<item>
 							<label>$INFO[VideoPlayer.Director]</label>
@@ -1378,7 +1391,7 @@
 							<onclick>SendClick(2003,13)</onclick>
 							<visible>!IsEmpty(VideoPlayer.Director)</visible>
 						</item>
-						
+
 						<!-- Display Writer -->
 						<item>
 							<label>$INFO[VideoPlayer.Writer]</label>
@@ -1386,7 +1399,7 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.Writer)</visible>
 						</item>
-						
+
 						<!-- Display Country -->
 						<item>
 							<label>$INFO[VideoPlayer.Country]</label>
@@ -1394,10 +1407,10 @@
 							<onclick>noop</onclick>
 							<visible>!IsEmpty(VideoPlayer.Country)</visible>
 						</item>
-						
+
 					</content>
 				</control>
-				
+
 				<!-- Media Flags -->
 				<control type="grouplist">
 					<posx>1436</posx>
@@ -1449,196 +1462,196 @@
 				</control>   
 			</control>
 		</control>
-		
+
 		<control type="grouplist">
 			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
 			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
 			<animation effect="slide" end="-268,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
 			<include>Animation_OpenCloseFade</include>
-            <include>Animation_FadedByOSDSettings</include>
-		
+			<include>Animation_FadedByOSDSettings</include>
+
 			<posx>285</posx>
-            <posy>980</posy>
-            <width>1577</width>
-            <itemgap>27</itemgap>
-            <orientation>horizontal</orientation>
-            <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !IsEmpty(Control.GetLabel(9999)) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-			
+			<posy>980</posy>
+			<width>1577</width>
+			<itemgap>27</itemgap>
+			<orientation>horizontal</orientation>
+			<visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !IsEmpty(Control.GetLabel(9999)) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+
 			<include>OSD_MediaFlags</include>
-		
+
 		</control>
-		
+
 		<control type="grouplist">
 			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
 			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
 			<animation effect="slide" end="-268,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
 			<include>Animation_OpenCloseFade</include>
-            <include>Animation_FadedByOSDSettings</include>
-		
+			<include>Animation_FadedByOSDSettings</include>
+
 			<posx>285</posx>
-            <posy>980</posy>
-            <width>1577</width>
-            <itemgap>57</itemgap>
-            <orientation>horizontal</orientation>
-            <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + IsEmpty(Control.GetLabel(9999)) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-			
+			<posy>980</posy>
+			<width>1577</width>
+			<itemgap>57</itemgap>
+			<orientation>horizontal</orientation>
+			<visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + IsEmpty(Control.GetLabel(9999)) + !StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+
 			<include>OSD_MediaFlags</include>
-		
+
 		</control>
-		
+
 		<control type="grouplist">
 			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
 			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
 			<animation effect="slide" end="-268,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
 			<include>Animation_OpenCloseFade</include>
-            <include>Animation_FadedByOSDSettings</include>
-		
+			<include>Animation_FadedByOSDSettings</include>
+
 			<posx>285</posx>
-            <posy>980</posy>
-            <width>1577</width>
-            <itemgap>66</itemgap>
-            <orientation>horizontal</orientation>
-            <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !IsEmpty(Control.GetLabel(9999)) + StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-			
+			<posy>980</posy>
+			<width>1577</width>
+			<itemgap>66</itemgap>
+			<orientation>horizontal</orientation>
+			<visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !IsEmpty(Control.GetLabel(9999)) + StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+
 			<include>OSD_MediaFlags</include>
-		
+
 		</control>
-		
+
 		<control type="grouplist">
 			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
 			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
 			<animation effect="slide" end="-268,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
 			<include>Animation_OpenCloseFade</include>
-            <include>Animation_FadedByOSDSettings</include>
-		
+			<include>Animation_FadedByOSDSettings</include>
+
 			<posx>285</posx>
-            <posy>980</posy>
-            <width>1577</width>
-            <itemgap>100</itemgap>
-            <orientation>horizontal</orientation>
-            <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + IsEmpty(Control.GetLabel(9999)) + StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-			
+			<posy>980</posy>
+			<width>1577</width>
+			<itemgap>100</itemgap>
+			<orientation>horizontal</orientation>
+			<visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + IsEmpty(Control.GetLabel(9999)) + StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+
 			<include>OSD_MediaFlags</include>
-		
+
 		</control>
-		
+
 		<control type="grouplist">
 			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
 			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
 			<animation effect="slide" end="-268,0" time="0" condition="StringCompare(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
 			<include>Animation_OpenCloseFade</include>
-            <include>Animation_FadedByOSDSettings</include>
-		
+			<include>Animation_FadedByOSDSettings</include>
+
 			<posx>298</posx>
-            <posy>975</posy>
-            <width>1577</width>
-            <itemgap>0</itemgap>
-            <orientation>horizontal</orientation>
-            <visible>!Window.IsActive(VideoOSD) + [Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !Window.IsActive(fullscreeninfo)</visible>
-			
+			<posy>975</posy>
+			<width>1577</width>
+			<itemgap>0</itemgap>
+			<orientation>horizontal</orientation>
+			<visible>!Window.IsActive(VideoOSD) + [Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !Window.IsActive(fullscreeninfo)</visible>
+
 			<!-- Dummy OSD Playlist Button -->
-            <control type="image">
-                <description>Playlists</description>
-                <height>100</height>
-                <width>100</width>
+			<control type="image">
+				<description>Playlists</description>
+				<height>100</height>
+				<width>100</width>
 				<texture>osd/buttons/osdplaylistnf.png</texture>
-            </control>  
-								
+			</control>  
+
 			<!-- Dummy OSD Bookmarks Button -->
-            <control type="image">
-                <description>Bookmarks</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdbookmarksnf.png</texture>
-            </control>
-								
+			<control type="image">
+				<description>Bookmarks</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdbookmarksnf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Subtitles Button -->
-            <control type="image">
-                <description>OSD Subtitles</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdsubtitlesnf.png</texture>
-            </control>
-				
+			<control type="image">
+				<description>OSD Subtitles</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdsubtitlesnf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Previous Button -->
-            <control type="image">
-                <description>Previous</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdprevtracknf.png</texture>
-            </control>
-				
+			<control type="image">
+				<description>Previous</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdprevtracknf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Rewind Button -->
-            <control type="image">
-                <description>Rewind</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdrewindnf.png</texture>
-            </control>
-				
+			<control type="image">
+				<description>Rewind</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdrewindnf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Stop Button -->
-            <control type="image">
-                <description>Stop</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdstopnf.png</texture>
-            </control>
-				
+			<control type="image">
+				<description>Stop</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdstopnf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Play/Pause Button -->
-            <control type="image">
-                <description>Play</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdpausenf.png</texture>
-            </control>
-				
+			<control type="image">
+				<description>Play</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdpausenf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Fast Forward Button -->
-            <control type="image">
-                <description>Forward</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdforwardnf.png</texture>
-            </control>
-				
+			<control type="image">
+				<description>Forward</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdforwardnf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Next Button -->
-            <control type="image">
-                <description>Next</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdnexttracknf.png</texture>
-            </control>
-			
+			<control type="image">
+				<description>Next</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdnexttracknf.png</texture>
+			</control>
+
 			<!-- Dummy Screenshot Button -->
 			<control type="image">
 				<texture>osd/buttons/osdscreenshotnf.png</texture>
 				<width>100</width>
 				<height>100</height>
 			</control>
-			
+
 			<!-- Dummy OSD Video Settings -->
-            <control type="image">
-                <description>Video Settings</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdvideonf.png</texture>
-            </control>
-				
+			<control type="image">
+				<description>Video Settings</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdvideonf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Audio Settings -->
-            <control type="image">
-                <description>Audio Settings</description>
-                <height>100</height>
-                <width>100</width>
-                <texture>osd/buttons/osdaudionf.png</texture>
-            </control>
-				
+			<control type="image">
+				<description>Audio Settings</description>
+				<height>100</height>
+				<width>100</width>
+				<texture>osd/buttons/osdaudionf.png</texture>
+			</control>
+
 			<!-- Dummy OSD Options -->
 			<control type="image">
 				<texture>osd/buttons/OSDSkinNF.png</texture>
 				<width>100</width>
 				<height>100</height>
 			</control>
-        </control>	
-		
+		</control>	
+
 		<!-- Seek Offset Display -->
 		<control type="label">
 			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
