@@ -160,6 +160,7 @@
 				<width>35</width>
 				<orientation>vertical</orientation>
 				<itemgap>0</itemgap>
+				<visible>![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 				<visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)]</visible>
 			
 				<!-- Close Sideblade -->
@@ -319,6 +320,7 @@
 				<width>35</width>
 				<orientation>vertical</orientation>
 				<itemgap>0</itemgap>
+				<visible>![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 				<visible>[Window.IsActive(501) + Container.PlexFilter(recentlyAdded)]</visible>
 			
 				<!-- Close Sideblade -->
@@ -423,9 +425,95 @@
 				
 			</control>
 			
+			<!-- Icon Menu (Channels) -->
+			<control type="group" id="9050">
+				<posy>100</posy>
+				<posx>350</posx>
+				<width>35</width>
+				<orientation>vertical</orientation>
+				<itemgap>0</itemgap>
+				<visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+			
+				<!-- Close Sideblade -->
+				<control type="button" id="104">
+					<posy>60</posy>
+					<width>60</width>
+					<height>35</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
+					<texturefocus border="0"></texturefocus>
+					<texturenofocus border="0"></texturenofocus>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<onleft>200</onleft>
+					<onright>ClearProperty(MediaMenu,Home)</onright>
+					<onright>50</onright>
+					<onup>109</onup>
+					<ondown>105</ondown>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<font>IconTiny</font>
+					<label></label>
+					<onclick>ClearProperty(MediaMenu,Home)</onclick>
+					<onclick>50</onclick>
+					<onclick>Control.SetFocus(50)</onclick>
+				</control>
+				
+				<!-- Home Button -->
+				<control type="button" id="105">
+					<posy>95</posy>
+					<width>60</width>
+					<height>35</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
+					<texturefocus border="0"></texturefocus>
+					<texturenofocus border="0"></texturenofocus>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<onleft>200</onleft>
+					<onright>ClearProperty(MediaMenu,Home)</onright>
+					<onright>50</onright>
+					<onup>104</onup>
+					<ondown>106</ondown>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<font>IconTiny</font>
+					<label>↸</label>
+					<onclick>ActivateWindow(home)</onclick>
+				</control>
+				
+				<!-- Change Viewtype -->				
+				<control type="button" id="108">
+					<description>View As button</description>
+					<posy>130</posy>
+					<width>60</width>
+					<height>35</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
+					<texturefocus border="0"></texturefocus>
+					<texturenofocus border="0"></texturenofocus>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>IconTiny</font>
+					<onleft>200</onleft>
+					<onright>ClearProperty(MediaMenu,Home)</onright>
+					<onright>50</onright>
+					<onup>107</onup>
+					<ondown>109</ondown>
+					<onback>ClearProperty(MediaMenu,Home)</onback>
+					<onback>50</onback>
+					<onclick>Container.NextViewMode</onclick>	
+					<label></label>
+				</control>
+				
+			</control>
+			
 			<!-- Options Menu -->
 			<control type="grouplist" id="200">
-				<visible allowhiddenfocus="true">ControlGroup(200).HasFocus</visible>
+				<visible allowhiddenfocus="true">ControlGroup(200).HasFocus | [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 				<posx>0</posx>
 				<posy>100</posy>
 				<zorder>10</zorder>
@@ -482,12 +570,50 @@
 					<onclick>ActivateWindow(1122)</onclick>
 					<visible>!Container.Content(genres)</visible>
 				</control>
+				
+				<!-- List: Theme Colour -->
+				<control type="button" id="204">
+					<description>Change List View Theme Colour</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[42310]</label>
+					<label2>[COLOR $VAR[Colour_ListThemeColourVar]]$VAR[Colour_ListThemeColourVar][/COLOR]</label2>
+					<onclick>ActivateWindow(1151)</onclick>
+					<visible>Control.IsVisible(50)</visible>
+				</control>
+				
+				<!-- List: Highlight Colour -->
+				<control type="button" id="205">
+					<description>Change List View Highlight Colour</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[42266]</label>
+					<label2>[COLOR $VAR[Colour_ListHighlightColourVar]]$VAR[Colour_ListHighlightColourVar][/COLOR]</label2>
+					<onclick>ActivateWindow(1152)</onclick>
+					<visible>Control.IsVisible(50)</visible>
+				</control>
 		
 			</control>
 			
 			<!-- Filters -->
 			<control type="grouplist" id="1300"> 
-				<visible allowhiddenfocus="true">!ControlGroup(200).HasFocus</visible>
+				<visible allowhiddenfocus="true">!ControlGroup(200).HasFocus + !Container.Content(clips) + !Container.PlexContent(channels) + !Container.PlexContent(channel)</visible>
 				<animation type="Conditional" condition="!Window.IsActive(10202)" reversible="false">
 					<effect type="rotatey" center="220" start="80" end="0" time="300"/>
 					<effect type="fade" start="0" end="100" time="0" delay="0"/>
