@@ -800,7 +800,7 @@
 						<texturenofocus>-</texturenofocus>
 					</control>
 
-					<!-- Show Plot -->
+					<!-- Show Plot (With Media Flags, No Extras) -->
 					<control type="textbox" id="4">
 						<description>Plot</description>
 						<include>HiddenObject</include>
@@ -819,7 +819,7 @@
 						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 						<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
 						<visible>!Control.IsVisible(50)</visible>
-						<visible>IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText)</visible>
+						<visible>IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
 					</control>
 					<control type="textbox" id="400">
 						<description>Plot</description>
@@ -835,10 +835,48 @@
 						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 						<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
 						<visible>!Control.IsVisible(50)</visible>
-						<visible>IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText)</visible>
+						<visible>IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
 					</control>
 
-					<!-- Show Plot (with Extras) -->
+					<!-- Show Plot (Without Media Flags, No Extras) -->
+					<control type="textbox" id="4">
+						<description>Plot</description>
+						<include>HiddenObject</include>
+					</control>
+					<control type="textbox" id="400">
+						<description>Plot</description>
+						<posx>0</posx>
+						<posy>577</posy>
+						<width>1132</width>
+						<height>472</height>
+						<font>font15_textbox</font>
+						<align>left</align>
+						<label>$VAR[PlotVar]</label>
+						<textcolor>white</textcolor>
+						<pagecontrol>60</pagecontrol>
+						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+						<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+						<visible>!Control.IsVisible(50)</visible>
+						<visible>IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+					</control>
+					<control type="textbox" id="400">
+						<description>Plot</description>
+						<posx>0</posx>
+						<posy>573</posy>
+						<width>1132</width>
+						<height>472</height>
+						<font>font11_textbox</font>
+						<align>left</align>
+						<label>$VAR[PlotVar]</label>
+						<textcolor>white</textcolor>
+						<pagecontrol>60</pagecontrol>
+						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+						<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+						<visible>!Control.IsVisible(50)</visible>
+						<visible>IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+					</control>
+
+					<!-- Show Plot (with Media Flags and Extras) -->
 					<control type="textbox" id="400">
 						<description>Plot</description>
 						<posx>0</posx>
@@ -852,7 +890,7 @@
 						<pagecontrol>60</pagecontrol>
 						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 						<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-						<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText)</visible>
+						<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
 					</control>
 					<control type="textbox" id="400">
 						<description>Plot</description>
@@ -867,11 +905,12 @@
 						<pagecontrol>60</pagecontrol>
 						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 						<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-						<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText)</visible>
+						<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
 					</control>
 
 					<!-- Extras Title -->
 					<control type="label">
+						<animation effect="slide" end="0,105" condition="Skin.HasSetting(Preplay.DisableMediaFlags)">Conditional</animation>
 						<posx>0</posx>
 						<posy>700</posy>
 						<width>1107</width>
@@ -887,6 +926,7 @@
 
 					<!-- Extras -->
 					<control type="list" id="30">
+						<animation effect="slide" end="0,105" condition="Skin.HasSetting(Preplay.DisableMediaFlags)">Conditional</animation>
 						<posy>740</posy>
 						<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
 						<posx>0</posx>
@@ -905,105 +945,113 @@
 
 							<!-- Extra Thumb -->
 							<control type="image">
+								<posx>0</posx>
+								<posy>0</posy>
 								<width>369</width>
 								<height>198</height>
-								<aspectratio>scale</aspectratio>
-								<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
-								<fadetime>400</fadetime>
-								<bordertexture border="2">empty3.png</bordertexture>
-								<bordersize>2</bordersize>
+								<aspectratio scalediffuse="false">scale</aspectratio>
+								<colordiffuse>$VAR[PreplayTransVar]</colordiffuse>
+								<texture>$INFO[ListItem.Art(thumb)]</texture>
 							</control>
 
-							<!-- Extra Thumb Grey Overlay -->
+							<!-- Text Label -->
 							<control type="image">
-								<posy>165</posy>
+								<posx>0</posx>
+								<posy>98</posy>
 								<width>369</width>
-								<height>33</height>
-								<texture>black.png</texture>
-								<bordersize>2</bordersize>
-								<colordiffuse>88ffffff</colordiffuse>
+								<height>100</height>
+								<texture>homewidgets/label.png</texture>
+								<fadetime>400</fadetime>
+								<colordiffuse>$VAR[PreplayTransVar]</colordiffuse>
 							</control>
-
-							<!-- Extra Title -->
 							<control type="label">
-								<posy>171</posy>
-								<width>369</width>
-								<height>21</height>
-								<textoffsetx>15</textoffsetx>
-								<textcolor>grey2</textcolor>
+								<posx>18</posx>
+								<posy>154</posy>
+								<width>349</width>
+								<height>35</height>
+								<align>left</align>
+								<aligny>center</aligny>
 								<font>font10</font>
+								<textcolor>lightgrey</textcolor>
 								<label>$INFO[ListItem.Label]</label>
 							</control>
-
-							<!-- Extra Duration -->
 							<control type="label">
-								<posx>369</posx>
-								<posy>171</posy>
-								<width>158</width>
-								<height>21</height>
+								<posx>351</posx>
+								<posy>154</posy>
+								<width>443</width>
+								<height>35</height>
 								<align>right</align>
-								<textoffsetx>15</textoffsetx>
-								<textcolor>grey2</textcolor>
+								<aligny>center</aligny>
 								<font>font10</font>
+								<textcolor>lightgrey</textcolor>
 								<label>$INFO[ListItem.DurationStr]</label>
 							</control>
+
 						</itemlayout>
 
 						<focusedlayout height="198" width="369">
 
-							<!-- Extra Thumb -->
-							<control type="image">
-								<width>369</width>
-								<height>198</height>
-								<aspectratio>scale</aspectratio>
-								<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
-								<fadetime>400</fadetime>
-								<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-								<bordersize>8</bordersize>
-								<animation type="Focus">
-									<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-									<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-								</animation>
-							</control>
-
 							<control type="group">
-								<animation type="Focus">
-									<effect type="zoom" start="96" end="98" time="200" tween="sine" easing="inout" center="auto" />
-									<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
+								<animation type="Focus" reversible="false">
+									<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 								</animation>
 
-								<!-- Extra Thumb Grey Overlay -->
+								<!-- Extra Thumb -->
 								<control type="image">
-									<posy>165</posy>
+									<posx>0</posx>
+									<posy>0</posy>
 									<width>369</width>
-									<height>33</height>
-									<texture>black.png</texture>
-									<bordersize>2</bordersize>
-									<colordiffuse>88ffffff</colordiffuse>
+									<height>198</height>
+									<aspectratio scalediffuse="false">scale</aspectratio>
+									<colordiffuse>$VAR[PreplayTransVar]</colordiffuse>
+									<texture>$INFO[ListItem.Art(thumb)]</texture>
+									<bordersize>8</bordersize>
 								</control>
 
-								<!-- Extra Title -->
-								<control type="label">
-									<posy>171</posy>
+								<!-- Text Label -->
+								<control type="image">
+									<posx>0</posx>
+									<posy>98</posy>
 									<width>369</width>
-									<height>21</height>
-									<textoffsetx>15</textoffsetx>
-									<textcolor>grey2</textcolor>
+									<height>100</height>
+									<texture>homewidgets/label.png</texture>
+									<fadetime>400</fadetime>
+									<colordiffuse>$VAR[PreplayTransVar]</colordiffuse>
+								</control>
+								<control type="label">
+									<posx>18</posx>
+									<posy>154</posy>
+									<width>349</width>
+									<height>35</height>
+									<align>left</align>
+									<aligny>center</aligny>
 									<font>font10</font>
+									<textcolor>lightgrey</textcolor>
 									<label>$INFO[ListItem.Label]</label>
 								</control>
-
-								<!-- Extra Duration -->
 								<control type="label">
-									<posx>369</posx>
-									<posy>171</posy>
-									<width>158</width>
-									<height>21</height>
+									<posx>351</posx>
+									<posy>154</posy>
+									<width>443</width>
+									<height>35</height>
 									<align>right</align>
-									<textoffsetx>15</textoffsetx>
-									<textcolor>grey2</textcolor>
+									<aligny>center</aligny>
 									<font>font10</font>
+									<textcolor>lightgrey</textcolor>
 									<label>$INFO[ListItem.DurationStr]</label>
+								</control>
+
+								<!-- Highlight -->
+								<control type="image">
+									<posx>0</posx>
+									<posy>0</posy>
+									<width>369</width>
+									<height>198</height>
+									<aspectratio scalediffuse="false">scale</aspectratio>
+									<texture>empty.png</texture>
+									<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+									<bordersize>8</bordersize>
+									<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
 								</control>
 
 							</control>
@@ -1014,6 +1062,7 @@
 
 					<!-- Media Flags -->
 					<control type="group">
+						<visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
 						<posx>-37</posx>
 						<posy>970</posy>
 						<control type="image">
