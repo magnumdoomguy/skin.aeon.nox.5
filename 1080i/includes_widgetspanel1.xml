@@ -1004,9 +1004,32 @@
 					<width>526</width>
 					<height>296</height>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture>$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+					<texture>$INFO[Container(11001).ListItem.Art(bigThumb)]</texture>
 					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-					<visible>Container(11001).ListItem.Type(clip) + !Skin.HasSetting(Widget.Clips.Movies.Fanart.Glass)</visible>
+					<visible>Container(11001).ListItem.Type(clip) + !Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass)</visible>
+				</control>
+				
+				<!-- Home Videos Glass -->
+				<control type="image">
+					<posx>249</posx>
+					<posy>-302</posy>
+					<width>521</width>
+					<height>289</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11001).ListItem.Art(bigThumb)]</texture>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11001).ListItem.Type(clip) + Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>247</posx>
+					<posy>-305</posy>
+					<width>526</width>
+					<height>296</height>
+					<aspectratio scalediffuse="false">stretch</aspectratio>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<fadetime>IconCrossfadeTime</fadetime>
+					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
+					<visible>Container(11001).ListItem.Type(clip) + Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass)</visible>
 				</control>
 				
 				<!-- Item Separator -->
@@ -1054,7 +1077,7 @@
 						<aligny>center</aligny>
 						<scroll>true</scroll>
 						<label>$INFO[Container(11001).ListItem.Genre]</label>
-						<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !IsEmpty(Container(11001).ListItem.Genre)</visible>
+						<visible>Control.IsVisible(11001) + [Container(11001).ListItem.Type(movie) | Container(11001).ListItem.Type(clip)] + !IsEmpty(Container(11001).ListItem.Genre)</visible>
 					</control>
 
 					<!-- TV Show Title -->
@@ -1090,7 +1113,7 @@
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<label>$INFO[Container(11001).ListItem.Year] [B]•[/B] </label>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Year) + Container(11001).ListItem.Type(movie)</visible>
+						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Year) + [Container(11001).ListItem.Type(movie) | Container(11001).ListItem.Type(clip)]</visible>
 					</control>
 
 					<!-- Date -->
@@ -1253,7 +1276,7 @@
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
 						<aligny>center</aligny>
-						<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+						<texture fallback="flags/video/default.png">$INFO[Container(11001).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
 					</control>
 
 					<!-- Item Separator -->
@@ -1287,7 +1310,7 @@
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
 						<aligny>center</aligny>
-						<texture>$INFO[Container(11001).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+						<texture fallback="flags/framerate/default.png">$INFO[Container(11001).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
 					</control>
 
 					<!-- Item Separator -->
@@ -1304,7 +1327,7 @@
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
 						<aligny>center</aligny>
-						<texture>$INFO[Container(11001).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+						<texture fallback="flags/audio/defaultsound.png">$INFO[Container(11001).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
 					</control>
 
 					<!-- Item Separator -->
@@ -1391,7 +1414,7 @@
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
 						<aligny>center</aligny>
-						<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+						<texture fallback="flags/video/default.png">$INFO[Container(11001).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
 					</control>
 
 					<!-- Item Separator -->
@@ -1425,7 +1448,7 @@
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
 						<aligny>center</aligny>
-						<texture>$INFO[Container(11001).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+						<texture fallback="flags/framerate/default.png">$INFO[Container(11001).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
 					</control>
 
 					<!-- Item Separator -->
@@ -1442,7 +1465,7 @@
 						<aspectratio>keep</aspectratio>
 						<align>center</align>
 						<aligny>center</aligny>
-						<texture>$INFO[Container(11001).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+						<texture fallback="flags/audio/defaultsound.png">$INFO[Container(11001).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
 					</control>
 
 					<!-- Item Separator -->
@@ -3166,7 +3189,7 @@
 				</focusedlayout>
 				
 				<!-- Home Videos Landscape -->
-				<itemlayout height="266" width="478" condition="!Skin.HasSetting(Widget.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
+				<itemlayout height="266" width="478" condition="!Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
 					
 					<!-- Thumbnail -->
 					<control type="image">
@@ -3203,7 +3226,7 @@
 				</itemlayout>
 
 				<!-- Home Videos Glass -->
-				<itemlayout height="266" width="478" condition="Skin.HasSetting(Widget.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
+				<itemlayout height="266" width="478" condition="Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
 					
 					<!-- Thumbnail -->
 					<control type="image">
@@ -3250,7 +3273,7 @@
 				</itemlayout>
 
 				<!-- Home Videos Landscape -->
-				<focusedlayout height="266" width="478" condition="!Skin.HasSetting(Widget.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
+				<focusedlayout height="266" width="478" condition="!Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
 					<control type="group">
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
@@ -3307,7 +3330,7 @@
 				</focusedlayout>
 
 				<!-- Home Videos Glass -->
-				<focusedlayout height="266" width="478" condition="Skin.HasSetting(Widget.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
+				<focusedlayout height="266" width="478" condition="Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
 					<control type="group">
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
