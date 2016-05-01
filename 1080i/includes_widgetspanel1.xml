@@ -1077,7 +1077,7 @@
 						<aligny>center</aligny>
 						<scroll>true</scroll>
 						<label>$INFO[Container(11001).ListItem.Genre]</label>
-						<visible>Control.IsVisible(11001) + [Container(11001).ListItem.Type(movie) | Container(11001).ListItem.Type(clip)] + !IsEmpty(Container(11001).ListItem.Genre)</visible>
+						<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !IsEmpty(Container(11001).ListItem.Genre)</visible>
 					</control>
 
 					<!-- TV Show Title -->
@@ -1095,6 +1095,7 @@
 
 				<!-- Info -->
 				<control type="grouplist">
+					<animation effect="slide" end="0,-23" condition="Container(11001).ListItem.Type(clip)">Conditional</animation>
 					<posy>-229</posy>
 					<posx>802</posx>
 					<orientation>horizontal</orientation>
@@ -1201,6 +1202,7 @@
 
 				<!-- Item Separator -->
 				<control type="image">
+					<animation effect="slide" end="0,-23" condition="Container(11001).ListItem.Type(clip)">Conditional</animation>
 					<posx>782</posx>
 					<posy>-252</posy>
 					<width>895</width>
@@ -1219,7 +1221,7 @@
 					<textcolor>grey</textcolor>
 					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 					<label>$VAR[OnDeckPlotVar]</label>
-					<visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+					<visible>!Skin.HasSetting(General.SmallPlotText) + !Container(11001).ListItem.Type(clip)</visible>
 				</control>
 
 				<!-- Info Plot (Small) -->
@@ -1233,9 +1235,37 @@
 					<textcolor>grey</textcolor>
 					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 					<label>$VAR[OnDeckPlotVar]</label>
-					<visible>Skin.HasSetting(General.SmallPlotText)</visible>
+					<visible>Skin.HasSetting(General.SmallPlotText) + !Container(11001).ListItem.Type(clip)</visible>
 				</control>
 
+				<!-- Info Plot (Home Videos)-->
+				<control type="textbox">
+					<posy>-215</posy>
+					<posx>802</posx>
+					<height>140</height>
+					<width>855</width>
+					<font>font12_textbox</font>
+					<align>justify</align>
+					<textcolor>grey</textcolor>
+					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<label>$VAR[OnDeckPlotVar]</label>
+					<visible>!Skin.HasSetting(General.SmallPlotText) + Container(11001).ListItem.Type(clip)</visible>
+				</control>
+
+				<!-- Info Plot (Home Videos, Small) -->
+				<control type="textbox">
+					<posy>-215</posy>
+					<posx>802</posx>
+					<height>140</height>
+					<width>855</width>
+					<font>font12_textbox_widgetpanellandscape</font>
+					<align>justify</align>
+					<textcolor>grey</textcolor>
+					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<label>$VAR[OnDeckPlotVar]</label>
+					<visible>Skin.HasSetting(General.SmallPlotText) + Container(11001).ListItem.Type(clip)</visible>
+				</control>
+				
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>782</posx>
@@ -1246,7 +1276,7 @@
 				</control>
 
 				<control type="grouplist">
-					<visible>!IsEmpty(Control.GetLabel(9999))</visible>
+					<visible>!IsEmpty(Control.GetLabel(9999)) + !Container(11001).ListItem.Type(clip)</visible>
 					<posy>-66</posy>
 					<posx>782</posx>
 					<height>60</height>
@@ -1384,7 +1414,7 @@
 				</control>
 
 				<control type="grouplist">
-					<visible>IsEmpty(Control.GetLabel(9999))</visible>
+					<visible>IsEmpty(Control.GetLabel(9999)) + !Container(11001).ListItem.Type(clip)</visible>
 					<posy>-66</posy>
 					<posx>782</posx>
 					<height>60</height>
@@ -1503,6 +1533,111 @@
 					</control>
 
 				</control>
+				
+				<control type="grouplist">
+					<visible>Container(11001).ListItem.Type(clip)</visible>
+					<posy>-66</posy>
+					<posx>782</posx>
+					<height>60</height>
+					<orientation>horizontal</orientation>
+
+					<!-- Video Resolution -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11001).ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Video Codec -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/video/default.png">$INFO[Container(11001).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Aspect Ratio -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11001).ListItem.Property(mediaTag-aspectRatio),flags/aspectratio/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Framerate -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/framerate/default.png">$INFO[Container(11001).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Audio Codec -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/audio/defaultsound.png">$INFO[Container(11001).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>58</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Audio Channels -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/channels/0.png">$INFO[Container(11001).ListItem.Property(mediaTag-audioChannels),flags/channels/,.png]</texture>
+					</control>
+
+				</control>
+				
 			</control>
 
 			<!-- Glass Tab -->
