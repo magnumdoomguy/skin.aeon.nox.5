@@ -901,6 +901,7 @@
 
 				<!-- Info -->
 				<control type="grouplist">
+					<animation effect="slide" end="0,-23" condition="Container(11000).ListItem.Type(clip)">Conditional</animation>
 					<posy>-229</posy>
 					<posx>802</posx>
 					<orientation>horizontal</orientation>
@@ -919,7 +920,7 @@
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<label>$INFO[Container(11000).ListItem.Year] [B]•[/B] </label>
-						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Year) + Container(11000).ListItem.Type(movie)</visible>
+						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Year) + [Container(11000).ListItem.Type(movie) | Container(11000).ListItem.Type(clip)]</visible>
 					</control>
 
 					<!-- Date -->
@@ -992,7 +993,7 @@
 						<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(ratingImage)) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 					</control>
 
-					<!-- Duration On Deck -->
+					<!-- Duration Recently Added -->
 					<control type="label">
 						<width min="20" max="285">auto</width>
 						<height>23</height>
@@ -1007,6 +1008,7 @@
 
 				<!-- Item Separator -->
 				<control type="image">
+					<animation effect="slide" end="0,-23" condition="Container(11000).ListItem.Type(clip)">Conditional</animation>
 					<posx>782</posx>
 					<posy>-252</posy>
 					<width>895</width>
@@ -1025,7 +1027,7 @@
 					<textcolor>grey</textcolor>
 					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 					<label>$VAR[RecentlyAddedPlotVar]</label>
-					<visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+					<visible>!Skin.HasSetting(General.SmallPlotText) + !Container(11000).ListItem.Type(clip)</visible>
 				</control>
 
 				<!-- Info Plot (Small) -->
@@ -1039,9 +1041,37 @@
 					<textcolor>grey</textcolor>
 					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 					<label>$VAR[RecentlyAddedPlotVar]</label>
-					<visible>Skin.HasSetting(General.SmallPlotText)</visible>
+					<visible>Skin.HasSetting(General.SmallPlotText) + !Container(11000).ListItem.Type(clip)</visible>
 				</control>
 
+				<!-- Info Plot (Home Videos)-->
+				<control type="textbox">
+					<posy>-215</posy>
+					<posx>802</posx>
+					<height>140</height>
+					<width>855</width>
+					<font>font12_textbox</font>
+					<align>justify</align>
+					<textcolor>grey</textcolor>
+					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<label>$VAR[RecentlyAddedPlotVar]</label>
+					<visible>!Skin.HasSetting(General.SmallPlotText) + Container(11000).ListItem.Type(clip)</visible>
+				</control>
+
+				<!-- Info Plot (Small Home Videos) -->
+				<control type="textbox">
+					<posy>-215</posy>
+					<posx>802</posx>
+					<height>140</height>
+					<width>855</width>
+					<font>font12_textbox_widgetpanellandscape</font>
+					<align>justify</align>
+					<textcolor>grey</textcolor>
+					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+					<label>$VAR[RecentlyAddedPlotVar]</label>
+					<visible>Skin.HasSetting(General.SmallPlotText) + Container(11000).ListItem.Type(clip)</visible>
+				</control>
+				
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>782</posx>
@@ -1052,7 +1082,7 @@
 				</control>
 
 				<control type="grouplist">
-					<visible>!IsEmpty(Control.GetLabel(9999))</visible>
+					<visible>!IsEmpty(Control.GetLabel(9999)) + !Container(11000).ListItem.Type(clip)</visible>
 					<posy>-66</posy>
 					<posx>782</posx>
 					<height>60</height>
@@ -1190,7 +1220,7 @@
 				</control>
 
 				<control type="grouplist">
-					<visible>IsEmpty(Control.GetLabel(9999))</visible>
+					<visible>IsEmpty(Control.GetLabel(9999)) + !Container(11000).ListItem.Type(clip)</visible>
 					<posy>-66</posy>
 					<posx>782</posx>
 					<height>62</height>
@@ -1306,6 +1336,110 @@
 						<align>center</align>
 						<aligny>center</aligny>
 						<texture fallback="flags/mpaa/NR.png">flags/mpaa/$INFO[Container(11000).Listitem.Property(mediaTag-contentRating)].png</texture>
+					</control>
+
+				</control>
+				
+				<control type="grouplist">
+					<visible>Container(11000).ListItem.Type(clip)</visible>
+					<posy>-66</posy>
+					<posx>782</posx>
+					<height>62</height>
+					<orientation>horizontal</orientation>
+
+					<!-- Video Resolution -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),flags/resolution/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>62</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Video Codec -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/video/default.png">$INFO[Container(11000).ListItem.Property(mediaTag-videoCodec),flags/video/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>62</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Aspect Ratio -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11000).ListItem.Property(mediaTag-aspectRatio),flags/aspectratio/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>62</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Framerate -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/framerate/default.png">$INFO[Container(11000).Listitem.Property(mediaTag-videoFrameRate),flags/framerate/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>62</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Audio Codec -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/audio/defaultsound.png">$INFO[Container(11000).ListItem.Property(mediaTag-audioCodec),flags/audio/,.png]</texture>
+					</control>
+
+					<!-- Item Separator -->
+					<control type="image">
+						<width>2</width>
+						<height>62</height>
+						<texture border="1">separator3.png</texture>
+					</control>
+
+					<!-- Audio Channels -->
+					<control type="image">
+						<width>147</width>
+						<height>60</height>
+						<aspectratio>keep</aspectratio>
+						<align>center</align>
+						<aligny>center</aligny>
+						<texture fallback="flags/channels/0.png">$INFO[Container(11000).ListItem.Property(mediaTag-audioChannels),flags/channels/,.png]</texture>
 					</control>
 
 				</control>
