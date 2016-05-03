@@ -63,7 +63,7 @@
 						<bordersize>1</bordersize>
 						<visible>!Skin.HasSetting(Enable.Circles)</visible>
 					</control>
-					
+
 					<!-- Watched Status Upper Circle -->
 					<control type="image">
 						<posx>189</posx>
@@ -72,10 +72,10 @@
 						<height>36</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+						<colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
 						<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
-					
+
 					<!-- Watched Status Lower Circle -->
 					<control type="image">
 						<posx>189</posx>
@@ -84,10 +84,10 @@
 						<height>36</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+						<colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
 						<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
-					
+
 					<control type="group">
 						<posx>15</posx>
 						<posy>15</posy>
@@ -99,7 +99,7 @@
 						<include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
 					</control>
 				</itemlayout>
-				<focusedlayout height="360" width="240" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets)">
+				<focusedlayout height="360" width="240" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)">
 					<control type="group">
 						<animation type="Focus">
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
@@ -113,7 +113,18 @@
 							<aspectratio>scale</aspectratio>
 							<texture>$VAR[PosterThumb]</texture>
 							<fadetime>400</fadetime>
+							<bordersize>8</bordersize>
+						</control>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>240</width>
+							<height>360</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<fadetime>400</fadetime>
 							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
 							<bordersize>8</bordersize>
 						</control>
 						<control type="image">
@@ -126,7 +137,7 @@
 							<bordersize>8</bordersize>
 							<visible>!Skin.HasSetting(Enable.Circles)</visible>
 						</control>
-						
+
 						<!-- Watched Status Upper Circle -->
 						<control type="image">
 							<posx>189</posx>
@@ -135,10 +146,10 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
-					
+
 						<!-- Watched Status Lower Circle -->
 						<control type="image">
 							<posx>189</posx>
@@ -147,10 +158,10 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
-					
+
 						<control type="group">
 							<posx>15</posx>
 							<posy>15</posy>
@@ -178,24 +189,37 @@
 					</control>
 				</itemlayout>
 				<focusedlayout height="240" width="240" condition="Container.Content(addons)">
-					<control type="image">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>240</width>
-						<height>240</height>
-						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.Icon]</texture>
-						<fadetime>400</fadetime>
-						<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-						<bordersize>8</bordersize>
+					<control type="group">
 						<animation type="Focus">
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>240</width>
+							<height>240</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<fadetime>400</fadetime>
+							<bordersize>8</bordersize>						
+						</control>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>240</width>
+							<height>240</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<fadetime>400</fadetime>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+						</control>
 					</control>
 				</focusedlayout>
 				<itemlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(genres) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets)]">
-					
+
 					<!-- Thumb -->
 					<control type="image">
 						<posx>0</posx>
@@ -210,7 +234,7 @@
 						<colordiffuse>BAffffff</colordiffuse>
 						<visible>!Container.Content(episodes)</visible>
 					</control>
-					
+
 					<!-- Episode Thumb -->
 					<control type="image">
 						<posx>0</posx>
@@ -225,7 +249,7 @@
 						<colordiffuse>BAffffff</colordiffuse>
 						<visible>Container.Content(episodes)</visible>
 					</control>
-					
+
 					<control type="image">
 						<posx>320</posx>
 						<posy>0</posy>
@@ -236,7 +260,7 @@
 						<bordersize>1</bordersize>
 						<visible>!Skin.HasSetting(Enable.Circles)</visible>
 					</control>
-					
+
 					<!-- Watched Status Upper Circle -->
 					<control type="image">
 						<posx>369</posx>
@@ -245,17 +269,17 @@
 						<height>36</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+						<colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
 						<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
-					
+
 					<control type="image">
 						<width>420</width>
 						<height>360</height>
 						<texture>thumbs/poster_black.png</texture>
 						<bordersize>2</bordersize>
 					</control>
-					
+
 					<control type="label">
 						<posx>0</posx>
 						<posy>310</posy>
@@ -267,7 +291,7 @@
 						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
 						<visible>Container.Content(episodes) + Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
-					
+
 					<control type="label">
 						<posx>0</posx>
 						<posy>310</posy>
@@ -279,7 +303,7 @@
 						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
 						<visible>Container.Content(episodes) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
-					
+
 					<control type="label">
 						<posx>210</posx>
 						<posy>310</posy>
@@ -291,7 +315,7 @@
 						<label>$INFO[ListItem.Label]</label>
 						<visible>!Container.Content(episodes)</visible>
 					</control>
-					
+
 					<!-- Watched Status Lower Circle -->
 					<control type="image">
 						<posx>369</posx>
@@ -300,10 +324,10 @@
 						<height>36</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+						<colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
 						<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
-					
+
 				</itemlayout>
 				<focusedlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(genres) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets)]">
 					<control type="group">
@@ -311,8 +335,8 @@
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
-						
-						<!-- Thumbnail -->
+
+						<!-- Thumbnail (not episodes)-->
 						<control type="image">
 							<posx>0</posx>
 							<posy>0</posy>
@@ -321,12 +345,24 @@
 							<aspectratio>scale</aspectratio>
 							<texture>$VAR[PosterThumb]</texture>
 							<fadetime>400</fadetime>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>8</bordersize>
 							<visible>!Container.Content(episodes)</visible>
 						</control>
-						
-						<!-- Thumbnail -->
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>420</width>
+							<height>360</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<fadetime>400</fadetime>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+							<visible>!Container.Content(episodes)</visible>
+						</control>
+
+						<!-- Thumbnail (episodes) -->
 						<control type="image">
 							<posx>0</posx>
 							<posy>0</posy>
@@ -335,11 +371,23 @@
 							<aspectratio>scale</aspectratio>
 							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
 							<fadetime>400</fadetime>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>8</bordersize>
 							<visible>Container.Content(episodes)</visible>
 						</control>
-						
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>420</width>
+							<height>360</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<fadetime>400</fadetime>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<visible>Container.Content(episodes)</visible>
+							<colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+						</control>
+
 						<control type="image">
 							<posx>320</posx>
 							<posy>0</posy>
@@ -350,7 +398,7 @@
 							<bordersize>8</bordersize>
 							<visible>!Skin.HasSetting(Enable.Circles)</visible>
 						</control>
-						
+
 						<!-- Watched Status Upper Circle -->
 						<control type="image">
 							<posx>369</posx>
@@ -359,17 +407,17 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
-					
+
 						<control type="image">
 							<width>420</width>
 							<height>360</height>
 							<texture>thumbs/poster_black.png</texture>
 							<bordersize>2</bordersize>
 						</control>
-						
+
 						<control type="label">
 							<posx>0</posx>
 							<posy>310</posy>
@@ -380,7 +428,7 @@
 							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
 							<visible>Container.Content(episodes) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
-					
+
 						<control type="label">
 							<posx>0</posx>
 							<posy>310</posy>
@@ -391,7 +439,7 @@
 							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
 							<visible>Container.Content(episodes) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
-					
+
 						<control type="label">
 							<posx>210</posx>
 							<posy>310</posy>
@@ -402,7 +450,7 @@
 							<label>$INFO[ListItem.Label]</label>
 							<visible>!Container.Content(episodes)</visible>
 						</control>
-					
+
 						<!-- Watched Status Lower Circle -->
 						<control type="image">
 							<posx>369</posx>
@@ -411,7 +459,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					</control>
@@ -455,7 +503,7 @@
 			</control>
 		</control>
 	</include>
-	
+
 	<!-- Music Wall -->
 	<include name="MusicWall">
 		<control type="group">
@@ -512,101 +560,85 @@
 					</control>
 				</itemlayout>
 				<focusedlayout height="240" width="240" condition="!Container.Content(genres)">
-					<control type="image">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>240</width>
-						<height>240</height>
-						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.Icon]</texture>
-						<fadetime>400</fadetime>
-						<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-						<bordersize>8</bordersize>
+					<control type="group">
 						<animation type="Focus">
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
-					</control>
-					<control type="group">
-						<visible>Container.Content(artists)</visible>
 						<control type="image">
-							<posx>6</posx>
-							<posy>190</posy>
-							<width>228</width>
-							<height>44</height>
-							<texture>black.png</texture>
-							<bordersize>2</bordersize>
-							<colordiffuse>88ffffff</colordiffuse>
-						</control>
-						<control type="label">
-							<posx>120</posx>
-							<posy>200</posy>
+							<posx>0</posx>
+							<posy>0</posy>
 							<width>240</width>
-							<height>30</height>
-							<align>center</align>
-							<textoffsetx>4</textoffsetx>
-							<textcolor>white</textcolor>
-							<info>ListItem.Label</info>
-						</control>
-					</control>
-					
-					<control type="group">
-						<visible>Container.Content(artists)</visible>
-						<animation type="Focus">
-							<effect type="fade" start="100" end="0" time="100" tween="sine" easing="in" />
-							<effect type="slide" start="0,0" end="0,30" time="200" tween="sine" easing="in" />
-						</animation>
-						<control type="image">
-							<posy>190</posy>
-							<width>240</width>
-							<height>50</height>
-							<texture>black.png</texture>
+							<height>240</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<fadetime>400</fadetime>
 							<bordersize>8</bordersize>
-							<colordiffuse>88ffffff</colordiffuse>
+
 						</control>
-						<control type="label">
-							<posx>120</posx>
-							<posy>200</posy>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
 							<width>240</width>
-							<height>30</height>
-							<align>center</align>
-							<textoffsetx>10</textoffsetx>
-							<textcolor>grey2</textcolor>
-							<info>ListItem.Label</info>
+							<height>240</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<fadetime>400</fadetime>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+						</control>
+						<control type="group">
+							<visible>Container.Content(artists)</visible>
+							<control type="image">
+								<posx>6</posx>
+								<posy>190</posy>
+								<width>228</width>
+								<height>44</height>
+								<texture>black.png</texture>
+								<bordersize>2</bordersize>
+								<colordiffuse>88ffffff</colordiffuse>
+							</control>
+							<control type="label">
+								<posx>120</posx>
+								<posy>200</posy>
+								<width>240</width>
+								<height>30</height>
+								<align>center</align>
+								<textoffsetx>4</textoffsetx>
+								<textcolor>white</textcolor>
+								<info>ListItem.Label</info>
+							</control>
+						</control>
+
+						<control type="group">
+							<visible>Container.Content(artists)</visible>
+							<animation type="Focus">
+								<effect type="fade" start="100" end="0" time="100" tween="sine" easing="in" />
+								<effect type="slide" start="0,0" end="0,30" time="200" tween="sine" easing="in" />
+							</animation>
+							<control type="image">
+								<posy>190</posy>
+								<width>240</width>
+								<height>50</height>
+								<texture>black.png</texture>
+								<bordersize>8</bordersize>
+								<colordiffuse>88ffffff</colordiffuse>
+							</control>
+							<control type="label">
+								<posx>120</posx>
+								<posy>200</posy>
+								<width>240</width>
+								<height>30</height>
+								<align>center</align>
+								<textoffsetx>10</textoffsetx>
+								<textcolor>grey2</textcolor>
+								<info>ListItem.Label</info>
+							</control>
 						</control>
 					</control>
 				</focusedlayout>
-				<itemlayout height="240" width="240" condition="Container.Content(genres)">
-					<control type="image">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>240</width>
-						<height>240</height>
-						<aspectratio>scale</aspectratio>
-						<texture fallback="special://skin/extras/musicgenres/Default.jpg">$INFO[ListItem.Label,special://skin/extras/musicgenres/,.jpg]</texture>
-						<fadetime>400</fadetime>
-						<bordertexture border="2">empty3.png</bordertexture>
-						<bordersize>2</bordersize>
-						<colordiffuse>BAffffff</colordiffuse>
-					</control>
-				</itemlayout>
-				<focusedlayout height="240" width="240" condition="Container.Content(genres)">
-					<control type="image">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>240</width>
-						<height>240</height>
-						<aspectratio>scale</aspectratio>
-						<texture fallback="special://skin/extras/musicgenres/Default.jpg">$INFO[ListItem.Label,special://skin/extras/musicgenres/,.jpg]</texture>
-						<fadetime>400</fadetime>
-						<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-						<bordersize>8</bordersize>
-						<animation type="Focus">
-							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-						</animation>
-					</control>
-				</focusedlayout>
+
 			</control>
 			<control type="scrollbar" id="60">
 				<posx>1801</posx>
@@ -627,7 +659,7 @@
 			</control>
 		</control>
 	</include>
-	
+
 	<!-- Shared Wall -->
 	<include name="SharedWall">
 		<control type="group">
@@ -678,41 +710,52 @@
 					</control>
 				</itemlayout>
 				<focusedlayout height="240" width="240">
-					<control type="image">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>240</width>
-						<height>240</height>
-						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.CompositeImage(width=240;height=240;cols=2;rows=2)]</texture>
-						<fadetime>400</fadetime>
-						<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-						<bordersize>8</bordersize>
-						<animation type="Focus">
-							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-						</animation>
-					</control>
 					<control type="group">
 						<animation type="Focus">
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
 						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
 							<width>240</width>
 							<height>240</height>
-							<texture>thumbs/poster_black.png</texture>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.CompositeImage(width=240;height=240;cols=2;rows=2)]</texture>
+							<fadetime>400</fadetime>
 							<bordersize>8</bordersize>
+
 						</control>
-						<control type="label">
-							<posx>120</posx>
-							<posy>200</posy>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
 							<width>240</width>
-							<height>30</height>
-							<align>center</align>
-							<textoffsetx>15</textoffsetx>
-							<textcolor>white</textcolor>
-							<info>ListItem.Label</info>
+							<height>240</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<fadetime>400</fadetime>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+						</control>
+						<control type="group">
+
+							<control type="image">
+								<width>240</width>
+								<height>240</height>
+								<texture>thumbs/poster_black.png</texture>
+								<bordersize>8</bordersize>
+							</control>
+							<control type="label">
+								<posx>120</posx>
+								<posy>200</posy>
+								<width>240</width>
+								<height>30</height>
+								<align>center</align>
+								<textoffsetx>15</textoffsetx>
+								<textcolor>white</textcolor>
+								<info>ListItem.Label</info>
+							</control>
 						</control>
 					</control>
 				</focusedlayout>
@@ -736,7 +779,7 @@
 			</control>
 		</control>
 	</include>
-	
+
 	<!-- Addon Wall -->
 	<include name="AddonWall">
 		<control type="group">
@@ -769,46 +812,36 @@
 						<bordersize>2</bordersize>
 						<colordiffuse>BAffffff</colordiffuse>
 					</control>
-					<control type="image">
-						<posx>140</posx>
-						<posy>0</posy>
-						<width>100</width>
-						<height>100</height>
-						<texture>overlays/addons/enabled.png</texture>
-						<aspectratio align="center" aligny="top">keep</aspectratio>
-						<visible>StringCompare(ListItem.Label2,$LOCALIZE[449])</visible>
-						<bordersize>2</bordersize>
-					</control>
 				</itemlayout>
 				<focusedlayout height="240" width="240">
-					<control type="image">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>240</width>
-						<height>240</height>
-						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.Icon]</texture>
-						<fadetime>400</fadetime>
-						<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-						<bordersize>8</bordersize>
+					<control type="group">
 						<animation type="Focus">
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
-					</control>
-					<control type="image">
-						<posx>140</posx>
-						<posy>0</posy>
-						<width>100</width>
-						<height>100</height>
-						<texture>overlays/addons/enabled.png</texture>
-						<aspectratio align="center" aligny="top">keep</aspectratio>
-						<visible>StringCompare(ListItem.Label2,$LOCALIZE[449])</visible>
-						<bordersize>8</bordersize>
-						<animation type="Focus">
-							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-						</animation>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>240</width>
+							<height>240</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<fadetime>400</fadetime>
+							<bordersize>8</bordersize>
+
+						</control>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>240</width>
+							<height>240</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<fadetime>400</fadetime>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+						</control>
 					</control>
 				</focusedlayout>
 			</control>
@@ -831,7 +864,7 @@
 			</control>
 		</control>
 	</include>
-	
+
 	<!-- Picture Wall -->
 	<include name="PictureWall">
 		<control type="group">
@@ -908,51 +941,61 @@
 					</control>
 				</itemlayout>
 				<focusedlayout heigth="300" width="560">
-					<control type="image">
-						<width>560</width>
-						<height>300</height>
-						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.Art(bigThumb)]</texture>
-						<fadetime>400</fadetime>
-						<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-						<bordersize>8</bordersize>
+					<control type="group">
 						<animation type="Focus">
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
-					</control>
-					<control type="group">
-						<animation type="Focus">
-							<effect type="zoom" start="96" end="98" time="200" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-						</animation>
 						<control type="image">
-							<posy>250</posy>
 							<width>560</width>
-							<height>50</height>
-							<texture>black.png</texture>
-							<bordersize>2</bordersize>
-							<colordiffuse>88ffffff</colordiffuse>
+							<height>300</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+							<fadetime>400</fadetime>
+							<bordersize>8</bordersize>
+
 						</control>
-						<control type="label">
-							<posy>260</posy>
+
+						<control type="group">
+
+							<control type="image">
+								<posy>250</posy>
+								<width>560</width>
+								<height>50</height>
+								<texture>black.png</texture>
+								<bordersize>2</bordersize>
+								<colordiffuse>88ffffff</colordiffuse>
+							</control>
+							<control type="label">
+								<posy>260</posy>
+								<width>560</width>
+								<height>30</height>
+								<textoffsetx>15</textoffsetx>
+								<textcolor>grey2</textcolor>
+								<info>ListItem.Label</info>
+							</control>
+							<control type="label">
+								<font>IconSmall</font>
+								<posx>560</posx>
+								<posy>260</posy>
+								<width>240</width>
+								<height>30</height>
+								<align>right</align>
+								<textoffsetx>15</textoffsetx>
+								<textcolor>grey2</textcolor>
+								<label></label>
+								<visible>ListItem.Type(photoAlbum)</visible>
+							</control>
+						</control>
+						<control type="image">
 							<width>560</width>
-							<height>30</height>
-							<textoffsetx>15</textoffsetx>
-							<textcolor>grey2</textcolor>
-							<info>ListItem.Label</info>
-						</control>
-						<control type="label">
-							<font>IconSmall</font>
-							<posx>560</posx>
-							<posy>260</posy>
-							<width>240</width>
-							<height>30</height>
-							<align>right</align>
-							<textoffsetx>15</textoffsetx>
-							<textcolor>grey2</textcolor>
-							<label></label>
-							<visible>ListItem.Type(photoAlbum)</visible>
+							<height>300</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<fadetime>400</fadetime>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
 						</control>
 					</control>
 				</focusedlayout>
