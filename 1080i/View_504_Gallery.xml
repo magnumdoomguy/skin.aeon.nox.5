@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+
     <!--STRIP LAYOUT-->
     <include name="View_504_Gallery">
         <include>ViewAnimation</include>
@@ -66,11 +67,11 @@
 				<control type="label">
 					<width min="20" max="299">auto</width>
 					<height>30</height>
-					<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+					<textcolor>$VAR[Colour_GalleryThemeColourVar]</textcolor>
 					<align>left</align>
 					<aligny>center</aligny>
 					<font>font13_title</font>
-					<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+					<textcolor>$VAR[Colour_GalleryThemeColourVar]</textcolor>
 					<label>$VAR[RatingVar] [COLOR white2][B]•[/B][/COLOR] </label>
 					<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
 				</control>
@@ -182,7 +183,7 @@
                 <onright>504</onright>
                 <onup>SetProperty(MediaMenu,True,home)</onup>
                 <onup>SetFocus(9050)</onup>
-                <ondown>61</ondown>
+                <ondown>noop</ondown>
                 <preloaditems>2</preloaditems>
                 <focusposition>1</focusposition>
                 <orientation>horizontal</orientation>
@@ -246,7 +247,6 @@
                             <texture>background.png</texture>
                             <colordiffuse>background</colordiffuse>
                             <fadetime>400</fadetime>
-                            <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
                             <bordersize>8</bordersize>
                         </control>
                         <control type="image">
@@ -256,18 +256,27 @@
                             <texture fallback="special://skin/backgrounds/default_bg.jpg">$INFO[ListItem.Art(fanart)]</texture>
                             <aspectratio align="center" aligny="center">scale</aspectratio>
                             <fadetime>400</fadetime>
+                            <bordersize>8</bordersize>
+                        </control>
+						<control type="image">
+                            <width>1125</width>
+                            <height>633</height>
+                            <texture>empty.png</texture>
+                            <colordiffuse>$VAR[Colour_GalleryHighlightColourVar]</colordiffuse>
+                            <fadetime>400</fadetime>
                             <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
                             <bordersize>8</bordersize>
                         </control>
+						
+						<!-- Ribbon Watched Status Overlay -->
                         <control type="image">
-                            <visible>![Window.IsActive(pictures) | Container.Content(artists)]</visible>
+                            <visible>![Window.IsActive(pictures) | Container.Content(artists)] + !Skin.HasSetting(Enable.Circles)</visible>
                             <posx>1048</posx>
                             <posy>8</posy>
                             <width>80</width>
                             <height>80</height>
                             <texture>$VAR[OverlayVar]</texture>
                             <aspectratio align="center" aligny="top">keep</aspectratio>
-							<visible>!Skin.HasSetting(Enable.Circles)</visible>
                         </control>
 						
 						<!-- Watched Status Upper Circle -->
@@ -278,7 +287,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_GalleryWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					
@@ -290,7 +299,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_GalleryWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 						
@@ -320,37 +329,6 @@
                 </focusedlayout>
             </control>
         </control>
-        <control type="textbox">
-            <posy>865</posy>
-            <posx>400</posx>
-            <width>1070</width>
-            <align>left</align>
-            <height>200</height>
-            <label>$VAR[PlotVar]</label>
-            <font>font14_textbox</font>
-            <autoscroll time="2500" delay="6000" repeat="5000">true</autoscroll>
-            <textcolor>white</textcolor>
-            <pagecontrol>61</pagecontrol>
-            <visible>Control.IsVisible(504)</visible>
-            <visible>[SubString(ListItem.Path,videodb://movies/sets) + !Stringcompare(ListItem.Label,..)]</visible>
-        </control>
-        <control type="scrollbar" id="61">
-            <posx>1500</posx>
-            <posy>875</posy>
-            <width>14</width>
-            <height>200</height>
-            <onup>61</onup>
-            <ondown>61</ondown>
-            <onleft>504</onleft>
-            <onright>504</onright>
-            <texturesliderbackground border="1">-</texturesliderbackground>
-            <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-            <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-            <textureslidernib>-</textureslidernib>
-            <textureslidernibfocus>-</textureslidernibfocus>
-            <showonepage>false</showonepage>
-            <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
-            <visible>Control.IsVisible(504) + [SubString(ListItem.Path,videodb://movies/sets) + !Stringcompare(ListItem.Label,..)]</visible>
-        </control>
+       
     </include>
 </includes>

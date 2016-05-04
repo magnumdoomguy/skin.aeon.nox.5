@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+
     <!-- Video BannerInfo -->
     <include name="VideoBannerInfo">
         <control type="group">
@@ -45,7 +46,6 @@
                         <height>181</height>
                         <aspectratio>stretch</aspectratio>
                         <texture>$VAR[BannerThumb]</texture>
-                        <fadetime>400</fadetime>
                         <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
                         <bordersize>2</bordersize>
                         <colordiffuse>BAffffff</colordiffuse>
@@ -58,7 +58,6 @@
                             <height>181</height>
                             <aspectratio>scale</aspectratio>
                             <texture>$INFO[ListItem.Art(fanart)]</texture>
-                            <fadetime>400</fadetime>
                             <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
                             <bordersize>2</bordersize>
                             <colordiffuse>BAffffff</colordiffuse>
@@ -83,7 +82,7 @@
 						<height>36</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+						<colordiffuse>$VAR[Colour_BannerInfoWatchedStatusColourVar]</colordiffuse>
 						<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
 					
@@ -95,7 +94,7 @@
 						<height>36</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+						<colordiffuse>$VAR[Colour_BannerInfoWatchedStatusColourVar]</colordiffuse>
 						<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
 										
@@ -117,16 +116,28 @@
                             <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
                             <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
                         </animation>
+						
+						<!-- Banner -->
                         <control type="image">
                             <width>980</width>
                             <height>181</height>
                             <aspectratio>stretch</aspectratio>
                             <texture>$VAR[BannerThumb]</texture>
-                            <fadetime>400</fadetime>
-                            <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
                             <bordersize>8</bordersize>
                             <visible>!IsEmpty(ListItem.Art(banner)) | IsEmpty(ListItem.Art(fanart))</visible>
                         </control>
+						<control type="image">
+                            <width>980</width>
+                            <height>181</height>
+                            <aspectratio>stretch</aspectratio>
+                            <texture>empty.png</texture>
+                            <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+                            <bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_BannerInfoHighlightColourVar]</colordiffuse>
+                            <visible>!IsEmpty(ListItem.Art(banner)) | IsEmpty(ListItem.Art(fanart))</visible>
+                        </control>
+						
+						
                         <control type="group">
                             <visible>IsEmpty(ListItem.Art(banner))</visible>
                             <control type="image">
@@ -134,9 +145,16 @@
                                 <height>181</height>
                                 <aspectratio>scale</aspectratio>
                                 <texture>$INFO[ListItem.Art(fanart)]</texture>
-                                <fadetime>400</fadetime>
+                                <bordersize>8</bordersize>
+                            </control>
+							<control type="image">
+                                <width>980</width>
+                                <height>181</height>
+                                <aspectratio>scale</aspectratio>
+                                <texture>empty.png</texture>
                                 <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
                                 <bordersize>8</bordersize>
+								<colordiffuse>$VAR[Colour_BannerInfoHighlightColourVar]</colordiffuse>
                             </control>
                         </control>
                         <control type="image">
@@ -158,7 +176,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_BannerInfoWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					
@@ -170,7 +188,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_BannerInfoWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 										
@@ -239,7 +257,7 @@
                     <visible>!IsEmpty(ListItem.Genre)</visible>
                 </control>
                 <control type="label">
-                    <label>[COLOR=$VAR[Colour_ThemeColourVar]]Episodes:[/COLOR] $INFO[ListItem.episode] ($INFO[ListItem.Property(UnWatchedEpisodes)] Unwatched)</label>
+                    <label>[COLOR=$VAR[Colour_BannerInfoThemeColourVar]]Episodes:[/COLOR] $INFO[ListItem.episode] ($INFO[ListItem.Property(UnWatchedEpisodes)] Unwatched)</label>
                     <width>680</width>
                     <height>40</height>
                     <include>ShowCaseInfoPanelButtonsValues</include>
