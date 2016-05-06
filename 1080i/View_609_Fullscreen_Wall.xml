@@ -25,7 +25,7 @@
                 <height>1080</height>
                 <onleft>SetProperty(MediaMenu,True,home)</onleft>
                 <onleft>SetFocus(9050)</onleft>
-                <onright>60</onright>
+                <onright>noop</onright>
                 <onup>609</onup>
                 <ondown>609</ondown>
                 <orientation>vertical</orientation>
@@ -43,14 +43,14 @@
                             <height>360</height>
                             <aspectratio scalediffuse="false">scale</aspectratio>
                             <texture>$VAR[PosterThumbVar]</texture>
-                            <fadetime>300</fadetime>
                         </control>
                         <control type="image">
                             <width>240</width>
                             <height>360</height>
                             <texture>thumbs/diffuse.png</texture>
-                            <fadetime>300</fadetime>
                         </control>
+						
+						<!-- Watch Status Ribbon Overlay -->
                         <control type="image">
                             <posx>187</posx>
                             <posy>0</posy>
@@ -69,7 +69,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					
@@ -81,7 +81,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					
@@ -107,10 +107,20 @@
                             <height>360</height>
                             <aspectratio scalediffuse="false">scale</aspectratio>
                             <texture>$VAR[PosterThumbVar]</texture>
-                            <bordertexture border="9">thumbs/thumbnail_focused.png</bordertexture>
-                            <fadetime>300</fadetime>
                             <bordersize>8</bordersize>
                         </control>
+						<control type="image">
+                            <posx>0</posx>
+                            <width>240</width>
+                            <height>360</height>
+                            <aspectratio scalediffuse="false">scale</aspectratio>
+                            <texture>empty.png</texture>
+                            <bordertexture border="9">thumbs/thumbnail_focused.png</bordertexture>
+                            <bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_FullscreenWallHighlightColourVar]</colordiffuse>
+                        </control>
+						
+						<!-- Watched Status Ribbon Overlay -->
                         <control type="image">
                             <posx>180</posx>
                             <posy>8</posy>
@@ -129,7 +139,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					
@@ -141,7 +151,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					
@@ -167,14 +177,12 @@
                             <height>270</height>
                             <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
                             <texture>$INFO[ListItem.Thumb]</texture>
-                            <fadetime>300</fadetime>
                         </control>
                         <control type="image">
                             <visible>Container.Content(albums)</visible>
                             <width>274</width>
                             <height>270</height>
                             <texture>thumbs/diffuse.png</texture>
-                            <fadetime>300</fadetime>
                         </control>
                         <control type="group">
                             <visible>Container.Content(artists)</visible>
@@ -182,7 +190,6 @@
                                 <width>274</width>
                                 <height>270</height>
                                 <texture border="0,0,0,50">thumbs/diffuse_music.png</texture>
-                                <fadetime>300</fadetime>
                             </control>
                             <control type="label">
 								<posx>137</posx>
@@ -206,10 +213,18 @@
                             <height>270</height>
                             <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
                             <texture>$INFO[ListItem.Thumb]</texture>
-                            <bordertexture border="9">thumbs/thumbnail_focused.png</bordertexture>
-                            <fadetime>300</fadetime>
                             <bordersize>8</bordersize>
                         </control>
+						<control type="image">
+                            <width>274</width>
+                            <height>270</height>
+                            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+                            <texture>empty.png</texture>
+                            <bordertexture border="9">thumbs/thumbnail_focused.png</bordertexture>
+                            <bordersize>8</bordersize>
+							<colordiffuse>$VAR[Colour_FullscreenWallHighlightColourVar]</colordiffuse>
+                        </control>
+						
                         <control type="group">
                             <visible>Container.Content(artists)</visible>
                             <control type="image">
@@ -219,7 +234,6 @@
                                 <height>42</height>
                                 <texture>black.png</texture>
                                 <colordiffuse>99ffffff</colordiffuse>
-                                <fadetime>300</fadetime>
                             </control>
                             <control type="label">
 								<posx>129</posx>
