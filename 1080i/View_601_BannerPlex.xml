@@ -29,7 +29,7 @@
 				<height>330</height>
 				<onleft>SetProperty(MediaMenu,True,home)</onleft>
 				<onleft>SetFocus(9050)</onleft>
-				<onright>60</onright>
+				<onright>noop</onright>
 				<onup>601</onup>
 				<ondown>601</ondown>
 				<pagecontrol>60</pagecontrol>
@@ -79,7 +79,7 @@
 						<height>36</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+						<colordiffuse>$VAR[Colour_BannerPlexWatchedStatusColourVar]</colordiffuse>
 						<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
 					
@@ -91,7 +91,7 @@
 						<height>36</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+						<colordiffuse>$VAR[Colour_BannerPlexWatchedStatusColourVar]</colordiffuse>
 						<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 					</control>
 										
@@ -113,15 +113,28 @@
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
+						
+						<!-- Banner -->
 						<control type="image">
 							<width>560</width>
 							<height>110</height>
 							<aspectratio>scale</aspectratio>
 							<texture>$VAR[BannerThumb]</texture>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>8</bordersize>
 							<visible>!IsEmpty(ListItem.Art(banner)) | IsEmpty(ListItem.Art(fanart))</visible>
 						</control>
+						<control type="image">
+							<width>560</width>
+							<height>110</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>
+							<visible>!IsEmpty(ListItem.Art(banner)) | IsEmpty(ListItem.Art(fanart))</visible>
+							<colordiffuse>$VAR[Colour_BannerPlexHighlightColourVar]</colordiffuse>
+						</control>
+						
+						<!-- Simulated Banner -->
 						<control type="group">
 							<visible>IsEmpty(ListItem.Art(banner))</visible>
 							<control type="image">
@@ -129,10 +142,20 @@
 								<height>110</height>
 								<aspectratio>scale</aspectratio>
 								<texture>$INFO[ListItem.Art(fanart)]</texture>
-								<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 								<bordersize>8</bordersize>
 							</control>
+							<control type="image">
+								<width>560</width>
+								<height>110</height>
+								<aspectratio>scale</aspectratio>
+								<texture>empty.png</texture>
+								<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+								<bordersize>8</bordersize>
+								<colordiffuse>$VAR[Colour_BannerPlexHighlightColourVar]</colordiffuse>
+							</control>
 						</control>
+						
+						<!-- Watched Status Ribbon -->
 						<control type="image">
 							<posx>490</posx>
 							<posy>4</posy>
@@ -152,7 +175,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_BannerPlexWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 					
@@ -164,7 +187,7 @@
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
 							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+							<colordiffuse>$VAR[Colour_BannerPlexWatchedStatusColourVar]</colordiffuse>
 							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 										
