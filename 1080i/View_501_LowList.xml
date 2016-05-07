@@ -358,8 +358,7 @@
 				<include condition="Skin.HasSetting(nohighlist)">LowListHeightLow</include>
 				<onleft>SetProperty(MediaMenu,True,home)</onleft>
 				<onleft>SetFocus(9050)</onleft>
-				<onright condition="Control.IsVisible(60)">60</onright>
-				<onright condition="!Control.IsVisible(60)">62</onright>
+				<onright>noop</onright>
 				<onup>501</onup>
 				<ondown>501</ondown>
 				<pagecontrol>60</pagecontrol>
@@ -533,7 +532,7 @@
 						<height>64</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[ListItem.Overlay]</texture>
-<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
+						<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
 					</control>
 				</focusedlayout>
 				<itemlayout height="68" width="806" condition="Container.Content(tvshows)">
@@ -564,25 +563,43 @@
 						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
+					
+					<!-- Standard Rating -->
 					<control type="label">
-						<posx>730</posx>
-						<width>620</width>
+						<posx>709</posx>
+						<width>96</width>
 						<height>68</height>
 						<font>font15</font>
-						<align>right</align>
+						<align>center</align>
 						<textcolor>grey2</textcolor>
 						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
 						<aligny>center</aligny>
-						<label>$INFO[ListItem.RatingAndVotes]</label>
+						<label>$VAR[RatingVar]</label>
+						<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
 					</control>
+					
+					<!-- User Rating -->
+					<control type="label">
+						<posx>709</posx>
+						<width>96</width>
+						<height>68</height>
+						<font>font15</font>
+						<align>center</align>
+						<textcolor>$VAR[Colour_LowListThemeColourVar]</textcolor>
+						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
+						<aligny>center</aligny>
+						<label>$VAR[RatingVar]</label>
+						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+					</control>
+					
 					<control type="image">
 						<posx>742</posx>
 						<posy>2</posy>
 						<width>64</width>
 						<height>64</height>
 						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
+						<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+						<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
 					</control>
 					<control type="group">
 						<description>Unwatched episodes</description>
@@ -593,7 +610,7 @@
 							<posy>3</posy>
 							<width>64</width>
 							<height>64</height>
-							<texture>overlays/list/OverlayUnWatched.png</texture>
+							<texture>overlays/tvlist/OverlayUnWatched.png</texture>
 							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
 						</control>
 						<control type="label">
@@ -646,25 +663,44 @@
 						<label>$INFO[ListItem.Label]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
 					</control>
+					
+					<!-- Standard Rating -->
 					<control type="label">
-						<posx>730</posx>
-						<width>620</width>
+						<posx>709</posx>
+						<width>96</width>
 						<height>68</height>
 						<font>font15</font>
-						<align>right</align>
+						<align>center</align>
 						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
 						<aligny>center</aligny>
-						<label>$INFO[ListItem.RatingAndVotes]</label>
+						<label>$VAR[RatingVar]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
+						<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
 					</control>
+					
+					<!-- User Rating -->
+					<control type="label">
+						<posx>709</posx>
+						<width>96</width>
+						<height>68</height>
+						<font>font15</font>
+						<align>center</align>
+						<textcolor>$VAR[Colour_LowListThemeColourVar]</textcolor>
+						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
+						<aligny>center</aligny>
+						<label>$VAR[RatingVar]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
+						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+					</control>
+					
 					<control type="image">
 						<posx>742</posx>
 						<posy>2</posy>
 						<width>64</width>
 						<height>64</height>
 						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
+						<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+						<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
 					</control>
 					<control type="group">
 						<description>Unwatched episodes</description>
@@ -675,7 +711,7 @@
 							<posy>3</posy>
 							<width>64</width>
 							<height>64</height>
-							<texture>overlays/list/OverlayUnWatched.png</texture>
+							<texture>overlays/tvlist/OverlayUnWatched.png</texture>
 							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
 						</control>
 						<control type="label">
@@ -726,8 +762,8 @@
 						<width>64</width>
 						<height>64</height>
 						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
+						<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+						<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
 					</control>
 					<control type="group">
 						<description>Unwatched episodes</description>
@@ -738,7 +774,7 @@
 							<posy>3</posy>
 							<width>64</width>
 							<height>64</height>
-							<texture>overlays/list/OverlayUnWatched.png</texture>
+							<texture>overlays/tvlist/OverlayUnWatched.png</texture>
 							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
 						</control>
 						<control type="label">
@@ -796,8 +832,8 @@
 						<width>64</width>
 						<height>64</height>
 						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
+						<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+						<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
 					</control>
 					<control type="group">
 						<description>Unwatched episodes</description>
@@ -808,7 +844,7 @@
 							<posy>3</posy>
 							<width>64</width>
 							<height>64</height>
-							<texture>overlays/list/OverlayUnWatched.png</texture>
+							<texture>overlays/tvlist/OverlayUnWatched.png</texture>
 							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
 						</control>
 						<control type="label">
@@ -842,17 +878,35 @@
 						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
 						<textoffsetx>15</textoffsetx>
 					</control>
+					
+					<!-- Standard Rating -->
 					<control type="label">
-						<posx>730</posx>
-						<width>620</width>
+						<posx>709</posx>
+						<width>96</width>
 						<height>68</height>
 						<font>font15</font>
-						<align>right</align>
+						<align>center</align>
 						<textcolor>grey2</textcolor>
 						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
 						<aligny>center</aligny>
-						<label>$INFO[ListItem.RatingAndVotes]</label>
+						<label>$VAR[RatingVar]</label>
+						<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
 					</control>
+					
+					<!-- User Rating -->
+					<control type="label">
+						<posx>709</posx>
+						<width>96</width>
+						<height>68</height>
+						<font>font15</font>
+						<align>center</align>
+						<textcolor>$VAR[Colour_LowListThemeColourVar]</textcolor>
+						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
+						<aligny>center</aligny>
+						<label>$VAR[RatingVar]</label>
+						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+					</control>
+					
 					<control type="image">
 						<posx>742</posx>
 						<posy>2</posy>
@@ -860,7 +914,7 @@
 						<height>64</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[ListItem.Overlay]</texture>
-<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
+						<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
 					</control>
 				</itemlayout>
 				<focusedlayout height="68" width="806" condition="Container.Content(episodes)">
@@ -886,17 +940,36 @@
 						<textoffsetx>15</textoffsetx>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
 					</control>
+					
+					<!-- Standard Rating -->
 					<control type="label">
-						<posx>730</posx>
-						<width>620</width>
+						<posx>709</posx>
+						<width>96</width>
 						<height>68</height>
 						<font>font15</font>
-						<align>right</align>
+						<align>center</align>
 						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
 						<aligny>center</aligny>
-						<label>$INFO[ListItem.RatingAndVotes]</label>
+						<label>$VAR[RatingVar]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
+						<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
 					</control>
+					
+					<!-- User Rating -->
+					<control type="label">
+						<posx>709</posx>
+						<width>96</width>
+						<height>68</height>
+						<font>font15</font>
+						<align>center</align>
+						<textcolor>$VAR[Colour_LowListThemeColourVar]</textcolor>
+						<selectedcolor>$VAR[Colour_LowListThemeColourVar]</selectedcolor>
+						<aligny>center</aligny>
+						<label>$VAR[RatingVar]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
+						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+					</control>
+					
 					<control type="image">
 						<posx>742</posx>
 						<posy>2</posy>
@@ -904,7 +977,7 @@
 						<height>64</height>
 						<aspectratio>keep</aspectratio>
 						<texture>$VAR[ListItem.Overlay]</texture>
-<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
+						<colordiffuse>$VAR[Colour_LowListWatchedStatusColourVar]</colordiffuse>
 					</control>
 				</focusedlayout>
 			</control>
