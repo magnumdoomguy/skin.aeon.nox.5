@@ -824,12 +824,30 @@
                         <visible>Container.Content(tvshows)</visible>
                     </control>
                     <control type="group">
+					
+						<!-- No Rating -->
                         <control type="button">
                             <width>251</width>
-                            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$INFO[ListItem.RatingAndVotes]</label>
+                            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$LOCALIZE[31103]</label>
 							<height>94</height>
                             <include>ShowCaseInfoPanelButtonsValues</include>
+							<visible>IsEmpty(ListItem.RatingAndVotes)</visible>
                         </control>
+						<control type="button">
+                            <width>251</width>
+                            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</label>
+							<height>94</height>
+                            <include>ShowCaseInfoPanelButtonsValues</include>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+                        </control>
+						<control type="button">
+                            <width>251</width>
+                            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR][COLOR $VAR[Colour_ShowcaseThemeColourVar]]$VAR[RatingVar][/COLOR]</label>
+							<height>94</height>
+                            <include>ShowCaseInfoPanelButtonsValues</include>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+                        </control>
+						
                         <control type="image">
                             <posx>251</posx>
                             <width>2</width>
