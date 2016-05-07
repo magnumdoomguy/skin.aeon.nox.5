@@ -400,25 +400,44 @@
                             <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
+						
+						<!-- Standard Rating -->
                         <control type="label">
-                            <posx>730</posx>
+                            <posx>709</posx>
                             <posy>0</posy>
-                            <width>620</width>
+                            <width>96</width>
                             <height>68</height>
                             <font>font15</font>
-                            <align>right</align>
+                            <align>center</align>
                             <textcolor>grey2</textcolor>
                             <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.RatingAndVotes]</label>
+                            <label>$VAR[RatingVar]</label>
+							<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
                         </control>
+						
+						<!-- User Rating -->
+						<control type="label">
+                            <posx>709</posx>
+                            <posy>0</posy>
+                            <width>96</width>
+                            <height>68</height>
+                            <font>font15</font>
+                            <align>center</align>
+                            <textcolor>$VAR[Colour_TriPanelThemeColourVar]</textcolor>
+                            <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+                            <aligny>center</aligny>
+                            <label>$VAR[RatingVar]</label>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+                        </control>
+						
                         <control type="image">
                             <posx>742</posx>
                             <posy>3</posy>
                             <width>64</width>
                             <height>64</height>
                             <aspectratio>keep</aspectratio>
-                            <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+                            <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
 							<colordiffuse>$VAR[Colour_TriPanelWatchedStatusColourVar]</colordiffuse>
                         </control>
                         <control type="group">
@@ -430,7 +449,7 @@
                                 <posy>3</posy>
                                 <width>64</width>
                                 <height>64</height>
-                                <texture>overlays/list/OverlayUnWatched.png</texture>
+                                <texture>overlays/tvlist/OverlayUnWatched.png</texture>
                                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
                             </control>
                             <control type="label">
@@ -497,25 +516,45 @@
                             <label>$INFO[ListItem.Label]</label>
                             <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
                         </control>
+						
+						<!-- Standard Rating -->
                         <control type="label">
-                            <posx>730</posx>
+                            <posx>709</posx>
                             <posy>0</posy>
-                            <width>620</width>
+                            <width>96</width>
                             <height>68</height>
                             <font>font15</font>
-                            <align>right</align>
+                            <align>center</align>
                             <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.RatingAndVotes]</label>
+                            <label>$VAR[RatingVar]</label>
                             <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+							<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
                         </control>
+						
+						<!-- User Rating -->
+						<control type="label">
+                            <posx>709</posx>
+                            <posy>0</posy>
+                            <width>96</width>
+                            <height>68</height>
+                            <font>font15</font>
+                            <align>center</align>
+							<textcolor>$VAR[Colour_TriPanelThemeColourVar]</textcolor>
+                            <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+                            <aligny>center</aligny>
+                            <label>$VAR[RatingVar]</label>
+                            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+                        </control>
+						
                         <control type="image">
                             <posx>742</posx>
                             <posy>3</posy>
                             <width>64</width>
                             <height>64</height>
                             <aspectratio>keep</aspectratio>
-                            <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+                            <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
 							<colordiffuse>$VAR[Colour_TriPanelWatchedStatusColourVar]</colordiffuse>
                         </control>
                         <control type="group">
@@ -527,7 +566,7 @@
                                 <posy>3</posy>
                                 <width>64</width>
                                 <height>64</height>
-                                <texture>overlays/list/OverlayUnWatched.png</texture>
+                                <texture>overlays/tvlist/OverlayUnWatched.png</texture>
                                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
                             </control>
                             <control type="label">
@@ -552,7 +591,7 @@
                                 <align>left</align>
                                 <aligny>center</aligny>
                                 <label>+</label>
-                                <textcolor>grey3</textcolor>
+                                <textcolor>white</textcolor>
                                 <textoffsetx>18</textoffsetx>
                                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),99)</visible>
                             </control>
@@ -583,18 +622,37 @@
                             <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
                             <colordiffuse>grey2</colordiffuse>
                         </control>
+						
+						<!-- Standard Rating -->
                         <control type="label">
-                            <posx>730</posx>
+                            <posx>709</posx>
                             <posy>0</posy>
-                            <width>620</width>
+                            <width>96</width>
                             <height>68</height>
                             <font>font15</font>
-                            <align>right</align>
+                            <align>center</align>
                             <textcolor>grey2</textcolor>
                             <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.RatingAndVotes]</label>
+                            <label>$VAR[RatingVar]</label>
+							<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
                         </control>
+						
+						<!-- User Rating -->
+						<control type="label">
+                            <posx>709</posx>
+                            <posy>0</posy>
+                            <width>96</width>
+                            <height>68</height>
+                            <font>font15</font>
+                            <align>center</align>
+                            <textcolor>$VAR[Colour_TriPanelThemeColourVar]</textcolor>
+                            <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+                            <aligny>center</aligny>
+                            <label>$VAR[RatingVar]</label>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+                        </control>
+						
                         <control type="image">
                             <posx>742</posx>
                             <posy>3</posy>
@@ -638,15 +696,15 @@
                             <animation effect="fade" start="100" end="60" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
                         </control>
                         <control type="label">
-                            <posx>730</posx>
+                            <posx>709</posx>
                             <posy>0</posy>
-                            <width>620</width>
+                            <width>96</width>
                             <height>68</height>
                             <font>font15</font>
-                            <align>right</align>
+                            <align>center</align>
                             <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
                             <aligny>center</aligny>
-                            <label>$INFO[ListItem.RatingAndVotes]</label>
+                            <label>$VAR[RatingVar]</label>
                             <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
                         </control>
                         <control type="image">
@@ -694,7 +752,7 @@
                             <width>64</width>
                             <height>64</height>
                             <aspectratio>keep</aspectratio>
-                            <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+                            <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
 							<colordiffuse>$VAR[Colour_TriPanelWatchedStatusColourVar]</colordiffuse>
                         </control>
                         <control type="group">
@@ -706,7 +764,7 @@
                                 <posy>3</posy>
                                 <width>64</width>
                                 <height>64</height>
-                                <texture>overlays/list/OverlayUnWatched.png</texture>
+                                <texture>overlays/tvlist/OverlayUnWatched.png</texture>
                                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
                             </control>
                             <control type="label">
@@ -766,7 +824,7 @@
                             <width>64</width>
                             <height>64</height>
                             <aspectratio>keep</aspectratio>
-                            <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+                            <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
 							<colordiffuse>$VAR[Colour_TriPanelWatchedStatusColourVar]</colordiffuse>
                         </control>
                         <control type="group">
@@ -778,7 +836,7 @@
                                 <posy>3</posy>
                                 <width>64</width>
                                 <height>64</height>
-                                <texture>overlays/list/OverlayUnWatched.png</texture>
+                                <texture>overlays/tvlist/OverlayUnWatched.png</texture>
                                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
                             </control>
                             <control type="label">
