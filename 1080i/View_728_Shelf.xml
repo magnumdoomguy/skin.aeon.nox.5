@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-	
+
 	<!-- Shelf 3D Music -->
 	<include name="Shelf3Dm">
 		<control type="group"><!-- default group -->
@@ -33,12 +33,12 @@
 						<posy>162</posy>
 						<visible>Container.Content(albums)</visible>
 						<control type="button">
-							<label>[COLOR $VAR[Colour_ThemeColourVar]]Album:[/COLOR][CR]$INFO[ListItem.Label]</label>
+							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]Album:[/COLOR][CR]$INFO[ListItem.Label]</label>
 							<include>ShowCaseInfoPanelButtonsValues</include>
 							<visible>!IsEmpty(ListItem.Label)</visible>
 						</control>
 						<control type="button">
-							<label>[COLOR $VAR[Colour_ThemeColourVar]]Artist:[/COLOR][CR]$INFO[ListItem.Artist]</label>
+							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]Artist:[/COLOR][CR]$INFO[ListItem.Artist]</label>
 							<include>ShowCaseInfoPanelButtonsValues</include>
 							<visible>!IsEmpty(ListItem.Artist)</visible>
 						</control>
@@ -48,25 +48,25 @@
 						<posy>162</posy>
 						<visible>Container.Content(albums)</visible>
 						<control type="button">
-							<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
+							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
 							<width>486</width>
 							<include>ShowCaseInfoPanelButtonsValues</include>
 							<visible>!IsEmpty(ListItem.Genre)</visible>
 						</control>
 						<control type="button">
-							<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$LOCALIZE[31103]</label>
+							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$LOCALIZE[31103]</label>
 							<width>486</width>
 							<include>ShowCaseInfoPanelButtonsValues</include>
 							<visible>IsEmpty(ListItem.Genre)</visible>
 						</control>
 						<control type="button">
-							<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$INFO[ListItem.Year]</label>
+							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$INFO[ListItem.Year]</label>
 							<width>486</width>
 							<include>ShowCaseInfoPanelButtonsValues</include>
 							<visible>!IsEmpty(ListItem.Year)</visible>
 						</control>
 						<control type="button">
-							<label>[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$LOCALIZE[1446]</label>
+							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$LOCALIZE[1446]</label>
 							<width>486</width>
 							<include>ShowCaseInfoPanelButtonsValues</include>
 							<visible>IsEmpty(ListItem.Year)</visible>
@@ -81,7 +81,7 @@
 						<visible>!Container.Content(artists)</visible>
 					</control>
 					<control type="textbox">
-						<label>$INFO[ListItem.Property(summary),[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[183]:[CR][/COLOR]]</label>
+						<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[183]:[CR][/COLOR]$INFO[ListItem.Property(summary)]</label>
 						<posy>342</posy>
 						<posx>152</posx>
 						<width>970</width>
@@ -93,7 +93,7 @@
 						<visible>Container.Content(albums)</visible>
 					</control>
 					<control type="textbox">
-						<label>$INFO[ListItem.Property(summary),[COLOR $VAR[Colour_ThemeColourVar]]$LOCALIZE[21887]:[CR][/COLOR]]</label>
+						<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[21887]:[CR][/COLOR]$INFO[ListItem.Property(summary)]</label>
 						<posy>162</posy>
 						<posx>152</posx>
 						<width>940</width>
@@ -173,18 +173,19 @@
 					<onright>728</onright>
 					<onup>SetProperty(MediaMenu,True,home)</onup>
 					<onup>SetFocus(9050)</onup>
-					<ondown>788</ondown>
+					<ondown>noop</ondown>
 					<orientation>horizontal</orientation>
 					<focusposition>3</focusposition>
 					<scrolltime>100</scrolltime>
 					<preloaditems>2</preloaditems>
 					<pagecontrol>788</pagecontrol>
+					<visible>Container.Content(artists) | Container.Content(albums)</visible>
 					<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
 					<itemlayout width="335" height="534">
 						<control type="group">
 							<posx>150</posx>
 							<posy>-20</posy>
-							
+
 							<!-- Poster Reflection -->
 							<control type="image">
 								<visible>Container.Content(albums)</visible>
@@ -259,9 +260,9 @@
 						</control>
 					</itemlayout>
 					<focusedlayout width="335" height="534">
-						
+
 						<control type="group"><!--Portada-->
-							
+
 							<animation type="Hidden" reversible="true">
 								<effect type="rotatey" delay="0" center="185" start="0" end="180" time="800" tween="quadratic" easing="out" />
 								<effect type="fade" delay="200" start="100" end="0" time="100" />
@@ -269,7 +270,7 @@
 							</animation>
 							<posx>90</posx>
 							<posy>95</posy>
-							
+
 							<!-- Poster -->
 							<control type="image">
 								<visible>Container.Content(albums)</visible>
@@ -307,7 +308,7 @@
 									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
 								</animation>
 							</control>
-							
+
 							<!-- Poster Reflection -->
 							<control type="image">
 								<visible>Container.Content(albums)</visible>
@@ -322,7 +323,7 @@
 									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
 								</animation>
 							</control>
-							
+
 							<!-- Poster Reflection -->
 							<control type="image">
 								<visible>Container.Content(artists)</visible>
