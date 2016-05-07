@@ -484,17 +484,73 @@
 					</control>
 					
 					<!-- Episode Info -->
-					<control type="label">
-						<posx>0</posx>
+					<control type="grouplist">
+						<visible>Container.Content(episodes)</visible>
+						<orientation>horizontal</orientation>
+						<posx>30</posx>
 						<posy>45</posy>
 						<width>1100</width>
 						<height>30</height>
 						<align>left</align>
-						<font>font13_title</font>
-						<textcolor>white</textcolor>
-						<label>($INFO[ListItem.Date,,) • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
-						<textoffsetx>30</textoffsetx>
-						<visible>Container.Content(episodes)</visible>
+						<aligny>center</aligny>
+												
+						<!-- Date -->
+						<control type="label">
+							<width min="20" max="366">auto</width>
+							<height>30</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>white</textcolor>
+							<label>$INFO[ListItem.Date] [B]•[/B] </label>
+							<visible>!IsEmpty(ListItem.Date)</visible>
+						</control>
+												
+						<!-- User Rating (Shift) -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>30</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>$VAR[Colour_ShiftThemeColourVar]</textcolor>
+							<label>$VAR[RatingVar] [COLOR white2][B]•[/B][/COLOR] </label>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating)) + Control.IsVisible(57)</visible>
+						</control>
+						
+						<!-- User Rating (Icons) -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>30</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>$VAR[Colour_IconsThemeColourVar]</textcolor>
+							<label>$VAR[RatingVar] [COLOR white2][B]•[/B][/COLOR] </label>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating)) + Control.IsVisible(500)</visible>
+						</control>
+						
+						<!-- Standard Rating -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>30</height>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label>$VAR[RatingVar] [B]•[/B] </label>
+							<font>font13_title</font>
+							<textcolor>white</textcolor>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+						</control>
+																
+						<!-- Duration -->
+						<control type="label">
+							<width min="20" max="299">auto</width>
+							<height>30</height>
+							<label>$VAR[DurationHrMinVar]</label>
+							<aligny>center</aligny>
+							<font>font13_title</font>
+							<textcolor>white</textcolor>
+						</control>
 					</control>
 					
 				</control>
