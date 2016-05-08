@@ -18,7 +18,7 @@
 			<texture border="40">listpanel_back.png</texture>
 		</control>
 	</include>
-	
+
 	<!-- Music Wall -->
 	<include name="MusicWallBig">
 		<control type="group">
@@ -35,8 +35,8 @@
 				<onleft>SetProperty(MediaMenu,True,home)</onleft>
 				<onleft>SetFocus(9050)</onleft>
 				<onright>noop</onright>
-				<onup>500</onup>
-				<ondown>500</ondown>
+				<onup>590</onup>
+				<ondown>590</ondown>
 				<pagecontrol>60</pagecontrol>
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
 				<visible>!Container.Content(songs) + !Container.Content(empty)</visible>
@@ -75,31 +75,44 @@
 					</control>
 				</itemlayout>
 				<focusedlayout height="360" width="360" condition="!Container.Content(genres)">
-					<control type="image">
-						<posx>0</posx>
-						<posy>0</posy>
-						<width>360</width>
-						<height>360</height>
-						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.Icon]</texture>
-						<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-						<bordersize>8</bordersize>
+					<control type="group">
 						<animation type="Focus">
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
-					</control>
-					<control type="group">
-						<visible>Container.Content(artists)</visible>
 						<control type="image">
-							<posx>6</posx>
-							<posy>310</posy>
-							<width>348</width>
-							<height>44</height>
-							<texture>black.png</texture>
-							<bordersize>2</bordersize>
-							<colordiffuse>88ffffff</colordiffuse>
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>360</width>
+							<height>360</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Icon]</texture>
+							<bordersize>8</bordersize>						
 						</control>
+						<control type="image">
+							<posx>0</posx>
+							<posy>0</posy>
+							<width>360</width>
+							<height>360</height>
+							<aspectratio>scale</aspectratio>
+							<texture>empty.png</texture>
+							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>8</bordersize>	
+							<colordiffuse>$VAR[Colour_BigIconsHighlightColourVar]</colordiffuse>
+						</control>
+
+						<!-- Black Overlay -->
+						<control type="image">
+							<posy>310</posy>
+							<width>360</width>
+							<height>50</height>
+							<texture>black.png</texture>
+							<bordersize>8</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+							<visible>Container.Content(artists)</visible>
+						</control>
+						
+						<!-- Artists Label -->
 						<control type="label">
 							<posx>180</posx>
 							<posy>320</posy>
@@ -109,33 +122,9 @@
 							<textoffsetx>4</textoffsetx>
 							<textcolor>white</textcolor>
 							<info>ListItem.Label</info>
+							<visible>Container.Content(artists)</visible>
 						</control>
-					</control>
-					
-					<control type="group">
-						<visible>Container.Content(artists)</visible>
-						<animation type="Focus">
-							<effect type="fade" start="100" end="0" time="100" tween="sine" easing="in" />
-							<effect type="slide" start="0,0" end="0,30" time="200" tween="sine" easing="in" />
-						</animation>
-						<control type="image">
-							<posy>310</posy>
-							<width>360</width>
-							<height>50</height>
-							<texture>black.png</texture>
-							<bordersize>8</bordersize>
-							<colordiffuse>88ffffff</colordiffuse>
-						</control>
-						<control type="label">
-							<posx>180</posx>
-							<posy>320</posy>
-							<width>360</width>
-							<height>30</height>
-							<align>center</align>
-							<textoffsetx>10</textoffsetx>
-							<textcolor>grey2</textcolor>
-							<info>ListItem.Label</info>
-						</control>
+						
 					</control>
 				</focusedlayout>
 			</control>
@@ -158,5 +147,5 @@
 			</control>
 		</control>
 	</include>
-	
+
 </includes>
