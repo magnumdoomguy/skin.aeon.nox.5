@@ -4,24 +4,25 @@
 	<onload condition="!IsEmpty(Window(home).Property(Window.HasSettings))">ClearProperty(Window.HasSettings,Home)</onload>
 	<onunload>SetProperty(Window.HasSettings,True,home)</onunload>
 	<allowoverlay>no</allowoverlay>
-	
+
 	<controls>
-		
+
 		<!-- Background -->
 		<control type="group">
-            <animation effect="fade" time="600">WindowOpen</animation>
-            <animation effect="fade" time="600">WindowClose</animation>
+			<animation effect="fade" time="600">WindowOpen</animation>
+			<animation effect="fade" time="600">WindowClose</animation>
 			<control type="image">
 				<description>Normal Default Background Image</description>
 				<include>FullscreenDimensions</include>
 				<texture>$VAR[SearchBackgroundVar]</texture>
+				<fadetime>600</fadetime>
 			</control>
 			<control type="group">
 				<include>Window_OpenClose_Animation</include>
 				<include>ViewAnimation</include>
 				<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.isVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55)  | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(57)  | Control.IsVisible(58)]">Conditional</animation>
-				
-				
+
+
 				<control type="image">
 					<posx>0</posx>
 					<posy>400</posy>
@@ -31,12 +32,12 @@
 					<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
 				</control>
 			</control>
-			
+
 		</control>
-		
+
 		<!-- Topbar -->
 		<include>Topbar</include>
-		
+
 		<control type="group">
 			<animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
 			<animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
@@ -45,7 +46,7 @@
 			<posx>1670</posx>
 			<posy>3</posy>
 		</control>
-		
+
 		<!-- Left Side Panel -->
 		<control type="group">
 			<posx>0</posx>
@@ -53,7 +54,7 @@
 			<animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0">WindowOpen</animation>
 			<animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0">WindowClose</animation>
 			<include>SystemLeftPanel</include>
-				
+
 			<!-- Left Side Menu -->
 			<control type="panel" id="9000">
 				<posx>82</posx>
@@ -115,7 +116,7 @@
 					</control>
 				</focusedlayout>
 				<content>
-				
+
 					<!-- Movies Button -->
 					<item id="1">
 						<visible>!IsEmpty(Container(9001).ListItem.Label)</visible>
@@ -124,7 +125,7 @@
 						<onright>9001</onright>
 						<icon>-</icon>
 					</item>
-					
+
 					<!-- TV Shows -->
 					<item id="2">
 						<visible>!IsEmpty(Container(9002).ListItem.Label)</visible>
@@ -133,7 +134,7 @@
 						<onright>9002</onright>
 						<icon>-</icon>
 					</item>
-					
+
 					<!-- Episodes -->
 					<item id="4">
 						<visible>!IsEmpty(Container(9004).ListItem.Label)</visible>
@@ -141,7 +142,7 @@
 						<onclick>noop</onclick>
 						<icon>-</icon>
 					</item>
-					
+
 					<!-- Clips -->
 					<item id="5">
 						<visible>!IsEmpty(Container(9012).ListItem.Label)</visible>
@@ -149,7 +150,7 @@
 						<onclick>noop</onclick>
 						<icon>-</icon>
 					</item>
-					
+
 					<!-- Artists -->
 					<item id="6">
 						<visible>!IsEmpty(Container(9008).ListItem.Label)</visible>
@@ -157,7 +158,7 @@
 						<onclick>noop</onclick>
 						<icon>-</icon>
 					</item>
-					
+
 					<!-- Albums -->
 					<item id="7">
 						<visible>!IsEmpty(Container(9009).ListItem.Label)</visible>
@@ -165,7 +166,7 @@
 						<onclick>noop</onclick>
 						<icon>-</icon>
 					</item>
-					
+
 					<!-- Songs -->
 					<item id="8">
 						<visible>!IsEmpty(Container(9010).ListItem.Label)</visible>
@@ -173,7 +174,7 @@
 						<onclick>noop</onclick>
 						<icon>-</icon>
 					</item>
-					
+
 					<!-- New Search -->
 					<item id="10">
 						<visible>!IsEmpty(Container(9001).ListItem.Label) | !IsEmpty(Container(9002).ListItem.Label) | !IsEmpty(Container(9004).ListItem.Label) | !IsEmpty(Container(9012).ListItem.Label) | !IsEmpty(Container(9008).ListItem.Label) | !IsEmpty(Container(9009).ListItem.Label) | !IsEmpty(Container(9010).ListItem.Label)</visible>
@@ -184,7 +185,7 @@
 					</item>
 				</content>
 			</control>
-	
+
 			<!-- Scrollbar -->
 			<control type="scrollbar" id="60">
 				<posx>65</posx>
@@ -200,7 +201,7 @@
 				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
 				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
 			</control>
-					
+
 			<!-- Nox Logo -->
 			<control type="image">
 				<description>LOGO</description>
@@ -211,7 +212,7 @@
 				<aspectratio>keep</aspectratio>
 				<texture>aeon-nox-logo.png</texture>
 			</control>
-			
+
 			<!-- Right Side Panel -->
 			<include>SystemRightPanel</include>
 			<control type="image">
@@ -223,7 +224,7 @@
 				<texture border="1">separator2.png</texture>
 			</control>
 		</control>
-		
+
 		<control type="group">
 			<animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
 			<animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
@@ -240,7 +241,7 @@
 				<textoffsetx>15</textoffsetx>
 			</control>			
 		</control>
-		
+
 		<!-- Search Content -->
 		<control type="group" id="5000">
 			<animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0">WindowOpen</animation>
@@ -252,12 +253,12 @@
 				<width>1316</width>
 				<height>839</height>
 				<orientation>horizontal</orientation>
-				
+
 				<!-- Movies -->
 				<control type="group" id="7001">
 					<visible>Container(9000).HasFocus(1) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !Control.IsVisible(7008) + !Control.IsVisible(7009) + !Control.IsVisible(7010) + !IsEmpty(Control(9001).ListItem.label)]</visible> <!-- Container(9000).HasFocus(1) |  -->
 					<include>SettingsFadeEffect</include>
-					
+
 					<control type="panel" id="9001">
 						<visible>!IsEmpty(Container(9001).ListItem.Label)</visible>
 						<posx>0</posx>
@@ -296,8 +297,18 @@
 									<height>329</height>
 									<aspectratio>scale</aspectratio>
 									<texture>$INFO[ListItem.Icon]</texture>
+									<bordersize>8</bordersize>
+								</control>
+								<control type="image">
+									<posx>0</posx>
+									<posy>0</posy>
+									<width>219</width>
+									<height>329</height>
+									<aspectratio>scale</aspectratio>
+									<texture>empty.png</texture>
 									<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 									<bordersize>8</bordersize>
+									<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
 								</control>
 							</control>
 						</focusedlayout>
@@ -336,7 +347,7 @@
 						</control>
 					</control>
 				</control>
-				
+
 				<!-- TV Shows -->
 				<control type="group" id="7002">
 					<visible>Container(9000).HasFocus(2) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7004) + !Control.IsVisible(7008) + !Control.IsVisible(7009) + !Control.IsVisible(7010) + !IsEmpty(Container(9002).ListItem.Label)]</visible> <!-- Container(9000).HasFocus(2)  |  -->
@@ -378,8 +389,18 @@
 									<height>329</height>
 									<aspectratio>scale</aspectratio>
 									<texture>$INFO[ListItem.Icon]</texture>
+									<bordersize>8</bordersize>
+								</control>
+								<control type="image">
+									<posx>0</posx>
+									<posy>0</posy>
+									<width>219</width>
+									<height>329</height>
+									<aspectratio>scale</aspectratio>
+									<texture>empty.png</texture>
 									<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 									<bordersize>8</bordersize>
+									<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
 								</control>
 							</control>
 						</focusedlayout>
@@ -418,7 +439,7 @@
 						</control>
 					</control>
 				</control>
-								
+
 				<!-- Episodes -->
 				<control type="group" id="7004">
 					<visible>Container(9000).HasFocus(4) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !Control.IsVisible(7008) + !Control.IsVisible(7009) + !Control.IsVisible(7010) + !IsEmpty(Container(9004).ListItem.Label)]</visible>
@@ -447,13 +468,21 @@
 								<colordiffuse>BAffffff</colordiffuse>
 							</control>
 							<control type="image">
-								<posy>171</posy>
-								<posx>-2</posx>
-								<width>333</width>
-								<height>50</height>
-								<texture>black.png</texture>
+								<posy>119</posy>
+								<posx>0</posx>
+								<width>329</width>
+								<height>100</height>
+								<texture>homewidgets/label.png</texture>
 								<bordersize>2</bordersize>
-								<colordiffuse>88ffffff</colordiffuse>
+							</control>
+							<control type="label">
+								<posy>149</posy>
+								<width>329</width>
+								<height>30</height>
+								<textoffsetx>15</textoffsetx>
+								<textcolor>grey2</textcolor>
+								<align>left</align>
+								<label>$VAR[SearchEpisodeTitleVar]</label>
 							</control>
 							<control type="label">
 								<posy>179</posy>
@@ -462,17 +491,7 @@
 								<textoffsetx>15</textoffsetx>
 								<textcolor>grey2</textcolor>
 								<align>left</align>
-								<label>S$INFO[ListItem.Season] [COLOR=$VAR[Colour_ThemeColourVar]]&#xB7;[/COLOR] E$INFO[ListItem.Episode]</label>
-							</control>
-							<control type="label">
-								<posx>329</posx>
-								<posy>179</posy>
-								<width>329</width>
-								<height>30</height>
-								<textoffsetx>15</textoffsetx>
-								<textcolor>grey2</textcolor>
-								<align>right</align>
-								<label>$INFO[ListItem.Label]</label>
+								<label>[COLOR $VAR[Colour_ThemeColourVar]][UPPERCASE]$INFO[ListItem.TVShowTitle][/UPPERCASE][/COLOR]</label>
 							</control>
 						</itemlayout>
 						<focusedlayout width="329" height="219">
@@ -480,7 +499,7 @@
 								<animation type="Focus">
 									<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 									<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-								</animation>
+								</animation> 
 								<control type="image">
 									<posx>0</posx>
 									<posy>0</posy>
@@ -488,36 +507,44 @@
 									<height>219</height>
 									<aspectratio>scale</aspectratio>
 									<texture>$INFO[ListItem.Icon]</texture>
-									<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
 									<bordersize>8</bordersize>
 								</control>
 								<control type="image">
-									<posy>171</posy>
-									<posx>-2</posx>
-									<width>333</width>
-									<height>50</height>
-									<texture>black.png</texture>
-									<bordersize>2</bordersize>
-									<colordiffuse>88ffffff</colordiffuse>
+									<posx>0</posx>
+									<posy>0</posy>
+									<width>329</width>
+									<height>219</height>
+									<aspectratio>scale</aspectratio>
+									<texture>empty.png</texture>
+									<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+									<bordersize>8</bordersize>
+									<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
+								</control>
+								<control type="image">
+									<posy>119</posy>
+									<posx>0</posx>
+									<width>329</width>
+									<height>100</height>
+									<texture>homewidgets/label.png</texture>
+									<bordersize>8</bordersize>
 								</control>
 								<control type="label">
-									<posy>179</posy>
+									<posy>149</posy>
 									<width>329</width>
 									<height>30</height>
 									<textoffsetx>15</textoffsetx>
-									<textcolor>white</textcolor>
+									<textcolor>grey2</textcolor>
 									<align>left</align>
-									<label>S$INFO[ListItem.Season] [COLOR=$VAR[Colour_ThemeColourVar]]&#xB7;[/COLOR] E$INFO[ListItem.Episode]</label>
+									<label>$VAR[SearchEpisodeTitleVar]</label>
 								</control>
 								<control type="label">
-									<posx>329</posx>
 									<posy>179</posy>
 									<width>329</width>
 									<height>30</height>
 									<textoffsetx>15</textoffsetx>
-									<textcolor>white</textcolor>
-									<align>right</align>
-									<label>$INFO[ListItem.Label]</label>
+									<textcolor>grey2</textcolor>
+									<align>left</align>
+									<label>[COLOR $VAR[Colour_ThemeColourVar]][UPPERCASE]$INFO[ListItem.TVShowTitle][/UPPERCASE][/COLOR]</label>
 								</control>
 							</control>
 						</focusedlayout>
@@ -528,7 +555,7 @@
 							<posy>670</posy>
 							<width>1316</width>
 							<height>40</height>
-							<label>$INFO[Container(9004).ListItem.Label]</label>
+							<label>$VAR[SearchEpisodeTitleLabelVar]</label>
 							<font>font15</font>
 							<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
 							<textoffsetx>15</textoffsetx>
@@ -556,7 +583,7 @@
 						</control>
 					</control>
 				</control>
-								
+
 				<!-- Artists -->
 				<control type="group" id="7008">
 					<visible>Container(9000).HasFocus(6) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !Control.IsVisible(7009) + !Control.IsVisible(7010) + !IsEmpty(Container(9008).ListItem.Label)]</visible>
@@ -663,7 +690,7 @@
 						</control>
 					</control>
 				</control>-->
-				
+
 				<!-- Albums -->
 				<control type="group" id="7009">
 					<visible>Container(9000).HasFocus(7) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !Control.IsVisible(7008) + !Control.IsVisible(7010) + !IsEmpty(Container(9009).ListItem.Label)]</visible>
@@ -734,7 +761,7 @@
 						</control>
 					</control>
 				</control>-->
-				
+
 				<!-- Songs -->
 				<control type="group" id="7010">
 					<visible>Container(9000).HasFocus(8) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !Control.IsVisible(7008) + !Control.IsVisible(7009) + !IsEmpty(Container(9010).ListItem.Label)]</visible>
@@ -841,7 +868,7 @@
 						</control>
 					</control>
 				</control>
-				
+
 			</control>
 			<control type="scrollbar" id="61">
 				<posx>1838</posx>
@@ -859,7 +886,7 @@
 				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
 			</control>
 		</control>
-		
+
 		<!-- Search Keyboard -->
 		<control type="group">
 			<animation effect="fade" start="90" end="0" time="200" condition="!ControlGroup(4000).HasFocus">Conditional</animation>
@@ -902,13 +929,13 @@
 				<posy>339</posy>
 				<width>800</width>
 				<height>400</height>
-			
+
 				<!-- Row 1 -->
 				<control type="grouplist" id="350">
 					<orientation>horizontal</orientation>
 					<onleft>5100</onleft>
 					<onright>5100</onright>
-                				
+
 					<!-- 1 Key -->
 					<control type="button" id="92">
 						<description>'1' button</description>
@@ -920,7 +947,7 @@
 						<label>[B]1[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 2 Key -->
 					<control type="button" id="93">
 						<description>'2' button</description>
@@ -932,7 +959,7 @@
 						<label>[B]2[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 3 Key -->
 					<control type="button" id="94">
 						<description>'3' button</description>
@@ -944,7 +971,7 @@
 						<label>[B]3[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 4 Key -->
 					<control type="button" id="95">
 						<description>'4' button</description>
@@ -956,7 +983,7 @@
 						<label>[B]4[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 5 Key -->
 					<control type="button" id="96">
 						<description>'5' button</description>
@@ -968,7 +995,7 @@
 						<label>[B]5[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 6 Key -->
 					<control type="button" id="97">
 						<description>'6' button</description>
@@ -980,7 +1007,7 @@
 						<label>[B]6[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 7 Key -->
 					<control type="button" id="98">
 						<description>'7' button</description>
@@ -992,7 +1019,7 @@
 						<label>[B]7[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 8 Key -->
 					<control type="button" id="99">
 						<description>'8' button</description>
@@ -1004,7 +1031,7 @@
 						<label>[B]8[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 9 Key -->
 					<control type="button" id="100">
 						<description>'9' button</description>
@@ -1016,7 +1043,7 @@
 						<label>[B]9[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- 0 Key -->
 					<control type="button" id="91">
 						<description>'0' button</description>
@@ -1029,15 +1056,15 @@
 						<include>Objects_SingleKeyOff</include>
 					</control>
 				</control>
-			
+
 				<!-- Row 2 -->
 				<control type="grouplist">
 					<orientation>horizontal</orientation>
 					<posy>80</posy>
 					<onleft>5100</onleft>
 					<onright>5100</onright>
-				
-                	<!-- Q Key -->
+
+					<!-- Q Key -->
 					<control type="button" id="81">
 						<description>'Q' button</description>
 						<posx>126</posx>
@@ -1048,7 +1075,7 @@
 						<label>[B]Q[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- W Key -->
 					<control type="button" id="87">
 						<description>'W' button</description>
@@ -1060,7 +1087,7 @@
 						<label>[B]W[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- E Key -->
 					<control type="button" id="69">
 						<description>'E' button</description>
@@ -1072,7 +1099,7 @@
 						<label>[B]E[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- R Key -->
 					<control type="button" id="82">
 						<description>'R' button</description>
@@ -1084,7 +1111,7 @@
 						<label>[B]R[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- T Key -->
 					<control type="button" id="84">
 						<description>'T' button</description>
@@ -1096,7 +1123,7 @@
 						<label>[B]T[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- Y Key -->
 					<control type="button" id="89">
 						<description>'Y' button</description>
@@ -1108,7 +1135,7 @@
 						<label>[B]Y[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- U Key -->
 					<control type="button" id="85">
 						<description>'U' button</description>
@@ -1120,7 +1147,7 @@
 						<label>[B]U[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- I Key -->
 					<control type="button" id="73">
 						<description>'I' button</description>
@@ -1132,7 +1159,7 @@
 						<label>[B]I[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- O Key -->
 					<control type="button" id="79">
 						<description>'O' button</description>
@@ -1144,7 +1171,7 @@
 						<label>[B]O[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- P Key -->
 					<control type="button" id="80">
 						<description>'P' button</description>
@@ -1157,15 +1184,15 @@
 						<include>Objects_SingleKeyOff</include>
 					</control>
 				</control>
-			
+
 				<!-- Row 3 -->
 				<control type="grouplist">
 					<orientation>horizontal</orientation>
 					<posy>160</posy>
 					<onleft>5100</onleft>
 					<onright>5100</onright>
-				
-                	<!-- A Key -->
+
+					<!-- A Key -->
 					<control type="button" id="65">
 						<description>'A' button</description>
 						<posx>126</posx>
@@ -1176,7 +1203,7 @@
 						<label>[B]A[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- S Key -->
 					<control type="button" id="83">
 						<description>'S' button</description>
@@ -1188,7 +1215,7 @@
 						<label>[B]S[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- D Key -->
 					<control type="button" id="68">
 						<description>'D' button</description>
@@ -1200,7 +1227,7 @@
 						<label>[B]D[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- F Key -->
 					<control type="button" id="70">
 						<description>'F' button</description>
@@ -1212,7 +1239,7 @@
 						<label>[B]F[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- G Key -->
 					<control type="button" id="71">
 						<description>'G' button</description>
@@ -1224,7 +1251,7 @@
 						<label>[B]G[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- H Key -->
 					<control type="button" id="72">
 						<description>'H' button</description>
@@ -1236,7 +1263,7 @@
 						<label>[B]H[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- J Key -->
 					<control type="button" id="74">
 						<description>'J' button</description>
@@ -1248,7 +1275,7 @@
 						<label>[B]J[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- K Key -->
 					<control type="button" id="75">
 						<description>'K' button</description>
@@ -1260,7 +1287,7 @@
 						<label>[B]K[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- L Key -->
 					<control type="button" id="76">
 						<description>'L' button</description>
@@ -1272,7 +1299,7 @@
 						<label>[B]L[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- What is this? -->
 					<control type="button" id="8888">
 						<posx>693</posx>
@@ -1285,15 +1312,15 @@
 						<enable>no</enable>
 					</control>
 				</control>
-			
+
 				<!-- Row 4 -->
 				<control type="grouplist">
 					<orientation>horizontal</orientation>
 					<posy>240</posy>
 					<onleft>5100</onleft>
 					<onright>5100</onright>
-					
-                	<!-- Z Key -->
+
+					<!-- Z Key -->
 					<control type="button" id="90">
 						<description>'Z' button</description>
 						<posx>126</posx>
@@ -1304,7 +1331,7 @@
 						<label>[B]Z[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- X Key -->
 					<control type="button" id="88">
 						<description>'X' button</description>
@@ -1316,7 +1343,7 @@
 						<label>[B]X[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- C Key -->
 					<control type="button" id="67">
 						<description>'C' button</description>
@@ -1328,7 +1355,7 @@
 						<label>[B]C[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- V Key -->
 					<control type="button" id="86">
 						<description>'V' button</description>
@@ -1340,7 +1367,7 @@
 						<label>[B]V[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- B Key -->
 					<control type="button" id="66">
 						<description>'B' button</description>
@@ -1352,7 +1379,7 @@
 						<label>[B]B[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- N Key -->
 					<control type="button" id="78">
 						<description>'N' button</description>
@@ -1364,7 +1391,7 @@
 						<label>[B]N[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- M Key -->
 					<control type="button" id="77">
 						<description>'M' button</description>
@@ -1376,7 +1403,7 @@
 						<label>[B]M[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
-				
+
 					<!-- Backspace Key -->
 					<control type="button" id="8">
 						<posx>567</posx>
@@ -1392,7 +1419,7 @@
 						<include>Objects_KeyOffVars</include>
 					</control>
 				</control>
-			
+
 				<!-- Row 5 -->
 				<control type="grouplist">
 					<orientation>horizontal</orientation>
@@ -1412,7 +1439,7 @@
 						<ondown>5100</ondown>
 						<include>Objects_KeyOffVars</include>
 					</control>
-				
+
 					<control type="button" id="13">
 						<label>$LOCALIZE[20177]</label>
 						<onleft>306</onleft>
@@ -1422,7 +1449,7 @@
 						<onclick>SetFocus(5100,1)</onclick>
 						<include>Objects_DoubleKeyOff</include>
 					</control>
-                
+
 				</control>
 			</control>
 		</control>

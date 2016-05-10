@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+	<!-- Search Episode Title -->
+	<variable name="SearchEpisodeTitleVar">
+		<value condition="!IsEmpty(ListItem.Season)">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. [UPPERCASE]$INFO[ListItem.Title][/UPPERCASE]</value>
+		<value condition="IsEmpty(ListItem.Season)">S$INFO[ListItem.Episode]. [UPPERCASE]$INFO[ListItem.Title][/UPPERCASE]</value>
+	</variable>
+	
+	<!-- Search Episode Title Label -->
+	<variable name="SearchEpisodeTitleLabelVar">
+		<value condition="!IsEmpty(Container(9004).ListItem.Season)">$INFO[Container(9004).ListItem.Season]x$INFO[Container(9004).ListItem.Episode]. [UPPERCASE]$INFO[Container(9004).ListItem.Title][/UPPERCASE]</value>
+		<value condition="IsEmpty(Container(9004).ListItem.Season)">S$INFO[Container(9004).ListItem.Episode]. [UPPERCASE]$INFO[Container(9004).ListItem.Title][/UPPERCASE]</value>
+	</variable>
+
 	<variable name="PlotVar">
 		<value condition="Container.Content(seasons)">$INFO[Container.ShowPlot]</value>
 		<value condition="IsEmpty(ListItem.Plot) + ListItem.Type(episode)">$LOCALIZE[42129].[CR]$LOCALIZE[32104].</value> <!-- STRING: There is no description available for this episode. You can add one for it in the Media Manager. -->
