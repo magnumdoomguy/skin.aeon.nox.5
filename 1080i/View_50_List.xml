@@ -1319,7 +1319,7 @@
 					<width>570</width>
 					<height>835</height>
 					<aspectratio aligny="bottom">stretch</aspectratio>
-					<texture>$VAR[PosterThumb]</texture>
+					<texture>$INFO[ListItem.Art(thumb)]</texture>
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
@@ -1330,23 +1330,46 @@
 					<height>835</height>
 					<aspectratio aligny="top">keep</aspectratio>
 					<fadetime>400</fadetime>
-					<texture diffuse="thumbs/thumb_reflect.png" flipy="true" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<texture diffuse="thumbs/thumb_reflect.png" flipy="true" background="true">$INFO[ListItem.Art(thumb)]</texture>
 					<bordersize>20</bordersize>
 				</control>
 			</control>
 			<control type="group">
 				<posx>1296</posx>
 				<posy>155</posy>
-				<visible>Container.PlexContent(channels) | Container.PlexContent(channel) | Container.PlexContent(homemovies) | Container.PlexContent(clips)</visible>
+				<visible>Container.PlexContent(channels) | Container.PlexContent(channel) | Container.PlexContent(clips)</visible>
 				<control type="image">
 					<width>570</width>
 					<height>835</height>
 					<aspectratio aligny="bottom">keep</aspectratio>
-					<texture background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-					<visible>!Container.PlexContent(homemovies) | [Container.PlexContent(homemovies) + !IsEmpty(ListItem.Art(bigThumb))]</visible>
+				</control>
+				<control type="image">
+					<posy>795</posy>
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>400</fadetime>
+					<texture diffuse="thumbs/thumb_reflect.png" flipy="true" background="true">$INFO[ListItem.Art(thumb)]</texture>
+					<bordersize>20</bordersize>
+				</control>
+			</control>
+			<control type="group">
+				<posx>1296</posx>
+				<posy>155</posy>
+				<visible>Container.PlexContent(homemovies)</visible>
+				<control type="image">
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>!IsEmpty(ListItem.Art(smallThumb))</visible>
 				</control>
 				<control type="image">
 					<width>570</width>
@@ -1356,7 +1379,7 @@
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-					<visible>!Container.PlexContent(homemovies) | [Container.PlexContent(homemovies) + IsEmpty(ListItem.Art(bigThumb))]</visible>
+					<visible>IsEmpty(ListItem.Art(smallThumb))</visible>
 				</control>
 				<control type="image">
 					<posy>795</posy>
@@ -1364,9 +1387,9 @@
 					<height>835</height>
 					<aspectratio aligny="top">keep</aspectratio>
 					<fadetime>400</fadetime>
-					<texture diffuse="thumbs/thumb_reflect.png" flipy="true" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<texture diffuse="thumbs/thumb_reflect.png" flipy="true" background="true">$INFO[ListItem.Art(thumb)]</texture>
 					<bordersize>20</bordersize>
-					<visible>!Container.PlexContent(homemovies) | [Container.PlexContent(homemovies) + !IsEmpty(ListItem.Art(bigThumb))]</visible>
+					<visible>!IsEmpty(ListItem.Art(smallThumb))</visible>
 				</control>
 				<control type="image">
 					<posy>795</posy>
@@ -1376,7 +1399,7 @@
 					<fadetime>400</fadetime>
 					<texture diffuse="thumbs/thumb_reflect.png" flipy="true" background="true">defaultfolder.png</texture>
 					<bordersize>20</bordersize>
-					<visible>!Container.PlexContent(homemovies) | [Container.PlexContent(homemovies) + IsEmpty(ListItem.Art(bigThumb))]</visible>
+					<visible>IsEmpty(ListItem.Art(smallThumb))</visible>
 				</control>
 			</control>
 			<control type="group">
@@ -1403,7 +1426,7 @@
 					<width>570</width>
 					<height>348</height>
 					<aspectratio>scale</aspectratio>
-					<texture background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
 					<fadetime>400</fadetime>
 					<bordersize>32</bordersize>
 				</control>
@@ -1425,19 +1448,16 @@
 					<posy>465</posy>
 					<control type="image">
 						<posx>32</posx>
-						<colordiffuse>grey2</colordiffuse>
 						<include>MediaFlagVars</include>
 						<texture>$VAR[ResolutionFlag]</texture>
 					</control>
 					<control type="image">
 						<posx>217</posx>
-						<colordiffuse>grey2</colordiffuse>
 						<include>MediaFlagVars</include>
 						<texture>$VAR[AudioCodecFlag]</texture>
 					</control>
 					<control type="image">
 						<posx>402</posx>
-						<colordiffuse>grey2</colordiffuse>
 						<include>MediaFlagVars</include>
 						<texture>$VAR[VideoCodecFlag]</texture>
 					</control>
