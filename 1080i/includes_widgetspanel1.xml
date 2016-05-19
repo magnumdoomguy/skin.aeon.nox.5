@@ -65,7 +65,7 @@
 					</control>
 
 					<!-- Poster -->
-					<control type="image">
+					<!--<control type="image">
 						<posx>247</posx>
 						<posy>-323</posy>
 						<width>317</width>
@@ -74,7 +74,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$INFO[Player.Art(thumb)]</texture>
 						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Case))</visible>
-					</control>
+					</control>-->
 
 					<!-- Clear Case -->
 					<control type="image">
@@ -94,7 +94,7 @@
 					</control>
 
 					<!-- Glass Case -->
-					<control type="image">
+					<!--<control type="image">
 						<posx>251</posx>
 						<posy>-319</posy>
 						<width>309</width>
@@ -112,10 +112,10 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>homewidgets/glass/square.png</texture>
 						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Case),Glass)</visible>
-					</control>
+					</control>-->
 
 					<!-- CD Case -->
-					<control type="image">
+					<!--<control type="image">
 						<posx>282</posx>
 						<posy>-320</posy>
 						<width>280</width>
@@ -133,7 +133,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>homewidgets/case/cd.png</texture>
 						<visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Case),CD)</visible>
-					</control>
+					</control>-->
 
 					<!-- Item Separator -->
 					<control type="image">
@@ -164,12 +164,26 @@
 						<align>left</align>
 						<textcolor>grey</textcolor>
 						<shadowcolor>black</shadowcolor>
-						<label>$INFO[MusicPlayer.Bitrate,,[COLOR=$VAR[Colour_HomeWindowThemeColourVar]] kbps[/COLOR]]$INFO[MusicPlayer.Samplerate, ,[COLOR=$VAR[Colour_HomeWindowThemeColourVar]] kHz[/COLOR]][CR]$INFO[MusicPlayer.BitsPerSample,,[COLOR=$VAR[Colour_HomeWindowThemeColourVar]] Bits[/COLOR]]$INFO[MusicPlayer.Channels, ,[COLOR=$VAR[Colour_HomeWindowThemeColourVar]] Ch[/COLOR]]</label>
+						<label>$INFO[MusicPlayer.Bitrate] [COLOR=$VAR[Colour_HomeWindowThemeColourVar]]kbps[/COLOR] $INFO[MusicPlayer.Samplerate] [COLOR=$VAR[Colour_HomeWindowThemeColourVar]]kHz[/COLOR][CR]$INFO[MusicPlayer.BitsPerSample] [COLOR=$VAR[Colour_HomeWindowThemeColourVar]]Bits[/COLOR] $INFO[MusicPlayer.Channels] [COLOR=$VAR[Colour_HomeWindowThemeColourVar]]Ch[/COLOR]</label>
 					</control>
 
+					<control type="label">
+					<posx>1166</posx>
+					<height>80</height>
+					<font>font_MainMenu</font>
+					<width>810</width>
+					<align>right</align>	
+					<textoffsetx>13</textoffsetx>
+					<textcolor>grey</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<scroll>true</scroll>
+					<scrollsuffix>   •   </scrollsuffix>
+					<label>$INFO[MusicPlayer.Artist]</label>
+				</control>	
+					
 					<!-- Player Time / Duration -->
 					<control type="label">
-						<posx>1161</posx>
+						<posx>1166</posx>
 						<posy>-98</posy>
 						<height>50</height>
 						<width>851</width>
@@ -178,7 +192,20 @@
 						<textcolor>grey</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<textoffsetx>13</textoffsetx>
-						<label>$INFO[Player.Time]$INFO[Player.Duration,[COLOR=$VAR[Colour_HomeWindowThemeColourVar]]/[/COLOR]]</label>
+						<label>$INFO[Player.Time][COLOR=$VAR[Colour_HomeWindowThemeColourVar]]/[/COLOR]$INFO[Player.Duration]</label>
+					</control>
+
+					<!-- Progress Bar -->
+					<control type="progress">
+						<visible>Player.HasDuration</visible>
+						<animation effect="slide" end="-262,0" time="0" condition="StringCompare(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+						<posx>260</posx>
+						<posy>-119</posy>
+						<width>892</width>
+						<height>11</height>
+						<info>Player.Progress</info>
+						<texturebg border="2">osd/texturebg2.png</texturebg>
+						<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
 					</control>
 				</control>
 			</control>
@@ -1005,7 +1032,7 @@
 					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					<visible>Container(11001).ListItem.Type(clip) + !Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass)</visible>
 				</control>
-				
+
 				<!-- Home Videos Glass -->
 				<control type="image">
 					<posx>249</posx>
@@ -1027,7 +1054,7 @@
 					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					<visible>Container(11001).ListItem.Type(clip) + Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass)</visible>
 				</control>
-				
+
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>780</posx>
@@ -1261,7 +1288,7 @@
 					<label>$VAR[OnDeckPlotVar]</label>
 					<visible>Skin.HasSetting(General.SmallPlotText) + Container(11001).ListItem.Type(clip)</visible>
 				</control>
-				
+
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>782</posx>
@@ -1529,7 +1556,7 @@
 					</control>
 
 				</control>
-				
+
 				<control type="grouplist">
 					<visible>Container(11001).ListItem.Type(clip)</visible>
 					<posy>-66</posy>
@@ -1633,7 +1660,7 @@
 					</control>
 
 				</control>
-				
+
 			</control>
 
 			<!-- Glass Tab -->
@@ -1936,7 +1963,7 @@
 
 				<!-- Fanart -->
 				<itemlayout height="266" width="478" condition="Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)">
-				
+
 					<!-- Fanart -->
 					<control type="image">
 						<posx>0</posx>
@@ -1947,7 +1974,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$INFO[ListItem.Art(fanart)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -1970,12 +1997,12 @@
 						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 						<visible>Skin.HasSetting(Widget.OnDeck.Movies.Label)</visible>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Fanart Glass -->
 				<itemlayout height="266" width="478" condition="Container(11001).ListItem.Type(movie) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Skin.HasSetting(Widget.OnDeck.Movies.Fanart.Glass)">
-				
+
 					<!-- Fanart -->
 					<control type="image">
 						<posx>3</posx>
@@ -1986,7 +2013,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(fanart)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -2009,7 +2036,7 @@
 						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 						<visible>Skin.HasSetting(Widget.OnDeck.Movies.Label)</visible>
 					</control>
-					
+
 					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
@@ -2019,7 +2046,7 @@
 						<texture>homewidgets/glass/landscape.png</texture>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Episode ************************************************************************************************************************************************ -->
@@ -2214,7 +2241,7 @@
 
 				<!-- Thumbnail -->
 				<itemlayout height="266" width="478" condition="Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)">
-				
+
 					<!-- Thumbnail -->
 					<control type="image">
 						<posx>0</posx>
@@ -2225,7 +2252,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$INFO[ListItem.Art(thumb)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -2248,12 +2275,12 @@
 						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 						<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Thumbnail Glass -->
 				<itemlayout height="266" width="478" condition="Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)">
-				
+
 					<!-- Thumbnail -->
 					<control type="image">
 						<posx>3</posx>
@@ -2264,7 +2291,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(thumb)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -2287,7 +2314,7 @@
 						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 						<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 					</control>
-					
+
 					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
@@ -2297,12 +2324,12 @@
 						<texture>homewidgets/glass/landscape.png</texture>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Fanart -->
 				<itemlayout height="266" width="478" condition="Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + !Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)">
-				
+
 					<!-- Fanart -->
 					<control type="image">
 						<posx>0</posx>
@@ -2313,7 +2340,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$INFO[ListItem.Art(fanart)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -2336,12 +2363,12 @@
 						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 						<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Fanart Glass -->
 				<itemlayout height="266" width="478" condition="Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Fanart) + Skin.HasSetting(Widget.OnDeck.TV.Fanart.Glass)">
-				
+
 					<!-- Fanart -->
 					<control type="image">
 						<posx>3</posx>
@@ -2352,7 +2379,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(fanart)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -2375,7 +2402,7 @@
 						<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 						<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 					</control>
-					
+
 					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
@@ -2385,7 +2412,7 @@
 						<texture>homewidgets/glass/landscape.png</texture>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Movies ******************************************************************************************************************************************** -->
@@ -2408,7 +2435,7 @@
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 							<bordersize>8</bordersize>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -2433,7 +2460,7 @@
 							<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 							<visible>Skin.HasSetting(Widget.OnDeck.Movies.Label)</visible>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2503,7 +2530,7 @@
 							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2515,7 +2542,7 @@
 							<border>8</border>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -2572,7 +2599,7 @@
 							<texture>homewidgets/glass/portrait.png</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2584,7 +2611,7 @@
 							<border>8</border>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -2641,7 +2668,7 @@
 							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2653,7 +2680,7 @@
 							<border>8</border>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -2663,7 +2690,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Fanart -->
 						<control type="image">
 							<posx>0</posx>
@@ -2675,7 +2702,7 @@
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 							<bordersize>8</bordersize>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -2699,7 +2726,7 @@
 							<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 							<visible>Skin.HasSetting(Widget.OnDeck.Movies.Label)</visible>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2712,7 +2739,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -2722,7 +2749,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Fanart -->
 						<control type="image">
 							<posx>10</posx>
@@ -2733,7 +2760,7 @@
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 							<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(fanart)]</texture>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -2757,7 +2784,7 @@
 							<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 							<visible>Skin.HasSetting(Widget.OnDeck.Movies.Label)</visible>
 						</control>
-						
+
 						<!-- Case -->
 						<control type="image">
 							<posx>0</posx>
@@ -2769,7 +2796,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2782,7 +2809,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -2831,7 +2858,7 @@
 							<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 							<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2901,7 +2928,7 @@
 							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2913,7 +2940,7 @@
 							<border>8</border>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -2970,7 +2997,7 @@
 							<texture>homewidgets/glass/portrait.png</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -2982,7 +3009,7 @@
 							<border>8</border>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3039,7 +3066,7 @@
 							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3051,7 +3078,7 @@
 							<border>8</border>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3061,7 +3088,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Thumbnail -->
 						<control type="image">
 							<posx>0</posx>
@@ -3073,7 +3100,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -3097,7 +3124,7 @@
 							<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 							<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3110,7 +3137,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3120,7 +3147,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Thumbnail -->
 						<control type="image">
 							<posx>10</posx>
@@ -3131,7 +3158,7 @@
 							<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(thumb)]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -3155,7 +3182,7 @@
 							<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 							<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 						</control>
-						
+
 						<!-- Case -->
 						<control type="image">
 							<posx>0</posx>
@@ -3167,7 +3194,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3180,7 +3207,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3190,7 +3217,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Fanart -->
 						<control type="image">
 							<posx>0</posx>
@@ -3202,7 +3229,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -3226,7 +3253,7 @@
 							<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 							<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3239,7 +3266,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3249,7 +3276,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Fanart -->
 						<control type="image">
 							<posx>10</posx>
@@ -3260,7 +3287,7 @@
 							<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(fanart)]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -3284,7 +3311,7 @@
 							<label>$VAR[HomeWidgetOnDeckTitleVar]</label>
 							<visible>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</visible>
 						</control>
-						
+
 						<!-- Case -->
 						<control type="image">
 							<posx>0</posx>
@@ -3296,7 +3323,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3309,13 +3336,13 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
-				
+
 				<!-- Home Videos Landscape -->
 				<itemlayout height="266" width="478" condition="!Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
-					
+
 					<!-- Thumbnail -->
 					<control type="image">
 						<posx>0</posx>
@@ -3326,7 +3353,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$INFO[ListItem.Art(bigThumb)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -3347,12 +3374,12 @@
 						<textcolor>lightgrey</textcolor>
 						<label>$VAR[HomeWidgetTitleVar]</label>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Home Videos Glass -->
 				<itemlayout height="266" width="478" condition="Skin.HasSetting(Widget.OnDeck.HomeVideos.Fanart.Glass) + Container(11001).ListItem.Type(clip)">
-					
+
 					<!-- Thumbnail -->
 					<control type="image">
 						<posx>3</posx>
@@ -3363,7 +3390,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(bigThumb)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -3384,7 +3411,7 @@
 						<textcolor>lightgrey</textcolor>
 						<label>$VAR[HomeWidgetTitleVar]</label>
 					</control>
-					
+
 					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
@@ -3394,7 +3421,7 @@
 						<texture>homewidgets/glass/landscape.png</texture>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Home Videos Landscape -->
@@ -3403,7 +3430,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Thumbnail -->
 						<control type="image">
 							<posx>0</posx>
@@ -3415,7 +3442,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -3437,7 +3464,7 @@
 							<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 							<label>$VAR[HomeWidgetTitleVar]</label>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3450,7 +3477,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3460,7 +3487,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Thumbnail -->
 						<control type="image">
 							<posx>10</posx>
@@ -3471,7 +3498,7 @@
 							<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(bigThumb)]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -3493,7 +3520,7 @@
 							<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 							<label>$VAR[HomeWidgetTitleVar]</label>
 						</control>
-						
+
 						<!-- Case -->
 						<control type="image">
 							<posx>0</posx>
@@ -3505,7 +3532,7 @@
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 							<bordersize>8</bordersize>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3518,7 +3545,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 			</control>	
@@ -3535,7 +3562,7 @@
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
 
 				<itemlayout height="282" width="287" condition="IsEmpty(Skin.String(Widget.Channels.Artwork)) + IsEmpty(Skin.String(Widget.Channels.Case))">
-					
+
 					<!-- Icon -->
 					<control type="image">
 						<posx>0</posx>
@@ -3546,7 +3573,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$INFO[ListItem.Art(bigThumb)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -3585,7 +3612,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[ListItem.Art(bigThumb)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>3</posx>
@@ -3608,7 +3635,7 @@
 						<label>$VAR[HomeWidgetTitleVar]</label>
 						<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
 					</control>
-					
+
 					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
@@ -3619,12 +3646,12 @@
 						<texture>homewidgets/glass/square.png</texture>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Channels Fanart -->
 				<itemlayout height="266" width="478" condition="StringCompare(Skin.String(Widget.Channels.Artwork),Fanart) + !Skin.HasSetting(Widget.Channels.Fanart.Glass)">
-					
+
 					<!-- Fanart -->
 					<control type="image">
 						<posx>0</posx>
@@ -3635,7 +3662,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$INFO[ListItem.Art(fanart)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -3658,12 +3685,12 @@
 						<label>$VAR[HomeWidgetTitleVar]</label>
 						<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Channels Fanart Glass -->
 				<itemlayout height="266" width="478" condition="StringCompare(Skin.String(Widget.Channels.Artwork),Fanart) + Skin.HasSetting(Widget.Channels.Fanart.Glass)">
-					
+
 					<!-- Fanart -->
 					<control type="image">
 						<posx>3</posx>
@@ -3674,7 +3701,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(fanart)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -3697,7 +3724,7 @@
 						<label>$VAR[HomeWidgetTitleVar]</label>
 						<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
 					</control>
-					
+
 					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
@@ -3707,7 +3734,7 @@
 						<texture>homewidgets/glass/landscape.png</texture>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Channels Icon -->
@@ -3716,7 +3743,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Icon -->
 						<control type="image">
 							<posx>0</posx>
@@ -3752,7 +3779,7 @@
 							<label>$VAR[HomeWidgetTitleVar]</label>
 							<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3765,7 +3792,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3775,7 +3802,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Icon -->
 						<control type="image">
 							<posx>11</posx>
@@ -3819,7 +3846,7 @@
 							<texture>homewidgets/glass/square.png</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3831,7 +3858,7 @@
 							<border>8</border>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3841,7 +3868,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Fanart -->
 						<control type="image">
 							<posx>0</posx>
@@ -3853,7 +3880,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -3877,7 +3904,7 @@
 							<label>$VAR[HomeWidgetTitleVar]</label>
 							<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3890,7 +3917,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3900,7 +3927,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Fanart -->
 						<control type="image">
 							<posx>10</posx>
@@ -3911,7 +3938,7 @@
 							<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(fanart)]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -3935,7 +3962,7 @@
 							<label>$VAR[HomeWidgetTitleVar]</label>
 							<visible>Skin.HasSetting(Widget.Channels.Label)</visible>
 						</control>
-						
+
 						<!-- Case -->
 						<control type="image">
 							<posx>0</posx>
@@ -3947,7 +3974,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -3960,7 +3987,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -3979,7 +4006,7 @@
 
 				<!-- Playlists No Case -->
 				<itemlayout height="282" width="287" condition="IsEmpty(Skin.String(Widget.Playlists.Case))">
-					
+
 					<!-- Icon -->
 					<control type="image">
 						<posx>0</posx>
@@ -3990,7 +4017,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture fallback="defaultvideoplaylists.png">$INFO[ListItem.CompositeImage(width=282;height=282;cols=2;rows=2)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -4027,7 +4054,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture fallback="defaultvideoplaylists.png" diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[ListItem.CompositeImage(width=282;height=282;cols=2;rows=2)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>3</posx>
@@ -4048,7 +4075,7 @@
 						<textcolor>lightgrey</textcolor>
 						<label>$VAR[HomeWidgetTitleVar]</label>
 					</control>
-					
+
 					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
@@ -4058,7 +4085,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>homewidgets/glass/square.png</texture>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Playlists No Case -->
@@ -4067,7 +4094,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Icon -->
 						<control type="image">
 							<posx>0</posx>
@@ -4102,7 +4129,7 @@
 							<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 							<label>$VAR[HomeWidgetTitleVar]</label>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -4115,7 +4142,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -4125,7 +4152,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Icon -->
 						<control type="image">
 							<posx>11</posx>
@@ -4178,7 +4205,7 @@
 							<border>8</border>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -4197,7 +4224,7 @@
 
 				<!-- Watch Later Landscape -->
 				<itemlayout height="266" width="478" condition="!Skin.HasSetting(Widget.WatchLater.Fanart.Glass)">
-					
+
 					<!-- Thumbnail -->
 					<control type="image">
 						<posx>0</posx>
@@ -4208,7 +4235,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture>$INFO[ListItem.Art(bigThumb)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -4229,12 +4256,12 @@
 						<textcolor>lightgrey</textcolor>
 						<label>$VAR[HomeWidgetTitleVar]</label>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Watch Later Glass -->
 				<itemlayout height="266" width="478" condition="Skin.HasSetting(Widget.WatchLater.Fanart.Glass)">
-					
+
 					<!-- Thumbnail -->
 					<control type="image">
 						<posx>3</posx>
@@ -4245,7 +4272,7 @@
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(bigThumb)]</texture>
 					</control>
-					
+
 					<!-- Text Label -->
 					<control type="image">
 						<posx>0</posx>
@@ -4266,7 +4293,7 @@
 						<textcolor>lightgrey</textcolor>
 						<label>$VAR[HomeWidgetTitleVar]</label>
 					</control>
-					
+
 					<!-- Case -->
 					<control type="image">
 						<posx>0</posx>
@@ -4276,7 +4303,7 @@
 						<texture>homewidgets/glass/landscape.png</texture>
 						<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 					</control>
-					
+
 				</itemlayout>
 
 				<!-- Watch Later Landscape -->
@@ -4285,7 +4312,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Thumbnail -->
 						<control type="image">
 							<posx>0</posx>
@@ -4297,7 +4324,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -4319,7 +4346,7 @@
 							<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 							<label>$VAR[HomeWidgetTitleVar]</label>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -4332,7 +4359,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 
@@ -4342,7 +4369,7 @@
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 						</animation>
-						
+
 						<!-- Thumbnail -->
 						<control type="image">
 							<posx>10</posx>
@@ -4353,7 +4380,7 @@
 							<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[ListItem.Art(bigThumb)]</texture>
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 						</control>
-						
+
 						<!-- Text Label -->
 						<control type="image">
 							<posx>0</posx>
@@ -4375,7 +4402,7 @@
 							<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 							<label>$VAR[HomeWidgetTitleVar]</label>
 						</control>
-						
+
 						<!-- Case -->
 						<control type="image">
 							<posx>0</posx>
@@ -4387,7 +4414,7 @@
 							<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
 							<bordersize>8</bordersize>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -4400,7 +4427,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_WidgetHighlightColourVar]</colordiffuse>
 						</control>
-						
+
 					</control>
 				</focusedlayout>
 			</control>
