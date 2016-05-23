@@ -139,17 +139,31 @@
 					<width>1192</width>
 					<height>1080</height>
 					<texture>black.png</texture>
-					<visible>IsEmpty(ListItem.Art(fanart))</visible>
+					<visible>IsEmpty(ListItem.Art(fanart)) + !Container.Content(clip)</visible>
 				</control>
 				<control type="image">
-					<visible>Skin.HasSetting(Preplay.Blur)</visible>
+					<width>1192</width>
+					<height>1080</height>
+					<aspectratio aligny="top">scale</aspectratio>
+					<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+					<visible blur="3">Container.Content(clip) + Skin.HasSetting(Preplay.Blur)</visible>
+				</control>
+				<control type="image">
+					<width>1192</width>
+					<height>1080</height>
+					<aspectratio aligny="top">scale</aspectratio>
+					<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+					<visible>Container.Content(clip) + !Skin.HasSetting(Preplay.Blur)</visible>
+				</control>
+				<control type="image">
+					<visible>Skin.HasSetting(Preplay.Blur) + !Container.Content(clip)</visible>
 					<width>1192</width>
 					<height>1080</height>
 					<aspectratio align="center">scale</aspectratio>
 					<texture blur="3">$INFO[ListItem.Art(fanart)]</texture>
 				</control>
 				<control type="image">
-					<visible>!Skin.HasSetting(Preplay.Blur)</visible>
+					<visible>!Skin.HasSetting(Preplay.Blur) + !Container.Content(clip)</visible>
 					<width>1192</width>
 					<height>1080</height>
 					<aspectratio align="center">scale</aspectratio>
