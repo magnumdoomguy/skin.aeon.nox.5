@@ -439,6 +439,41 @@
 					<visible>Container(11000).ListItem.Type(album) + StringCompare(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart) + Skin.HasSetting(Widget.RecentlyAdded.Music.Fanart.Glass)</visible>
 				</control>
 
+				<!-- Fanart Watch Later -->
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture>$INFO[Container(11003).ListItem.Art(smallThumb)]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11003) + !Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+
+				<!-- Fanart Watch Later -->
+				<control type="image">
+					<posx>-405</posx>
+					<posy>-15</posy>
+					<width>613</width>
+					<height>342</height>
+					<aspectratio scalediffuse="false">scale</aspectratio>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11003).ListItem.Art(smallThumb)]</texture>
+					<fadetime>400</fadetime>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				<control type="image">
+					<posx>-408</posx>
+					<posy>-20</posy>
+					<width>621</width>
+					<height>350</height>
+					<texture>homewidgets/glass/landscape.png</texture>
+					<bordersize>20</bordersize>
+					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+				</control>
+				
 				<control type="grouplist">
 					<posx>212</posx>
 					<posy>0</posy>
@@ -1303,6 +1338,19 @@
 				<include>List</include>
 			</control>
 
+			<!-- Watch Later -->
+			<control id="11003" type="list">
+				<posy>6</posy>
+				<posx>1135</posx>
+
+				<include>ListWidget1</include>
+				<animation condition="!Control.HasFocus(11003)" type="Conditional">
+					<effect center="1520" easing="inout" end="-180" start="0" time="400" tween="sine" type="rotatey" />
+					<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
+				</animation>
+				<include>List</include>
+			</control>
+			
 		</control>
 	</include>
 </includes>

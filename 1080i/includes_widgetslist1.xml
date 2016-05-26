@@ -6,7 +6,7 @@
 		<posx>240</posx>
 		<control type="group">
 			<animation effect="slide" end="-196,0" condition="!Skin.HasSetting(Homemenu.Vertical) + [[Control.IsVisible(11001) + Container(11001).ListItem.Type(movie) + !Skin.HasSetting(Widget.OnDeck.Movies.Fanart)] | [Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))]]">Conditional</animation>
-			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11001)] | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11003)]</visible>
+			<visible>StringCompare(Skin.String(Widget.ListInfo),Always On) | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11001)] | [IsEmpty(Skin.String(Widget.ListInfo)) + Control.HasFocus(11004)]</visible>
 			<control type="image">
 				<width>1440</width>
 				<height>310</height>
@@ -323,30 +323,30 @@
 					<visible>Control.IsVisible(11001) + Container(11001).ListItem.Type(episode) + StringCompare(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.OnDeck.TV.Thumbnail.Glass)</visible>
 				</control>
 
-				<!-- Fanart Watch Later -->
+				<!-- Fanart Recommended -->
 				<control type="image">
 					<posx>-408</posx>
 					<posy>-20</posy>
 					<width>621</width>
 					<height>350</height>
-					<texture>$INFO[Container(11003).ListItem.Art(smallThumb)]</texture>
+					<texture>$INFO[Container(11004).ListItem.Art(smallThumb)]</texture>
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11003) + !Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+					<visible>Control.IsVisible(11004) + !Skin.HasSetting(Widget.Recommended.Fanart.Glass)</visible>
 				</control>
 
-				<!-- Fanart Watch Later -->
+				<!-- Fanart Recommended -->
 				<control type="image">
 					<posx>-405</posx>
 					<posy>-15</posy>
 					<width>613</width>
 					<height>342</height>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11003).ListItem.Art(smallThumb)]</texture>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11004).ListItem.Art(smallThumb)]</texture>
 					<fadetime>400</fadetime>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+					<visible>Control.IsVisible(11004) + Skin.HasSetting(Widget.Recommended.Fanart.Glass)</visible>
 				</control>
 				<control type="image">
 					<posx>-408</posx>
@@ -355,7 +355,7 @@
 					<height>350</height>
 					<texture>homewidgets/glass/landscape.png</texture>
 					<bordersize>20</bordersize>
-					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+					<visible>Control.IsVisible(11004) + Skin.HasSetting(Widget.Recommended.Fanart.Glass)</visible>
 				</control>
 
 				<control type="grouplist">
@@ -490,14 +490,14 @@
 							<visible>Control.IsVisible(11001)</visible>
 						</control>
 
-						<!-- Duration Watch Later -->
+						<!-- Duration Recommended -->
 						<control type="label">
 							<width min="20" max="299">auto</width>
 							<height>28</height>
 							<textcolor>white2</textcolor>
 							<shadowcolor>black</shadowcolor>
-							<label>$VAR[WatchLater_Duration]</label>
-							<visible>Control.IsVisible(11003)</visible>
+							<label>$VAR[Recommended_Duration]</label>
+							<visible>Control.IsVisible(11004)</visible>
 						</control>
 
 					</control>
@@ -519,7 +519,7 @@
 						<visible>Control.IsVisible(11001) + !Skin.HasSetting(General.SmallPlotText)</visible>
 					</control>
 
-					<!-- Plot On Deck Watch Later -->
+					<!-- Plot On Deck Recommended -->
 					<control type="textbox">
 						<width>898</width>
 						<height max="160">auto</height>
@@ -528,8 +528,8 @@
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-						<label>$VAR[WatchLaterPlotVar]</label>
-						<visible>Control.IsVisible(11003) + !Skin.HasSetting(General.SmallPlotText)</visible>
+						<label>$VAR[RecommendedPlotVar]</label>
+						<visible>Control.IsVisible(11004) + !Skin.HasSetting(General.SmallPlotText)</visible>
 					</control>
 
 					<!-- Plot On Deck (Small) -->
@@ -545,7 +545,7 @@
 						<visible>Control.IsVisible(11001) + Skin.HasSetting(General.SmallPlotText)</visible>
 					</control>
 
-					<!-- Plot On Deck Watch Later (Small) -->
+					<!-- Plot On Deck Recommended (Small) -->
 					<control type="textbox">
 						<width>898</width>
 						<height max="160">auto</height>
@@ -554,28 +554,28 @@
 						<textcolor>white2</textcolor>
 						<shadowcolor>black</shadowcolor>
 						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-						<label>$VAR[WatchLaterPlotVar]</label>
-						<visible>Control.IsVisible(11003) + Skin.HasSetting(General.SmallPlotText)</visible>
+						<label>$VAR[RecommendedPlotVar]</label>
+						<visible>Control.IsVisible(11004) + Skin.HasSetting(General.SmallPlotText)</visible>
 					</control>
 				</control>
 			</control>
 		</control>
 		<control type="image">
-			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11005)</visible>
+			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11004) | Control.IsVisible(11005)</visible>
 			<posx>1114</posx>
 			<posy>-16</posy>
 			<width>342</width>
 			<height>342</height>
 			<texture border="40">$VAR[HomeWidgetBackgroundVar]</texture>
-			<animation center="1285" condition="Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003) | Control.HasFocus(11005)" easing="inout" effect="rotatey" end="180" start="0" time="400" tween="sine">Conditional</animation>
+			<animation center="1285" condition="Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11004) | Control.HasFocus(11005)" easing="inout" effect="rotatey" end="180" start="0" time="400" tween="sine">Conditional</animation>
 		</control>
 
 		<control type="group">
-			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11005)</visible>
+			<visible>Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11004) | Control.IsVisible(11005)</visible>
 			<posx>1135</posx>
 			<width>300</width>
 			<height>300</height>
-			<animation condition="Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003) | Control.HasFocus(11005)" type="Conditional">
+			<animation condition="Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11004) | Control.HasFocus(11005)" type="Conditional">
 				<effect center="1285" easing="inout" end="180" start="0" time="400" tween="sine" type="rotatey" />
 				<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
 			</animation>
@@ -951,7 +951,7 @@
 					<visible>Control.IsVisible(11002) + StringCompare(Skin.String(Widget.Channels.Artwork),Fanart) + Skin.HasSetting(Widget.Channels.Fanart.Glass)</visible>
 				</control>
 
-				<!-- Fanart Watch Later -->
+				<!-- Fanart Recommended -->
 				<control type="image">
 					<posy>58</posy>
 					<posx>0</posx>
@@ -959,11 +959,11 @@
 					<height>169</height>
 					<aspectratio>scale</aspectratio>
 					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-					<texture>$INFO[Container(11003).ListItem.Art(smallThumb)]</texture>
-					<visible>Control.IsVisible(11003) + !Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+					<texture>$INFO[Container(11004).ListItem.Art(smallThumb)]</texture>
+					<visible>Control.IsVisible(11004) + !Skin.HasSetting(Widget.Recommended.Fanart.Glass)</visible>
 				</control>
 
-				<!-- Fanart Glass Watch Later -->
+				<!-- Fanart Glass Recommended -->
 				<control type="image">
 					<posy>61</posy>
 					<posx>3</posx>
@@ -971,8 +971,8 @@
 					<height>163</height>
 					<aspectratio scalediffuse="false">scale</aspectratio>
 					<colordiffuse>$VAR[HomeWidgetTransVar]</colordiffuse>
-					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11003).ListItem.Art(smallThumb)]</texture>
-					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+					<texture diffuse="thumbs/boxes/landscape_mask.png">$INFO[Container(11004).ListItem.Art(smallThumb)]</texture>
+					<visible>Control.IsVisible(11004) + Skin.HasSetting(Widget.Recommended.Fanart.Glass)</visible>
 				</control>
 				<control type="image">
 					<posx>0</posx>
@@ -981,7 +981,7 @@
 					<height>169</height>
 					<aspectratio>stretch</aspectratio>
 					<texture>homewidgets/glass/landscape.png</texture>
-					<visible>Control.IsVisible(11003) + Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
+					<visible>Control.IsVisible(11004) + Skin.HasSetting(Widget.Recommended.Fanart.Glass)</visible>
 				</control>
 
 				<!-- Playlists -->
@@ -1048,13 +1048,13 @@
 				<include>List</include>
 			</control>
 
-			<!-- Watch Later -->
-			<control id="11003" type="list">
+			<!-- Recommended -->
+			<control id="11004" type="list">
 				<posy>6</posy>
 				<posx>1135</posx>
 
 				<include>ListWidget1</include>
-				<animation condition="!Control.HasFocus(11003)" type="Conditional">
+				<animation condition="!Control.HasFocus(11004)" type="Conditional">
 					<effect center="1520" easing="inout" end="-180" start="0" time="400" tween="sine" type="rotatey" />
 					<effect easing="inout" end="0" start="100" time="300" tween="sine" type="fade" />
 				</animation>
