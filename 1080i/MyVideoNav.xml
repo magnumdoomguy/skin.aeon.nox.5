@@ -954,10 +954,11 @@
 			</control>
 						
 			<!-- Icon Menu -->
-			<control type="grouplist" id="9050">
+			<control type="panel" id="9050">
 				<posy>151</posy>
 				<posx>350</posx>
 				<width>60</width>
+				<height>500</height>
 				<orientation>vertical</orientation>
 				<itemgap>0</itemgap>
 				<onleft condition="![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]">1300</onleft>
@@ -969,109 +970,88 @@
 				<onback>ClearProperty(MediaMenu,Home)</onback>
 				<onback>50</onback>
 			
+				<itemlayout height="35" width="60">
+					<control type="label">
+						<width>60</width>
+						<height>35</height>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>grey3</textcolor>
+						<texturefocus border="0"></texturefocus>
+						<texturenofocus border="0"></texturenofocus>
+						<textwidth>300</textwidth>
+						<aligny>center</aligny>
+						<font>IconTiny</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
 			
-				<!-- Close Sideblade -->
-				<control type="button" id="104">
-					<width>60</width>
-					<height>35</height>
-					<textoffsetx>15</textoffsetx>
-					<textcolor>grey3</textcolor>
-					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
-					<texturefocus border="0"></texturefocus>
-					<texturenofocus border="0"></texturenofocus>
-					<textwidth>300</textwidth>
-					<aligny>center</aligny>
-					<font>IconTiny</font>
-					<label></label>
-					<onclick>ClearProperty(MediaMenu,Home)</onclick>
-					<onclick>50</onclick>
-					<onclick>Control.SetFocus(50)</onclick>
-				</control>
+				<focusedlayout height="35" width="60">
+					<control type="label">
+						<width>60</width>
+						<height>35</height>
+						<textoffsetx>15</textoffsetx>
+						<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+						<texturefocus border="0"></texturefocus>
+						<texturenofocus border="0"></texturenofocus>
+						<textwidth>300</textwidth>
+						<aligny>center</aligny>
+						<font>IconTiny</font>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+			
+				<content>
 				
-				<!-- Home Button -->
-				<control type="button" id="105">
-					<width>60</width>
-					<height>35</height>
-					<textoffsetx>15</textoffsetx>
-					<textcolor>grey3</textcolor>
-					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
-					<texturefocus border="0"></texturefocus>
-					<texturenofocus border="0"></texturenofocus>
-					<textwidth>300</textwidth>
-					<aligny>center</aligny>
-					<font>IconTiny</font>
-					<label>↸</label>
-					<onclick>ActivateWindow(home)</onclick>
-				</control>
+					<!-- Close Sideblade -->
+					<item>
+						<label></label>
+						<onclick>ClearProperty(MediaMenu,Home)</onclick>
+						<onclick>50</onclick>
+						<onclick>Control.SetFocus(50)</onclick>
+					</item>
 				
-				<!-- Play All -->
-				<control type="button" id="106">
-					<width>60</width>
-					<height>35</height>
-					<textoffsetx>15</textoffsetx>
-					<textcolor>grey3</textcolor>
-					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
-					<texturefocus border="0"></texturefocus>
-					<texturenofocus border="0"></texturenofocus>
-					<textwidth>300</textwidth>
-					<aligny>center</aligny>
-					<font>IconTiny</font>
-					<label></label>
-					<onclick>Plex.PlayAll()</onclick>
-					<visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
-				</control>
+					<!-- Home Button -->
+					<item>
+						<label>↸</label>
+						<onclick>ActivateWindow(home)</onclick>
+					</item>
+				
+					<!-- Play All -->
+					<item>
+						<label></label>
+						<onclick>Plex.PlayAll()</onclick>
+						<visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
+					</item>
 					
-				<!-- Shuffle All -->
-				<control type="button" id="107">
-					<width>60</width>
-					<height>35</height>
-					<textoffsetx>15</textoffsetx>
-					<textcolor>grey3</textcolor>
-					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
-					<texturefocus border="0"></texturefocus>
-					<texturenofocus border="0"></texturenofocus>
-					<textwidth>300</textwidth>
-					<aligny>center</aligny>
-					<font>IconTiny</font>
-					<label></label>
-					<onclick>Plex.ShuffleAll()</onclick>
-					<visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
-				</control>
+					<!-- Shuffle All -->
+					<item>
+						<label></label>
+						<onclick>Plex.ShuffleAll()</onclick>
+						<visible>![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)</visible>
+					</item>
 				
-				<!-- Change Viewtype -->				
-				<control type="button" id="108">
-					<description>View As button</description>
-					<width>60</width>
-					<height>35</height>
-					<textoffsetx>15</textoffsetx>
-					<textcolor>grey3</textcolor>
-					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
-					<texturefocus border="0"></texturefocus>
-					<texturenofocus border="0"></texturenofocus>
-					<textwidth>300</textwidth>
-					<aligny>center</aligny>
-					<font>IconTiny</font>
-					<onclick>Container.NextViewMode</onclick>	
-					<label></label>
-				</control>
+					<!-- Change Viewtype -->				
+					<item>
+						<onclick>Container.NextViewMode</onclick>	
+						<label></label>
+						<visible>![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+					</item>
 				
-				<!-- Options Button -->
-				<control type="button" id="109">
-					<description>Options</description>
-					<width>60</width>
-					<height>35</height>
-					<textoffsetx>15</textoffsetx>
-					<textcolor>grey3</textcolor>
-					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
-					<texturefocus border="0"></texturefocus>
-					<texturenofocus border="0"></texturenofocus>
-					<textwidth>300</textwidth>
-					<aligny>center</aligny>
-					<font>IconTiny</font>
-					<onclick>Control.SetFocus(200)</onclick>	
-					<label></label>
-					<visible>![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]</visible>
-				</control>
+					<!-- Options Button -->
+					<item>
+						<onclick>Control.SetFocus(200)</onclick>	
+						<label></label>
+						<visible>![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+					</item>
+					
+					<!-- Change Viewtype (Channels, Seasons, Episodes) -->				
+					<item>
+						<onclick>Container.NextViewMode</onclick>	
+						<label></label>
+						<visible>[Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+					</item>
+				
+				</content>
 				
 			</control>
 			
