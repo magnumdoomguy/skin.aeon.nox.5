@@ -955,7 +955,7 @@
 						
 			<!-- Icon Menu -->
 			<control type="panel" id="9050">
-				<animation effect="slide" end="0,15" condition="ControlGroup(200).HasFocus | [Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]">Conditional</animation>
+				<animation effect="slide" end="0,15" condition="[Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]">Conditional</animation>
 				<posy>151</posy>
 				<posx>350</posx>
 				<width>60</width>
@@ -1033,7 +1033,8 @@
 				
 					<!-- Change Viewtype -->				
 					<item>
-						<onclick>Container.NextViewMode</onclick>	
+						<onclick>SetFocus(1300)</onclick>
+						<onclick>ActivateWindow(1130)</onclick>	
 						<label></label>
 						<visible>![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 					</item>
@@ -1058,7 +1059,7 @@
 			
 			<!-- Options Menu -->
 			<control type="grouplist" id="200">
-				<visible allowhiddenfocus="true">ControlGroup(200).HasFocus | [Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+				<visible allowhiddenfocus="true">[ControlGroup(200).HasFocus | [Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes)]] + !Window.IsActive(1130)</visible>
 				<posx>0</posx>
 				<posy>100</posy>
 				<zorder>10</zorder>
@@ -1080,7 +1081,7 @@
 				</control>
 				
 				<!-- Change View type -->
-				<control type="button" id="2">
+				<control type="button" id="202">
 					<description>View As button</description>
 					<posy>60</posy>
 					<textwidth>350</textwidth>
@@ -1093,8 +1094,8 @@
 					<aligny>center</aligny>
 					<font>font13</font>
 					<radioposx>340</radioposx>
-					<onclick>Container.NextViewMode</onclick>	
-					<label>-</label>
+					<onclick>ActivateWindow(1130)</onclick>	
+					<label>$INFO[Container.Viewmode,$LOCALIZE[42365] ]</label>
 				</control>
 				
 				<!-- Toggle Background -->
@@ -2355,7 +2356,7 @@
 			
 			<!-- Filters -->
 			<control type="grouplist" id="1300"> 
-				<visible allowhiddenfocus="true">!ControlGroup(200).HasFocus + !Container.PlexContent(channels) + !Container.PlexContent(channel) + !Container.Content(seasons) + !Container.Content(episodes)</visible>
+				<visible allowhiddenfocus="true">!ControlGroup(200).HasFocus + !Container.PlexContent(channels) + !Container.PlexContent(channel) + !Container.Content(seasons) + !Container.Content(episodes) + !Window.IsActive(1130)</visible>
 				<animation type="Conditional" condition="!Window.IsActive(10202)" reversible="false">
 					<!--<effect type="rotatey" center="220" start="80" end="0" time="300"/>-->
 					<effect type="fade" start="0" end="100" time="400" delay="0"/>
