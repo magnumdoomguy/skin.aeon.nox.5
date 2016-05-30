@@ -197,8 +197,7 @@
 						<item>
 							<label>$LOCALIZE[42367]</label>
 							<onclick>Container.SetViewMode(700)</onclick>
-							<visible>Window.IsActive(musicfiles) | Window.IsActive(musiclibrary)</visible>
-							<visible>!Skin.HasSetting(Disable.RightListView)</visible>
+							<visible>[Container.Content(artists) | Container.Content(albums)] + !Skin.HasSetting(Disable.RightListView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42368]</label>
@@ -227,7 +226,7 @@
 						<item>
 							<label>$LOCALIZE[42371]</label>
 							<onclick>Container.SetViewMode(510)</onclick>
-							<visible>[Container.Content(albums) | Container.Content(artists)] + !Skin.HasSetting(Disable.BigListView)</visible>
+							<visible>Container.Content(artists) + !Skin.HasSetting(Disable.BigListView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42372]</label>
@@ -272,8 +271,7 @@
 						<item>
 							<label>$LOCALIZE[31077]</label>
 							<onclick>Container.SetViewMode(54)</onclick>
-							<visible>Window.IsActive(musicfiles) | Window.IsActive(musiclibrary)</visible>
-							<visible>[Container.Content(addons) | Container.Content(albums) | Container.Content(songs) | Container.Content(artists) | Container.Content(files)] + !Skin.HasSetting(Disable.ShowCaseView)</visible>
+							<visible>[Container.Content(addons) | Container.Content(albums) | Container.Content(artists) | Container.Content(files)] + !Skin.HasSetting(Disable.ShowCaseView)</visible>
 						</item>
 						<!--<item>
 							<label>$LOCALIZE[31244]</label>
@@ -296,7 +294,7 @@
 						<item>
 							<label>$LOCALIZE[536]</label>
 							<onclick>Container.SetViewMode(500)</onclick>
-							<visible>!Container.PlexContent(homemovies) + !Skin.HasSetting(Disable.IconsView)</visible>
+							<visible>!Container.PlexContent(homemovies) + !Container.Content(songs) + !Skin.HasSetting(Disable.IconsView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[536]</label>
@@ -641,13 +639,13 @@
 						<selected>!Skin.HasSetting(Disable.PanelView)</selected>
 					</control>
 					<!-- <control type="radiobutton" id="1636">
-				<description>Disable </description>
-				<textwidth>375</textwidth>
-				<include>ButtonCommonValues</include>
-				<label></label>
-				<onclick>Skin.ToggleSetting(Disable.)</onclick>
-				<selected>!Skin.HasSetting(Disable.)</selected>
-			</control> -->
+						<description>Disable </description>
+						<textwidth>375</textwidth>
+						<include>ButtonCommonValues</include>
+						<label></label>
+						<onclick>Skin.ToggleSetting(Disable.)</onclick>
+						<selected>!Skin.HasSetting(Disable.)</selected>
+					</control> -->
 				</control>
 			</control>
 
@@ -688,11 +686,11 @@
 					<aligny>center</aligny>
 					<font>font13</font>
 					<radioposx>340</radioposx>
-					<onclick>SetFocus(1130)</onclick>	
+					<onclick>SetFocus(9000,0)</onclick>	
 					<label>$INFO[Container.Viewmode,$LOCALIZE[42365] ]</label>
 				</control>
 
-				<!-- Toggle Background -->
+				<!-- Background Menu -->
 				<control type="button" id="203">
 					<description>Toggle Background</description>
 					<posy>120</posy>
@@ -746,6 +744,25 @@
 					<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[InfoPanelLabelVar][/COLOR]</label2>
 					<onclick>$VAR[53VideoInfoPanelVar]</onclick>
 					<visible>Control.IsVisible(53)</visible>
+				</control>
+
+				<!-- Toggle Infopanel 54 -->
+				<control type="button" id="206">
+					<description>Show Info Toggle</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[31018]</label>
+					<label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[InfoPanelLabelVar][/COLOR]</label2>
+					<onclick>$VAR[54MusicInfoPanelVar]</onclick>
+					<visible>Control.IsVisible(54)</visible>
 				</control>
 
 				<!-- Toggle Infopanel 57 -->  <!-- Add Later -->
@@ -860,7 +877,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_ListWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_ListWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1153)</onclick>
-					<visible>Control.IsVisible(50) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(50) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- InfoWall: Theme Colour -->
@@ -917,7 +934,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_InfoWallWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_InfoWallWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1157)</onclick>
-					<visible>Control.IsVisible(51) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(51) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- Landscape: Theme Colour -->
@@ -1050,7 +1067,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_TriPanelWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_TriPanelWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1165)</onclick>
-					<visible>Control.IsVisible(55) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(55) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- Posters: Theme Colour -->
@@ -1126,7 +1143,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_ShiftWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_ShiftWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1167)</onclick>
-					<visible>Control.IsVisible(57) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(57) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- BannerWall: Theme Colour -->
@@ -1297,7 +1314,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_IconsWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_IconsWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1177)</onclick>
-					<visible>[Control.IsVisible(500) | Control.IsVisible(511)] + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>[Control.IsVisible(500) | Control.IsVisible(511)] + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- LowList: Theme Colour -->
@@ -1354,7 +1371,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_LowListWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_LowListWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1180)</onclick>
-					<visible>Control.IsVisible(501) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(501) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- Episode: Theme Colour -->
@@ -1430,7 +1447,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_WallWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_WallWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1184)</onclick>
-					<visible>Control.IsVisible(503) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(503) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- Gallery: Theme Colour -->
@@ -1696,7 +1713,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_BigListWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_BigListWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1201)</onclick>
-					<visible>Control.IsVisible(510) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(510) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- BigFan: Theme Colour -->
@@ -1848,7 +1865,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_FullscreenWallWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_FullscreenWallWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1209)</onclick>
-					<visible>Control.IsVisible(609) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(609) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- RightList: Theme Colour -->
@@ -1905,7 +1922,7 @@
 					<label>$LOCALIZE[42311]</label>
 					<label2>[COLOR $VAR[Colour_RightListWatchedStatusColourVar]][UPPERCASE]$VAR[Colour_RightListWatchedStatusColourVar][/UPPERCASE][/COLOR]</label2>
 					<onclick>ActivateWindow(1212)</onclick>
-					<visible>Control.IsVisible(700) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+					<visible>Control.IsVisible(700) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 				</control>
 
 				<!-- Shelf 3D: Theme Colour -->
@@ -1945,7 +1962,121 @@
 					<onclick>ActivateWindow(1214)</onclick>
 					<visible>Control.IsVisible(708) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 				</control>
-
+				
+				<!-- SongList: Theme Colour -->
+				<control type="button" id="270">
+					<description>Change SongList Theme Colour</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[42310]</label>
+					<label2>[COLOR $VAR[Colour_SongListThemeColourVar]][UPPERCASE]$VAR[Colour_SongListThemeColourVar][/UPPERCASE][/COLOR]</label2>
+					<onclick>ActivateWindow(1197)</onclick>
+					<visible>Control.IsVisible(508)</visible>
+				</control>
+				
+				<!-- SongList: Highlight Colour -->
+				<control type="button" id="271">
+					<description>Change SongList Highlight Colour</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[42266]</label>
+					<label2>[COLOR $VAR[Colour_SongListHighlightColourVar]][UPPERCASE]$VAR[Colour_SongListHighlightColourVar][/UPPERCASE][/COLOR]</label2>
+					<onclick>ActivateWindow(1198)</onclick>
+					<visible>Control.IsVisible(508)</visible>
+				</control>
+								
+				<!-- Shelf 3D: Theme Colour -->
+				<control type="button" id="272">
+					<description>Change Shelf 3D Theme Colour</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[42310]</label>
+					<label2>[COLOR $VAR[Colour_Shelf3DThemeColourVar]][UPPERCASE]$VAR[Colour_Shelf3DThemeColourVar][/UPPERCASE][/COLOR]</label2>
+					<onclick>ActivateWindow(1213)</onclick>
+					<visible>Control.IsVisible(728)</visible>
+				</control>
+								
+				<!-- Big Icons: Theme Colour -->
+				<control type="button" id="273">
+					<description>Change Big Icons Theme Colour</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[42310]</label>
+					<label2>[COLOR $VAR[Colour_BigIconsThemeColourVar]][UPPERCASE]$VAR[Colour_BigIconsThemeColourVar][/UPPERCASE][/COLOR]</label2>
+					<onclick>ActivateWindow(1217)</onclick>
+					<visible>Control.IsVisible(590)</visible>
+				</control>
+				
+				<!-- Big Icons: Highlight Colour -->
+				<control type="button" id="274">
+					<description>Change Big Icons Highlight Colour</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[42266]</label>
+					<label2>[COLOR $VAR[Colour_BigIconsHighlightColourVar]][UPPERCASE]$VAR[Colour_BigIconsHighlightColourVar][/UPPERCASE][/COLOR]</label2>
+					<onclick>ActivateWindow(1215)</onclick>
+					<visible>Control.IsVisible(590)</visible>
+				</control>
+				
+				<!-- Showcase: Theme Colour -->
+				<control type="button" id="275">
+					<description>Change Showcase View Theme Colour</description>
+					<textwidth>255</textwidth>
+					<width>350</width>
+					<height>60</height>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<focusedcolor>white</focusedcolor>
+					<textwidth>300</textwidth>
+					<aligny>center</aligny>
+					<font>font13</font>
+					<radioposx>340</radioposx>
+					<label>$LOCALIZE[42310]</label>
+					<label2>[COLOR $VAR[Colour_ShowcaseThemeColourVar]][UPPERCASE]$VAR[Colour_ShowcaseThemeColourVar][/UPPERCASE][/COLOR]</label2>
+					<onclick>ActivateWindow(1161)</onclick>
+					<visible>Control.IsVisible(54)</visible>
+				</control>
+				
 			</control>
 
 			<!-- Video Extras Menu -->
