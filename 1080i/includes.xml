@@ -277,102 +277,134 @@
         </control>
     </include>
 	
-    <!-- Top Bar -->
+	<!-- Topbar -->
     <include name="Topbar">
-        <control type="group">
-            <animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
-            <animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
-            <visible>!Control.IsVisible(609)</visible>
-            <control type="image">
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>1920</width>
-                <height>66</height>
-                <texture border="1">topbar.png</texture>
-            </control>
-            <control type="label">
-                <width>900</width>
-                <height>90</height>
-                <font>font13_title</font>
-                <textoffsetx>15</textoffsetx>
-                <textcolor>grey2</textcolor>
-                <align>left</align>
-                <aligny>top</aligny>
-                <textoffsety>-2</textoffsety>
-                <label>$VAR[BreadcrumbsVar]</label>
-            </control>
-            <control type="label">
-                <posx>1920</posx>
-                <width>900</width>
-                <height>90</height>
-                <font>font13_title</font>
-                <textoffsetx>15</textoffsetx>
-                <textcolor>grey2</textcolor>
-                <align>right</align>
-                <aligny>top</aligny>
-                <textoffsety>-2</textoffsety>
-                <label>$INFO[Container.NumItems,, $LOCALIZE[31025]]$INFO[Container.CurrentPage,[COLOR grey3] | ,]$INFO[Container.NumPages,/,[/COLOR]]</label>
-            </control>
-            <control type="label">
-                <posx>0</posx>
-                <width>1920</width>
-                <height>90</height>
-                <font>font13_title</font>
-                <textoffsetx>15</textoffsetx>
-                <textcolor>grey2</textcolor>
-                <align>center</align>
-                <aligny>top</aligny>
-                <textoffsety>-2</textoffsety>
-                <label>$INFO[System.Time]</label>
-            </control>
-            <control type="group">
-                <visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
-                <animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
-                <animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
-                <posx>1080</posx>
-                <control type="progress">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>500</width>
-                    <height>37</height>
-                    <texturebg border="2">osd/texturebg.png</texturebg>
-                    <lefttexture>-</lefttexture>
-                    <midtexture border="2">osd/midtexture_cache.png</midtexture>
-                    <righttexture>-</righttexture>
-                    <overlaytexture>-</overlaytexture>
-                    <info>Player.ProgressCache</info>
-                </control>
-                <control type="progress">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>500</width>
-                    <height>35</height>
-                    <texturebg border="1">osd/texturebg_cache.png</texturebg>
-                    <lefttexture>-</lefttexture>
-                    <midtexture border="2">osd/midtexture.png</midtexture>
-                    <righttexture>-</righttexture>
-                    <overlaytexture>-</overlaytexture>
-                    <info>Player.Progress</info>
-					<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
-                </control>
-                <control type="label">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>500</width>
-                    <height>90</height>
-                    <font>font13_title</font>
-                    <textoffsetx>10</textoffsetx>
-                    <textcolor>grey</textcolor>
-                    <shadowcolor>AA000000</shadowcolor>
-                    <align>left</align>
-                    <aligny>top</aligny>
-                    <textoffsety>-2</textoffsety>
-                    <scroll>true</scroll>
-                    <label>$INFO[Player.Title]</label>
-                </control>
-            </control>
-        </control>
-    </include>
+		<control type="group">
+			
+			<control type="group">
+				<animation effect="slide" start="0,0" end="0,-90" time="800" tween="cubic" condition="Control.IsVisible(503) + IsEmpty(Skin.String(503.NoTopBar)) + System.IdleTime(2)">Conditional</animation>
+				<animation effect="slide" start="0,0" end="0,-90" time="800" tween="cubic" condition="Control.IsVisible(609) + IsEmpty(Skin.String(609.NoTopBar)) + !System.IdleTime(2)">Conditional</animation>
+				<animation effect="slide" start="0,-90" end="0,0" delay="800" time="480" condition="Window.Previous(home)">WindowOpen</animation>
+				<animation effect="slide" end="0,-90" start="0,0" time="480" condition="Window.Next(home)">WindowClose</animation>
+				<visible>[Control.IsVisible(50) + IsEmpty(Skin.String(50.NoTopBar))] | [Control.IsVisible(51) + IsEmpty(Skin.String(51.NoTopBar))] | [Control.IsVisible(52) + IsEmpty(Skin.String(52.NoTopBar))] | [Control.IsVisible(53) + IsEmpty(Skin.String(53.NoTopBar))] | [Control.IsVisible(54) + IsEmpty(Skin.String(54.NoTopBar))] | [Control.IsVisible(55) + IsEmpty(Skin.String(55.NoTopBar))] | [Control.IsVisible(56) + IsEmpty(Skin.String(56.NoTopBar))] | [Control.IsVisible(57) + IsEmpty(Skin.String(57.NoTopBar))] | [Control.IsVisible(58) + IsEmpty(Skin.String(58.NoTopBar))] | [Control.IsVisible(59) + IsEmpty(Skin.String(59.NoTopBar))] | [Control.IsVisible(499) + IsEmpty(Skin.String(499.NoTopBar))] | [Control.IsVisible(500) + IsEmpty(Skin.String(500.NoTopBar))] | [Control.IsVisible(501) + IsEmpty(Skin.String(501.NoTopBar))] | [Control.IsVisible(502) + IsEmpty(Skin.String(502.NoTopBar))] | [Control.IsVisible(503) + IsEmpty(Skin.String(503.NoTopBar))] | [Control.IsVisible(504) + IsEmpty(Skin.String(504.NoTopBar))] | [Control.IsVisible(505) + IsEmpty(Skin.String(505.NoTopBar))] | [Control.IsVisible(507) + IsEmpty(Skin.String(507.NoTopBar))] | [Control.IsVisible(508) + IsEmpty(Skin.String(508.NoTopBar))] | [Control.IsVisible(591) + IsEmpty(Skin.String(591.NoTopBar))] | [Control.IsVisible(592) + IsEmpty(Skin.String(592.NoTopBar))] | [Control.IsVisible(601) + IsEmpty(Skin.String(601.NoTopBar))] | [Control.IsVisible(602) + IsEmpty(Skin.String(602.NoTopBar))] | [Control.IsVisible(609) + IsEmpty(Skin.String(609.NoTopBar))] | [Control.IsVisible(506) + IsEmpty(Skin.String(506.NoTopBar))] | [Control.IsVisible(509) + IsEmpty(Skin.String(509.NoTopBar))] | Window.IsActive(SettingsCategory.xml)</visible>
+				<control type="button" id="90022">
+					<label>-</label>
+					<posx>-30</posx>
+					<onclick condition="IsEmpty(Window(home).Property(MediaMenu))">SetProperty(MediaMenu,True,home)</onclick>
+					<onclick condition="!IsEmpty(Window(home).Property(MediaMenu))">ClearProperty(MediaMenu,Home)</onclick>
+					<texturenofocus>mediamenu_indicator.png</texturenofocus>
+					<texturefocus>mediamenu_indicator.png</texturefocus>
+					<height>32</height>
+					<include>ButtonTopbarCommonvalues</include>
+					<visible>!IsEmpty(Window(home).Property(Window.HasSettings))</visible>
+				</control>
+				<control type="image">
+					<width>1920</width>
+					<height>79</height>
+					<texture>submenu_bar.png</texture>
+					<colordiffuse>$VAR[Colour_TopBarVar]</colordiffuse>
+				</control>
+				<control type="label">
+					<width>900</width>
+					<height>90</height>
+					<font>font13_title</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<align>left</align>
+					<aligny>top</aligny>
+					<textoffsety>-4</textoffsety>
+					<label>$VAR[BreadcrumbsVar]</label>
+				</control>
+				<control type="label">
+					<visible>!Window.IsActive(51)</visible>
+					<posx>1920</posx>
+					<width>900</width>
+					<height>90</height>
+					<font>font13_title</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<align>right</align>
+					<aligny>top</aligny>
+					<textoffsety>-4</textoffsety>
+					<label>$INFO[Container.NumItems,, $LOCALIZE[31025]]$INFO[Container.CurrentPage,[COLOR grey2] | ,]$INFO[Container.NumPages,/,[/COLOR]]</label>
+					<animation effect="slide" tween="cubic" time="240" end="-500,0" condition="Player.HasMedia | Window.IsActive(volumebar)">Conditional</animation>
+				</control>
+				<control type="label">
+					<posx>0</posx>
+					<width>1920</width>
+					<height>90</height>
+					<font>font13_title</font>
+					<textoffsetx>15</textoffsetx>
+					<textcolor>grey</textcolor>
+					<align>center</align>
+					<aligny>top</aligny>
+					<textoffsety>-4</textoffsety>
+					<label>$INFO[System.Time]</label>
+				</control>
+				<control type="group">
+					<visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
+					<animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
+					<animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
+					<posx>1421</posx>
+					<control type="progress">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>500</width>
+						<height>34</height>
+						<texturebg border="2">osd/texturebg.png</texturebg>
+						<lefttexture>-</lefttexture>
+						<midtexture colordiffuse="$VAR[ThemeLabelColor]" border="2">osd/midtexture_cache.png</midtexture>
+						<righttexture>-</righttexture>
+						<overlaytexture>-</overlaytexture>
+						<info>Player.ProgressCache</info>
+					</control>
+					<control type="progress">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>500</width>
+						<height>34</height>
+						<texturebg border="2">osd/texturebg_cache.png</texturebg>
+						<lefttexture>-</lefttexture>
+						<midtexture border="2">osd/midtexture.png</midtexture>
+						<righttexture>-</righttexture>
+						<overlaytexture>-</overlaytexture>
+						<info>Player.Progress</info>
+						<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+					</control>
+					<control type="label">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>360</width>
+						<height>90</height>
+						<font>font13_title</font>
+						<textoffsetx>10</textoffsetx>
+						<textcolor>grey</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<align>left</align>
+						<aligny>top</aligny>
+						<textoffsety>-4</textoffsety>
+						<scroll>true</scroll>
+						<label>$INFO[Player.Title]</label>
+					</control>
+					<control type="label">
+						<posx>360</posx>
+						<posy>0</posy>
+						<width>140</width>
+						<height>90</height>
+						<font>font13_title</font>
+						<textoffsetx>10</textoffsetx>
+						<textcolor>grey</textcolor>
+						<shadowcolor>shadow</shadowcolor>
+						<align>right</align>
+						<aligny>top</aligny>
+						<textoffsety>-4</textoffsety>
+						<scroll>true</scroll>
+						<label>$INFO[Player.TimeRemaining,- ]</label>
+					</control>
+				</control>
+			</control>
+		</control>
+	</include>
 	
     <!-- System windows -->
     <include name="SystemLeftPanel">
