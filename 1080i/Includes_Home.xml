@@ -439,18 +439,29 @@
 			<onclick>fullscreen</onclick>
 			<visible>Player.HasVideo | Player.hasAudio</visible>
 		</item>-->
-
+		
+		<!-- Play File -->
+		<item id="6">
+			<description>Play File</description>
+			<label>$LOCALIZE[42389]</label>
+			<onclick>Skin.Reset(PlayFilePath)</onclick>
+			<onclick>Skin.SetFile(PlayFilePath)</onclick>
+			<onclick>PlayMedia($ESCINFO[Skin.String(PlayFilePath)])</onclick>
+			<onclick>Skin.Reset(PlayFilePath)</onclick>
+			<visible>Skin.HasSetting(MainMenu.ShowPlayFile)</visible>
+		</item>
+		
 		<!-- Search -->
 		<item id="7">
 			<description>Search</description>
 			<label>$LOCALIZE[137]</label>
 			<onclick>Plex.ActivateWindow(10051)</onclick>
-			<visible>IsEmpty(Skin.String(MainMenu.Search))</visible>
+			<visible>!Skin.HasSetting(MainMenu.DisableSearch)</visible>
 		</item>
 
-		<!-- Update and Restart -->
+		<!-- Update -->
 		<item id="114">
-			<description>Update and Restart</description>
+			<description>Update</description>
 			<label>$LOCALIZE[40018]</label>
 			<onclick>Plex.UpdateAndRestart</onclick>
 			<visible>System.UpdateIsAvailable</visible>
