@@ -2,12 +2,21 @@
 <includes>
 	<include name="CommonBackground">
 		<control type="group">
+		
+			<!-- Window Open and Close Animations -->
 			<animation effect="fade" time="600">WindowOpen</animation>
 			<animation effect="fade" time="600">WindowClose</animation>
+			
+			<!-- Home Window Fanart -->
 			<include condition="Window.IsActive(home)">HomeFanart</include>
+			
+			<!-- Global Fanart -->
 			<include condition="!Window.IsActive(home)">GlobalFanart</include>
+			
+			<!-- Live DVD/Bluray Cases -->
 			<include condition="Window.IsActive(home)">LiveCasesBackground</include>
 			
+			<!-- Background Visualization -->
 			<control type="visualisation">
 				<include>FullscreenDimensions</include>
 				<visible>Player.HasAudio</visible>
@@ -15,9 +24,14 @@
 				<visible>IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
 			</control>
 			
+			<!-- Snow Animation -->
 			<include>SnowBackground</include>
+			
 		</control>
+		
 		<control type="group">
+		
+			<!-- "Now Playing" Video Background -->
 			<control type="image">
 				<include>FullscreenDimensions</include>
 				<texture>black.png</texture>
@@ -27,6 +41,8 @@
 				<include>FullscreenDimensions</include>
 				<visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
 			</control>
+			
+			<!-- Darken Background -->
 			<control type="image">
 				<include>FullscreenDimensions</include>
 				<texture>black.png</texture>
@@ -34,7 +50,10 @@
 				<visible>Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)</visible> <!-- Mapped from Kodi to OpenPHT -->
 				<animation effect="fade" start="100" end="55" time="240" condition="true">conditional</animation>
 			</control>
+			
 		</control>
+		
+		<!-- Vignette -->
 		<control type="group">
 			<visible>Control.IsVisible(50) | Control.IsVisible(507) | Control.IsVisible(55) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(499) | [Control.IsVisible(51) + !Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + !Skin.HasSetting(Enable.AlternateBannerInfo)] | Control.IsVisible(58) | Control.IsVisible(601) | Control.IsVisible(52) | Control.IsVisible(53) | [Control.IsVisible(510) + !Skin.HasSetting(alternatebiglistlayout)] | Control.IsVisible(54)</visible> <!-- Mapped from Kodi to OpenPHT -->
 			<control type="image">
@@ -52,7 +71,11 @@
 				<texture flipx="true" border="1">vignette.png</texture>
 			</control>
 		</control>
+		
+		<!-- Infopanel -->
 		<!--<include>NewInfoPanel</include>-->
+		
+		<!-- Floor -->
 		<control type="group">
 			<include>Window_OpenClose_Animation</include>
 			<visible>Control.IsVisible(50) | [Control.IsVisible(51) + !Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + !Skin.HasSetting(Enable.AlternateBannerInfo)] | Control.IsVisible(52) | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(58) | Control.IsVisible(499) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(601) | Control.IsVisible(507) | Control.IsVisible(509) | [Control.IsVisible(510) + !Skin.HasSetting(alternatebiglistlayout)] | Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings) | Window.IsActive(10051) | [Control.IsVisible(700) + Container.Content(movies) + IsEmpty(Skin.String(700.movies.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(tvshows) + IsEmpty(Skin.String(700.tvshows.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(seasons) + IsEmpty(Skin.String(700.seasons.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(episodes) + IsEmpty(Skin.String(700.episodes.ViewFloorStatus))] | Window.IsActive(skinsettings) | Window.IsActive(filemanager) | [Window.IsActive(addoninformation) + Control.IsVisible(503)]</visible> <!-- Mapped from Kodi to OpenPHT -->
@@ -68,6 +91,8 @@
 				<colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
 			</control>
 		</control>
+		
+		<!-- Darken Bottom of Screen -->
 		<control type="group">
 			<include>Window_OpenClose_Animation</include>
 			<control type="image">
@@ -76,6 +101,7 @@
 				<visible>Control.IsVisible(591) | Control.IsVisible(592)</visible>
 			</control>
 		</control>
+		
 	</include>
 	
 	<include name="GlobalFanart">
