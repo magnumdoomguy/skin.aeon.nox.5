@@ -11,7 +11,7 @@
 			<control type="visualisation">
 				<include>FullscreenDimensions</include>
 				<visible>Player.HasAudio</visible>
-				<visible>!Skin.HasSetting(Disable.ShowBackgroundVis)</visible>
+				<visible>!Skin.HasSetting(Backgrounds.VisualizationDisable)</visible>
 				<visible>IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
 			</control>
 			
@@ -21,17 +21,17 @@
 			<control type="image">
 				<include>FullscreenDimensions</include>
 				<texture>black.png</texture>
-				<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+				<visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
 			</control>
 			<control type="videowindow">
 				<include>FullscreenDimensions</include>
-				<visible>Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo)</visible>
+				<visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
 			</control>
 			<control type="image">
 				<include>FullscreenDimensions</include>
 				<texture>black.png</texture>
 				<visible>!Window.IsVisible(skinsettings)</visible>
-				<visible>Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Disable.ShowBackgroundVideo) + Control.IsVisible(509)] | Control.IsVisible(700)</visible> <!-- Mapped from Kodi to OpenPHT -->
+				<visible>Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)</visible> <!-- Mapped from Kodi to OpenPHT -->
 				<animation effect="fade" start="100" end="55" time="240" condition="true">conditional</animation>
 			</control>
 		</control>
@@ -704,4 +704,11 @@
 			</control>
 		</control>
 	</include>
+	
+	<!-- Slide & Zoom Animation -->
+	<include name="AnimatedBackgroundAnimation">
+		<animation effect="zoom" start="110" end="130" center="auto" time="9000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+		<animation effect="slide" start="-15,-15" end="15,15" time="4500" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+	</include>
+	
 </includes>
