@@ -2,20 +2,20 @@
 <includes>
 	<include name="CommonBackground">
 		<control type="group">
-		
+
 			<!-- Window Open and Close Animations -->
 			<animation effect="fade" time="600">WindowOpen</animation>
 			<animation effect="fade" time="600">WindowClose</animation>
-			
+
 			<!-- Home Window Fanart -->
 			<include condition="Window.IsActive(home)">HomeFanart</include>
-			
+
 			<!-- Global Fanart -->
 			<include condition="!Window.IsActive(home)">GlobalFanart</include>
-			
+
 			<!-- Live DVD/Bluray Cases -->
 			<include condition="Window.IsActive(home)">LiveCasesBackground</include>
-			
+
 			<!-- Background Visualization -->
 			<control type="visualisation">
 				<include>FullscreenDimensions</include>
@@ -23,14 +23,14 @@
 				<visible>!Skin.HasSetting(Backgrounds.VisualizationDisable)</visible>
 				<visible>IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
 			</control>
-			
+
 			<!-- Snow Animation -->
 			<include>SnowBackground</include>
-			
+
 		</control>
-		
+
 		<control type="group">
-		
+
 			<!-- "Now Playing" Video Background -->
 			<control type="image">
 				<include>FullscreenDimensions</include>
@@ -41,7 +41,7 @@
 				<include>FullscreenDimensions</include>
 				<visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
 			</control>
-			
+
 			<!-- Darken Background -->
 			<control type="image">
 				<include>FullscreenDimensions</include>
@@ -50,9 +50,9 @@
 				<visible>Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)</visible> <!-- Mapped from Kodi to OpenPHT -->
 				<animation effect="fade" start="100" end="55" time="240" condition="true">conditional</animation>
 			</control>
-			
+
 		</control>
-		
+
 		<!-- Vignette -->
 		<control type="group">
 			<visible>Control.IsVisible(50) | Control.IsVisible(507) | Control.IsVisible(55) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(499) | [Control.IsVisible(51) + !Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + !Skin.HasSetting(Enable.AlternateBannerInfo)] | Control.IsVisible(58) | Control.IsVisible(601) | Control.IsVisible(52) | Control.IsVisible(53) | [Control.IsVisible(510) + !Skin.HasSetting(alternatebiglistlayout)] | Control.IsVisible(54)</visible> <!-- Mapped from Kodi to OpenPHT -->
@@ -71,10 +71,10 @@
 				<texture flipx="true" border="1">vignette.png</texture>
 			</control>
 		</control>
-		
+
 		<!-- Infopanel -->
 		<!--<include>NewInfoPanel</include>-->
-		
+
 		<!-- Floor -->
 		<control type="group">
 			<include>Window_OpenClose_Animation</include>
@@ -91,7 +91,7 @@
 				<colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
 			</control>
 		</control>
-		
+
 		<!-- Darken Bottom of Screen -->
 		<control type="group">
 			<include>Window_OpenClose_Animation</include>
@@ -101,26 +101,10 @@
 				<visible>Control.IsVisible(591) | Control.IsVisible(592)</visible>
 			</control>
 		</control>
-		
+
 	</include>
-	
+
 	<include name="GlobalFanart">
-		<control type="list" id="9033">
-			<include>HiddenList</include>
-			<content>
-				<include condition="Window.IsActive(pictures)">PicturesFallback</include>
-				<include condition="Window.IsActive(musiclibrary) | Window.IsActive(musicplaylist)">MusicFallback</include>
-				<include condition="Window.IsActive(MyPVRChannels.xml) | Window.IsActive(MyPVRGuide.xml) | Window.IsActive(MyPVRRecordings.xml) | Window.IsActive(MyPVRSearch.xml) | Window.IsActive(MyPVRTimers.xml)">LiveTVFallback</include>
-				<include condition="Window.IsActive(programs)">AppsFallback</include>
-				<include condition="Window.IsActive(SettingsCategory.xml) | Window.IsActive(systeminfo) | Window.IsActive(skinsettings) | Window.IsActive(settings) | Window.IsActive(addonbrowser) | Window.IsActive(filemanager) | Window.IsActive(eventlog)">SystemFallback</include>
-				<include condition="Window.IsActive(videos) | Window.IsActive(videoplaylist)">VideoFallback</include>
-				<item>
-					<onclick>noop</onclick>
-					<thumb>$INFO[Window(home).Property(fakelabel)]</thumb>
-					<visible>no</visible>
-				</item>
-			</content>
-		</control>
 		<control type="group">
 			<visible>![Control.IsVisible(509) + Window.IsActive(videos)]</visible>
 			<control type="multiimage">
@@ -140,9 +124,9 @@
 				<include condition="StringCompare(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
 				<include condition="StringCompare(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
 			</control>
-			<!-- Live Background Movie Set -->
-			<include condition="Skin.HasSetting(Enable.Set.LiveBackground)">LiveBackgroundSets</include>
+
 		</control>
+
 		<!-- MyFlix Background -->
 		<control type="group">
 			<visible>Control.IsVisible(509) + !Window.IsActive(skinsettings)</visible>
@@ -170,7 +154,7 @@
 			</control>
 		</control>
 	</include>
-	<include name="HomeFanart">
+	<include name="HomeFanartTemp">
 		<control type="multiimage">
 			<description>Normal Default Background Image</description>
 			<include>FullscreenDimensions</include>
@@ -235,7 +219,7 @@
 	</include>
 
 	<include name="SnowBackground">
-		
+
 		<control type="group">
 			<visible>Skin.HasSetting(Backgrounds.SnowAnimation)</visible>
 			<control type="group">
@@ -477,58 +461,6 @@
 			</control>
 		</control>
 	</include>
-	<include name="MusicFallback">
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(Music.Fallback)]</thumb>
-		</item>
-	</include>
-	<include name="SystemFallback">
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(System.Fallback)]</thumb>
-		</item>
-	</include>
-	<include name="LiveTVFallback">
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(LiveTV.Fallback)]</thumb>
-		</item>
-	</include>
-	<include name="PicturesFallback">
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(Pictures.Fallback)]</thumb>
-		</item>
-	</include>
-	<include name="AppsFallback">
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(Apps.Fallback)]</thumb>
-		</item>
-	</include>
-	<include name="VideoFallback">
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(Movies.Fallback)]</thumb>
-			<visible>Container.Content(movies)</visible>
-		</item>
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(TVShows.Fallback)]</thumb>
-			<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-		</item>
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(MusicVideos.Fallback)]</thumb>
-			<visible>Container.Content(musicvideos)</visible>
-		</item>
-		<item>
-			<onclick>noop</onclick>
-			<thumb>$INFO[Skin.String(Videos.Fallback)]</thumb>
-			<visible>![Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(movies)]</visible>
-		</item>
-	</include>
 
 	<!-- Fanart Time Per Image -->
 	<include name="FanartTimePerImage5">
@@ -671,7 +603,7 @@
 				</control>
 			</control>
 			<control type="group">
-			<visible>StringCompare(Control.GetLabel(4421),poster)</visible>
+				<visible>StringCompare(Control.GetLabel(4421),poster)</visible>
 				<include>SettingsFadeEffect</include>
 				<control type="grouplist">
 					<posx>5</posx>
@@ -730,11 +662,29 @@
 			</control>
 		</control>
 	</include>
-	
+
 	<!-- Slide & Zoom Animation -->
 	<include name="AnimatedBackgroundAnimation">
 		<animation effect="zoom" start="110" end="130" center="auto" time="9000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
 		<animation effect="slide" start="-15,-15" end="15,15" time="4500" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
 	</include>
-	
+
+	<!-- Common Value for Fanart -->
+	<include name="FanartCommonValues">
+		<include>FullscreenDimensions</include>
+		<include>AnimatedBackgroundAnimation</include>
+		<fadetime>600</fadetime>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
+		<include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
+		<include condition="StringCompare(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
+	</include>
+
 </includes>
