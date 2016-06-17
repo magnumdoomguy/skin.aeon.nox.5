@@ -1,39 +1,40 @@
 <?xml version="1.0"?>
 <window id="100">
-    <defaultcontrol always="true">50</defaultcontrol>
+	<defaultcontrol always="true">50</defaultcontrol>
 	<onload>Skin.SetString(SectionType,shared)</onload>
 	<onload>SetProperty(Window.HasSettings,True,home)</onload>
 	<onload>ClearProperty(MediaMenu,Home)</onload>
 	<onunload>Skin.Reset(SectionType)</onunload>
-    <allowoverlay>no</allowoverlay>
-    <views>50,57,500</views>
-    <controls>
-        
+	<allowoverlay>no</allowoverlay>
+	<views>50,57,500</views>
+	<controls>
+
 		<!-- Background -->
 		<control type="group">
-            <animation effect="fade" time="600">WindowOpen</animation>
-            <animation effect="fade" time="600">WindowClose</animation>
+			<animation effect="fade" time="600">WindowOpen</animation>
+			<animation effect="fade" time="600">WindowClose</animation>
 			<control type="image">
 				<description>Normal Default Background Image</description>
-				<include>FullscreenDimensions</include>
-				<aspectratio>scale</aspectratio>
-				<texture>special://skin/backgrounds/sharedcontent.jpg</texture>
 				<visible>![!IsEmpty(Skin.String(CustomSharedSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomSharedSectionSlideshowPath))]</visible>
+				<include>FanartCommonValues</include>
+				<texture>special://skin/backgrounds/sharedcontent.jpg</texture>
 			</control>
 			<control type="image">
 				<description>Custom Background Image</description>
-				<include>FullscreenDimensions</include>
-				<aspectratio>scale</aspectratio>
-				<info>Skin.String(CustomSharedSectionBackgroundFile)</info>
 				<visible>!IsEmpty(Skin.String(CustomSharedSectionBackgroundFile))</visible>
+				<include>FanartCommonValues</include>
+				<info>Skin.String(CustomSharedSectionBackgroundFile)</info>
 			</control>
 			<control type="multiimage">
 				<description>Normal Default Background Image</description>
-				<include>FullscreenDimensions</include>
-				<aspectratio>scale</aspectratio>
-				<info>Skin.String(CustomSharedSectionSlideshowPath)</info>
 				<visible>!IsEmpty(Skin.String(CustomSharedSectionSlideshowPath))</visible>
+				<include>FanartCommonValues</include>
+				<info>Skin.String(CustomSharedSectionSlideshowPath)</info>
 			</control>
+			
+			<!-- Snow Animation -->
+			<include>SnowBackground</include>
+			
 			<control type="group">
 				<include>Window_OpenClose_Animation</include>
 				<include>ViewAnimation</include>
@@ -45,22 +46,21 @@
 					<height>680</height>
 					<texture>floor.png</texture>
 					<colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
-					<visible>!Control.IsVisible(504)</visible>
 				</control>
 			</control>
-			
+
 		</control>
-		
-        <control type="group">
-            <include>Window_OpenClose_Animation</include>
-            <include>SharedList</include>
-            <!-- view id = 50 -->
+
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<include>SharedList</include>
+			<!-- view id = 50 -->
 			<include>SharedShift</include>
 			<!-- view id = 57 -->
 			<include>SharedWall</include>
 			<!-- view id = 500 -->	
-        </control>
-				
+		</control>
+
 		<control type="group">
 			<visible>Control.IsVisible(500) | Control.IsVisible(57)</visible>
 			<visible>!Window.IsActive(addoninformation)</visible>
@@ -143,12 +143,12 @@
 				</control>
 			</control>
 		</control>
-		
-        <include>ScrollOffsetLabel</include>
-		
-        <include>Topbar</include>
-		
+
+		<include>ScrollOffsetLabel</include>
+
+		<include>Topbar</include>
+
 		<include>SideBlade</include>
-		
-    </controls>
+
+	</controls>
 </window>
