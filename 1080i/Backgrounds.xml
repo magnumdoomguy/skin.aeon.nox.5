@@ -109,7 +109,7 @@
 
 		<!-- Standard Video Background -->
 		<control type="image">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
 			<include>FanartCommonValues</include>
 			<texture fallback="special://skin/backgrounds/fallback_movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
@@ -124,7 +124,7 @@
 
 		<!-- Custom Movie Background Image -->
 		<control type="image">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>!IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + Container.Content(movies)</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomMovieSectionBackgroundFile)</info>
@@ -132,7 +132,7 @@
 
 		<!-- Custom TV Background Image -->
 		<control type="image">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>!IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomTVSectionBackgroundFile)</info>
@@ -140,7 +140,7 @@
 
 		<!-- Custom Home Video Background Image -->
 		<control type="image">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>!IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + Container.PlexContent(homemovies)</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomHomeVideoSectionBackgroundFile)</info>
@@ -148,7 +148,7 @@
 
 		<!-- Custom Channel Background Image -->
 		<control type="image">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomChannelSectionBackgroundFile)</info>
@@ -156,7 +156,7 @@
 
 		<!-- Custom Movie Slideshow -->
 		<control type="multiimage">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>!IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomMovieSectionSlideshowPath)</info>
@@ -164,7 +164,7 @@
 
 		<!-- Custom TV Slideshow -->
 		<control type="multiimage">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>!IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomTVSectionSlideshowPath)</info>
@@ -172,7 +172,7 @@
 
 		<!-- Custom Home Video Slideshow -->
 		<control type="multiimage">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>!IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomHomeVideoSectionSlideshowPath)</info>
@@ -180,18 +180,33 @@
 
 		<!-- Custom Channel Slideshow -->
 		<control type="multiimage">
-			<visible>!Control.IsVisible(4980) + !Container.Content(clips)</visible>
+			<visible>!Container.Content(clips)</visible>
 			<visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomChannelSectionSlideshowPath)</info>
 		</control>
 
-		<!-- Background for Clips -->
+		<!-- Background for Watch Later -->
 		<control type="image">
-			<visible>!Control.IsVisible(4980) + Container.Content(clips)</visible>
+			<visible>Container.Content(clips)</visible>
 			<include>FanartCommonValues</include>
 			<texture fallback="special://skin/backgrounds/fallback_movies.jpg">$INFO[ListItem.Icon]</texture>
 		</control>
+		
+		<!-- Custom Watch Later Background Image -->
+		<control type="image">
+			<visible>!IsEmpty(Skin.String(CustomWatchLaterBackgroundFile)) + Container.Content(clips)</visible>
+			<include>FanartCommonValues</include>
+			<info>Skin.String(CustomWatchLaterBackgroundFile)</info>
+		</control>
+
+		<!-- Custom Watch Later Background Image -->
+		<control type="multiimage">
+			<visible>!IsEmpty(Skin.String(CustomWatchLaterSlideshowPath)) + Container.Content(clips)</visible>
+			<include>FanartCommonValues</include>
+			<info>Skin.String(CustomWatchLaterSlideshowPath)</info>
+		</control>
+		
 	</include>
 	
 	<include name="GlobalFanart">
