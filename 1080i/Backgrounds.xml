@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+
+	<!-- Search Background -->
+	<variable name="SearchBackgroundVar">
+		<value condition="Control.IsVisible(7001) + Control.HasFocus(9001)">$INFO[Container(9001).ListItem.Art(fanart)]</value>
+		<value condition="Control.IsVisible(7002) + Control.HasFocus(9002)">$INFO[Container(9002).ListItem.Art(fanart)]</value>
+		<value condition="Control.IsVisible(7004) + Control.HasFocus(9004)">$INFO[Container(9004).ListItem.Art(fanart)]</value>
+		<value condition="Control.IsVisible(7008) + Control.HasFocus(9008)">$INFO[Container(9008).ListItem.Art(fanart)]</value>
+		<value condition="Control.IsVisible(7009) + Control.HasFocus(9009)">$INFO[Container(9009).ListItem.Art(fanart)]</value>
+		<value condition="Control.IsVisible(7010) + Control.HasFocus(9010)">$INFO[Container(9010).ListItem.Art(fanart)]</value>
+		<value>special://skin/backgrounds/search.jpg</value>
+	</variable>
+
 	<include name="CommonBackground">
 		<control type="group">
 
@@ -16,7 +28,8 @@
 			<!-- Global Fanart -->
 			<include condition="Window.IsActive(videos) | Window.IsActive(videoplaylist)">VideoFanart</include>
 			<include condition="Window.IsActive(10002)">PhotosFanart</include>
-			<include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002)">GlobalFanart</include>
+			<include condition="Window.IsActive(10051)">SearchFanart</include>
+			<include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002) + !Window.IsActive(10051)">GlobalFanart</include>
 
 			<!-- Background Visualization -->
 			<control type="visualisation">
@@ -269,60 +282,12 @@
 		</control>
 	</include>
 
-	<include name="PlaylistFanart">
+	<include name="SearchFanart">
 		<control type="image">
-				<description>Normal Default Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<aspectratio>scale</aspectratio>
-				<texture>$INFO[ListItem.Property(Fanart_Image)]</texture>
-				<fadetime>600</fadetime>
-				<visible>[ListItem.type(movie) | ListItem.type(episode)] + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
-			</control>
-			<control type="image">
-				<description>Custom Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<info>Skin.String(CustomPlaylistSectionBackgroundFile)</info>
-				<fadetime>600</fadetime>
-				<visible>!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile))</visible>
-			</control>
-			<control type="multiimage">
-				<description>Custom Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<info>Skin.String(CustomPlaylistSectionSlideshowPath)</info>
-				<fadetime>600</fadetime>
-				<visible>!IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))</visible>
-			</control>
-			<control type="image">
-				<description>Normal Default Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<aspectratio>scale</aspectratio>
-				<texture>$INFO[ListItem.PicturePath]</texture>
-				<fadetime>600</fadetime>
-				<visible>ListItem.Type(photo) + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
-			</control>
-			<control type="image">
-				<description>Normal Default Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<aspectratio>scale</aspectratio>
-				<texture fallback="special://skin/backgrounds/music.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
-				<fadetime>600</fadetime>
-				<visible>![ListItem.type(movie) | ListItem.type(episode) | ListItem.Type(photo)] + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
-			</control>
+			<description>Normal Default Background Image</description>
+			<include>FanartCommonValues</include>
+			<texture fallback="special://skin/backgrounds/search.jpg">$VAR[SearchBackgroundVar]</texture>
+		</control>
 	</include>
 	
 	<include name="GlobalFanart">
