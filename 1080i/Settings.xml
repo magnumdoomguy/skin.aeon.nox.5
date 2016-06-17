@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window>
+<window id="4">
     <defaultcontrol always="true">9000</defaultcontrol>
 	<onload>Skin.SetString(SectionType,Settings)</onload>
 	<onload>SetProperty(Window.HasSettings,True,home)</onload>
@@ -9,29 +9,8 @@
     <allowoverlay>no</allowoverlay>
     <controls>
 	
-        <!-- NOWALL Settings Background -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <texture>special://skin/backgrounds/system.jpg</texture>
-        </control>
-		
-        <!-- Visualization Background -->
-        <control type="visualisation">
-            <include>FullscreenDimensions</include>
-            <visible>Player.HasAudio + !Skin.HasSetting(Backgrounds.VisualizationDisable)</visible>
-            <visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
-        </control>
-		
-        <!-- Video Background -->
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <texture>black.png</texture>
-            <visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
-        </control>
-        <control type="videowindow">
-            <include>FullscreenDimensions</include>
-            <visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
-        </control>
+        <!-- Background -->
+		<include>CommonBackground</include>
 		
        <include>Topbar</include>
 		
@@ -175,21 +154,49 @@
             <!-- Display Right Panel -->
             <include>SystemRightPanel</include>
             <control type="image">
+				<visible>Container(9000).HasFocus(1)</visible>
                 <posx>522</posx>
                 <posy>32</posy>
                 <width>1316</width>
                 <height>839</height>
                 <aspectratio align="center">scale</aspectratio>
-                <texture>special://skin/backgrounds/default_settings.jpg</texture>
+                <texture>special://skin/backgrounds/appearance.jpg</texture>
+            </control>
+			<control type="image">
+				<visible>Container(9000).HasFocus(2)</visible>
+                <posx>522</posx>
+                <posy>32</posy>
+                <width>1316</width>
+                <height>839</height>
+                <aspectratio align="center">scale</aspectratio>
+                <texture>special://skin/backgrounds/playback.jpg</texture>
+            </control>
+			<control type="image">
+				<visible>Container(9000).HasFocus(8)</visible>
+                <posx>522</posx>
+                <posy>32</posy>
+                <width>1316</width>
+                <height>839</height>
+                <aspectratio align="center">scale</aspectratio>
+                <texture>special://skin/backgrounds/system.jpg</texture>
+            </control>
+			<control type="image">
+				<visible>Container(9000).HasFocus(9)</visible>
+                <posx>522</posx>
+                <posy>32</posy>
+                <width>1316</width>
+                <height>839</height>
+                <aspectratio align="center">scale</aspectratio>
+                <texture>special://skin/backgrounds/network.jpg</texture>
             </control>
             <control type="image">
                 <posx>522</posx>
                 <posy>32</posy>
                 <width>1316</width>
                 <height>839</height>
-                <aspectratio align="center">scale</aspectratio>
-                <texture>black.png</texture>
-                <animation effect="fade" start="45" end="45" time="0" condition="true">conditional</animation>
+                <aspectratio align="center">stretch</aspectratio>
+                <texture>logo_back.png</texture>
+                <!--<animation effect="fade" start="45" end="45" time="0" condition="true">conditional</animation>-->
             </control>
 			
             <!-- Display Description -->

@@ -29,7 +29,9 @@
 			<include condition="Window.IsActive(videos) | Window.IsActive(videoplaylist)">VideoFanart</include>
 			<include condition="Window.IsActive(10002)">PhotosFanart</include>
 			<include condition="Window.IsActive(10051)">SearchFanart</include>
-			<include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002) + !Window.IsActive(10051)">GlobalFanart</include>
+			<include condition="Window.IsActive(10004)">SettingsFanart</include>
+			<include condition="Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings)">SettingsCategoryFanart</include>
+			<include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002) + !Window.IsActive(10051) + !Window.IsActive(10004) + ![Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings)]">GlobalFanart</include>
 
 			<!-- Background Visualization -->
 			<control type="visualisation">
@@ -290,6 +292,61 @@
 		</control>
 	</include>
 
+	<include name="SettingsFanart">
+		 <control type="image">
+				<visible>Container(9000).HasFocus(1)</visible>
+                <include>FanartCommonValues</include>
+                <texture>special://skin/backgrounds/appearance.jpg</texture>
+            </control>
+			<control type="image">
+				<visible>Container(9000).HasFocus(2)</visible>
+                <include>FanartCommonValues</include>
+                <texture>special://skin/backgrounds/playback.jpg</texture>
+            </control>
+			<control type="image">
+				<visible>Container(9000).HasFocus(8)</visible>
+                <include>FanartCommonValues</include>
+                <texture>special://skin/backgrounds/system.jpg</texture>
+            </control>
+			<control type="image">
+				<visible>Container(9000).HasFocus(9)</visible>
+                <include>FanartCommonValues</include>
+                <texture>special://skin/backgrounds/network.jpg</texture>
+            </control>
+	</include>
+	
+	<include name="SettingsCategoryFanart">
+		
+		<!-- Appearance Background -->
+        <control type="image">
+            <visible>Window.IsActive(appearancesettings)</visible>
+			<include>FanartCommonValues</include>
+			<texture>special://skin/backgrounds/appearance.jpg</texture>
+        </control>
+		
+        <!-- Playback Background -->
+        <control type="image">
+            <visible>Window.IsActive(videossettings)</visible>
+			<include>FanartCommonValues</include>
+			<texture>special://skin/backgrounds/playback.jpg</texture>
+        </control>
+		
+        <!-- System Background -->
+        <control type="image">
+            <visible>Window.IsActive(SystemSettings)</visible>
+			<include>FanartCommonValues</include>
+			<texture>special://skin/backgrounds/system.jpg</texture>
+        </control>
+		
+        <!-- Network Background -->
+        <control type="image">
+            <visible>Window.IsActive(ServiceSettings)</visible>
+			<include>FanartCommonValues</include>
+			<texture>special://skin/backgrounds/network.jpg</texture>
+        </control>
+		
+	</include>
+	
 	<include name="GlobalFanart">
 
 		<!-- Fanart Background -->
