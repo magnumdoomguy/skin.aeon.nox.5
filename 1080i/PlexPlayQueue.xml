@@ -1,72 +1,52 @@
 <?xml version="1.0"?>
 <window id="10094">
-    <defaultcontrol always="true">50</defaultcontrol>
-    <allowoverlay>no</allowoverlay>
-    <onload>SetProperty(Window.HasSettings,True,home)</onload>
-    <onload>ClearProperty(MediaMenu,Home)</onload>
-    <onload>Skin.SetString(SectionType,playqueue)</onload>
+	<defaultcontrol always="true">50</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	<onload>SetProperty(Window.HasSettings,True,home)</onload>
+	<onload>ClearProperty(MediaMenu,Home)</onload>
+	<onload>Skin.SetString(SectionType,playqueue)</onload>
 	<onunload>Skin.Reset(SectionType)</onunload>
-    <onunload>ClearProperty(Window.HasSettings,Home)</onunload>
-    <views>50</views>
-    <controls>
-        
+	<onunload>ClearProperty(Window.HasSettings,Home)</onunload>
+	<views>50</views>
+	<controls>
+
 		<!-- Background -->
 		<control type="group">
-            <animation effect="fade" time="600">WindowOpen</animation>
-            <animation effect="fade" time="600">WindowClose</animation>
+			<animation effect="fade" time="600">WindowOpen</animation>
+			<animation effect="fade" time="600">WindowClose</animation>
 			<control type="image">
 				<description>Normal Default Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<aspectratio>scale</aspectratio>
-				<texture>$INFO[ListItem.Property(Fanart_Image)]</texture>
-				<fadetime>600</fadetime>
 				<visible>[ListItem.type(movie) | ListItem.type(episode)] + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
+				<include>FanartCommonValues</include>
+				<texture>$INFO[ListItem.Property(Fanart_Image)]</texture>
 			</control>
 			<control type="image">
 				<description>Custom Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<info>Skin.String(CustomPlaylistSectionBackgroundFile)</info>
-				<fadetime>600</fadetime>
 				<visible>!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile))</visible>
+				<include>FanartCommonValues</include>
+				<info>Skin.String(CustomPlaylistSectionBackgroundFile)</info>
 			</control>
 			<control type="multiimage">
 				<description>Custom Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<info>Skin.String(CustomPlaylistSectionSlideshowPath)</info>
-				<fadetime>600</fadetime>
 				<visible>!IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))</visible>
+				<include>FanartCommonValues</include>
+				<info>Skin.String(CustomPlaylistSectionSlideshowPath)</info>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<aspectratio>scale</aspectratio>
-				<texture>$INFO[ListItem.PicturePath]</texture>
-				<fadetime>600</fadetime>
 				<visible>ListItem.Type(photo) + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
+				<include>FanartCommonValues</include>
+				<texture blur="03">$INFO[ListItem.Art(bigThumb)]</texture>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<aspectratio>scale</aspectratio>
-				<texture fallback="special://skin/backgrounds/music.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
-				<fadetime>600</fadetime>
 				<visible>![ListItem.type(movie) | ListItem.type(episode) | ListItem.Type(photo)] + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
+				<include>FanartCommonValues</include>
+				<texture fallback="special://skin/backgrounds/music.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
 			</control>
+
+			<!-- Snow Animation -->
+			<include>SnowBackground</include>
 			
 			<control type="group">
 				<include>Window_OpenClose_Animation</include>
@@ -74,19 +54,17 @@
 				<animation effect="slide" end="0,80" time="720" tween="cubic" easing="inout" condition="true">Conditional</animation>
 				<control type="image">
 					<posx>0</posx>
-					<posy>-40</posy>
+					<posy>0</posy>
 					<width>696</width>
-					<height>914</height>
+					<height>1080</height>
 					<texture border="1">vignette.png</texture>
-					<animation effect="slide" tween="cubic" time="720" start="-696" end="0,0">VisibleChange</animation>
 				</control>
 				<control type="image">
 					<posx>1224</posx>
-					<posy>-40</posy>
+					<posy>0</posy>
 					<width>696</width>
-					<height>914</height>
-					<texture border="1">vignetteflipx.png</texture>
-					<animation effect="slide" tween="cubic" time="720" start="696" end="0,0">VisibleChange</animation>
+					<height>1080</height>
+					<texture flipx="true" border="1">vignette.png</texture>
 				</control>
 				<control type="image">
 					<posx>0</posx>
@@ -97,17 +75,17 @@
 					<colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
 				</control>
 			</control>
-			
+
 		</control>
-		
-        <control type="group">
-            <include>Window_OpenClose_Animation</include>
-            <include>PlaylistList</include>
-            <!-- view id = 50 -->
-        </control>
-		
-        <include>Topbar</include>
+
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<include>PlaylistList</include>
+			<!-- view id = 50 -->
+		</control>
+
+		<include>Topbar</include>
 		<include>SideBlade</include>
-        
-    </controls>
+
+	</controls>
 </window>
