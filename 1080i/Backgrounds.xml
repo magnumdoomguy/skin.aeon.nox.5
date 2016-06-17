@@ -15,7 +15,8 @@
 
 			<!-- Global Fanart -->
 			<include condition="Window.IsActive(videos) | Window.IsActive(videoplaylist)">VideoFanart</include>
-			<include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)]">GlobalFanart</include>
+			<include condition="Window.IsActive(10002)">PhotosFanart</include>
+			<include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002)">GlobalFanart</include>
 
 			<!-- Background Visualization -->
 			<control type="visualisation">
@@ -190,9 +191,9 @@
 		<control type="image">
 			<visible>Container.Content(clips)</visible>
 			<include>FanartCommonValues</include>
-			<texture fallback="special://skin/backgrounds/fallback_movies.jpg">$INFO[ListItem.Icon]</texture>
+			<texture fallback="special://skin/backgrounds/fallback_movies.jpg" blur="03">$INFO[ListItem.Icon]</texture>
 		</control>
-		
+
 		<!-- Custom Watch Later Background Image -->
 		<control type="image">
 			<visible>!IsEmpty(Skin.String(CustomWatchLaterBackgroundFile)) + Container.Content(clips)</visible>
@@ -206,11 +207,70 @@
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomWatchLaterSlideshowPath)</info>
 		</control>
-		
+
 	</include>
+
+	<!-- Photo Fanart -->
+	<include name="PhotosFanart">
 	
+		<!-- Photo Background -->
+		<control type="image">
+			<description>Normal Default Background Image</description>
+			<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
+			<include>FanartCommonValues</include>
+			<texture fallback="special://skin/backgrounds/pictures.jpg" blur="03">$INFO[ListItem.Art(bigThumb)]</texture>
+		</control>
+
+		<!-- Background for Empty List -->
+		<control type="image">
+			<visible>Container.Content(empty)</visible>
+			<include>FanartCommonValues</include>
+			<texture>special://skin/backgrounds/pictures.jpg</texture>
+		</control>
+
+		<!-- Photo Channel Background -->
+		<control type="image">
+			<description>Normal Default Background Image</description>
+			<visible>[Container.PlexContent(channels) | Container.PlexContent(channel)] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomChannelSectionSlideshowPath))]</visible>
+			<include>FanartCommonValues</include>
+			<texture fallback="special://skin/backgrounds/channels.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
+		</control>
+		
+		<!-- Custom Photo Background -->
+		<control type="image">
+			<description>Custom Background Image</description>
+			<visible>!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) + Container.PlexContent(photos)</visible>
+			<include>FanartCommonValues</include>
+			<info>Skin.String(CustomPhotoSectionBackgroundFile)</info>
+		</control>
+		
+		<!-- Custom Photo Channel Background -->
+		<control type="image">
+			<description>Custom Background Image</description>
+			<visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+			<include>FanartCommonValues</include>
+			<info>Skin.String(CustomChannelSectionBackgroundFile)</info>
+		</control>
+		
+		<!-- Custom Photo Slideshow Background -->
+		<control type="multiimage">
+			<description>Custom Slideshow Background</description>
+			<visible>!IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath)) + Container.PlexContent(photos)</visible>
+			<include>FanartCommonValues</include>
+			<info>Skin.String(CustomPhotoSectionSlideshowPath)</info>
+		</control>
+		
+		<!-- Custom Photo Channel Background -->
+		<control type="multiimage">
+			<description>Custom Slideshow Background</description>
+			<visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+			<include>FanartCommonValues</include>
+			<info>Skin.String(CustomChannelSectionSlideshowPath)</info>
+		</control>
+	</include>
+
 	<include name="GlobalFanart">
-	
+
 		<!-- Fanart Background -->
 		<control type="group">
 			<visible>![Control.IsVisible(509) + Window.IsActive(videos)]</visible>
@@ -249,53 +309,53 @@
 				<include condition="StringCompare(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
 			</control>
 		</control>
-					
+
 		<!-- Background for Colour Customizer -->
 		<control type="image">
-            <visible>Window.IsActive(1140) | Window.IsActive(1141) | Window.IsActive(1142) | Window.IsActive(1143) | Window.IsActive(1144) | Window.IsActive(1145) | Window.IsActive(1146) | Window.IsActive(1147) | Window.IsActive(1148) | Window.IsActive(1149) | Window.IsActive(1150) | Window.IsActive(1151) | Window.IsActive(1152) | Window.IsActive(1153) | Window.IsActive(1154) | Window.IsActive(1156) | Window.IsActive(1157) | Window.IsActive(1158) | Window.IsActive(1160) | Window.IsActive(1161) | Window.IsActive(1162) | Window.IsActive(1163) | Window.IsActive(1164) | Window.IsActive(1165) | Window.IsActive(1166) | Window.IsActive(1167) | Window.IsActive(1168) | Window.IsActive(1169) | Window.IsActive(1170) | Window.IsActive(1171) | Window.IsActive(1172) | Window.IsActive(1173) | Window.IsActive(1174) | Window.IsActive(1175) | Window.IsActive(1176) | Window.IsActive(1177) | Window.IsActive(1178) | Window.IsActive(1179) | Window.IsActive(1180) | Window.IsActive(1181) | Window.IsActive(1182) | Window.IsActive(1183) | Window.IsActive(1184) | Window.IsActive(1185) | Window.IsActive(1186) | Window.IsActive(1187) | Window.IsActive(1188) | Window.IsActive(1189) | Window.IsActive(1190) | Window.IsActive(1191) | Window.IsActive(1192) | Window.IsActive(1193) | Window.IsActive(1194) | Window.IsActive(1195) | Window.IsActive(1196) | Window.IsActive(1197) | Window.IsActive(1198) | Window.IsActive(1199) | Window.IsActive(1200) | Window.IsActive(1201) | Window.IsActive(1202) | Window.IsActive(1203) | Window.IsActive(1204) | Window.IsActive(1205) | Window.IsActive(1206) | Window.IsActive(1207) | Window.IsActive(1208) | Window.IsActive(1209) | Window.IsActive(1210) | Window.IsActive(1211) | Window.IsActive(1212) | Window.IsActive(1213) | Window.IsActive(1214) | Window.IsActive(1215) | Window.IsActive(1216) | Window.IsActive(1217) | Window.IsActive(1219)</visible>
+			<visible>Window.IsActive(1140) | Window.IsActive(1141) | Window.IsActive(1142) | Window.IsActive(1143) | Window.IsActive(1144) | Window.IsActive(1145) | Window.IsActive(1146) | Window.IsActive(1147) | Window.IsActive(1148) | Window.IsActive(1149) | Window.IsActive(1150) | Window.IsActive(1151) | Window.IsActive(1152) | Window.IsActive(1153) | Window.IsActive(1154) | Window.IsActive(1156) | Window.IsActive(1157) | Window.IsActive(1158) | Window.IsActive(1160) | Window.IsActive(1161) | Window.IsActive(1162) | Window.IsActive(1163) | Window.IsActive(1164) | Window.IsActive(1165) | Window.IsActive(1166) | Window.IsActive(1167) | Window.IsActive(1168) | Window.IsActive(1169) | Window.IsActive(1170) | Window.IsActive(1171) | Window.IsActive(1172) | Window.IsActive(1173) | Window.IsActive(1174) | Window.IsActive(1175) | Window.IsActive(1176) | Window.IsActive(1177) | Window.IsActive(1178) | Window.IsActive(1179) | Window.IsActive(1180) | Window.IsActive(1181) | Window.IsActive(1182) | Window.IsActive(1183) | Window.IsActive(1184) | Window.IsActive(1185) | Window.IsActive(1186) | Window.IsActive(1187) | Window.IsActive(1188) | Window.IsActive(1189) | Window.IsActive(1190) | Window.IsActive(1191) | Window.IsActive(1192) | Window.IsActive(1193) | Window.IsActive(1194) | Window.IsActive(1195) | Window.IsActive(1196) | Window.IsActive(1197) | Window.IsActive(1198) | Window.IsActive(1199) | Window.IsActive(1200) | Window.IsActive(1201) | Window.IsActive(1202) | Window.IsActive(1203) | Window.IsActive(1204) | Window.IsActive(1205) | Window.IsActive(1206) | Window.IsActive(1207) | Window.IsActive(1208) | Window.IsActive(1209) | Window.IsActive(1210) | Window.IsActive(1211) | Window.IsActive(1212) | Window.IsActive(1213) | Window.IsActive(1214) | Window.IsActive(1215) | Window.IsActive(1216) | Window.IsActive(1217) | Window.IsActive(1219)</visible>
 			<include>FanartCommonValues</include>
 			<texture>special://skin/backgrounds/system.jpg</texture>
-        </control>
-					
+		</control>
+
 		<!-- Background for Empty List -->
 		<control type="image">
-            <visible>Container.Content(empty)</visible>
+			<visible>Container.Content(empty)</visible>
 			<include>FanartCommonValues</include>
 			<texture>special://skin/backgrounds/music.jpg</texture>
-        </control>
-				
+		</control>
+
 		<!-- Custom Music Background Image -->
 		<control type="image">
-            <description>Custom Background Image</description>
+			<description>Custom Background Image</description>
 			<visible>!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomMusicSectionBackgroundFile)</info>
-        </control>
-		
+		</control>
+
 		<!-- Custom Channel Background Image -->
 		<control type="image">
-            <description>Custom Background Image</description>
+			<description>Custom Background Image</description>
 			<visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomChannelSectionBackgroundFile)</info>
-        </control>
-		
+		</control>
+
 		<!-- Custom Music Slideshow -->
 		<control type="multiimage">
-            <description>Custom Slideshow Background</description>
+			<description>Custom Slideshow Background</description>
 			<visible>!IsEmpty(Skin.String(CustomMusicSectionSlideshowPath)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomMusicSectionSlideshowPath)</info>
-        </control>
-		
+		</control>
+
 		<!-- Custom Channel Slideshow -->
 		<control type="multiimage">
-            <description>Custom Slideshow Background</description>
+			<description>Custom Slideshow Background</description>
 			<visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 			<include>FanartCommonValues</include>
 			<info>Skin.String(CustomChannelSectionSlideshowPath)</info>
-        </control>
-		
+		</control>
+
 	</include>
 
 	<include name="HomeFanart">
@@ -553,7 +613,7 @@
 			<control type="image">
 				<visible>Control.IsVisible(11004) + !IsEmpty(Container(11004).ListItem.Label)</visible>
 				<include>FanartCommonValues</include>
-				<texture>$INFO[Container(11004).ListItem.Art(bigThumb)]</texture>
+				<texture blur="03">$INFO[Container(11004).ListItem.Art(bigThumb)]</texture>
 			</control>
 
 		</control>
@@ -573,7 +633,7 @@
 			<control type="image">
 				<visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000)</visible>
 				<include>FanartCommonValues</include>
-				<texture>$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+				<texture blur="03">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
 				<aspectratio>scale</aspectratio>
 			</control>
 
@@ -581,7 +641,7 @@
 			<control type="image">
 				<visible>Control.IsVisible(11003) + !IsEmpty(Container(11003).ListItem.Label)</visible>
 				<include>FanartCommonValues</include>
-				<texture>$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+				<texture blur="03">$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
 			</control>
 
 		</control>
