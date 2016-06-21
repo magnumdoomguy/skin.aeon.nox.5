@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+	<!-- List View Second Line -->
+	<variable name="VideoListLabel2Var">
+		<value condition="Container.Content(episodes)">$INFO[ListItem.Premiered]</value>
+		<value>$INFO[ListItem.Genre]</value>
+	</variable>
+
 	<!-- Episode Thumbnail -->
 	<variable name="EpisodeThumbnailVar">
 		<value condition="ListItem.Type(episode) + Skin.HasSetting(Disable.UnwatchedPlot) + [ListItem.Status(unwatched) | ListItem.Status(inprogress)]">$INFO[ListItem.Art(fanart)]</value>
@@ -491,6 +497,7 @@
 
 	<!-- Rating -->
 	<variable name="RatingVar">
+		<value condition="IsEmpty(ListItem.RatingAndVotes)">-</value>
 		<value condition="StringCompare(ListItem.RatingAndVotes,10.0)">10</value>
 		<value condition="StringCompare(ListItem.RatingAndVotes,9.0)">9</value>
 		<value condition="StringCompare(ListItem.RatingAndVotes,8.0)">8</value>
