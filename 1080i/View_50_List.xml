@@ -24,6 +24,12 @@
 		<value>FF6db9e5</value>
 	</variable>
 	
+	<!-- List Label -->
+	<variable name="VideoListLabel2Var">
+		<value condition="Container.PlexContent(homemovies) | Container.Content(episodes)">$INFO[ListItem.Date]</value>
+		<value>$INFO[ListItem.Genre]</value>
+	</variable>
+	
 	<!-- Video List -->
 	<include name="VideoList">
 		<control type="group" id="777">
@@ -63,7 +69,7 @@
 					<pagecontrol>60</pagecontrol>
 					<scrolltime tween="quadratic" easing="out">200</scrolltime>
 					<visible>!Container.Content(empty)</visible>
-					<itemlayout height="120" width="1140" condition="Container.Content(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]">
+					<itemlayout height="120" width="1140" condition="[Container.Content(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist)">
 						<control type="image">
 							<posy>62</posy>
 							<width>1140</width>
@@ -94,10 +100,10 @@
 							<align>left</align>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Label]</label>
-							<animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Genre)">Conditional</animation>
+							<animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies)] | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
 						</control>
 						
-						<!-- Genre -->
+						<!-- Genre / Date -->
 						<control type="label">
 							<posx>100</posx>
 							<posy>55</posy>
@@ -108,7 +114,7 @@
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
-							<label>$INFO[ListItem.Genre]</label>
+							<label>$VAR[VideoListLabel2Var]</label>
 						</control>
 						
 						<!-- Resolution -->
@@ -179,13 +185,15 @@
 						</control>
 						
 					</itemlayout>
-					<focusedlayout height="120" width="1140" condition="Container.Content(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]">
+					<focusedlayout height="120" width="1140" condition="[Container.Content(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist)">
 						<control type="image">
 							<posy>62</posy>
 							<width>1140</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
 						</control>
+						
+						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
 							<posy>0</posy>
@@ -218,7 +226,7 @@
 							<align>left</align>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Label]</label>
-							<animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Genre)">Conditional</animation>
+							<animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies)] | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
 						</control>
 						
 						<!-- Genre -->
@@ -232,7 +240,7 @@
 							<selectedcolor>white</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
-							<label>$INFO[ListItem.Genre]</label>
+							<label>$VAR[VideoListLabel2Var]</label>
 						</control>
 						
 						<control type="image">
@@ -1331,13 +1339,13 @@
 					</focusedlayout>
 					<itemlayout height="60" width="1140" condition="!Container.PlexContent(channels) + Skin.HasSetting(List.Slimlist)">
 						<control type="image">
-							<top>2</top>
+							<posy>2</posy>
 							<width>1140</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
 						</control>
 						<control type="label">
-							<left>30</left>
+							<posx>30</posx>
 							<width>895</width>
 							<height>60</height>
 							<font>font15</font>
@@ -1348,8 +1356,8 @@
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 						<control type="image">
-							<left>960</left>
-							<top>17</top>
+							<posx>960</posx>
+							<posy>17</posy>
 							<width>42</width>
 							<height>28</height>
 							<aspectratio>keep</aspectratio>
@@ -1358,7 +1366,7 @@
 							<visible>StringCompare(ListItem.Label2,ListItem.Rating)</visible>
 						</control>
 						<control type="label">
-							<left>5</left>
+							<posx>5</posx>
 							<width>1060</width>
 							<height>60</height>
 							<font>font15</font>
@@ -1369,8 +1377,8 @@
 							<label>$INFO[ListItem.Label2]</label>
 						</control>
 						<control type="image">
-							<left>1076</left>
-							<top>0</top>
+							<posx>1076</posx>
+							<posy>0</posy>
 							<width>64</width>
 							<height>64</height>
 							<aspectratio>keep</aspectratio>
@@ -1378,20 +1386,20 @@
 						</control>
 						<control type="group">
 							<description>Unwatched episodes</description>
-							<left>1076</left>
-							<top>0</top>
+							<posx>1076</posx>
+							<posy>0</posy>
 							<visible>Container.Content(seasons) | Container.Content(tvshows)</visible>
 							<control type="image">
-								<left>0</left>
-								<top>-2</top>
+								<posx>0</posx>
+								<posy>-2</posy>
 								<width>64</width>
 								<height>64</height>
 								<texture>overlays/list/OverlayUnWatched.png</texture>
 								<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
 							</control>
 							<control type="label">
-								<left>32</left>
-								<top>0</top>
+								<posx>32</posx>
+								<posy>0</posy>
 								<width>100</width>
 								<height>62</height>
 								<font>font12_title</font>
@@ -1406,7 +1414,7 @@
 					</itemlayout>
 					<focusedlayout height="60" width="1140" condition="!Container.PlexContent(channels) + Skin.HasSetting(List.Slimlist)">
 						<control type="image">
-							<top>2</top>
+							<posy>2</posy>
 							<width>1140</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
@@ -1419,7 +1427,7 @@
 							<include>VisibleFadeEffect</include>
 						</control>
 						<control type="label">
-							<left>30</left>
+							<posx>30</posx>
 							<width>895</width>
 							<height>60</height>
 							<font>font15</font>
@@ -1430,8 +1438,8 @@
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 						<control type="image">
-							<left>960</left>
-							<top>17</top>
+							<posx>960</posx>
+							<posy>17</posy>
 							<width>42</width>
 							<height>28</height>
 							<aspectratio>keep</aspectratio>
@@ -1439,7 +1447,7 @@
 							<visible>StringCompare(ListItem.Label2,ListItem.Rating)</visible>
 						</control>
 						<control type="label">
-							<left>5</left>
+							<posx>5</posx>
 							<width>1060</width>
 							<height>60</height>
 							<font>font15</font>
@@ -1450,8 +1458,8 @@
 							<label>$INFO[ListItem.Label2]</label>
 						</control>
 						<control type="image">
-							<left>1076</left>
-							<top>0</top>
+							<posx>1076</posx>
+							<posy>0</posy>
 							<width>64</width>
 							<height>64</height>
 							<aspectratio>keep</aspectratio>
@@ -1459,20 +1467,20 @@
 						</control>
 						<control type="group">
 							<description>Unwatched episodes</description>
-							<left>1076</left>
-							<top>0</top>
+							<posx>1076</posx>
+							<posy>0</posy>
 							<visible>Container.Content(seasons) | Container.Content(tvshows)</visible>
 							<control type="image">
-								<left>0</left>
-								<top>-2</top>
+								<posx>0</posx>
+								<posy>-2</posy>
 								<width>64</width>
 								<height>64</height>
 								<texture>overlays/list/OverlayUnWatched.png</texture>
 								<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
 							</control>
 							<control type="label">
-								<left>32</left>
-								<top>0</top>
+								<posx>32</posx>
+								<posy>0</posy>
 								<width>100</width>
 								<height>62</height>
 								<font>font12_title</font>
