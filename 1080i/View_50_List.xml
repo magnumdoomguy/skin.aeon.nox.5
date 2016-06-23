@@ -7,7 +7,7 @@
 		<value condition="!IsEmpty(Skin.String(Colour.ThemeColour))">$INFO[Skin.String(Colour.ThemeColour)]</value>
 		<value>FF6db9e5</value>
 	</variable>
-		
+
 	<!-- Views: List Highlight Colour -->
 	<variable name="Colour_ListHighlightColourVar">
 		<value condition="!IsEmpty(Skin.String(Colour.ListHighlightColour))">$INFO[Skin.String(Colour.ListHighlightColour)]</value>
@@ -15,7 +15,7 @@
 		<value condition="!IsEmpty(Skin.String(Colour.ThemeColour))">$INFO[Skin.String(Colour.ThemeColour)]</value>
 		<value>FF6db9e5</value>
 	</variable>
-	
+
 	<!-- Views: List Watched Status Colour -->
 	<variable name="Colour_ListWatchedStatusColourVar">
 		<value condition="!IsEmpty(Skin.String(Colour.ListWatchedStatusColour))">$INFO[Skin.String(Colour.ListWatchedStatusColour)]</value>
@@ -23,13 +23,14 @@
 		<value condition="!IsEmpty(Skin.String(Colour.ThemeColour))">$INFO[Skin.String(Colour.ThemeColour)]</value>
 		<value>FF6db9e5</value>
 	</variable>
-	
+
 	<!-- List Label -->
 	<variable name="VideoListLabel2Var">
+		<value condition="Container.Content(episodes) + !IsEmpty(Container.Property(primaryFilterActivated))">$INFO[ListItem.TvShowTitle]</value>
 		<value condition="Container.PlexContent(homemovies) | Container.Content(episodes)">$INFO[ListItem.Date]</value>
 		<value>$INFO[ListItem.Genre]</value>
 	</variable>
-	
+
 	<!-- Video List -->
 	<include name="VideoList">
 		<control type="group" id="777">
@@ -53,7 +54,6 @@
 					<width>1204</width>
 					<height>904</height>
 					<texture border="40">listpanel_back.png</texture>
-					<colordiffuse>E6FFFFFF</colordiffuse>
 				</control>
 				<control type="list" id="50">
 					<posx>0</posx>
@@ -76,7 +76,7 @@
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
 						</control>
-						
+
 						<!-- Display Poster -->
 						<control type="image">
 							<posx>15</posx>
@@ -102,7 +102,7 @@
 							<label>$INFO[ListItem.Label]</label>
 							<animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies)] | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
 						</control>
-						
+
 						<!-- Genre / Date -->
 						<control type="label">
 							<posx>100</posx>
@@ -116,7 +116,7 @@
 							<aligny>center</aligny>
 							<label>$VAR[VideoListLabel2Var]</label>
 						</control>
-						
+
 						<!-- Resolution -->
 						<control type="image">
 							<posx>935</posx>
@@ -183,7 +183,7 @@
 							<texture>$VAR[ListItem.Overlay]</texture>
 							<colordiffuse>$VAR[Colour_ListWatchedStatusColourVar]</colordiffuse> 
 						</control>
-						
+
 					</itemlayout>
 					<focusedlayout height="120" width="1140" condition="[Container.Content(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist)">
 						<control type="image">
@@ -192,7 +192,7 @@
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
 						</control>
-						
+
 						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
@@ -213,7 +213,7 @@
 							<aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
 							<texture background="true" fallback="DefaultMovies_poster.png">$INFO[ListItem.Art(smallThumb)]</texture>
 						</control>
-						
+
 						<!-- Title -->
 						<control type="label">
 							<posx>100</posx>
@@ -228,7 +228,7 @@
 							<label>$INFO[ListItem.Label]</label>
 							<animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies)] | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
 						</control>
-						
+
 						<!-- Genre -->
 						<control type="label">
 							<posx>100</posx>
@@ -242,7 +242,7 @@
 							<aligny>center</aligny>
 							<label>$VAR[VideoListLabel2Var]</label>
 						</control>
-						
+
 						<control type="image">
 							<posx>935</posx>
 							<posy>46</posy>
@@ -308,7 +308,7 @@
 							<colordiffuse>$VAR[Colour_ListWatchedStatusColourVar]</colordiffuse>
 						</control>
 					</focusedlayout>
-					<itemlayout height="120" width="1140" condition="Container.Content(episodes)">
+					<itemlayout height="120" width="1140" condition="Container.Content(episodes) + !Skin.HasSetting(List.Slimlist)">
 						<control type="image">
 							<posy>62</posy>
 							<width>1140</width>
@@ -320,18 +320,18 @@
 						<control type="image">
 							<posx>15</posx>
 							<posy>8</posy>
-							<width>105</width>
+							<width>187</width>
 							<height>105</height>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$VAR[EpisodeThumbnailVar]</texture>
+							<aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+							<texture background="true" fallback="DefaultMovies_landscape.png">$VAR[EpisodeThumbnailVar]</texture>
 							<colordiffuse>grey2</colordiffuse>
 						</control>
 
 						<!-- Episode Title -->
 						<control type="label">
-							<posx>135</posx>
+							<posx>217</posx>
 							<posy>0</posy>
-							<width>790</width>
+							<width>708</width>
 							<height>70</height>
 							<font>font30</font>
 							<textcolor>grey2</textcolor>
@@ -339,20 +339,21 @@
 							<align>left</align>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+							<animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Date)">Conditional</animation>
 						</control>
 
-						<!-- First Aired Date -->
+						<!-- Date / Series Name -->
 						<control type="label">
-							<posx>135</posx>
+							<posx>217</posx>
 							<posy>55</posy>
-							<width>790</width>
+							<width>708</width>
 							<height>60</height>
 							<font>font15</font>
 							<textcolor>grey3</textcolor>
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
-							<label>$INFO[ListItem.Date]</label>
+							<label>$VAR[VideoListLabel2Var]</label>
 						</control>
 
 						<!-- Resolution Indicator -->
@@ -361,7 +362,7 @@
 							<posy>46</posy>
 							<width>42</width>
 							<height>28</height>
-							<aspectratio>scale</aspectratio>
+							<aspectratio>keep</aspectratio>
 							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
 							<colordiffuse>grey2</colordiffuse>
 						</control>
@@ -406,13 +407,15 @@
 							<colordiffuse>$VAR[Colour_ListWatchedStatusColourVar]</colordiffuse>
 						</control>
 					</itemlayout>
-					<focusedlayout height="120" width="1140" condition="Container.Content(episodes)">
+					<focusedlayout height="120" width="1140" condition="Container.Content(episodes) + !Skin.HasSetting(List.Slimlist)">
 						<control type="image">
 							<posy>62</posy>
 							<width>1140</width>
 							<height>60</height>
 							<texture border="1">separator2.png</texture>
 						</control>
+
+						<!-- Highlight -->
 						<control type="image">
 							<posx>0</posx>
 							<posy>0</posy>
@@ -427,17 +430,17 @@
 						<control type="image">
 							<posx>15</posx>
 							<posy>8</posy>
-							<width>105</width>
+							<width>187</width>
 							<height>105</height>
-							<aspectratio>keep</aspectratio>
+							<aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
 							<texture background="true">$VAR[EpisodeThumbnailVar]</texture>
 						</control>
 
 						<!-- Episode Title -->
 						<control type="label">
-							<posx>135</posx>
+							<posx>217</posx>
 							<posy>0</posy>
-							<width>790</width>
+							<width>708</width>
 							<height>70</height>
 							<font>font30</font>
 							<textcolor>white</textcolor>
@@ -445,20 +448,21 @@
 							<align>left</align>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
+							<animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Date)">Conditional</animation>
 						</control>
+
+						<!-- Date / Series Name -->
 						<control type="label">
-							<posx>135</posx>
+							<posx>217</posx>
 							<posy>55</posy>
-							<width>790</width>
+							<width>708</width>
 							<height>60</height>
 							<font>font15</font>
 							<textcolor>white</textcolor>
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
-							<label>$INFO[ListItem.Date]</label>
-							<animation effect="fade" start="100" end="30" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
+							<label>$VAR[VideoListLabel2Var]</label>
 						</control>
 
 						<!-- Resolution Indicator -->
@@ -467,9 +471,8 @@
 							<posy>46</posy>
 							<width>42</width>
 							<height>28</height>
-							<aspectratio>scale</aspectratio>
+							<aspectratio>keep</aspectratio>
 							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
-							<animation effect="fade" start="100" end="60" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
 						</control>
 
 						<!-- User Rating -->
