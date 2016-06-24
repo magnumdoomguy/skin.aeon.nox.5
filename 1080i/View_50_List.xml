@@ -157,7 +157,7 @@
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$VAR[RatingVar]</label>
-							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
 						</control>
 
 						<!-- Standard Rating -->
@@ -172,7 +172,7 @@
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$VAR[RatingVar]</label>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage))</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
 						</control>
 
 						<!-- Rotten Tomatoes Rating -->
@@ -187,7 +187,22 @@
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Property(ratingPercent)]%</label>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+						</control>
+						
+						<!-- Year -->
+						<control type="label">
+							<posx>1035</posx>
+							<posy>0</posy>
+							<width>116</width>
+							<height>116</height>
+							<font>font15</font>
+							<align>center</align>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Year]</label>
+							<visible>StringCompare(Container.Property(currentSortOrder),originallyavailableat) | StringCompare(Container.Property(PlexFilter),newest)</visible>
 						</control>
 
 						<!-- Watched Status -->
@@ -276,7 +291,7 @@
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$VAR[RatingVar]</label>
-							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
 						</control>
 
 						<!-- Standard Rating -->
@@ -291,7 +306,7 @@
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$VAR[RatingVar]</label>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage))</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
 						</control>
 
 						<!-- Rotten Tomatoes Rating -->
@@ -306,9 +321,24 @@
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Property(ratingPercent)]%</label>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
 						</control>
 
+						<!-- Year -->
+						<control type="label">
+							<posx>1035</posx>
+							<posy>0</posy>
+							<width>116</width>
+							<height>116</height>
+							<font>font15</font>
+							<align>center</align>
+							<textcolor>white</textcolor>
+							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Year]</label>
+							<visible>StringCompare(Container.Property(currentSortOrder),originallyavailableat) | StringCompare(Container.Property(PlexFilter),newest)</visible>
+						</control>
+						
 						<!-- Watched Status -->
 						<control type="image">
 							<posx>1076</posx>
