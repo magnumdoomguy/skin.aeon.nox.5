@@ -41,6 +41,19 @@
 		</control>
 	</include>
 
+	<!-- List Highlight -->
+	<include name="ListHighlight">
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1140</width>
+			<height>120</height>
+			<texture border="4">listselect_fo.png</texture>
+			<include>VisibleFadeEffect</include>
+			<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
+		</control>
+	</include>
+
 	<!-- Portrait Poster -->
 	<include name="ListPoster">
 		<posx>15</posx>
@@ -61,6 +74,18 @@
 		<align>left</align>
 		<aligny>center</aligny>
 		<label>$INFO[ListItem.Label]</label>
+	</include>
+
+	<!-- Genre -->
+	<include name="ListGenre">
+		<posx>100</posx>
+		<posy>55</posy>
+		<width>825</width>
+		<height>60</height>
+		<font>font15</font>
+		<align>left</align>
+		<aligny>center</aligny>
+		<label>$VAR[VideoListLabel2Var]</label>
 	</include>
 
 	<!-- Video List -->
@@ -104,6 +129,7 @@
 
 					<!-- Movies -->
 					<itemlayout height="120" width="1140" condition="[Container.Content(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist)">
+
 						<include>ListSeparator</include>
 
 						<!-- Display Poster -->
@@ -120,18 +146,11 @@
 							<animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies)] | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
 						</control>
 
-						<!-- Genre / Date -->
+						<!-- Genre -->
 						<control type="label">
-							<posx>100</posx>
-							<posy>55</posy>
-							<width>825</width>
-							<height>60</height>
-							<font>font15</font>
+							<include>ListGenre</include>
 							<textcolor>grey3</textcolor>
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$VAR[VideoListLabel2Var]</label>
 						</control>
 
 						<!-- Resolution -->
@@ -189,7 +208,7 @@
 							<label>$INFO[ListItem.Property(ratingPercent)]%</label>
 							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
 						</control>
-						
+
 						<!-- Year -->
 						<control type="label">
 							<posx>1035</posx>
@@ -218,23 +237,11 @@
 
 					</itemlayout>
 					<focusedlayout height="120" width="1140" condition="[Container.Content(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist)">
-						<control type="image">
-							<posy>62</posy>
-							<width>1140</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-						</control>
+
+						<include>ListSeparator</include>
 
 						<!-- Highlight -->
-						<control type="image">
-							<posx>0</posx>
-							<posy>0</posy>
-							<width>1140</width>
-							<height>120</height>
-							<texture border="4">listselect_fo.png</texture>
-							<include>VisibleFadeEffect</include>
-							<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
-						</control>
+						<include>ListHighlight</include>
 
 						<!-- Display Poster -->
 						<control type="image">
@@ -243,33 +250,20 @@
 
 						<!-- Title -->
 						<control type="label">
-							<posx>100</posx>
-							<posy>0</posy>
-							<width>825</width>
-							<height>70</height>
-							<font>font30</font>
+							<include>ListPortraitTitle</include>
 							<textcolor>white</textcolor>
 							<selectedcolor>white</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Label]</label>
 							<animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies)] | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
 						</control>
 
 						<!-- Genre -->
 						<control type="label">
-							<posx>100</posx>
-							<posy>55</posy>
-							<width>825</width>
-							<height>60</height>
-							<font>font15</font>
+							<include>ListGenre</include>
 							<textcolor>white</textcolor>
 							<selectedcolor>white</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$VAR[VideoListLabel2Var]</label>
 						</control>
 
+						<!-- Resolution -->
 						<control type="image">
 							<posx>935</posx>
 							<posy>46</posy>
@@ -338,7 +332,7 @@
 							<label>$INFO[ListItem.Year]</label>
 							<visible>StringCompare(Container.Property(currentSortOrder),originallyavailableat) | StringCompare(Container.Property(PlexFilter),newest)</visible>
 						</control>
-						
+
 						<!-- Watched Status -->
 						<control type="image">
 							<posx>1076</posx>
@@ -349,16 +343,13 @@
 							<texture>$VAR[ListItem.Overlay]</texture>
 							<colordiffuse>$VAR[Colour_ListWatchedStatusColourVar]</colordiffuse>
 						</control>
+
 					</focusedlayout>
 
 					<!-- Episodes -->
 					<itemlayout height="120" width="1140" condition="Container.Content(episodes) + !Skin.HasSetting(List.Slimlist)">
-						<control type="image">
-							<posy>62</posy>
-							<width>1140</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-						</control>
+
+						<include>ListSeparator</include>
 
 						<!-- Episode Thumb -->
 						<control type="image">
@@ -452,23 +443,11 @@
 						</control>
 					</itemlayout>
 					<focusedlayout height="120" width="1140" condition="Container.Content(episodes) + !Skin.HasSetting(List.Slimlist)">
-						<control type="image">
-							<posy>62</posy>
-							<width>1140</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-						</control>
+
+						<include>ListSeparator</include>
 
 						<!-- Highlight -->
-						<control type="image">
-							<posx>0</posx>
-							<posy>0</posy>
-							<width>1140</width>
-							<height>120</height>
-							<texture border="4">listselect_fo.png</texture>
-							<include>VisibleFadeEffect</include>
-							<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
-						</control>
+						<include>ListHighlight</include>
 
 						<!-- Episode Thumb -->
 						<control type="image">
@@ -488,7 +467,7 @@
 							<height>70</height>
 							<font>font30</font>
 							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+							<selectedcolor>white</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
 							<label>$VAR[EpisodeTitleVar]</label>
@@ -503,7 +482,7 @@
 							<height>60</height>
 							<font>font15</font>
 							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+							<selectedcolor>white</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
 							<label>$VAR[VideoListLabel2Var]</label>
@@ -562,14 +541,10 @@
 
 					<!-- TV Shows -->
 					<itemlayout height="120" width="1140" condition="Container.Content(tvshows) + !Skin.HasSetting(List.Slimlist)">
-						<control type="image">
-							<posy>62</posy>
-							<width>1140</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-						</control>
 
-						<!-- Display TV Poster -->
+						<include>ListSeparator</include>
+
+						<!-- Series Poster -->
 						<control type="image">
 							<include>ListPoster</include>
 							<colordiffuse>grey2</colordiffuse>
@@ -577,30 +552,17 @@
 
 						<!-- Title -->
 						<control type="label">
-							<posx>135</posx>
-							<posy>0</posy>
-							<width>790</width>
-							<height>70</height>
-							<font>font30</font>
+							<include>ListPortraitTitle</include>
 							<textcolor>grey2</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Label]</label>
+							<selectedcolor>grey2</selectedcolor>
+							<animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Genre)">Conditional</animation>
 						</control>
 
 						<!-- Display Genre -->
 						<control type="label">
-							<posx>135</posx>
-							<posy>55</posy>
-							<width>790</width>
-							<height>60</height>
-							<font>font15</font>
+							<include>ListGenre</include>
 							<textcolor>grey3</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Genre]</label>
+							<selectedcolor>grey2</selectedcolor>
 						</control>
 
 						<!-- Display Number of Episodes -->
@@ -612,7 +574,7 @@
 							<font>font15</font>
 							<align>right</align>
 							<textcolor>grey2</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+							<selectedcolor>grey2</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.episode] episodes</label>
 						</control>
@@ -653,59 +615,34 @@
 							</control>
 						</control>
 					</itemlayout>
-					<focusedlayout height="120" width="1140" condition="Container.Content(tvshows)">
-						<control type="image">
-							<posy>62</posy>
-							<width>1140</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-						</control>
-						<control type="image">
-							<posx>0</posx>
-							<posy>0</posy>
-							<width>1140</width>
-							<height>120</height>
-							<texture border="4">listselect_fo.png</texture>
-							<include>VisibleFadeEffect</include>
-							<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
-						</control>
+					<focusedlayout height="120" width="1140" condition="Container.Content(tvshows) + !Skin.HasSetting(List.Slimlist)">
+						
+						<include>ListSeparator</include>
+						
+						<!-- Highlight -->
+						<include>ListHighlight</include>
 
-						<!-- Display TV Poster -->
+						<!-- Series Poster -->
 						<control type="image">
-							<posx>15</posx>
-							<posy>8</posy>
-							<width>105</width>
-							<height>105</height>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-							<colordiffuse>white</colordiffuse>
+							<include>ListPoster</include>
 						</control>
+						
+						<!-- Title -->
 						<control type="label">
-							<posx>135</posx>
-							<posy>0</posy>
-							<width>790</width>
-							<height>70</height>
-							<font>font30</font>
+							<include>ListPortraitTitle</include>
 							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Label]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
+							<selectedcolor>white</selectedcolor>
+							<animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Genre)">Conditional</animation>
 						</control>
+						
+						<!-- Genre -->
 						<control type="label">
-							<posx>135</posx>
-							<posy>55</posy>
-							<width>790</width>
-							<height>60</height>
-							<font>font15</font>
+							<include>ListGenre</include>
 							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Genre]</label>
-							<animation effect="fade" start="100" end="30" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
+							<selectedcolor>white</selectedcolor>
 						</control>
+						
+						<!-- Number of Episodes -->
 						<control type="label">
 							<posx>1060</posx>
 							<posy>0</posy>
@@ -714,11 +651,11 @@
 							<font>font15</font>
 							<align>right</align>
 							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+							<selectedcolor>white</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.episode] episodes</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
 						</control>
+						
 						<control type="image">
 							<posx>1076</posx>
 							<posy>28</posy>
@@ -756,34 +693,26 @@
 							</control>
 						</control>
 					</focusedlayout>
-					<itemlayout height="120" width="1140" condition="Container.Content(seasons)">
+					
+					<!-- Seasons -->
+					<itemlayout height="120" width="1140" condition="Container.Content(seasons) + !Skin.HasSetting(List.Slimlist)">
+						
+						<include>ListSeparator</include>
+						
+						<!-- Season Poster -->
 						<control type="image">
-							<posy>62</posy>
-							<width>1140</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-						</control>
-						<control type="image">
-							<posx>15</posx>
-							<posy>8</posy>
-							<width>105</width>
-							<height>105</height>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+							<include>ListPoster</include>
 							<colordiffuse>grey2</colordiffuse>
 						</control>
+						
+						<!-- Season Number -->
 						<control type="label">
-							<posx>135</posx>
-							<posy>0</posy>
-							<width>960</width>
-							<height>120</height>
-							<font>font30</font>
+							<include>ListPortraitTitle</include>
 							<textcolor>grey2</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Label]</label>
+							<selectedcolor>grey2</selectedcolor>
+							<animation effect="slide" start="0,0" end="0,25" time="0" condition="true">Conditional</animation>
 						</control>
+						
 						<control type="label">
 							<posx>1060</posx>
 							<posy>0</posy>
@@ -792,7 +721,7 @@
 							<font>font15</font>
 							<align>right</align>
 							<textcolor>grey2</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+							<selectedcolor>grey2</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.episode] episodes</label>
 							<visible>!stringcompare(ListItem.Label,All Episodes)</visible>
@@ -833,43 +762,26 @@
 							</control>
 						</control>
 					</itemlayout>
-					<focusedlayout height="120" width="1140" condition="Container.Content(seasons)">
+					<focusedlayout height="120" width="1140" condition="Container.Content(seasons) + !Skin.HasSetting(List.Slimlist)">
+						
+						<include>ListSeparator</include>
+						
+						<!-- Highlight -->
+						<include>ListHighlight</include>
+						
+						<!-- Season Poster -->
 						<control type="image">
-							<posy>62</posy>
-							<width>1140</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
+							<include>ListPoster</include>
 						</control>
-						<control type="image">
-							<posx>0</posx>
-							<posy>0</posy>
-							<width>1140</width>
-							<height>120</height>
-							<texture border="4">listselect_fo.png</texture>
-							<include>VisibleFadeEffect</include>
-							<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
-						</control>
-						<control type="image">
-							<posx>15</posx>
-							<posy>8</posy>
-							<width>105</width>
-							<height>105</height>
-							<aspectratio>keep</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-						</control>
+						
+						<!-- Season Number -->
 						<control type="label">
-							<posx>135</posx>
-							<posy>0</posy>
-							<width>960</width>
-							<height>120</height>
-							<font>font30</font>
+							<include>ListPortraitTitle</include>
 							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Label]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
+							<selectedcolor>white</selectedcolor>
+							<animation effect="slide" start="0,0" end="0,25" time="0" condition="true">Conditional</animation>
 						</control>
+						
 						<control type="label">
 							<posx>1060</posx>
 							<posy>0</posy>
@@ -878,10 +790,9 @@
 							<font>font15</font>
 							<align>right</align>
 							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+							<selectedcolor>white</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.episode] episodes</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(50)">Conditional</animation>
 							<visible>!stringcompare(ListItem.Label,All Episodes)</visible>
 						</control>
 						<control type="image">
