@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+	<variable name="EpisodeTitleVar">
+		<value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | !IsEmpty(Container.Property(mixedParents))]">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | !IsEmpty(Container.Property(mixedParents))]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
+	</variable>
+
 	<!-- List View Second Line -->
 	<variable name="VideoListLabel2Var">
 		<value condition="Container.Content(episodes)">$INFO[ListItem.Premiered]</value>
