@@ -26,7 +26,8 @@
 
 	<!-- List Label -->
 	<variable name="VideoListLabel2Var">
-		<value condition="Container.Content(episodes) + !IsEmpty(Container.Property(primaryFilterActivated))">$INFO[ListItem.TvShowTitle]</value>
+		<value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(primaryFilterActivated))">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(primaryFilterActivated))">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
 		<value condition="Container.PlexContent(homemovies) | Container.Content(episodes)">$INFO[ListItem.Date]</value>
 		<value>$INFO[ListItem.Genre]</value>
 	</variable>
@@ -75,6 +76,14 @@
 		<aligny>center</aligny>
 		<label>$INFO[ListItem.Label]</label>
 	</include>
+	
+	<!-- Episode Title -->
+	<variable name="ListEpisodeTitleVar">
+		<value condition="Container.Content(episodes) + !IsEmpty(Container.Property(primaryFilterActivated))">$INFO[ListItem.TvShowTitle]</value>
+		<value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(mixedParents))">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(mixedParents))">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
+	</variable>
 
 	<!-- Genre -->
 	<include name="ListGenre">
@@ -373,7 +382,7 @@
 							<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
-							<label>$VAR[EpisodeTitleVar]</label>
+							<label>$VAR[ListEpisodeTitleVar]</label>
 							<animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Date) + IsEmpty(Container.Property(primaryFilterActivated))">Conditional</animation>
 						</control>
 
@@ -470,7 +479,7 @@
 							<selectedcolor>white</selectedcolor>
 							<align>left</align>
 							<aligny>center</aligny>
-							<label>$VAR[EpisodeTitleVar]</label>
+							<label>$VAR[ListEpisodeTitleVar]</label>
 							<animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Date) + IsEmpty(Container.Property(primaryFilterActivated))">Conditional</animation>
 						</control>
 
