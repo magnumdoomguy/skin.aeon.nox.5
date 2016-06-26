@@ -127,11 +127,23 @@
 		<!-- Standard Video Background -->
 		<control type="image">
 			<visible>!Container.Content(clips)</visible>
-			<visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+			<visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
 			<include>FanartCommonValues</include>
 			<texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
 		</control>
-
+		
+		<!-- Home Videos Fanart -->
+		<control type="image">
+			<visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + !IsEmpty(ListItem.Art(smallThumb)</visible>
+			<include>FanartCommonValues</include>
+			<texture fallback="special://skin/backgrounds/homevideos.jpg" blur="01">$INFO[ListItem.Art(fanart)]</texture>
+		</control>
+		<control type="image">
+			<visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + IsEmpty(ListItem.Art(smallThumb)</visible>
+			<include>FanartCommonValues</include>
+			<texture>special://skin/backgrounds/homevideos.jpg</texture>
+		</control>
+				
 		<!-- Background for Empty List -->
 		<control type="image">
 			<visible>Container.Content(empty)</visible>
@@ -207,7 +219,7 @@
 		<control type="image">
 			<visible>Container.Content(clips)</visible>
 			<include>FanartCommonValues</include>
-			<texture fallback="special://skin/backgrounds/watchlater.jpg" blur="03">$INFO[ListItem.Icon]</texture>
+			<texture fallback="special://skin/backgrounds/watchlater.jpg" blur="01">$INFO[ListItem.Icon]</texture>
 		</control>
 
 		<!-- Custom Watch Later Background Image -->
@@ -234,7 +246,7 @@
 			<description>Normal Default Background Image</description>
 			<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
 			<include>FanartCommonValues</include>
-			<texture fallback="special://skin/backgrounds/pictures.jpg" blur="03">$INFO[ListItem.Art(bigThumb)]</texture>
+			<texture fallback="special://skin/backgrounds/pictures.jpg" blur="01">$INFO[ListItem.Art(bigThumb)]</texture>
 		</control>
 
 		<!-- Background for Empty List -->
@@ -701,7 +713,7 @@
 			<control type="image">
 				<visible>Control.IsVisible(11004) + !IsEmpty(Container(11004).ListItem.Label)</visible>
 				<include>FanartCommonValues</include>
-				<texture blur="03">$INFO[Container(11004).ListItem.Art(bigThumb)]</texture>
+				<texture blur="01">$INFO[Container(11004).ListItem.Art(bigThumb)]</texture>
 			</control>
 
 		</control>
@@ -721,7 +733,7 @@
 			<control type="image">
 				<visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000)</visible>
 				<include>FanartCommonValues</include>
-				<texture blur="03">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+				<texture blur="01">$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
 				<aspectratio>scale</aspectratio>
 			</control>
 
@@ -729,7 +741,7 @@
 			<control type="image">
 				<visible>Control.IsVisible(11003) + !IsEmpty(Container(11003).ListItem.Label)</visible>
 				<include>FanartCommonValues</include>
-				<texture blur="03">$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+				<texture blur="01">$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
 			</control>
 
 		</control>
