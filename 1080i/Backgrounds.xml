@@ -20,7 +20,8 @@
 			<animation effect="fade" time="600">WindowClose</animation>
 
 			<!-- Home Window Fanart -->
-			<include condition="Window.IsActive(home)">HomeFanart</include>
+			<include condition="Window.IsActive(home) + !system.getbool(input.enablemouse)">HomeFanart</include>
+			<include condition="Window.IsActive(home) + system.getbool(input.enablemouse)">HomeFanart_Mouse</include>
 
 			<!-- Live DVD/Bluray Cases -->
 			<include condition="Window.IsActive(home)">LiveCasesBackground</include>
@@ -748,6 +749,202 @@
 
 	</include>
 
+		<include name="HomeFanart_Mouse">
+
+		<!-- Single Image Custom Background -->
+		<control type="image">
+			<visible>Skin.HasSetting(CustomHomeUniversal)</visible>
+			<include>FullscreenDimensions</include>
+			<include>AnimatedBackgroundAnimation</include>
+			<fadetime>600</fadetime>
+			<info>Skin.String(CustomHomeUniversalImage)</info>	
+		</control>
+
+		<!-- No Single Image Custom Background -->
+		<control type="group">
+			<visible>!Skin.HasSetting(CustomHomeUniversal)</visible>
+
+			<!-- Custom Home Slideshow -->
+			<control type="multiimage">
+				<visible>Skin.HasSetting(CustomHomeSlideshow)</visible>
+				<include>FanartCommonValues</include>
+				<info>Skin.String(CustomHomeSlideshowPath)</info>
+			</control>
+
+			<!-- No Custom Home Slideshow -->
+			<control type="group">
+				<visible>!Skin.HasSetting(CustomHomeSlideshow)</visible>
+
+				<!-- Home Menu Backgrounds -->
+				<control type="group">
+					<!--<visible>Control.HasFocus(300) | Control.HasFocus(9027)</visible>-->
+
+					<!-- Custom Home Menu Backgrounds -->
+					<control type="group">
+						<visible>Skin.HasSetting(CustomHomeBackground1) | Skin.HasSetting(CustomHomeBackground2) | Skin.HasSetting(CustomHomeBackground3) | Skin.HasSetting(CustomHomeBackground4) | Skin.HasSetting(CustomHomeBackground5) | Skin.HasSetting(CustomHomeBackground6) | Skin.HasSetting(CustomHomeBackground7) | Skin.HasSetting(CustomHomeBackground8) | Skin.HasSetting(CustomHomeBackground9) | Skin.HasSetting(CustomHomeBackground10) | Skin.HasSetting(CustomHomeBackground11) | Skin.HasSetting(CustomHomeBackground12) | Skin.HasSetting(CustomHomeBackground13) | Skin.HasSetting(CustomHomeBackground14) | Skin.HasSetting(CustomHomeBackground15)</visible>
+
+						<!-- Custom Home Background Slideshow 1 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground1Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 2 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground2Label)) + Skin.HasSetting(CustomHomeBackground2)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground2Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 3 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground3Label)) + Skin.HasSetting(CustomHomeBackground3)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground3Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 4 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground4Label)) + Skin.HasSetting(CustomHomeBackground4)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground4Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 5 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground5Label)) + Skin.HasSetting(CustomHomeBackground5)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground5Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 6 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground6Label)) + Skin.HasSetting(CustomHomeBackground6)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground6Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 7 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground7Label)) + Skin.HasSetting(CustomHomeBackground7)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground7Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 8 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground8Label)) + Skin.HasSetting(CustomHomeBackground8)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground8Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 9 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground9Label)) + Skin.HasSetting(CustomHomeBackground9)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground9Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 10 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground10Label)) + Skin.HasSetting(CustomHomeBackground10)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground10Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 11 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground11Label)) + Skin.HasSetting(CustomHomeBackground11)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground11Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 12 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground12Label)) + Skin.HasSetting(CustomHomeBackground12)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground12Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 13 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground13Label)) + Skin.HasSetting(CustomHomeBackground13)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground13Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 14 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground14Label)) + Skin.HasSetting(CustomHomeBackground14)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground14Path)</info>
+						</control>
+
+						<!-- Custom Home Background Slideshow 15 -->
+						<control type="multiimage">
+							<visible>[stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground15Label)) + Skin.HasSetting(CustomHomeBackground15)]</visible>
+							<include>FanartCommonValues</include>
+							<info>Skin.String(CustomHomeBackground15Path)</info>
+						</control>
+					</control>
+
+					<!-- Display Plex Fanart -->
+					<control type="multiimage" id="10101">
+						<include>FanartCommonValues</include>
+						<visible>!stringcompare(Container(300).ListItem.Label,$LOCALIZE[42137]) + !stringcompare(Container(300).ListItem.Label,$LOCALIZE[42004]) + !stringcompare(Container(300).ListItem.Label,$LOCALIZE[136]) + !stringcompare(Container(300).ListItem.Label,$LOCALIZE[42081]) + !stringcompare(Container(300).ListItem.Label,$LOCALIZE[137]) + !stringcompare(Container(300).ListItem.Label,Playlists) + !stringcompare(Container(300).ListItem.Label,$LOCALIZE[42021]) + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground2Label)) + Skin.HasSetting(CustomHomeBackground2)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground3Label)) + Skin.HasSetting(CustomHomeBackground3)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground4Label)) + Skin.HasSetting(CustomHomeBackground4)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground5Label)) + Skin.HasSetting(CustomHomeBackground5)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground6Label)) + Skin.HasSetting(CustomHomeBackground6)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground7Label)) + Skin.HasSetting(CustomHomeBackground7)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground8Label)) + Skin.HasSetting(CustomHomeBackground8)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground9Label)) + Skin.HasSetting(CustomHomeBackground9)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground10Label)) + Skin.HasSetting(CustomHomeBackground10)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground11Label)) + Skin.HasSetting(CustomHomeBackground11)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground12Label)) + Skin.HasSetting(CustomHomeBackground12)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground13Label)) + Skin.HasSetting(CustomHomeBackground13)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground14Label)) + Skin.HasSetting(CustomHomeBackground14)] + ![stringcompare(Container(300).ListItem.Label,Skin.String(CustomHomeBackground15Label)) + Skin.HasSetting(CustomHomeBackground15)]</visible>
+					</control>
+
+					<!-- Now Playing -->
+					<control type="image">
+						<visible>stringcompare(Container(300).ListItem.Label,$LOCALIZE[42137])</visible>
+						<include>FanartCommonValues</include>
+						<texture fallback="special://skin/backgrounds/music.jpg">$INFO[Player.Art(fanart)]</texture>
+					</control>
+
+					<!-- Sign In -->
+					<control type="image">
+						<visible>stringcompare(Container(300).ListItem.Label,$LOCALIZE[42004])</visible>
+						<include>FanartCommonValues</include>
+						<texture>special://skin/backgrounds/logoff.jpg</texture>
+					</control>
+
+					<!-- Playlists -->
+					<control type="image">
+						<visible>stringcompare(Container(300).ListItem.Label,$LOCALIZE[136]) | stringcompare(Container(300).ListItem.Label,Playlists)</visible>
+						<include>FanartCommonValues</include>
+						<texture>special://skin/backgrounds/playlist.jpg</texture>	
+					</control>
+
+					<!-- Watch Later -->
+					<control type="image">
+						<visible>stringcompare(Container(300).ListItem.Label,$LOCALIZE[42081])</visible>
+						<include>FanartCommonValues</include>
+						<texture>special://skin/backgrounds/watchlater.jpg</texture>	
+					</control>
+
+					<!-- Search -->
+					<control type="image">
+						<visible>stringcompare(Container(300).ListItem.Label,$LOCALIZE[137])</visible>
+						<include>FanartCommonValues</include>
+						<texture>special://skin/backgrounds/search.jpg</texture>	
+					</control>
+
+					<!-- Shared Content -->
+					<control type="image">
+						<visible>stringcompare(Container(300).ListItem.Label,$LOCALIZE[42021])</visible>
+						<include>FanartCommonValues</include>
+						<texture>special://skin/backgrounds/sharedcontent.jpg</texture>	
+					</control>
+
+					<include>LiveCasesBackground</include>
+				</control>
+
+			</control>
+		</control>
+
+	</include>
+	
 	<!-- Snow Animation -->
 	<include name="SnowBackground">
 
