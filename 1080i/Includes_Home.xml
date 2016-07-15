@@ -251,14 +251,14 @@
 				<animation effect="slide" start="-480,0" end="0,0" delay="300" time="240" condition="!Window.Previous(startup)">WindowOpen</animation>
 				<animation effect="slide" start="-480,0" end="0,0" delay="800" time="480" condition="Window.Previous(startup)">WindowOpen</animation>
 				<animation effect="slide" end="-410,0" time="320" tween="cubic" easing="inout" condition="$EXP[Widgets_HaveFocus] + !system.getbool(input.enablemouse)">Conditional</animation>
-				
+
 				<!-- Background Panel -->
 				<control type="image">
 					<width>455</width>
 					<height>1080</height>
 					<texture colordiffuse="CCFFFFFF" border="40">mediamenu_back.png</texture>
 				</control>
-				
+
 				<!-- Submenu Button -->
 				<control type="button">
 					<posy>528</posy>
@@ -269,20 +269,20 @@
 					<onclick>9001</onclick>
 					<include>VisibleFadeEffect</include>
 				</control>
-				
+
 				<include condition="Skin.HasSetting(MainHorizontalListNav) + !system.getbool(input.enablemouse)">VerticalMainMenuListFixed</include>
 				<include condition="system.getbool(input.enablemouse)">VerticalMainMenuListFixedMouse</include>
 				<include condition="!Skin.HasSetting(MainHorizontalListNav) + !system.getbool(input.enablemouse)">VerticalMainMenuListWrapped</include>
-				
+
 			</control>
-			
+
 			<!-- Submenu -->
 			<control type="group" id="9001">
 				<animation effect="slide" end="-500,0" time="240">WindowClose</animation>
 				<animation effect="slide" start="0,0" end="350,0" time="280" delay="0" condition="Control.HasFocus(9010)">conditional</animation>
 				<posx>-350</posx>
 				<onleft>9002</onleft>
-				
+
 				<!-- Submenu Background Panel -->
 				<control type="image">
 					<width>350</width>
@@ -384,7 +384,7 @@
 				<height>41</height>
 				<align>right</align>
 				<orientation>horizontal</orientation>
-				
+
 				<!-- Space -->
 				<control type="label" id="9026">
 					<width>5</width>
@@ -642,203 +642,61 @@
 
 	<!-- Vertical Menu Content -->
 	<include name="VerticalMainMenuListContent">
-		<posx>37</posx>
-		<posy>43</posy>
-		<width>400</width>
-		<height>980</height>
-		<onup>300</onup>
-		<ondown>300</ondown>
-		<onleft condition="!system.getbool(input.enablemouse)">9001</onleft>
-		<onleft condition="!system.getbool(input.enablemouse)">noop</onleft>
-		<onright condition="Control.IsVisible(11001)">11001</onright>
-		<onright condition="Control.IsVisible(11002)">11002</onright>
-		<onright condition="Control.IsVisible(11004)">11004</onright>
-		<onright condition="Control.IsVisible(11005)">11005</onright>
-		<onright condition="$EXP[Widgets_RecentlyAddedOnlyVisible]">11000</onright>
-		<onright condition="Control.IsVisible(11003) + !Control.IsVisible(11004)">11003</onright>
-		<pagecontrol>-</pagecontrol>
-		<focusposition>3</focusposition>
-		<scrolltime tween="quadratic" easing="out">200</scrolltime>
-		<animation effect="fade" time="200" start="100" end="50" reversible="true" condition="Control.HasFocus(9010)">Conditional</animation>
-		<itemlayout height="110" width="430">
-			<control type="label">
-				<posx>380</posx>
-				<width>380</width>
-				<height>110</height>
-				<font>font_MainMenu_medium2</font>
-				<textcolor>$VAR[Colour_MainMenuUnfocussedColourVar]</textcolor>
-				<selectedcolor>$VAR[Colour_MainMenuFocussedColourVar]</selectedcolor>
-				<align>right</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-			</control>
-		</itemlayout>
-		<focusedlayout height="110" width="430">
-			<control type="label">
-				<posx>380</posx>
-				<width>380</width>
-				<height>110</height>
-				<font>font_MainMenu_medium2</font>
-				<textcolor>$VAR[Colour_MainMenuFocussedColourVar]</textcolor>
-				<selectedcolor>$VAR[Colour_MainMenuFocussedColourVar]</selectedcolor>
-				<align>right</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-			</control>
-		</focusedlayout>
-		<content>
-			<include>HomeMenuContent</include>
-		</content>
-	</include>
-
-	<include name="VerticalMainMenuListContent_LinearFont">
-		<posx>0</posx>
-		<posy>28</posy>
-		<width>400</width>
-		<height>1030</height>
-		<onup>300</onup>
-		<ondown>300</ondown>
-		<onleft>9001</onleft>
-		<onright condition="Control.IsVisible(11001)">11001</onright>
-		<onright condition="Control.IsVisible(11002)">11002</onright>
-		<onright condition="Control.IsVisible(11004)">11004</onright>
-		<onright condition="Control.IsVisible(11005)">11005</onright>
-		<onright condition="$EXP[Widgets_RecentlyAddedOnlyVisible]">11000</onright>
-		<onright condition="Control.IsVisible(11003) + !Control.IsVisible(11004)">11003</onright>
-		<pagecontrol>-</pagecontrol>
-		<focusposition>6</focusposition>
-		<scrolltime tween="quadratic" easing="out">200</scrolltime>
-		<animation effect="fade" time="200" start="100" end="50" reversible="true" condition="Control.HasFocus(9010)">Conditional</animation>
-		<itemlayout height="80" width="430">
-			<control type="label">
-				<posx>380</posx>
-				<posy>0</posy>
-				<width>380</width>
-				<height>80</height>
-				<font>font_MainMenu_medium_linear</font>
-				<textcolor>$VAR[Colour_MainMenuUnfocussedColourVar]</textcolor>
-				<align>right</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-			</control>
-		</itemlayout>
-		<focusedlayout height="80" width="430">
-			<control type="label">
-				<posx>380</posx>
-				<posy>0</posy>
-				<width>380</width>
-				<height>80</height>
-				<font>font_MainMenu_medium_linear</font>
-				<textcolor>$VAR[Colour_MainMenuFocussedColourVar]</textcolor>
-				<align>right</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-				<include>VisibleFadeEffect</include>
-			</control>
-		</focusedlayout>
-		<content>
-			<include>HomeMenuContent</include>
-		</content>
-	</include>
-
-	<include name="VerticalMainMenuListContent_OpenSans">
-		<posx>0</posx>
-		<posy>53</posy>
-		<width>400</width>
-		<height>980</height>
-		<onup>300</onup>
-		<ondown>300</ondown>
-		<onleft>9001</onleft>
-		<onright condition="Control.IsVisible(11001)">11001</onright>
-		<onright condition="Control.IsVisible(11002)">11002</onright>
-		<onright condition="Control.IsVisible(11004)">11004</onright>
-		<onright condition="Control.IsVisible(11005)">11005</onright>
-		<onright condition="$EXP[Widgets_RecentlyAddedOnlyVisible]">11000</onright>
-		<onright condition="Control.IsVisible(11003) + !Control.IsVisible(11004)">11003</onright>
-		<pagecontrol>-</pagecontrol>
-		<focusposition>6</focusposition>
-		<scrolltime tween="quadratic" easing="out">200</scrolltime>
-		<animation effect="fade" time="200" start="100" end="50" reversible="true" condition="Control.HasFocus(9010)">Conditional</animation>
-		<itemlayout height="75" width="430">
-			<control type="label">
-				<posx>380</posx>
-				<posy>0</posy>
-				<width>380</width>
-				<height>75</height>
-				<font>font_MainMenu_medium_OpenSans</font>
-				<textcolor>$VAR[Colour_MainMenuUnfocussedColourVar]</textcolor>
-				<align>right</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-			</control>
-		</itemlayout>
-		<focusedlayout height="75" width="430">
-			<control type="label">
-				<posx>380</posx>
-				<posy>0</posy>
-				<width>380</width>
-				<height>75</height>
-				<font>font_MainMenu_medium_OpenSans</font>
-				<textcolor>$VAR[Colour_MainMenuFocussedColourVar]</textcolor>
-				<align>right</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-				<include>VisibleFadeEffect</include>
-			</control>
-		</focusedlayout>
-		<content>
-			<include>HomeMenuContent</include>
-		</content>
-	</include>
-
-	<include name="VerticalMainMenuListContent_SourceSans">
-		<posx>0</posx>
-		<posy>53</posy>
-		<width>400</width>
-		<height>980</height>
-		<onup>300</onup>
-		<ondown>300</ondown>
-		<onleft>9001</onleft>
-		<onright condition="Control.IsVisible(11001)">11001</onright>
-		<onright condition="Control.IsVisible(11002)">11002</onright>
-		<onright condition="Control.IsVisible(11004)">11004</onright>
-		<onright condition="Control.IsVisible(11005)">11005</onright>
-		<onright condition="$EXP[Widgets_RecentlyAddedOnlyVisible]">11000</onright>
-		<onright condition="Control.IsVisible(11003) + !Control.IsVisible(11004)">11003</onright>
-		<pagecontrol>-</pagecontrol>
-		<focusposition>6</focusposition>
-		<scrolltime tween="quadratic" easing="out">200</scrolltime>
-		<animation effect="fade" time="200" start="100" end="50" reversible="true" condition="Control.HasFocus(9010)">Conditional</animation>
-		<itemlayout height="75" width="430">
-			<control type="label">
-				<posx>380</posx>
-				<posy>0</posy>
-				<width>380</width>
-				<height>75</height>
-				<font>font_MainMenu_medium_SourceSans</font>
-				<textcolor>$VAR[Colour_MainMenuUnfocussedColourVar]</textcolor>
-				<align>right</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-			</control>
-		</itemlayout>
-		<focusedlayout height="75" width="430">
-			<control type="label">
-				<posx>380</posx>
-				<posy>0</posy>
-				<width>380</width>
-				<height>75</height>
-				<font>font_MainMenu_medium_SourceSans</font>
-				<textcolor>$VAR[Colour_MainMenuFocussedColourVar]</textcolor>
-				<align>right</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.Label]</label>
-				<include>VisibleFadeEffect</include>
-			</control>
-		</focusedlayout>
-		<content>
-			<include>HomeMenuContent</include>
-		</content>
+		<param name="font" default="font_MainMenu_medium2" />
+		<param name="menuTop" default="45" />
+		<param name="menuHeight" default="990" />
+		<param name="focusPosition" default="4" />
+		<param name="itemHeight" default="110" />
+		
+		<definition>
+			<posx>37</posx>
+			<posy>$PARAM[menuTop]</posy>
+			<width>400</width>
+			<height>$PARAM[menuHeight]</height>
+			<onup>300</onup>
+			<ondown>300</ondown>
+			<onleft condition="!system.getbool(input.enablemouse)">9001</onleft>
+			<onleft condition="!system.getbool(input.enablemouse)">noop</onleft>
+			<onright condition="Control.IsVisible(11001)">11001</onright>
+			<onright condition="Control.IsVisible(11002)">11002</onright>
+			<onright condition="Control.IsVisible(11004)">11004</onright>
+			<onright condition="Control.IsVisible(11005)">11005</onright>
+			<onright condition="$EXP[Widgets_RecentlyAddedOnlyVisible]">11000</onright>
+			<onright condition="Control.IsVisible(11003) + !Control.IsVisible(11004)">11003</onright>
+			<pagecontrol>-</pagecontrol>
+			<focusposition>$PARAM[focusPosition]</focusposition>
+			<scrolltime tween="quadratic" easing="out">200</scrolltime>
+			<animation effect="fade" time="200" start="100" end="50" reversible="true" condition="Control.HasFocus(9010)">Conditional</animation>
+			<itemlayout height="$PARAM[itemHeight]" width="430">
+				<control type="label">
+					<posx>380</posx>
+					<width>380</width>
+					<height>$PARAM[itemHeight]</height>
+					<font>$PARAM[font]</font>
+					<textcolor>$VAR[Colour_MainMenuUnfocussedColourVar]</textcolor>
+					<selectedcolor>$VAR[Colour_MainMenuFocussedColourVar]</selectedcolor>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout height="$PARAM[itemHeight]" width="430">
+				<control type="label">
+					<posx>380</posx>
+					<width>380</width>
+					<height>$PARAM[itemHeight]</height>
+					<font>$PARAM[font]</font>
+					<textcolor>$VAR[Colour_MainMenuFocussedColourVar]</textcolor>
+					<selectedcolor>$VAR[Colour_MainMenuFocussedColourVar]</selectedcolor>
+					<align>right</align>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+			</focusedlayout>
+			<content>
+				<include>HomeMenuContent</include>
+			</content>
+		</definition>
 	</include>
 
 	<include name="MainMenuList">
@@ -873,30 +731,46 @@
 		</definition>
 	</include>
 
+	<include name="VerticalMenuList">
+		<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Linear)">
+				<param name="font">font_MainMenu_medium_linear</param>
+				<param name="menuTop">20</param>
+				<param name="menuHeight">1040</param>
+				<param name="focusPosition">6</param>
+				<param name="itemHeight">80</param>
+			</include>
+			<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">
+				<param name="font">font_MainMenu_medium_OpenSans</param>
+				<param name="menuTop">53</param>
+				<param name="menuHeight">975</param>
+				<param name="focusPosition">6</param>
+				<param name="itemHeight">75</param>
+			</include>
+			<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">
+				<param name="font">font_MainMenu_medium_SourceSans</param>
+				<param name="menuTop">53</param>
+				<param name="menuHeight">975</param>
+				<param name="focusPosition">6</param>
+				<param name="itemHeight">75</param>
+			</include>
+			<include condition="IsEmpty(Skin.String(MainMenu.Font))">VerticalMainMenuListContent</include>
+	</include>
+	
 	<include name="VerticalMainMenuListFixed">
 		<control type="fixedlist" id="300">
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Linear)">VerticalMainMenuListContent_LinearFont</include>
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">VerticalMainMenuListContent_OpenSans</include>
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">VerticalMainMenuListContent_SourceSans</include>
-			<include condition="IsEmpty(Skin.String(MainMenu.Font))">VerticalMainMenuListContent</include>
+			<include>VerticalMenuList</include>
 		</control>
 	</include>
-	
+
 	<include name="VerticalMainMenuListFixedMouse">
 		<control type="list" id="300">
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Linear)">VerticalMainMenuListContent_LinearFont</include>
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">VerticalMainMenuListContent_OpenSans</include>
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">VerticalMainMenuListContent_SourceSans</include>
-			<include condition="IsEmpty(Skin.String(MainMenu.Font))">VerticalMainMenuListContent</include>
+			<include>VerticalMenuList</include>
 		</control>
 	</include>
-	
+
 	<include name="VerticalMainMenuListWrapped">
 		<control type="wraplist" id="300">
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Linear)">VerticalMainMenuListContent_LinearFont</include>
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">VerticalMainMenuListContent_OpenSans</include>
-			<include condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">VerticalMainMenuListContent_SourceSans</include>
-			<include condition="IsEmpty(Skin.String(MainMenu.Font))">VerticalMainMenuListContent</include>
+			<include>VerticalMenuList</include>
 		</control>
 	</include>
 	<include name="FocusPosition4">
