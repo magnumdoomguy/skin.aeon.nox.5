@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+
+	<!-- Background -->
+	<include name="NowPlaying_Background">
+		<control type="group">
+			<visible>!Skin.HasSetting(HideVisualizationFanart)</visible>
+			<include>SettingsFadeEffect</include>
+			<control type="image">
+				<visible>IsEmpty(Skin.String(NowPlaying.CustomBackgroundFile)) + IsEmpty(Skin.String(NowPlaying.CustomSlideshowPath))</visible>
+				<description>Fanart image</description>
+				<include>FullscreenDimensions</include>
+				<fadetime>750</fadetime>
+				<texture fallback="special://skin/backgrounds/music.jpg">$INFO[Player.Art(fanart)]</texture>
+				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+			</control>
+			<control type="image">
+				<visible>!IsEmpty(Skin.String(NowPlaying.CustomBackgroundFile))</visible>
+				<description>Fanart image</description>
+				<include>FullscreenDimensions</include>
+				<fadetime>750</fadetime>
+				<info>Skin.String(NowPlaying.CustomBackgroundFile)</info>
+				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+			</control>
+			<control type="multiimage">
+				<visible>!IsEmpty(Skin.String(NowPlaying.CustomSlideshowPath))</visible>
+				<description>Fanart image</description>
+				<include>FullscreenDimensions</include>
+				<fadetime>750</fadetime>
+				<info>Skin.String(NowPlaying.CustomSlideshowPath)</info>
+				<animation effect="zoom" start="110" end="130" center="auto" time="12000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+				<animation effect="slide" start="-15,-15" end="15,15" time="6000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+			</control>
+		</control>	
+	</include>
+
+	<!-- Large Scrolling Info -->
+	<include name="Music_LargeScrollingInfo">
+		<control type="fadelabel">
+			<posx>0</posx>
+			<posy>267</posy>
+			<width>1920</width>
+			<scroll>true</scroll>
+			<scrollout>true</scrollout>
+			<font>BigAssFont</font>
+			<pauseatend>200</pauseatend>
+			<aligny>center</aligny>
+			<label>                      $INFO[Player.Title]</label>
+			<label>                      $INFO[MusicPlayer.Artist]</label>
+			<label>                      $INFO[MusicPlayer.Album]</label>
+			<textcolor>1FFFFFFF</textcolor>
+			<textoffsetx>20</textoffsetx>
+			<resetonlabelchange>true</resetonlabelchange>
+			<visible>Skin.HasSetting(BigAssLabel)</visible>
+		</control>
+	</include>
+
+	<include name="NowPlaying_Buttons">
+	
+		<!-- Play Queue -->
+		<control type="button" id="700">
+			<textoffsety>60</textoffsety>
+			<texturefocus>osd/buttons/OSDPlaylistFO.png</texturefocus>
+			<texturenofocus>osd/buttons/OSDPlaylistNF.png</texturenofocus>
+			<label>-</label>
+			<width>100</width>
+			<height>100</height>
+			<onleft>706</onleft>
+			<onright>600</onright>
+			<font>-</font>
+			<onclick>Dialog.Close(PlayerControls)</onclick>
+			<onclick>ReplaceWindow(10094, plexserver://playqueue/audio)</onclick>
+			<colordiffuse>-</colordiffuse>
+		</control>
+
+		<!-- Previous Track Button -->
+		<control type="button" id="600">
+			<texturefocus>osd/buttons/OSDPrevTrackFO.png</texturefocus>
+			<texturenofocus>osd/buttons/OSDPrevTrackNF.png</texturenofocus>
+			<label>-</label>
+			<width>100</width>
+			<height>100</height>
+			<onleft>700</onleft>
+			<onright>603</onright>
+			<font>-</font>
+			<onclick>PlayerControl(Previous)</onclick>
+			<colordiffuse>-</colordiffuse>
+		</control>
+
+		<!-- Stop Button -->
+		<control type="button" id="603">
+			<texturefocus>osd/buttons/OSDStopFO.png</texturefocus>
+			<texturenofocus>osd/buttons/OSDStopNF.png</texturenofocus>
+			<label>-</label>
+			<width>100</width>
+			<height>100</height>
+			<onleft>600</onleft>
+			<onright>602</onright>
+			<font>-</font>
+			<onclick>PlayerControl(Stop)</onclick>
+			<colordiffuse>-</colordiffuse>
+		</control>
+
+		<!-- Play Button -->
+		<control type="togglebutton" id="602">
+			<texturefocus>osd/buttons/OSDPauseFO.png</texturefocus>
+			<texturenofocus>osd/buttons/OSDPauseNF.png</texturenofocus>
+			<alttexturefocus>osd/buttons/OSDPlayFO.png</alttexturefocus>
+			<alttexturenofocus>osd/buttons/OSDPlayNF.png</alttexturenofocus>
+			<label>-</label>
+			<altlabel>208</altlabel>
+			<width>100</width>
+			<height>100</height>
+			<onleft>603</onleft>
+			<onright>605</onright>
+			<font>-</font>
+			<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+			<onclick>PlayerControl(Play)</onclick>
+			<colordiffuse>-</colordiffuse>
+		</control>
+
+		<!-- Next Track Button -->
+		<control type="button" id="605">
+			<texturefocus>osd/buttons/OSDNextTrackFO.png</texturefocus>
+			<texturenofocus>osd/buttons/OSDNextTrackNF.png</texturenofocus>
+			<label>-</label>
+			<width>100</width>
+			<height>100</height>
+			<onleft>602</onleft>
+			<onright>704</onright>
+			<font>-</font>
+			<onclick>PlayerControl(Next)</onclick>
+			<colordiffuse>-</colordiffuse>
+		</control>
+		
+		<!-- Random Track Button -->
+		<control type="togglebutton" id="704">
+			<texturefocus>osd/buttons/OSDRandomOffFO.png</texturefocus>
+			<texturenofocus>osd/buttons/OSDRandomOffNF.png</texturenofocus>
+			<alttexturefocus>osd/buttons/OSDRandomOnFO.png</alttexturefocus>
+			<alttexturenofocus>osd/buttons/OSDRandomOnNF.png</alttexturenofocus>
+			<label>-</label>
+			<width>100</width>
+			<height>100</height>
+			<onleft>605</onleft>
+			<onright>707</onright>
+			<font>-</font>
+			<usealttexture>Playlist.IsRandom</usealttexture>
+			<onclick>PlayerControl(Random)</onclick>
+			<colordiffuse>-</colordiffuse>
+		</control>
+		
+		<!-- Repeat Button -->
+		<control type="button" id="707">
+			<width>0.1</width>
+			<height>0.1</height>
+			<onleft>704</onleft>
+			<onright>706</onright>
+			<texturefocus>-</texturefocus>
+			<texturenofocus>-</texturenofocus>
+			<label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
+			<font>-</font>
+			<onclick>PlayerControl(Repeat)</onclick>
+			<colordiffuse>-</colordiffuse>
+		</control>
+		<control type="image" id="708">
+			<texture>$VAR[MusicOSDRepeatButtonVar]</texture>
+			<width>100</width>
+			<height>100</height>
+		</control>
+		
+		<!-- Settings Button -->
+		<control type="button" id="706">
+			<texturefocus>osd/buttons/OSDSkinFO.png</texturefocus>
+			<texturenofocus>osd/buttons/OSDSkinNF.png</texturenofocus>
+			<label>-</label>
+			<width>100</width>
+			<height>100</height>
+			<onleft>707</onleft>
+			<onright>600</onright>
+			<font>-</font>
+			<onclick>Dialog.Close(musicosd)</onclick>
+			<onclick>ActivateWindow(1121)</onclick>
+			<onclick>SetProperty(MusicOSD.Settings,True,home)</onclick>
+			<colordiffuse>-</colordiffuse>
+		</control>
+	</include>
+
+	<include name="Music_Topbar">
+		<control type="group">
+			<visible>Player.HasMedia + ![Window.IsActive(volumebar)]</visible>
+			<animation effect="slide" start="0,-60" end="0,0" time="200">Visible</animation>
+			<animation effect="slide" start="0,0" end="0,-60" time="200">Hidden</animation>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1920</width>
+			<height>90</height>
+			<control type="image">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>43</height>
+				<texture border="1">black.png</texture>
+				<visible>Skin.HasSetting(OSD.OpaqueBackground.Enable)</visible>
+			</control>
+			<control type="image">
+				<width>1920</width>
+				<height>66</height>
+				<texture border="1">topbar.png</texture>
+			</control>
+			<control type="label">
+				<width>1920</width>
+				<height>90</height>
+				<font>font13_title</font>
+				<textoffsetx>15</textoffsetx>
+				<textcolor>grey2</textcolor>
+				<align>center</align>
+				<aligny>top</aligny>
+				<textoffsety>-2</textoffsety>
+				<label>$INFO[System.Time]</label>
+			</control>
+			<control type="label">
+				<width>930</width>
+				<height>90</height>
+				<font>font13_title</font>
+				<textcolor>grey2</textcolor>
+				<align>left</align>
+				<aligny>top</aligny>
+				<textoffsety>-2</textoffsety>
+				<textoffsetx>16</textoffsetx>
+				<label>$VAR[OSDStatusVar]</label>
+			</control>
+			<control type="label">
+				<visible>MusicPlayer.HasNext | MusicPlayer.HasPrevious</visible>
+				<posx>1920</posx>
+				<width>1920</width>
+				<height>90</height>
+				<font>font13_title</font>
+				<textoffsetx>15</textoffsetx>
+				<textoffsety>-2</textoffsety>
+				<textcolor>grey2</textcolor>
+				<align>right</align>
+				<aligny>top</aligny>
+				<label>PLAYLIST: $INFO[MusicPlayer.PlaylistPosition]/$INFO[MusicPlayer.PlaylistLength]</label>
+			</control>
+		</control>
+	</include>
+
+	<include name="Music_Cover">
+		<!-- Poster -->
+		<control type="image">
+			<description>Cover image</description>
+			<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + !StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/cdcover_mask2.png" fallback="DefaultAlbumCover.png">$INFO[Player.Art(thumb)]</texture>
+			<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + !StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/cdcover_mask2.png" fallback="DefaultAlbumCover.png">black.png</texture>
+			<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + !StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/cdcover_mask2.png" fallback="DefaultAlbumCover.png">defaultmusicalbums.png</texture>
+			<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/cdcover_mask_aa.png" fallback="DefaultAlbumCover.png">$INFO[Player.Art(thumb)]</texture>
+			<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/cdcover_mask_aa.png" fallback="DefaultAlbumCover.png">black.png</texture>
+			<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png) + StringCompare(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/cdcover_mask_aa.png" fallback="DefaultAlbumCover.png">defaultmusicalbums.png</texture>
+			<bordertexture border="28">thumbs/cd_shadow2.png</bordertexture>
+			<bordersize>28</bordersize>
+		</control>
+
+		<!-- Glass Case -->
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Glass) + !Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+			<posx>10</posx>
+			<posy>5</posy>
+			<width>534</width>
+			<height>540</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Player.Art(thumb)]</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Glass) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+			<posx>10</posx>
+			<posy>5</posy>
+			<width>534</width>
+			<height>540</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">black.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Glass) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+			<posx>10</posx>
+			<posy>5</posy>
+			<width>534</width>
+			<height>540</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">defaultmusicalbums.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Glass)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture>thumbs/boxes/square.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+
+		<!-- Clear Case -->
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear) + !Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+			<posx>3</posx>
+			<posy>9</posy>
+			<width>537</width>
+			<height>532</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture>$INFO[Player.Art(thumb)]</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+			<posx>3</posx>
+			<posy>9</posy>
+			<width>537</width>
+			<height>532</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture>black.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+			<posx>3</posx>
+			<posy>9</posy>
+			<width>537</width>
+			<height>532</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture>defaultmusicalbums.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="label">
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+			<posx>-189</posx>
+			<posy>260</posy>
+			<width>400</width>
+			<height>40</height>
+			<angle>270</angle>
+			<align>center</align>
+			<font>font10</font>
+			<textcolor>grey</textcolor>
+			<shadowcolor>black</shadowcolor>
+			<wrapmultiline>false</wrapmultiline>
+			<label>[UPPERCASE]$INFO[MusicPlayer.Album][/UPPERCASE]</label>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+			<posx>-49</posx>
+			<width>599</width>
+			<height>550</height>
+			<aspectratio align="right">keep</aspectratio>
+			<texture>cdcase.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+
+		<!-- CD Case -->
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),CD) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Player.Art(thumb)]</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),CD) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">black.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),CD) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">defaultmusicalbums.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+		<control type="image">
+			<description>Cover image</description>
+			<visible>StringCompare(Skin.String(NowPlaying.IconStyle),CD)</visible>
+			<width>550</width>
+			<height>550</height>
+			<aspectratio align="right">stretch</aspectratio>
+			<texture>thumbs/boxes/cd.png</texture>
+			<bordersize>28</bordersize>
+		</control>
+	</include>
+
+	<include name="Music_SpinningDisc">
+		<!-- CD-R Disc -->
+		<control type="image" id="8888">
+			<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle))</visible>
+			<posx>220</posx>
+			<posy>3</posy>
+			<width>545</width>
+			<height>545</height>
+			<aligny>top</aligny>
+			<aspectratio align="left">keep</aspectratio>
+			<fadetime>300</fadetime>
+			<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+			<texture fallback="special://skin/extras/cdart/blank.png" diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
+			<bordersize>30</bordersize>
+		</control>
+		<control type="label">
+			<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle))</visible>
+			<posx>360</posx>
+			<posy>80</posy>
+			<width>265</width>
+			<height>89</height>
+			<align>center</align>
+			<aligny>center</aligny>
+			<font>fontCDartist</font>
+			<label>$INFO[MusicPlayer.Artist, ,]</label>
+			<animation effect="rotate" end="-360" center="495,275" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+			<textcolor>black</textcolor>
+			<wrapmultiline>true</wrapmultiline>
+		</control>
+		<control type="label">
+			<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle))</visible>
+			<posx>350</posx>
+			<posy>370</posy>
+			<width>280</width>
+			<height>99</height>
+			<align>center</align>
+			<aligny>center</aligny>
+			<font>fontCDalbum</font>
+			<label>$INFO[MusicPlayer.Album, ,]</label>
+			<animation effect="rotate" end="-360" center="495,275" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+			<textcolor>black</textcolor>
+			<wrapmultiline>true</wrapmultiline>
+		</control>
+
+		<!-- CD Disc -->
+		<control type="image" id="8888">
+			<visible>StringCompare(Skin.String(Music.SpinningDiscStyle),CD)</visible>
+			<posx>220</posx>
+			<posy>3</posy>
+			<width>545</width>
+			<height>545</height>
+			<aligny>top</aligny>
+			<aspectratio align="left">keep</aspectratio>
+			<fadetime>300</fadetime>
+			<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+			<texture>cdart/sd.png</texture>
+			<bordersize>30</bordersize>
+		</control>
+
+		<!-- Record Disc -->
+		<control type="image" id="8888">
+			<visible>StringCompare(Skin.String(Music.SpinningDiscStyle),Record)</visible>
+			<posx>220</posx>
+			<posy>3</posy>
+			<width>545</width>
+			<height>545</height>
+			<aligny>top</aligny>
+			<aspectratio align="left">keep</aspectratio>
+			<fadetime>300</fadetime>
+			<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+			<texture>cdart/record.png</texture>
+			<bordersize>30</bordersize>
+		</control>
+
+		<!-- Gold Record Disc -->
+		<control type="image" id="8888">
+			<visible>StringCompare(Skin.String(Music.SpinningDiscStyle),Gold Record)</visible>
+			<posx>220</posx>
+			<posy>3</posy>
+			<width>545</width>
+			<height>545</height>
+			<aligny>top</aligny>
+			<aspectratio align="left">keep</aspectratio>
+			<fadetime>300</fadetime>
+			<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused">Conditional</animation>
+			<texture>cdart/goldrecord.png</texture>
+			<bordersize>30</bordersize>
+		</control>
+	</include>
+</includes>

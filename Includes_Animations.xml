@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="Animation_OpenCloseFade">
+        <animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
+        <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+    </include>
+	<include name="Animation_FadedByOSDSettings">
+        <animation type="Conditional" condition="Window.IsActive(osdvideosettings) | Window.IsActive(osdaudiosettings)">
+            <effect type="fade" time="300" start="100" end="0" />
+        </animation>
+    </include>
+	<include name="Animation_ButtonFocus">
+        <animation type="Focus" reversible="false">
+            <effect type="fade" start="80" end="100" time="200" />
+        </animation>
+    </include>
+	<include name="Animation_FadeOSD5">
+        <animation type="Conditional" condition="System.IdleTime(5) + !Player.Caching + Player.Paused" reversible="true">
+            <effect type="fade" start="100" end="0" time="800" />
+        </animation>
+    </include>
+    <include name="Animation_FadeOSD10">
+        <animation type="Conditional" condition="System.IdleTime(10) + !Player.Caching + Player.Paused" reversible="true">
+            <effect type="fade" start="100" end="0" time="800" />
+        </animation>
+    </include>
+    <include name="Animation_FadeOSD15">
+        <animation type="Conditional" condition="System.IdleTime(15) + !Player.Caching + Player.Paused" reversible="true">
+            <effect type="fade" start="100" end="0" time="800" />
+        </animation>
+    </include>
+    <include name="Animation_FadeOSD20">
+        <animation type="Conditional" condition="System.IdleTime(20) + !Player.Caching + Player.Paused" reversible="true">
+            <effect type="fade" start="100" end="0" time="800" />
+        </animation>
+    </include>
+    <include name="Animation_FadeOSD25">
+        <animation type="Conditional" condition="System.IdleTime(25) + !Player.Caching + Player.Paused" reversible="true">
+            <effect type="fade" start="100" end="0" time="800" />
+        </animation>
+    </include>
+    <include name="Animation_FadeOSD30">
+        <animation type="Conditional" condition="System.IdleTime(30) + !Player.Caching + Player.Paused" reversible="true">
+            <effect type="fade" start="100" end="0" time="800" />
+        </animation>
+    </include>
+    <include name="Window_OpenClose_Animation">
+        <animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0" condition="Window.Previous(home)">WindowOpen</animation>
+        <animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0" condition="Window.Next(home)">WindowClose</animation>
+    </include>
+    <include name="dialogeffect">
+        <animation type="WindowOpen" reversible="false">
+            <effect type="zoom" start="150" end="100" center="960,540" time="300" tween="cubic" easing="out" />
+            <effect type="fade" end="100" time="150" />
+        </animation>
+        <animation type="WindowClose" reversible="false">
+            <effect type="fade" start="100" end="0" time="100" delay="100" />
+            <effect type="zoom" start="100" end="130" center="960,540" time="200" tween="cubic" easing="in" />
+        </animation>
+    </include>
+	<include name="Notification_Animation">
+        <animation type="WindowOpen" reversible="false">
+            <effect type="slide" start="0,271" end="0,0" time="300" tween="cubic" easing="out" />
+            <effect type="fade" end="95" time="150" />
+        </animation>
+        <animation type="WindowClose" reversible="false">
+            <effect type="fade" start="95" end="0" time="100" delay="100" />
+            <effect type="slide" start="0,0" end="0,271" time="200" tween="cubic" easing="in" />
+        </animation>
+    </include>
+    <include name="VisibleFadeEffect">
+        <animation effect="fade" time="300">Visible</animation>
+        <animation effect="fade" time="300">Hidden</animation>
+    </include>
+    <include name="SettingsFadeEffect">
+        <animation effect="fade" time="100" delay="200">Visible</animation>
+        <animation effect="fade" time="50">Hidden</animation>
+    </include>
+    <include name="WindowSettingsFadeEffect">
+        <animation effect="fade" time="100" delay="200">WindowOpen</animation>
+        <animation effect="fade" time="50">WindowClose</animation>
+    </include>
+    <include name="ViewAnimation">
+        <animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0">VisibleChange</animation>
+    </include>
+    <include name="WindowASViewAnimation">
+        <animation effect="slide" tween="cubic" time="720" start="0,1080" end="0,0">WindowOpen</animation>
+        <animation effect="slide" tween="cubic" time="720" end="0,1080" start="0,0">WindowClose</animation>
+    </include>
+    <include name="Animation_DialogPopup">
+        <animation type="WindowOpen" reversible="false">
+            <effect type="zoom" start="80" end="100" center="960,540" delay="160" tween="back" time="240" />
+            <effect type="fade" delay="160" end="100" time="240" />
+        </animation>
+        <animation type="WindowClose" reversible="false">
+            <effect type="zoom" start="100" end="80" center="960,540" easing="in" tween="back" time="240" />
+            <effect type="fade" start="100" end="0" time="240" />
+        </animation>
+    </include>
+    <include name="SubMenuAnimation">
+        <animation effect="slide" end="0,-90" time="300" tween="cubic" easing="inout" condition="!ControlGroup(9001).HasFocus()">conditional</animation>
+        <animation effect="fade" start="100" end="0" time="300" condition="!ControlGroup(9001).HasFocus()">conditional</animation>
+    </include>
+    <include name="InfoPanelDelayAnimation">
+        <visible>![Container.OnNext | Container.OnPrevious]</visible>
+        <animation effect="fade" end="100" time="120" delay="2000" condition="StringCompare(Skin.String(InfoPanel.Delay),2)">Visible</animation>
+        <animation effect="fade" end="100" time="120" delay="3000" condition="StringCompare(Skin.String(InfoPanel.Delay),3)">Visible</animation>
+        <animation effect="fade" end="100" time="120" delay="4000" condition="StringCompare(Skin.String(InfoPanel.Delay),4)">Visible</animation>
+        <animation effect="fade" end="100" time="120" delay="5000" condition="StringCompare(Skin.String(InfoPanel.Delay),5)">Visible</animation>
+    </include>
+	<include name="MyFlixModAnimation">
+		<animation type="conditional" reversible="false" condition="[!IsEmpty(Control.GetLabel(4447)) + Control.IsVisible(4447)] + Skin.HasSetting(Enable.MyFlix.OpenCase) + Skin.HasSetting(Enable.MyFlix.Cases)">
+			<effect type="rotatey" center="19" start="0" end="40" time="1000" tween="quadratic" easing="out" />
+			<effect type="rotatey" delay="3500" center="19" start="0" end="-40" time="1000" tween="quadratic" easing="out" />
+		</animation>
+		<animation type="conditional" reversible="false" condition="[!IsEmpty(Control.GetLabel(4448)) + Control.IsVisible(4448)] + Skin.HasSetting(Enable.MyFlix.OpenCase) + Skin.HasSetting(Enable.MyFlix.Cases)">
+			<effect type="rotatey" center="19" start="0" end="40" time="1000" tween="quadratic" easing="out" />
+			<effect type="rotatey" delay="6000" center="19" start="0" end="-40" time="1000" tween="quadratic" easing="out" />
+		</animation>
+	</include>
+</includes>
