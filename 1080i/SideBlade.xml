@@ -3,10 +3,10 @@
 
 	<include name="SideBlade">
 		<control type="group" id="9080">
-			<animation effect="slide" start="-440,0" end="0,0" time="400" tween="quadratic" easing="out">Visible</animation>
-			<animation effect="slide" start="0,0" end="-440,0" time="400" tween="quadratic" easing="out">Hidden</animation>
+			<animation effect="slide" start="0,0" end="-367,0" time="400" tween="quadratic" easing="out" condition="IsEmpty(Window(home).Property(MediaMenu))">Conditional</animation>
+			<animation effect="slide" start="0,0" end="-367,0" time="400" tween="quadratic" easing="out">WindowClose</animation>
 			<posy>-77</posy>
-			<visible allowhiddenfocus="true">ControlGroup(9080).HasFocus</visible>	
+			<!--<visible allowhiddenfocus="true">ControlGroup(9080).HasFocus</visible>	-->
 
 			<!-- Display Side Blade Menu Background -->
 			<control type="image">
@@ -21,12 +21,12 @@
 			<!-- Icon Menu -->
 			<control type="panel" id="9050">
 				<animation effect="slide" end="0,15" condition="[Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">Conditional</animation>
-				<posy>151</posy>
-				<posx>350</posx>
+				<posy>100</posy>
+				<posx>360</posx>
 				<width>60</width>
 				<height>500</height>
 				<orientation>vertical</orientation>
-				<itemgap>0</itemgap>
+				<itemgap>70</itemgap>
 				<onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">1300</onleft>
 				<onleft condition="Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)">200</onleft>
 				<onright>ClearProperty(MediaMenu,Home)</onright>
@@ -74,6 +74,12 @@
 						<onclick>ClearProperty(MediaMenu,Home)</onclick>
 						<onclick>50</onclick>
 						<onclick>Control.SetFocus(50)</onclick>
+						
+						<onclick condition="IsEmpty(Window(Home).Property(MediaMenu))">SetProperty(MediaMenu,True,home)</onclick>
+			<onclick condition="IsEmpty(Window(Home).Property(MediaMenu))">SetFocus(9050)</onclick>
+			<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu))">ClearProperty(MediaMenu,Home)</onclick>
+			<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu))">SetFocus(50)</onclick>
+						
 					</item>
 
 					<!-- Home Button -->
@@ -1962,7 +1968,7 @@
 					<onclick>ActivateWindow(1214)</onclick>
 					<visible>Control.IsVisible(708) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.ColouredCircles) + ![Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
 				</control>
-				
+
 				<!-- SongList: Theme Colour -->
 				<control type="button" id="270">
 					<description>Change SongList Theme Colour</description>
@@ -1981,7 +1987,7 @@
 					<onclick>ActivateWindow(1197)</onclick>
 					<visible>Control.IsVisible(508)</visible>
 				</control>
-				
+
 				<!-- SongList: Highlight Colour -->
 				<control type="button" id="271">
 					<description>Change SongList Highlight Colour</description>
@@ -2000,7 +2006,7 @@
 					<onclick>ActivateWindow(1198)</onclick>
 					<visible>Control.IsVisible(508)</visible>
 				</control>
-								
+
 				<!-- Shelf 3D: Theme Colour -->
 				<control type="button" id="272">
 					<description>Change Shelf 3D Theme Colour</description>
@@ -2019,7 +2025,7 @@
 					<onclick>ActivateWindow(1213)</onclick>
 					<visible>Control.IsVisible(728)</visible>
 				</control>
-								
+
 				<!-- Big Icons: Theme Colour -->
 				<control type="button" id="273">
 					<description>Change Big Icons Theme Colour</description>
@@ -2038,7 +2044,7 @@
 					<onclick>ActivateWindow(1217)</onclick>
 					<visible>Control.IsVisible(590)</visible>
 				</control>
-				
+
 				<!-- Big Icons: Highlight Colour -->
 				<control type="button" id="274">
 					<description>Change Big Icons Highlight Colour</description>
@@ -2057,7 +2063,7 @@
 					<onclick>ActivateWindow(1215)</onclick>
 					<visible>Control.IsVisible(590)</visible>
 				</control>
-				
+
 				<!-- Showcase: Theme Colour -->
 				<control type="button" id="275">
 					<description>Change Showcase View Theme Colour</description>
@@ -2076,7 +2082,7 @@
 					<onclick>ActivateWindow(1161)</onclick>
 					<visible>Control.IsVisible(54)</visible>
 				</control>
-				
+
 			</control>
 
 			<!-- Video Extras Menu -->
@@ -2168,7 +2174,7 @@
 							</control>
 
 							<control type="group">
-								
+
 								<control type="image">
 									<width>350</width>
 									<height>188</height>
