@@ -27,6 +27,7 @@
 				<height>500</height>
 				<orientation>vertical</orientation>
 				<itemgap>70</itemgap>
+				<onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">SetProperty(MediaMenu,True,home)</onleft>
 				<onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">1300</onleft>
 				<onleft condition="Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)">200</onleft>
 				<onright>ClearProperty(MediaMenu,Home)</onright>
@@ -70,16 +71,11 @@
 
 					<!-- Close Sideblade -->
 					<item>
-						<label></label>
-						<onclick>ClearProperty(MediaMenu,Home)</onclick>
-						<onclick>50</onclick>
-						<onclick>Control.SetFocus(50)</onclick>
-						
+						<label></label>
 						<onclick condition="IsEmpty(Window(Home).Property(MediaMenu))">SetProperty(MediaMenu,True,home)</onclick>
-			<onclick condition="IsEmpty(Window(Home).Property(MediaMenu))">SetFocus(9050)</onclick>
-			<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu))">ClearProperty(MediaMenu,Home)</onclick>
-			<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu))">SetFocus(50)</onclick>
-						
+						<onclick condition="IsEmpty(Window(Home).Property(MediaMenu))">SetFocus(9050)</onclick>
+						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu))">ClearProperty(MediaMenu,Home)</onclick>
+						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu))">SetFocus(50)</onclick>
 					</item>
 
 					<!-- Home Button -->
@@ -112,7 +108,7 @@
 					<!-- Change Viewtype -->				
 					<item>
 						<onclick>SetFocus(9000,0)</onclick>
-						<label></label>
+						<label></label>
 						<visible>!Skin.String(SectionType,playqueue)</visible>
 					</item>
 
