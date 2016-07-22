@@ -6,7 +6,7 @@
 			<animation effect="slide" start="0,0" end="-435,0" time="400" tween="quadratic" easing="out" condition="IsEmpty(Window(home).Property(MediaMenu))">Conditional</animation>
 			<animation effect="slide" start="0,0" end="-435,0" time="400" tween="quadratic" easing="out">WindowClose</animation>
 			<posy>-77</posy>
-			
+
 			<!-- Display Side Blade Menu Background -->
 			<control type="image">
 				<posx>0</posx>
@@ -15,19 +15,48 @@
 				<height>1080</height>
 				<texture border="40">mediamenu_back.png</texture>				
 			</control>
-			
+
 			<!-- Tab -->
-			<control type="button">
+			<control type="button" id="4997">
+				<visible allowhiddenfocus="true">Control.HasFocus(4997) | !IsEmpty(Window(home).Property(MediaMenu))</visible>	
 				<posx>424</posx>
-				<posy>482</posy>
+				<posy>77</posy>
 				<width>87</width>
-                <height>214</height>
+				<height>1080</height>
 				<aspectratio>keep</aspectratio>
+				<aligny>center</aligny>
 				<texturefocus border="1">tooltip.png</texturefocus>
 				<texturenofocus border="1">tooltip.png</texturenofocus>
+				<include>VisibleFadeEffect</include>
 				<colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
+				<onclick condition="IsEmpty(Window(Home).Property(MediaMenu))">SetProperty(MediaMenu,True,home)</onclick>
+				<onclick condition="IsEmpty(Window(Home).Property(MediaMenu))">SetFocus(9050)</onclick>
+				<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu))">ClearProperty(MediaMenu,Home)</onclick>
+				<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu))">SetFocus(50)</onclick>
 			</control>
-			
+
+			<control type="image">
+				<posx>435</posx>
+				<posy>612</posy>
+				<width>25</width>
+				<height>25</height>
+				<texture>tooltiparrow.png</texture>
+				<animation effect="rotate" end="-180" center="auto" delay="240" time="640" condition="IsEmpty(Window(home).Property(MediaMenu))">Conditional</animation>
+				<colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
+				<include>VisibleFadeEffect</include>
+				<visible>!IsEmpty(Window(home).Property(MediaMenu)) | Control.HasFocus(4997)</visible>
+			</control>
+			<control type="image">
+				<posx>435</posx>
+				<posy>612</posy>
+				<width>25</width>
+				<height>25</height>
+				<texture flipx="true">tooltiparrow.png</texture>
+				<colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
+				<include>VisibleFadeEffect</include>
+				<visible>IsEmpty(Window(home).Property(MediaMenu)) + Control.HasFocus(4997)</visible>
+			</control>
+
 			<!-- Icon Menu -->
 			<control type="panel" id="9050">
 				<animation effect="slide" end="0,15" condition="[Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">Conditional</animation>
