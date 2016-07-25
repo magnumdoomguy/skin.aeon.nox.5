@@ -165,7 +165,7 @@
 
 			<!-- ViewType Menu -->
 			<control type="group" id="1130">
-				<visible>!IsEmpty(Window(Home).Property(ViewTypeMenu))</visible>
+				<visible>!IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))</visible>
 				<control type="label">
 					<posy>100</posy>
 					<width>350</width>
@@ -526,12 +526,13 @@
 					<onright>9000</onright>
 					<onup>9000</onup>
 					<ondown>9000</ondown>
-					<onclick>SetFocus(1132)</onclick>
+					<onclick>SetProperty(ViewTypeOptionsMenu,True,home)</onclick>
+					<onclick>Control.SetFocus(1615)</onclick>
 				</control>
 			</control>
 
 			<control type="group" id="1132">
-				<visible>ControlGroup(1132).HasFocus</visible>
+				<visible>!IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))</visible>
 				<control type="label">
 					<posy>100</posy>
 					<width>350</width>
@@ -548,15 +549,21 @@
 					<width>350</width>
 					<height>910</height>
 					<orientation>vertical</orientation>
-					<onleft>9000</onleft>
-					<onright>9000</onright>
-					<onback>9000</onback>
+					<onleft>ClearProperty(ViewTypeOptionsMenu,Home)</onleft>
+					<onleft>Control.SetFocus(9000)</onleft>
+					<onright>ClearProperty(ViewTypeOptionsMenu,Home)</onright>
+					<onright>Control.SetFocus(9000)</onright>
+					<onback>noop</onback>
+					<!--<onback>ClearProperty(ViewTypeOptionsMenu,Home)</onback>
+					<onback>Control.SetFocus(9000)</onback>-->
 					<control type="radiobutton" id="1615">
 						<description>Disable SongList</description>
 						<textwidth>375</textwidth>
 						<include>DisableButtonValues</include>
 						<label>$LOCALIZE[42370]</label>
 						<onclick>Skin.ToggleSetting(Disable.SongListView)</onclick>
+						<onback>ClearProperty(ViewTypeOptionsMenu,Home)</onback>
+						<onback>Control.SetFocus(9000)</onback>
 						<selected>!Skin.HasSetting(Disable.SongListView)</selected>
 					</control>
 					<control type="radiobutton" id="1611">
