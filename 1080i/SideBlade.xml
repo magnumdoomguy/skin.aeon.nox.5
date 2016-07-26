@@ -146,9 +146,10 @@
 						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu))">ClearProperty(MediaMenu,Home)</onclick>
 						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu))">SetFocus(50)</onclick>
 						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + !IsEmpty(Window(Home).Property(ViewTypeMenu))">ClearProperty(ViewTypeMenu,Home)</onclick>
-						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + !IsEmpty(Window(Home).Property(ViewTypeMenu))">SetFocus(9050)</onclick>
-						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + !IsEmpty(Window(Home).Property(OptionsMenu))">ClearProperty(OptionsMenu,Home)</onclick>
-						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + !IsEmpty(Window(Home).Property(OptionsMenu))">SetFocus(9050)</onclick>						
+						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + !IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu))">SetFocus(9050)</onclick>
+						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + !IsEmpty(Window(Home).Property(ViewTypeMenu)) + !IsEmpty(Window(Home).Property(OptionsMenu))">SetFocus(202)</onclick>
+						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + !IsEmpty(Window(Home).Property(OptionsMenu))">ClearProperty(OptionsMenu,Home)</onclick>
+						<onclick condition="!IsEmpty(Window(Home).Property(MediaMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + !IsEmpty(Window(Home).Property(OptionsMenu))">SetFocus(9050)</onclick>						
 					</item>
 
 					<!-- Home Button -->
@@ -219,10 +220,12 @@
 					<height>960</height>
 					<itemgap>0</itemgap>
 					<onleft>ClearProperty(ViewTypeMenu,Home)</onleft>
-					<onleft>9050</onleft>
+					<onleft condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onleft>
+					<onleft condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onleft>
 					<onright>SetFocus(9050,0)</onright>
 					<onback>ClearProperty(ViewTypeMenu,Home)</onback>
-					<onback>9050</onback>
+					<onback condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onback>
+					<onback condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onback>
 					<onup>noop</onup>
 					<ondown>9012</ondown>
 					<itemlayout width="350" height="35">
@@ -263,13 +266,15 @@
 							<label>$LOCALIZE[535]</label>
 							<onclick>Container.SetViewMode(50)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 						</item>
 						<item>
 							<label>$LOCALIZE[42370]</label>
 							<onclick>Container.SetViewMode(508)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(musicfiles) | Window.IsActive(musiclibrary)</visible>
 							<visible>Container.Content(songs) + !Skin.HasSetting(Disable.SongListView)</visible>
 						</item>
@@ -277,7 +282,8 @@
 							<label>$LOCALIZE[42367]</label>
 							<onclick>Container.SetViewMode(700)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !Skin.HasSetting(Disable.RightListView)</visible>
 						</item>
@@ -285,14 +291,16 @@
 							<label>$LOCALIZE[42367]</label>
 							<onclick>Container.SetViewMode(700)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(artists) | Container.Content(albums)] + !Skin.HasSetting(Disable.RightListView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42368]</label>
 							<onclick>Container.SetViewMode(507)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !Skin.HasSetting(Disable.FanartListView)</visible>
 						</item>
@@ -300,7 +308,8 @@
 							<label>$LOCALIZE[42369]</label>
 							<onclick>Container.SetViewMode(501)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !Skin.HasSetting(Disable.LowListView)</visible>
 						</item>
@@ -308,7 +317,8 @@
 							<label>$LOCALIZE[42369]</label>
 							<onclick>Container.SetViewMode(501)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(musicfiles) | Window.IsActive(musiclibrary)</visible>
 							<visible>[Container.Content(albums) | Container.Content(artists) | Container.Content(songs)] + !Skin.HasSetting(Disable.LowListView)</visible>
 						</item>
@@ -316,7 +326,8 @@
 							<label>$LOCALIZE[42371]</label>
 							<onclick>Container.SetViewMode(510)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)] + !Skin.HasSetting(Disable.BigListView)</visible>
 						</item>
@@ -324,14 +335,16 @@
 							<label>$LOCALIZE[42371]</label>
 							<onclick>Container.SetViewMode(510)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Container.Content(artists) + !Skin.HasSetting(Disable.BigListView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42372]</label>
 							<onclick>Container.SetViewMode(502)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>Container.Content(episodes) + !Skin.HasSetting(Disable.EpisodeView)</visible>
 						</item>
@@ -339,7 +352,8 @@
 							<label>$LOCALIZE[31077]</label>
 							<onclick>Container.SetViewMode(53)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(musicvideos) | Container.Content(seasons)] + !Skin.HasSetting(Disable.ShowCaseView)</visible>
 						</item>
@@ -347,7 +361,8 @@
 							<label>$LOCALIZE[42384]</label>
 							<onclick>Container.SetViewMode(708)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>Container.Content(movies) + !Skin.HasSetting(Disable.Shelf3DView)</visible>
 						</item>
@@ -355,14 +370,16 @@
 							<label>$LOCALIZE[42384]</label>
 							<onclick>Container.SetViewMode(728)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(artists) | Container.Content(albums)] + !Skin.HasSetting(Disable.Shelf3DView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[31079]</label>
 							<onclick>Container.SetViewMode(57)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(musicvideos) | Container.Content(seasons) | Container.Content(addons)] + !Skin.HasSetting(Disable.ShiftView)</visible>
 						</item>
@@ -370,14 +387,16 @@
 							<label>$LOCALIZE[31079]</label>
 							<onclick>Container.SetViewMode(57)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(artists) | Container.Content(albums)] + !Skin.HasSetting(Disable.ShiftView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42373]</label>
 							<onclick>Container.SetViewMode(56)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)] + !Skin.HasSetting(Disable.PostersView)</visible>
 						</item>
@@ -385,14 +404,16 @@
 							<label>$LOCALIZE[31077]</label>
 							<onclick>Container.SetViewMode(54)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(addons) | Container.Content(albums) | Container.Content(artists) | Container.Content(files)] + !Skin.HasSetting(Disable.ShowCaseView)</visible>
 						</item>
 						<!--<item>
 							<label>$LOCALIZE[31244]</label>
 							<onclick>Container.SetViewMode(509)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes)] + !Skin.HasSetting(Disable.MyFlixView)</visible>
 						</item>-->
@@ -400,7 +421,8 @@
 							<label>$LOCALIZE[31078]</label>
 							<onclick>Container.SetViewMode(55)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(sets)] + !Skin.HasSetting(Disable.TriPanelView)</visible>
 						</item>
@@ -408,7 +430,8 @@
 							<label>$LOCALIZE[31078]</label>
 							<onclick>Container.SetViewMode(55)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Window.IsActive(musicfiles) | Window.IsActive(musiclibrary) | Window.IsActive(addonbrowser)]</visible>
 							<visible>[Container.Content(albums) | Container.Content(artists) | Container.Content(songs) | Container.Content(addons) | Window.IsActive(musicfiles) | Container.Content(files)] + !Skin.HasSetting(Disable.TriPanelView)</visible>
 						</item>
@@ -416,28 +439,32 @@
 							<label>$LOCALIZE[536]</label>
 							<onclick>Container.SetViewMode(500)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>!Container.PlexContent(homemovies) + !Container.Content(songs) + !Skin.HasSetting(Disable.IconsView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[536]</label>
 							<onclick>Container.SetViewMode(511)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Container.PlexContent(homemovies) + !Skin.HasSetting(Disable.IconsView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[1438] $LOCALIZE[536]</label>
 							<onclick>Container.SetViewMode(499)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(movies) | Container.Content(tvshows)] + !Skin.HasSetting(Disable.SmallIconsView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42386]</label>
 							<onclick>Container.SetViewMode(590)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(artists) | Container.Content(albums)] + !Skin.HasSetting(Disable.BigIconsView)</visible>
 						</item>
 						<item>
@@ -445,14 +472,16 @@
 							<onclick>Container.SetViewMode(503)</onclick>
 							<visible>Window.IsActive(videos) | Window.IsActive(programs)</visible>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(albums) | Container.Content(addons)] + !Skin.HasSetting(Disable.WallView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42374]</label>
 							<onclick>Container.SetViewMode(503)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(musiclibrary)</visible>
 							<visible>Container.Content(albums) | [Window.IsActive(musiclibrary) + Container.Content(files)] + !Skin.HasSetting(Disable.WallView)</visible>
 						</item>
@@ -460,7 +489,8 @@
 							<label>$LOCALIZE[42375]</label>
 							<onclick>Container.SetViewMode(609)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(sets)] + !Skin.HasSetting(Disable.FullscreenWallView)</visible>
 						</item>
@@ -468,14 +498,16 @@
 							<label>$LOCALIZE[42375]</label>
 							<onclick>Container.SetViewMode(609)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(artists) | Container.Content(albums)] + !Skin.HasSetting(Disable.FullscreenWallView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42376]</label>
 							<onclick>Container.SetViewMode(51)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>[Container.Content(tvshows) | Container.Content(movies)] + !Skin.HasSetting(Disable.InfoWallView)</visible>
 						</item>
@@ -483,7 +515,8 @@
 							<label>$LOCALIZE[42376]</label>
 							<onclick>Container.SetViewMode(51)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(musicfiles) | Window.IsActive(musiclibrary) | Window.IsActive(addonbrowser)</visible>
 							<visible>[Container.Content(albums) | Container.Content(artists) | Container.Content(addons)] | [Window.IsActive(musiclibrary) + Container.Content(files)] + !Skin.HasSetting(Disable.InfoWallView)</visible>
 						</item>
@@ -491,7 +524,8 @@
 							<label>$LOCALIZE[31088]</label>
 							<onclick>Container.SetViewMode(58)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>Container.Content(tvshows) + !Skin.HasSetting(Disable.BannerWallView)</visible>
 						</item>
@@ -499,14 +533,16 @@
 							<label>$LOCALIZE[42382]</label>
 							<onclick>Container.SetViewMode(505)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Container.Content(tvshows) + !Skin.HasSetting(Disable.BannerInfoView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42381]</label>
 							<onclick>Container.SetViewMode(601)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>Window.IsActive(videos)</visible>
 							<visible>Container.Content(tvshows) + !Skin.HasSetting(Disable.BannerPlexView)</visible>
 						</item>
@@ -514,35 +550,40 @@
 							<label>$LOCALIZE[31076]</label>
 							<onclick>Container.SetViewMode(52)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)] + !Skin.HasSetting(Disable.LandscapeView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42377]</label>
 							<onclick>Container.SetViewMode(591)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(Disable.BigFanView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42378]</label>
 							<onclick>Container.SetViewMode(592)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(artists)] + !Skin.HasSetting(Disable.BigInfoView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42379]</label>
 							<onclick>Container.SetViewMode(504)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(movies) | Container.PlexContent(homemovies) | Container.Content(tvshows) | Window.IsActive(pictures)] + !Skin.HasSetting(Disable.GalleryView)</visible>
 						</item>
 						<item>
 							<label>$LOCALIZE[42383]</label>
 							<onclick>Container.SetViewMode(506)</onclick>
 							<onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
-							<onclick>Control.SetFocus(9050)</onclick>
+							<onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
+							<onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
 							<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes)] + !Skin.HasSetting(Disable.PanelView)</visible>
 						</item>
 					</content>
@@ -558,7 +599,8 @@
 					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
 					<texturefocus>-</texturefocus>
 					<onback>ClearProperty(ViewTypeMenu,Home)</onback>
-					<onback>9050</onback>
+					<onback condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onback>
+					<onback condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onback>
 					<onleft>9000</onleft>
 					<onright>9000</onright>
 					<onup>9000</onup>
@@ -569,7 +611,7 @@
 
 			<!-- Options Menu -->
 			<control type="grouplist" id="200">
-				<visible>[ControlGroup(200).HasFocus | !IsEmpty(Window(Home).Property(OptionsMenu)) | [Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]] + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus</visible>
+				<visible>[ControlGroup(200).HasFocus | [!IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu))] | [Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]] + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus</visible>
 				<posx>0</posx>
 				<posy>100</posy>
 				<zorder>10</zorder>
@@ -606,7 +648,8 @@
 					<aligny>center</aligny>
 					<font>font13</font>
 					<radioposx>340</radioposx>
-					<onclick>SetFocus(9000,0)</onclick>	
+					<onclick>SetProperty(ViewTypeMenu,True,home)</onclick>
+					<onclick>Control.SetFocus(9000)</onclick>
 					<label>$INFO[Container.Viewmode,$LOCALIZE[42365] ]</label>
 				</control>
 
