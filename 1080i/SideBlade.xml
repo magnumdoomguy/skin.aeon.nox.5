@@ -151,27 +151,28 @@
 					<item>
 						<label>↸</label>
 						<onclick>ActivateWindow(home)</onclick>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))]</visible>
 					</item>
 
 					<!-- Play All -->
 					<item>
 						<label></label>
 						<onclick>Plex.PlayAll()</onclick>
-						<visible>[![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)] | Skin.String(SectionType,playqueue)</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))] + [[![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)] | Skin.String(SectionType,playqueue)]</visible>
 					</item>
 
 					<!-- Shuffle All -->
 					<item>
 						<label></label>
 						<onclick>Plex.ShuffleAll()</onclick>
-						<visible>[![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)] | Skin.String(SectionType,playqueue)</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))] + [[![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)] | Skin.String(SectionType,playqueue)]</visible>
 					</item>
 
 					<!-- Video Extras -->
 					<item>
 						<label></label>
 						<onclick>Control.SetFocus(300)</onclick>
-						<visible>!IsEmpty(Container.Property(PlexExtras))</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))] + !IsEmpty(Container.Property(PlexExtras))</visible>
 					</item>
 
 					<!-- Change Viewtype -->				
@@ -179,14 +180,14 @@
 						<onclick>SetProperty(ViewTypeMenu,True,home)</onclick>
 						<onclick>Control.SetFocus(9000)</onclick>
 						<label></label>
-						<visible>!Skin.String(SectionType,playqueue)</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))] + !Skin.String(SectionType,playqueue)</visible>
 					</item>
 
 					<!-- Options Button -->
 					<item>
 						<onclick>Control.SetFocus(200)</onclick>	
 						<label></label>
-						<visible>![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums) | Container.Content(songs) | Skin.String(SectionType,shared)]</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))] + [![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums) | Container.Content(songs) | Skin.String(SectionType,shared)]]</visible>
 					</item>
 
 				</content>
@@ -195,7 +196,7 @@
 
 			<!-- ViewType Menu -->
 			<control type="group" id="1130">
-				<visible>!IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))</visible>
+				<visible>!IsEmpty(Window(Home).Property(ViewTypeMenu)) + !Window.IsActive(1220)</visible>
 				<control type="label">
 					<posy>100</posy>
 					<width>350</width>
@@ -556,253 +557,7 @@
 					<onright>9000</onright>
 					<onup>9000</onup>
 					<ondown>9000</ondown>
-					<onclick>SetProperty(ViewTypeOptionsMenu,True,home)</onclick>
-					<onclick>Control.SetFocus(1615)</onclick>
-				</control>
-			</control>
-
-			<control type="group" id="1132">
-				<visible>!IsEmpty(Window(Home).Property(ViewTypeOptionsMenu))</visible>
-				<control type="label">
-					<posy>100</posy>
-					<width>350</width>
-					<height>52</height>
-					<textoffsetx>15</textoffsetx>
-					<font>font13_title</font>
-					<label>$LOCALIZE[42380]</label>
-					<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
-					<aligny>center</aligny>
-				</control>
-				<control type="grouplist" id="9012">
-					<posx>0</posx>
-					<posy>152</posy>
-					<width>350</width>
-					<height>910</height>
-					<orientation>vertical</orientation>
-					<onleft>ClearProperty(ViewTypeOptionsMenu,Home)</onleft>
-					<onleft>Control.SetFocus(9000)</onleft>
-					<onright>ClearProperty(ViewTypeOptionsMenu,Home)</onright>
-					<onright>Control.SetFocus(9000)</onright>
-					<onback>ClearProperty(ViewTypeOptionsMenu,Home)</onback>
-					<onback>Control.SetFocus(9000)</onback>
-					<control type="radiobutton" id="1615">
-						<description>Disable SongList</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42370]</label>
-						<onclick>Skin.ToggleSetting(Disable.SongListView)</onclick>
-						<onback>ClearProperty(ViewTypeOptionsMenu,Home)</onback>
-						<onback>Control.SetFocus(9000)</onback>
-						<selected>!Skin.HasSetting(Disable.SongListView)</selected>
-					</control>
-					<control type="radiobutton" id="1611">
-						<description>Disable RightList</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42367]</label>
-						<onclick>Skin.ToggleSetting(Disable.RightListView)</onclick>
-						<selected>!Skin.HasSetting(Disable.RightListView)</selected>
-					</control>
-					<control type="radiobutton" id="1612">
-						<description>Disable FanartList</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42368]</label>
-						<onclick>Skin.ToggleSetting(Disable.FanartListView)</onclick>
-						<selected>!Skin.HasSetting(Disable.FanartListView)</selected>
-					</control>
-					<control type="radiobutton" id="1613">
-						<description>Disable LowList</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42369]</label>
-						<onclick>Skin.ToggleSetting(Disable.LowListView)</onclick>
-						<selected>!Skin.HasSetting(Disable.LowListView)</selected>
-					</control>
-					<control type="radiobutton" id="1614">
-						<description>Disable BigList</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42371]</label>
-						<onclick>Skin.ToggleSetting(Disable.BigListView)</onclick>
-						<selected>!Skin.HasSetting(Disable.BigListView)</selected>
-					</control>
-					<control type="radiobutton" id="1636">
-						<description>Disable Episode</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42372]</label>
-						<onclick>Skin.ToggleSetting(Disable.EpisodeView)</onclick>
-						<selected>!Skin.HasSetting(Disable.EpisodeView)</selected>
-					</control>
-					<control type="radiobutton" id="1629">
-						<description>Disable ShowCase</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[31077]</label>
-						<onclick>Skin.ToggleSetting(Disable.ShowCaseView)</onclick>
-						<selected>!Skin.HasSetting(Disable.ShowCaseView)</selected>
-					</control>
-					<control type="radiobutton" id="1624">
-						<description>Disable ShowCase</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42384]</label>
-						<onclick>Skin.ToggleSetting(Disable.Shelf3DView)</onclick>
-						<selected>!Skin.HasSetting(Disable.Shelf3DView)</selected>
-					</control>
-					<control type="radiobutton" id="1626">
-						<description>Disable Shift</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[31079]</label>
-						<onclick>Skin.ToggleSetting(Disable.ShiftView)</onclick>
-						<selected>!Skin.HasSetting(Disable.ShiftView)</selected>
-					</control>
-					<control type="radiobutton" id="1625">
-						<description>Disable Posters</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42373]</label>
-						<onclick>Skin.ToggleSetting(Disable.PostersView)</onclick>
-						<selected>!Skin.HasSetting(Disable.PostersView)</selected>
-					</control>
-					<!--<control type="radiobutton" id="1635">
-						<description>Disable Myflix</description>
-						<textwidth>375</textwidth>
-						<include>ButtonCommonValues</include>
-						<label>$LOCALIZE[31244]</label>
-						<onclick>Skin.ToggleSetting(Disable.MyFlixView)</onclick>
-						<selected>!Skin.HasSetting(Disable.MyFlixView)</selected>
-					</control>-->
-					<control type="radiobutton" id="1616">
-						<description>Disable TriPanel</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[31078]</label>
-						<onclick>Skin.ToggleSetting(Disable.TriPanelView)</onclick>
-						<selected>!Skin.HasSetting(Disable.TriPanelView)</selected>
-					</control>
-					<control type="radiobutton" id="1617">
-						<description>Disable Icons</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[536]</label>
-						<onclick>Skin.ToggleSetting(Disable.IconsView)</onclick>
-						<selected>!Skin.HasSetting(Disable.IconsView)</selected>
-					</control>
-					<control type="radiobutton" id="1618">
-						<description>Disable Small Icons</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42385]</label>
-						<onclick>Skin.ToggleSetting(Disable.SmallIconsView)</onclick>
-						<selected>!Skin.HasSetting(Disable.SmallIconsView)</selected>
-					</control>
-					<control type="radiobutton" id="1632">
-						<description>Disable Big Icons</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42386]</label>
-						<onclick>Skin.ToggleSetting(Disable.BigIconsView)</onclick>
-						<selected>!Skin.HasSetting(Disable.BigIconsView)</selected>
-					</control>
-					<control type="radiobutton" id="1619">
-						<description>Disable Wall</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42374]</label>
-						<onclick>Skin.ToggleSetting(Disable.WallView)</onclick>
-						<selected>!Skin.HasSetting(Disable.WallView)</selected>
-					</control>
-					<control type="radiobutton" id="1620">
-						<description>Disable Fullscreen Wall</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42375]</label>
-						<onclick>Skin.ToggleSetting(Disable.FullscreenWallView)</onclick>
-						<selected>!Skin.HasSetting(Disable.FullscreenWallView)</selected>
-					</control>
-					<control type="radiobutton" id="1621">
-						<description>Disable InfoWall</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42376]</label>
-						<onclick>Skin.ToggleSetting(Disable.InfoWallView)</onclick>
-						<selected>!Skin.HasSetting(Disable.InfoWallView)</selected>
-					</control>
-					<control type="radiobutton" id="1622">
-						<description>Disable BannerWall</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[31088]</label>
-						<onclick>Skin.ToggleSetting(Disable.BannerWallView)</onclick>
-						<selected>!Skin.HasSetting(Disable.BannerWallView)</selected>
-					</control>
-					<control type="radiobutton" id="1623">
-						<description>Disable BannerInfo</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42382]</label>
-						<onclick>Skin.ToggleSetting(Disable.BannerInfoView)</onclick>
-						<selected>!Skin.HasSetting(Disable.BannerInfoView)</selected>
-					</control>
-					<control type="radiobutton" id="1627">
-						<description>Disable BannerPlex</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42381]</label>
-						<onclick>Skin.ToggleSetting(Disable.BannerPlexView)</onclick>
-						<selected>!Skin.HasSetting(Disable.BannerPlexView)</selected>
-					</control>
-					<control type="radiobutton" id="1628">
-						<description>Disable Landscape</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[31076]</label>
-						<onclick>Skin.ToggleSetting(Disable.LandscapeView)</onclick>
-						<selected>!Skin.HasSetting(Disable.LandscapeView)</selected>
-					</control>
-					<control type="radiobutton" id="1630">
-						<description>Disable BigFan</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42377]</label>
-						<onclick>Skin.ToggleSetting(Disable.BigFanView)</onclick>
-						<selected>!Skin.HasSetting(Disable.BigFanView)</selected>
-					</control>
-					<control type="radiobutton" id="1631">
-						<description>Disable BigInfo</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42378]</label>
-						<onclick>Skin.ToggleSetting(Disable.BigInfoView)</onclick>
-						<selected>!Skin.HasSetting(Disable.BigInfoView)</selected>
-					</control>
-					<control type="radiobutton" id="132">
-						<description>Disable Gallery</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42379]</label>
-						<onclick>Skin.ToggleSetting(Disable.GalleryView)</onclick>
-						<selected>!Skin.HasSetting(Disable.GalleryView)</selected>
-					</control>
-					<control type="radiobutton" id="1633">
-						<description>Disable Panel</description>
-						<textwidth>375</textwidth>
-						<include>DisableButtonValues</include>
-						<label>$LOCALIZE[42383]</label>
-						<onclick>Skin.ToggleSetting(Disable.PanelView)</onclick>
-						<selected>!Skin.HasSetting(Disable.PanelView)</selected>
-					</control>
-					<!-- <control type="radiobutton" id="1636">
-						<description>Disable </description>
-						<textwidth>375</textwidth>
-						<include>ButtonCommonValues</include>
-						<label></label>
-						<onclick>Skin.ToggleSetting(Disable.)</onclick>
-						<selected>!Skin.HasSetting(Disable.)</selected>
-					</control> -->
+					<onclick>ActivateWindow(1220)</onclick>
 				</control>
 			</control>
 
@@ -2350,7 +2105,7 @@
 
 			<!-- Filters -->
 			<control type="grouplist" id="1300"> 
-				<visible>!ControlGroup(200).HasFocus + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + !Container.PlexContent(channels) + !Container.PlexContent(channel) + !Container.Content(seasons) + ![Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] + ![Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] + !Container.Content(songs) + !Container.PlexContent(photoalbums) + !Skin.String(SectionType,shared) + !Skin.String(SectionType,playqueue) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + ! Window.IsActive(10202)</visible>
+				<visible>!ControlGroup(200).HasFocus + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + !Container.PlexContent(channels) + !Container.PlexContent(channel) + !Container.Content(seasons) + ![Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] + ![Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] + !Container.Content(songs) + !Container.PlexContent(photoalbums) + !Skin.String(SectionType,shared) + !Skin.String(SectionType,playqueue) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + !Window.IsActive(10202)</visible>
 				
 				<posx>0</posx>
 				<posy>100</posy>
