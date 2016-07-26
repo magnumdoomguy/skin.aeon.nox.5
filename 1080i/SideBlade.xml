@@ -92,11 +92,13 @@
 				<height>500</height>
 				<orientation>vertical</orientation>
 				<itemgap>70</itemgap>
+				<onleft condition="!IsEmpty(Window(Home).Property(ViewTypeMenu))">9000</onleft>
 				<onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">SetProperty(MediaMenu,True,home)</onleft>
 				<onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">1300</onleft>
 				<onleft condition="Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)">200</onleft>
-				<onright>ClearProperty(MediaMenu,Home)</onright>
-				<onright>50</onright>
+				<onright condition="IsEmpty(Window(Home).Property(ViewTypeMenu))">ClearProperty(MediaMenu,Home)</onright>
+				<onright condition="IsEmpty(Window(Home).Property(ViewTypeMenu))">50</onright>
+				<onright condition="!IsEmpty(Window(Home).Property(ViewTypeMenu))">ClearProperty(ViewTypeMenu,Home)</onright>
 				<onup>9050</onup>
 				<ondown>9050</ondown>
 				<onback>ClearProperty(MediaMenu,Home)</onback>
@@ -215,8 +217,7 @@
 					<itemgap>0</itemgap>
 					<onleft>ClearProperty(ViewTypeMenu,Home)</onleft>
 					<onleft>9050</onleft>
-					<onright>ClearProperty(ViewTypeMenu,Home)</onright>
-					<onright>9050</onright>
+					<onright>SetFocus(9050,0)</onright>
 					<onback>ClearProperty(ViewTypeMenu,Home)</onback>
 					<onback>9050</onback>
 					<onup>noop</onup>
@@ -553,6 +554,8 @@
 					<label></label>
 					<focusedcolor>$VAR[Colour_ThemeColourVar]</focusedcolor>
 					<texturefocus>-</texturefocus>
+					<onback>ClearProperty(ViewTypeMenu,Home)</onback>
+					<onback>9050</onback>
 					<onleft>9000</onleft>
 					<onright>9000</onright>
 					<onup>9000</onup>
