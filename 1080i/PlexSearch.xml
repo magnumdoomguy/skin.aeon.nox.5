@@ -2,7 +2,10 @@
 <window id="51">
 	<defaultcontrol always="true">92</defaultcontrol>
 	<onload condition="!IsEmpty(Window(home).Property(Window.HasSettings))">ClearProperty(Window.HasSettings,Home)</onload>
+	<onload condition="Window.Previous(Home)">SetProperty(SearchKeyboard,True,home)</onload>
+	<onload condition="Window.Previous(Home)">Control.Message(10,click)</onload>
 	<onunload>SetProperty(Window.HasSettings,True,home)</onunload>
+	<onunload>ClearProperty(SearchKeyboard,Home)</onunload>
 	<allowoverlay>no</allowoverlay>
 
 	<controls>
@@ -30,6 +33,7 @@
 				<onright>5100</onright>
 				<onup>9000</onup>
 				<ondown>9000</ondown>
+				<onback>ActivateWindow(home)</onback>
 				<pagecontrol>60</pagecontrol>
 				<scrolltime tween="quadratic">300</scrolltime>
 				<itemlayout height="90" width="356">
@@ -86,8 +90,14 @@
 					<item id="1">
 						<visible>!IsEmpty(Container(9001).ListItem.Label)</visible>
 						<label>$LOCALIZE[342] ($INFO[Container(9001).NumItems])</label>
-						<onclick>9001</onclick>
-						<onright>9001</onright>
+						<onclick>SetProperty(SearchMovies,True,home)</onclick>
+						<onclick>ClearProperty(SearchTVShows,Home)</onclick>
+						<onclick>ClearProperty(SearchEpisodes,Home)</onclick>
+						<onclick>ClearProperty(SearchClips,Home)</onclick>
+						<onclick>ClearProperty(SearchArtists,Home)</onclick>
+						<onclick>ClearProperty(SearchAlbums,Home)</onclick>
+						<onclick>ClearProperty(SearchSongs,Home)</onclick>
+						<onclick>SetFocus(9001)</onclick>
 						<icon>-</icon>
 					</item>
 
@@ -95,8 +105,14 @@
 					<item id="2">
 						<visible>!IsEmpty(Container(9002).ListItem.Label)</visible>
 						<label>$LOCALIZE[20343] ($INFO[Container(9002).NumItems])</label>
-						<onclick>9002</onclick>
-						<onright>9002</onright>
+						<onclick>SetProperty(SearchTVShows,True,home)</onclick>
+						<onclick>ClearProperty(SearchMovies,Home)</onclick>
+						<onclick>ClearProperty(SearchEpisodes,Home)</onclick>
+						<onclick>ClearProperty(SearchClips,Home)</onclick>
+						<onclick>ClearProperty(SearchArtists,Home)</onclick>
+						<onclick>ClearProperty(SearchAlbums,Home)</onclick>
+						<onclick>ClearProperty(SearchSongs,Home)</onclick>
+						<onclick>SetFocus(9002)</onclick>
 						<icon>-</icon>
 					</item>
 
@@ -104,7 +120,14 @@
 					<item id="4">
 						<visible>!IsEmpty(Container(9004).ListItem.Label)</visible>
 						<label>$LOCALIZE[20360] ($INFO[Container(9004).NumItems])</label>
-						<onclick>noop</onclick>
+						<onclick>SetProperty(SearchEpisodes,True,home)</onclick>
+						<onclick>ClearProperty(SearchTVShows,Home)</onclick>
+						<onclick>ClearProperty(SearchMovies,Home)</onclick>
+						<onclick>ClearProperty(SearchClips,Home)</onclick>
+						<onclick>ClearProperty(SearchArtists,Home)</onclick>
+						<onclick>ClearProperty(SearchAlbums,Home)</onclick>
+						<onclick>ClearProperty(SearchSongs,Home)</onclick>
+						<onclick>SetFocus(9004)</onclick>
 						<icon>-</icon>
 					</item>
 
@@ -112,7 +135,14 @@
 					<item id="5">
 						<visible>!IsEmpty(Container(9012).ListItem.Label)</visible>
 						<label>Clips$ ($INFO[Container(9012).NumItems])</label>
-						<onclick>noop</onclick>
+						<onclick>SetProperty(SearchClips,True,home)</onclick>
+						<onclick>ClearProperty(SearchTVShows,Home)</onclick>
+						<onclick>ClearProperty(SearchEpisodes,Home)</onclick>
+						<onclick>ClearProperty(SearchMovies,Home)</onclick>
+						<onclick>ClearProperty(SearchArtists,Home)</onclick>
+						<onclick>ClearProperty(SearchAlbums,Home)</onclick>
+						<onclick>ClearProperty(SearchSongs,Home)</onclick>
+						<onclick>SetFocus(9012)</onclick>
 						<icon>-</icon>
 					</item>
 
@@ -120,7 +150,14 @@
 					<item id="6">
 						<visible>!IsEmpty(Container(9008).ListItem.Label)</visible>
 						<label>$LOCALIZE[133] ($INFO[Container(9008).NumItems])</label>
-						<onclick>noop</onclick>
+						<onclick>SetProperty(SearchArtists,True,home)</onclick>
+						<onclick>ClearProperty(SearchTVShows,Home)</onclick>
+						<onclick>ClearProperty(SearchEpisodes,Home)</onclick>
+						<onclick>ClearProperty(SearchClips,Home)</onclick>
+						<onclick>ClearProperty(SearchMovies,Home)</onclick>
+						<onclick>ClearProperty(SearchAlbums,Home)</onclick>
+						<onclick>ClearProperty(SearchSongs,Home)</onclick>
+						<onclick>SetFocus(9008)</onclick>
 						<icon>-</icon>
 					</item>
 
@@ -128,7 +165,14 @@
 					<item id="7">
 						<visible>!IsEmpty(Container(9009).ListItem.Label)</visible>
 						<label>$LOCALIZE[132] ($INFO[Container(9009).NumItems])</label>
-						<onclick>noop</onclick>
+						<onclick>SetProperty(SearchAlbums,True,home)</onclick>
+						<onclick>ClearProperty(SearchTVShows,Home)</onclick>
+						<onclick>ClearProperty(SearchEpisodes,Home)</onclick>
+						<onclick>ClearProperty(SearchClips,Home)</onclick>
+						<onclick>ClearProperty(SearchArtists,Home)</onclick>
+						<onclick>ClearProperty(SearchMovies,Home)</onclick>
+						<onclick>ClearProperty(SearchSongs,Home)</onclick>
+						<onclick>SetFocus(9009)</onclick>
 						<icon>-</icon>
 					</item>
 
@@ -136,7 +180,14 @@
 					<item id="8">
 						<visible>!IsEmpty(Container(9010).ListItem.Label)</visible>
 						<label>$LOCALIZE[134] ($INFO[Container(9010).NumItems])</label>
-						<onclick>noop</onclick>
+						<onclick>SetProperty(SearchSongs,True,home)</onclick>
+						<onclick>ClearProperty(SearchTVShows,Home)</onclick>
+						<onclick>ClearProperty(SearchEpisodes,Home)</onclick>
+						<onclick>ClearProperty(SearchClips,Home)</onclick>
+						<onclick>ClearProperty(SearchArtists,Home)</onclick>
+						<onclick>ClearProperty(SearchAlbums,Home)</onclick>
+						<onclick>ClearProperty(SearchMovies,Home)</onclick>
+						<onclick>SetFocus(9010)</onclick>
 						<icon>-</icon>
 					</item>
 
@@ -145,9 +196,15 @@
 						<visible>!IsEmpty(Container(9001).ListItem.Label) | !IsEmpty(Container(9002).ListItem.Label) | !IsEmpty(Container(9004).ListItem.Label) | !IsEmpty(Container(9012).ListItem.Label) | !IsEmpty(Container(9008).ListItem.Label) | !IsEmpty(Container(9009).ListItem.Label) | !IsEmpty(Container(9010).ListItem.Label)</visible>
 						<label>[B]$LOCALIZE[42030][/B]</label>
 						<onclick>Control.Message(10,click)</onclick>
+						<onclick>ClearProperty(SearchMovies,Home)</onclick>
+						<onclick>ClearProperty(SearchTVShows,Home)</onclick>
+						<onclick>ClearProperty(SearchEpisodes,Home)</onclick>
+						<onclick>ClearProperty(SearchClips,Home)</onclick>
+						<onclick>ClearProperty(SearchArtists,Home)</onclick>
+						<onclick>ClearProperty(SearchAlbums,Home)</onclick>
+						<onclick>ClearProperty(SearchSongs,Home)</onclick>
+						<onclick>SetProperty(SearchKeyboard,True,home)</onclick>
 						<onclick>SetFocus(9000,0)</onclick>
-						<onclick>SetFocus(4000)</onclick>
-						<!--<onclick>Plex.ActivateWindow(10051)</onclick>-->
 						<icon>-</icon>
 					</item>
 				</content>
@@ -223,7 +280,7 @@
 
 				<!-- Movies -->
 				<control type="group" id="7001">
-					<visible>Container(9000).HasFocus(1) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !Control.IsVisible(7008) + !Control.IsVisible(7009) + !Control.IsVisible(7010) + !IsEmpty(Control(9001).ListItem.label)]</visible> <!-- Container(9000).HasFocus(1) |  -->
+					<visible>!IsEmpty(Window(home).Property(SearchMovies)) | [Container(9000).HasFocus(1) + IsEmpty(Window(home).Property(SearchMovies)) + IsEmpty(Window(home).Property(SearchTVShows)) + IsEmpty(Window(home).Property(SearchEpisodes)) + IsEmpty(Window(home).Property(SearchClips)) + IsEmpty(Window(home).Property(SearchArtists)) + IsEmpty(Window(home).Property(SearchAlbums)) + IsEmpty(Window(home).Property(SearchSongs))]</visible> <!-- Container(9000).HasFocus(1) |  -->
 					<include>SettingsFadeEffect</include>
 
 					<control type="panel" id="9001">
@@ -237,6 +294,7 @@
 						<onright>noop</onright>
 						<onup>9001</onup>
 						<ondown>9001</ondown>
+						<onback>ActivateWindow(home)</onback>
 						<orientation>vertical</orientation>
 						<viewtype label="535">list</viewtype>
 						
@@ -317,7 +375,7 @@
 
 				<!-- TV Shows -->
 				<control type="group" id="7002">
-					<visible>Container(9000).HasFocus(2) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7004) + !Control.IsVisible(7008) + !Control.IsVisible(7009) + !Control.IsVisible(7010) + !IsEmpty(Container(9002).ListItem.Label)]</visible> <!-- Container(9000).HasFocus(2)  |  -->
+					<visible>!IsEmpty(Window(home).Property(SearchTVShows)) | [Container(9000).HasFocus(2) + IsEmpty(Window(home).Property(SearchMovies)) + IsEmpty(Window(home).Property(SearchTVShows)) + IsEmpty(Window(home).Property(SearchEpisodes)) + IsEmpty(Window(home).Property(SearchClips)) + IsEmpty(Window(home).Property(SearchArtists)) + IsEmpty(Window(home).Property(SearchAlbums)) + IsEmpty(Window(home).Property(SearchSongs))]</visible> <!-- Container(9000).HasFocus(2)  |  -->
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9002">
 						<posx>0</posx>
@@ -409,7 +467,7 @@
 
 				<!-- Episodes -->
 				<control type="group" id="7004">
-					<visible>Container(9000).HasFocus(4) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !Control.IsVisible(7008) + !Control.IsVisible(7009) + !Control.IsVisible(7010) + !IsEmpty(Container(9004).ListItem.Label)]</visible>
+					<visible>!IsEmpty(Window(home).Property(SearchEpisodes)) | [Container(9000).HasFocus(4) + IsEmpty(Window(home).Property(SearchMovies)) + IsEmpty(Window(home).Property(SearchTVShows)) + IsEmpty(Window(home).Property(SearchEpisodes)) + IsEmpty(Window(home).Property(SearchClips)) + IsEmpty(Window(home).Property(SearchArtists)) + IsEmpty(Window(home).Property(SearchAlbums)) + IsEmpty(Window(home).Property(SearchSongs))]</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9004">
 						<posx>0</posx>
@@ -553,7 +611,7 @@
 
 				<!-- Artists -->
 				<control type="group" id="7008">
-					<visible>Container(9000).HasFocus(6) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !Control.IsVisible(7009) + !Control.IsVisible(7010) + !IsEmpty(Container(9008).ListItem.Label)]</visible>
+					<visible>!IsEmpty(Window(home).Property(SearchArtists)) | [Container(9000).HasFocus(6) + IsEmpty(Window(home).Property(SearchMovies)) + IsEmpty(Window(home).Property(SearchTVShows)) + IsEmpty(Window(home).Property(SearchEpisodes)) + IsEmpty(Window(home).Property(SearchClips)) + IsEmpty(Window(home).Property(SearchArtists)) + IsEmpty(Window(home).Property(SearchAlbums)) + IsEmpty(Window(home).Property(SearchSongs))]</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9008">
 						<posx>0</posx>
@@ -668,7 +726,7 @@
 
 				<!-- Albums -->
 				<control type="group" id="7009">
-					<visible>Container(9000).HasFocus(7) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !Control.IsVisible(7008) + !Control.IsVisible(7010) + !IsEmpty(Container(9009).ListItem.Label)]</visible>
+					<visible>!IsEmpty(Window(home).Property(SearchAlbums)) | [Container(9000).HasFocus(7) + IsEmpty(Window(home).Property(SearchMovies)) + IsEmpty(Window(home).Property(SearchTVShows)) + IsEmpty(Window(home).Property(SearchEpisodes)) + IsEmpty(Window(home).Property(SearchClips)) + IsEmpty(Window(home).Property(SearchArtists)) + IsEmpty(Window(home).Property(SearchAlbums)) + IsEmpty(Window(home).Property(SearchSongs))]</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9009">
 						<posx>0</posx>
@@ -760,7 +818,7 @@
 
 				<!-- Songs -->
 				<control type="group" id="7010">
-					<visible>Container(9000).HasFocus(8) | [ControlGroup(4000).HasFocus + !Control.IsVisible(7001) + !Control.IsVisible(7002) + !Control.IsVisible(7004) + !Control.IsVisible(7008) + !Control.IsVisible(7009) + !IsEmpty(Container(9010).ListItem.Label)]</visible>
+					<visible>!IsEmpty(Window(home).Property(SearchSongs)) | [Container(9000).HasFocus(8) + IsEmpty(Window(home).Property(SearchMovies)) + IsEmpty(Window(home).Property(SearchTVShows)) + IsEmpty(Window(home).Property(SearchEpisodes)) + IsEmpty(Window(home).Property(SearchClips)) + IsEmpty(Window(home).Property(SearchArtists)) + IsEmpty(Window(home).Property(SearchAlbums)) + IsEmpty(Window(home).Property(SearchSongs))]</visible>
 					<include>SettingsFadeEffect</include>
 					<control type="panel" id="9010">
 						<posx>0</posx>
@@ -894,8 +952,12 @@
 
 		<!-- Search Keyboard -->
 		<control type="group">
-			<animation effect="fade" start="90" end="0" time="200" condition="!ControlGroup(4000).HasFocus">Conditional</animation>
-			<animation effect="fade" start="0" end="90" time="200" condition="ControlGroup(4000).HasFocus">Conditional</animation>
+			<posx>-1920</posx>
+			<posy>-1080</posy>
+			<!--<visible>!IsEmpty(Window(home).Property(SearchKeyboard))</visible>-->
+			<animation effect="fade" start="90" end="0" time="200" condition="IsEmpty(Window(home).Property(SearchKeyboard)) + !ControlGroup(4000).HasFocus">Conditional</animation>
+			<animation effect="fade" start="0" end="90" time="200" condition="!IsEmpty(Window(home).Property(SearchKeyboard)) | ControlGroup(4000).HasFocus">Conditional</animation>
+			<animation effect="slide" start="0,0" end="1920,1080" time="0" condition="!IsEmpty(Window(home).Property(SearchKeyboard)) | ControlGroup(4000).HasFocus">Conditional</animation>
 			
 			<control type="image">
 				<posx>530</posx>
@@ -928,7 +990,32 @@
 				<emptycolor>FF555555</emptycolor>
 				<aligny>center</aligny>
 				<pagecontrol>300</pagecontrol>
+				<onclick>noop</onclick>
 			</control>
+			
+			<!-- Mouse trigger -->
+			<control type="button" id="4050">
+				<description>Search</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>1920</width>
+				<height>1080</height>
+				<texturefocus>-</texturefocus>
+				<texturenofocus>-</texturenofocus>				
+			</control>
+			<control type="scrollbar" id="9081">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1920</width>
+			<height>1080</height>
+			<texturesliderbackground>-</texturesliderbackground>
+			<texturesliderbar>-</texturesliderbar>
+			<texturesliderbarfocus>-</texturesliderbarfocus>
+			<showonepage>false</showonepage>
+			<orientation>vertical</orientation>
+		</control>
+			
+			
 			<control type="group" id="4000">
 				<posx>560</posx>
 				<posy>339</posy>
@@ -938,17 +1025,22 @@
 				<!-- Row 1 -->
 				<control type="grouplist" id="350">
 					<orientation>horizontal</orientation>
+					<onleft>ClearProperty(SearchKeyboard,Home)</onleft>
 					<onleft>5100</onleft>
+					<onright>ClearProperty(SearchKeyboard,Home)</onright>
 					<onright>5100</onright>
 
 					<!-- 1 Key -->
 					<control type="button" id="92">
 						<description>'1' button</description>
 						<posx>126</posx>
+						<onleft>ClearProperty(SearchKeyboard,Home)</onleft>
 						<onleft>5100</onleft>
 						<onright>50</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>81</ondown>
+						<onclick>SetProperty(SearchKeyboard,True,home)</onclick>
 						<label>[B]1[/B]</label>
 						<include>Objects_SingleKeyOff</include>
 					</control>
@@ -959,6 +1051,7 @@
 						<posx>189</posx>
 						<onleft>49</onleft>
 						<onright>51</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>87</ondown>
 						<label>[B]2[/B]</label>
@@ -971,6 +1064,7 @@
 						<posx>252</posx>
 						<onleft>50</onleft>
 						<onright>52</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>69</ondown>
 						<label>[B]3[/B]</label>
@@ -983,6 +1077,7 @@
 						<posx>315</posx>
 						<onleft>51</onleft>
 						<onright>53</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>82</ondown>
 						<label>[B]4[/B]</label>
@@ -995,6 +1090,7 @@
 						<posx>378</posx>
 						<onleft>52</onleft>
 						<onright>54</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>84</ondown>
 						<label>[B]5[/B]</label>
@@ -1007,6 +1103,7 @@
 						<posx>441</posx>
 						<onleft>53</onleft>
 						<onright>55</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>89</ondown>
 						<label>[B]6[/B]</label>
@@ -1019,6 +1116,7 @@
 						<posx>504</posx>
 						<onleft>54</onleft>
 						<onright>56</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>85</ondown>
 						<label>[B]7[/B]</label>
@@ -1031,6 +1129,7 @@
 						<posx>567</posx>
 						<onleft>55</onleft>
 						<onright>57</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>73</ondown>
 						<label>[B]8[/B]</label>
@@ -1043,6 +1142,7 @@
 						<posx>630</posx>
 						<onleft>56</onleft>
 						<onright>48</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>79</ondown>
 						<label>[B]9[/B]</label>
@@ -1054,7 +1154,9 @@
 						<description>'0' button</description>
 						<posx>693</posx>
 						<onleft>57</onleft>
+						<onright>ClearProperty(SearchKeyboard,Home)</onright>
 						<onright>5100</onright>
+						<onup>ClearProperty(SearchKeyboard,Home)</onup>
 						<onup>5100</onup>
 						<ondown>80</ondown>
 						<label>[B]0[/B]</label>
@@ -1066,7 +1168,9 @@
 				<control type="grouplist">
 					<orientation>horizontal</orientation>
 					<posy>80</posy>
+					<onleft>ClearProperty(SearchKeyboard,Home)</onleft>
 					<onleft>5100</onleft>
+					<onright>ClearProperty(SearchKeyboard,Home)</onright>
 					<onright>5100</onright>
 
 					<!-- Q Key -->
@@ -1194,7 +1298,9 @@
 				<control type="grouplist">
 					<orientation>horizontal</orientation>
 					<posy>160</posy>
+					<onleft>ClearProperty(SearchKeyboard,Home)</onleft>
 					<onleft>5100</onleft>
+					<onright>ClearProperty(SearchKeyboard,Home)</onright>
 					<onright>5100</onright>
 
 					<!-- A Key -->
@@ -1322,7 +1428,9 @@
 				<control type="grouplist">
 					<orientation>horizontal</orientation>
 					<posy>240</posy>
+					<onleft>ClearProperty(SearchKeyboard,Home)</onleft>
 					<onleft>5100</onleft>
+					<onright>ClearProperty(SearchKeyboard,Home)</onright>
 					<onright>5100</onright>
 
 					<!-- Z Key -->
@@ -1418,6 +1526,7 @@
 						<texturenofocus border="4">empty.png</texturenofocus>
 						<label>20181</label>
 						<onleft>77</onleft>
+						<onright>ClearProperty(SearchKeyboard,Home)</onright>
 						<onright>5100</onright>
 						<onup>76</onup>
 						<ondown>300</ondown>
@@ -1429,7 +1538,9 @@
 				<control type="grouplist">
 					<orientation>horizontal</orientation>
 					<posy>320</posy>
+					<onleft>ClearProperty(SearchKeyboard,Home)</onleft>
 					<onleft>5100</onleft>
+					<onright>ClearProperty(SearchKeyboard,Home)</onright>
 					<onright>5100</onright>
 					<control type="button" id="32">
 						<posx>126</posx>
@@ -1438,9 +1549,11 @@
 						<texturefocus border="4">listselect_fo.png</texturefocus>
 						<texturenofocus border="4">empty.png</texturenofocus>
 						<label>$LOCALIZE[20182]</label>
+						<onleft>ClearProperty(SearchKeyboard,Home)</onleft>
 						<onleft>5100</onleft>
 						<onright>305</onright>
 						<onup>90</onup>
+						<ondown>ClearProperty(SearchKeyboard,Home)</ondown>
 						<ondown>5100</ondown>
 						<include>Objects_KeyOffVars</include>
 					</control>
@@ -1448,9 +1561,12 @@
 					<control type="button" id="13">
 						<label>$LOCALIZE[20177]</label>
 						<onleft>306</onleft>
+						<onright>ClearProperty(SearchKeyboard,Home)</onright>
 						<onright>5100</onright>
 						<onup>77</onup>
+						<ondown>ClearProperty(SearchKeyboard,Home)</ondown>
 						<ondown>5100</ondown>
+						<onclick>ClearProperty(SearchKeyboard,Home)</onclick>
 						<onclick>SetFocus(5100,1)</onclick>
 						<include>Objects_DoubleKeyOff</include>
 					</control>
