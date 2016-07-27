@@ -94,13 +94,15 @@
 				<itemgap>70</itemgap>
 				<onleft condition="!IsEmpty(Window(Home).Property(ViewTypeMenu))">9000</onleft>
 				<onleft condition="!IsEmpty(Window(Home).Property(OptionsMenu))">200</onleft>
+				<onleft condition="!IsEmpty(Window(Home).Property(VideoExtrasMenu))">3</onleft>
 				<onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">SetProperty(MediaMenu,True,home)</onleft>
 				<onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">1300</onleft>
 				<onleft condition="Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)">200</onleft>
-				<onright condition="IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu))">ClearProperty(MediaMenu,Home)</onright>
-				<onright condition="IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu))">50</onright>
+				<onright condition="IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))">ClearProperty(MediaMenu,Home)</onright>
+				<onright condition="IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))">50</onright>
 				<onright condition="!IsEmpty(Window(Home).Property(ViewTypeMenu))">ClearProperty(ViewTypeMenu,Home)</onright>
 				<onright condition="!IsEmpty(Window(Home).Property(OptionsMenu))">ClearProperty(OptionsMenu,Home)</onright>
+				<onright condition="!IsEmpty(Window(Home).Property(VideoExtrasMenu))">ClearProperty(VideoExtrasMenu,Home)</onright>
 				<onup>9050</onup>
 				<ondown>9050</ondown>
 				<onback>ClearProperty(MediaMenu,Home)</onback>
@@ -156,28 +158,29 @@
 					<item>
 						<label>↸</label>
 						<onclick>ActivateWindow(home)</onclick>
-						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu))]</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))]</visible>
 					</item>
 
 					<!-- Play All -->
 					<item>
 						<label></label>
 						<onclick>Plex.PlayAll()</onclick>
-						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu))] + [[![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)] | Skin.String(SectionType,playqueue)]</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + [[![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)] | Skin.String(SectionType,playqueue)]</visible>
 					</item>
 
 					<!-- Shuffle All -->
 					<item>
 						<label></label>
 						<onclick>Plex.ShuffleAll()</onclick>
-						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu))] + [[![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)] | Skin.String(SectionType,playqueue)]</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + [[![Window.IsActive(501) + Container.PlexFilter(recentlyAdded)] + !Container.PlexFilter(recentlyViewedShows)] | Skin.String(SectionType,playqueue)]</visible>
 					</item>
 
 					<!-- Video Extras -->
 					<item>
 						<label></label>
-						<onclick>Control.SetFocus(300)</onclick>
-						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu))] + !IsEmpty(Container.Property(PlexExtras))</visible>
+						<onclick>SetProperty(VideoExtrasMenu,True,home)</onclick>
+						<onclick>Control.SetFocus(3)</onclick>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + !IsEmpty(Container.Property(PlexExtras))</visible>
 					</item>
 
 					<!-- Change Viewtype -->				
@@ -185,7 +188,7 @@
 						<onclick>SetProperty(ViewTypeMenu,True,home)</onclick>
 						<onclick>Control.SetFocus(9000)</onclick>
 						<label></label>
-						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu))] + !Skin.String(SectionType,playqueue)</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + !Skin.String(SectionType,playqueue)</visible>
 					</item>
 
 					<!-- Options Button -->
@@ -193,7 +196,7 @@
 						<onclick>SetProperty(OptionsMenu,True,home)</onclick>
 						<onclick>Control.SetFocus(202)</onclick>	
 						<label></label>
-						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu))] + [![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums) | Container.Content(songs) | Skin.String(SectionType,shared)]]</visible>
+						<visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + [![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums) | Container.Content(songs) | Skin.String(SectionType,shared)]]</visible>
 					</item>
 
 				</content>
@@ -611,7 +614,7 @@
 
 			<!-- Options Menu -->
 			<control type="grouplist" id="200">
-				<visible>[ControlGroup(200).HasFocus | [!IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu))] | [Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]] + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus</visible>
+				<visible>[[ControlGroup(200).HasFocus + IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))] | [!IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))] | [Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]] + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + IsEmpty(Window(Home).Property(VideoExtrasMenu)</visible>
 				<posx>0</posx>
 				<posy>100</posy>
 				<zorder>10</zorder>
@@ -2043,7 +2046,7 @@
 
 			<!-- Video Extras Menu -->
 			<control type="group" id="300">
-				<visible allowhiddenfocus="true">ControlGroup(300).HasFocus</visible>
+				<visible>!IsEmpty(Window(Home).Property(VideoExtrasMenu))</visible>
 				<posx>0</posx>
 				<posy>160</posy>
 				<zorder>10</zorder>
@@ -2066,8 +2069,10 @@
 					<orientation>vertical</orientation>
 					<width>350</width>
 					<height>940</height>
+					<onleft>ClearProperty(VideoExtrasMenu,Home)</onleft>
 					<onleft>9050</onleft>
-					<onright>9050</onright>
+					<onright>SetFocus(9050,0)</onright>
+					<onback>ClearProperty(VideoExtrasMenu,Home)</onback>
 					<onback>9050</onback>
 					<onup>3</onup>
 					<ondown>3</ondown>
