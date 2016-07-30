@@ -555,7 +555,37 @@
 						<font>font12</font>
 						<aligny>center</aligny>
 						<label>$VAR[Widget_OnDeckRating] [B]•[/B] </label>
-						<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11001).ListItem.Property(ratingImage)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+						<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + IsEmpty(Container(11001).ListItem.Property(ratingType)) + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+					</control>
+					
+					<!-- IMDb Rating -->
+					<control type="label">
+						<width min="20" max="299">auto</width>
+						<height>23</height>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<label>$INFO[Container(11001).ListItem.Property(rating)] </label>
+						<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + StringCompare(Container(11001).ListItem.Property(ratingType),imdb) + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+					</control>
+					<control type="image">
+						<width>47</width>
+						<height>23</height>
+						<aligny>center</aligny>
+						<texture>$INFO[Container(11001).ListItem.Property(ratingImage)]</texture>
+						<aspectratio align="left" aligny="center">keep</aspectratio>
+						<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + StringCompare(Container(11001).ListItem.Property(ratingType),imdb) + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+					</control>
+					<control type="label">
+						<width min="20" max="299">auto</width>
+						<height>23</height>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<label> [B]•[/B] </label>
+						<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + StringCompare(Container(11001).ListItem.Property(ratingType),imdb) + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
 					</control>
 
 					<!-- Rotten Tomato Ratings -->
@@ -565,7 +595,7 @@
 						<aligny>center</aligny>
 						<texture>$INFO[Container(11001).ListItem.Property(ratingImage)]</texture>
 						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(ratingImage)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						<visible>Control.IsVisible(11001) + StringCompare(Container(11001).ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
 					</control>
 					<control type="label">
 						<height>23</height>
@@ -573,7 +603,7 @@
 						<aligny>center</aligny>
 						<font>font12</font>
 						<label>$INFO[Container(11001).ListItem.Property(ratingPercent)]%  </label>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(ratingImage)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						<visible>Control.IsVisible(11001) + StringCompare(Container(11001).ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
 					</control>
 					<control type="image">
 						<width>23</width>
@@ -581,7 +611,7 @@
 						<aligny>center</aligny>
 						<texture>$INFO[Container(11001).ListItem.Property(audienceRatingImage)]</texture>
 						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(ratingImage)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						<visible>Control.IsVisible(11001) + StringCompare(Container(11001).ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
 					</control>
 					<control type="label">
 						<height>23</height>
@@ -589,7 +619,7 @@
 						<font>font12</font>
 						<aligny>center</aligny>
 						<label>$INFO[Container(11001).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(ratingImage)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						<visible>Control.IsVisible(11001) + StringCompare(Container(11001).ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11001).ListItem.Property(hasUserRating))</visible>
 					</control>
 
 					<!-- Duration On Deck -->
@@ -1195,7 +1225,19 @@
 						<font>font12</font>
 						<aligny>center</aligny>
 						<label>$VAR[Widget_OnDeckRating] [B]•[/B] </label>
-						<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + [IsEmpty(Container(11001).ListItem.Property(ratingImage)) | Skin.HasSetting(General.HideRottenTomatoesRating)] + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+						<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
+					</control>
+					
+					<!-- IMDb Rating -->
+					<control type="label">
+						<width min="20" max="285">auto</width>
+						<height>23</height>
+						<textcolor>white2</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<font>font12</font>
+						<aligny>center</aligny>
+						<label>$VAR[Widget_OnDeckRating] [B]•[/B] </label>
+						<visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
 					</control>
 
 					<!-- Rotten Tomato Ratings -->
@@ -1205,7 +1247,7 @@
 						<aligny>center</aligny>
 						<texture>$INFO[Container(11001).ListItem.Property(ratingImage)]</texture>
 						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(ratingImage)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						<visible>Control.IsVisible(11001) + StringCompare(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 					</control>
 					<control type="label">
 						<height>23</height>
@@ -1213,7 +1255,7 @@
 						<aligny>center</aligny>
 						<font>font12</font>
 						<label>$INFO[Container(11001).ListItem.Property(ratingPercent)]%  </label>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(ratingImage)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						<visible>Control.IsVisible(11001) + StringCompare(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 					</control>
 					<control type="image">
 						<width>23</width>
@@ -1221,7 +1263,7 @@
 						<aligny>center</aligny>
 						<texture>$INFO[Container(11001).ListItem.Property(audienceRatingImage)]</texture>
 						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(ratingImage)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						<visible>Control.IsVisible(11001) + StringCompare(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 					</control>
 					<control type="label">
 						<height>23</height>
@@ -1229,7 +1271,7 @@
 						<font>font12</font>
 						<aligny>center</aligny>
 						<label>$INFO[Container(11001).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
-						<visible>Control.IsVisible(11001) + !IsEmpty(Container(11001).ListItem.Property(ratingImage)) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
+						<visible>Control.IsVisible(11001) + StringCompare(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + !Skin.HasSetting(General.HideRottenTomatoesRating)</visible>
 					</control>
 
 					<!-- Duration On Deck -->
