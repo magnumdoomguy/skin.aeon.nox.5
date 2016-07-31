@@ -504,7 +504,7 @@
 						
 						<!-- User Rating -->
 						<control type="button">
-							<label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[CR]$VAR[RatingVar][/COLOR]</label>
+							<label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[42421]:[CR]$VAR[RatingVar][/COLOR]</label>
 							<width>251</width>
 							<include>ShowCaseInfoPanelButtonsValues</include>
 							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
@@ -515,12 +515,47 @@
 							<label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</label>	
 							<width>251</width>
 							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+						</control>
+						
+						<!-- IMDb Rating -->
+						<control type="grouplist">
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb)</visible>
+							<orientation>vertical</orientation>
+							<posx>15</posx>
+							
+							<control type="label">
+								<label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR]</label>	
+								<width>251</width>
+								<height>45</height>
+								<aligny>top</aligny>
+								<font>font14</font>
+								<textcolor>grey2</textcolor>
+							</control>
+						
+							<control type="grouplist">
+								<orientation>horizontal</orientation>
+								<control type="label">
+									<height>40</height>
+									<width min="20" max="121">auto</width>
+									<aligny>center</aligny>
+									<font>font14</font>
+									<textcolor>grey2</textcolor>
+									<label>$INFO[ListItem.Property(rating)] </label>
+								</control>
+								<control type="image">
+									<width>51</width>
+									<height>40</height>
+									<aligny>center</aligny>
+									<texture>imdb_78x40.png</texture>
+									<aspectratio align="left" aligny="center">keep</aspectratio>
+								</control>
+							</control>
 						</control>
 						
 						<!-- Rotten Tomatoes Rating -->
 						<control type="grouplist">
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),rottentomatoes)</visible>
 							<orientation>vertical</orientation>
 							<posx>15</posx>
 							
@@ -542,7 +577,6 @@
 									<aligny>center</aligny>
 									<texture>$INFO[ListItem.Property(ratingImage)]</texture>
 									<aspectratio align="left" aligny="center">keep</aspectratio>
-									<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
 								</control>
 								<control type="label">
 									<height>40</height>
@@ -551,7 +585,6 @@
 									<font>font14</font>
 									<textcolor>grey2</textcolor>
 									<label>$INFO[ListItem.Property(ratingPercent)]%  </label>
-									<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
 								</control>
 								<control type="image">
 									<width>32</width>
@@ -559,7 +592,6 @@
 									<aligny>center</aligny>
 									<texture>$INFO[ListItem.Property(audienceRatingImage)]</texture>
 									<aspectratio align="left" aligny="center">keep</aspectratio>
-									<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
 								</control>
 								<control type="label">
 									<height>40</height>
@@ -568,7 +600,6 @@
 									<font>font14</font>
 									<textcolor>grey2</textcolor>
 									<label>$INFO[ListItem.Property(audienceRatingPercent)]%</label>
-									<visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
 								</control>
 							</control>
 						</control>
