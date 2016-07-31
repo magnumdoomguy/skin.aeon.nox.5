@@ -431,7 +431,7 @@
 		<value condition="StringCompare(Container(11001).ListItem.Duration,480)">8 [LOWERCASE]$LOCALIZE[42262][/LOWERCASE]</value>
 		<value>$INFO[Container(11001).ListItem.Duration] [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
 	</variable>
-	
+
 	<!-- On Deck: Rating -->
 	<variable name="Widget_OnDeckRating">
 		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,10.0)">10</value>
@@ -447,7 +447,7 @@
 		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,0.0)">0</value>
 		<value>$INFO[Container(11001).ListItem.RatingAndVotes]</value>
 	</variable>
-	
+
 	<!-- On Deck: Thumbnail -->
 	<variable name="Widget_OnDeckThumbnail">
 		<value condition="Container(11001).ListItem.Type(episode) + Skin.HasSetting(Disable.UnwatchedPlot) + [Container(11001).ListItem.Status(unwatched) | Container(11001).ListItem.Status(inprogress)]">$INFO[Container(11001).ListItem.Art(fanart)]</value>
@@ -459,7 +459,7 @@
 		<value condition="Container(11001).ListItem.Type(episode) + Skin.HasSetting(Disable.UnwatchedPlot) + [Container(11001).ListItem.Status(unwatched) | Container(11001).ListItem.Status(inprogress)]">$INFO[ListItem.Art(fanart)]</value>
 		<value>$INFO[ListItem.Art(thumb)]</value>
 	</variable>
-	
+
 	<!-- On Deck: User Rating -->
 	<variable name="Widget_OnDeckUserRating">
 		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,10.0)">10</value>
@@ -475,7 +475,7 @@
 		<value condition="StringCompare(Container(11001).ListItem.RatingAndVotes,0.0)">0</value>
 		<value>$INFO[Container(11001).ListItem.RatingAndVotes]</value>
 	</variable>
-	
+
 	<!-- Variables: Recently Added -->
 
 	<!-- Recently Added: Duration -->
@@ -906,7 +906,7 @@
 		<value condition="StringCompare(Container(11000).ListItem.Duration,480)">8 [LOWERCASE]$LOCALIZE[42262][/LOWERCASE]</value>
 		<value>$INFO[Container(11000).ListItem.Duration] [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
 	</variable>
-	
+
 	<!-- Recently Added: Rating -->
 	<variable name="Widget_RecentlyAddedRating">
 		<value condition="StringCompare(Container(11000).ListItem.RatingAndVotes,10.0)">10</value>
@@ -922,7 +922,7 @@
 		<value condition="StringCompare(Container(11000).ListItem.RatingAndVotes,0.0)">0</value>
 		<value>$INFO[Container(11000).ListItem.RatingAndVotes]</value>
 	</variable>
-	
+
 	<!-- Recently Added: Thumbnail -->
 	<variable name="Widget_RecentlyAddedThumbnail">
 		<value condition="Container(11000).ListItem.Type(episode) + Skin.HasSetting(Disable.UnwatchedPlot) + [Container(11000).ListItem.Status(unwatched) | Container(11000).ListItem.Status(inprogress)]">$INFO[Container(11000).ListItem.Art(fanart)]</value>
@@ -952,7 +952,7 @@
 	</variable>
 
 	<!-- Recommended -->
-	
+
 	<!-- Recommended: Duration -->
 	<variable name="Recommended_Duration">
 		<value condition="!IntegerGreaterThan(Container(11004).ListItem.Duration,59)">$INFO[Container(11004).ListItem.Duration,, $LOCALIZE[12391]]</value>
@@ -1379,7 +1379,7 @@
 		<value condition="StringCompare(Container(11004).ListItem.Duration,480)">8 [LOWERCASE]$LOCALIZE[42262][/LOWERCASE]</value>
 		<value>$INFO[Container(11004).ListItem.Duration] [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
 	</variable>
-	
+
 	<!-- Watch Later -->
 
 	<!-- Watch Later: Duration -->
@@ -2392,4 +2392,131 @@
 		</control>
 	</include>	
 
+	<!-- Recently Added Infoline -->
+	<include name="RecentlyAdded_Infoline">
+	
+		<!-- Year -->
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>23</height>
+			<aligny>center</aligny>
+			<font>font12</font>
+			<textcolor>white2</textcolor>
+			<shadowcolor>black</shadowcolor>
+			<label>$INFO[Container(11000).ListItem.Year] [B]•[/B] </label>
+			<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Year) + Container(11000).ListItem.Type(movie)</visible>
+		</control>
+
+		<!-- Date -->
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>23</height>
+			<aligny>center</aligny>
+			<font>font12</font>
+			<textcolor>white2</textcolor>
+			<shadowcolor>black</shadowcolor>
+			<label>$INFO[Container(11000).ListItem.Date] [B]•[/B] </label>
+			<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Date) + [Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(clip)]</visible>
+		</control>
+
+		<!-- User Rating -->
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>23</height>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<font>font12</font>
+			<shadowcolor>black</shadowcolor>
+			<aligny>center</aligny>
+			<label>$VAR[Widget_RecentlyAddedUserRating] [COLOR white2][B]•[/B][/COLOR] </label>
+			<visible>Control.IsVisible(11000) + !IsEmpty(Container(11000).ListItem.Property(hasUserRating))</visible>
+		</control>
+
+		<!-- Standard Rating -->
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>23</height>
+			<textcolor>white2</textcolor>
+			<shadowcolor>black</shadowcolor>
+			<font>font12</font>
+			<aligny>center</aligny>
+			<label>$VAR[Widget_RecentlyAddedRating] [B]•[/B] </label>
+			<visible>Control.IsVisible(11000) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + IsEmpty(Container(11000).ListItem.Property(ratingType)) + !IsEmpty(Container(11000).ListItem.RatingAndVotes)</visible>
+		</control>
+		
+		<!-- IMDb Rating -->
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>23</height>
+			<textcolor>white2</textcolor>
+			<shadowcolor>black</shadowcolor>
+			<font>font12</font>
+			<aligny>center</aligny>
+			<label>$INFO[Container(11000).ListItem.Property(rating)] </label>
+			<visible>Control.IsVisible(11000) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + StringCompare(Container(11000).ListItem.Property(ratingType),imdb) + !IsEmpty(Container(11000).ListItem.RatingAndVotes)</visible>
+		</control>
+		<control type="image">
+			<width>47</width>
+			<height>23</height>
+			<aligny>center</aligny>
+			<texture>$INFO[Container(11000).ListItem.Property(ratingImage)]</texture>
+			<aspectratio align="left" aligny="center">keep</aspectratio>
+			<visible>Control.IsVisible(11000) + StringCompare(Container(11000).ListItem.Property(ratingType),imdb) + IsEmpty(Container(11000).ListItem.Property(hasUserRating))</visible>
+		</control>
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>23</height>
+			<textcolor>white2</textcolor>
+			<shadowcolor>black</shadowcolor>
+			<font>font12</font>
+			<aligny>center</aligny>
+			<label> [B]•[/B] </label>
+			<visible>Control.IsVisible(11000) + IsEmpty(Container(11000).ListItem.Property(hasUserRating)) + StringCompare(Container(11000).ListItem.Property(ratingType),imdb) + !IsEmpty(Container(11000).ListItem.RatingAndVotes)</visible>
+		</control>
+
+		<!-- Rotten Tomato Ratings -->
+		<control type="image">
+			<width>23</width>
+			<height>23</height>
+			<aligny>center</aligny>
+			<texture>$INFO[Container(11000).ListItem.Property(ratingImage)]</texture>
+			<aspectratio align="left" aligny="center">keep</aspectratio>
+			<visible>Control.IsVisible(11000) + StringCompare(Container(11000).ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11000).ListItem.Property(hasUserRating))</visible>
+		</control>
+		<control type="label">
+			<height>23</height>
+			<width min="20" max="121">auto</width>
+			<aligny>center</aligny>
+			<font>font12</font>
+			<label>$INFO[Container(11000).ListItem.Property(ratingPercent)]%  </label>
+			<visible>Control.IsVisible(11000) + StringCompare(Container(11000).ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11000).ListItem.Property(hasUserRating))</visible>
+		</control>
+		<control type="image">
+			<width>23</width>
+			<height>23</height>
+			<aligny>center</aligny>
+			<texture>$INFO[Container(11000).ListItem.Property(audienceRatingImage)]</texture>
+			<aspectratio align="left" aligny="center">keep</aspectratio>
+			<visible>Control.IsVisible(11000) + StringCompare(Container(11000).ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11000).ListItem.Property(hasUserRating))</visible>
+		</control>
+		<control type="label">
+			<height>23</height>
+			<width min="20" max="121">auto</width>
+			<font>font12</font>
+			<aligny>center</aligny>
+			<label>$INFO[Container(11000).ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+			<visible>Control.IsVisible(11000) + StringCompare(Container(11000).ListItem.Property(ratingType),rottentomatoes) + IsEmpty(Container(11000).ListItem.Property(hasUserRating))</visible>
+		</control>
+
+		<!-- Duration On Deck -->
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>23</height>
+			<textcolor>white2</textcolor>
+			<font>font12</font>
+			<shadowcolor>black</shadowcolor>
+			<label>$VAR[RecentlyAdded_Duration]</label>
+			<aligny>center</aligny>
+			<visible>Control.IsVisible(11000)</visible>
+		</control>
+	</include>
 </includes>
