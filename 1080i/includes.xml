@@ -75,6 +75,88 @@
 	<include file="Variables_Settings.xml" />
 	<include file="variables_widgets.xml" />	
 
+	<include name="MyVideoNav_InfoLine">
+		<!-- Standard Rating -->
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>30</height>
+			<align>left</align>
+			<aligny>center</aligny>
+			<label>$VAR[RatingVar] [B]•[/B] </label>
+			<font>font13_title</font>
+			<textcolor>white</textcolor>
+			<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+		</control>
+
+		<!-- IMDb Rating -->
+		<control type="image">
+			<width>53</width>
+			<height>30</height>
+			<align>left</align>
+			<aligny>center</aligny>
+			<texture>imdb_53x30.png</texture>
+			<aspectratio align="left" aligny="center">keep</aspectratio>
+			<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+		</control>
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>30</height>
+			<align>left</align>
+			<aligny>center</aligny>
+			<label> $INFO[ListItem.Property(rating)] [B]•[/B] </label>
+			<font>font13_title</font>
+			<textcolor>white</textcolor>
+			<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+		</control>
+
+		<!-- Rotten Tomato Ratings -->
+		<control type="image">
+			<width>30</width>
+			<height>30</height>
+			<align>left</align>
+			<aligny>center</aligny>
+			<texture>$INFO[ListItem.Property(ratingImage)]</texture>
+			<aspectratio align="left" aligny="center">keep</aspectratio>
+			<visible>StringCompare(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+		</control>
+		<control type="label">
+			<height>30</height>
+			<width min="20" max="121">auto</width>
+			<aligny>center</aligny>
+			<font>font13_title</font>
+			<textcolor>white</textcolor>
+			<label>$INFO[ListItem.Property(ratingPercent)]%  </label>
+			<visible>StringCompare(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+		</control>
+		<control type="image">
+			<width>30</width>
+			<height>30</height>
+			<aligny>center</aligny>
+			<texture>$INFO[ListItem.Property(audienceRatingImage)]</texture>
+			<aspectratio align="left" aligny="center">keep</aspectratio>
+			<visible>StringCompare(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+		</control>
+		<control type="label">
+			<height>30</height>
+			<width min="20" max="121">auto</width>
+			<aligny>center</aligny>
+			<font>font13_title</font>
+			<textcolor>white</textcolor>
+			<label>$INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+			<visible>StringCompare(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+		</control>
+
+		<!-- Duration On Deck -->
+		<control type="label">
+			<width min="20" max="299">auto</width>
+			<height>30</height>
+			<label>$VAR[DurationHrMinVar]</label>
+			<aligny>center</aligny>
+			<font>font13_title</font>
+			<textcolor>white</textcolor>
+		</control>
+	</include>	
+
 	<!-- Colour Swatch -->
 	<include name="ColourSwatch">
 		<include condition="StringCompare(Container(3110).ListItem.Label,ffe8e8e8)">ffe8e8e8</include>
@@ -139,7 +221,7 @@
 		<texturefocus>-</texturefocus>
 		<visible>system.getbool(input.enablemouse)</visible>
 	</include>
-	
+
 	<include name="MediaMenuTop"></include>
 
 	<include name="BackgrLabelArtist">
