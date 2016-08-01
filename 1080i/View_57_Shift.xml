@@ -129,8 +129,43 @@
         <control type="group">
             <include>ViewAnimation</include>
             <visible>Control.IsVisible(57) + !Window.IsActive(addoninformation)</visible>
-            <control type="fixedlist" id="57">
-                <posx>-120</posx>
+            
+			<include condition="!system.getbool(input.enablemouse)">PosterShiftFixed</include>
+			<include condition="system.getbool(input.enablemouse)">PosterShiftList</include>
+						
+            <control type="scrollbar" id="61">
+                <posx>0</posx>
+                <posy>970</posy>
+                <width>1920</width>
+                <height>12</height>
+                <onup>57</onup>
+                <ondown>noop</ondown>
+                <texturesliderbackground border="1">-</texturesliderbackground>
+                <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+                <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+                <textureslidernib>-</textureslidernib>
+                <textureslidernibfocus>-</textureslidernibfocus>
+                <showonepage>false</showonepage>
+                <orientation>horizontal</orientation>
+                <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
+            </control>
+        </control>
+    </include>
+	
+	<include name="PosterShiftFixed">
+		<control type="fixedlist" id="57">
+            <include>PosterShiftContent</include>  
+        </control>
+	</include>
+	
+	<include name="PosterShiftList">
+		<control type="list" id="57">
+            <include>PosterShiftContent</include>  
+        </control>
+	</include>
+	
+	<include name="PosterShiftContent">
+		<posx>-120</posx>
                 <posy>300</posy>
                 <width>2100</width>
                 <height>750</height>
@@ -145,7 +180,7 @@
                 <preloaditems>2</preloaditems>
                 <scrolltime tween="quadratic">200</scrolltime>
                 <focusposition>1</focusposition>
-                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(musicvideos) | Container.Content(seasons) | Container.Content(genres) | Container.Content(sets) | Container.Content(addons)</visible>
+                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.PlexContent(channels)</visible>
                 <itemlayout width="315" height="750" condition="!Container.Content(addons)">
                     <include>ShiftPosterThumbs</include>
                 </itemlayout>
@@ -166,25 +201,8 @@
                         <include>ShiftSquareThumbs</include>
                     </control>
                 </focusedlayout>
-            </control>
-            <control type="scrollbar" id="61">
-                <posx>0</posx>
-                <posy>970</posy>
-                <width>1920</width>
-                <height>12</height>
-                <onup>57</onup>
-                <ondown>noop</ondown>
-                <texturesliderbackground border="1">-</texturesliderbackground>
-                <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-                <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-                <textureslidernib>-</textureslidernib>
-                <textureslidernibfocus>-</textureslidernibfocus>
-                <showonepage>false</showonepage>
-                <orientation>horizontal</orientation>
-                <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
-            </control>
-        </control>
-    </include>
+	</include>
+	
     <include name="AlbumShift">
         <control type="group">
             <include>ViewAnimation</include>
