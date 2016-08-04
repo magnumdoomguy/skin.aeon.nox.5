@@ -163,7 +163,102 @@
 					<orientation>horizontal</orientation>
 					<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(788) + !Container.Scrolling">Conditional</animation>
 				</control>
-				<control type="fixedlist" id="728">
+				<control type="group">
+					<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+					<control type="label">
+						<posx>937</posx>
+						<posy>508</posy>
+						<width>787</width>
+						<height>80</height>
+						<font>font_musictit2</font>
+						<align>right</align>
+						<textcolor>white</textcolor>
+						<shadowcolor>black</shadowcolor>
+						<label>$INFO[ListItem.Artist]</label>
+						<scroll>true</scroll>
+						<scrollspeed>50</scrollspeed>
+						<scrollsuffix> - </scrollsuffix>
+					</control>
+
+					<control type="label">
+						<posx>940</posx>
+						<posy>960</posy>
+						<width>915</width>
+						<height>40</height>
+						<align>right</align>
+						<font>font_movietit</font>
+						<scroll>true</scroll>
+						<scrollspeed>50</scrollspeed>
+						<textcolor>white</textcolor>
+						<scrollsuffix> - </scrollsuffix>
+						<shadowcolor>black</shadowcolor>
+						<visible>Container.Content(artists)</visible>
+						<label>$INFO[ListItem.Property(Artist_Genre)]</label>
+					</control>
+					<control type="label">
+						<posx>940</posx>
+						<posy>960</posy>
+						<width>915</width>
+						<height>40</height>
+						<align>right</align>
+						<font>font_movietit</font>
+						<scroll>true</scroll>
+						<scrollspeed>50</scrollspeed>
+						<textcolor>white</textcolor>
+						<scrollsuffix> - </scrollsuffix>
+						<shadowcolor>black</shadowcolor>
+						<visible>Container.Content(albums)</visible>
+						<label>$VAR[FloorLabelVar]</label>
+					</control>
+				</control>
+				<include condition="!system.getbool(input.enablemouse)">Shelf3D_MusicFixed</include>
+				<include condition="system.getbool(input.enablemouse)">Shelf3D_MusicList</include>
+			</control>
+		</control>
+		<control type="label">
+			<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+			<visible>Control.IsVisible(728)</visible>
+			<posx>1495</posx>
+			<posy>525</posy>
+			<width>150</width>
+			<height>40</height>
+			<align>left</align>
+			<font>font_movietit</font>
+			<textcolor>white</textcolor>
+			<shadowcolor>black</shadowcolor>
+			<label>$INFO[ListItem.Year]</label>
+		</control>
+		<control type="label">
+			<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+			<visible>Control.IsVisible(728)</visible>
+			<posx>1490</posx>
+			<posy>525</posy>
+			<width>260</width>
+			<height>40</height>
+			<align>left</align>
+			<font>font_movietit</font>
+			<textcolor>white</textcolor>
+			<shadowcolor>black</shadowcolor>
+			<scroll>true</scroll>
+			<scrollspeed>50</scrollspeed>
+			<scrollsuffix> | </scrollsuffix>
+			<label>$INFO[ListItem.Property(Artist_YearsActive)]</label>
+		</control>
+	</include>
+	
+	<include name="Shelf3D_MusicFixed">
+		<control type="fixedlist" id="728">
+			<include>Shelf3D_MusicContent</include>
+		</control>
+	</include>
+	
+	<include name="Shelf3D_MusicList">
+		<control type="list" id="728">
+			<include>Shelf3D_MusicContent</include>
+		</control>
+	</include>
+	
+	<include name="Shelf3D_MusicContent">
 					<viewtype label="Shelf 3D">list</viewtype>
 					<posx>-18</posx>
 					<posy>380</posy>
@@ -379,85 +474,6 @@
 							</control>
 						</control>
 					</focusedlayout>
-				</control>
-				<control type="group">
-					<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
-					<control type="label">
-						<posx>937</posx>
-						<posy>508</posy>
-						<width>787</width>
-						<height>80</height>
-						<font>font_musictit2</font>
-						<align>right</align>
-						<textcolor>white</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[ListItem.Artist]</label>
-						<scroll>true</scroll>
-						<scrollspeed>50</scrollspeed>
-						<scrollsuffix> - </scrollsuffix>
-					</control>
-
-					<control type="label">
-						<posx>940</posx>
-						<posy>960</posy>
-						<width>915</width>
-						<height>40</height>
-						<align>right</align>
-						<font>font_movietit</font>
-						<scroll>true</scroll>
-						<scrollspeed>50</scrollspeed>
-						<textcolor>white</textcolor>
-						<scrollsuffix> - </scrollsuffix>
-						<shadowcolor>black</shadowcolor>
-						<visible>Container.Content(artists)</visible>
-						<label>$INFO[ListItem.Property(Artist_Genre)]</label>
-					</control>
-					<control type="label">
-						<posx>940</posx>
-						<posy>960</posy>
-						<width>915</width>
-						<height>40</height>
-						<align>right</align>
-						<font>font_movietit</font>
-						<scroll>true</scroll>
-						<scrollspeed>50</scrollspeed>
-						<textcolor>white</textcolor>
-						<scrollsuffix> - </scrollsuffix>
-						<shadowcolor>black</shadowcolor>
-						<visible>Container.Content(albums)</visible>
-						<label>$VAR[FloorLabelVar]</label>
-					</control>
-				</control>
-			</control>
-		</control>
-		<control type="label">
-			<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
-			<visible>Control.IsVisible(728)</visible>
-			<posx>1495</posx>
-			<posy>525</posy>
-			<width>150</width>
-			<height>40</height>
-			<align>left</align>
-			<font>font_movietit</font>
-			<textcolor>white</textcolor>
-			<shadowcolor>black</shadowcolor>
-			<label>$INFO[ListItem.Year]</label>
-		</control>
-		<control type="label">
-			<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
-			<visible>Control.IsVisible(728)</visible>
-			<posx>1490</posx>
-			<posy>525</posy>
-			<width>260</width>
-			<height>40</height>
-			<align>left</align>
-			<font>font_movietit</font>
-			<textcolor>white</textcolor>
-			<shadowcolor>black</shadowcolor>
-			<scroll>true</scroll>
-			<scrollspeed>50</scrollspeed>
-			<scrollsuffix> | </scrollsuffix>
-			<label>$INFO[ListItem.Property(Artist_YearsActive)]</label>
-		</control>
 	</include>
+	
 </includes>
