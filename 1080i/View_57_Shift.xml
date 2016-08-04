@@ -128,7 +128,7 @@
 	<include name="PosterShift">
 		<control type="group">
 			<include>ViewAnimation</include>
-			<visible>Control.IsVisible(57) + !Window.IsActive(addoninformation)</visible>
+			<visible>Control.IsVisible(57)</visible>
 
 			<include condition="!system.getbool(input.enablemouse)">PosterShiftFixed</include>
 			<include condition="system.getbool(input.enablemouse)">PosterShiftList</include>
@@ -160,27 +160,21 @@
 
 	<include name="PosterShiftList">
 		<control type="list" id="57">
-			<include name="PosterShiftContent">
-				<param name="left">15</param>
-				<param name="width">1890</param>
-			</include>  
+			<include>PosterShiftContent</include>
 		</control>
 	</include>
 
-	<include name="PosterShiftContent">
-		<param name="left" default="-120" />
-		<param name="width" default="2100" />
-	
+	<include name="PosterShiftContent">	
 		<definition>
-			<posx>$PARAM[left]</posx>
+			<posx>-120</posx>
 			<posy>300</posy>
-			<width>$PARAM[width]</width>
+			<width>2100</width>
 			<height>750</height>
 			<onup>SetProperty(MediaMenu,True,home)</onup>
 			<onup>SetFocus(9050,0)</onup>
 			<onleft>57</onleft>
 			<onright>57</onright>
-			<ondown>61</ondown>
+			<ondown>noop</ondown>
 			<orientation>horizontal</orientation>
 			<viewtype label="31079">BigWrap</viewtype>
 			<pagecontrol>61</pagecontrol>
