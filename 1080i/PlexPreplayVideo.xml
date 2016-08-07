@@ -178,7 +178,7 @@
 
 						<!-- Display First Aired Date -->
 						<control type="label">
-							<width>290</width>
+							<width min="20" max="290">auto</width>
 							<height>90</height>
 							<align>left</align>
 							<label>[B]$INFO[ListItem.Date][/B]</label>
@@ -187,28 +187,41 @@
 							<visible>Container.Content(episode)</visible>
 						</control>
 
+						<control type="image">
+							<width>20</width>
+							<height>90</height>
+							<texture>-</texture>
+						</control>
+
 						<!-- Separator between items -->
 						<control type="image">
 							<width>2</width>
 							<height>90</height>
 							<texture border="1">separator3.png</texture>
+						</control>
+
+						<control type="image">
+							<width>20</width>
+							<height>90</height>
+							<texture>-</texture>
 						</control>
 
 						<!-- Content Rating -->
-						<control type="group">
-							<width>279</width>
+
+						<control type="image">
+							<width>249</width>
 							<height>90</height>
-							<align>center</align>
-							<aligny>center</aligny>
-							<control type="image">
-								<width>249</width>
-								<height>90</height>
-								<fadetime>250</fadetime>
-								<animation effect="fade" time="200">VisibleChange</animation>
-								<bordersize>2</bordersize>
-								<texture align="center" aligny="center" fallback="flags/mpaa_descriptions/NR.png">$VAR[MPAAFlag_Description]</texture>
-								<aspectratio align="center" aligny="center">keep</aspectratio>
-							</control>
+							<fadetime>250</fadetime>
+							<animation effect="fade" time="200">VisibleChange</animation>
+							<bordersize>2</bordersize>
+							<texture align="center" aligny="center" fallback="flags/mpaa_descriptions/NR.png">$VAR[MPAAFlag_Description]</texture>
+							<aspectratio align="center" aligny="center">keep</aspectratio>
+						</control>
+
+						<control type="image">
+							<width>20</width>
+							<height>90</height>
+							<texture>-</texture>
 						</control>
 
 						<!-- Separator between items -->
@@ -216,36 +229,15 @@
 							<width>2</width>
 							<height>90</height>
 							<texture border="1">separator3.png</texture>
-						</control>
-					</control>
-
-					<control type="grouplist">
-						<visible>false</visible>
-						<posx>302</posx>
-						<posy>95</posy>
-						<width>544</width>
-						<height>90</height>
-						<itemgap>0</itemgap>
-						<align>left</align>
-						<orientation>horizontal</orientation>	
-
-
-
-						<!-- Separator between Items -->
-						<control type="image">
-							<width>2</width>
-							<height>90</height>
-							<texture border="1">separator3.png</texture>
-							<visible>![Container.Content(tvshows) + Skin.HasSetting(Disable.NextAired)]</visible>
 						</control>
 
 						<!-- Display Duration -->
 						<control type="group">
-							<width>187</width>
+							<width>147</width>
 							<control type="label">
 								<posx>0</posx>
 								<posy>2</posy>
-								<width>187</width>
+								<width>147</width>
 								<height>60</height>
 								<align>center</align>
 								<label>[B]$VAR[DurationVar][/B]</label>
@@ -255,7 +247,7 @@
 
 							<control type="label">
 								<posy>52</posy>
-								<width>187</width>
+								<width>147</width>
 								<height>30</height>
 								<align>center</align>
 								<label>[LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</label>
@@ -273,20 +265,20 @@
 
 						<!-- Rating -->
 						<control type="group">
-							<width>187</width>
+							<width>147</width>
 							<control type="label">
 								<posx>0</posx>
 								<posy>2</posy>
-								<width>187</width>
+								<width>147</width>
 								<height>60</height>
 								<align>center</align>
-								<label>$INFO[ListItem.RatingAndVotes]</label>
+								<label>$VAR[RatingVar]</label>
 								<font>font48_bold</font>
 								<textcolor>grey</textcolor>
 							</control>
 							<control type="label">
 								<posy>52</posy>
-								<width>187</width>
+								<width>147</width>
 								<height>30</height>
 								<align>center</align>
 								<label>[LOWERCASE]$LOCALIZE[31225][/LOWERCASE]</label>
@@ -295,7 +287,7 @@
 							</control>
 						</control>
 
-					</control>			
+					</control>
 
 					<!-- Item Separator -->
 					<control type="image">
@@ -306,17 +298,173 @@
 						<texture border="1">separator2.png</texture>
 					</control>
 
-					<!-- Video Information without Extras (Movies) -->
+					<!-- Video Information -->
 					<control type="panel" id="300">
 						<posx>-36</posx>
 						<posy>184</posy>
 						<width>1188</width>
 						<height>306</height>
 						<orientation>horizontal</orientation>
-						<include>VideoInfo</include>
+
+						<scrolltime tween="quadratic" easing="out">200</scrolltime>
+						<itemlayout height="153" width="594">
+						<control type="group">
+							<posy>25</posy>
+							<control type="image">
+								<posy>67</posy>
+								<width>594</width>
+								<height>60</height>
+								<texture border="1">separator2.png</texture>
+							</control>
+							<control type="label">
+								<posy>50</posy>
+								<width>594</width>
+								<height>40</height>
+								<font>font15</font>
+								<textcolor>grey</textcolor>
+								<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+								<label>$INFO[ListItem.Label]</label>
+								<textoffsetx>36</textoffsetx>
+							</control>
+							<control type="label">
+								<posy>5</posy>
+								<width>594</width>
+								<height>40</height>
+								<font>font15</font>
+								<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+								<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+								<label>$INFO[ListItem.Label2]</label>
+								<textoffsetx>36</textoffsetx>
+							</control>
+							</control>
+						</itemlayout>
+						<focusedlayout height="153" width="594">
+							<control type="group">
+							<posy>25</posy>
+							<control type="image">
+								<posy>67</posy>
+								<width>594</width>
+								<height>60</height>
+								<texture border="1">separator2.png</texture>
+							</control>
+							<control type="label">
+								<posy>50</posy>
+								<width>594</width>
+								<height>40</height>
+								<font>font15</font>
+								<textcolor>grey</textcolor>
+								<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+								<label>$INFO[ListItem.Label]</label>
+								<textoffsetx>36</textoffsetx>
+							</control>
+							<control type="label">
+								<posy>5</posy>
+								<width>594</width>
+								<height>40</height>
+								<font>font15</font>
+								<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+								<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+								<label>$INFO[ListItem.Label2]</label>
+								<textoffsetx>36</textoffsetx>
+							</control>
+							</control>
+						</focusedlayout>
+						<content>
+
+							<!-- Display Audio Stream -->
+							<item>
+								<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
+								<label2>$LOCALIZE[292]:</label2>
+								<onclick>noop</onclick>
+							</item>
+
+							<!-- Display Subtitles -->
+							<item>
+								<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
+								<label2>$LOCALIZE[287]:</label2>
+								<onclick>noop</onclick>
+							</item>
+
+							<!-- Display Director -->
+							<item>
+								<label>$INFO[ListItem.Director]</label>
+								<label2>$LOCALIZE[20339]:</label2>
+								<onclick>SendClick(2003,13)</onclick>
+								<visible>!IsEmpty(ListItem.Director)</visible>
+							</item>
+
+							<!-- Display Cast -->
+							<item>
+								<label>$INFO[ListItem.Property(Cast)]</label>
+								<label2>$LOCALIZE[31134]:</label2>
+								<onclick>noop</onclick>
+								<visible>!IsEmpty(ListItem.Property(Cast))</visible>
+							</item>
+
+							<!-- Display Writer -->
+							<item>
+								<label>$INFO[ListItem.Writer]</label>
+								<label2>$LOCALIZE[20417]:</label2>
+								<onclick>noop</onclick>
+								<visible>!IsEmpty(ListItem.Writer)</visible>
+							</item>
+
+							<!-- Display Original Title -->
+							<item>
+								<label>$INFO[ListItem.OriginalTitle]</label>
+								<label2>$LOCALIZE[20376]:</label2>
+								<onclick>noop</onclick>
+								<visible>!IsEmpty(ListItem.OriginalTitle) + !StringCompare(ListItem.OriginalTitle,ListItem.Title)</visible>
+							</item>
+
+							<!-- Display Date Premiered -->
+							<item>
+								<label>$INFO[ListItem.Date]</label>
+								<label2>$LOCALIZE[172]:</label2>
+								<onclick>noop</onclick>
+								<visible>!IsEmpty(ListItem.Date) + !ListItem.Type(episode)</visible>
+							</item>
+
+							<!-- Display Country -->
+							<item>
+								<label>$INFO[ListItem.Country]</label>
+								<label2>$LOCALIZE[574]:</label2>
+								<onclick>noop</onclick>
+								<visible>!IsEmpty(ListItem.Country)</visible>
+							</item>
+
+							<!-- Display Date Added -->
+							<item>
+								<label>$INFO[ListItem.DateAdded]</label>
+								<label2>$LOCALIZE[570]:</label2>
+								<onclick>noop</onclick>
+								<visible>!IsEmpty(ListItem.DateAdded)</visible>
+							</item>
+
+							<!-- Display Play Count -->						
+							<item>
+								<label>$INFO[ListItem.PlayCount]</label>
+								<label2>$LOCALIZE[567]:</label2>
+								<onclick>noop</onclick>
+								<visible>!IsEmpty(ListItem.PlayCount)</visible>
+							</item>
+
+							<item>
+								<label>$INFO[ListItem.PercentPlayed,,%]</label>
+								<label2 fallback="-">$LOCALIZE[575]:</label2>
+								<onclick>noop</onclick>
+								<visible>ListItem.IsResumable</visible>
+							</item>
+
+							<item>
+								<label>$INFO[ListItem.LastPlayed]</label>
+								<label2 fallback="-">$LOCALIZE[568]:</label2>
+								<onclick>noop</onclick>
+								<visible>!IsEmpty(ListItem.LastPlayed)</visible>
+							</item>
+
+						</content>
 					</control>
-
-
 
 				</control>
 
