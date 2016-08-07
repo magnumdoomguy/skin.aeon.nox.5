@@ -81,39 +81,6 @@
 				<texture fallback="defaulttvshows.png" diffuse="thumbs/boxes/thumb_mask.png">$VAR[EpisodeBigThumbnailVar]</texture> 				       
 			</control>
 
-			<!-- Display Watched Status Overlay -->
-			<control type="image">
-				<posx>704</posx>
-				<width>166</width>
-				<height>166</height>
-				<texture>$VAR[OverlayVar]</texture>
-				<visible>!Skin.HasSetting(Enable.Circles)</visible>
-			</control>	
-
-			<!-- Watched Status Upper Circle -->
-			<control type="image">
-				<posx>627</posx>
-				<posy>30</posy>
-				<width>72</width>
-				<height>72</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[OverlayVar]</texture>
-				<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
-				<visible>!Container.Content(episode) + Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-			</control>
-
-			<!-- Watched Status Lower Circle -->
-			<control type="image">
-				<posx>627</posx>
-				<posy>978</posy>
-				<width>72</width>
-				<height>72</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[OverlayVar]</texture>
-				<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
-				<visible>!Container.Content(episode) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-			</control>
-
 			<!-- Separator between items -->
 			<control type="image">
 				<posx>729</posx>
@@ -192,13 +159,14 @@
 							<label>[B]$INFO[ListItem.Date][/B]</label>
 							<font>font35_title</font>
 							<textcolor>grey</textcolor>
-							<visible>Container.Content(episode)</visible>
+							<visible>!IsEmpty(ListItem.Date)</visible>
 						</control>
 
 						<control type="image">
 							<width>20</width>
 							<height>90</height>
 							<texture>-</texture>
+							<visible>!IsEmpty(ListItem.Date)</visible>
 						</control>
 
 						<!-- Separator between items -->
@@ -206,12 +174,14 @@
 							<width>2</width>
 							<height>90</height>
 							<texture border="1">separator3.png</texture>
+							<visible>!IsEmpty(ListItem.Date)</visible>
 						</control>
 
 						<control type="image">
 							<width>20</width>
 							<height>90</height>
 							<texture>-</texture>
+							<visible>!IsEmpty(ListItem.Date)</visible>
 						</control>
 
 						<!-- Content Rating -->
@@ -394,6 +364,7 @@
 							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
 							<label>$INFO[ListItem.Director]</label>
 							<textoffsetx>36</textoffsetx>
+							<visible>!IsEmpty(ListItem.Director)</visible>
 						</control>
 						
 						<!-- Writer Label -->
@@ -407,6 +378,7 @@
 							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
 							<label>$LOCALIZE[20417]:</label> <!-- STRING: Writer -->
 							<textoffsetx>36</textoffsetx>
+							<visible>!IsEmpty(ListItem.Writer)</visible>
 						</control>
 
 						<!-- Writer -->
@@ -420,12 +392,22 @@
 							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
 							<label>$INFO[ListItem.Writer]</label>
 							<textoffsetx>36</textoffsetx>
+							<visible>!IsEmpty(ListItem.Writer)</visible>
 						</control>
 						
 					</control>
 
 				</control>
 
+				<!-- Item Separator -->
+						<control type="image">
+							<posx>-729</posx>
+							<posy>450</posy>
+							<width>1920</width>
+							<height>60</height>
+							<texture border="1">separator2.png</texture>
+						</control>
+				
 				<!-- Preplay Menu -->
 				<control type="group">
 					<visible></visible>
@@ -455,7 +437,7 @@
 
 		</control>
 
-		<!-- Display Fanart -->
+		<!-- Bottom Landscape -->
 		<control type="group">
 			<animation effect="slide" start="0,530" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" start="0,0" end="0,530" time="320" tween="quadratic">WindowClose</animation>
@@ -479,7 +461,7 @@
 				<width>1720</width>
 				<height>382</height>
 				<font>font15_textbox</font>
-				<align>left</align>
+				<align>justify</align>
 				<label>$VAR[PlotVar]</label>
 				<textcolor>white</textcolor>
 				<pagecontrol>60</pagecontrol>
@@ -497,7 +479,7 @@
 				<width>1720</width>
 				<height>452</height>
 				<font>font15_textbox</font>
-				<align>left</align>
+				<align>justify</align>
 				<label>$VAR[PlotVar]</label>
 				<textcolor>white</textcolor>
 				<pagecontrol>60</pagecontrol>
