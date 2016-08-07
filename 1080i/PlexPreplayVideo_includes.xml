@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+	<!-- Episode Title -->
+	<variable name="Preplay_EpisodeTitleVar">
+		<value condition="!IsEmpty(ListItem.Season)">[B]$INFO[ListItem.Season]x$INFO[ListItem.Episode]. [UPPERCASE]$INFO[ListItem.Title][/UPPERCASE][/B]</value>
+		<value>[UPPERCASE]S$INFO[ListItem.Episode]. $INFO[ListItem.Title][/UPPERCASE]</value>
+	</variable>
+
 	<include name="VideoInfo">
 		<scrolltime tween="quadratic" easing="out">200</scrolltime>
 		<itemlayout height="102" width="594">
@@ -302,7 +308,143 @@
 
 	</include>
 
+<include name="PreplayMenu_Landscape">
+		<!-- Play Button -->
+		<control type="button" id="102">
+			<description>Play/browse to Show</description>
+			<height>60</height>
+			<width>382</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>208</label>
+			<altlabel>1024</altlabel>
+			<font>font15</font>
+			<width>80</width>
+			<onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick>
+		</control>
 
+		<!-- Item Separator -->
+		<control type="image" id="200">
+			<width>2</width>
+			<height>58</height>
+			<texture border="1">separator3.png</texture>
+		</control>
+
+		<!-- Audio Button -->
+		<control type="button" id="103">
+			<description>Audio</description>
+			<height>60</height>
+			<width>382</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[292]</label>
+			<font>font15</font>
+			<width>80</width>
+			<onfocus>Skin.SetString(DialogPos,audiostreampicker)</onfocus>
+			<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+			<onclick>ActivateWindow(10205)</onclick>
+		</control>
+
+		<!-- Item Separator -->
+		<control type="image" id="201">
+			<width>2</width>
+			<height>58</height>
+			<texture border="1">separator3.png</texture>
+		</control>
+
+		<!-- Subtitles Button -->
+		<control type="button" id="104">
+			<description>Subtitles</description>
+			<height>60</height>
+			<width>382</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[31133]</label>
+			<font>font15</font>
+			<width>80</width>
+			<onclick>ActivateWindow(10204)</onclick>
+			<onfocus>Skin.SetString(DialogPos,subtitlestreampicker)</onfocus>
+			<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+		</control>
+
+		<!-- Item Separator -->
+		<control type="image" id="202">
+			<width>2</width>
+			<height>58</height>
+			<texture border="1">separator3.png</texture>
+		</control>
+
+		<!-- Ratings Button -->
+		<control type="button" id="105">
+			<description>Ratings</description>
+			<height>60</height>
+			<width>382</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[42029]</label>
+			<font>font15</font>
+			<width>80</width>
+			<onclick>ActivateWindow(10200,$INFO[ListItem(0).Path])</onclick>
+			<onfocus>Skin.SetString(DialogPos,rate)</onfocus>
+			<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+		</control>
+
+		<!-- Item Separator -->
+		<control type="image" id="204">
+			<width>2</width>
+			<height>58</height>
+			<texture border="1">separator3.png</texture>
+		</control>
+
+		<!-- Mark as Watched Button -->
+		<control type="button" id="108">
+			<description>Mark as Watched</description>
+			<height>60</height>
+			<width>382</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[31139]</label>
+			<font>font15</font>
+			<width>80</width>
+			<onclick>markaswatched</onclick>
+			<visible>ListItem.Status(unwatched) | ListItem.Status(inprogress)</visible>
+		</control>
+
+		<!-- Watched Status Button -->
+		<control type="button" id="109">
+			<description>Mark as Unwatched</description>
+			<height>60</height>
+			<width>382</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[31138]</label>
+			<font>font15</font>
+			<width>80</width>
+			<onclick>markasunwatched</onclick>
+			<visible>ListItem.Status(watched)</visible>
+		</control>
+
+	</include>
+	
+	
 	<include name="PreplayExtras">
 
 	</include>
