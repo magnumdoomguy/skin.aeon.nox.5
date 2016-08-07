@@ -73,10 +73,12 @@
 
 			<!-- Display Episode Poster -->
 			<control type="image">
-				<width>729</width>
-				<height>510</height>
-				<aspectratio aligny="center">scale</aspectratio>
-				<texture fallback="defaulttvshows.png">$VAR[EpisodeBigThumbnailVar]</texture> 
+				<posx>100</posx>
+				<posy>15</posy>
+				<width>614</width>
+				<height>480</height>
+				<aspectratio scalediffuse="false" aligny="center">keep</aspectratio> 				
+				<texture fallback="defaulttvshows.png" diffuse="thumbs/boxes/thumb_mask.png">$VAR[EpisodeBigThumbnailVar]</texture> 				       
 			</control>
 
 			<!-- Display Watched Status Overlay -->
@@ -112,12 +114,18 @@
 				<visible>!Container.Content(episode) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 			</control>
 
+			<!-- Separator between items -->
+			<control type="image">
+				<posx>729</posx>
+				<posy>0</posy>
+				<width>2</width>
+				<height>510</height>
+				<texture border="1">separator3.png</texture>
+			</control>
+
 			<!-- Display Fanart -->
 			<control type="group">
-
 				<posx>729</posx>
-
-
 
 				<control type="group">
 					<posx>40</posx>
@@ -207,7 +215,6 @@
 						</control>
 
 						<!-- Content Rating -->
-
 						<control type="image">
 							<width>249</width>
 							<height>90</height>
@@ -299,171 +306,122 @@
 					</control>
 
 					<!-- Video Information -->
-					<control type="panel" id="300">
+					<control type="group">
 						<posx>-36</posx>
 						<posy>184</posy>
 						<width>1188</width>
 						<height>306</height>
 						<orientation>horizontal</orientation>
 
-						<scrolltime tween="quadratic" easing="out">200</scrolltime>
-						<itemlayout height="153" width="594">
-						<control type="group">
-							<posy>25</posy>
-							<control type="image">
-								<posy>67</posy>
-								<width>594</width>
-								<height>60</height>
-								<texture border="1">separator2.png</texture>
-							</control>
-							<control type="label">
-								<posy>50</posy>
-								<width>594</width>
-								<height>40</height>
-								<font>font15</font>
-								<textcolor>grey</textcolor>
-								<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
-								<label>$INFO[ListItem.Label]</label>
-								<textoffsetx>36</textoffsetx>
-							</control>
-							<control type="label">
-								<posy>5</posy>
-								<width>594</width>
-								<height>40</height>
-								<font>font15</font>
-								<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
-								<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
-								<label>$INFO[ListItem.Label2]</label>
-								<textoffsetx>36</textoffsetx>
-							</control>
-							</control>
-						</itemlayout>
-						<focusedlayout height="153" width="594">
-							<control type="group">
-							<posy>25</posy>
-							<control type="image">
-								<posy>67</posy>
-								<width>594</width>
-								<height>60</height>
-								<texture border="1">separator2.png</texture>
-							</control>
-							<control type="label">
-								<posy>50</posy>
-								<width>594</width>
-								<height>40</height>
-								<font>font15</font>
-								<textcolor>grey</textcolor>
-								<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
-								<label>$INFO[ListItem.Label]</label>
-								<textoffsetx>36</textoffsetx>
-							</control>
-							<control type="label">
-								<posy>5</posy>
-								<width>594</width>
-								<height>40</height>
-								<font>font15</font>
-								<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
-								<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
-								<label>$INFO[ListItem.Label2]</label>
-								<textoffsetx>36</textoffsetx>
-							</control>
-							</control>
-						</focusedlayout>
-						<content>
+						<!-- Item Separator -->
+						<control type="image">
+							<posy>92</posy>
+							<width>1188</width>
+							<height>60</height>
+							<texture border="1">separator2.png</texture>
+						</control>
 
-							<!-- Display Audio Stream -->
-							<item>
-								<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
-								<label2>$LOCALIZE[292]:</label2>
-								<onclick>noop</onclick>
-							</item>
+						<!-- Audio Label -->
+						<control type="label">
+							<posy>30</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+							<label>$LOCALIZE[292]:</label> <!-- STRING: Audio -->
+							<textoffsetx>36</textoffsetx>
+						</control>
 
-							<!-- Display Subtitles -->
-							<item>
-								<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
-								<label2>$LOCALIZE[287]:</label2>
-								<onclick>noop</onclick>
-							</item>
+						<!-- Show Audio Stream -->
+						<control type="label">
+							<posy>75</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+							<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
+							<textoffsetx>36</textoffsetx>
+						</control>
 
-							<!-- Display Director -->
-							<item>
-								<label>$INFO[ListItem.Director]</label>
-								<label2>$LOCALIZE[20339]:</label2>
-								<onclick>SendClick(2003,13)</onclick>
-								<visible>!IsEmpty(ListItem.Director)</visible>
-							</item>
+						<!-- Subtitles Label -->
+						<control type="label">
+							<posy>183</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+							<label>$LOCALIZE[287]:</label> <!-- STRING: Subtitles -->
+							<textoffsetx>36</textoffsetx>
+						</control>
 
-							<!-- Display Cast -->
-							<item>
-								<label>$INFO[ListItem.Property(Cast)]</label>
-								<label2>$LOCALIZE[31134]:</label2>
-								<onclick>noop</onclick>
-								<visible>!IsEmpty(ListItem.Property(Cast))</visible>
-							</item>
+						<!-- Subtitles Stream -->
+						<control type="label">
+							<posy>228</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+							<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
+							<textoffsetx>36</textoffsetx>
+						</control>
 
-							<!-- Display Writer -->
-							<item>
-								<label>$INFO[ListItem.Writer]</label>
-								<label2>$LOCALIZE[20417]:</label2>
-								<onclick>noop</onclick>
-								<visible>!IsEmpty(ListItem.Writer)</visible>
-							</item>
+						<!-- Director Label -->
+						<control type="label">
+							<posx>594</posx>
+							<posy>30</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+							<label>$LOCALIZE[20339]:</label> <!-- STRING: Director -->
+							<textoffsetx>36</textoffsetx>
+							<visible>!IsEmpty(ListItem.Director)</visible>
+						</control>
 
-							<!-- Display Original Title -->
-							<item>
-								<label>$INFO[ListItem.OriginalTitle]</label>
-								<label2>$LOCALIZE[20376]:</label2>
-								<onclick>noop</onclick>
-								<visible>!IsEmpty(ListItem.OriginalTitle) + !StringCompare(ListItem.OriginalTitle,ListItem.Title)</visible>
-							</item>
+						<!-- Director -->
+						<control type="label">
+							<posx>594</posx>
+							<posy>75</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+							<label>$INFO[ListItem.Director]</label>
+							<textoffsetx>36</textoffsetx>
+						</control>
+						
+						<!-- Writer Label -->
+						<control type="label">
+							<posx>594</posx>
+							<posy>183</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>$VAR[Colour_ThemeColourVar]</textcolor>
+							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+							<label>$LOCALIZE[20417]:</label> <!-- STRING: Writer -->
+							<textoffsetx>36</textoffsetx>
+						</control>
 
-							<!-- Display Date Premiered -->
-							<item>
-								<label>$INFO[ListItem.Date]</label>
-								<label2>$LOCALIZE[172]:</label2>
-								<onclick>noop</onclick>
-								<visible>!IsEmpty(ListItem.Date) + !ListItem.Type(episode)</visible>
-							</item>
-
-							<!-- Display Country -->
-							<item>
-								<label>$INFO[ListItem.Country]</label>
-								<label2>$LOCALIZE[574]:</label2>
-								<onclick>noop</onclick>
-								<visible>!IsEmpty(ListItem.Country)</visible>
-							</item>
-
-							<!-- Display Date Added -->
-							<item>
-								<label>$INFO[ListItem.DateAdded]</label>
-								<label2>$LOCALIZE[570]:</label2>
-								<onclick>noop</onclick>
-								<visible>!IsEmpty(ListItem.DateAdded)</visible>
-							</item>
-
-							<!-- Display Play Count -->						
-							<item>
-								<label>$INFO[ListItem.PlayCount]</label>
-								<label2>$LOCALIZE[567]:</label2>
-								<onclick>noop</onclick>
-								<visible>!IsEmpty(ListItem.PlayCount)</visible>
-							</item>
-
-							<item>
-								<label>$INFO[ListItem.PercentPlayed,,%]</label>
-								<label2 fallback="-">$LOCALIZE[575]:</label2>
-								<onclick>noop</onclick>
-								<visible>ListItem.IsResumable</visible>
-							</item>
-
-							<item>
-								<label>$INFO[ListItem.LastPlayed]</label>
-								<label2 fallback="-">$LOCALIZE[568]:</label2>
-								<onclick>noop</onclick>
-								<visible>!IsEmpty(ListItem.LastPlayed)</visible>
-							</item>
-
-						</content>
+						<!-- Writer -->
+						<control type="label">
+							<posx>594</posx>
+							<posy>228</posy>
+							<width>594</width>
+							<height>40</height>
+							<font>font15</font>
+							<textcolor>grey</textcolor>
+							<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+							<label>$INFO[ListItem.Writer]</label>
+							<textoffsetx>36</textoffsetx>
+						</control>
+						
 					</control>
 
 				</control>
@@ -516,10 +474,10 @@
 			<!-- Show Plot (With Media Flags, No Extras) -->
 			<control type="textbox" id="400">
 				<description>Plot</description>
-				<posx>40</posx>
-				<posy>20</posy>
-				<width>1840</width>
-				<height>402</height>
+				<posx>100</posx>
+				<posy>30</posy>
+				<width>1720</width>
+				<height>382</height>
 				<font>font15_textbox</font>
 				<align>left</align>
 				<label>$VAR[PlotVar]</label>
@@ -534,10 +492,10 @@
 			<!-- Show Plot (Without Media Flags, No Extras) -->
 			<control type="textbox" id="400">
 				<description>Plot</description>
-				<posx>40</posx>
-				<posy>20</posy>
-				<width>1840</width>
-				<height>472</height>
+				<posx>100</posx>
+				<posy>30</posy>
+				<width>1720</width>
+				<height>452</height>
 				<font>font15_textbox</font>
 				<align>left</align>
 				<label>$VAR[PlotVar]</label>
