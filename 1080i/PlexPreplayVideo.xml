@@ -18,14 +18,14 @@
 			<height>1080</height>
 			<aspectratio align="center">scale</aspectratio>
 			<texture blur="3">$INFO[ListItem.Art(fanart)]</texture>
-			<visible>Skin.HasSetting(Preplay.Blur) + Container.Content(episode)</visible>
+			<visible>Skin.HasSetting(Preplay.Blur) + !Container.PlexContent(movie)</visible>
 		</control>
 
 		<!-- Left Side Movies -->
 		<control type="group">
 			<animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
-			<visible>!Container.Content(episode)</visible>			
+			<visible>Container.PlexContent(movie)</visible>			
 
 			<!-- Display Poster -->
 			<control type="image">
@@ -73,7 +73,7 @@
 		<control type="group">
 			<animation effect="slide" start="0,-570" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="0,-570" time="500" tween="quadratic">WindowClose</animation>
-			<visible>Container.Content(episode)</visible>
+			<visible>!Container.PlexContent(movie)</visible>
 
 			<!-- Background Panel -->
 			<control type="image">
@@ -151,9 +151,8 @@
 						<texture border="1">separator2.png</texture>
 					</control>
 
-					<!-- Top Information Line Under Title (Episodes) -->
+					<!-- Top Information Line Under Title -->
 					<control type="grouplist">
-						<visible>Container.Content(episode)</visible>
 						<posx>0</posx>
 						<posy>95</posy>
 						<width>1100</width>
@@ -452,7 +451,7 @@
 		<control type="group">
 			<animation effect="slide" start="0,530" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" start="0,0" end="0,530" time="320" tween="quadratic">WindowClose</animation>
-			<visible>Container.Content(episode)</visible>
+			<visible>!Container.PlexContent(movie)</visible>
 
 			<posx>0</posx>
 			<posy>570</posy>
@@ -573,7 +572,7 @@
 		<control type="group" id="1200">
 			<animation effect="slide" start="1242,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="1242,0" time="500" tween="quadratic">WindowClose</animation>
-			<visible>!Container.Content(episode)</visible>
+			<visible>Container.PlexContent(movie)</visible>
 
 			<posx>763</posx>
 			<posy>448</posy>
@@ -640,7 +639,7 @@
 		<control type="group">
 			<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
-			<visible>!Container.Content(episode)</visible>
+			<visible>Container.PlexContent(movie)</visible>
 
 			<posx>729</posx>
 			<control type="image">
@@ -1471,7 +1470,16 @@
 							<textcolor>lightgrey</textcolor>
 							<label>$INFO[ListItem.DurationStr]</label>
 						</control>
-
+						<control type="image">
+							<posx>18</posx>
+							<posy>18</posy>
+							<width>37</width>
+							<height>37</height>
+							<texture>$INFO[ListItem.Property(extraTypeStr)].png</texture>
+							<fadetime>400</fadetime>
+							<colordiffuse>$VAR[PreplayTransVar]</colordiffuse>
+						</control>
+						
 					</itemlayout>
 
 					<focusedlayout height="198" width="369">
@@ -1525,7 +1533,15 @@
 								<textcolor>lightgrey</textcolor>
 								<label>$INFO[ListItem.DurationStr]</label>
 							</control>
-
+<control type="image">
+							<posx>18</posx>
+							<posy>18</posy>
+							<width>37</width>
+							<height>37</height>
+							<texture>$INFO[ListItem.Property(extraTypeStr)].png</texture>
+							<fadetime>400</fadetime>
+							<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
+						</control>
 							<!-- Highlight -->
 							<control type="image">
 								<posx>0</posx>
@@ -1538,6 +1554,8 @@
 								<bordersize>8</bordersize>
 								<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
 							</control>
+							
+							
 
 						</control>
 
