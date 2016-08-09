@@ -91,7 +91,41 @@
 				<aspectratio scalediffuse="false" aligny="center" align="center">scale</aspectratio> 				
 				<texture fallback="defaulttvshows.png" diffuse="thumbs/boxes/thumb_mask.png">$VAR[EpisodeBigThumbnailVar]</texture> 				       
 			</control>
-			
+
+			<!-- Display Episode Watched Status Overlay  -->
+			<control type="image">
+				<posx>604</posx>
+				<posy>140</posy>
+				<width>87</width>
+				<height>87</height>
+				<texture>$VAR[OverlayVar]</texture>
+				<visible>!Skin.HasSetting(Enable.Circles)</visible>
+			</control>	
+
+			<!-- Watched Status Upper Circle -->
+			<control type="image">
+				<posx>663</posx>
+				<posy>145</posy>
+				<width>36</width>
+				<height>36</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[OverlayVar]</texture>
+				<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+				<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+			</control>
+
+			<!-- Watched Status Lower Circle -->
+			<control type="image">
+				<posx>663</posx>
+				<posy>444</posy>
+				<width>36</width>
+				<height>36</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$VAR[OverlayVar]</texture>
+				<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
+				<visible>Container.Content(episode) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+			</control>
+
 			<!-- Separator between items -->
 			<control type="image">
 				<posx>729</posx>
@@ -126,7 +160,7 @@
 							<font>font30</font>
 							<textcolor>grey</textcolor>
 							<scroll>true</scroll>
-							<label>$VAR[Preplay_EpisodeTitleVar]</label>
+							<label>$VAR[Preplay_LandscapeTitleVar]</label>
 						</control>
 
 						<!-- Display TV Show Title -->
@@ -1479,7 +1513,7 @@
 							<fadetime>400</fadetime>
 							<colordiffuse>$VAR[PreplayTransVar]</colordiffuse>
 						</control>
-						
+
 					</itemlayout>
 
 					<focusedlayout height="198" width="369">
@@ -1533,15 +1567,15 @@
 								<textcolor>lightgrey</textcolor>
 								<label>$INFO[ListItem.DurationStr]</label>
 							</control>
-<control type="image">
-							<posx>18</posx>
-							<posy>18</posy>
-							<width>37</width>
-							<height>37</height>
-							<texture>$INFO[ListItem.Property(extraTypeStr)].png</texture>
-							<fadetime>400</fadetime>
-							<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
-						</control>
+							<control type="image">
+								<posx>18</posx>
+								<posy>18</posy>
+								<width>37</width>
+								<height>37</height>
+								<texture>$INFO[ListItem.Property(extraTypeStr)].png</texture>
+								<fadetime>400</fadetime>
+								<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
+							</control>
 							<!-- Highlight -->
 							<control type="image">
 								<posx>0</posx>
@@ -1554,8 +1588,8 @@
 								<bordersize>8</bordersize>
 								<colordiffuse>$VAR[Colour_GeneralHighlightColourVar]</colordiffuse>
 							</control>
-							
-							
+
+
 
 						</control>
 
