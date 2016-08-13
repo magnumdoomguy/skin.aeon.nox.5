@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+
 	<!-- Expressions -->
 	<expression name="Widgets_HaveFocus">[Control.HasFocus(11000) | Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003) | Control.HasFocus(11004) | Control.HasFocus(11005)]</expression>
 	<expression name="Widgets_OnDeckAndRecentlyAddedVisible">[Control.IsVisible(11000) + Control.IsVisible(11001)]</expression>
@@ -17,6 +18,10 @@
 	<expression name="Widgets_MoviePoster">[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)]</expression>
 
 	<!-- Horizontal Homemenu -->
+
+
+
+
 	<include name="Home_HorizontalMenu">
 		<control type="group">
 			<posy>424</posy>
@@ -66,8 +71,21 @@
 						<label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
 						<font>font13_title</font>
 						<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
-						<shadowcolor>shadow</shadowcolor>
+						<shadowcolor>shadow</shadowcolor>			
+						<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					</control>
+
+					<!-- Added for WhiteFlat shadow hide -->
+					<control type="label" id="9025">
+						<width min="10" max="1780">auto</width>
+						<height>41</height>
+						<label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
+						<font>font13_title</font>
+						<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+						<visible>Skin.HasTheme(WhiteFlat)</visible>
+					</control>
+					<!-- End -->	
+
 				</control>
 			</control>
 		</control>
@@ -101,6 +119,9 @@
 					<animation effect="slide" start="1870,0" end="0,0" delay="200" time="480" condition="Window.Previous(startup)">WindowOpen</animation>
 
 					<!-- Submenu -->
+
+
+
 					<control type="image">
 						<posx>0</posx>
 						<width>1920</width>
@@ -141,6 +162,7 @@
 									<width>300</width>
 									<height>41</height>
 									<texture>listselect_fo.png</texture>
+									<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
 									<colordiffuse>$VAR[Colour_SubmenuHighlightColourVar]</colordiffuse>
 								</control>
 								<control type="label">
@@ -200,6 +222,8 @@
 					<height>225</height>
 					<texture>$VAR[Homemenu_BarGraphic]</texture>
 				</control>
+
+
 			</control>
 
 			<!-- Main Menu -->
@@ -214,6 +238,13 @@
 			<include name="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Source Sans)">
 				<param name="font">font_MainMenu_SourceSans</param>
 			</include>
+
+			<!-- Added New Font -->
+			<include name="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Trueno)">
+				<param name="font">font_MainMenu_Trueno</param>
+			</include>
+			<!-- End -->
+
 			<include condition="Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListFixed</include>
 			<include condition="!Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListWrapped</include>
 
@@ -223,6 +254,10 @@
 				<width>100</width>
 				<height>104</height>
 				<texture border="1">side_fade.png</texture>
+				<!-- Added WhiteFlat Theme Flag -->
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
+				<!-- End -->
+				
 			</control>
 			<control type="image">
 				<posx>1820</posx>
@@ -230,6 +265,11 @@
 				<width>100</width>
 				<height>104</height>
 				<texture flipx="true" border="1">side_fade.png</texture>
+				
+				<!-- Added WhiteFlat Theme Flag -->
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
+				<!-- End -->
+				
 			</control>
 			<control type="image">
 				<posy>90</posy>
@@ -237,6 +277,11 @@
 				<height>72</height>
 				<texture border="1">gradient_floor.png</texture>
 				<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+				
+				<!-- Added WhiteFlat Theme Flag -->
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
+				<!-- End -->
+				
 			</control>
 		</control>
 	</include>
@@ -588,7 +633,7 @@
 		<param name="menuHeight" default="990" />
 		<param name="focusPosition" default="4" />
 		<param name="itemHeight" default="110" />
-		
+
 		<definition>
 			<posx>37</posx>
 			<posy>$PARAM[menuTop]</posy>
@@ -651,6 +696,13 @@
 			<include name="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">
 				<param name="font">font_MainMenu_SourceSans</param>
 			</include>
+
+			<!-- Added New Font -->
+			<include name="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Trueno)">
+				<param name="font">font_MainMenu_Trueno</param>
+			</include>
+			<!-- End -->
+
 			<include condition="IsEmpty(Skin.String(MainMenu.Font))">MainMenuListContent</include>
 		</definition>
 	</include>
@@ -673,29 +725,29 @@
 
 	<include name="VerticalMenuList">
 		<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Linear)">
-				<param name="font">font_MainMenu_medium_linear</param>
-				<param name="menuTop">20</param>
-				<param name="menuHeight">1040</param>
-				<param name="focusPosition">6</param>
-				<param name="itemHeight">80</param>
-			</include>
-			<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">
-				<param name="font">font_MainMenu_medium_OpenSans</param>
-				<param name="menuTop">53</param>
-				<param name="menuHeight">975</param>
-				<param name="focusPosition">6</param>
-				<param name="itemHeight">75</param>
-			</include>
-			<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">
-				<param name="font">font_MainMenu_medium_SourceSans</param>
-				<param name="menuTop">53</param>
-				<param name="menuHeight">975</param>
-				<param name="focusPosition">6</param>
-				<param name="itemHeight">75</param>
-			</include>
-			<include condition="IsEmpty(Skin.String(MainMenu.Font))">VerticalMainMenuListContent</include>
+			<param name="font">font_MainMenu_medium_linear</param>
+			<param name="menuTop">20</param>
+			<param name="menuHeight">1040</param>
+			<param name="focusPosition">6</param>
+			<param name="itemHeight">80</param>
+		</include>
+		<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">
+			<param name="font">font_MainMenu_medium_OpenSans</param>
+			<param name="menuTop">53</param>
+			<param name="menuHeight">975</param>
+			<param name="focusPosition">6</param>
+			<param name="itemHeight">75</param>
+		</include>
+		<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">
+			<param name="font">font_MainMenu_medium_SourceSans</param>
+			<param name="menuTop">53</param>
+			<param name="menuHeight">975</param>
+			<param name="focusPosition">6</param>
+			<param name="itemHeight">75</param>
+		</include>
+		<include condition="IsEmpty(Skin.String(MainMenu.Font))">VerticalMainMenuListContent</include>
 	</include>
-	
+
 	<include name="VerticalMainMenuListFixed">
 		<control type="fixedlist" id="300">
 			<include>VerticalMenuList</include>
@@ -827,5 +879,8 @@
 			<onclick>System.Exec(reboot)</onclick>
 			<visible>System.isSystem(openelec) + !System.UserIsRestricted</visible>
 		</item>
+
 	</include>
 </includes>
+
+
