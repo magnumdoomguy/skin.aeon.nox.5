@@ -774,7 +774,6 @@
 	<!-- Horizontal Menu for 3 or 5 Items -->
 	<include name="MainMenuList">
 		<definition>
-			<include condition="IsEmpty(Skin.String(MainMenu.Font)) + !Skin.HasTheme(WhiteFlat)">MainMenuListContent</include>
 			<include name="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Linear)">
 				<param name="font">font_MainMenu_linear</param>
 				<param name="top">12</param>
@@ -787,9 +786,10 @@
 			</include>
 
 			<!-- Added New Font -->
-			<include name="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Trueno) + [StringCompare(Skin.String(MainMenu.Font),Trueno) | [Skin.HasTheme(WhiteFlat) + IsEmpty(Skin.String(MainMenu.Font))]]">
+			<include name="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Trueno) | [Skin.HasTheme(WhiteFlat) + IsEmpty(Skin.String(MainMenu.Font))]]">
 				<param name="font">font_MainMenu_Trueno</param>
 			</include>
+			<include condition="IsEmpty(Skin.String(MainMenu.Font))">MainMenuListContent</include>
 			<!-- End -->
 			</definition>
 	</include>
