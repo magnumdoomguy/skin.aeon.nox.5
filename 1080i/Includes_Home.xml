@@ -18,10 +18,6 @@
 	<expression name="Widgets_MoviePoster">[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)]</expression>
 
 	<!-- Horizontal Homemenu -->
-
-
-
-
 	<include name="Home_HorizontalMenu">
 		<control type="group">
 			<posy>424</posy>
@@ -75,12 +71,12 @@
 						<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					</control>
 
-					<!-- Added for WhiteFlat shadow hide -->
+					<!-- Duplicate to Remove Shadow for WhiteFlat -->
 					<control type="label" id="9025">
 						<width min="10" max="1780">auto</width>
 						<height>41</height>
 						<label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
-						<font>font13_title</font>
+						<font>font13_title_whiteflat</font>
 						<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 						<visible>Skin.HasTheme(WhiteFlat)</visible>
 					</control>
@@ -109,6 +105,7 @@
 			</animation>
 
 			<control type="group">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 				<control type="group" id="9001">
 					<posx>0</posx>
 					<posy>159</posy>
@@ -119,9 +116,6 @@
 					<animation effect="slide" start="1870,0" end="0,0" delay="200" time="480" condition="Window.Previous(startup)">WindowOpen</animation>
 
 					<!-- Submenu -->
-
-
-
 					<control type="image">
 						<posx>0</posx>
 						<width>1920</width>
@@ -222,8 +216,118 @@
 					<height>225</height>
 					<texture>$VAR[Homemenu_BarGraphic]</texture>
 				</control>
+			</control>
 
+			<control type="group">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+				<control type="group" id="9001">
+					<posx>0</posx>
+					<posy>159</posy>
+					<onup>300</onup>
+					<ondown condition="Skin.HasSetting(middlemainmenu) + $EXP[Widgets_OnDeckAndRecentlyAddedVisible]">11000</ondown>
+					<include condition="!Skin.HasSetting(Enable.VisibleSubmenu) + !system.getbool(input.enablemouse)">SubMenuAnimation</include>
+					<animation effect="slide" start="1870,0" end="0,0" delay="300" time="240" condition="!Window.Previous(startup)">WindowOpen</animation>
+					<animation effect="slide" start="1870,0" end="0,0" delay="200" time="480" condition="Window.Previous(startup)">WindowOpen</animation>
 
+					<!-- Submenu -->
+					<control type="image">
+						<posx>0</posx>
+						<width>1920</width>
+						<height>87</height>
+						<texture>submenu_bar.png</texture>
+					</control>
+					<control type="fixedlist" id="9010">
+						<posx>210</posx>
+						<posy>0</posy>
+						<width>1500</width>
+						<height>87</height>
+						<onup>300</onup>
+						<ondown condition="Skin.HasSetting(middlemainmenu) + $EXP[Widgets_OnDeckAndRecentlyAddedVisible]">11000</ondown>
+						<ondown condition="Skin.HasSetting(middlemainmenu) + $EXP[Widgets_RecommendedAndWatchLaterVisible]">11003</ondown>
+						<pagecontrol>-</pagecontrol>
+						<scrolltime tween="quadratic" easing="out">300</scrolltime>
+						<focusposition>2</focusposition>
+						<movement>2</movement>
+						<orientation>Horizontal</orientation>
+						<itemlayout height="87" width="300">
+							<control type="label">
+								<posx>150</posx>
+								<posy>0</posy>
+								<width>300</width>
+								<height>41</height>
+								<font>font13_title_whiteflat</font>
+								<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>
+								<shadowcolor>shadow</shadowcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+						</itemlayout>
+						<focusedlayout height="87" width="300">
+							<control type="group">
+								<control type="image">
+									<posy>0</posy>
+									<width>300</width>
+									<height>41</height>
+									<texture>listselect_fo.png</texture>
+									<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+									<colordiffuse>$VAR[Colour_SubmenuHighlightColourVar]</colordiffuse>
+								</control>
+								<control type="label">
+									<posx>150</posx>
+									<posy>0</posy>
+									<width>300</width>
+									<height>41</height>
+									<font>font13_title_whiteflat</font>
+									<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+							<control type="group">
+								<control type="label">
+									<posx>150</posx>
+									<posy>0</posy>
+									<width>300</width>
+									<height>41</height>
+									<font>font13_title_whiteflat</font>
+									<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+						</focusedlayout>
+						<content>
+							<include>HomeSubMenu</include>
+						</content>
+					</control>
+					<control type="image">
+						<posx>130</posx>
+						<posy>6</posy>
+						<width>30</width>
+						<height>30</height>
+						<texture flipx="true">arrowright.png</texture>
+						<colordiffuse>white</colordiffuse>
+						<visible>Container(9010).HasPrevious</visible>
+					</control>
+					<control type="image">
+						<posx>1800</posx>
+						<posy>6</posy>
+						<width>30</width>
+						<height>30</height>
+						<texture>arrowright.png</texture>
+						<colordiffuse>white</colordiffuse>
+						<visible>Container(9010).HasNext</visible>
+					</control>
+				</control>
+				<control type="image">
+					<posy>0</posy>
+					<width>1920</width>
+					<height>225</height>
+					<texture>$VAR[Homemenu_BarGraphic]</texture>
+				</control>
 			</control>
 
 			<!-- Main Menu -->
@@ -403,7 +507,20 @@
 			<textcolor>grey</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
 			<visible>!Skin.HasSetting(Disable.Userinfo)</visible>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+		<control type="label">
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>$INFO[System.CurrentUser]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>grey</textcolor>
+			<visible>!Skin.HasSetting(Disable.Userinfo)</visible>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo)</visible>
 			<width min="10" max="780">auto</width>
@@ -413,7 +530,20 @@
 			<font>font13_title</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+			<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo)</visible>
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>[COLOR grey]  |  [/COLOR]$INFO[Container(300).ListItem(0).Label2]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo)</visible>
 			<width min="10" max="780">auto</width>
@@ -423,7 +553,20 @@
 			<font>font13_title</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+		<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo)</visible>
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>$INFO[Container(300).ListItem(0).Label2]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
 			<width min="10" max="780">auto</width>
@@ -433,17 +576,20 @@
 			<font>IconSmaller</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
 		<control type="label">
-			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
 			<width min="10" max="780">auto</width>
 			<height>41</height>
-			<label></label>
+			<label></label>
 			<textoffsetx>30</textoffsetx>
 			<font>IconSmaller</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
-			<shadowcolor>AA000000</shadowcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- End -->
 	</include>
 
 	<!-- Home Menu Content -->
