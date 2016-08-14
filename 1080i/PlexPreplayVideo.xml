@@ -361,7 +361,7 @@
 						
 						<!-- Show Audio Stream -->
 						<control type="label">	
-							<animation effect="slide" start="0,0" end="-50,0" time="0" condition="Substring(ListItem.Property(SelectedAudioStream),Unknown,Left) | Skin.HasSetting(Preplay.DisableLanguageFlags)">Conditional</animation>
+							<animation effect="slide" start="0,0" end="-50,0" time="0" condition="Substring(ListItem.Property(SelectedAudioStream),Unknown,Left) | Substring(ListItem.Property(SelectedAudioStream),None,Left) | Skin.HasSetting(Preplay.DisableLanguageFlags)">Conditional</animation>
 							<posx>50</posx>
 							<posy>75</posy>
 							<width>594</width>
@@ -369,7 +369,7 @@
 							<font>font15</font>
 							<textcolor>grey</textcolor>
 							<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-							<label>$VAR[Preplay_AudioStreamVar]</label>
+							<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
 							<textoffsetx>36</textoffsetx>
 						</control>
 
@@ -391,12 +391,14 @@
 							<posy>228</posy>
 							<width>40</width>
 							<height>40</height>
-							<texture>$VAR[Preplay_LanguageFlagVar]</texture>
-							<visible>!Substring(ListItem.Property(SelectedAudioStream),Unknown,Left) + !Skin.HasSetting(Preplay.DisableLanguageFlags)</visible>
+							<texture>$VAR[Preplay_SubtitleLanguageFlagVar]</texture>
+							<visible>!Substring(ListItem.Property(SelectedSubtitleStream),Unknown,Left) + !Substring(ListItem.Property(SelectedSubtitleStream),None,Left) + !Skin.HasSetting(Preplay.DisableLanguageFlags)</visible>
 						</control>
 
 						<!-- Subtitles Stream -->
 						<control type="label">
+							<animation effect="slide" start="0,0" end="-50,0" time="0" condition="Substring(ListItem.Property(SelectedSubtitleStream),Unknown,Left) | Substring(ListItem.Property(SelectedSubtitleStream),None,Left) | Skin.HasSetting(Preplay.DisableLanguageFlags)">Conditional</animation>
+							<posx>50</posx>
 							<posy>228</posy>
 							<width>594</width>
 							<height>40</height>
@@ -780,7 +782,7 @@
 			<control type="image">
 				<width>1192</width>
 				<height>1080</height>
-				<texture border="4">dialogs/info/info_rightpaneltop.png</texture>
+				<texture colordiffuse="E6FFFFFF" border="4">dialogs/info/info_rightpaneltop.png</texture>
 			</control>
 
 			<control type="group">
