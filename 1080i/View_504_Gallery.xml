@@ -141,6 +141,8 @@
                             <texture>background.png</texture>
                             <colordiffuse>background</colordiffuse>
                         </control>
+                        
+                        <!-- Fanart -->
                         <control type="image">
                             <visible>!Window.IsActive(pictures)</visible>
                             <width>1125</width>
@@ -149,11 +151,22 @@
                             <aspectratio align="center" aligny="center">scale</aspectratio>
                             <colordiffuse>BAffffff</colordiffuse>
                         </control>
+                        
+                        <!-- Photo Thumb -->
                         <control type="image">
-                            <visible>Window.IsActive(pictures)</visible>
+                            <visible>Window.IsActive(pictures) + [!System.GetBool(myplex.disablepicturetranscode) | ListItem.Type(photoAlbum)]</visible>
                             <width>1125</width>
                             <height>633</height>
                             <texture>$INFO[ListItem.Art(bigThumb)]</texture>
+                            <aspectratio align="center" aligny="center">scale</aspectratio>
+                            <colordiffuse>BAffffff</colordiffuse>
+							<aspectratio>scale</aspectratio>
+                        </control>
+                        <control type="image">
+                            <visible>Window.IsActive(pictures) + System.GetBool(myplex.disablepicturetranscode)</visible>
+                            <width>1125</width>
+                            <height>633</height>
+                            <texture>$INFO[ListItem.Icon]</texture>
                             <aspectratio align="center" aligny="center">scale</aspectratio>
                             <colordiffuse>BAffffff</colordiffuse>
 							<aspectratio>scale</aspectratio>
@@ -180,7 +193,6 @@
                             <width>1125</width>
                             <height>633</height>
                             <texture>background.png</texture>
-                            <colordiffuse>background</colordiffuse>
                             <bordersize>8</bordersize>
                         </control>
                         <control type="image">
@@ -235,12 +247,20 @@
 							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 						</control>
 						
+						<!-- Photo Thumb -->
                         <control type="image">
-                            <visible>Window.IsActive(pictures)</visible>
+                            <visible>Window.IsActive(pictures) + [!System.GetBool(myplex.disablepicturetranscode) | ListItem.Type(photoAlbum)]</visible>
                             <width>1125</width>
                             <height>633</height>
                             <texture>$INFO[ListItem.Art(bigThumb)]</texture>
-                            <colordiffuse>BAffffff</colordiffuse>
+                            <bordersize>8</bordersize>
+							<aspectratio>scale</aspectratio>
+                        </control>
+                        <control type="image">
+                            <visible>Window.IsActive(pictures) + System.GetBool(myplex.disablepicturetranscode)</visible>
+                            <width>1125</width>
+                            <height>633</height>
+                            <texture>$INFO[ListItem.PicturePath]</texture>
                             <bordersize>8</bordersize>
 							<aspectratio>scale</aspectratio>
                         </control>

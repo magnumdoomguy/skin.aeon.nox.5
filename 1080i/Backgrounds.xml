@@ -248,7 +248,14 @@
 			<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
 			<include>FanartCommonValues</include>
 			<texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.PicturePath]</texture>
-			<visible>!ListItem.Type(photoAlbum)</visible>
+			<visible>!ListItem.Type(photoAlbum) + System.GetBool(myplex.disablepicturetranscode)</visible>
+		</control>
+		<control type="image">
+			<description>Normal Default Background Image</description>
+			<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
+			<include>FanartCommonValues</include>
+			<texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
+			<visible>!ListItem.Type(photoAlbum) + !System.GetBool(myplex.disablepicturetranscode)</visible>
 		</control>
 		<control type="image">
 			<description>Normal Default Background Image</description>
@@ -740,7 +747,7 @@
 
 			<!-- Widget Recently Added Background (Photo) -->
 			<control type="image">
-				<visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000)</visible>
+				<visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000) + System.GetBool(myplex.disablepicturetranscode)</visible>
 				<include>FullscreenDimensions</include>
 				<include>AnimatedBackgroundAnimation</include>
 				<fadetime>600</fadetime>
@@ -757,6 +764,25 @@
 				<include condition="StringCompare(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
 				<include condition="StringCompare(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
 				<texture>$INFO[Container(11000).ListItem.PicturePath]</texture>				
+			</control>
+			<control type="image">
+				<visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000) + !System.GetBool(myplex.disablepicturetranscode)</visible>
+				<include>FullscreenDimensions</include>
+				<include>AnimatedBackgroundAnimation</include>
+				<fadetime>600</fadetime>
+				<aspectratio>keep</aspectratio>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
+				<include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
+				<include condition="StringCompare(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
+				<texture>$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>				
 			</control>
 
 			<!-- Widget Watch Later Background -->
