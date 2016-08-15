@@ -8,7 +8,7 @@
 	<controls>
 
 		<!-- Display Normal Background, before Shutter Animation -->
-		<include>CommonBackground</include>	
+		<!--<include>CommonBackground</include>	-->ListItem.Property(sourceTitle)
 
 		<!-- Blur Background for Episodes -->
 		<control type="image">
@@ -17,8 +17,17 @@
 			<width>1920</width>
 			<height>1080</height>
 			<aspectratio align="center">scale</aspectratio>
-			<texture blur="3">$INFO[ListItem.Art(fanart)]</texture>
-			<visible>Skin.HasSetting(Preplay.Blur) + !Container.PlexContent(movie)</visible>
+			<texture blur="3">$VAR[Preplay_FanartVar]</texture>
+			<visible>Skin.HasSetting(Preplay.Blur)</visible>
+		</control>
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1920</width>
+			<height>1080</height>
+			<aspectratio align="center">scale</aspectratio>
+			<texture>$VAR[Preplay_FanartVar]</texture>
+			<visible>!Skin.HasSetting(Preplay.Blur)</visible>
 		</control>
 
 		<!-- Left Side Movies -->

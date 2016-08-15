@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+	
+	<variable name="Preplay_FanartVar">
+		<value condition="StringCompare(ListItem.Property(sourceTitle),YouTube)">special://skin/backgrounds/youtube.jpg</value>
+		<value>$INFO[ListItem.Art(fanart)]</value>
+	</variable>
 
 	<variable name="Preplay_LanguageFlagVar">
 		<value condition="Substring(ListItem.Property(SelectedAudioStream),日本語,Left)">flags/language/Japanese.png</value>
@@ -1024,8 +1029,9 @@
 		<value>Unknown</value>
 	</variable>
 	
-	<!-- Episode Title -->
+	<!-- Landscape Title -->
 	<variable name="Preplay_LandscapeTitleVar">
+		<value condition="ListItem.Type(clip)">[UPPERCASE]$INFO[ListItem.Title][/UPPERCASE]</value>
 		<value condition="!IsEmpty(ListItem.Season)">[B]$INFO[ListItem.Season]x$INFO[ListItem.Episode]. [UPPERCASE]$INFO[ListItem.Title][/UPPERCASE][/B]</value>
 		<value>[UPPERCASE]S$INFO[ListItem.Episode]. $INFO[ListItem.Title][/UPPERCASE]</value>
 	</variable>
