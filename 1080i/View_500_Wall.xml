@@ -904,9 +904,9 @@
 				<height>900</height>
 				<onleft>SetProperty(MediaMenu,True,home)</onleft>
 				<onleft>SetFocus(9050,0)</onleft>
-				<onright>60</onright>
-				<onup>501</onup>
-				<ondown>501</ondown>
+				<onright>noop</onright>
+				<onup>500</onup>
+				<ondown>500</ondown>
 				<pagecontrol>60</pagecontrol>
 				<preloaditems>2</preloaditems>
 				<visible>!Container.Content(empty)</visible>
@@ -921,7 +921,7 @@
 						<texture>$INFO[ListItem.PicturePath]</texture>
 						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
 						<bordersize>2</bordersize>
-						<visible>System.GetBool(myplex.disablepicturetranscode)</visible>
+						<visible>System.GetBool(myplex.disablepicturetranscode) + !ListItem.Type(photoAlbum)</visible>
 					</control>
 					<control type="image">
 						<width>560</width>
@@ -930,7 +930,7 @@
 						<texture>$INFO[ListItem.Art(thumb)]</texture>
 						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
 						<bordersize>2</bordersize>
-						<visible>!System.GetBool(myplex.disablepicturetranscode)</visible>
+						<visible>!System.GetBool(myplex.disablepicturetranscode) | ListItem.Type(photoAlbum)</visible>
 					</control>
 					
 					<!-- Photo Label -->
@@ -978,7 +978,7 @@
 							<aspectratio>scale</aspectratio>
 							<texture>$INFO[ListItem.PicturePath]</texture>
 							<bordersize>8</bordersize>
-							<visible>System.GetBool(myplex.disablepicturetranscode)</visible>
+							<visible>System.GetBool(myplex.disablepicturetranscode) + !ListItem.Type(photoAlbum)</visible>
 						</control>
 						<control type="image">
 							<width>560</width>
@@ -986,7 +986,7 @@
 							<aspectratio>scale</aspectratio>
 							<texture>$INFO[ListItem.Art(thumb)]</texture>
 							<bordersize>8</bordersize>
-							<visible>!System.GetBool(myplex.disablepicturetranscode)</visible>
+							<visible>!System.GetBool(myplex.disablepicturetranscode) | ListItem.Type(photoAlbum)</visible>
 						</control>
 
 						<control type="group">
