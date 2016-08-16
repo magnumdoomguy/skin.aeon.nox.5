@@ -912,6 +912,8 @@
 				<visible>!Container.Content(empty)</visible>
 				<scrolltime tween="quadratic" easing="out">300</scrolltime>
 				<itemlayout height="300" width="560">
+					
+					<!-- Photo Thumb -->
 					<control type="image">
 						<width>560</width>
 						<height>300</height>
@@ -919,7 +921,19 @@
 						<texture>$INFO[ListItem.Icon]</texture>
 						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
 						<bordersize>2</bordersize>
+						<visible>System.GetBool(myplex.disablepicturetranscode)</visible>
 					</control>
+					<control type="image">
+						<width>560</width>
+						<height>300</height>
+						<aspectratio>scale</aspectratio>
+						<texture>$INFO[ListItem.Art(thumb)]</texture>
+						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+						<bordersize>2</bordersize>
+						<visible>!System.GetBool(myplex.disablepicturetranscode)</visible>
+					</control>
+					
+					<!-- Photo Label -->
 					<control type="image">
 						<posy>250</posy>
 						<width>560</width>
@@ -948,6 +962,7 @@
 						<label></label>
 						<visible>ListItem.Type(photoAlbum)</visible>
 					</control>
+					
 				</itemlayout>
 				<focusedlayout heigth="300" width="560">
 					<control type="group">
@@ -955,12 +970,23 @@
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
+						
+						<!-- Photo Thumb -->
 						<control type="image">
 							<width>560</width>
 							<height>300</height>
 							<aspectratio>scale</aspectratio>
 							<texture>$INFO[ListItem.Icon]</texture>
 							<bordersize>8</bordersize>
+							<visible>System.GetBool(myplex.disablepicturetranscode)</visible>
+						</control>
+						<control type="image">
+							<width>560</width>
+							<height>300</height>
+							<aspectratio>scale</aspectratio>
+							<texture>$INFO[ListItem.Art(thumb)]</texture>
+							<bordersize>8</bordersize>
+							<visible>!System.GetBool(myplex.disablepicturetranscode)</visible>
 						</control>
 
 						<control type="group">
