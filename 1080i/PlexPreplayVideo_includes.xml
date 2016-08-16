@@ -5,6 +5,12 @@
 		<value condition="StringCompare(ListItem.Property(sourceTitle),YouTube)">special://skin/backgrounds/youtube.jpg</value>
 		<value>$INFO[ListItem.Art(fanart)]</value>
 	</variable>
+	
+	<variable name="Preplay_MinutesLabelVar">
+		<value condition="StringCompare(ListItem.Duration,1)">$LOCALIZE[42223]</value>
+		<value condition="StringCompare(ListItem.Duration,0)">$LOCALIZE[42223]</value>
+		<value>$LOCALIZE[12391]</value>
+	</variable>
 
 	<variable name="Preplay_LanguageFlagVar">
 		<value condition="Substring(ListItem.Property(SelectedAudioStream),日本語,Left)">flags/language/Japanese.png</value>
@@ -1366,8 +1372,9 @@
 
 	<include name="PreplayMenu_Landscape">
 
+		<!-- Previous Episode -->
 		<control type="button" id="101">
-			<description>Play/browse to Show</description>
+			<description>Previous Episode</description>
 			<height>60</height>
 			<width>98</width>
 			<textoffsetx>0</textoffsetx>
@@ -1379,6 +1386,7 @@
 			<font>IconMedium</font>
 			<onclick>XBMC.PrevItem</onclick>
 			<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+			<visible>ListItem.Type(episode)</visible>
 		</control>
 
 		<!-- Item Separator -->
@@ -1386,6 +1394,7 @@
 			<width>2</width>
 			<height>58</height>
 			<texture border="1">separator3.png</texture>
+			<visible>ListItem.Type(episode)</visible>
 		</control>
 
 		<!-- Play Button -->
@@ -1568,6 +1577,143 @@
 
 	</include>
 
+	<include name="PreplayMenu_Clips">
+
+		<!-- Play Button -->
+		<control type="button" id="102">
+			<description>Play/browse to Show</description>
+			<height>60</height>
+			<width>440</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$VAR[Preplay_PlayResumeButtonVar]</label>
+			<font>font15</font>
+			<onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick>
+			<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+		</control>
+
+		<!-- Item Separator -->
+		<control type="image" id="200">
+			<width>2</width>
+			<height>58</height>
+			<texture border="1">separator3.png</texture>
+		</control>
+
+		<!-- Audio Button -->
+		<control type="button" id="103">
+			<description>Audio</description>
+			<height>60</height>
+			<width>440</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[292]</label>
+			<font>font15</font>
+			<onfocus>Skin.SetString(DialogPos,audiostreampicker)</onfocus>
+			<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+			<onclick>ActivateWindow(10205)</onclick>
+			<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+		</control>
+
+		<!-- Item Separator -->
+		<control type="image" id="201">
+			<width>2</width>
+			<height>58</height>
+			<texture border="1">separator3.png</texture>
+		</control>
+
+		<!-- Subtitles Button -->
+		<control type="button" id="104">
+			<description>Subtitles</description>
+			<height>60</height>
+			<width>440</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[31133]</label>
+			<font>font15</font>
+			<onclick>ActivateWindow(10204)</onclick>
+			<onfocus>Skin.SetString(DialogPos,subtitlestreampicker)</onfocus>
+			<onunfocus>Skin.Reset(DialogPos)</onunfocus>
+			<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+		</control>
+
+		<!-- Item Separator -->
+		<control type="image" id="202">
+			<width>2</width>
+			<height>58</height>
+			<texture border="1">separator3.png</texture>
+		</control>
+
+		<!-- Mark as Watched Button -->
+		<control type="button" id="108">
+			<description>Mark as Watched</description>
+			<height>60</height>
+			<width>440</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[31139]</label>
+			<font>font15</font>
+			<onclick>markaswatched</onclick>
+			<visible>ListItem.Status(unwatched) | ListItem.Status(inprogress)</visible>
+			<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+		</control>
+
+		<!-- Watched Status Button -->
+		<control type="button" id="109">
+			<description>Mark as Unwatched</description>
+			<height>60</height>
+			<width>440</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label>$LOCALIZE[31138]</label>
+			<font>font15</font>
+			<onclick>markasunwatched</onclick>
+			<visible>ListItem.Status(watched)</visible>
+			<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+		</control>
+
+		<!-- Item Separator -->
+		<control type="image" id="110">
+			<width>2</width>
+			<height>58</height>
+			<texture border="1">separator3.png</texture>
+		</control>
+
+		<!-- Options -->
+		<control type="button" id="111">
+			<description>Options</description>
+			<height>60</height>
+			<width>148</width>
+			<textoffsetx>0</textoffsetx>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>grey</textcolor>
+			<focusedcolor>white</focusedcolor>
+			<label></label>
+			<font>IconMedium</font>
+			<onclick>ActivateWindow(1221)</onclick>
+			<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+		</control>
+
+	</include>
+
+	<variable name="Preplay_ButtonWidthVar">
+		<value>312</value>
+	</variable>
 
 	<include name="PreplayExtras">
 

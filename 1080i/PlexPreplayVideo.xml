@@ -170,6 +170,7 @@
 							<textcolor>grey</textcolor>
 							<scroll>true</scroll>
 							<label>$VAR[Preplay_LandscapeTitleVar]</label>
+							<visible>ListItem.Type(episode)</visible>
 						</control>
 
 						<!-- Display TV Show Title -->
@@ -182,7 +183,20 @@
 							<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
 							<scroll>true</scroll>
 							<label>[UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE]</label>
-						</control>					
+							<visible>ListItem.Type(episode)</visible>
+						</control>	
+						
+						<control type="label">
+							<width>1720</width>
+							<height>110</height>
+							<aligny>center</aligny>
+							<align>left</align>
+							<font>font36_title</font>
+							<textcolor>grey</textcolor>
+							<scroll>true</scroll>
+							<label>$VAR[Preplay_LandscapeTitleVar]</label>
+							<visible>!ListItem.Type(episode)</visible>
+						</control>				
 					</control>
 
 					<!-- Item Separator -->
@@ -280,7 +294,7 @@
 								<width>147</width>
 								<height>30</height>
 								<align>center</align>
-								<label>[LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</label>
+								<label>[LOWERCASE]$VAR[Preplay_MinutesLabelVar][/LOWERCASE]</label>
 								<font>font12</font>
 								<textcolor>grey</textcolor>
 							</control>
@@ -506,8 +520,25 @@
 						<align>left</align>
 						<ondown>XBMC.NextItem</ondown>
 						<orientation>horizontal</orientation>
-
 						<include>PreplayMenu_Landscape</include>
+						<visible>ListItem.Type(episode)</visible>
+					</control>
+
+					<!-- For Clips -->
+					<control type="grouplist" id="9000">
+						<posx>-729</posx>
+						<posy>510</posy>
+						<width>1920</width>
+						<height>60</height>
+						<itemgap>0</itemgap>
+						<onleft>9000</onleft>
+						<onright>9000</onright>
+						<onup>XBMC.PrevItem</onup>
+						<align>left</align>
+						<ondown>XBMC.NextItem</ondown>
+						<orientation>horizontal</orientation>
+						<include>PreplayMenu_Clips</include>
+						<visible>!ListItem.Type(episode)</visible>
 					</control>
 
 				</control>
@@ -591,12 +622,19 @@
 					<aligny>center</aligny>
 					<itemgap>0</itemgap>
 					<orientation>horizontal</orientation>
-
+					
 					<!-- Video Resolution Flag -->
 					<control type="image">
 						<width>318</width>
 						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture> 
+						<texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
+						<visible>ListItem.Type(episode)</visible> 
+					</control>
+					<control type="image">
+						<width>638</width>
+						<include>MediaFlagVars</include>
+						<texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
+						<visible>!ListItem.Type(episode)</visible> 
 					</control>
 
 					<!-- Item Separator -->
@@ -611,6 +649,13 @@
 						<width>318</width>
 						<include>MediaFlagVars</include>
 						<texture align="center" aligny="center" fallback="flags/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
+						<visible>ListItem.Type(episode)</visible>
+					</control>
+					<control type="image">
+						<width>638</width>
+						<include>MediaFlagVars</include>
+						<texture align="center" aligny="center" fallback="flags/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
+						<visible>!ListItem.Type(episode)</visible>
 					</control>
 
 					<!-- Item Separator -->
@@ -625,6 +670,7 @@
 						<width>318</width>
 						<include>MediaFlagVars</include>
 						<texture align="center" aligny="center" fallback="flags/135x90/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag_135x90]</texture>
+						<visible>ListItem.Type(episode)</visible>
 					</control>
 
 					<!-- Item Separator -->
@@ -632,6 +678,7 @@
 						<width>2</width>
 						<height>90</height>
 						<texture border="1">separator3.png</texture>
+						<visible>ListItem.Type(episode)</visible>
 					</control>
 
 					<!-- Framerate Flag -->
@@ -639,6 +686,7 @@
 						<width>318</width>
 						<include>MediaFlagVars</include>
 						<texture align="center" aligny="center" fallback="flags/135x90/framerate/default.png">$VAR[FramerateFlag_135x90]</texture>
+						<visible>ListItem.Type(episode)</visible>
 					</control>
 
 					<!-- Item Separator -->
@@ -646,6 +694,7 @@
 						<width>2</width>
 						<height>90</height>
 						<texture border="1">separator3.png</texture>
+						<visible>ListItem.Type(episode)</visible>
 					</control>
 
 					<!-- Audio Codec -->
@@ -653,6 +702,13 @@
 						<width>318</width>
 						<include>MediaFlagVars</include>
 						<texture align="center" aligny="center" fallback="flags/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
+						<visible>ListItem.Type(episode)</visible>
+					</control>
+					<control type="image">
+						<width>638</width>
+						<include>MediaFlagVars</include>
+						<texture align="center" aligny="center" fallback="flags/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
+						<visible>!ListItem.Type(episode)</visible>
 					</control>
 
 					<!-- Item Separator -->
@@ -660,6 +716,7 @@
 						<width>2</width>
 						<height>90</height>
 						<texture border="1">separator3.png</texture>
+						<visible>ListItem.Type(episode)</visible>
 					</control>
 
 					<!-- Audio Channels Flag -->
@@ -667,6 +724,7 @@
 						<width>318</width>
 						<include>MediaFlagVars</include>
 						<texture align="center" aligny="center" fallback="flags/135x90/channels/0.png">$VAR[AudioChannelsFlag_135x90]</texture> 
+						<visible>ListItem.Type(episode)</visible>
 					</control>
 
 				</control>
