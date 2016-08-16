@@ -59,7 +59,8 @@
 			<posy>148</posy>
 			<width>1204</width>
 			<height>904</height>
-			<texture colordiffuse="E6FFFFFF" border="40">listpanel_back.png</texture>
+			<texture condition="Skin.HasTheme(WhiteFlat)" colordiffuse="FFFFFFFF" border="40">listpanel_back.png</texture>
+			<texture condition="!Skin.HasTheme(WhiteFlat)" colordiffuse="E6FFFFFF" border="40">listpanel_back.png</texture>
 		</control>
 	</include>
 
@@ -369,10 +370,12 @@
 
 		<!-- Resolution -->
 		<control type="image">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<include>ListResolution</include>
 		</control>
 		<!-- Duped WhiteFlat -->
 		<control type="image">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
 			<include>ListResolution</include>
 			<colordiffuse>grey</colordiffuse>
 		</control>
@@ -1226,7 +1229,7 @@
 					</focusedlayout>
 
 				</control>
-
+				<!-- Big Poster Section for Videos -->
 				<!-- Scrollbar -->
 				<include>ListScrollbar</include>
 
@@ -1236,14 +1239,27 @@
 				<posy>155</posy>
 				<visible>!Container.Content(episodes) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.PlexContent(homemovies) | Container.PlexContent(clips)]</visible>
 				<control type="image">
+					<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					<width>570</width>
 					<height>835</height>
 					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
 					<texture>$INFO[ListItem.Art(bigThumb)]</texture>
 					<fadetime>400</fadetime>
-					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>										
 					<bordersize>20</bordersize>
 				</control>
+				<!-- Duped for WhiteFlat -->
+				<control type="image">
+					<visible>Skin.HasTheme(WhiteFlat)</visible>
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
+					<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20" colordiffuse="$VAR[Colour_ListHighlightColourVar]">thumbs/wf_thumb_shadow.png</bordertexture>										
+					<bordersize>20</bordersize>
+				</control>
+				<!-- End -->
 				<control type="image">
 					<posy>795</posy>
 					<width>570</width>
