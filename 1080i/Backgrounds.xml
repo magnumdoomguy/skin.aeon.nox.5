@@ -248,21 +248,14 @@
 			<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
 			<include>FanartCommonValues</include>
 			<texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.PicturePath]</texture>
-			<visible>!ListItem.Type(photoAlbum) + System.GetBool(myplex.disablepicturetranscode)</visible>
+			<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
 		</control>
 		<control type="image">
 			<description>Normal Default Background Image</description>
 			<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
 			<include>FanartCommonValues</include>
 			<texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
-			<visible>!ListItem.Type(photoAlbum) + !System.GetBool(myplex.disablepicturetranscode)</visible>
-		</control>
-		<control type="image">
-			<description>Normal Default Background Image</description>
-			<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
-			<include>FanartCommonValues</include>
-			<texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Icon]</texture>
-			<visible>ListItem.Type(photoAlbum)</visible>
+			<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]] | ListItem.Type(photoAlbum)</visible>
 		</control>
 
 		<!-- Background for Empty List -->

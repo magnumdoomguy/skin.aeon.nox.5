@@ -34,9 +34,15 @@
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
-				<visible>ListItem.Type(photo) + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
+				<visible>ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode) + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
 				<include>FanartCommonValues</include>
-				<texture blur="01">$INFO[ListItem.Art(bigThumb)]</texture>
+				<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+			</control>
+			<control type="image">
+				<description>Normal Default Background Image</description>
+				<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
+				<include>FanartCommonValues</include>
+				<texture blur="01">$INFO[ListItem.PicturePath]</texture>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
