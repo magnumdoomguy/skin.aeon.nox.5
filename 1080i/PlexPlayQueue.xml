@@ -34,15 +34,17 @@
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
-				<visible>ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode) + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
+				<visible>![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
 				<include>FanartCommonValues</include>
-				<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+				<texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.PicturePath]</texture>
+				<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>
-				<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
+				<visible>![!IsEmpty(Skin.String(CustomPlaylistSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPlaylistSectionSlideshowPath))]</visible>
 				<include>FanartCommonValues</include>
-				<texture blur="01">$INFO[ListItem.PicturePath]</texture>
+				<texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
+				<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]] | ListItem.Type(photoAlbum)</visible>
 			</control>
 			<control type="image">
 				<description>Normal Default Background Image</description>

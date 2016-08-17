@@ -2252,10 +2252,21 @@
 					<width>570</width>
 					<height>835</height>
 					<aspectratio aligny="bottom">keep</aspectratio>
-					<texture>$INFO[ListItem.Icon]</texture>
+					<texture background="true">$INFO[ListItem.PicturePath]</texture>
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
+					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
+				</control>
+				<control type="image">
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture fallback="defaultpicture.png" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
 				</control>
 				
 				<!-- Reflection -->
@@ -2265,8 +2276,19 @@
 					<height>835</height>
 					<aspectratio aligny="top">keep</aspectratio>
 					<fadetime>400</fadetime>
-					<texture diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<texture fallback="defaultfolder.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
 					<bordersize>20</bordersize>
+					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
+				</control>
+				<control type="image">
+					<posy>795</posy>
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>400</fadetime>
+					<texture fallback="defaultpicture.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<bordersize>20</bordersize>
+					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
 				</control>
 			</control>
 			<control type="group">
