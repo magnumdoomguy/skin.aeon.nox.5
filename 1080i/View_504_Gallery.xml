@@ -154,19 +154,28 @@
                         
                         <!-- Photo Thumb -->
                         <control type="image">
-                            <visible>Window.IsActive(pictures) + [!System.GetBool(myplex.disablepicturetranscode) | ListItem.Type(photoAlbum)]</visible>
+                            <visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
                             <width>1125</width>
                             <height>633</height>
-                            <texture>$INFO[ListItem.Art(bigThumb)]</texture>
+                            <texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
                             <aspectratio align="center" aligny="center">scale</aspectratio>
                             <colordiffuse>BAffffff</colordiffuse>
 							<aspectratio>scale</aspectratio>
                         </control>
                         <control type="image">
-                            <visible>Window.IsActive(pictures) + System.GetBool(myplex.disablepicturetranscode)</visible>
+                            <visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
                             <width>1125</width>
                             <height>633</height>
-                            <texture>$INFO[ListItem.PicturePath]</texture>
+                            <texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.PicturePath]</texture>
+                            <aspectratio align="center" aligny="center">scale</aspectratio>
+                            <colordiffuse>BAffffff</colordiffuse>
+							<aspectratio>scale</aspectratio>
+                        </control>
+                        <control type="image">
+                            <visible>ListItem.Type(photoAlbum)</visible>
+                            <width>1125</width>
+                            <height>633</height>
+                            <texture fallback="defaultfolder.png">$INFO[ListItem.Art(bigThumb)]</texture>
                             <aspectratio align="center" aligny="center">scale</aspectratio>
                             <colordiffuse>BAffffff</colordiffuse>
 							<aspectratio>scale</aspectratio>
@@ -249,20 +258,28 @@
 						
 						<!-- Photo Thumb -->
                         <control type="image">
-                            <visible>Window.IsActive(pictures) + [!System.GetBool(myplex.disablepicturetranscode) | ListItem.Type(photoAlbum)]</visible>
+                            <visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
                             <width>1125</width>
                             <height>633</height>
-                            <texture>$INFO[ListItem.Art(bigThumb)]</texture>
-                            <bordersize>8</bordersize>
-							<aspectratio>scale</aspectratio>
+                            <texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
+                            <aspectratio align="center" aligny="center">scale</aspectratio>
+                            <aspectratio>scale</aspectratio>
                         </control>
                         <control type="image">
-                            <visible>Window.IsActive(pictures) + System.GetBool(myplex.disablepicturetranscode)</visible>
+                            <visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
                             <width>1125</width>
                             <height>633</height>
-                            <texture>$INFO[ListItem.PicturePath]</texture>
-                            <bordersize>8</bordersize>
-							<aspectratio>scale</aspectratio>
+                            <texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.PicturePath]</texture>
+                            <aspectratio align="center" aligny="center">scale</aspectratio>
+                            <aspectratio>scale</aspectratio>
+                        </control>
+                        <control type="image">
+                            <visible>ListItem.Type(photoAlbum)</visible>
+                            <width>1125</width>
+                            <height>633</height>
+                            <texture fallback="defaultfolder.png">$INFO[ListItem.Art(bigThumb)]</texture>
+                            <aspectratio align="center" aligny="center">scale</aspectratio>
+                            <aspectratio>scale</aspectratio>
                         </control>
 						<control type="image">
                             <visible>Window.IsActive(pictures)</visible>

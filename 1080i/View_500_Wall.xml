@@ -904,9 +904,9 @@
 				<height>900</height>
 				<onleft>SetProperty(MediaMenu,True,home)</onleft>
 				<onleft>SetFocus(9050,0)</onleft>
-				<onright>60</onright>
-				<onup>501</onup>
-				<ondown>501</ondown>
+				<onright>noop</onright>
+				<onup>500</onup>
+				<ondown>500</ondown>
 				<pagecontrol>60</pagecontrol>
 				<preloaditems>2</preloaditems>
 				<visible>!Container.Content(empty)</visible>
@@ -918,19 +918,28 @@
 						<width>560</width>
 						<height>300</height>
 						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.PicturePath]</texture>
+						<texture fallback="defaultpicture.png" background="true">$INFO[ListItem.PicturePath]</texture>
 						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
 						<bordersize>2</bordersize>
-						<visible>System.GetBool(myplex.disablepicturetranscode)</visible>
+						<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
 					</control>
 					<control type="image">
 						<width>560</width>
 						<height>300</height>
 						<aspectratio>scale</aspectratio>
-						<texture>$INFO[ListItem.Art(thumb)]</texture>
+						<texture fallback="defaultpicture.png" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
 						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
 						<bordersize>2</bordersize>
-						<visible>!System.GetBool(myplex.disablepicturetranscode)</visible>
+						<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
+					</control>
+					<control type="image">
+						<width>560</width>
+						<height>300</height>
+						<aspectratio>scale</aspectratio>
+						<texture fallback="defaultfolder.png" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+						<bordersize>2</bordersize>
+						<visible>ListItem.Type(photoAlbum)</visible>
 					</control>
 					
 					<!-- Photo Label -->
@@ -976,17 +985,25 @@
 							<width>560</width>
 							<height>300</height>
 							<aspectratio>scale</aspectratio>
-							<texture>$INFO[ListItem.PicturePath]</texture>
+							<texture fallback="defaultpicture.png" background="true">$INFO[ListItem.PicturePath]</texture>
 							<bordersize>8</bordersize>
-							<visible>System.GetBool(myplex.disablepicturetranscode)</visible>
+							<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
 						</control>
 						<control type="image">
 							<width>560</width>
 							<height>300</height>
 							<aspectratio>scale</aspectratio>
-							<texture>$INFO[ListItem.Art(thumb)]</texture>
+							<texture fallback="defaultpicture.png" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
 							<bordersize>8</bordersize>
-							<visible>!System.GetBool(myplex.disablepicturetranscode)</visible>
+							<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
+						</control>
+						<control type="image">
+							<width>560</width>
+							<height>300</height>
+							<aspectratio>scale</aspectratio>
+							<texture fallback="defaultfolder.png" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+							<bordersize>8</bordersize>
+							<visible>ListItem.Type(photoAlbum)</visible>
 						</control>
 
 						<control type="group">
