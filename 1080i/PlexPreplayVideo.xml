@@ -806,42 +806,30 @@
 
 		</control>
 
-		<!-- Display Fanart -->
+		
 		<control type="group">
 			<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
 			<visible>Container.PlexContent(movie)</visible>
 
 			<posx>729</posx>
+			
+			<!-- Display Fanart -->
 			<control type="image">
 				<width>1192</width>
 				<height>1080</height>
 				<texture>black.png</texture>
-				<visible>IsEmpty(ListItem.Art(fanart)) + !Container.Content(clip)</visible>
+				<visible>IsEmpty(ListItem.Art(fanart))</visible>
 			</control>
 			<control type="image">
-				<width>1192</width>
-				<height>1080</height>
-				<aspectratio aligny="top">scale</aspectratio>
-				<texture>$INFO[ListItem.Art(bigThumb)]</texture>
-				<visible blur="3">Container.Content(clip) + Skin.HasSetting(Preplay.Blur)</visible>
-			</control>
-			<control type="image">
-				<width>1192</width>
-				<height>1080</height>
-				<aspectratio aligny="top">scale</aspectratio>
-				<texture>$INFO[ListItem.Art(bigThumb)]</texture>
-				<visible>Container.Content(clip) + !Skin.HasSetting(Preplay.Blur)</visible>
-			</control>
-			<control type="image">
-				<visible>Skin.HasSetting(Preplay.Blur) + !Container.Content(clip)</visible>
+				<visible>Skin.HasSetting(Preplay.Blur)</visible>
 				<width>1192</width>
 				<height>1080</height>
 				<aspectratio align="center">scale</aspectratio>
 				<texture blur="3">$INFO[ListItem.Art(fanart)]</texture>
 			</control>
 			<control type="image">
-				<visible>!Skin.HasSetting(Preplay.Blur) + !Container.Content(clip)</visible>
+				<visible>!Skin.HasSetting(Preplay.Blur)</visible>
 				<width>1192</width>
 				<height>1080</height>
 				<aspectratio align="center">scale</aspectratio>
@@ -901,9 +889,8 @@
 					<texture border="1">separator2.png</texture>
 				</control>
 
-				<!-- Top Information Line Under Title (Movies) -->
+				<!-- Top Information Line Under Title -->
 				<control type="grouplist">
-					<visible>!Container.Content(episode)</visible>
 					<posx>0</posx>
 					<posy>95</posy>
 					<width>1188</width>
@@ -920,18 +907,6 @@
 						<label>[B]$INFO[ListItem.Year][/B]</label>
 						<font>font35_title</font>
 						<textcolor>grey</textcolor>
-						<visible>!Container.Content(episode)</visible>
-					</control>
-
-					<!-- Display First Aired Date -->
-					<control type="label">
-						<width>300</width>
-						<height>90</height>
-						<align>left</align>
-						<label>[B]$INFO[ListItem.Date][/B]</label>
-						<font>font35_title</font>
-						<textcolor>grey</textcolor>
-						<visible>Container.Content(episode)</visible>
 					</control>
 
 					<!-- Item Separator -->
@@ -939,7 +914,6 @@
 						<width>2</width>
 						<height>90</height>
 						<texture border="1">separator3.png</texture>
-						<visible>!Container.Content(episode)</visible>
 					</control>
 
 					<!-- Display Studio Logo -->
@@ -979,17 +953,14 @@
 					</control>
 
 					<!-- Content Rating -->
-					<control type="group">
-						<width>198</width>
-						<control type="image">
-							<width>198</width>
-							<height>90</height>
-							<fadetime>250</fadetime>
-							<animation effect="fade" time="200">VisibleChange</animation>
-							<bordersize>2</bordersize>
-							<texture align="center" aligny="center" fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-							<aspectratio align="center" aligny="center">keep</aspectratio>
-						</control>
+					<control type="image">
+						<width>249</width>
+						<height>90</height>
+						<fadetime>250</fadetime>
+						<animation effect="fade" time="200">VisibleChange</animation>
+						<bordersize>2</bordersize>
+						<texture align="center" aligny="center" fallback="flags/mpaa_descriptions/NR.png">$VAR[MPAAFlag_Description]</texture>
+						<aspectratio align="center" aligny="center">keep</aspectratio>
 					</control>
 
 					<!-- Separator between Items -->
