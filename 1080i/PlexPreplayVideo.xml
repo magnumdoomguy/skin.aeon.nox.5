@@ -739,6 +739,7 @@
 			</control>
 		</control>
 
+		<!-- Preplay Movies (Right) -->
 		<control type="group" id="1200">
 			<animation effect="slide" start="1242,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="1242,0" time="500" tween="quadratic">WindowClose</animation>
@@ -889,35 +890,6 @@
 						<visible>!IsEmpty(ListItem.Genre)</visible>
 					</control>
 
-					<control type="group">
-
-						<!-- Display Season and Episode Numbers -->
-						<control type="label">
-							<width>1100</width>
-							<height>30</height>
-							<aligny>center</aligny>
-							<align>left</align>
-							<font>font15</font>
-							<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-							<scroll>true</scroll>
-							<label>Season $INFO[ListItem.Season] [COLOR=grey]&#xB7;[/COLOR] Episode $INFO[ListItem.Episode]</label>
-							<visible>Container.Content(episode)</visible>
-						</control>
-
-					</control>
-
-					<!-- Display Artist Title -->
-					<control type="label">
-						<width>1100</width>
-						<height>30</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font15</font>
-						<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						<scroll>true</scroll>
-						<label>$INFO[ListItem.Artist]</label>
-						<visible>Container.Content(musicvideos) + !IsEmpty(ListItem.Artist)</visible>
-					</control>
 				</control>
 
 				<!-- Item Separator -->
@@ -1203,128 +1175,6 @@
 
 				</control>
 
-				<!-- Top Information Line Under Title (Episodes) -->
-				<control type="grouplist">
-					<visible>Container.Content(episode)</visible>
-					<posx>0</posx>
-					<posy>95</posy>
-					<width>302</width>
-					<height>90</height>
-					<itemgap>0</itemgap>
-					<align>left</align>
-					<orientation>horizontal</orientation>
-
-					<!-- Display First Aired Date -->
-					<control type="label">
-						<width>300</width>
-						<height>90</height>
-						<align>left</align>
-						<label>[B]$INFO[ListItem.Date][/B]</label>
-						<font>font35_title</font>
-						<textcolor>grey</textcolor>
-						<visible>Container.Content(episode)</visible>
-					</control>
-
-					<!-- Separator between items -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-
-				</control>
-
-				<control type="grouplist">
-					<visible>Container.Content(episode)</visible>
-					<posx>568</posx>
-					<posy>95</posy>
-					<width>544</width>
-					<height>90</height>
-					<itemgap>0</itemgap>
-					<align>left</align>
-					<orientation>horizontal</orientation>	
-
-					<!-- Content Rating -->
-					<control type="group">
-						<width>187</width>
-						<control type="image">
-							<width>187</width>
-							<height>90</height>
-							<fadetime>250</fadetime>
-							<animation effect="fade" time="200">VisibleChange</animation>
-							<bordersize>2</bordersize>
-							<texture align="center" aligny="center" fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-							<aspectratio align="center" aligny="center">keep</aspectratio>
-						</control>
-					</control>
-
-					<!-- Separator between Items -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-						<visible>![Container.Content(tvshows) + Skin.HasSetting(Disable.NextAired)]</visible>
-					</control>
-
-					<!-- Display Duration -->
-					<control type="group">
-						<width>187</width>
-						<control type="label">
-							<posx>0</posx>
-							<posy>2</posy>
-							<width>187</width>
-							<height>60</height>
-							<align>center</align>
-							<label>[B]$VAR[DurationVar][/B]</label>
-							<font>font48</font>
-							<textcolor>grey</textcolor>
-						</control>
-
-						<control type="label">
-							<posy>52</posy>
-							<width>187</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>grey</textcolor>
-						</control>
-					</control>
-
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Rating -->
-					<control type="group">
-						<width>187</width>
-						<control type="label">
-							<posx>0</posx>
-							<posy>2</posy>
-							<width>187</width>
-							<height>60</height>
-							<align>center</align>
-							<label>$INFO[ListItem.RatingAndVotes]</label>
-							<font>font48_bold</font>
-							<textcolor>grey</textcolor>
-						</control>
-						<control type="label">
-							<posy>52</posy>
-							<width>187</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$LOCALIZE[31225][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>grey</textcolor>
-						</control>
-					</control>
-
-				</control>			
-
 				<!-- Item Separator -->
 				<control type="image">
 					<posx>-37</posx>
@@ -1347,69 +1197,13 @@
 
 				<!-- Video Information without Extras (Movies) -->
 				<control type="panel" id="300">
-					<visible>IsEmpty(ListItem.Property(PlexExtras)) + !Container.Content(episode)</visible>
+					<visible>IsEmpty(ListItem.Property(PlexExtras))</visible>
 					<posx>-36</posx>
 					<posy>184</posy>
 					<width>1188</width>
 					<height>306</height>
 					<orientation>horizontal</orientation>
 					<include>VideoInfo</include>
-				</control>
-
-				<!-- Video Information without Extras (Episodes) -->
-				<control type="panel" id="300">
-					<visible>Container.Content(episode)</visible>
-					<posx>-36</posx>
-					<posy>184</posy>
-					<width>594</width> <!-- 594 -->
-					<height>306</height>
-					<orientation>horizontal</orientation>
-					<include>VideoInfo</include>
-				</control>
-
-				<!-- Episode Thumbnail -->
-				<control type="image">
-					<visible>Container.Content(episode)</visible>
-					<posx>568</posx> <!-- 608 -->
-					<posy>184</posy>
-					<width>544</width>
-					<height>306</height>
-					<aspectratio>scale</aspectratio>
-					<texture>$VAR[EpisodeBigThumbnailVar]</texture>
-				</control>
-
-				<!-- Display Episode Watched Status Overlay  -->
-				<control type="image">
-					<posx>982</posx>
-					<posy>184</posy>
-					<width>87</width>
-					<height>87</height>
-					<texture>$VAR[OverlayVar]</texture>
-					<visible>Container.Content(episode) + !Skin.HasSetting(Enable.Circles)</visible>
-				</control>	
-
-				<!-- Watched Status Upper Circle -->
-				<control type="image">
-					<posx>1061</posx>
-					<posy>199</posy>
-					<width>36</width>
-					<height>36</height>
-					<aspectratio>keep</aspectratio>
-					<texture>$VAR[OverlayVar]</texture>
-					<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
-					<visible>Container.Content(episode) + Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-				</control>
-
-				<!-- Watched Status Lower Circle -->
-				<control type="image">
-					<posx>1061</posx>
-					<posy>439</posy>
-					<width>36</width>
-					<height>36</height>
-					<aspectratio>keep</aspectratio>
-					<texture>$VAR[OverlayVar]</texture>
-					<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
-					<visible>Container.Content(episode) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
 				</control>
 
 				<!-- Plot Textbox-->
@@ -1809,9 +1603,7 @@
 				<posx>3</posx>
 				<posy>0</posy>
 
-				<!-- For Movies -->
 				<control type="grouplist" id="9000">
-					<visible>!Container.Content(episode)</visible>
 					<animation effect="slide" end="0,-102" time="0" condition="!IsEmpty(ListItem.Property(PlexExtras))">Conditional</animation>
 					<posx>1</posx>
 					<posy>510</posy>
@@ -1822,24 +1614,6 @@
 					<onup>30</onup>
 					<ondown>30</ondown>
 					<align>left</align>
-					<orientation>horizontal</orientation>
-
-					<include>PreplayMenu</include>
-				</control>
-
-				<!-- For TV -->
-				<control type="grouplist" id="9000">
-					<visible>Container.Content(episode)</visible>
-					<posx>1</posx>
-					<posy>510</posy>
-					<width>1192</width>
-					<height>60</height>
-					<itemgap>0</itemgap>
-					<onleft>9000</onleft>
-					<onright>9000</onright>
-					<onup>XBMC.PrevItem</onup>
-					<align>left</align>
-					<ondown>XBMC.NextItem</ondown>
 					<orientation>horizontal</orientation>
 
 					<include>PreplayMenu</include>
