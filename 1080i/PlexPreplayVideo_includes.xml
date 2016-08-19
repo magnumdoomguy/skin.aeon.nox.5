@@ -1500,6 +1500,17 @@
 			<height>60</height>
 			<texture border="1">separator2.png</texture>
 		</control>
+		
+		<!-- Language Flag -->
+		<control type="image">
+			<posx>36</posx>
+			<posy>50</posy>
+			<width>40</width>
+			<height>40</height>
+			<texture>$INFO[ListItem.Icon]</texture>
+			<visible>!String.IsEqual(ListItem.Icon,Unknown)</visible>
+		</control>
+		
 		<control type="label">
 			<posy>50</posy>
 			<width>594</width>
@@ -1509,7 +1520,21 @@
 			<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
 			<label>$INFO[ListItem.Label]</label>
 			<textoffsetx>36</textoffsetx>
+			<visible>String.IsEqual(ListItem.Icon,Unknown)</visible>
 		</control>
+		<control type="label">
+			<posx>50</posx>
+			<posy>50</posy>
+			<width>594</width>
+			<height>40</height>
+			<font>font15</font>
+			<textcolor>grey</textcolor>
+			<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+			<label>$INFO[ListItem.Label]</label>
+			<textoffsetx>36</textoffsetx>
+			<visible>!String.IsEqual(ListItem.Icon,Unknown)</visible>
+		</control>
+		
 		<control type="label">
 			<posy>5</posy>
 			<width>594</width>
@@ -1537,6 +1562,7 @@
 			<item>
 				<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
 				<label2>$LOCALIZE[292]:</label2>
+				<icon>$VAR[Preplay_LanguageFlagVar]</icon>
 				<onclick>noop</onclick>
 			</item>
 
@@ -1544,6 +1570,7 @@
 			<item>
 				<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
 				<label2>$LOCALIZE[287]:</label2>
+				<icon>$VAR[Preplay_SubtitleLanguageFlagVar]</icon>
 				<onclick>noop</onclick>
 			</item>
 
@@ -1552,6 +1579,7 @@
 				<label>$INFO[ListItem.Director]</label>
 				<label2>$LOCALIZE[20339]:</label2>
 				<onclick>SendClick(2003,13)</onclick>
+				<icon>Unknown</icon>
 				<visible>!IsEmpty(ListItem.Director)</visible>
 			</item>
 
@@ -1559,6 +1587,7 @@
 			<item>
 				<label>$INFO[ListItem.Property(Cast)]</label>
 				<label2>$LOCALIZE[31134]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>!IsEmpty(ListItem.Property(Cast))</visible>
 			</item>
@@ -1567,6 +1596,7 @@
 			<item>
 				<label>$INFO[ListItem.Writer]</label>
 				<label2>$LOCALIZE[20417]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>!IsEmpty(ListItem.Writer)</visible>
 			</item>
@@ -1575,6 +1605,7 @@
 			<item>
 				<label>$INFO[ListItem.OriginalTitle]</label>
 				<label2>$LOCALIZE[20376]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>!IsEmpty(ListItem.OriginalTitle) + !String.IsEqual(ListItem.OriginalTitle,ListItem.Title)</visible>
 			</item>
@@ -1583,6 +1614,7 @@
 			<item>
 				<label>$INFO[ListItem.Date]</label>
 				<label2>$LOCALIZE[172]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>!IsEmpty(ListItem.Date) + !ListItem.Type(episode)</visible>
 			</item>
@@ -1591,6 +1623,7 @@
 			<item>
 				<label>$INFO[ListItem.Country]</label>
 				<label2>$LOCALIZE[574]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>!IsEmpty(ListItem.Country)</visible>
 			</item>
@@ -1599,6 +1632,7 @@
 			<item>
 				<label>$INFO[ListItem.DateAdded]</label>
 				<label2>$LOCALIZE[570]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>!IsEmpty(ListItem.DateAdded)</visible>
 			</item>
@@ -1607,6 +1641,7 @@
 			<item>
 				<label>$INFO[ListItem.PlayCount]</label>
 				<label2>$LOCALIZE[567]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>!IsEmpty(ListItem.PlayCount)</visible>
 			</item>
@@ -1614,6 +1649,7 @@
 			<item>
 				<label>$INFO[ListItem.PercentPlayed,,%]</label>
 				<label2 fallback="-">$LOCALIZE[575]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>ListItem.IsResumable</visible>
 			</item>
@@ -1621,6 +1657,7 @@
 			<item>
 				<label>$INFO[ListItem.LastPlayed]</label>
 				<label2 fallback="-">$LOCALIZE[568]:</label2>
+				<icon>Unknown</icon>
 				<onclick>noop</onclick>
 				<visible>!IsEmpty(ListItem.LastPlayed)</visible>
 			</item>
