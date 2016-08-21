@@ -59,7 +59,25 @@
 				<animation effect="fade" delay="240" time="240" reversible="false">Hidden</animation>
 				<visible>Control.IsVisible(591) + [Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)]</visible>
 				<visible>![Container.OnNext | Container.OnPrevious]</visible>
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			</control>
+			<!-- WhiteFlat Poster (Updated Shadow)-->
+			<control type="image">
+				<posx>60</posx>
+				<posy>680</posy>
+				<width>272</width>
+				<height>392</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture fallback="empty.png">$INFO[ListItem.Art(thumb)]</texture>
+				<fadetime>200</fadetime>
+				<bordertexture border="20" colordiffuse="40FFFFFF">thumbs/wf_thumb_shadow.png</bordertexture>
+				<bordersize>20</bordersize>
+				<animation effect="fade" delay="240" time="240" reversible="false">Hidden</animation>
+				<visible>Control.IsVisible(591) + [Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)]</visible>
+				<visible>![Container.OnNext | Container.OnPrevious]</visible>
+				<visible>Skin.HasTheme(WhiteFlat)</visible>
+			</control>
+			<!-- End -->
 
 			<!-- Watched Status -->
 			<control type="image">
@@ -70,8 +88,20 @@
 				<texture>$VAR[OverlayVar]</texture>
 				<aspectratio align="center" aligny="top">keep</aspectratio>
 				<bordersize>1</bordersize>
-				<visible>!Container.Content(seasons) + !Skin.HasSetting(Enable.Circles)</visible>
+				<visible>!Container.Content(seasons) + !Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
 			</control>
+			<!-- WhiteFlat - Watched Status Overlay Ribbon-->
+			<control type="image">
+				<posx>80</posx>
+				<posy>1052</posy>
+				<width>232</width>
+				<height>3</height>				
+				<aspectratio>stretch</aspectratio>				
+				<texture colordiffuse="$VAR[Colour_ListWatchedStatusColourVar]">$VAR[OverlayVar]</texture>
+                <animation effect="fade" end="45" time="0" condition="true">Conditional</animation>
+				<visible>!Container.Content(seasons) + !Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+			</control>
+			<!-- End -->
 
 			<!-- Watched Status Upper Circle -->
 			<control type="image">
@@ -102,6 +132,7 @@
 				<control type="group">
 					<visible>Container.Content(movies)</visible>
 					<control type="group">
+						<visible>!Skin.HasTheme(WhiteFlat)</visible>
 						<posx>1320</posx>
 						<posy>1000</posy>
 						<width>1840</width>
@@ -157,6 +188,65 @@
 						</control>
 
 					</control>
+					<!-- WhiteFlat - Flags -->
+					<control type="group">
+						<visible>Skin.HasTheme(WhiteFlat)</visible>
+						<posx>1250</posx>
+						<posy>985</posy>
+						<width>1840</width>
+						<height>90</height>
+						<include>VisibleFadeEffect</include>
+
+						<!-- Video Codec Flag -->
+						<control type="image">
+							<posx>-300</posx>
+							<include>MediaFlagVars</include>
+							
+							<texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
+						</control>
+
+						<!-- Studio Flag -->
+						<control type="image">
+							<posx>-150</posx>
+							<include>MediaFlagVars</include>
+							
+							<texture fallback="flags/studios/default-studio.png">$VAR[StudioFlag]</texture>
+						</control>
+
+						<!-- Content Rating -->
+						<control type="image">
+							<posx>0</posx>
+							<include>MediaFlagVars</include>
+							
+							<texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+						</control>
+
+						<!-- Aspect Ratio Flag -->
+						<control type="image">
+							<posx>150</posx>
+							<include>MediaFlagVars</include>
+							
+							<texture fallback="flags/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag]</texture>
+						</control>
+
+						<!-- Resolution Flag -->
+						<control type="image">
+							<posx>300</posx>
+							<include>MediaFlagVars</include>
+							
+							<texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
+						</control>
+
+						<!-- Audio Codec Flag -->
+						<control type="image">
+							<posx>450</posx>
+							<include>MediaFlagVars</include>
+							
+							<texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
+						</control>
+
+					</control>
+					<!-- End WhiteFlat Flags -->
 					<control type="group">
 						<control type="label">
 							<posx>350</posx>
