@@ -205,13 +205,22 @@
                             <bordersize>8</bordersize>
                         </control>
                         <control type="image">
-                            <visible>!Window.IsActive(pictures)</visible>
+                            <visible>!Window.IsActive(pictures)+ !Skin.HasTheme(WhiteFlat)</visible>
                             <width>1125</width>
                             <height>633</height>
                             <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
                             <aspectratio align="center" aligny="center">scale</aspectratio>
                             <bordersize>8</bordersize>
                         </control>
+                        <!-- WhiteFlat Dupe (Thumbnail - Removed Border) -->
+                        <control type="image">
+                            <visible>!Window.IsActive(pictures) + Skin.HasTheme(WhiteFlat)</visible>
+                            <width>1125</width>
+                            <height>633</height>
+                            <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
+                            <aspectratio align="center" aligny="center">scale</aspectratio>                            
+                        </control>
+                        <!-- End -->
 						<control type="image">
                             <width>1125</width>
                             <height>633</height>
@@ -223,7 +232,7 @@
 						
 						<!-- Ribbon Watched Status Overlay -->
                         <control type="image">
-                            <visible>![Window.IsActive(pictures) | Container.Content(artists)] + !Skin.HasSetting(Enable.Circles)</visible>
+                            <visible>![Window.IsActive(pictures) | Container.Content(artists)] + !Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
                             <posx>1048</posx>
                             <posy>8</posy>
                             <width>80</width>
@@ -231,6 +240,18 @@
                             <texture>$VAR[OverlayVar]</texture>
                             <aspectratio align="center" aligny="top">keep</aspectratio>
                         </control>
+                        <!-- WhiteFlat Ribbon Watched Status Overlay -->
+                        <control type="image">
+                            <visible>![Window.IsActive(pictures) | Container.Content(artists)] + !Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+                            <posx>0</posx>
+                            <posy>633</posy>
+                            <width>1125</width>
+                            <height>7</height>
+                            <texture colordiffuse="$VAR[Colour_ListWatchedStatusColourVar]">$VAR[OverlayVar]</texture>
+                            <animation effect="fade" end="45" time="0" condition="true">Conditional</animation>
+                            <aspectratio>stretch</aspectratio>
+                        </control>
+                        <!-- End -->
 						
 						<!-- Watched Status Upper Circle -->
 						<control type="image">
