@@ -18,13 +18,25 @@
 					<texture border="40">panel_reflect.png</texture>
 				</control>
 				<control type="image">
+					<visible>!Skin.HasTHeme(WhiteFlat)</visible>
 					<description>background image</description>
 					<posx>-32</posx>
 					<posy>20</posy>
 					<width>752</width>
 					<height>830</height>
-					<texture border="40" colordiffuse="FF474747">listpanel_back.png</texture>
+					<texture border="40">listpanel_back_black.png</texture>
 				</control>
+				<!-- WhiteFlat -->
+				<control type="image">
+					<visible>Skin.HasTHeme(WhiteFlat)</visible>
+					<description>background image</description>
+					<posx>-32</posx>
+					<posy>20</posy>
+					<width>752</width>
+					<height>830</height>
+					<texture border="40">listpanel_back_black.png</texture>
+				</control>
+				<!-- End -->
 				<control type="image">
 					<posx>0</posx>
 					<posy>630</posy>
@@ -112,7 +124,7 @@
 				<width>1815</width>
 				<height>90</height>
 				<include>VisibleFadeEffect</include>
-				<visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
+				<visible>![Container.Content(tvshows) | Container.Content(seasons)] | !Skin.HasTheme(WhiteFlat)</visible>
 				
 				<!-- Video Resolution Flag -->
 				<control type="image">
@@ -147,6 +159,45 @@
 				</control>
 				
 			</control>
+			<!-- Dupe WhiteFlat  -->
+			<control type="group">
+				<posx>1180</posx>
+				<posy>863</posy>
+				<width>1815</width>
+				<height>90</height>
+				<include>VisibleFadeEffect</include>
+				<visible>![Container.Content(tvshows) | Container.Content(seasons)] | Skin.HasTheme(WhiteFlat)</visible>
+				
+				<!-- Video Resolution Flag -->
+				<control type="image">
+					<posx>0</posx>					
+					<include>MediaFlagVars</include>
+					<texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
+				</control>
+				
+				<!-- Audio Codec Flag -->
+				<control type="image">
+					<posx>165</posx>					
+					<include>MediaFlagVars</include>
+					<texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
+				</control>
+				
+				<!-- Channels Flag -->
+				<control type="image">
+					<posx>330</posx>
+					<include>MediaFlagVars</include>
+					<texture>$VAR[AudioChannelsFlag]</texture>
+				</control>
+				
+				<!-- Video Codec Flag -->
+				<control type="image">
+					<posx>495</posx>					
+					<include>MediaFlagVars</include>
+					<texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
+				</control>
+				
+			</control>
+			<!-- End -->
 			<control type="group">
 				<posx>1180</posx>
 				<posy>863</posy>
@@ -1163,17 +1214,7 @@
 					<width>40</width>
 					<height>795</height>
 					<texture flipx="true" border="1">side_shadow.png</texture>
-				</control>
-				<!-- WhiteFlat Dupe -->
-				<control type="image">
-					<visible>Skin.HasTheme(WhiteFlat)</visible>
-					<posx>1072</posx>
-					<posy>112</posy>
-					<width>40</width>
-					<height>793</height>
-					<texture  flipx="true" border="1">side_shadow.png</texture>
-				</control>
-				<!-- End -->
+				</control>				
 			</control>
 		</control>
 	</include>
