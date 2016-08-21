@@ -58,8 +58,21 @@
 						<texture>$VAR[OverlayVar]</texture>
 						<aspectratio align="center" aligny="top">keep</aspectratio>
 						<bordersize>1</bordersize>
-						<visible>!Skin.HasSetting(Enable.Circles)</visible>
+						<visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
 					</control>
+					<!-- WhiteFlat - Watched Status Ribbon -->
+					<control type="image">
+						<posx>1</posx>
+						<posy>293</posy>
+						<width>198</width>
+						<height>6</height>						
+						<aspectratio>stretch</aspectratio>
+						<texture colordiffuse="$VAR[Colour_ListWatchedStatusColourVar]">$VAR[OverlayVar]</texture>
+                		<animation effect="fade" end="75" time="0" condition="true">Conditional</animation>
+						<bordersize>1</bordersize>
+						<visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+					</control>
+					<!-- End -->
 
 					<!-- Watched Status Upper Circle -->
 					<control type="image">
@@ -105,6 +118,7 @@
 							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
 						</animation>
+						<!-- Selected Movie -->
 						<control type="image">
 							<width>200</width>
 							<height>300</height>
@@ -112,6 +126,15 @@
 							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
 							<bordersize>8</bordersize>
 						</control>
+						<!-- WhiteFlat - Selected Movie -->
+						<control type="image">
+							<width>200</width>
+							<height>300</height>
+							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+							<bordersize>0</bordersize>
+						</control>
+						<!-- End -->
 						<control type="image">
 							<width>200</width>
 							<height>300</height>
@@ -122,7 +145,7 @@
 							<colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
 						</control>
 
-						<!-- Watched Status Ribbon -->
+						<!-- Watched Status Ribbon - Selected Movie -->
 						<control type="image">
 							<posx>120</posx>
 							<posy>5</posy>
@@ -131,9 +154,23 @@
 							<texture>$VAR[OverlayVar]</texture>
 							<aspectratio align="center" aligny="top">keep</aspectratio>
 							<bordersize>2</bordersize>
-							<visible>!Skin.HasSetting(Enable.Circles)</visible>
+							<visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
 						</control>
 
+						<!-- WhiteFlat - Watched Status Ribbon - Selected Movie-->
+						<control type="image">
+							<posx>6</posx>
+							<posy>288</posy>
+							<width>188</width>
+							<height>7</height>						
+							<aspectratio>stretch</aspectratio>
+							<texture colordiffuse="$VAR[Colour_ListWatchedStatusColourVar]">$VAR[OverlayVar]</texture>
+                			<animation effect="fade" end="100" time="0" condition="true">Conditional</animation>
+							<bordersize>1</bordersize>
+							<visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+						</control>						
+						<!-- End -->
+						
 						<!-- Watched Status Circle Upper -->
 						<control type="image">
 							<posx>149</posx>
@@ -204,7 +241,9 @@
 				<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
 				<bordersize>2</bordersize>
 			</control>
+			<!-- Movie Name -->
 			<control type="label">
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
 				<posx>1120</posx>
 				<posy>580</posy>
 				<width>628</width>
@@ -215,9 +254,24 @@
 				<label>[B]$VAR[FloorLabelVar][/B]</label>
 				<textoffsetx>15</textoffsetx>
 			</control>
+			<!-- WhiteFlat - Movie Name -->
+			<control type="label">
+				<visible>Skin.HasTheme(WhiteFlat)</visible>
+				<posx>1120</posx>
+				<posy>580</posy>
+				<width>628</width>
+				<height>60</height>
+				<font>font16_title</font>
+				<textcolor>FF505050</textcolor>
+				<scroll>true</scroll>
+				<label>[B]$VAR[FloorLabelVar][/B]</label>
+				<textoffsetx>15</textoffsetx>
+			</control>
+			<!-- End -->
 
 			<!-- Resolution Flag -->
 			<control type="image">
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
 				<posx>1748</posx>
 				<posy>596</posy>
 				<width>42</width>
@@ -225,6 +279,18 @@
 				<aspectratio>keep</aspectratio>
 				<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
 			</control>
+			
+			<!-- WhiteFlat - Resolution Flag -->
+			<control type="image">
+				<visible>Skin.HasTheme(WhiteFlat)</visible>
+				<posx>1748</posx>
+				<posy>596</posy>
+				<width>42</width>
+				<height>28</height>
+				<aspectratio>keep</aspectratio>
+				<texture colordiffuse="FF505050">$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+			</control>
+			<!-- End  -->
 			<control type="grouplist">
 				<posx>1135</posx>
 				<posy>640</posy>
