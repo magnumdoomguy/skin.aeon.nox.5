@@ -7,7 +7,7 @@
 
 	<controls>
 
-		<!-- Blur Background for Episodes -->
+		<!-- Background -->
 		<control type="image">
 			<left>0</left>
 			<top>0</top>
@@ -27,7 +27,7 @@
 			<visible>!Skin.HasSetting(Preplay.Blur)</visible>
 		</control>
 
-		<!-- Left Side Movies -->
+		<!-- Left Side Portrait -->
 		<control type="group">
 			<animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
 			<animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
@@ -42,37 +42,14 @@
 			</control>
 
 			<!-- Display Watched Status Overlay (On the Poster, instead of next to the title) -->
-			<control type="image">
-				<left>527</left>
-				<width>166</width>
-				<height>166</height>
-				<texture>$VAR[OverlayVar]</texture>
-				<visible>!Container.Content(episode) + !Skin.HasSetting(Enable.Circles)</visible>
-			</control>	
-
+			<include condition="!Skin.HasSetting(Enable.Circles)">Preplay_PortraitWatchedStatusRibbon</include>
+			
 			<!-- Watched Status Upper Circle -->
-			<control type="image">
-				<left>627</left>
-				<top>30</top>
-				<width>72</width>
-				<height>72</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[OverlayVar]</texture>
-				<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
-				<visible>!Container.Content(episode) + Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-			</control>
-
+			<include condition="Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)">Preplay_PortraitWatchedStatusUpperCircles</include>
+			
 			<!-- Watched Status Lower Circle -->
-			<control type="image">
-				<left>627</left>
-				<top>978</top>
-				<width>72</width>
-				<height>72</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[OverlayVar]</texture>
-				<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
-				<visible>!Container.Content(episode) + Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-			</control>
+			<include condition="Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)">Preplay_PortraitWatchedStatusLowerCircles</include>
+			
 		</control>
 
 		<!-- Top Landscape -->
@@ -103,40 +80,15 @@
 				<texture fallback="defaulttvshows.png" diffuse="thumbs/boxes/thumb_mask.png">$VAR[EpisodeBigThumbnailVar]</texture> 				       
 			</control>
 
-			<!-- Display Episode Watched Status Overlay  -->
-			<control type="image">
-				<left>604</left>
-				<top>140</top>
-				<width>87</width>
-				<height>87</height>
-				<texture>$VAR[OverlayVar]</texture>
-				<visible>!Skin.HasSetting(Enable.Circles)</visible>
-			</control>	
-
+			<!-- Display Watched Status Ribbon Overlay  -->
+			<include condition="!Skin.HasSetting(Enable.Circles)">Preplay_LandscapeWatchedStatusRibbon</include>
+			
 			<!-- Watched Status Upper Circle -->
-			<control type="image">
-				<left>663</left>
-				<top>145</top>
-				<width>36</width>
-				<height>36</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[OverlayVar]</texture>
-				<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
-				<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-			</control>
-
+			<include condition="Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)">Preplay_LandscapeWatchedStatusUpperCircles</include>
+			
 			<!-- Watched Status Lower Circle -->
-			<control type="image">
-				<left>663</left>
-				<top>444</top>
-				<width>36</width>
-				<height>36</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[OverlayVar]</texture>
-				<colordiffuse>$VAR[ColouredCircles]</colordiffuse>
-				<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-			</control>
-
+			<include condition="Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)">Preplay_LandscapeWatchedStatusLowerCircles</include>
+			
 			<!-- Separator between items -->
 			<control type="image">
 				<left>729</left>
@@ -568,8 +520,7 @@
 				<pagecontrol>60</pagecontrol>
 				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 				<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-				<visible>!Control.IsVisible(50)</visible>
-				<visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+				<visible>!Control.IsVisible(50) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
 			</control>
 
 			<!-- Show Plot (Without Media Flags, No Extras) -->
@@ -586,8 +537,7 @@
 				<pagecontrol>60</pagecontrol>
 				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
 				<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-				<visible>!Control.IsVisible(50)</visible>
-				<visible>Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+				<visible>!Control.IsVisible(50) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
 			</control>
 			
 			<!-- Bottom Separator -->
@@ -1186,7 +1136,7 @@
 					<texturefocus>-</texturefocus>
 					<texturenofocus>-</texturenofocus>
 					<animation effect="fade" start="0" end="55" time="240">VisibleChange</animation>
-					<visible>system.getbool(input.enablemouse)</visible>
+					<visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
 				</control>	
 				<control type="scrollbar" id="9081">
 					<left>-36</left>
@@ -1198,7 +1148,7 @@
 					<texturesliderbarfocus>-</texturesliderbarfocus>
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
-					<visible>system.getbool(input.enablemouse)</visible>
+					<visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
 				</control>
 
 				<!-- Video Information without Extras (Movies) -->
@@ -1210,6 +1160,29 @@
 					<height>306</height>
 					<orientation>horizontal</orientation>
 					<include>VideoInfo</include>
+				</control>
+				<control type="button">
+					<left>-36</left>
+					<top>184</top>
+					<width>1188</width>
+					<height>306</height>
+					<onclick>noop</onclick>
+					<texturefocus>-</texturefocus>
+					<texturenofocus>-</texturenofocus>
+					<animation effect="fade" start="0" end="55" time="240">VisibleChange</animation>
+					<visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
+				</control>	
+				<control type="scrollbar" id="9081">
+					<left>-36</left>
+					<top>184</top>
+					<width>1188</width>
+					<height>306</height>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar>-</texturesliderbar>
+					<texturesliderbarfocus>-</texturesliderbarfocus>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+					<visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
 				</control>
 
 				<!-- Plot Textbox-->
