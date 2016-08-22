@@ -40,6 +40,7 @@
 				<visible>[Container.Content(tvshows) | Container.Content(movies)] + ![Container.PlexContent(Clips) | Container.PlexContent(homemovies) | Container.PlexContent(Folders) | Container.PlexContent(Folder)]</visible>
 				<itemlayout height="300" width="200">
 					<control type="image">
+						<visible>!Skin.HasTheme(WhiteFlat)</visible>
 						<width>200</width>
 						<height>300</height>
 						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
@@ -48,6 +49,18 @@
 						<bordersize>2</bordersize>
 						<colordiffuse>BAffffff</colordiffuse>
 					</control>
+					<!-- WhiteFlat - Non Selected Thumbnail Posters -->
+					<control type="image">
+						<visible>Skin.HasTheme(WhiteFlat)</visible>
+						<width>200</width>
+						<height>300</height>
+						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+						<bordersize>2</bordersize>						
+						<colordiffuse>BFababab</colordiffuse> 
+					</control>
+					<!-- End -->
 
 					<!-- Watched Status Ribbon -->
 					<control type="image">
@@ -67,8 +80,8 @@
 						<width>198</width>
 						<height>6</height>						
 						<aspectratio>stretch</aspectratio>
-						<texture colordiffuse="$VAR[Colour_ListWatchedStatusColourVar]">$VAR[OverlayVar]</texture>
-                		<animation effect="fade" end="75" time="0" condition="true">Conditional</animation>
+						<texture>$VAR[OverlayVar]</texture>
+                		<animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
 						<bordersize>1</bordersize>
 						<visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
 					</control>
@@ -120,22 +133,27 @@
 						</animation>
 						<!-- Selected Movie -->
 						<control type="image">
+							<visible>!Skin.HasTheme(WhiteFlat)</visible>
 							<width>200</width>
 							<height>300</height>
 							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
 							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
 							<bordersize>8</bordersize>
 						</control>
-						<!-- WhiteFlat - Selected Movie -->
+						<!-- WhiteFlat - Selected Movie -->						
 						<control type="image">
-							<width>200</width>
-							<height>300</height>
+							<visible>Skin.HasTheme(WhiteFlat)</visible>
+							<width>196</width>
+							<height>296</height>
+							<posy>2</posy>
+							<posx>2</posx>
 							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
 							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-							<bordersize>0</bordersize>
 						</control>
-						<!-- End -->
+						<!-- End -->						
+
 						<control type="image">
+							<visible>!Skin.HasTheme(WhiteFlat)</visible>
 							<width>200</width>
 							<height>300</height>
 							<aspectratio>stretch</aspectratio>
@@ -144,7 +162,7 @@
 							<bordersize>8</bordersize>
 							<colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
 						</control>
-
+						
 						<!-- Watched Status Ribbon - Selected Movie -->
 						<control type="image">
 							<posx>120</posx>
@@ -159,14 +177,13 @@
 
 						<!-- WhiteFlat - Watched Status Ribbon - Selected Movie-->
 						<control type="image">
-							<posx>6</posx>
-							<posy>288</posy>
-							<width>188</width>
-							<height>7</height>						
+							<posx>2</posx>
+							<posy>294</posy>
+							<width>196</width>
+							<height>4</height>						
 							<aspectratio>stretch</aspectratio>
-							<texture colordiffuse="$VAR[Colour_ListWatchedStatusColourVar]">$VAR[OverlayVar]</texture>
-                			<animation effect="fade" end="100" time="0" condition="true">Conditional</animation>
-							<bordersize>1</bordersize>
+							<texture>$VAR[OverlayVar]</texture>
+                			<animation effect="fade" end="75" condition="true">Conditional</animation>							
 							<visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
 						</control>						
 						<!-- End -->
