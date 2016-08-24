@@ -94,6 +94,7 @@
 	<!-- List Highlight -->
 	<include name="ListHighlight">
 		<control type="image">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<posx>0</posx>
 			<posy>0</posy>
 			<width>1140</width>
@@ -102,14 +103,15 @@
 			<include>VisibleFadeEffect</include>
 			<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
 		</control>
-		<!-- Duped for WhiteFlat -->
+		<!-- WhiteFlat -->
 		<control type="image">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
 			<posx>0</posx>
 			<posy>0</posy>
 			<width>1140</width>
 			<height>120</height>
 			<texture border="5">wf_listselect_fo.png</texture>
-			<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
+			<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>			
 		</control>
 		<!-- End -->
 	</include>
@@ -173,7 +175,7 @@
 	</include>
 
 	<!-- Genre -->
-	<include name="ListGenre">
+	<include name="ListGenre">		
 		<posx>100</posx>
 		<posy>55</posy>
 		<width>825</width>
@@ -226,7 +228,7 @@
 			<showonepage>false</showonepage>
 			<orientation>vertical</orientation>
 		</control>
-		<!-- Duped for WhiteFlat -->
+		<!-- WhiteFlat -->
 		<control type="scrollbar" id="60">
 			<visible>Skin.HasTheme(WhiteFlat)</visible>
 			<posx>1140</posx>
@@ -290,7 +292,22 @@
 			<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 			<aligny>center</aligny>
 			<label>$VAR[RatingVar]</label>
-			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest) + !Skin.HasTheme(WhiteFlat)</visible>
+		</control>
+
+		<!-- WhiteFlat - User Rating -->
+		<control type="label">
+			<posx>1035</posx>
+			<posy>0</posy>
+			<width>116</width>
+			<height>116</height>
+			<font>font30</font>
+			<align>center</align>
+			<textcolor>grey2</textcolor>
+			<selectedcolor>grey2</selectedcolor>
+			<aligny>center</aligny>
+			<label>$VAR[RatingVar]</label>
+			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest) + Skin.HasTheme(WhiteFlat)</visible>
 		</control>
 
 		<!-- Standard / IMDb Rating -->
@@ -363,11 +380,18 @@
 			<animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies)] | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
 		</control>
 
-		<!-- Genre -->
+		<!-- Genre (Selected)-->
 		<control type="label">
 			<include>ListGenre</include>
 			<textcolor>white</textcolor>
 			<selectedcolor>white</selectedcolor>
+		</control>
+
+		<!-- WhiteFLat - Genre (Selected)-->
+		<control type="label">
+			<include>ListGenre</include>
+			<textcolor>FF333333</textcolor>
+			<selectedcolor>grey3</selectedcolor>
 		</control>
 
 		<!-- Resolution -->
@@ -375,7 +399,8 @@
 			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<include>ListResolution</include>
 		</control>
-		<!-- Duped WhiteFlat -->
+
+		<!-- WhiteFlat - Resolution Icon -->
 		<control type="image">
 			<visible>Skin.HasTheme(WhiteFlat)</visible>
 			<include>ListResolution</include>
@@ -393,6 +418,21 @@
 			<align>center</align>
 			<textcolor>$VAR[Colour_ListThemeColourVar]</textcolor>
 			<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+			<aligny>center</aligny>
+			<label>$VAR[RatingVar]</label>
+			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+		</control>
+
+		<!-- WhiteFlat - User Rating -->
+		<control type="label">
+			<posx>1035</posx>
+			<posy>0</posy>
+			<width>116</width>
+			<height>116</height>
+			<font>font30</font>
+			<align>center</align>
+			<textcolor>white</textcolor>
+			<selectedcolor>white</selectedcolor>
 			<aligny>center</aligny>
 			<label>$VAR[RatingVar]</label>
 			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
@@ -511,7 +551,7 @@
 			<aligny>center</aligny>
 			<label>$VAR[RatingVar]</label>
 			<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-		</control>
+		</control>		
 
 		<!-- Standard Rating -->
 		<control type="label">
@@ -1250,7 +1290,7 @@
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>										
 					<bordersize>20</bordersize>
 				</control>
-				<!-- Duped for WhiteFlat -->
+				<!-- WhiteFlat -->
 				<control type="image">
 					<visible>Skin.HasTheme(WhiteFlat)</visible>
 					<width>570</width>
