@@ -31,9 +31,10 @@
 			<include condition="Window.IsActive(10002)">PhotosFanart</include>
 			<include condition="Window.IsActive(10051)">SearchFanart</include>
 			<include condition="Window.IsActive(10004)">SettingsFanart</include>
+			<include condition="Window.IsActive(filemanager)">FileManagerFanart</include>
 			<include condition="Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings)">SettingsCategoryFanart</include>
 			<include condition="Window.IsActive(skinsettings)">SkinSettingsFanart</include>
-			<include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002) + !Window.IsActive(10051) + !Window.IsActive(10004) + ![Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings)] + !Window.IsActive(skinsettings)">GlobalFanart</include>
+			<include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002) + !Window.IsActive(10051) + !Window.IsActive(10004) + ![Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings)] + !Window.IsActive(skinsettings) + !Window.IsActive(filemanager)">GlobalFanart</include>
 
 			<!-- Background Visualization -->
 			<control type="visualisation">
@@ -132,6 +133,13 @@
 			</control>
 		</control>
 
+	</include>
+
+	<include name="FileManagerFanart">
+		<control type="image">
+			<include>FanartCommonValues</include>
+			<texture>special://skin/backgrounds/filemanager.jpg</texture>
+		</control>
 	</include>
 
 	<include name="VideoFanart">
@@ -284,7 +292,7 @@
 			<visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
 			<include>FanartCommonValues</include>
 			<texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
-			<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]] | ListItem.Type(photoAlbum)</visible>
+			<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]] | ListItem.Type(photoAlbum) | ListItem.Type(clip)</visible>
 		</control>
 
 		<!-- Background for Empty List -->
@@ -703,6 +711,13 @@
 						<visible>stringcompare(Container(9010).ListItem.Label,$LOCALIZE[31952])</visible>
 						<include>FanartCommonValues</include>
 						<texture>special://skin/backgrounds/channels.jpg</texture>	
+					</control>
+					
+					<!-- File Manager -->
+					<control type="image">
+						<visible>stringcompare(Container(9010).ListItem.Label,$LOCALIZE[42430])</visible> <!-- STRING: File Manager -->
+						<include>FanartCommonValues</include>
+						<texture>special://skin/backgrounds/filemanager.jpg</texture>	
 					</control>
 
 					<!-- Preferences -->
