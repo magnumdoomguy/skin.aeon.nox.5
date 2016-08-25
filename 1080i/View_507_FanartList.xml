@@ -18,6 +18,7 @@
 					<texture border="40">panel_reflect.png</texture>
 				</control>
 				<control type="image">
+					<visible>!Skin.HasTHeme(WhiteFlat)</visible>
 					<description>background image</description>
 					<posx>-32</posx>
 					<posy>20</posy>
@@ -25,6 +26,17 @@
 					<height>830</height>
 					<texture border="40">listpanel_back.png</texture>
 				</control>
+				<!-- WhiteFlat -->
+				<control type="image">
+					<visible>Skin.HasTHeme(WhiteFlat)</visible>
+					<description>background image</description>
+					<posx>-32</posx>
+					<posy>20</posy>
+					<width>752</width>
+					<height>830</height>
+					<texture border="40">listpanel_back_black.png</texture>
+				</control>
+				
 				<control type="image">
 					<posx>0</posx>
 					<posy>630</posy>
@@ -47,7 +59,7 @@
 					<posy>455</posy>
 					<width>660</width>
 					<height>250</height>
-					<font>font14_textbox</font>
+					<font>font14_textbox</font>					
 					<pagecontrol>62</pagecontrol>
 					<include>ShowCaseInfoPanelButtonsValues</include>
 					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
@@ -67,7 +79,8 @@
 				</control>
 				
 				<!-- Scrollbar -->
-				<control type="scrollbar" id="62">
+				<control type="scrollbar" id="62">				
+					<visible>!Skin.HasTheme(WhiteFlat)</visible>v
 					<posx>688</posx>
 					<posy>455</posy>
 					<width>14</width>
@@ -83,7 +96,26 @@
 					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
-				</control>
+				</control>				
+				<!-- Dupe for WhiteFlat -->
+				<control type="scrollbar" id="62">				
+					<visible>Skin.HasTheme(WhiteFlat)</visible>v
+					<posx>688</posx>
+					<posy>455</posy>
+					<width>12</width>
+					<height>250</height>
+					<colordiffuse>FF000000</colordiffuse>
+					<onup>PageUp(70)</onup>
+					<ondown>PageUp(70)</ondown>
+					<onleft>50</onleft>
+					<onright>SetProperty(MediaMenu,True,home)</onright>
+					<onright>SetFocus(9050,0)</onright>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+				</control>	
 				
 			</control>
 			<control type="group">
@@ -92,7 +124,7 @@
 				<width>1815</width>
 				<height>90</height>
 				<include>VisibleFadeEffect</include>
-				<visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
+				<visible>![Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasTheme(WhiteFlat)</visible>
 				
 				<!-- Video Resolution Flag -->
 				<control type="image">
@@ -127,6 +159,46 @@
 				</control>
 				
 			</control>
+
+			<!-- Dupe WhiteFlat  -->
+			<control type="group">
+				<posx>1180</posx>
+				<posy>863</posy>
+				<width>1815</width>
+				<height>90</height>
+				<include>VisibleFadeEffect</include>
+				<visible>![Container.Content(tvshows) | Container.Content(seasons)] + Skin.HasTheme(WhiteFlat)</visible>
+				
+				<!-- Video Resolution Flag -->
+				<control type="image">
+					<posx>0</posx>					
+					<include>MediaFlagVars</include>					
+					<texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
+				</control>
+				
+				<!-- Audio Codec Flag -->
+				<control type="image">
+					<posx>165</posx>					
+					<include>MediaFlagVars</include>
+					<texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
+				</control>
+				
+				<!-- Channels Flag -->
+				<control type="image">
+					<posx>330</posx>
+					<include>MediaFlagVars</include>
+					<texture>$VAR[AudioChannelsFlag]</texture>
+				</control>
+				
+				<!-- Video Codec Flag -->
+				<control type="image">
+					<posx>495</posx>					
+					<include>MediaFlagVars</include>
+					<texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
+				</control>
+				
+			</control>
+			<!-- End -->
 			<control type="group">
 				<posx>1180</posx>
 				<posy>863</posy>
@@ -236,8 +308,8 @@
 					<fadetime>400</fadetime>
 					<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
 					<bordersize>2</bordersize>
-				</control>
-				
+				</control>			
+
 				<!-- Episode Thumbnail -->
 				<control type="image">
 					<visible>Container.Content(episodes)</visible>
@@ -309,6 +381,7 @@
 
 						<!-- Title -->
 						<control type="label">
+							<visible>!Skin.HasTheme(WhiteFlat)</visible>
 							<posx>110</posx>
 							<posy>0</posy>
 							<width>820</width>
@@ -318,7 +391,19 @@
 							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
 							<label>$INFO[ListItem.Label]</label>
 						</control>
-
+						<!-- WhiteFlat - Title -->
+						<control type="label">
+							<visible>Skin.HasTheme(WhiteFlat)</visible>
+							<posx>110</posx>
+							<posy>0</posy>
+							<width>820</width>
+							<height>68</height>
+							<font>font15</font>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+							<label>$INFO[ListItem.Label]</label>
+						</control>
+						
 						<!-- User Rating -->
 						<control type="label">
 							<posx>959</posx>
@@ -331,7 +416,22 @@
 							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$VAR[RatingVar]</label>
-							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !Skin.HasTheme(WhiteFlat)</visible>
+						</control>
+
+						<!-- WhiteFlat - User Rating -->
+						<control type="label">
+							<posx>959</posx>
+							<posy>0</posy>
+							<width>96</width>
+							<height>68</height>
+							<font>font15</font>
+							<align>center</align>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>grey2</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[RatingVar]</label>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating)) + Skin.HasTheme(WhiteFlat)</visible>
 						</control>
 
 						<!-- Standard Rating -->
@@ -361,8 +461,24 @@
 							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Property(rating)]</label>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb)</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb) + !Skin.HasTheme(WhiteFlat)</visible>
 						</control>
+
+						<!-- WhiteFlat - IMDb Rating -->
+						<control type="label">
+							<posx>959</posx>
+							<posy>0</posy>
+							<width>96</width>
+							<height>68</height>
+							<font>font15</font>
+							<align>center</align>
+							<textcolor>grey2</textcolor>
+							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Property(rating)]</label>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb) + Skin.HasTheme(WhiteFlat)</visible>
+						</control>
+						
 
 						<!-- Rotten Tomatoes Rating -->
 						<control type="label">
@@ -405,9 +521,19 @@
 							<colordiffuse>$VAR[Colour_FanartListHighlightColourVar]</colordiffuse>
 							<include>VisibleFadeEffect</include>
 						</control>
+						<!-- Dupe For WhiteFlat -->
+						<control type="image">
+							<width>1056</width>
+							<height>70</height>
+							<texture border="4">wf_listselect_fo.png</texture>
+							<colordiffuse>$VAR[Colour_FanartListHighlightColourVar]</colordiffuse>
+							<include>VisibleFadeEffect</include>
+						</control>
+						
 						
 						<!-- Year -->
 						<control type="label">
+							<visible>!Skin.HasTheme(WhiteFlat)</visible>
 							<posx>15</posx>
 							<width>90</width>
 							<height>68</height>
@@ -419,9 +545,24 @@
 							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(507)">Conditional</animation>
 							<visible>!IsEmpty(ListItem.Title)</visible>
 						</control>
-
+						<!-- WhiteFlat - Year Selected -->
+						<control type="label">
+							<visible>Skin.HasTheme(WhiteFlat)</visible>
+							<posx>15</posx>
+							<width>90</width>
+							<height>68</height>
+							<font>font15</font>
+							<selectedcolor>grey</selectedcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<label fallback="• • • •">$INFO[ListItem.Year]</label>
+							<animation effect="fade" end="70" condition="!Control.HasFocus(507)">Conditional</animation>
+							<visible>!IsEmpty(ListItem.Title)</visible>
+						</control>
+						
 						<!-- Title -->
 						<control type="label">
+							<visible>!Skin.HasTheme(WhiteFlat)</visible>
 							<posx>110</posx>
 							<posy>0</posy>
 							<width>820</width>
@@ -431,7 +572,20 @@
 							<label>$INFO[ListItem.Label]</label>
 							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(507)">Conditional</animation>
 						</control>
-
+						
+						<!-- WhiteFlat - Title (Selected) -->
+						<control type="label">
+							<visible>Skin.HasTheme(WhiteFlat)</visible>
+							<posx>110</posx>
+							<posy>0</posy>
+							<width>820</width>
+							<height>68</height>
+							<font>font15</font>
+							<textcolor>white</textcolor>
+							<selectedcolor>white</selectedcolor>
+							<label>$INFO[ListItem.Label]</label>							
+						</control>
+						
 						<!-- User Rating -->
 						<control type="label">
 							<posx>959</posx>
@@ -444,8 +598,24 @@
 							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$VAR[RatingVar]</label>
-							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating))+ !Skin.HasTheme(WhiteFlat)</visible>
 						</control>
+
+						<!-- WhiteFlat - User Rating -->
+						<control type="label">
+							<posx>959</posx>
+							<posy>0</posy>
+							<width>96</width>
+							<height>68</height>
+							<font>font15</font>
+							<align>center</align>
+							<textcolor>grey3</textcolor>
+							<selectedcolor>grey3</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[RatingVar]</label>
+							<visible>!IsEmpty(ListItem.Property(hasUserRating)) + Skin.HasTheme(WhiteFlat)</visible>
+						</control>
+						
 
 						<!-- Standard Rating -->
 						<control type="label">
@@ -459,8 +629,24 @@
 							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$VAR[RatingVar]</label>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType))</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !Skin.HasTheme(WhiteFlat)</visible>
 						</control>
+						
+						<!-- WhiteFlat - Standard Rating -->
+						<control type="label">
+							<posx>959</posx>
+							<posy>0</posy>
+							<width>96</width>
+							<height>68</height>
+							<font>font15</font>
+							<align>center</align>
+							<textcolor>FF505050</textcolor>
+							<selectedcolor>FF505050</selectedcolor>
+							<aligny>center</aligny>
+							<label>$VAR[RatingVar]</label>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + Skin.HasTheme(WhiteFlat)</visible>
+						</control>
+						
 						
 						<!-- IMDb Rating -->
 						<control type="label">
@@ -474,8 +660,24 @@
 							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Property(rating)]</label>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb)</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb) + !Skin.HasTheme(WhiteFlat)</visible>
 						</control>
+
+						<!-- WhiteFlat - IMDb Rating -->
+						<control type="label">
+							<posx>959</posx>
+							<posy>0</posy>
+							<width>96</width>
+							<height>68</height>
+							<font>font15</font>
+							<align>center</align>
+							<textcolor>FF505050</textcolor>
+							<selectedcolor>FF505050</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Property(rating)]</label>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),imdb) + Skin.HasTheme(WhiteFlat)</visible>
+						</control>
+						
 
 						<!-- Rotten Tomatoes Rating -->
 						<control type="label">
@@ -489,8 +691,24 @@
 							<selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Property(ratingPercent)]%</label>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),rottentomatoes)</visible>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),rottentomatoes) + !Skin.HasTheme(WhiteFlat)</visible>
 						</control>
+
+						<!-- WhiteFlat - Rotten Tomatoes Rating -->
+						<control type="label">
+							<posx>959</posx>
+							<posy>0</posy>
+							<width>96</width>
+							<height>68</height>
+							<font>font15</font>
+							<align>center</align>
+							<textcolor>FF505050</textcolor>
+							<selectedcolor>FF505050</selectedcolor>
+							<aligny>center</aligny>
+							<label>$INFO[ListItem.Property(ratingPercent)]%</label>
+							<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),rottentomatoes) + Skin.HasTheme(WhiteFlat)</visible>
+						</control>
+						
 
 						<!-- Watched Status -->
 						<control type="image">
@@ -1092,6 +1310,7 @@
 				
 				<!-- Scrollbar -->
 				<control type="scrollbar" id="60">
+					<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					<posx>1056</posx>
 					<posy>92</posy>
 					<width>14</width>
@@ -1107,13 +1326,33 @@
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
 				</control>
+				<!-- Dupe for WhiteFlat -->
+				<control type="scrollbar" id="60">
+					<visible>Skin.HasTheme(WhiteFlat)</visible>
+					<posx>1056</posx>
+					<posy>92</posy>
+					<width>12</width>
+					<height>840</height>
+					<colordiffuse>FF000000</colordiffuse>
+					<onup>60</onup>
+					<ondown>60</ondown>
+					<onleft>50</onleft>
+					<onright>62</onright>
+					<texturesliderbackground>-</texturesliderbackground>
+					<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+					<showonepage>false</showonepage>
+					<orientation>vertical</orientation>
+				</control>
+				
 				<control type="image">
+					<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					<posx>1072</posx>
 					<posy>114</posy>
 					<width>40</width>
 					<height>795</height>
 					<texture flipx="true" border="1">side_shadow.png</texture>
-				</control>
+				</control>				
 			</control>
 		</control>
 	</include>

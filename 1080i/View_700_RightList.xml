@@ -9,6 +9,7 @@
 				<posx>5</posx>
 				<posy>425</posy>
 				<control type="image">
+					<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					<width>440</width>
 					<height>640</height>
 					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
@@ -17,6 +18,19 @@
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
 				</control>
+				<!-- WhiteFlat - Poster -->
+				<control type="image">
+					<visible>Skin.HasTheme(WhiteFlat)</visible>
+					<posx>25</posx>
+					<width>440</width>
+					<height>640</height>
+					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
+					<texture>$VAR[PosterVar]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20" colordiffuse="80000000">thumbs/wf_thumb_shadow.png</bordertexture>										
+					<bordersize>20</bordersize>
+				</control>
+				<!-- end -->				
 			</control>
 			<control type="group">
 				<posx>434</posx>
@@ -260,7 +274,7 @@
 						<align>right</align>
 						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
 						<label>$INFO[ListItem.Year]</label>
-					</control>
+					</control>					
 					<control type="image">
 						<posx>742</posx>
 						<posy>2</posy>
@@ -272,7 +286,9 @@
 					</control>
 				</itemlayout>
 				<focusedlayout height="85" width="806" condition="!Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
+					<!-- Selection Graphic -->
 					<control type="image">
+						<visible>!Skin.HasTheme(WhiteFlat)</visible>
 						<posy>0</posy>
 						<posx>20</posx>
 						<width>825</width>
@@ -281,7 +297,21 @@
 						<colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
 						<include>VisibleFadeEffect</include>
 					</control>
+					<!-- WhiteFlat - Selection Graphic -->
+					<control type="image">
+						<visible>Skin.HasTheme(WhiteFlat)</visible>
+						<posy>0</posy>
+						<posx>20</posx>
+						<width>825</width>
+						<height>85</height>
+						<texture border="4">wf_listselect_fo.png</texture>
+						<colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
+						<animation effect="fade" end="100" condition="true">Conditional</animation>
+						<include>VisibleFadeEffect</include>
+					</control>					
+					<!-- Selected Title -->
 					<control type="label">
+						<visible>!Skin.HasTheme(WhiteFlat)</visible>
 						<posy>-12</posy>
 						<posx>630</posx>
 						<width>600</width>
@@ -292,7 +322,19 @@
 						<label>$INFO[ListItem.Label]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
 					</control>
-					
+					<!-- WhiteFlat - Selected Title -->
+					<control type="label">
+						<visible>Skin.HasTheme(WhiteFlat)</visible>
+						<posy>-12</posy>
+						<posx>630</posx>
+						<width>600</width>
+						<height>68</height>
+						<font>font15</font>
+						<align>right</align>
+						<selectedcolor>white</selectedcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<animation effect="fade" start="100" end="100" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+					</control>					
 					<!-- No Rating -->
 					<control type="label">
 						<posx>630</posx>
@@ -306,7 +348,6 @@
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
 						<visible>IsEmpty(ListItem.RatingAndVotes)</visible>
 					</control>
-
 					<!-- User Rating -->
 					<control type="label">
 						<posx>630</posx>
@@ -319,9 +360,22 @@
 						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
 						<label>$VAR[RatingVar][COLOR white] • $VAR[DurationHrMinVar][/COLOR]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+						<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !Skin.HasTheme(WhiteFlat)</visible>
 					</control>
-
+					<!-- WhiteFlat - User Rating -->
+					<control type="label">
+						<posx>630</posx>
+						<posy>27</posy>
+						<width>600</width>
+						<height>68</height>
+						<font>font13</font>
+						<align>right</align>
+						<textcolor>FF333333</textcolor>
+						<selectedcolor>FF333333</selectedcolor>
+						<label>$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+						<visible>!IsEmpty(ListItem.Property(hasUserRating)) + Skin.HasTheme(WhiteFlat)</visible>
+					</control>
 					<!-- Standard Rating -->
 					<control type="label">
 						<posx>630</posx>
@@ -333,8 +387,24 @@
 						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
 						<label>$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>!IsEmpty(ListItem.RatingAndVotes) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage))</visible>
+						<visible>!IsEmpty(ListItem.RatingAndVotes) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !Skin.HasTheme(WhiteFlat)</visible>
 					</control>
+					
+					<!-- WhiteFlat - Standard Rating -->
+					<control type="label">						
+						<posx>630</posx>
+						<posy>27</posy>
+						<width>600</width>
+						<height>68</height>
+						<font>font13</font>
+						<align>right</align>
+						<textcolor>FF333333</textcolor>
+						<selectedcolor>FF333333</selectedcolor>
+						<label>$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+						<visible>!IsEmpty(ListItem.RatingAndVotes) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + Skin.HasTheme(WhiteFlat)</visible>
+					</control>
+					<!-- End -->
 
 					<!-- Rotten Tomatoes Rating -->
 					<control type="label">
@@ -347,9 +417,26 @@
 						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
 						<label>$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+						<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage)) + !Skin.HasTheme(WhiteFlat)</visible>
 					</control>
 
+					<!-- WhiteFlat - Rotten Tomatoes Rating (Selected) -->
+					<control type="label">
+						<posx>630</posx>
+						<posy>27</posy>
+						<width>600</width>
+						<height>68</height>
+						<font>font13</font>
+						<align>right</align>
+						<textcolor>FF333333</textcolor>
+						<selectedcolor>FF333333</selectedcolor>
+						<label>$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+						<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage)) + Skin.HasTheme(WhiteFlat)</visible>
+					</control>
+					<!-- End -->
+
+					<!-- Year (Selected) -->
 					<control type="label">
 						<posx>730</posx>
 						<posy>8</posy>
@@ -362,6 +449,20 @@
 						<label>$INFO[ListItem.Year]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
 					</control>
+					<!-- WhiteFlat - Year (Selected) -->
+					<control type="label">
+						<posx>730</posx>
+						<posy>8</posy>
+						<width>100</width>
+						<height>68</height>
+						<font>font15</font>
+						<align>right</align>
+						<textcolor>black</textcolor>
+						<selectedcolor>black</selectedcolor>
+						<label>$INFO[ListItem.Year]</label>
+						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+					</control>
+					<!-- End -->
 					<control type="image">
 						<posx>742</posx>
 						<posy>12</posy>
@@ -409,7 +510,7 @@
 						<font>font16</font>
 						<align>right</align>
 						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+						<selectedcolor>grey$VAR[Colour_RightListThemeColourVar]</selectedcolor>
 						<label>$INFO[ListItem.Label]</label>
 						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
 						<visible>![SubString(ListItem.Path,videodb://movies/sets) + !Stringcompare(ListItem.Label,..)]</visible>
@@ -1166,7 +1267,7 @@
 			<control type="group">
 				<posx>2</posx>
 				<posy>420</posy>
-				<control type="image">
+				<control type="image">					
 					<width>450</width>
 					<height>650</height>
 					<aspectratio aligny="bottom">keep</aspectratio>
@@ -1174,7 +1275,7 @@
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-				</control>
+				</control>								
 			</control>
 			<control type="grouplist">
 				<posx>434</posx>

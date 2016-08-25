@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+
 	<!-- Expressions -->
 	<expression name="Widgets_HaveFocus">[Control.HasFocus(11000) | Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003) | Control.HasFocus(11004) | Control.HasFocus(11005)]</expression>
 	<expression name="Widgets_OnDeckAndRecentlyAddedVisible">[Control.IsVisible(11000) + Control.IsVisible(11001)]</expression>
@@ -32,6 +33,13 @@
 					<height>87</height>
 					<texture flipy="true">submenu_bar.png</texture>
 				</control>
+				<!-- Duped For WhiteFlat Change -->
+				<control type="image">
+					<width>1920</width>
+					<height>87</height>
+					<texture>wf_submenu_bar_top.png</texture>
+				</control>
+				<!-- End -->
 
 				<!-- Show Logged in User -->
 				<control type="grouplist">
@@ -66,8 +74,21 @@
 						<label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
 						<font>font13_title</font>
 						<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
-						<shadowcolor>shadow</shadowcolor>
+						<shadowcolor>shadow</shadowcolor>			
+						<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					</control>
+
+					<!-- Duplicate to Remove Shadow for WhiteFlat -->
+					<control type="label" id="9025">
+						<width min="10" max="1780">auto</width>
+						<height>41</height>
+						<label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
+						<font>font13_title_whiteflat</font>
+						<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+						<visible>Skin.HasTheme(WhiteFlat)</visible>
+					</control>
+					<!-- End -->	
+
 				</control>
 			</control>
 		</control>
@@ -122,8 +143,9 @@
 						<orientation>Horizontal</orientation>
 						<itemlayout height="87" width="300">
 							<control type="label">
+								<visible>!Skin.HasTheme(WhiteFlat)</visible>
 								<posx>150</posx>
-								<posy>0</posy>
+								<posy>2</posy>
 								<width>300</width>
 								<height>41</height>
 								<font>font13_title</font>
@@ -133,17 +155,34 @@
 								<aligny>center</aligny>
 								<label>$INFO[ListItem.Label]</label>
 							</control>
+							<!-- Duped for WhiteFLat -->
+							<control type="label">
+								<visible>Skin.HasTheme(WhiteFlat)</visible>
+								<posx>150</posx>
+								<posy>2</posy>
+								<width>300</width>
+								<height>41</height>
+								<font>font13_title_whiteflat</font>
+								<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+							<!-- End -->
 						</itemlayout>
 						<focusedlayout height="87" width="300">
 							<control type="group">
 								<control type="image">
+									<visible>!Skin.HasTheme(WhiteFlat)</visible>
 									<posy>0</posy>
 									<width>300</width>
 									<height>41</height>
 									<texture>listselect_fo.png</texture>
+									<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
 									<colordiffuse>$VAR[Colour_SubmenuHighlightColourVar]</colordiffuse>
 								</control>
 								<control type="label">
+									<visible>!Skin.HasTheme(WhiteFlat)</visible>
 									<posx>150</posx>
 									<posy>0</posy>
 									<width>300</width>
@@ -158,6 +197,7 @@
 							</control>
 							<control type="group">
 								<control type="label">
+									<visible>!Skin.HasTheme(WhiteFlat)</visible>
 									<posx>150</posx>
 									<posy>0</posy>
 									<width>300</width>
@@ -170,6 +210,45 @@
 									<label>$INFO[ListItem.Label]</label>
 								</control>
 							</control>
+							<!-- Duped for WhiteFlat -->
+							<control type="group">
+								<control type="image">
+									<visible>Skin.HasTheme(WhiteFlat)</visible>
+									<posy>0</posy>
+									<width>300</width>
+									<height>41</height>
+									<texture>wf_listselect_fo.png</texture>
+									<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+									<colordiffuse>$VAR[Colour_SubmenuHighlightColourVar]</colordiffuse>
+								</control>
+								<control type="label">
+									<visible>Skin.HasTheme(WhiteFlat)</visible>
+									<posx>150</posx>
+									<posy>2</posy>
+									<width>300</width>
+									<height>41</height>
+									<font>font13_title_whiteflat</font>
+									<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>									
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+							<control type="group">
+								<control type="label">
+									<visible>Skin.HasTheme(WhiteFlat)</visible>
+									<posx>150</posx>
+									<posy>2</posy>
+									<width>300</width>
+									<height>41</height>
+									<font>font13_title_whiteflat</font>
+									<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+							<!-- End -->
 						</focusedlayout>
 						<content>
 							<include>HomeSubMenu</include>
@@ -181,7 +260,7 @@
 						<width>30</width>
 						<height>30</height>
 						<texture flipx="true">arrowright.png</texture>
-						<colordiffuse>white</colordiffuse>
+						<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
 						<visible>Container(9010).HasPrevious</visible>
 					</control>
 					<control type="image">
@@ -190,7 +269,7 @@
 						<width>30</width>
 						<height>30</height>
 						<texture>arrowright.png</texture>
-						<colordiffuse>white</colordiffuse>
+						<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
 						<visible>Container(9010).HasNext</visible>
 					</control>
 				</control>
@@ -200,9 +279,10 @@
 					<height>225</height>
 					<texture>$VAR[Homemenu_BarGraphic]</texture>
 				</control>
-			</control>
+			</control>			
 
 			<!-- Main Menu -->
+		
 			<include condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + IsEmpty(Skin.String(MainMenu.Font))">OneMainMenuItemListContent</include>
 			<include content="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Linear)">
 				<param name="font">font_MainMenu_linear</param>
@@ -214,6 +294,11 @@
 			<include content="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Source Sans)">
 				<param name="font">font_MainMenu_SourceSans</param>
 			</include>
+			<include name="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + [StringCompare(Skin.String(MainMenu.Font),Trueno) | [Skin.HasTheme(WhiteFlat) + IsEmpty(Skin.String(MainMenu.Font))]]">
+				<param name="font">font_MainMenu_Trueno</param>
+			</include>
+			<!-- End -->
+
 			<include condition="Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListFixed</include>
 			<include condition="!Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListWrapped</include>
 
@@ -223,6 +308,10 @@
 				<width>100</width>
 				<height>104</height>
 				<texture border="1">side_fade.png</texture>
+				<!-- Added WhiteFlat Theme Flag -->
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
+				<!-- End -->
+				
 			</control>
 			<control type="image">
 				<posx>1820</posx>
@@ -230,6 +319,11 @@
 				<width>100</width>
 				<height>104</height>
 				<texture flipx="true" border="1">side_fade.png</texture>
+				
+				<!-- Added WhiteFlat Theme Flag -->
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
+				<!-- End -->
+				
 			</control>
 			<control type="image">
 				<posy>90</posy>
@@ -237,6 +331,11 @@
 				<height>72</height>
 				<texture border="1">gradient_floor.png</texture>
 				<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+				
+				<!-- Added WhiteFlat Theme Flag -->
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
+				<!-- End -->
+				
 			</control>
 		</control>
 	</include>
@@ -358,7 +457,20 @@
 			<textcolor>grey</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
 			<visible>!Skin.HasSetting(Disable.Userinfo)</visible>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+		<control type="label">
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>$INFO[System.CurrentUser]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>grey</textcolor>
+			<visible>!Skin.HasSetting(Disable.Userinfo)</visible>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo)</visible>
 			<width min="10" max="780">auto</width>
@@ -368,7 +480,20 @@
 			<font>font13_title</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+			<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo)</visible>
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>[COLOR grey]  |  [/COLOR]$INFO[Container(300).ListItem(0).Label2]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo)</visible>
 			<width min="10" max="780">auto</width>
@@ -378,7 +503,20 @@
 			<font>font13_title</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+		<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo)</visible>
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>$INFO[Container(300).ListItem(0).Label2]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
 			<width min="10" max="780">auto</width>
@@ -388,17 +526,20 @@
 			<font>IconSmaller</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
 		<control type="label">
-			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
 			<width min="10" max="780">auto</width>
 			<height>41</height>
-			<label></label>
+			<label></label>
 			<textoffsetx>30</textoffsetx>
 			<font>IconSmaller</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
-			<shadowcolor>AA000000</shadowcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
 		</control>
+		<!-- End -->
 	</include>
 
 	<!-- Home Menu Content -->
@@ -577,7 +718,7 @@
 		<param name="menuHeight" default="990" />
 		<param name="focusPosition" default="4" />
 		<param name="itemHeight" default="110" />
-		
+
 		<definition>
 			<posx>37</posx>
 			<posy>$PARAM[menuTop]</posy>
@@ -627,7 +768,7 @@
 			</content>
 		</definition>
 	</include>
-
+	<!-- Horizontal Menu for 3 or 5 Items -->
 	<include name="MainMenuList">
 		<definition>
 			<include content="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Linear)">
@@ -640,6 +781,11 @@
 			<include content="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">
 				<param name="font">font_MainMenu_SourceSans</param>
 			</include>
+			<!-- Added New Font -->
+			<include name="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Trueno)">
+				<param name="font">font_MainMenu_Trueno</param>
+			</include>
+			<!-- End -->
 			<include condition="IsEmpty(Skin.String(MainMenu.Font))">MainMenuListContent</include>
 		</definition>
 	</include>
@@ -650,7 +796,7 @@
 				<include>MainMenuList</include>
 			</control>
 		</definition>
-	</include>
+	</include> 
 
 	<include name="MainMenuListWrapped">
 		<definition>
@@ -661,6 +807,30 @@
 	</include>
 
 	<include name="VerticalMenuList">
+<<<<<<< HEAD
+		<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Linear)">
+			<param name="font">font_MainMenu_medium_linear</param>
+			<param name="menuTop">20</param>
+			<param name="menuHeight">1040</param>
+			<param name="focusPosition">6</param>
+			<param name="itemHeight">80</param>
+		</include>
+		<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">
+			<param name="font">font_MainMenu_medium_OpenSans</param>
+			<param name="menuTop">53</param>
+			<param name="menuHeight">975</param>
+			<param name="focusPosition">6</param>
+			<param name="itemHeight">75</param>
+		</include>
+		<include name="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">
+			<param name="font">font_MainMenu_medium_SourceSans</param>
+			<param name="menuTop">53</param>
+			<param name="menuHeight">975</param>
+			<param name="focusPosition">6</param>
+			<param name="itemHeight">75</param>
+		</include>
+		<include condition="IsEmpty(Skin.String(MainMenu.Font))">VerticalMainMenuListContent</include>
+=======
 		<include content="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Linear)">
 				<param name="font">font_MainMenu_medium_linear</param>
 				<param name="menuTop">20</param>
@@ -683,8 +853,9 @@
 				<param name="itemHeight">75</param>
 			</include>
 			<include condition="IsEmpty(Skin.String(MainMenu.Font))">VerticalMainMenuListContent</include>
+>>>>>>> refs/remotes/magnumdoomguy/master
 	</include>
-	
+
 	<include name="VerticalMainMenuListFixed">
 		<control type="fixedlist" id="300">
 			<include>VerticalMenuList</include>
@@ -827,5 +998,11 @@
 			<onclick>System.Exec(reboot)</onclick>
 			<visible>System.isSystem(openelec) + !System.UserIsRestricted</visible>
 		</item>
+
 	</include>
 </includes>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> refs/remotes/magnumdoomguy/master

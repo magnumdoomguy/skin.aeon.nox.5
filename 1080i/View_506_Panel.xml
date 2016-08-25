@@ -86,6 +86,15 @@
                     <texture>listselect_fo.png</texture>
 					<colordiffuse>$VAR[Colour_PanelHighlightColourVar]</colordiffuse>
                 </control>
+                <!-- WhiteFlat -->
+                <control type="image">
+                    <width>555</width>
+                    <height>730</height>
+                    <texture>wf_listselect_fo_panel.png</texture>
+                    <colordiffuse>$VAR[Colour_PanelHighlightColourVar]</colordiffuse>
+                    <animation effect="fade" end="25" time="0" condition="true">Conditional</animation>
+                </control>
+                <!-- End -->
 				
 				<!-- Title -->
                 <control type="label">
@@ -184,15 +193,27 @@
                     <texture fallback="special://skin/backgrounds/movies.jpg">$VAR[EpisodeThumbnailVar]</texture>
                     <aspectratio align="center" aligny="center">scale</aspectratio>
                 </control>
-                <control type="image">
+                <control type="image">                    
                     <posx>456</posx>
                     <posy>0</posy>
                     <width>80</width>
                     <height>80</height>
                     <texture>$VAR[OverlayVar]</texture>
                     <aspectratio align="center" aligny="top">keep</aspectratio>
-					<visible>!Skin.HasSetting(Enable.Circles)</visible>
+					<visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
                 </control>
+                <!-- Duped WhiteFlat - Folder showcase/4-->
+                <control type="image">                    
+                    <posx>0</posx>
+                    <posy>296</posy>
+                    <width>525</width>
+                    <height>6</height>
+                    <texture>$VAR[OverlayVar]</texture>
+                    <aspectratio align="center" aligny="top">keep</aspectratio>
+                    <visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+                    <animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
+                </control>
+                <!-- End -->
 				
 				<!-- Watched Status Upper Circle -->
 				<control type="image">
@@ -204,7 +225,7 @@
 					<texture>$VAR[OverlayVar]</texture>
 					<colordiffuse>$VAR[Colour_PanelWatchedStatusColourVar]</colordiffuse>
 					<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-				</control>
+				</control>            
 					
 				<!-- Watched Status Lower Circle -->
 				<control type="image">

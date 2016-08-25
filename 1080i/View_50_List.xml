@@ -59,7 +59,8 @@
 			<posy>148</posy>
 			<width>1204</width>
 			<height>904</height>
-			<texture colordiffuse="E6FFFFFF" border="40">listpanel_back.png</texture>
+			<texture condition="Skin.HasTheme(WhiteFlat)" colordiffuse="FFFFFFFF" border="40">listpanel_back.png</texture>
+			<texture condition="!Skin.HasTheme(WhiteFlat)" colordiffuse="E6FFFFFF" border="40">listpanel_back.png</texture>
 		</control>
 	</include>
 
@@ -93,6 +94,7 @@
 	<!-- List Highlight -->
 	<include name="ListHighlight">
 		<control type="image">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<posx>0</posx>
 			<posy>0</posy>
 			<width>1140</width>
@@ -101,6 +103,17 @@
 			<include>VisibleFadeEffect</include>
 			<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
 		</control>
+		<!-- WhiteFlat -->
+		<control type="image">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1140</width>
+			<height>120</height>
+			<texture border="5">wf_listselect_fo.png</texture>
+			<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>			
+		</control>
+		<!-- End -->
 	</include>
 
 	<!-- Portrait Poster -->
@@ -110,7 +123,7 @@
 		<width>70</width>
 		<height>105</height>
 		<aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-		<texture background="true" fallback="defaultmovietitle.png">$INFO[ListItem.Art(smallThumb)]</texture>
+		<texture background="true" fallback="defaultmovietitle.png">$INFO[ListItem.Art(smallThumb)]</texture>		
 	</include>
 
 	<!-- Square Thumb -->
@@ -162,7 +175,7 @@
 	</include>
 
 	<!-- Genre -->
-	<include name="ListGenre">
+	<include name="ListGenre">		
 		<posx>100</posx>
 		<posy>55</posy>
 		<width>825</width>
@@ -199,6 +212,7 @@
 	<!-- Scrollbar -->
 	<include name="ListScrollbar">
 		<control type="scrollbar" id="60">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<posx>1140</posx>
 			<posy>180</posy>
 			<width>14</width>
@@ -214,6 +228,25 @@
 			<showonepage>false</showonepage>
 			<orientation>vertical</orientation>
 		</control>
+		<!-- WhiteFlat -->
+		<control type="scrollbar" id="60">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<posx>1140</posx>
+			<posy>180</posy>
+			<width>12</width>
+			<height>840</height>
+			<colordiffuse>FF000000</colordiffuse>
+			<onup>60</onup>
+			<ondown>60</ondown>
+			<onleft>50</onleft>
+			<onright>9002</onright>
+			<texturesliderbackground>-</texturesliderbackground>
+			<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+			<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+			<showonepage>false</showonepage>
+			<orientation>vertical</orientation>
+		</control>
+		<!-- End -->
 	</include>
 
 	<include name="ListMovie_NF">
@@ -259,7 +292,22 @@
 			<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 			<aligny>center</aligny>
 			<label>$VAR[RatingVar]</label>
-			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest) + !Skin.HasTheme(WhiteFlat)</visible>
+		</control>
+
+		<!-- WhiteFlat - User Rating -->
+		<control type="label">
+			<posx>1035</posx>
+			<posy>0</posy>
+			<width>116</width>
+			<height>116</height>
+			<font>font30</font>
+			<align>center</align>
+			<textcolor>grey2</textcolor>
+			<selectedcolor>grey2</selectedcolor>
+			<aligny>center</aligny>
+			<label>$VAR[RatingVar]</label>
+			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest) + Skin.HasTheme(WhiteFlat)</visible>
 		</control>
 
 		<!-- Standard / IMDb Rating -->
@@ -332,17 +380,33 @@
 			<animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies)] | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
 		</control>
 
-		<!-- Genre -->
+		<!-- Genre (Selected)-->
 		<control type="label">
 			<include>ListGenre</include>
 			<textcolor>white</textcolor>
 			<selectedcolor>white</selectedcolor>
 		</control>
 
+		<!-- WhiteFLat - Genre (Selected)-->
+		<control type="label">
+			<include>ListGenre</include>
+			<textcolor>FF333333</textcolor>
+			<selectedcolor>grey3</selectedcolor>
+		</control>
+
 		<!-- Resolution -->
 		<control type="image">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<include>ListResolution</include>
 		</control>
+
+		<!-- WhiteFlat - Resolution Icon -->
+		<control type="image">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<include>ListResolution</include>
+			<colordiffuse>grey</colordiffuse>
+		</control>
+		<!-- End -->
 
 		<!-- User Rating -->
 		<control type="label">
@@ -354,6 +418,21 @@
 			<align>center</align>
 			<textcolor>$VAR[Colour_ListThemeColourVar]</textcolor>
 			<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+			<aligny>center</aligny>
+			<label>$VAR[RatingVar]</label>
+			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+		</control>
+
+		<!-- WhiteFlat - User Rating -->
+		<control type="label">
+			<posx>1035</posx>
+			<posy>0</posy>
+			<width>116</width>
+			<height>116</height>
+			<font>font30</font>
+			<align>center</align>
+			<textcolor>white</textcolor>
+			<selectedcolor>white</selectedcolor>
 			<aligny>center</aligny>
 			<label>$VAR[RatingVar]</label>
 			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
@@ -472,7 +551,7 @@
 			<aligny>center</aligny>
 			<label>$VAR[RatingVar]</label>
 			<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-		</control>
+		</control>		
 
 		<!-- Standard Rating -->
 		<control type="label">
@@ -1192,7 +1271,7 @@
 					</focusedlayout>
 
 				</control>
-
+				<!-- Big Poster Section for Videos -->
 				<!-- Scrollbar -->
 				<include>ListScrollbar</include>
 
@@ -1202,14 +1281,27 @@
 				<posy>155</posy>
 				<visible>!Container.Content(episodes) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.PlexContent(homemovies) | Container.PlexContent(clips)]</visible>
 				<control type="image">
+					<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					<width>570</width>
 					<height>835</height>
 					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
 					<texture>$INFO[ListItem.Art(bigThumb)]</texture>
 					<fadetime>400</fadetime>
-					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>										
 					<bordersize>20</bordersize>
 				</control>
+				<!-- WhiteFlat -->
+				<control type="image">
+					<visible>Skin.HasTheme(WhiteFlat)</visible>
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
+					<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+					<fadetime>400</fadetime>					
+					<bordertexture border="20" colordiffuse="40FFFFFF">thumbs/wf_thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				<!-- End -->
 				<control type="image">
 					<posy>795</posy>
 					<width>570</width>
