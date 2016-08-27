@@ -32,6 +32,13 @@
 					<height>87</height>
 					<texture flipy="true">submenu_bar.png</texture>
 				</control>
+				<!-- Duped For WhiteFlat Change -->
+				<!--<control type="image">
+					<width>1920</width>
+					<height>87</height>
+					<texture>wf_submenu_bar_top.png</texture>
+				</control>-->
+				<!-- End -->
 
 				<!-- Show Logged in User -->
 				<control type="grouplist">
@@ -67,7 +74,18 @@
 						<font>font13_title</font>
 						<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 						<shadowcolor>shadow</shadowcolor>
+						<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					</control>
+					<!-- Duplicate to Remove Shadow for WhiteFlat -->
+					<control type="label" id="9025">
+						<width min="10" max="1780">auto</width>
+						<height>41</height>
+						<label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
+						<font>font13_title_whiteflat</font>
+						<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+						<visible>Skin.HasTheme(WhiteFlat)</visible>
+					</control>
+					<!-- End -->	
 				</control>
 			</control>
 		</control>
@@ -122,6 +140,7 @@
 						<orientation>Horizontal</orientation>
 						<itemlayout height="87" width="300">
 							<control type="label">
+								<visible>!Skin.HasTheme(WhiteFlat)</visible>
 								<posx>150</posx>
 								<posy>0</posy>
 								<width>300</width>
@@ -133,10 +152,25 @@
 								<aligny>center</aligny>
 								<label>$INFO[ListItem.Label]</label>
 							</control>
+							<!-- Duped for WhiteFLat -->
+							<control type="label">
+								<visible>Skin.HasTheme(WhiteFlat)</visible>
+								<posx>150</posx>
+								<posy>0</posy>
+								<width>300</width>
+								<height>41</height>
+								<font>font13_title_whiteflat</font>
+								<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>
+								<align>center</align>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]</label>
+							</control>
+							<!-- End -->
 						</itemlayout>
 						<focusedlayout height="87" width="300">
 							<control type="group">
 								<control type="image">
+									<visible>!Skin.HasTheme(WhiteFlat)</visible>
 									<posy>0</posy>
 									<width>300</width>
 									<height>41</height>
@@ -144,6 +178,7 @@
 									<colordiffuse>$VAR[Colour_SubmenuHighlightColourVar]</colordiffuse>
 								</control>
 								<control type="label">
+									<visible>!Skin.HasTheme(WhiteFlat)</visible>
 									<posx>150</posx>
 									<posy>0</posy>
 									<width>300</width>
@@ -158,6 +193,7 @@
 							</control>
 							<control type="group">
 								<control type="label">
+									<visible>!Skin.HasTheme(WhiteFlat)</visible>
 									<posx>150</posx>
 									<posy>0</posy>
 									<width>300</width>
@@ -170,6 +206,45 @@
 									<label>$INFO[ListItem.Label]</label>
 								</control>
 							</control>
+							<!-- Duped for WhiteFlat -->
+							<control type="group">
+								<control type="image">
+									<visible>Skin.HasTheme(WhiteFlat)</visible>
+									<posy>0</posy>
+									<width>300</width>
+									<height>41</height>
+									<texture>wf_listselect_fo.png</texture>
+									<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+									<colordiffuse>$VAR[Colour_SubmenuHighlightColourVar]</colordiffuse>
+								</control>
+								<control type="label">
+									<visible>Skin.HasTheme(WhiteFlat)</visible>
+									<posx>150</posx>
+									<posy>2</posy>
+									<width>300</width>
+									<height>41</height>
+									<font>font13_title_whiteflat</font>
+									<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>									
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+							<control type="group">
+								<control type="label">
+									<visible>Skin.HasTheme(WhiteFlat)</visible>
+									<posx>150</posx>
+									<posy>2</posy>
+									<width>300</width>
+									<height>41</height>
+									<font>font13_title_whiteflat</font>
+									<textcolor>$VAR[Colour_SubmenuTextColourVar]</textcolor>
+									<align>center</align>
+									<aligny>center</aligny>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+							</control>
+							<!-- End -->
 						</focusedlayout>
 						<content>
 							<include>HomeSubMenu</include>
@@ -214,6 +289,9 @@
 			<include content="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Source Sans)">
 				<param name="font">font_MainMenu_SourceSans</param>
 			</include>
+			<include content="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Trueno)">
+				<param name="font">font_MainMenu_Trueno</param>
+			</include>
 			<include condition="Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListFixed</include>
 			<include condition="!Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListWrapped</include>
 
@@ -223,6 +301,7 @@
 				<width>100</width>
 				<height>104</height>
 				<texture border="1">side_fade.png</texture>
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			</control>
 			<control type="image">
 				<posx>1820</posx>
@@ -230,6 +309,7 @@
 				<width>100</width>
 				<height>104</height>
 				<texture flipx="true" border="1">side_fade.png</texture>
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			</control>
 			<control type="image">
 				<posy>90</posy>
@@ -237,6 +317,7 @@
 				<height>72</height>
 				<texture border="1">gradient_floor.png</texture>
 				<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			</control>
 		</control>
 	</include>
@@ -358,9 +439,23 @@
 			<textcolor>grey</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
 			<visible>!Skin.HasSetting(Disable.Userinfo)</visible>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+		<control type="label">
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>$INFO[System.CurrentUser]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>grey</textcolor>
+			<visible>!Skin.HasSetting(Disable.Userinfo)</visible>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo)</visible>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<width min="10" max="780">auto</width>
 			<height>41</height>
 			<label>[COLOR grey]  |  [/COLOR]$INFO[Container(300).ListItem(0).Label2]</label>
@@ -369,6 +464,18 @@
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+			<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo)</visible>
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>[COLOR grey]  |  [/COLOR]$INFO[Container(300).ListItem(0).Label2]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo)</visible>
 			<width min="10" max="780">auto</width>
@@ -378,7 +485,20 @@
 			<font>font13_title</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+		<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo)</visible>
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label>$INFO[Container(300).ListItem(0).Label2]</label>
+			<textoffsetx>15</textoffsetx>
+			<font>font13_title_whiteflat</font>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
 			<width min="10" max="780">auto</width>
@@ -388,7 +508,20 @@
 			<font>IconSmaller</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 		</control>
+		<!-- Duplicate Block for WhiteFlat -->
+		<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label></label>
+			<textoffsetx>30</textoffsetx>
+			<font>IconSmaller</font>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>					
+		</control>
+		<!-- End -->
 		<control type="label">
 			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
 			<width min="10" max="780">auto</width>
@@ -398,6 +531,17 @@
 			<font>IconSmaller</font>
 			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
 			<shadowcolor>AA000000</shadowcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
+		</control>
+		<control type="label">
+			<visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
+			<width min="10" max="780">auto</width>
+			<height>41</height>
+			<label></label>
+			<textoffsetx>30</textoffsetx>
+			<font>IconSmaller</font>
+			<textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
 		</control>
 	</include>
 
