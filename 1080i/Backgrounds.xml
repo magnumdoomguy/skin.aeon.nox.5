@@ -10,6 +10,24 @@
         <value condition="Control.IsVisible(7010) + Control.HasFocus(9010)">$INFO[Container(9010).ListItem.Art(fanart)]</value>
         <value>special://skin/backgrounds/search.jpg</value>
     </variable>
+    <!-- Darken Background (Default Theme) -->
+    <include name="DarkenBackground_Default">
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <texture>black.png</texture>
+            <visible>!Window.IsVisible(skinsettings) + [Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)]</visible>
+            <animation effect="fade" start="100" end="55" time="240" condition="true">conditional</animation>
+        </control>
+    </include>
+    <!-- Darken Background (White Flat Theme) -->
+    <include name="DarkenBackground_WhiteFlat">
+        <control type="image">
+            <include>FullscreenDimensions</include>
+            <texture>black.png</texture>
+            <visible>!Window.IsVisible(skinsettings) + [Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)]</visible>
+            <animation effect="fade" end="0" condition="true">Conditional</animation>
+        </control>
+    </include>
     <include name="CommonBackground">
         <control type="group">
             <!-- Window Open and Close Animations -->
@@ -51,14 +69,8 @@
                 <visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
             </control>
             <!-- Darken Background -->
-            <control type="image">
-                <include>FullscreenDimensions</include>
-                <texture>black.png</texture>
-                <visible>!Window.IsVisible(skinsettings)</visible>
-                <visible>Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)</visible>
-                <!-- Mapped from Kodi to OpenPHT -->
-                <animation effect="fade" start="100" end="55" time="240" condition="true">conditional</animation>
-            </control>
+            <include condition="!Skin.HasTheme(WhiteFlat)">DarkenBackground_Default</include>
+			<include condition="Skin.HasTheme(WhiteFlat)">DarkenBackground_WhiteFlat</include>
         </control>
         <!-- Vignette -->
         <control type="group">
@@ -92,6 +104,7 @@
             <animation effect="slide" start="0,0" end="0,40" time="720" tween="cubic" easing="inout" condition="Control.IsVisible(700) + !Window.IsActive(skinsettings)">Conditional</animation>
             <!-- Mapped from Kodi to OpenPHT -->
             <control type="image">
+				<visible>!Skin.HasTheme(WhiteFlat)</visible>
                 <posx>0</posx>
                 <posy>400</posy>
                 <width>1920</width>
@@ -117,13 +130,30 @@
         </control>
     </include>
     <include name="VideoFanart">
+		<!-- FanArt Underlay for WhiteFlat -->
+		<control type="image">
+			<visible>!Container.Content(clips)</visible>
+			<visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<texture>fanartunderlay.png</texture>
+		</control>
         <!-- Standard Video Background -->
         <control type="image">
             <visible>!Container.Content(clips)</visible>
             <visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+            <visible>!Skin.HasTheme(WhiteFlat)</visible>
             <include>FanartCommonValues</include>
             <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
         </control>
+        <!-- Dupe for WhiteFlat -->
+		<control type="image">
+			<visible>!Container.Content(clips)</visible>
+			<visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<include>FanartCommonValues</include>			
+			<texture colordiffuse="40FFFFFF" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
+		</control>
+		<!-- End -->
         <!-- Home Videos Fanart -->
         <control type="image">
             <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + !IsEmpty(ListItem.Art(smallThumb))</visible>
