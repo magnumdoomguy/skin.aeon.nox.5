@@ -101,6 +101,17 @@
 			<include>VisibleFadeEffect</include>
 			<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>
 		</control>
+		<!-- WhiteFlat -->
+		<control type="image">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1140</width>
+			<height>120</height>
+			<texture border="5">wf_listselect_fo.png</texture>
+			<colordiffuse>$VAR[Colour_ListHighlightColourVar]</colordiffuse>			
+		</control>
+		<!-- End -->
 	</include>
 
 	<!-- Portrait Poster -->
@@ -199,6 +210,7 @@
 	<!-- Scrollbar -->
 	<include name="ListScrollbar">
 		<control type="scrollbar" id="60">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<posx>1140</posx>
 			<posy>180</posy>
 			<width>14</width>
@@ -214,6 +226,25 @@
 			<showonepage>false</showonepage>
 			<orientation>vertical</orientation>
 		</control>
+		<!-- WhiteFlat -->
+		<control type="scrollbar" id="60">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<posx>1140</posx>
+			<posy>180</posy>
+			<width>12</width>
+			<height>840</height>
+			<colordiffuse>FF000000</colordiffuse>
+			<onup>60</onup>
+			<ondown>60</ondown>
+			<onleft>50</onleft>
+			<onright>9002</onright>
+			<texturesliderbackground>-</texturesliderbackground>
+			<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+			<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+			<showonepage>false</showonepage>
+			<orientation>vertical</orientation>
+		</control>
+		<!-- End -->
 	</include>
 
 	<include name="ListMovie_NF">
@@ -222,8 +253,16 @@
 
 		<!-- Display Poster -->
 		<control type="image">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<include>ListPoster</include>
 			<colordiffuse>grey2</colordiffuse>
+		</control>
+		
+		<!-- WhiteFlat - Display Poster -->
+		<control type="image">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<include>ListPoster</include>
+			<colordiffuse>80ffffff</colordiffuse>
 		</control>
 
 		<!-- Title -->
@@ -337,13 +376,29 @@
 			<include>ListGenre</include>
 			<textcolor>white</textcolor>
 			<selectedcolor>white</selectedcolor>
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
+		</control>
+		<!-- WhiteFLat - Genre (Selected)-->
+		<control type="label">
+			<include>ListGenre</include>
+			<textcolor>grey3</textcolor>
+			<selectedcolor>grey3</selectedcolor>
 		</control>
 
 		<!-- Resolution -->
 		<control type="image">
+			<visible>!Skin.HasTheme(WhiteFlat)</visible>
 			<include>ListResolution</include>
 		</control>
-
+	
+		<!-- WhiteFlat - Resolution Icon -->
+		<control type="image">
+			<visible>Skin.HasTheme(WhiteFlat)</visible>
+			<include>ListResolution</include>
+			<colordiffuse>grey</colordiffuse>
+		</control>
+		<!-- End -->
+		
 		<!-- User Rating -->
 		<control type="label">
 			<posx>1035</posx>
@@ -1202,6 +1257,7 @@
 				<posy>155</posy>
 				<visible>!Container.Content(episodes) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.PlexContent(homemovies) | Container.PlexContent(clips)]</visible>
 				<control type="image">
+					<visible>!Skin.HasTheme(WhiteFlat)</visible>
 					<width>570</width>
 					<height>835</height>
 					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
@@ -1210,6 +1266,20 @@
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
 				</control>
+				
+				<!-- WhiteFlat - Big Poster -->
+				<control type="image">
+					<visible>Skin.HasTheme(WhiteFlat)</visible>
+					<posy>-12</posy>
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
+					<texture>$INFO[ListItem.Art(bigThumb)]</texture>
+					<fadetime>400</fadetime>					
+					<bordertexture border="20" colordiffuse="40FFFFFF">thumbs/wf_thumb_shadow.png</bordertexture>
+					<bordersize>25</bordersize>
+				</control>
+				
 				<control type="image">
 					<posy>795</posy>
 					<width>570</width>
