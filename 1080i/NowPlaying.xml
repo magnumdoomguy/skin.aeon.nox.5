@@ -6,14 +6,14 @@
 		<!-- Set Default OSD Button -->
         <control type="button" id="410">
 			<include>HiddenObject</include>
-            <onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Playlists)">SetFocus(700)</onfocus>
-            <onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Previous)">SetFocus(600)</onfocus>
-            <onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Stop)">SetFocus(603)</onfocus>
+            <onfocus condition="String.Contains(Skin.String(NowPlaying.DefaultButton),Playlists)">SetFocus(700)</onfocus>
+            <onfocus condition="String.Contains(Skin.String(NowPlaying.DefaultButton),Previous)">SetFocus(600)</onfocus>
+            <onfocus condition="String.Contains(Skin.String(NowPlaying.DefaultButton),Stop)">SetFocus(603)</onfocus>
 			<onfocus condition="IsEmpty(Skin.String(NowPlaying.DefaultButton))">SetFocus(602)</onfocus>
-            <onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Next)">SetFocus(605)</onfocus>
-			<onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Random)">SetFocus(704)</onfocus>
-			<onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Repeat)">SetFocus(707)</onfocus>
-			<onfocus condition="SubString(Skin.String(NowPlaying.DefaultButton),Options)">SetFocus(706)</onfocus>
+            <onfocus condition="String.Contains(Skin.String(NowPlaying.DefaultButton),Next)">SetFocus(605)</onfocus>
+			<onfocus condition="String.Contains(Skin.String(NowPlaying.DefaultButton),Random)">SetFocus(704)</onfocus>
+			<onfocus condition="String.Contains(Skin.String(NowPlaying.DefaultButton),Repeat)">SetFocus(707)</onfocus>
+			<onfocus condition="String.Contains(Skin.String(NowPlaying.DefaultButton),Options)">SetFocus(706)</onfocus>
         </control>
 		
 		<!-- Background -->
@@ -75,7 +75,7 @@
 			<!-- Separator to left of Album Image -->
 			<control type="image">
 				<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
-				<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
+				<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
 				<animation effect="slide" end="38,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),CD)">Conditional</animation>
             	<animation effect="slide" end="45,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass)">Conditional</animation>
             	<posx>1110</posx>
@@ -149,7 +149,7 @@
 				
 				<!-- Poster -->
 				<control type="image">
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<width>227</width>
 					<height>227</height>
 					<posy>37</posy>
@@ -157,7 +157,7 @@
 					<texture>$INFO[MusicPlayer.offset(1).Cover]</texture>
 				</control>
 				<control type="image">
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<width>227</width>
 					<height>227</height>
 					<posy>37</posy>
@@ -165,7 +165,7 @@
 					<texture>black.png</texture>
 				</control>
 				<control type="image">
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<width>227</width>
 					<height>227</height>
 					<posy>37</posy>
@@ -175,7 +175,7 @@
 				
 				<!-- Glass Case -->
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + !String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<posx>3</posx>
 					<posy>40</posy>
@@ -185,7 +185,7 @@
 					<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Player.Art(thumb)]</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<posx>3</posx>
 					<posy>40</posy>
@@ -214,7 +214,7 @@
 					<texture>cdinside.png</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + !String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<posx>22</posx>
 					<posy>41</posy>
 					<width>200</width>
@@ -223,7 +223,7 @@
 					<texture>$INFO[MusicPlayer.offset(1).Cover]</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<posx>22</posx>
 					<posy>41</posy>
 					<width>200</width>
@@ -232,7 +232,7 @@
 					<texture>black.png</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<posx>22</posx>
 					<posy>41</posy>
 					<width>200</width>
@@ -251,7 +251,7 @@
 				
 				<!-- CD Case -->
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + !Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + !String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<posx>1</posx>
 					<posy>39</posy>
 					<include>VisibleFadeEffect</include>
@@ -261,7 +261,7 @@
 					<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Player.Art(smallThumb)]</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<posx>1</posx>
 					<posy>39</posy>
 					<include>VisibleFadeEffect</include>
@@ -271,7 +271,7 @@
 					<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">black.png</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + Substring(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + String.Contains(MusicPlayer.offset(1).Cover,DefaultAlbumCover.png)</visible>
 					<posx>1</posx>
 					<posy>39</posy>
 					<include>VisibleFadeEffect</include>
@@ -808,7 +808,7 @@
 				<control type="image">
 					<posx>-28</posx>
 					<posy>-26</posy>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>556</width>
 					<height>556</height>
@@ -820,7 +820,7 @@
 				<control type="image">
 					<posx>-28</posx>
 					<posy>-26</posy>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>556</width>
 					<height>556</height>
@@ -832,7 +832,7 @@
 				<control type="image">
 					<posx>-28</posx>
 					<posy>-26</posy>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>556</width>
 					<height>556</height>
@@ -844,7 +844,7 @@
 				<control type="image">
 					<posx>-28</posx>
 					<posy>-26</posy>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>556</width>
 					<height>556</height>
@@ -856,7 +856,7 @@
 				<control type="image">
 					<posx>-28</posx>
 					<posy>-26</posy>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>556</width>
 					<height>556</height>
@@ -868,7 +868,7 @@
 				<control type="image">
 					<posx>-28</posx>
 					<posy>-26</posy>
-					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+					<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>556</width>
 					<height>556</height>
@@ -882,7 +882,7 @@
 				<control type="image">
 					<posx>-2</posx>
 					<posy>2</posy>
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + !Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>504</width>
 					<height>504</height>
@@ -892,7 +892,7 @@
 				<control type="image">
 					<posx>-2</posx>
 					<posy>2</posy>
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>504</width>
 					<height>504</height>
@@ -902,7 +902,7 @@
 				<control type="image">
 					<posx>-2</posx>
 					<posy>2</posy>
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>504</width>
 					<height>504</height>
@@ -922,7 +922,7 @@
 				
 				<!-- Clear Case -->
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + !Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>500</width>
 					<height>500</height>
@@ -930,7 +930,7 @@
 					<texture>$INFO[Player.Art(thumb)]</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>500</width>
 					<height>500</height>
@@ -938,7 +938,7 @@
 					<texture>black.png</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<include>VisibleFadeEffect</include>
 					<width>500</width>
 					<height>500</height>
@@ -970,7 +970,7 @@
 				
 				<!-- CD Case -->
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + !Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<posx>-12</posx>
 					<posy>-5</posy>
 					<include>VisibleFadeEffect</include>
@@ -980,7 +980,7 @@
 					<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[Player.Art(thumb)]</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<posx>-12</posx>
 					<posy>-5</posy>
 					<include>VisibleFadeEffect</include>
@@ -990,7 +990,7 @@
 					<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">black.png</texture>
 				</control>
 				<control type="image">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + Substring(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
 					<posx>-12</posx>
 					<posy>-5</posy>
 					<include>VisibleFadeEffect</include>
@@ -1016,7 +1016,7 @@
 		<control type="group">
 			<animation effect="slide" end="104,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
 			<animation effect="slide" end="106,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-			<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !Substring(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
+			<animation effect="slide" end="53,0" time="0" condition="IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(Player.Art(thumb),DefaultAlbumCover.png)">Conditional</animation>
 			<animation effect="slide" end="38,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),CD)">Conditional</animation>
             <animation effect="slide" end="45,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass)">Conditional</animation>
             <include>VisibleFadeEffect</include>
