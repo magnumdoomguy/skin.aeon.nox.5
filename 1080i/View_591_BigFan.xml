@@ -1,541 +1,515 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
-	<include name="contents591list">
-		<posx>0</posx>
-		<posy>0</posy>
-		<width>1920</width>
-		<height>1080</height>
-		<onup>SetProperty(MediaMenu,True,home)</onup>
-		<onup>SetFocus(9050,0)</onup>
-		<onleft>591</onleft>
-		<onright>591</onright>
-		<orientation>horizontal</orientation>
-		<viewtype label="BigFan">list</viewtype>
-		<pagecontrol>6000</pagecontrol>
-		<preloaditems>2</preloaditems>
-		<scrolltime tween="quadratic">200</scrolltime>
-		<focusposition>1</focusposition>
-		<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)</visible>
-		<itemlayout width="1080" height="1920"></itemlayout>
-		<focusedlayout width="1080" height="1920">
-			<control type="group">
-				<animation type="Visible">
-					<effect type="fade" time="120" end="100" />
-				</animation>
-				<animation type="Hidden">
-					<effect type="fade" time="120" start="100" end="0" />
-				</animation>
-				<animation type="WindowOpen">
-					<effect type="fade" time="320" end="100" />
-				</animation>
-				<animation type="WindowClose">
-					<effect type="fade" time="240" start="100" end="0" />
-				</animation>
-			</control>
-		</focusedlayout>
-	</include>
-	<include name="BigFanList">
-		<control type="list" id="591">
-			<include>contents591list</include>
-		</control>
-	</include>
-	<include name="View_591_BigFan">
-		<control type="group">
-			<include>ViewAnimation</include>
-			<include>BigFanList</include>
-			<visible>Control.IsVisible(591) + !Window.IsActive(addoninformation)</visible>
-
-			<!-- Poster -->
-			<control type="image">
-				<posx>60</posx>
-				<posy>680</posy>
-				<width>272</width>
-				<height>392</height>
-				<aspectratio scalediffuse="false">scale</aspectratio>
-				<texture fallback="empty.png">$INFO[ListItem.Art(thumb)]</texture>
-				<fadetime>200</fadetime>
-				<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-				<bordersize>20</bordersize>
-				<animation effect="fade" delay="240" time="240" reversible="false">Hidden</animation>
-				<visible>[Control.IsVisible(591) + [Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)]] + ![Container.OnNext | Container.OnPrevious] + !Skin.HasTheme(WhiteFlat)</visible>
-			</control>
-			<!-- WhiteFlat Poster (Updated Shadow)-->
-			<control type="image">
-				<posx>60</posx>
-				<posy>680</posy>
-				<width>272</width>
-				<height>392</height>
-				<aspectratio scalediffuse="false">scale</aspectratio>
-				<texture fallback="empty.png">$INFO[ListItem.Art(thumb)]</texture>
-				<fadetime>200</fadetime>
-				<bordertexture border="20" colordiffuse="40FFFFFF">thumbs/wf_thumb_shadow.png</bordertexture>
-				<bordersize>20</bordersize>
-				<animation effect="fade" delay="240" time="240" reversible="false">Hidden</animation>
-				<visible>Control.IsVisible(591) + [Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)]</visible>
-				<visible>![Container.OnNext | Container.OnPrevious]</visible>
-				<visible>Skin.HasTheme(WhiteFlat)</visible>
-			</control>
-			<!-- End -->
-
-			<!-- Watched Status -->
-			<control type="image">
-				<posx>225</posx>
-				<posy>698</posy>
-				<width>100</width>
-				<height>100</height>
-				<texture>$VAR[OverlayVar]</texture>
-				<aspectratio align="center" aligny="top">keep</aspectratio>
-				<bordersize>1</bordersize>
-				<visible>!Container.Content(seasons) + !Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
-			</control>
-			<!-- WhiteFlat - Watched Status Overlay Ribbon-->
-			<control type="image">
-				<posx>75</posx>
-				<posy>1056</posy>
-				<width>241</width>
-				<height>4</height>				
-				<aspectratio>stretch</aspectratio>				
-				<texture>$VAR[OverlayVar]</texture>
-                <animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
-				<visible>!Container.Content(seasons) + !Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
-			</control>
-			<!-- End -->
-
-			<!-- Watched Status Upper Circle -->
-			<control type="image">
-				<posx>261</posx>
-				<posy>715</posy>
-				<width>36</width>
-				<height>36</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[OverlayVar]</texture>
-				<colordiffuse>$VAR[Colour_BigFanWatchedStatusColourVar]</colordiffuse>
-				<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-			</control>
-
-			<!-- Watched Status Lower Circle -->
-			<control type="image">
-				<posx>261</posx>
-				<posy>1006</posy>
-				<width>36</width>
-				<height>36</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$VAR[OverlayVar]</texture>
-				<colordiffuse>$VAR[Colour_BigFanWatchedStatusColourVar]</colordiffuse>
-				<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-			</control>
-
-			<control type="group">
-				<visible>Control.IsVisible(591) + [Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)]</visible>
-				<control type="group">
-					<visible>Container.Content(movies)</visible>
-					<control type="group">
-						<posx>1320</posx>
-						<posy>1000</posy>
-						<width>1840</width>
-						<height>90</height>
-						<include>VisibleFadeEffect</include>
-
-						<!-- Video Codec Flag -->
-						<control type="image">
-							<posx>-300</posx>
-							<include>MediaFlagVars</include>
-							<texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
-						</control>
-
-						<!-- Studio Flag -->
-						<control type="image">
-							<posx>-150</posx>
-							<include>MediaFlagVars</include>
-							<texture fallback="flags/studios/default-studio.png">$VAR[StudioFlag]</texture>
-						</control>
-
-						<!-- Content Rating -->
-						<control type="image">
-							<posx>0</posx>
-							<include>MediaFlagVars</include>
-							<texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-						</control>
-
-						<!-- Aspect Ratio Flag -->
-						<control type="image">
-							<posx>150</posx>
-							<include>MediaFlagVars</include>
-							<texture fallback="flags/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag]</texture>
-						</control>
-
-						<!-- Resolution Flag -->
-						<control type="image">
-							<posx>300</posx>
-							<include>MediaFlagVars</include>
-							<texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
-						</control>
-
-						<!-- Audio Codec Flag -->
-						<control type="image">
-							<posx>450</posx>
-							<include>MediaFlagVars</include>
-							<texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
-						</control>
-
-					</control>
-					<control type="group">
-						<control type="label">
-							<posx>350</posx>
-							<posy>930</posy>
-							<width>1250</width>
-							<height>42</height>
-							<aligny>top</aligny>
-							<align>left</align>
-							<font>font16</font>
-							<textcolor>grey</textcolor>
-							<scroll>true</scroll>
-							<label>[B]$INFO[ListItem.Label][/B]</label>
-							<textoffsety>-2</textoffsety>
-							<textoffsetx>30</textoffsetx>
-						</control>
-
-						<!-- Movies Info -->
-						<control type="grouplist">
-							<visible>Container.Content(movies)</visible>
-							<orientation>horizontal</orientation>
-							<posx>380</posx>
-							<posy>1000</posy>
-							<width>1100</width>
-							<height>30</height>
-							<align>left</align>
-							<aligny>center</aligny>
-
-							<!-- Year -->
-							<control type="label">
-								<width min="20" max="366">auto</width>
-								<height>30</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<font>font13_title</font>
-								<textcolor>grey</textcolor>
-								<label>$INFO[ListItem.Year] [B]•[/B] </label>
-								<visible>!IsEmpty(ListItem.Year) + ListItem.Type(movie)</visible>
-							</control>
-
-							<!-- Date -->
-							<control type="label">
-								<width min="20" max="226">auto</width>
-								<height>30</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<font>font13_title</font>
-								<textcolor>grey</textcolor>
-								<label>$INFO[ListItem.Date] [B]•[/B] </label>
-								<visible>!IsEmpty(Container(11000).ListItem.Date) + ListItem.Type(episode)</visible>
-							</control>
-
-							<!-- User Rating -->
-							<control type="label">
-								<width min="20" max="299">auto</width>
-								<height>30</height>
-								<textcolor>$VAR[Colour_BigFanThemeColourVar]</textcolor>
-								<align>left</align>
-								<aligny>center</aligny>
-								<font>font13_title</font>
-								<label>$VAR[RatingVar] [COLOR white2][B]•[/B][/COLOR] </label>
-								<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-
-							<!-- Standard Rating -->
-							<control type="label">
-								<width min="20" max="299">auto</width>
-								<height>30</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<label>$VAR[RatingVar] [B]•[/B] </label>
-								<font>font13_title</font>
-								<textcolor>grey</textcolor>
-								<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-
-							<!-- IMDb Rating -->
-							<control type="image">
-								<width>53</width>
-								<height>30</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>imdb_53x30.png</texture>
-								<aspectratio align="left" aligny="center">keep</aspectratio>
-								<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-							<control type="label">
-								<width min="20" max="299">auto</width>
-								<height>30</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<label> $INFO[ListItem.Property(rating)] [B]•[/B] </label>
-								<font>font13_title</font>
-								<textcolor>grey</textcolor>
-								<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-
-							<!-- Rotten Tomato Ratings -->
-							<control type="image">
-								<width>30</width>
-								<height>30</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>rottentomatoes/30x30/$INFO[ListItem.Property(ratingImage)]</texture>
-								<aspectratio align="left" aligny="center">keep</aspectratio>
-								<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-							<control type="label">
-								<height>30</height>
-								<width min="20" max="121">auto</width>
-								<aligny>center</aligny>
-								<font>font13_title</font>
-								<textcolor>grey</textcolor>
-								<label>$INFO[ListItem.Property(ratingPercent)]%  </label>
-								<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-							<control type="image">
-								<width>30</width>
-								<height>30</height>
-								<aligny>center</aligny>
-								<texture>rottentomatoes/30x30/$INFO[ListItem.Property(audienceRatingImage)]</texture>
-								<aspectratio align="left" aligny="center">keep</aspectratio>
-								<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-							<control type="label">
-								<height>30</height>
-								<width min="20" max="121">auto</width>
-								<aligny>center</aligny>
-								<font>font13_title</font>
-								<textcolor>grey</textcolor>
-								<label>$INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
-								<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-
-							<!-- Duration On Deck -->
-							<control type="label">
-								<width min="20" max="299">auto</width>
-								<height>30</height>
-								<label>$VAR[DurationHrMinVar]</label>
-								<aligny>center</aligny>
-								<font>font13_title</font>
-								<textcolor>grey</textcolor>
-							</control>
-						</control>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Container.Content(tvshows)</visible>
-					<include>VisibleFadeEffect</include>
-					<control type="group">
-						<control type="label">
-							<posx>350</posx>
-							<posy>925</posy>
-							<width>1250</width>
-							<height>42</height>
-							<aligny>top</aligny>
-							<align>left</align>
-							<font>font16</font>
-							<textcolor>grey</textcolor>
-							<scroll>true</scroll>
-							<label>[B]$INFO[ListItem.Label][/B]</label>
-							<textoffsety>-2</textoffsety>
-							<textoffsetx>30</textoffsetx>
-						</control>
-						<control type="label">
-							<posx>350</posx>
-							<posy>1000</posy>
-							<width>1100</width>
-							<height>30</height>
-							<align>left</align>
-							<font>font13_title</font>
-							<textcolor>grey</textcolor>
-							<label>$VAR[FloorSubLabelVar]</label>
-							<textoffsetx>30</textoffsetx>
-						</control>
-						<control type="label">
-							<posx>350</posx>
-							<posy>1040</posy>
-							<width>1100</width>
-							<height>30</height>
-							<align>left</align>
-							<font>font13</font>
-							<textcolor>grey</textcolor>
-							<label>$INFO[ListItem.Date]</label>
-							<textoffsetx>30</textoffsetx>
-						</control>
-					</control>
-					<control type="group">
-						<posx>1320</posx>
-						<posy>1000</posy>
-
-						<control type="group">
-							<visible>Container.Content(tvshows)</visible>
-							<control type="label">
-								<posx>0</posx>
-								<posy>0</posy>
-								<width>150</width>
-								<height>60</height>
-								<align>center</align>
-								<label>[B]$INFO[ListItem.Property(UnWatchedEpisodes)][/B]</label>
-								<font>font16</font>
-								<wrapmultiline>true</wrapmultiline>
-								<textcolor>grey</textcolor>
-							</control>
-							<control type="label">
-								<posy>47</posy>
-								<posx>0</posx>
-								<width>150</width>
-								<height>30</height>
-								<align>center</align>
-								<label>$LOCALIZE[31139]</label>
-								<font>font13</font>
-								<textcolor>grey</textcolor>
-							</control>
-						</control>
-						<control type="group">
-							<visible>Container.Content(tvshows)</visible>
-							<control type="label">
-								<posx>143</posx>
-								<posy>0</posy>
-								<width>162.5</width>
-								<height>60</height>
-								<align>center</align>
-								<label>[B]$INFO[ListItem.episode][/B]</label>
-								<font>font16</font>
-								<wrapmultiline>true</wrapmultiline>
-								<textcolor>grey</textcolor>
-							</control>
-							<control type="label">
-								<posx>150</posx>
-								<posy>47</posy>
-								<width>150</width>
-								<height>30</height>
-								<align>center</align>
-								<label>[LOWERCASE]$VAR[OneOrMoreEpisodesVar][/LOWERCASE]</label>
-								<font>font13</font>
-								<textcolor>grey</textcolor>
-							</control>
-						</control>
-
-						<!-- Studio Flag -->
-						<control type="image">
-							<posx>325</posx>
-							<include>MediaFlagVars</include>
-							<texture>$VAR[StudioFlag]</texture>
-						</control>
-
-						<!-- Content Rating -->
-						<control type="image">
-							<posx>480</posx>
-							<colordiffuse>grey2</colordiffuse>
-							<include>MediaFlagVars</include>
-							<texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-						</control>
-					</control>
-				</control>
-				<control type="group">
-					<visible>Container.Content(seasons)</visible>
-					<include>VisibleFadeEffect</include>
-					<control type="group">
-						<control type="label">
-							<posx>350</posx>
-							<posy>925</posy>
-							<width>1250</width>
-							<height>42</height>
-							<aligny>top</aligny>
-							<align>left</align>
-							<font>font16</font>
-							<textcolor>grey</textcolor>
-							<scroll>true</scroll>
-							<label>[B]$INFO[ListItem.Label][/B]</label>
-							<textoffsety>-2</textoffsety>
-							<textoffsetx>30</textoffsetx>
-						</control>
-						<control type="label">
-							<posx>350</posx>
-							<posy>1000</posy>
-							<width>1100</width>
-							<height>30</height>
-							<align>left</align>
-							<font>font13_title</font>
-							<textcolor>grey</textcolor>
-							<label>$VAR[FloorSubLabelVar]</label>
-							<textoffsetx>30</textoffsetx>
-						</control>
-					</control>
-					<control type="group">
-						<posx>1320</posx>
-						<posy>1000</posy>
-
-						<control type="group">
-							<visible>!IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
-							<control type="label">
-								<posx>0</posx>
-								<posy>-3</posy>
-								<width>150</width>
-								<height>60</height>
-								<align>center</align>
-								<label>[B]$INFO[ListItem.Property(UnWatchedEpisodes)][/B]</label>
-								<font>font16</font>
-								<wrapmultiline>true</wrapmultiline>
-								<textcolor>grey</textcolor>
-							</control>
-							<control type="label">
-								<posy>47</posy>
-								<posx>0</posx>
-								<width>150</width>
-								<height>30</height>
-								<align>center</align>
-								<label>[LOWERCASE]$LOCALIZE[31139][/LOWERCASE]</label>
-								<font>font13</font>
-								<textcolor>grey</textcolor>
-							</control>
-						</control>
-						<control type="group">
-							<visible>!IsEmpty(ListItem.Episode)</visible>
-							<control type="label">
-								<posx>143</posx>
-								<posy>-3</posy>
-								<width>162.5</width>
-								<height>60</height>
-								<align>center</align>
-								<label>[B]$INFO[ListItem.Episode][/B]</label>
-								<font>font16</font>
-								<wrapmultiline>true</wrapmultiline>
-								<textcolor>grey</textcolor>
-							</control>
-							<control type="label">
-								<posx>150</posx>
-								<posy>47</posy>
-								<width>150</width>
-								<height>30</height>
-								<align>center</align>
-								<label>[LOWERCASE]$VAR[OneOrMoreEpisodesVar][/LOWERCASE]</label>
-								<font>font13</font>
-								<textcolor>grey</textcolor>
-							</control>
-						</control>
-
-						<!-- Studio Flag -->
-						<control type="image">
-							<posx>325</posx>
-							<include>MediaFlagVars</include>
-							<colordiffuse>grey</colordiffuse>
-							<texture>$VAR[StudioFlag]</texture>
-							<!--<visible>!IsEmpty(ListItem.Studio)</visible>-->
-						</control>
-
-						<!-- Content Rating -->
-						<control type="image">
-							<posx>480</posx>
-							<colordiffuse>grey2</colordiffuse>
-							<include>MediaFlagVars</include>
-							<texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-						</control>
-					</control>
-				</control>
-			</control>
-		</control>
-	</include>
+  <include name="contents591list">
+    <posx>0</posx>
+    <posy>0</posy>
+    <width>1920</width>
+    <height>1080</height>
+    <onup>SetProperty(MediaMenu,True,home)</onup>
+    <onup>SetFocus(9050,0)</onup>
+    <onleft>591</onleft>
+    <onright>591</onright>
+    <orientation>horizontal</orientation>
+    <viewtype label="BigFan">list</viewtype>
+    <pagecontrol>6000</pagecontrol>
+    <preloaditems>2</preloaditems>
+    <scrolltime tween="quadratic">200</scrolltime>
+    <focusposition>1</focusposition>
+    <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+    <itemlayout width="1080" height="1920"/>
+    <focusedlayout width="1080" height="1920">
+      <control type="group">
+        <animation type="Visible">
+          <effect type="fade" time="120" end="100"/>
+        </animation>
+        <animation type="Hidden">
+          <effect type="fade" time="120" start="100" end="0"/>
+        </animation>
+        <animation type="WindowOpen">
+          <effect type="fade" time="320" end="100"/>
+        </animation>
+        <animation type="WindowClose">
+          <effect type="fade" time="240" start="100" end="0"/>
+        </animation>
+      </control>
+    </focusedlayout>
+  </include>
+  <include name="BigFanList">
+    <control type="list" id="591">
+      <include>contents591list</include>
+    </control>
+  </include>
+  <include name="View_591_BigFan">
+    <control type="group">
+      <include>ViewAnimation</include>
+      <include>BigFanList</include>
+      <visible>Control.IsVisible(591) + !Window.IsActive(addoninformation)</visible>
+      <!-- Poster -->
+      <control type="image">
+        <posx>60</posx>
+        <posy>680</posy>
+        <width>272</width>
+        <height>392</height>
+        <aspectratio scalediffuse="false">scale</aspectratio>
+        <texture fallback="empty.png">$INFO[ListItem.Art(thumb)]</texture>
+        <fadetime>200</fadetime>
+        <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+        <bordersize>20</bordersize>
+        <animation effect="fade" delay="240" time="240" reversible="false">Hidden</animation>
+        <visible>[Control.IsVisible(591) + [Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)]] + ![Container.OnNext | Container.OnPrevious] + !Skin.HasTheme(WhiteFlat)</visible>
+      </control>
+      <!-- WhiteFlat Poster (Updated Shadow)-->
+      <control type="image">
+        <posx>60</posx>
+        <posy>680</posy>
+        <width>272</width>
+        <height>392</height>
+        <aspectratio scalediffuse="false">scale</aspectratio>
+        <texture fallback="empty.png">$INFO[ListItem.Art(thumb)]</texture>
+        <fadetime>200</fadetime>
+        <bordertexture border="20" colordiffuse="40FFFFFF">thumbs/wf_thumb_shadow.png</bordertexture>
+        <bordersize>20</bordersize>
+        <animation effect="fade" delay="240" time="240" reversible="false">Hidden</animation>
+        <visible>Control.IsVisible(591) + [Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)]</visible>
+        <visible>![Container.OnNext | Container.OnPrevious]</visible>
+        <visible>Skin.HasTheme(WhiteFlat)</visible>
+      </control>
+      <!-- End -->
+      <!-- Watched Status -->
+      <control type="image">
+        <posx>225</posx>
+        <posy>698</posy>
+        <width>100</width>
+        <height>100</height>
+        <texture>$VAR[OverlayVar]</texture>
+        <aspectratio align="center" aligny="top">keep</aspectratio>
+        <bordersize>1</bordersize>
+        <visible>!Container.Content(seasons) + !Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
+      </control>
+      <!-- WhiteFlat - Watched Status Overlay Ribbon-->
+      <control type="image">
+        <posx>75</posx>
+        <posy>1056</posy>
+        <width>241</width>
+        <height>4</height>
+        <aspectratio>stretch</aspectratio>
+        <texture>$VAR[OverlayVar]</texture>
+        <animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
+        <visible>!Container.Content(seasons) + !Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+      </control>
+      <!-- End -->
+      <!-- Watched Status Upper Circle -->
+      <control type="image">
+        <posx>261</posx>
+        <posy>715</posy>
+        <width>36</width>
+        <height>36</height>
+        <aspectratio>keep</aspectratio>
+        <texture>$VAR[OverlayVar]</texture>
+        <colordiffuse>$VAR[Colour_BigFanWatchedStatusColourVar]</colordiffuse>
+        <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+      </control>
+      <!-- Watched Status Lower Circle -->
+      <control type="image">
+        <posx>261</posx>
+        <posy>1006</posy>
+        <width>36</width>
+        <height>36</height>
+        <aspectratio>keep</aspectratio>
+        <texture>$VAR[OverlayVar]</texture>
+        <colordiffuse>$VAR[Colour_BigFanWatchedStatusColourVar]</colordiffuse>
+        <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+      </control>
+      <control type="group">
+        <visible>Control.IsVisible(591) + [Container.Content(tvshows) | Container.Content(movies) | Container.Content(seasons)]</visible>
+        <control type="group">
+          <visible>Container.Content(movies)</visible>
+          <control type="group">
+            <posx>1320</posx>
+            <posy>1000</posy>
+            <width>1840</width>
+            <height>90</height>
+            <include>VisibleFadeEffect</include>
+            <!-- Video Codec Flag -->
+            <control type="image">
+              <posx>-300</posx>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
+            </control>
+            <!-- Studio Flag -->
+            <control type="image">
+              <posx>-150</posx>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/studios/default-studio.png">$VAR[StudioFlag]</texture>
+            </control>
+            <!-- Content Rating -->
+            <control type="image">
+              <posx>0</posx>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+            </control>
+            <!-- Aspect Ratio Flag -->
+            <control type="image">
+              <posx>150</posx>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag]</texture>
+            </control>
+            <!-- Resolution Flag -->
+            <control type="image">
+              <posx>300</posx>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
+            </control>
+            <!-- Audio Codec Flag -->
+            <control type="image">
+              <posx>450</posx>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
+            </control>
+          </control>
+          <control type="group">
+            <control type="label">
+              <posx>350</posx>
+              <posy>930</posy>
+              <width>1250</width>
+              <height>42</height>
+              <aligny>top</aligny>
+              <align>left</align>
+              <font>font16</font>
+              <textcolor>grey</textcolor>
+              <scroll>true</scroll>
+              <label>[B]$INFO[ListItem.Label][/B]</label>
+              <textoffsety>-2</textoffsety>
+              <textoffsetx>30</textoffsetx>
+            </control>
+            <!-- Movies Info -->
+            <control type="grouplist">
+              <visible>Container.Content(movies)</visible>
+              <orientation>horizontal</orientation>
+              <posx>380</posx>
+              <posy>1000</posy>
+              <width>1100</width>
+              <height>30</height>
+              <align>left</align>
+              <aligny>center</aligny>
+              <!-- Year -->
+              <control type="label">
+                <width min="20" max="366">auto</width>
+                <height>30</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <font>font13_title</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Year] [B]•[/B] </label>
+                <visible>!IsEmpty(ListItem.Year) + ListItem.Type(movie)</visible>
+              </control>
+              <!-- Date -->
+              <control type="label">
+                <width min="20" max="226">auto</width>
+                <height>30</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <font>font13_title</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Date] [B]•[/B] </label>
+                <visible>!IsEmpty(Container(11000).ListItem.Date) + ListItem.Type(episode)</visible>
+              </control>
+              <!-- User Rating -->
+              <control type="label">
+                <width min="20" max="299">auto</width>
+                <height>30</height>
+                <textcolor>$VAR[Colour_BigFanThemeColourVar]</textcolor>
+                <align>left</align>
+                <aligny>center</aligny>
+                <font>font13_title</font>
+                <label>$VAR[RatingVar] [COLOR white2][B]•[/B][/COLOR] </label>
+                <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <!-- Standard Rating -->
+              <control type="label">
+                <width min="20" max="299">auto</width>
+                <height>30</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$VAR[RatingVar] [B]•[/B] </label>
+                <font>font13_title</font>
+                <textcolor>grey</textcolor>
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <!-- IMDb Rating -->
+              <control type="image">
+                <width>53</width>
+                <height>30</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <texture>imdb_53x30.png</texture>
+                <aspectratio align="left" aligny="center">keep</aspectratio>
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <control type="label">
+                <width min="20" max="299">auto</width>
+                <height>30</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label> $INFO[ListItem.Property(rating)] [B]•[/B] </label>
+                <font>font13_title</font>
+                <textcolor>grey</textcolor>
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <!-- Rotten Tomato Ratings -->
+              <control type="image">
+                <width>30</width>
+                <height>30</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <texture>rottentomatoes/30x30/$INFO[ListItem.Property(ratingImage)]</texture>
+                <aspectratio align="left" aligny="center">keep</aspectratio>
+                <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <control type="label">
+                <height>30</height>
+                <width min="20" max="121">auto</width>
+                <aligny>center</aligny>
+                <font>font13_title</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Property(ratingPercent)]%  </label>
+                <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <control type="image">
+                <width>30</width>
+                <height>30</height>
+                <aligny>center</aligny>
+                <texture>rottentomatoes/30x30/$INFO[ListItem.Property(audienceRatingImage)]</texture>
+                <aspectratio align="left" aligny="center">keep</aspectratio>
+                <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <control type="label">
+                <height>30</height>
+                <width min="20" max="121">auto</width>
+                <aligny>center</aligny>
+                <font>font13_title</font>
+                <textcolor>grey</textcolor>
+                <label>$INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+                <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <!-- Duration On Deck -->
+              <control type="label">
+                <width min="20" max="299">auto</width>
+                <height>30</height>
+                <label>$VAR[DurationHrMinVar]</label>
+                <aligny>center</aligny>
+                <font>font13_title</font>
+                <textcolor>grey</textcolor>
+              </control>
+            </control>
+          </control>
+        </control>
+        <control type="group">
+          <visible>Container.Content(tvshows)</visible>
+          <include>VisibleFadeEffect</include>
+          <control type="group">
+            <control type="label">
+              <posx>350</posx>
+              <posy>925</posy>
+              <width>1250</width>
+              <height>42</height>
+              <aligny>top</aligny>
+              <align>left</align>
+              <font>font16</font>
+              <textcolor>grey</textcolor>
+              <scroll>true</scroll>
+              <label>[B]$INFO[ListItem.Label][/B]</label>
+              <textoffsety>-2</textoffsety>
+              <textoffsetx>30</textoffsetx>
+            </control>
+            <control type="label">
+              <posx>350</posx>
+              <posy>1000</posy>
+              <width>1100</width>
+              <height>30</height>
+              <align>left</align>
+              <font>font13_title</font>
+              <textcolor>grey</textcolor>
+              <label>$VAR[FloorSubLabelVar]</label>
+              <textoffsetx>30</textoffsetx>
+            </control>
+            <control type="label">
+              <posx>350</posx>
+              <posy>1040</posy>
+              <width>1100</width>
+              <height>30</height>
+              <align>left</align>
+              <font>font13</font>
+              <textcolor>grey</textcolor>
+              <label>$INFO[ListItem.Date]</label>
+              <textoffsetx>30</textoffsetx>
+            </control>
+          </control>
+          <control type="group">
+            <posx>1320</posx>
+            <posy>1000</posy>
+            <control type="group">
+              <visible>Container.Content(tvshows)</visible>
+              <control type="label">
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>150</width>
+                <height>60</height>
+                <align>center</align>
+                <label>[B]$INFO[ListItem.Property(UnWatchedEpisodes)][/B]</label>
+                <font>font16</font>
+                <wrapmultiline>true</wrapmultiline>
+                <textcolor>grey</textcolor>
+              </control>
+              <control type="label">
+                <posy>47</posy>
+                <posx>0</posx>
+                <width>150</width>
+                <height>30</height>
+                <align>center</align>
+                <label>$LOCALIZE[31139]</label>
+                <font>font13</font>
+                <textcolor>grey</textcolor>
+              </control>
+            </control>
+            <control type="group">
+              <visible>Container.Content(tvshows)</visible>
+              <control type="label">
+                <posx>143</posx>
+                <posy>0</posy>
+                <width>162.5</width>
+                <height>60</height>
+                <align>center</align>
+                <label>[B]$INFO[ListItem.episode][/B]</label>
+                <font>font16</font>
+                <wrapmultiline>true</wrapmultiline>
+                <textcolor>grey</textcolor>
+              </control>
+              <control type="label">
+                <posx>150</posx>
+                <posy>47</posy>
+                <width>150</width>
+                <height>30</height>
+                <align>center</align>
+                <label>[LOWERCASE]$VAR[OneOrMoreEpisodesVar][/LOWERCASE]</label>
+                <font>font13</font>
+                <textcolor>grey</textcolor>
+              </control>
+            </control>
+            <!-- Studio Flag -->
+            <control type="image">
+              <posx>325</posx>
+              <include>MediaFlagVars</include>
+              <texture>$VAR[StudioFlag]</texture>
+            </control>
+            <!-- Content Rating -->
+            <control type="image">
+              <posx>480</posx>
+              <colordiffuse>grey2</colordiffuse>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+            </control>
+          </control>
+        </control>
+        <control type="group">
+          <visible>Container.Content(seasons)</visible>
+          <include>VisibleFadeEffect</include>
+          <control type="group">
+            <control type="label">
+              <posx>350</posx>
+              <posy>925</posy>
+              <width>1250</width>
+              <height>42</height>
+              <aligny>top</aligny>
+              <align>left</align>
+              <font>font16</font>
+              <textcolor>grey</textcolor>
+              <scroll>true</scroll>
+              <label>[B]$INFO[ListItem.Label][/B]</label>
+              <textoffsety>-2</textoffsety>
+              <textoffsetx>30</textoffsetx>
+            </control>
+            <control type="label">
+              <posx>350</posx>
+              <posy>1000</posy>
+              <width>1100</width>
+              <height>30</height>
+              <align>left</align>
+              <font>font13_title</font>
+              <textcolor>grey</textcolor>
+              <label>$VAR[FloorSubLabelVar]</label>
+              <textoffsetx>30</textoffsetx>
+            </control>
+          </control>
+          <control type="group">
+            <posx>1320</posx>
+            <posy>1000</posy>
+            <control type="group">
+              <visible>!IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
+              <control type="label">
+                <posx>0</posx>
+                <posy>-3</posy>
+                <width>150</width>
+                <height>60</height>
+                <align>center</align>
+                <label>[B]$INFO[ListItem.Property(UnWatchedEpisodes)][/B]</label>
+                <font>font16</font>
+                <wrapmultiline>true</wrapmultiline>
+                <textcolor>grey</textcolor>
+              </control>
+              <control type="label">
+                <posy>47</posy>
+                <posx>0</posx>
+                <width>150</width>
+                <height>30</height>
+                <align>center</align>
+                <label>[LOWERCASE]$LOCALIZE[31139][/LOWERCASE]</label>
+                <font>font13</font>
+                <textcolor>grey</textcolor>
+              </control>
+            </control>
+            <control type="group">
+              <visible>!IsEmpty(ListItem.Episode)</visible>
+              <control type="label">
+                <posx>143</posx>
+                <posy>-3</posy>
+                <width>162.5</width>
+                <height>60</height>
+                <align>center</align>
+                <label>[B]$INFO[ListItem.Episode][/B]</label>
+                <font>font16</font>
+                <wrapmultiline>true</wrapmultiline>
+                <textcolor>grey</textcolor>
+              </control>
+              <control type="label">
+                <posx>150</posx>
+                <posy>47</posy>
+                <width>150</width>
+                <height>30</height>
+                <align>center</align>
+                <label>[LOWERCASE]$VAR[OneOrMoreEpisodesVar][/LOWERCASE]</label>
+                <font>font13</font>
+                <textcolor>grey</textcolor>
+              </control>
+            </control>
+            <!-- Studio Flag -->
+            <control type="image">
+              <posx>325</posx>
+              <include>MediaFlagVars</include>
+              <colordiffuse>grey</colordiffuse>
+              <texture>$VAR[StudioFlag]</texture>
+              <!--<visible>!IsEmpty(ListItem.Studio)</visible>-->
+            </control>
+            <!-- Content Rating -->
+            <control type="image">
+              <posx>480</posx>
+              <colordiffuse>grey2</colordiffuse>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+            </control>
+          </control>
+        </control>
+      </control>
+    </control>
+  </include>
 </includes>

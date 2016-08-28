@@ -1,1653 +1,1498 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window type="dialog" id="10090">
-	<onload condition="Window.Previous(fullscreenvideo) + ListItem.Type(episode) + ListItem.Status(watched)">XBMC.NextItem</onload>
-
-	<defaultcontrol always="true">102</defaultcontrol>
-	<allowoverlay>no</allowoverlay>
-
-	<controls>
-
-		<!-- Background -->
-		<control type="image">
-			<posx>0</posx>
-			<posy>0</posy>
-			<width>1920</width>
-			<height>1080</height>
-			<aspectratio align="center">scale</aspectratio>
-			<texture blur="3">$VAR[Preplay_FanartVar]</texture>
-			<visible>Skin.HasSetting(Preplay.Blur)</visible>
-		</control>
-		<control type="image">
-			<posx>0</posx>
-			<posy>0</posy>
-			<width>1920</width>
-			<height>1080</height>
-			<aspectratio align="center">scale</aspectratio>
-			<texture>$VAR[Preplay_FanartVar]</texture>
-			<visible>!Skin.HasSetting(Preplay.Blur)</visible>
-		</control>
-
-		<!-- Left Side Portrait -->
-		<control type="group">
-			<animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
-			<animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
-			<visible>Container.PlexContent(movie)</visible>			
-
-			<!-- Display Poster -->
-			<control type="image">
-				<width>729</width>
-				<height>1080</height>
-				<aspectratio aligny="top">scale</aspectratio>
-				<texture fallback="black.png">$INFO[ListItem.Art(bigThumb)]</texture> 
-			</control>
-
-			<!-- Display Watched Status Overlay (On the Poster, instead of next to the title) -->
-			<include condition="!Skin.HasSetting(Enable.Circles)">Preplay_PortraitWatchedStatusRibbon</include>
-			
-			<!-- Watched Status Upper Circle -->
-			<include condition="Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)">Preplay_PortraitWatchedStatusUpperCircles</include>
-			
-			<!-- Watched Status Lower Circle -->
-			<include condition="Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)">Preplay_PortraitWatchedStatusLowerCircles</include>
-			
-		</control>
-
-		<!-- Top Landscape -->
-		<control type="group">
-			<animation effect="slide" start="0,-570" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
-			<animation effect="slide" end="0,-570" time="500" tween="quadratic">WindowClose</animation>
-			<visible>!Container.PlexContent(movie)</visible>
-			
-			<posx>0</posx>
-			<posy>0</posy>
-			<width>1920</width>
-			<height>570</height>
-
-			<!-- Background Panel -->
-			<control type="image">
-				<width>1920</width>
-				<height>570</height>
-				<texture border="4">dialogs/info/info_rightpaneltop.png</texture>
-			</control>
-
-			<!-- Display Episode Poster -->
-			<control type="image">
-				<posx>100</posx>
-				<posy>140</posy>
-				<width>614</width>
-				<height>345</height>
-				<aspectratio scalediffuse="false" aligny="center" align="center">scale</aspectratio> 				
-				<texture fallback="defaulttvshows.png" diffuse="thumbs/boxes/thumb_mask.png">$VAR[EpisodeBigThumbnailVar]</texture> 				       
-			</control>
-
-			<!-- Display Watched Status Ribbon Overlay  -->
-			<include condition="!Skin.HasSetting(Enable.Circles)">Preplay_LandscapeWatchedStatusRibbon</include>
-			
-			<!-- Watched Status Upper Circle -->
-			<include condition="Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)">Preplay_LandscapeWatchedStatusUpperCircles</include>
-			
-			<!-- Watched Status Lower Circle -->
-			<include condition="Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)">Preplay_LandscapeWatchedStatusLowerCircles</include>
-			
-			<!-- Separator between items -->
-			<control type="image">
-				<posx>729</posx>
-				<posy>115</posy>
-				<width>2</width>
-				<height>395</height>
-				<texture border="1">separator3.png</texture>
-			</control>
-
-			<control type="group">
-				<posx>769</posx>
-				<posy>20</posy>
-				<width>1042</width>
-				<height>854</height>
-				<control type="grouplist">
-					<posx>-669</posx>
-					<posy>-20</posy>
-					<width>1720</width>
-					<height>110</height>
-					<itemgap>0</itemgap>
-					<align>center</align>
-
-					<!-- Display Episode Title -->
-					<control type="label">
-						<width>1720</width>
-						<height>60</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font30</font>
-						<textcolor>grey</textcolor>
-						<scroll>true</scroll>
-						<label>$VAR[Preplay_LandscapeTitleVar]</label>
-						<visible>ListItem.Type(episode)</visible>
-					</control>
-
-					<!-- Display TV Show Title -->
-					<control type="label">
-						<width>1720</width>
-						<height>30</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font15</font>
-						<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						<scroll>true</scroll>
-						<label>[UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE]</label>
-						<visible>ListItem.Type(episode)</visible>
-					</control>	
-						
-					<control type="label">
-						<width>1720</width>
-						<height>110</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font36_title</font>
-						<textcolor>grey</textcolor>
-						<scroll>true</scroll>
-						<label>$VAR[Preplay_LandscapeTitleVar]</label>
-						<visible>!ListItem.Type(episode)</visible>
-					</control>				
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<posx>-769</posx>
-					<posy>32</posy>
-					<width>1920</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-
-				<!-- Top Information Line Under Title -->
-				<control type="grouplist">
-					<posx>0</posx>
-					<posy>95</posy>
-					<width>1100</width>
-					<height>90</height>
-					<itemgap>0</itemgap>
-					<align>left</align>
-					<orientation>horizontal</orientation>
-
-					<!-- Display First Aired Date -->
-					<control type="label">
-						<width min="20" max="290">auto</width>
-						<height>90</height>
-						<align>left</align>
-						<label>[B]$INFO[ListItem.Date][/B]</label>
-						<font>font35_title</font>
-						<textcolor>grey</textcolor>
-						<visible>!IsEmpty(ListItem.Date)</visible>
-					</control>
-
-					<control type="image">
-						<width>20</width>
-						<height>90</height>
-						<texture>-</texture>
-						<visible>!IsEmpty(ListItem.Date)</visible>
-					</control>
-
-					<!-- Separator between items -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-						<visible>!IsEmpty(ListItem.Date)</visible>
-					</control>
-
-					<control type="image">
-						<width>20</width>
-						<height>90</height>
-						<texture>-</texture>
-						<visible>!IsEmpty(ListItem.Date)</visible>
-					</control>
-
-					<!-- Content Rating -->
-					<control type="image">
-						<width>249</width>
-						<height>90</height>
-						<fadetime>250</fadetime>
-						<animation effect="fade" time="200">VisibleChange</animation>
-						<bordersize>2</bordersize>
-						<texture align="center" aligny="center" fallback="flags/mpaa_descriptions/NR.png">$VAR[MPAAFlag_Description]</texture>
-						<aspectratio align="center" aligny="center">keep</aspectratio>
-					</control>
-
-					<control type="image">
-						<width>20</width>
-						<height>90</height>
-						<texture>-</texture>
-					</control>
-
-					<!-- Separator between items -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Display Duration -->
-					<control type="group">
-						<width>147</width>
-						<control type="label">
-							<posx>0</posx>
-							<posy>2</posy>
-							<width>147</width>
-							<height>60</height>
-							<align>center</align>
-							<label>[B]$VAR[DurationVar][/B]</label>
-							<font>font48</font>
-							<textcolor>grey</textcolor>
-						</control>
-
-						<control type="label">
-							<posy>52</posy>
-							<width>147</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$VAR[Preplay_MinutesLabelVar][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>grey</textcolor>
-						</control>
-					</control>
-
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Rating -->
-					<control type="group">
-						<width>147</width>
-						<control type="label">
-							<posx>0</posx>
-							<posy>2</posy>
-							<width>147</width>
-							<height>60</height>
-							<align>center</align>
-							<label>$VAR[RatingVar]</label>
-							<font>font48_bold</font>
-							<textcolor>$VAR[Preplay_RatingColorVar]</textcolor>
-							<visible>!IsEmpty(ListItem.RatingAndVotes) | !IsEmpty(ListItem.Property(hasUserRating))</visible>
-						</control>
-						<control type="label">
-							<posy>52</posy>
-							<width>147</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$LOCALIZE[31225][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>$VAR[Preplay_RatingColorVar]</textcolor>
-							<visible>!IsEmpty(ListItem.RatingAndVotes) | !IsEmpty(ListItem.Property(hasUserRating))</visible>
-						</control>
-					</control>
-
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<posx>-37</posx>
-					<posy>126</posy>
-					<width>1188</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-
-				<!-- Video Information -->
-				<control type="group">
-					<posx>-36</posx>
-					<posy>184</posy>
-					<width>1188</width>
-					<height>306</height>
-					<orientation>horizontal</orientation>
-
-					<!-- Item Separator -->
-					<control type="image">
-						<posy>92</posy>
-						<width>1188</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-
-					<!-- Audio Label -->
-					<control type="label">
-						<posy>30</posy>
-						<width>594</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-						<label>$LOCALIZE[292]:</label> <!-- STRING: Audio -->
-						<textoffsetx>36</textoffsetx>
-					</control>
-
-					<!-- Audio Language Flag -->
-					<control type="image">
-						<posx>36</posx>
-						<posy>75</posy>
-						<width>40</width>
-						<height>40</height>
-						<texture>$VAR[Preplay_LanguageFlagVar]</texture>
-						<visible>!String.StartsWith(ListItem.Property(SelectedAudioStream),Unknown) + !Skin.HasSetting(Preplay.DisableLanguageFlags)</visible>
-					</control>
-						
-					<!-- Show Audio Stream -->
-					<control type="label">	
-						<animation effect="slide" start="0,0" end="-50,0" time="0" condition="String.StartsWith(ListItem.Property(SelectedAudioStream),Unknown) | String.StartsWith(ListItem.Property(SelectedAudioStream),None) | Skin.HasSetting(Preplay.DisableLanguageFlags)">Conditional</animation>
-						<posx>50</posx>
-						<posy>75</posy>
-						<width>594</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
-						<textoffsetx>36</textoffsetx>
-					</control>
-
-					<!-- Subtitles Label -->
-					<control type="label">
-						<posy>183</posy>
-						<width>594</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-						<label>$LOCALIZE[287]:</label> <!-- STRING: Subtitles -->
-						<textoffsetx>36</textoffsetx>
-					</control>
-
-					<!-- Subtitle Language Flag -->
-					<control type="image">
-						<posx>36</posx>
-						<posy>228</posy>
-						<width>40</width>
-						<height>40</height>
-						<texture>$VAR[Preplay_SubtitleLanguageFlagVar]</texture>
-						<visible>!String.StartsWith(ListItem.Property(SelectedSubtitleStream),Unknown) + !String.StartsWith(ListItem.Property(SelectedSubtitleStream),None) + !Skin.HasSetting(Preplay.DisableLanguageFlags)</visible>
-					</control>
-
-					<!-- Subtitles Stream -->
-					<control type="label">
-						<animation effect="slide" start="0,0" end="-50,0" time="0" condition="String.StartsWith(ListItem.Property(SelectedSubtitleStream),Unknown) | String.StartsWith(ListItem.Property(SelectedSubtitleStream),None) | Skin.HasSetting(Preplay.DisableLanguageFlags)">Conditional</animation>
-						<posx>50</posx>
-						<posy>228</posy>
-						<width>594</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
-						<textoffsetx>36</textoffsetx>
-					</control>
-
-					<!-- Director Label -->
-					<control type="label">
-						<posx>594</posx>
-						<posy>30</posy>
-						<width>533</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-						<label>$LOCALIZE[20339]:</label> <!-- STRING: Director -->
-						<textoffsetx>36</textoffsetx>
-						<visible>!IsEmpty(ListItem.Director)</visible>
-					</control>
-
-					<!-- Director -->
-					<control type="label">
-						<posx>594</posx>
-						<posy>75</posy>
-						<width>533</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Director]</label>
-						<textoffsetx>36</textoffsetx>
-						<visible>!IsEmpty(ListItem.Director)</visible>
-					</control>
-
-					<!-- Writer Label -->
-					<control type="label">
-						<posx>594</posx>
-						<posy>183</posy>
-						<width>533</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-						<label>$LOCALIZE[20417]:</label> <!-- STRING: Writer -->
-						<textoffsetx>36</textoffsetx>
-						<visible>!IsEmpty(ListItem.Writer)</visible>
-					</control>
-
-					<!-- Writer -->
-					<control type="label">
-						<posx>594</posx>
-						<posy>228</posy>
-						<width>533</width>
-						<height>40</height>
-						<font>font15</font>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Writer]</label>
-						<textoffsetx>36</textoffsetx>
-						<visible>!IsEmpty(ListItem.Writer)</visible>
-					</control>
-
-				</control>
-
-			</control>
-
-			<!-- Item Separator -->
-			<control type="image">
-				<posx>0</posx>
-				<posy>450</posy>
-				<width>1920</width>
-				<height>60</height>
-				<texture border="1">separator2.png</texture>
-			</control>
-
-			<!-- Preplay Menu TV -->
-			<control type="grouplist" id="9000">
-				<posx>3</posx>
-				<posy>510</posy>
-				<width>1920</width>
-				<height>60</height>
-				<itemgap>0</itemgap>
-				<onleft>9000</onleft>
-				<onright>9000</onright>
-				<onup>XBMC.PrevItem</onup>
-				<align>left</align>
-				<ondown>XBMC.NextItem</ondown>
-				<orientation>horizontal</orientation>
-				<include>PreplayMenu_Landscape</include>
-				<visible>ListItem.Type(episode)</visible>
-			</control>
-
-			<!-- Preplay Menu Clips -->
-			<control type="grouplist" id="9000">
-				<posx>3</posx>
-				<posy>510</posy>
-				<width>1920</width>
-				<height>60</height>
-				<itemgap>0</itemgap>
-				<onleft>9000</onleft>
-				<onright>9000</onright>
-				<onup>XBMC.PrevItem</onup>
-				<align>left</align>
-				<ondown>XBMC.NextItem</ondown>
-				<orientation>horizontal</orientation>
-				<include>PreplayMenu_Clips</include>
-				<visible>!ListItem.Type(episode)</visible>
-			</control>
-
-		</control>
-
-		<!-- Bottom Landscape -->
-		<control type="group">
-			<animation effect="slide" start="0,530" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
-			<animation effect="slide" start="0,0" end="0,530" time="320" tween="quadratic">WindowClose</animation>
-			<visible>!Container.PlexContent(movie)</visible>
-
-			<posx>0</posx>
-			<posy>570</posy>
-			<width>1920</width>
-			<height>510</height>
-
-			<!-- Background Panel -->
-			<control type="image">
-				<width>1920</width>
-				<height>510</height>
-				<texture border="4">dialogs/info/info_rightpaneltop.png</texture>
-			</control>
-
-			<!-- Show Plot (With Media Flags, No Extras) -->
-			<control type="textbox" id="400">
-				<description>Plot</description>
-				<posx>100</posx>
-				<posy>40</posy>
-				<width>1720</width>
-				<height>352</height>
-				<font>font15_textbox</font>
-				<align>justify</align>
-				<label>$VAR[PlotVar]</label>
-				<textcolor>white</textcolor>
-				<pagecontrol>60</pagecontrol>
-				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-				<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-				<visible>!Control.IsVisible(50) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-			</control>
-
-			<!-- Show Plot (Without Media Flags, No Extras) -->
-			<control type="textbox" id="400">
-				<description>Plot</description>
-				<posx>100</posx>
-				<posy>30</posy>
-				<width>1720</width>
-				<height>452</height>
-				<font>font15_textbox</font>
-				<align>justify</align>
-				<label>$VAR[PlotVar]</label>
-				<textcolor>white</textcolor>
-				<pagecontrol>60</pagecontrol>
-				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-				<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-				<visible>!Control.IsVisible(50) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-			</control>
-			
-			<!-- Bottom Separator -->
-			<control type="image">
-				<visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				<posy>360</posy>
-				<width>1920</width>
-				<height>60</height>
-				<texture border="1">separator2.png</texture>
-			</control>
-
-			<!-- Media Flags -->
-			<control type="grouplist">
-				<visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				<posx>0</posx>
-				<posy>420</posy>
-				<width>1920</width>
-				<height>90</height>
-				<align>left</align>
-				<aligny>center</aligny>
-				<itemgap>0</itemgap>
-				<orientation>horizontal</orientation>
-					
-				<!-- Video Resolution Flag -->
-				<control type="image">
-					<width>318</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
-					<visible>ListItem.Type(episode)</visible> 
-				</control>
-				<control type="image">
-					<width>638</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
-					<visible>!ListItem.Type(episode)</visible> 
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<width>2</width>
-					<height>90</height>
-					<texture border="1">separator3.png</texture>
-				</control>
-
-				<!-- Video Codec Flag -->
-				<control type="image">
-					<width>318</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
-					<visible>ListItem.Type(episode)</visible>
-				</control>
-				<control type="image">
-					<width>638</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
-					<visible>!ListItem.Type(episode)</visible>
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<width>2</width>
-					<height>90</height>
-					<texture border="1">separator3.png</texture>
-				</control>
-
-				<!-- Aspect Ratio Flag -->
-				<control type="image">
-					<width>318</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag_135x90]</texture>
-					<visible>ListItem.Type(episode)</visible>
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<width>2</width>
-					<height>90</height>
-					<texture border="1">separator3.png</texture>
-					<visible>ListItem.Type(episode)</visible>
-				</control>
-
-				<!-- Framerate Flag -->
-				<control type="image">
-					<width>318</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/framerate/default.png">$VAR[FramerateFlag_135x90]</texture>
-					<visible>ListItem.Type(episode)</visible>
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<width>2</width>
-					<height>90</height>
-					<texture border="1">separator3.png</texture>
-					<visible>ListItem.Type(episode)</visible>
-				</control>
-
-				<!-- Audio Codec -->
-				<control type="image">
-					<width>318</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
-					<visible>ListItem.Type(episode)</visible>
-				</control>
-				<control type="image">
-					<width>638</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
-					<visible>!ListItem.Type(episode)</visible>
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<width>2</width>
-					<height>90</height>
-					<texture border="1">separator3.png</texture>
-					<visible>ListItem.Type(episode)</visible>
-				</control>
-
-				<!-- Audio Channels Flag -->
-				<control type="image">
-					<width>318</width>
-					<include>MediaFlagVars</include>
-					<texture align="center" aligny="center" fallback="flags/135x90/channels/0.png">$VAR[AudioChannelsFlag_135x90]</texture> 
-					<visible>ListItem.Type(episode)</visible>
-				</control>
-
-			</control>
-
-			<!-- Item Separator -->
-			<control type="image">
-				<visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				<posy>510</posy>
-				<width>1188</width>
-				<height>2</height>
-				<texture border="1">separator2.png</texture>
-			</control>
-			
-		</control>
-
-		<!-- Preplay Movies (Right) -->
-		<control type="group" id="1200">
-			<animation effect="slide" start="1242,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
-			<animation effect="slide" end="1242,0" time="500" tween="quadratic">WindowClose</animation>
-			<visible>Container.PlexContent(movie)</visible>
-
-			<posx>763</posx>
-			<posy>448</posy>
-			<width>394</width>
-			<height>1080</height>
-			<itemgap>0</itemgap>
-			<align>center</align>
-
-			<!-- Top Border of Dialog Window -->
-			<control type="image" id="1">
-				<description>background image</description>
-				<width>394</width>
-				<height>67</height>
-				<texture border="30,20,30,2">dialog_top2.png</texture>
-			</control>
-
-			<!-- Dialog Title -->
-			<control type="label" id="3">
-				<posx>0</posx>
-				<posy>20</posy>
-				<label>[UPPERCASE]$LOCALIZE[32100][/UPPERCASE]</label>
-				<width>394</width>
-				<height>40</height>
-				<align>center</align>
-				<textcolor>dialogheader</textcolor>
-				<font>font15_title</font>
-			</control>
-
-			<control type="image" id="4">
-				<description>Star Border</description>
-				<posx>0</posx>
-				<posy>67</posy>
-				<width>394</width>
-				<height>84</height>
-				<textoffsetx>45</textoffsetx>
-				<texture border="35,2,35,2">button_shutdown_nofocus.png</texture>
-			</control>
-
-			<!-- Actual Rating Control -->
-			<control type="image" id="10">
-				<posx>45</posx>
-				<posy>77</posy>
-				<width>304</width>
-				<height>64</height>
-				<texture align="center" aligny="center">rating0-big.png</texture>
-				<aspectratio align="right" aligny="center">keep</aspectratio>
-				<colordiffuse>$VAR[Colour_PreplayThemeColourVar]</colordiffuse>
-			</control>
-
-			<!-- Bottom Border of Dialog Window -->
-			<control type="image" id="11">
-				<description>background image</description>
-				<posx>0</posx>
-				<posy>151</posy>
-				<width>394</width>
-				<height>34</height>
-				<texture border="30,2,30,20">dialog_bottom2.png</texture>
-			</control>
-
-		</control>
-
-		
-		<control type="group">
-			<animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
-			<animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
-			<visible>Container.PlexContent(movie)</visible>
-
-			<posx>729</posx>
-			<width>1192</width>
-			<height>1080</height>
-			
-			<!-- Display Fanart -->
-			<control type="image">
-				<width>1192</width>
-				<height>1080</height>
-				<texture>black.png</texture>
-				<visible>IsEmpty(ListItem.Art(fanart))</visible>
-			</control>
-			<control type="image">
-				<visible>Skin.HasSetting(Preplay.Blur)</visible>
-				<width>1192</width>
-				<height>1080</height>
-				<aspectratio align="center">scale</aspectratio>
-				<texture blur="3">$INFO[ListItem.Art(fanart)]</texture>
-			</control>
-			<control type="image">
-				<visible>!Skin.HasSetting(Preplay.Blur)</visible>
-				<width>1192</width>
-				<height>1080</height>
-				<aspectratio align="center">scale</aspectratio>
-				<texture>$INFO[ListItem.Art(fanart)]</texture>
-			</control>
-			<control type="image">
-				<width>1192</width>
-				<height>1080</height>
-				<texture border="4">dialogs/info/info_rightpaneltop.png</texture>
-			</control>
-
-			<control type="group">
-				<posx>40</posx>
-				<posy>20</posy>
-				<width>1042</width>
-				<height>854</height>
-				<control type="grouplist">
-					<posy>-20</posy>
-					<width>1100</width>
-					<height>110</height>
-					<itemgap>0</itemgap>
-					<align>center</align>
-
-					<!-- Display Video Title -->
-					<control type="label">
-						<width>1100</width>
-						<height>60</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font30_title_bold</font>
-						<textcolor>grey</textcolor>
-						<scroll>true</scroll>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-
-					<!-- Display Genre -->
-					<control type="label">
-						<width>1100</width>
-						<height>30</height>
-						<aligny>center</aligny>
-						<align>left</align>
-						<font>font15</font>
-						<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						<scroll>true</scroll>
-						<label>$INFO[ListItem.Genre]</label>
-						<visible>!IsEmpty(ListItem.Genre)</visible>
-					</control>
-
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<posx>-37</posx>
-					<posy>32</posy>
-					<width>1188</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-
-				<!-- Top Information Line Under Title -->
-				<control type="grouplist">
-					<posx>0</posx>
-					<posy>95</posy>
-					<width>1188</width>
-					<height>90</height>
-					<itemgap>0</itemgap>
-					<align>left</align>
-					<orientation>horizontal</orientation>
-
-					<!-- Display Year -->
-					<control type="label">
-						<width>140</width>
-						<height>90</height>
-						<align>left</align>
-						<label>[B]$INFO[ListItem.Year][/B]</label>
-						<font>font35_title</font>
-						<textcolor>grey</textcolor>
-						<visible>!IsEmpty(ListItem.Year)</visible>
-					</control>
-
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-						<visible>!IsEmpty(ListItem.Year)</visible>
-					</control>
-
-					<!-- Display Studio Logo -->
-					<control type="group">
-						<visible>!IsEmpty(ListItem.Property(mediaTag-Studio))</visible>
-						<width>198</width>
-
-						<control type="image" id="20011">
-							<width>198</width>
-							<height>90</height>
-							<fadetime>250</fadetime>
-							<animation effect="fade" time="200">VisibleChange</animation>
-							<bordersize>2</bordersize>
-							<texture align="center" aligny="center">$VAR[StudioFlag_135x90]</texture>
-							<aspectratio align="center" aligny="center">keep</aspectratio>
-						</control>
-
-						<!-- Display Studio Name in Text if no Logo present -->
-						<control type="label">
-							<width>198</width>
-							<height>90</height>
-							<posx>0</posx>
-							<posy>0</posy>
-							<align>center</align>
-							<label>$INFO[ListItem.Property(mediaTag-Studio)]</label>
-							<font>font10</font>
-							<textcolor>grey</textcolor>
-							<wrapmultiline>true</wrapmultiline>
-							<visible>IsEmpty(Control.GetLabel(20011))</visible>
-						</control>
-					</control>
-
-					<!-- Separator between items -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-						<visible>!IsEmpty(ListItem.Property(mediaTag-Studio))</visible>
-					</control>
-
-					<!-- Content Rating -->
-					<control type="image">
-						<width>249</width>
-						<height>90</height>
-						<fadetime>250</fadetime>
-						<animation effect="fade" time="200">VisibleChange</animation>
-						<bordersize>2</bordersize>
-						<texture align="center" aligny="center" fallback="flags/mpaa_descriptions/NR.png">$VAR[MPAAFlag_Description]</texture>
-						<aspectratio align="center" aligny="center">keep</aspectratio>
-					</control>
-
-					<!-- Separator between Items -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Display Duration -->
-					<control type="label">
-						<width>180</width>
-						<height>90</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<label>$VAR[Preplay_DurationVar]</label>
-						<font>font52_bold</font>
-						<textcolor>grey</textcolor>
-					</control>
-
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- User Rating -->
-					<control type="group">
-						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-						<width>200</width>
-						<control type="label">
-							<posx>0</posx>
-							<posy>2</posy>
-							<width>200</width>
-							<height>60</height>
-							<align>center</align>
-							<label>$VAR[RatingVar]</label>
-							<font>font48_bold</font>
-							<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						</control>
-						<control type="label">
-							<posy>52</posy>
-							<width>200</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$LOCALIZE[42421][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-						</control>
-					</control>
-
-					<!-- Standard Rating -->
-					<control type="group">
-						<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-						<width>200</width>
-						<control type="label">
-							<posx>0</posx>
-							<posy>2</posy>
-							<width>200</width>
-							<height>60</height>
-							<align>center</align>
-							<label>$VAR[RatingVar]</label>
-							<font>font48_bold</font>
-							<textcolor>grey</textcolor>
-						</control>
-						<control type="label">
-							<posy>52</posy>
-							<width>200</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$LOCALIZE[31225][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>grey</textcolor>
-						</control>
-					</control>
-
-					<!-- IMDb Rating -->
-					<control type="image">
-						<visible>String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-						<posx>0</posx>
-						<posy>2</posy>
-						<width>20</width>
-						<height>90</height>
-						<texture>empty.png</texture>
-					</control>
-					<control type="image">
-						<visible>String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-						<posx>0</posx>
-						<posy>2</posy>
-						<width>118</width>
-						<height>90</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<texture>imdb_98x90.png</texture>
-					</control>
-					<control type="label">
-						<visible>String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-						<posx>60</posx>
-						<posy>2</posy>
-						<width min="20" max="140">auto</width>
-						<height>90</height>
-						<align>left</align>
-						<aligny>center</aligny>
-						<label>$INFO[ListItem.RatingAndVotes]</label>
-						<font>font52_bold</font>
-						<textcolor>grey</textcolor>
-					</control>
-
-					<!-- Rotten Tomatoes Rating -->
-					<control type="group">
-						<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-						<width>190</width>
-						<align>center</align>
-						<aligny>center</aligny>
-						<control type="grouplist">
-
-							<orientation>horizontal</orientation>
-							<width>190</width>
-							<height>60</height>
-							<align>center</align>
-							<aligny>center</aligny>
-							<control type="image">
-								<posx>0</posx>
-								<posy>2</posy>
-								<width>45</width>
-								<height>60</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<aspectratio align="left" aligny="center">keep</aspectratio>
-								<texture>$INFO[ListItem.Property(ratingImage)]</texture>
-							</control>
-							<control type="label">
-								<posx>60</posx>
-								<posy>2</posy>
-								<width min="20" max="140">auto</width>
-								<height>60</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<label>$INFO[ListItem.Property(ratingPercent)]%</label>
-								<font>font48_bold</font>
-								<textcolor>grey</textcolor>
-							</control>
-						</control>
-						<control type="label">
-							<posy>52</posy>
-							<width>190</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$LOCALIZE[42258][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>grey</textcolor>
-						</control>
-					</control>
-					<control type="group">
-						<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-						<width>190</width>
-						<align>center</align>
-						<aligny>center</aligny>
-						<control type="grouplist">
-
-							<orientation>horizontal</orientation>
-							<width>190</width>
-							<height>60</height>
-							<align>center</align>
-							<aligny>center</aligny>
-							<control type="image">
-								<posx>0</posx>
-								<posy>2</posy>
-								<width>45</width>
-								<height>60</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<aspectratio align="left" aligny="center">keep</aspectratio>
-								<texture>$INFO[ListItem.Property(audienceRatingImage)]</texture>
-							</control>
-							<control type="label">
-								<posx>60</posx>
-								<posy>2</posy>
-								<width min="20" max="140">auto</width>
-								<height>60</height>
-								<align>left</align>
-								<aligny>center</aligny>
-								<label>$INFO[ListItem.Property(audienceRatingPercent)]%</label>
-								<font>font48_bold</font>
-								<textcolor>grey</textcolor>
-							</control>
-						</control>
-						<control type="label">
-							<posy>52</posy>
-							<width>190</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$LOCALIZE[42259][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>grey</textcolor>
-						</control>
-					</control>
-
-
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<posx>-37</posx>
-					<posy>126</posy>
-					<width>1188</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-
-				<!-- Video Information with Extras (shorter) -->
-				<control type="panel" id="300">
-					<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
-					<posx>-36</posx>
-					<posy>184</posy>
-					<width>1188</width>
-					<height>204</height>
-					<orientation>horizontal</orientation>
-					<include>VideoInfo</include>
-				</control>
-				<control type="button">
-					<posx>-36</posx>
-					<posy>184</posy>
-					<width>1188</width>
-					<height>204</height>
-					<onclick>noop</onclick>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<animation effect="fade" start="0" end="55" time="240">VisibleChange</animation>
-					<visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
-				</control>	
-				<control type="scrollbar" id="9081">
-					<posx>-36</posx>
-					<posy>184</posy>
-					<width>1188</width>
-					<height>204</height>
-					<texturesliderbackground>-</texturesliderbackground>
-					<texturesliderbar>-</texturesliderbar>
-					<texturesliderbarfocus>-</texturesliderbarfocus>
-					<showonepage>false</showonepage>
-					<orientation>vertical</orientation>
-					<visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
-				</control>
-
-				<!-- Video Information without Extras (Movies) -->
-				<control type="panel" id="300">
-					<visible>IsEmpty(ListItem.Property(PlexExtras))</visible>
-					<posx>-36</posx>
-					<posy>184</posy>
-					<width>1188</width>
-					<height>306</height>
-					<orientation>horizontal</orientation>
-					<include>VideoInfo</include>
-				</control>
-				<control type="button">
-					<posx>-36</posx>
-					<posy>184</posy>
-					<width>1188</width>
-					<height>306</height>
-					<onclick>noop</onclick>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<animation effect="fade" start="0" end="55" time="240">VisibleChange</animation>
-					<visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
-				</control>	
-				<control type="scrollbar" id="9081">
-					<posx>-36</posx>
-					<posy>184</posy>
-					<width>1188</width>
-					<height>306</height>
-					<texturesliderbackground>-</texturesliderbackground>
-					<texturesliderbar>-</texturesliderbar>
-					<texturesliderbarfocus>-</texturesliderbarfocus>
-					<showonepage>false</showonepage>
-					<orientation>vertical</orientation>
-					<visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
-				</control>
-
-				<!-- Plot Textbox-->
-				<control type="button" id="4003">
-					<posx>0</posx>
-					<posy>458</posy>
-					<width>1132</width>
-					<height>500</height>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-				</control>
-
-				<!-- Show Plot (With Media Flags, No Extras) -->
-				<control type="textbox" id="4">
-					<description>Plot</description>
-					<include>HiddenObject</include>
-				</control>
-				<control type="textbox" id="400">
-					<description>Plot</description>
-					<posx>0</posx>
-					<posy>560</posy>
-					<width>1132</width>
-					<height>402</height>
-					<font>font15_textbox</font>
-					<align>left</align>
-					<label>$VAR[PlotVar]</label>
-					<textcolor>white</textcolor>
-					<pagecontrol>60</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-					<visible>!Control.IsVisible(50) + IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				</control>
-				<control type="textbox" id="400">
-					<description>Plot</description>
-					<posx>0</posx>
-					<posy>560</posy>
-					<width>1132</width>
-					<height>402</height>
-					<font>font11_textbox</font>
-					<align>left</align>
-					<label>$VAR[PlotVar]</label>
-					<textcolor>white</textcolor>
-					<pagecontrol>60</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-					<visible>!Control.IsVisible(50) + IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				</control>
-
-				<!-- Show Plot (Without Media Flags, No Extras) -->
-				<control type="textbox" id="4">
-					<description>Plot</description>
-					<include>HiddenObject</include>
-				</control>
-				<control type="textbox" id="400">
-					<description>Plot</description>
-					<posx>0</posx>
-					<posy>577</posy>
-					<width>1132</width>
-					<height>472</height>
-					<font>font15_textbox</font>
-					<align>left</align>
-					<label>$VAR[PlotVar]</label>
-					<textcolor>white</textcolor>
-					<pagecontrol>60</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-					<visible>!Control.IsVisible(50) + IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				</control>
-				<control type="textbox" id="400">
-					<description>Plot</description>
-					<posx>0</posx>
-					<posy>573</posy>
-					<width>1132</width>
-					<height>472</height>
-					<font>font11_textbox</font>
-					<align>left</align>
-					<label>$VAR[PlotVar]</label>
-					<textcolor>white</textcolor>
-					<pagecontrol>60</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-					<visible>!Control.IsVisible(50) + IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				</control>
-
-				<!-- Show Plot (with Media Flags and Extras) -->
-				<control type="textbox" id="400">
-					<description>Plot</description>
-					<posx>0</posx>
-					<posy>458</posy>
-					<width>1132</width>
-					<height>242</height>
-					<font>font15_textbox</font>
-					<align>left</align>
-					<label>$VAR[PlotVar]</label>
-					<textcolor>white</textcolor>
-					<pagecontrol>60</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				</control>
-				<control type="textbox" id="400">
-					<description>Plot</description>
-					<posx>0</posx>
-					<posy>458</posy>
-					<width>1132</width>
-					<height>242</height>
-					<font>font11_textbox</font>
-					<align>left</align>
-					<label>$VAR[PlotVar]</label>
-					<textcolor>white</textcolor>
-					<pagecontrol>60</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				</control>
-
-				<!-- Show Plot (without Media Flags and Extras) -->
-				<control type="textbox" id="400">
-					<description>Plot</description>
-					<posx>0</posx>
-					<posy>478</posy>
-					<width>1132</width>
-					<height>292</height>
-					<font>font15_textbox</font>
-					<align>left</align>
-					<label>$VAR[PlotVar]</label>
-					<textcolor>white</textcolor>
-					<pagecontrol>60</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				</control>
-				<control type="textbox" id="400">
-					<description>Plot</description>
-					<posx>0</posx>
-					<posy>458</posy>
-					<width>1132</width>
-					<height>317</height>
-					<font>font11_textbox</font>
-					<align>left</align>
-					<label>$VAR[PlotVar]</label>
-					<textcolor>white</textcolor>
-					<pagecontrol>60</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
-					<visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-				</control>					
-
-				<!-- Extras Title -->
-				<control type="label">
-					<animation effect="slide" end="0,105" condition="Skin.HasSetting(Preplay.DisableMediaFlags)">Conditional</animation>
-					<posx>0</posx>
-					<posy>700</posy>
-					<width>1107</width>
-					<height>30</height>
-					<aligny>center</aligny>
-					<align>left</align>
-					<font>font15</font>
-					<textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
-					<scroll>true</scroll>
-					<label>$LOCALIZE[41008] ($INFO[Container(30).NumItems]):</label>
-					<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
-				</control>
-
-				<!-- Extras -->
-				<control type="list" id="30">
-					<animation effect="slide" end="0,105" condition="Skin.HasSetting(Preplay.DisableMediaFlags)">Conditional</animation>
-					<posy>740</posy>
-					<visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
-					<posx>0</posx>
-					<width>1107</width>
-					<height>198</height>
-					<zorder>10</zorder>
-					<onleft>30</onleft>
-					<onright>30</onright>
-					<onup>9000</onup>
-					<ondown>9000</ondown>
-					<pagecontrol>6111</pagecontrol>
-					<scrolltime>200</scrolltime>
-					<orientation>horizontal</orientation>
-
-					<itemlayout height="198" width="369">
-
-						<!-- Extra Thumb -->
-						<control type="image">
-							<posx>0</posx>
-							<posy>0</posy>
-							<width>369</width>
-							<height>198</height>
-							<aspectratio scalediffuse="false">scale</aspectratio>
-							<colordiffuse>BAffffff</colordiffuse>
-							<texture>$INFO[ListItem.Art(thumb)]</texture>
-						</control>
-
-						<!-- Text Label -->
-						<control type="image">
-							<posx>0</posx>
-							<posy>98</posy>
-							<width>369</width>
-							<height>100</height>
-							<texture>homewidgets/label.png</texture>
-							<fadetime>400</fadetime>
-						</control>						
-						<control type="label">
-							<posx>184</posx>
-							<posy>148</posy>
-							<width>329</width>
-							<height>30</height>
-							<align>center</align>
-							<aligny>center</aligny>
-							<font>font12_title</font>
-							<wrapmultiline>true</wrapmultiline>
-							<textcolor>lightgrey</textcolor>
-							<shadowcolor>black</shadowcolor>
-							<label>$INFO[ListItem.Label]</label>
-						</control>
-						
-						<!-- Extra Duration -->
-						<control type="label">
-							<posx>351</posx>
-							<posy>18</posy>
-							<width>369</width>
-							<height>30</height>
-							<align>right</align>
-							<aligny>center</aligny>
-							<font>font12_title</font>
-							<textcolor>lightgrey</textcolor>
-							<shadowcolor>black</shadowcolor>
-							<label>$INFO[ListItem.DurationStr]</label>
-						</control>
-						
-						<!-- Extra Type Icon -->
-						<control type="image">
-							<posx>18</posx>
-							<posy>18</posy>
-							<width>37</width>
-							<height>37</height>
-							<texture>$INFO[ListItem.Property(extraTypeStr)].png</texture>
-							<fadetime>400</fadetime>
-						</control>
-
-					</itemlayout>
-
-					<focusedlayout height="198" width="369">
-
-						<control type="group">
-							<animation type="Focus" reversible="false">
-								<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
-							</animation>
-
-							<!-- Extra Thumb -->
-							<control type="image">
-								<posx>0</posx>
-								<posy>0</posy>
-								<width>369</width>
-								<height>198</height>
-								<aspectratio scalediffuse="false">scale</aspectratio>
-								<texture>$INFO[ListItem.Art(thumb)]</texture>
-								<bordersize>8</bordersize>
-							</control>
-
-							<!-- Text Label -->
-							<control type="image">
-								<posx>0</posx>
-								<posy>98</posy>
-								<width>369</width>
-								<height>100</height>
-								<texture>homewidgets/label.png</texture>
-								<fadetime>400</fadetime>
-							</control>
-							<control type="label">
-								<posx>184</posx>
-								<posy>148</posy>
-								<width>329</width>
-								<height>30</height>
-								<align>center</align>
-								<aligny>center</aligny>
-								<font>font12_title</font>
-								<wrapmultiline>true</wrapmultiline>
-								<textcolor>$VAR[Colour_PreplayHighlightColourVar]</textcolor>
-								<shadowcolor>black</shadowcolor>
-								<label>$INFO[ListItem.Label]</label>
-							</control>
-							
-							<!-- Extra Duration -->
-							<control type="label">
-								<posx>351</posx>
-								<posy>18</posy>
-								<width>369</width>
-								<height>30</height>
-								<align>right</align>
-								<aligny>center</aligny>
-								<font>font12_title</font>
-								<textcolor>$VAR[Colour_PreplayHighlightColourVar]</textcolor>
-								<shadowcolor>black</shadowcolor>
-								<label>$INFO[ListItem.DurationStr]</label>
-							</control>
-														
-							<!-- Extra Type Icon -->
-							<control type="image">
-								<posx>18</posx>
-								<posy>18</posy>
-								<width>37</width>
-								<height>37</height>
-								<texture>$INFO[ListItem.Property(extraTypeStr)].png</texture>
-								<fadetime>400</fadetime>
-								<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
-							</control>
-							
-							<!-- Highlight -->
-							<control type="image">
-								<posx>0</posx>
-								<posy>0</posy>
-								<width>369</width>
-								<height>198</height>
-								<aspectratio scalediffuse="false">scale</aspectratio>
-								<texture>empty.png</texture>
-								<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-								<bordersize>8</bordersize>
-								<colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
-							</control>
-
-						</control>
-
-					</focusedlayout>
-
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-					<posx>-37</posx>
-					<posy>970</posy>
-					<width>1188</width>
-					<height>2</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-
-				<!-- Media Flags -->
-				<control type="grouplist">
-					<visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-					<posx>-37</posx>
-					<posy>970</posy>
-					<width>1188</width>
-					<height>90</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<itemgap>0</itemgap>
-					<orientation>horizontal</orientation>
-
-					<!-- Video Resolution Flag -->
-					<control type="image">
-						<width>196</width>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture> 
-					</control>
-					
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Video Codec Flag -->
-					<control type="image">
-						<width>196</width>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
-					</control>
-
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Aspect Ratio Flag -->
-					<control type="image">
-						<width>196</width>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/135x90/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag_135x90]</texture>
-					</control>
-					
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Framerate Flag -->
-					<control type="image">
-						<width>196</width>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/135x90/framerate/default.png">$VAR[FramerateFlag_135x90]</texture>
-					</control>
-					
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Audio Codec -->
-					<control type="image">
-						<width>196</width>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
-					</control>
-
-					<!-- Item Separator -->
-					<control type="image">
-						<width>2</width>
-						<height>90</height>
-						<texture border="1">separator3.png</texture>
-					</control>
-
-					<!-- Audio Channels Flag -->
-					<control type="image">
-						<width>196</width>
-						<include>MediaFlagVars</include>
-						<texture align="center" aligny="center" fallback="flags/135x90/channels/0.png">$VAR[AudioChannelsFlag_135x90]</texture> 
-					</control>
-
-				</control>
-
-				<!-- Item Separator -->
-				<control type="image">
-					<visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
-					<posy>90</posy>
-					<width>1188</width>
-					<height>2</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-				
-			</control>
-
-			<!-- Preplay Menu -->
-			<control type="group">
-				<visible></visible>
-				<posx>3</posx>
-				<posy>0</posy>
-
-				<control type="grouplist" id="9000">
-					<animation effect="slide" end="0,-102" time="0" condition="!IsEmpty(ListItem.Property(PlexExtras))">Conditional</animation>
-					<posx>1</posx>
-					<posy>510</posy>
-					<width>1192</width>
-					<height>60</height>
-					<onleft>9000</onleft>
-					<onright>9000</onright>
-					<onup>30</onup>
-					<ondown>30</ondown>
-					<align>left</align>
-					<orientation>horizontal</orientation>
-
-					<include>PreplayMenu</include>
-				</control>
-
-			</control>
-
-		</control>
-
-	</controls>
+  <onload condition="Window.Previous(fullscreenvideo) + ListItem.Type(episode) + ListItem.Status(watched)">XBMC.NextItem</onload>
+  <defaultcontrol always="true">102</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <controls>
+    <!-- Background -->
+    <control type="image">
+      <posx>0</posx>
+      <posy>0</posy>
+      <width>1920</width>
+      <height>1080</height>
+      <aspectratio align="center">scale</aspectratio>
+      <texture blur="3">$VAR[Preplay_FanartVar]</texture>
+      <visible>Skin.HasSetting(Preplay.Blur)</visible>
+    </control>
+    <control type="image">
+      <posx>0</posx>
+      <posy>0</posy>
+      <width>1920</width>
+      <height>1080</height>
+      <aspectratio align="center">scale</aspectratio>
+      <texture>$VAR[Preplay_FanartVar]</texture>
+      <visible>!Skin.HasSetting(Preplay.Blur)</visible>
+    </control>
+    <!-- Left Side Portrait -->
+    <control type="group">
+      <animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
+      <animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
+      <visible>Container.PlexContent(movie)</visible>
+      <!-- Display Poster -->
+      <control type="image">
+        <width>729</width>
+        <height>1080</height>
+        <aspectratio aligny="top">scale</aspectratio>
+        <texture fallback="black.png">$INFO[ListItem.Art(bigThumb)]</texture>
+      </control>
+      <!-- Display Watched Status Overlay (On the Poster, instead of next to the title) -->
+      <include condition="!Skin.HasSetting(Enable.Circles)">Preplay_PortraitWatchedStatusRibbon</include>
+      <!-- Watched Status Upper Circle -->
+      <include condition="Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)">Preplay_PortraitWatchedStatusUpperCircles</include>
+      <!-- Watched Status Lower Circle -->
+      <include condition="Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)">Preplay_PortraitWatchedStatusLowerCircles</include>
+    </control>
+    <!-- Top Landscape -->
+    <control type="group">
+      <animation effect="slide" start="0,-570" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
+      <animation effect="slide" end="0,-570" time="500" tween="quadratic">WindowClose</animation>
+      <visible>!Container.PlexContent(movie)</visible>
+      <posx>0</posx>
+      <posy>0</posy>
+      <width>1920</width>
+      <height>570</height>
+      <!-- Background Panel -->
+      <control type="image">
+        <width>1920</width>
+        <height>570</height>
+        <texture border="4">dialogs/info/info_rightpaneltop.png</texture>
+      </control>
+      <!-- Display Episode Poster -->
+      <control type="image">
+        <posx>100</posx>
+        <posy>140</posy>
+        <width>614</width>
+        <height>345</height>
+        <aspectratio scalediffuse="false" aligny="center" align="center">scale</aspectratio>
+        <texture fallback="defaulttvshows.png" diffuse="thumbs/boxes/thumb_mask.png">$VAR[EpisodeBigThumbnailVar]</texture>
+      </control>
+      <!-- Display Watched Status Ribbon Overlay  -->
+      <include condition="!Skin.HasSetting(Enable.Circles)">Preplay_LandscapeWatchedStatusRibbon</include>
+      <!-- Watched Status Upper Circle -->
+      <include condition="Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)">Preplay_LandscapeWatchedStatusUpperCircles</include>
+      <!-- Watched Status Lower Circle -->
+      <include condition="Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)">Preplay_LandscapeWatchedStatusLowerCircles</include>
+      <!-- Separator between items -->
+      <control type="image">
+        <posx>729</posx>
+        <posy>115</posy>
+        <width>2</width>
+        <height>395</height>
+        <texture border="1">separator3.png</texture>
+      </control>
+      <control type="group">
+        <posx>769</posx>
+        <posy>20</posy>
+        <width>1042</width>
+        <height>854</height>
+        <control type="grouplist">
+          <posx>-669</posx>
+          <posy>-20</posy>
+          <width>1720</width>
+          <height>110</height>
+          <itemgap>0</itemgap>
+          <align>center</align>
+          <!-- Display Episode Title -->
+          <control type="label">
+            <width>1720</width>
+            <height>60</height>
+            <aligny>center</aligny>
+            <align>left</align>
+            <font>font30</font>
+            <textcolor>grey</textcolor>
+            <scroll>true</scroll>
+            <label>$VAR[Preplay_LandscapeTitleVar]</label>
+            <visible>ListItem.Type(episode)</visible>
+          </control>
+          <!-- Display TV Show Title -->
+          <control type="label">
+            <width>1720</width>
+            <height>30</height>
+            <aligny>center</aligny>
+            <align>left</align>
+            <font>font15</font>
+            <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            <scroll>true</scroll>
+            <label>[UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE]</label>
+            <visible>ListItem.Type(episode)</visible>
+          </control>
+          <control type="label">
+            <width>1720</width>
+            <height>110</height>
+            <aligny>center</aligny>
+            <align>left</align>
+            <font>font36_title</font>
+            <textcolor>grey</textcolor>
+            <scroll>true</scroll>
+            <label>$VAR[Preplay_LandscapeTitleVar]</label>
+            <visible>!ListItem.Type(episode)</visible>
+          </control>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <posx>-769</posx>
+          <posy>32</posy>
+          <width>1920</width>
+          <height>60</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+        <!-- Top Information Line Under Title -->
+        <control type="grouplist">
+          <posx>0</posx>
+          <posy>95</posy>
+          <width>1100</width>
+          <height>90</height>
+          <itemgap>0</itemgap>
+          <align>left</align>
+          <orientation>horizontal</orientation>
+          <!-- Display First Aired Date -->
+          <control type="label">
+            <width min="20" max="290">auto</width>
+            <height>90</height>
+            <align>left</align>
+            <label>[B]$INFO[ListItem.Date][/B]</label>
+            <font>font35_title</font>
+            <textcolor>grey</textcolor>
+            <visible>!IsEmpty(ListItem.Date)</visible>
+          </control>
+          <control type="image">
+            <width>20</width>
+            <height>90</height>
+            <texture>-</texture>
+            <visible>!IsEmpty(ListItem.Date)</visible>
+          </control>
+          <!-- Separator between items -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+            <visible>!IsEmpty(ListItem.Date)</visible>
+          </control>
+          <control type="image">
+            <width>20</width>
+            <height>90</height>
+            <texture>-</texture>
+            <visible>!IsEmpty(ListItem.Date)</visible>
+          </control>
+          <!-- Content Rating -->
+          <control type="image">
+            <width>249</width>
+            <height>90</height>
+            <fadetime>250</fadetime>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <bordersize>2</bordersize>
+            <texture align="center" aligny="center" fallback="flags/mpaa_descriptions/NR.png">$VAR[MPAAFlag_Description]</texture>
+            <aspectratio align="center" aligny="center">keep</aspectratio>
+          </control>
+          <control type="image">
+            <width>20</width>
+            <height>90</height>
+            <texture>-</texture>
+          </control>
+          <!-- Separator between items -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- Display Duration -->
+          <control type="group">
+            <width>147</width>
+            <control type="label">
+              <posx>0</posx>
+              <posy>2</posy>
+              <width>147</width>
+              <height>60</height>
+              <align>center</align>
+              <label>[B]$VAR[DurationVar][/B]</label>
+              <font>font48</font>
+              <textcolor>grey</textcolor>
+            </control>
+            <control type="label">
+              <posy>52</posy>
+              <width>147</width>
+              <height>30</height>
+              <align>center</align>
+              <label>[LOWERCASE]$VAR[Preplay_MinutesLabelVar][/LOWERCASE]</label>
+              <font>font12</font>
+              <textcolor>grey</textcolor>
+            </control>
+          </control>
+          <!-- Item Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- Rating -->
+          <control type="group">
+            <width>147</width>
+            <control type="label">
+              <posx>0</posx>
+              <posy>2</posy>
+              <width>147</width>
+              <height>60</height>
+              <align>center</align>
+              <label>$VAR[RatingVar]</label>
+              <font>font48_bold</font>
+              <textcolor>$VAR[Preplay_RatingColorVar]</textcolor>
+              <visible>!IsEmpty(ListItem.RatingAndVotes) | !IsEmpty(ListItem.Property(hasUserRating))</visible>
+            </control>
+            <control type="label">
+              <posy>52</posy>
+              <width>147</width>
+              <height>30</height>
+              <align>center</align>
+              <label>[LOWERCASE]$LOCALIZE[31225][/LOWERCASE]</label>
+              <font>font12</font>
+              <textcolor>$VAR[Preplay_RatingColorVar]</textcolor>
+              <visible>!IsEmpty(ListItem.RatingAndVotes) | !IsEmpty(ListItem.Property(hasUserRating))</visible>
+            </control>
+          </control>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <posx>-37</posx>
+          <posy>126</posy>
+          <width>1188</width>
+          <height>60</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+        <!-- Video Information -->
+        <control type="group">
+          <posx>-36</posx>
+          <posy>184</posy>
+          <width>1188</width>
+          <height>306</height>
+          <orientation>horizontal</orientation>
+          <!-- Item Separator -->
+          <control type="image">
+            <posy>92</posy>
+            <width>1188</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <!-- Audio Label -->
+          <control type="label">
+            <posy>30</posy>
+            <width>594</width>
+            <height>40</height>
+            <font>font15</font>
+            <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+            <label>$LOCALIZE[292]:</label>
+            <!-- STRING: Audio -->
+            <textoffsetx>36</textoffsetx>
+          </control>
+          <!-- Audio Language Flag -->
+          <control type="image">
+            <posx>36</posx>
+            <posy>75</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>$VAR[Preplay_LanguageFlagVar]</texture>
+            <visible>!String.StartsWith(ListItem.Property(SelectedAudioStream),Unknown) + !Skin.HasSetting(Preplay.DisableLanguageFlags)</visible>
+          </control>
+          <!-- Show Audio Stream -->
+          <control type="label">
+            <animation effect="slide" start="0,0" end="-50,0" time="0" condition="String.StartsWith(ListItem.Property(SelectedAudioStream),Unknown) | String.StartsWith(ListItem.Property(SelectedAudioStream),None) | Skin.HasSetting(Preplay.DisableLanguageFlags)">Conditional</animation>
+            <posx>50</posx>
+            <posy>75</posy>
+            <width>594</width>
+            <height>40</height>
+            <font>font15</font>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Property(SelectedAudioStream)]</label>
+            <textoffsetx>36</textoffsetx>
+          </control>
+          <!-- Subtitles Label -->
+          <control type="label">
+            <posy>183</posy>
+            <width>594</width>
+            <height>40</height>
+            <font>font15</font>
+            <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+            <label>$LOCALIZE[287]:</label>
+            <!-- STRING: Subtitles -->
+            <textoffsetx>36</textoffsetx>
+          </control>
+          <!-- Subtitle Language Flag -->
+          <control type="image">
+            <posx>36</posx>
+            <posy>228</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>$VAR[Preplay_SubtitleLanguageFlagVar]</texture>
+            <visible>!String.StartsWith(ListItem.Property(SelectedSubtitleStream),Unknown) + !String.StartsWith(ListItem.Property(SelectedSubtitleStream),None) + !Skin.HasSetting(Preplay.DisableLanguageFlags)</visible>
+          </control>
+          <!-- Subtitles Stream -->
+          <control type="label">
+            <animation effect="slide" start="0,0" end="-50,0" time="0" condition="String.StartsWith(ListItem.Property(SelectedSubtitleStream),Unknown) | String.StartsWith(ListItem.Property(SelectedSubtitleStream),None) | Skin.HasSetting(Preplay.DisableLanguageFlags)">Conditional</animation>
+            <posx>50</posx>
+            <posy>228</posy>
+            <width>594</width>
+            <height>40</height>
+            <font>font15</font>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Property(SelectedSubtitleStream)]</label>
+            <textoffsetx>36</textoffsetx>
+          </control>
+          <!-- Director Label -->
+          <control type="label">
+            <posx>594</posx>
+            <posy>30</posy>
+            <width>533</width>
+            <height>40</height>
+            <font>font15</font>
+            <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+            <label>$LOCALIZE[20339]:</label>
+            <!-- STRING: Director -->
+            <textoffsetx>36</textoffsetx>
+            <visible>!IsEmpty(ListItem.Director)</visible>
+          </control>
+          <!-- Director -->
+          <control type="label">
+            <posx>594</posx>
+            <posy>75</posy>
+            <width>533</width>
+            <height>40</height>
+            <font>font15</font>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Director]</label>
+            <textoffsetx>36</textoffsetx>
+            <visible>!IsEmpty(ListItem.Director)</visible>
+          </control>
+          <!-- Writer Label -->
+          <control type="label">
+            <posx>594</posx>
+            <posy>183</posy>
+            <width>533</width>
+            <height>40</height>
+            <font>font15</font>
+            <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+            <label>$LOCALIZE[20417]:</label>
+            <!-- STRING: Writer -->
+            <textoffsetx>36</textoffsetx>
+            <visible>!IsEmpty(ListItem.Writer)</visible>
+          </control>
+          <!-- Writer -->
+          <control type="label">
+            <posx>594</posx>
+            <posy>228</posy>
+            <width>533</width>
+            <height>40</height>
+            <font>font15</font>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_PreplayThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Writer]</label>
+            <textoffsetx>36</textoffsetx>
+            <visible>!IsEmpty(ListItem.Writer)</visible>
+          </control>
+        </control>
+      </control>
+      <!-- Item Separator -->
+      <control type="image">
+        <posx>0</posx>
+        <posy>450</posy>
+        <width>1920</width>
+        <height>60</height>
+        <texture border="1">separator2.png</texture>
+      </control>
+      <!-- Preplay Menu TV -->
+      <control type="grouplist" id="9000">
+        <posx>3</posx>
+        <posy>510</posy>
+        <width>1920</width>
+        <height>60</height>
+        <itemgap>0</itemgap>
+        <onleft>9000</onleft>
+        <onright>9000</onright>
+        <onup>XBMC.PrevItem</onup>
+        <align>left</align>
+        <ondown>XBMC.NextItem</ondown>
+        <orientation>horizontal</orientation>
+        <include>PreplayMenu_Landscape</include>
+        <visible>ListItem.Type(episode)</visible>
+      </control>
+      <!-- Preplay Menu Clips -->
+      <control type="grouplist" id="9000">
+        <posx>3</posx>
+        <posy>510</posy>
+        <width>1920</width>
+        <height>60</height>
+        <itemgap>0</itemgap>
+        <onleft>9000</onleft>
+        <onright>9000</onright>
+        <onup>XBMC.PrevItem</onup>
+        <align>left</align>
+        <ondown>XBMC.NextItem</ondown>
+        <orientation>horizontal</orientation>
+        <include>PreplayMenu_Clips</include>
+        <visible>!ListItem.Type(episode)</visible>
+      </control>
+    </control>
+    <!-- Bottom Landscape -->
+    <control type="group">
+      <animation effect="slide" start="0,530" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
+      <animation effect="slide" start="0,0" end="0,530" time="320" tween="quadratic">WindowClose</animation>
+      <visible>!Container.PlexContent(movie)</visible>
+      <posx>0</posx>
+      <posy>570</posy>
+      <width>1920</width>
+      <height>510</height>
+      <!-- Background Panel -->
+      <control type="image">
+        <width>1920</width>
+        <height>510</height>
+        <texture border="4">dialogs/info/info_rightpaneltop.png</texture>
+      </control>
+      <!-- Show Plot (With Media Flags, No Extras) -->
+      <control type="textbox" id="400">
+        <description>Plot</description>
+        <posx>100</posx>
+        <posy>40</posy>
+        <width>1720</width>
+        <height>352</height>
+        <font>font15_textbox</font>
+        <align>justify</align>
+        <label>$VAR[PlotVar]</label>
+        <textcolor>white</textcolor>
+        <pagecontrol>60</pagecontrol>
+        <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+        <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+        <visible>!Control.IsVisible(50) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+      </control>
+      <!-- Show Plot (Without Media Flags, No Extras) -->
+      <control type="textbox" id="400">
+        <description>Plot</description>
+        <posx>100</posx>
+        <posy>30</posy>
+        <width>1720</width>
+        <height>452</height>
+        <font>font15_textbox</font>
+        <align>justify</align>
+        <label>$VAR[PlotVar]</label>
+        <textcolor>white</textcolor>
+        <pagecontrol>60</pagecontrol>
+        <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+        <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+        <visible>!Control.IsVisible(50) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+      </control>
+      <!-- Bottom Separator -->
+      <control type="image">
+        <visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        <posy>360</posy>
+        <width>1920</width>
+        <height>60</height>
+        <texture border="1">separator2.png</texture>
+      </control>
+      <!-- Media Flags -->
+      <control type="grouplist">
+        <visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        <posx>0</posx>
+        <posy>420</posy>
+        <width>1920</width>
+        <height>90</height>
+        <align>left</align>
+        <aligny>center</aligny>
+        <itemgap>0</itemgap>
+        <orientation>horizontal</orientation>
+        <!-- Video Resolution Flag -->
+        <control type="image">
+          <width>318</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+        <control type="image">
+          <width>638</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
+          <visible>!ListItem.Type(episode)</visible>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <width>2</width>
+          <height>90</height>
+          <texture border="1">separator3.png</texture>
+        </control>
+        <!-- Video Codec Flag -->
+        <control type="image">
+          <width>318</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+        <control type="image">
+          <width>638</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
+          <visible>!ListItem.Type(episode)</visible>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <width>2</width>
+          <height>90</height>
+          <texture border="1">separator3.png</texture>
+        </control>
+        <!-- Aspect Ratio Flag -->
+        <control type="image">
+          <width>318</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag_135x90]</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <width>2</width>
+          <height>90</height>
+          <texture border="1">separator3.png</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+        <!-- Framerate Flag -->
+        <control type="image">
+          <width>318</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/framerate/default.png">$VAR[FramerateFlag_135x90]</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <width>2</width>
+          <height>90</height>
+          <texture border="1">separator3.png</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+        <!-- Audio Codec -->
+        <control type="image">
+          <width>318</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+        <control type="image">
+          <width>638</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
+          <visible>!ListItem.Type(episode)</visible>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <width>2</width>
+          <height>90</height>
+          <texture border="1">separator3.png</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+        <!-- Audio Channels Flag -->
+        <control type="image">
+          <width>318</width>
+          <include>MediaFlagVars</include>
+          <texture align="center" aligny="center" fallback="flags/135x90/channels/0.png">$VAR[AudioChannelsFlag_135x90]</texture>
+          <visible>ListItem.Type(episode)</visible>
+        </control>
+      </control>
+      <!-- Item Separator -->
+      <control type="image">
+        <visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        <posy>510</posy>
+        <width>1188</width>
+        <height>2</height>
+        <texture border="1">separator2.png</texture>
+      </control>
+    </control>
+    <!-- Preplay Movies (Right) -->
+    <control type="group" id="1200">
+      <animation effect="slide" start="1242,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
+      <animation effect="slide" end="1242,0" time="500" tween="quadratic">WindowClose</animation>
+      <visible>Container.PlexContent(movie)</visible>
+      <posx>763</posx>
+      <posy>448</posy>
+      <width>394</width>
+      <height>1080</height>
+      <itemgap>0</itemgap>
+      <align>center</align>
+      <!-- Top Border of Dialog Window -->
+      <control type="image" id="1">
+        <description>background image</description>
+        <width>394</width>
+        <height>67</height>
+        <texture border="30,20,30,2">dialog_top2.png</texture>
+      </control>
+      <!-- Dialog Title -->
+      <control type="label" id="3">
+        <posx>0</posx>
+        <posy>20</posy>
+        <label>[UPPERCASE]$LOCALIZE[32100][/UPPERCASE]</label>
+        <width>394</width>
+        <height>40</height>
+        <align>center</align>
+        <textcolor>dialogheader</textcolor>
+        <font>font15_title</font>
+      </control>
+      <control type="image" id="4">
+        <description>Star Border</description>
+        <posx>0</posx>
+        <posy>67</posy>
+        <width>394</width>
+        <height>84</height>
+        <textoffsetx>45</textoffsetx>
+        <texture border="35,2,35,2">button_shutdown_nofocus.png</texture>
+      </control>
+      <!-- Actual Rating Control -->
+      <control type="image" id="10">
+        <posx>45</posx>
+        <posy>77</posy>
+        <width>304</width>
+        <height>64</height>
+        <texture align="center" aligny="center">rating0-big.png</texture>
+        <aspectratio align="right" aligny="center">keep</aspectratio>
+        <colordiffuse>$VAR[Colour_PreplayThemeColourVar]</colordiffuse>
+      </control>
+      <!-- Bottom Border of Dialog Window -->
+      <control type="image" id="11">
+        <description>background image</description>
+        <posx>0</posx>
+        <posy>151</posy>
+        <width>394</width>
+        <height>34</height>
+        <texture border="30,2,30,20">dialog_bottom2.png</texture>
+      </control>
+    </control>
+    <control type="group">
+      <animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
+      <animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
+      <visible>Container.PlexContent(movie)</visible>
+      <posx>729</posx>
+      <width>1192</width>
+      <height>1080</height>
+      <!-- Display Fanart -->
+      <control type="image">
+        <width>1192</width>
+        <height>1080</height>
+        <texture>black.png</texture>
+        <visible>IsEmpty(ListItem.Art(fanart))</visible>
+      </control>
+      <control type="image">
+        <visible>Skin.HasSetting(Preplay.Blur)</visible>
+        <width>1192</width>
+        <height>1080</height>
+        <aspectratio align="center">scale</aspectratio>
+        <texture blur="3">$INFO[ListItem.Art(fanart)]</texture>
+      </control>
+      <control type="image">
+        <visible>!Skin.HasSetting(Preplay.Blur)</visible>
+        <width>1192</width>
+        <height>1080</height>
+        <aspectratio align="center">scale</aspectratio>
+        <texture>$INFO[ListItem.Art(fanart)]</texture>
+      </control>
+      <control type="image">
+        <width>1192</width>
+        <height>1080</height>
+        <texture border="4">dialogs/info/info_rightpaneltop.png</texture>
+      </control>
+      <control type="group">
+        <posx>40</posx>
+        <posy>20</posy>
+        <width>1042</width>
+        <height>854</height>
+        <control type="grouplist">
+          <posy>-20</posy>
+          <width>1100</width>
+          <height>110</height>
+          <itemgap>0</itemgap>
+          <align>center</align>
+          <!-- Display Video Title -->
+          <control type="label">
+            <width>1100</width>
+            <height>60</height>
+            <aligny>center</aligny>
+            <align>left</align>
+            <font>font30_title_bold</font>
+            <textcolor>grey</textcolor>
+            <scroll>true</scroll>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <!-- Display Genre -->
+          <control type="label">
+            <width>1100</width>
+            <height>30</height>
+            <aligny>center</aligny>
+            <align>left</align>
+            <font>font15</font>
+            <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            <scroll>true</scroll>
+            <label>$INFO[ListItem.Genre]</label>
+            <visible>!IsEmpty(ListItem.Genre)</visible>
+          </control>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <posx>-37</posx>
+          <posy>32</posy>
+          <width>1188</width>
+          <height>60</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+        <!-- Top Information Line Under Title -->
+        <control type="grouplist">
+          <posx>0</posx>
+          <posy>95</posy>
+          <width>1188</width>
+          <height>90</height>
+          <itemgap>0</itemgap>
+          <align>left</align>
+          <orientation>horizontal</orientation>
+          <!-- Display Year -->
+          <control type="label">
+            <width>140</width>
+            <height>90</height>
+            <align>left</align>
+            <label>[B]$INFO[ListItem.Year][/B]</label>
+            <font>font35_title</font>
+            <textcolor>grey</textcolor>
+            <visible>!IsEmpty(ListItem.Year)</visible>
+          </control>
+          <!-- Item Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+            <visible>!IsEmpty(ListItem.Year)</visible>
+          </control>
+          <!-- Display Studio Logo -->
+          <control type="group">
+            <visible>!IsEmpty(ListItem.Property(mediaTag-Studio))</visible>
+            <width>198</width>
+            <control type="image" id="20011">
+              <width>198</width>
+              <height>90</height>
+              <fadetime>250</fadetime>
+              <animation effect="fade" time="200">VisibleChange</animation>
+              <bordersize>2</bordersize>
+              <texture align="center" aligny="center">$VAR[StudioFlag_135x90]</texture>
+              <aspectratio align="center" aligny="center">keep</aspectratio>
+            </control>
+            <!-- Display Studio Name in Text if no Logo present -->
+            <control type="label">
+              <width>198</width>
+              <height>90</height>
+              <posx>0</posx>
+              <posy>0</posy>
+              <align>center</align>
+              <label>$INFO[ListItem.Property(mediaTag-Studio)]</label>
+              <font>font10</font>
+              <textcolor>grey</textcolor>
+              <wrapmultiline>true</wrapmultiline>
+              <visible>IsEmpty(Control.GetLabel(20011))</visible>
+            </control>
+          </control>
+          <!-- Separator between items -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+            <visible>!IsEmpty(ListItem.Property(mediaTag-Studio))</visible>
+          </control>
+          <!-- Content Rating -->
+          <control type="image">
+            <width>249</width>
+            <height>90</height>
+            <fadetime>250</fadetime>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <bordersize>2</bordersize>
+            <texture align="center" aligny="center" fallback="flags/mpaa_descriptions/NR.png">$VAR[MPAAFlag_Description]</texture>
+            <aspectratio align="center" aligny="center">keep</aspectratio>
+          </control>
+          <!-- Separator between Items -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- Display Duration -->
+          <control type="label">
+            <width>180</width>
+            <height>90</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <label>$VAR[Preplay_DurationVar]</label>
+            <font>font52_bold</font>
+            <textcolor>grey</textcolor>
+          </control>
+          <!-- Item Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- User Rating -->
+          <control type="group">
+            <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+            <width>200</width>
+            <control type="label">
+              <posx>0</posx>
+              <posy>2</posy>
+              <width>200</width>
+              <height>60</height>
+              <align>center</align>
+              <label>$VAR[RatingVar]</label>
+              <font>font48_bold</font>
+              <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            </control>
+            <control type="label">
+              <posy>52</posy>
+              <width>200</width>
+              <height>30</height>
+              <align>center</align>
+              <label>[LOWERCASE]$LOCALIZE[42421][/LOWERCASE]</label>
+              <font>font12</font>
+              <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            </control>
+          </control>
+          <!-- Standard Rating -->
+          <control type="group">
+            <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            <width>200</width>
+            <control type="label">
+              <posx>0</posx>
+              <posy>2</posy>
+              <width>200</width>
+              <height>60</height>
+              <align>center</align>
+              <label>$VAR[RatingVar]</label>
+              <font>font48_bold</font>
+              <textcolor>grey</textcolor>
+            </control>
+            <control type="label">
+              <posy>52</posy>
+              <width>200</width>
+              <height>30</height>
+              <align>center</align>
+              <label>[LOWERCASE]$LOCALIZE[31225][/LOWERCASE]</label>
+              <font>font12</font>
+              <textcolor>grey</textcolor>
+            </control>
+          </control>
+          <!-- IMDb Rating -->
+          <control type="image">
+            <visible>String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+            <posx>0</posx>
+            <posy>2</posy>
+            <width>20</width>
+            <height>90</height>
+            <texture>empty.png</texture>
+          </control>
+          <control type="image">
+            <visible>String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+            <posx>0</posx>
+            <posy>2</posy>
+            <width>118</width>
+            <height>90</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <aspectratio align="left" aligny="center">keep</aspectratio>
+            <texture>imdb_98x90.png</texture>
+          </control>
+          <control type="label">
+            <visible>String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+            <posx>60</posx>
+            <posy>2</posy>
+            <width min="20" max="140">auto</width>
+            <height>90</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <label>$INFO[ListItem.RatingAndVotes]</label>
+            <font>font52_bold</font>
+            <textcolor>grey</textcolor>
+          </control>
+          <!-- Rotten Tomatoes Rating -->
+          <control type="group">
+            <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+            <width>190</width>
+            <align>center</align>
+            <aligny>center</aligny>
+            <control type="grouplist">
+              <orientation>horizontal</orientation>
+              <width>190</width>
+              <height>60</height>
+              <align>center</align>
+              <aligny>center</aligny>
+              <control type="image">
+                <posx>0</posx>
+                <posy>2</posy>
+                <width>45</width>
+                <height>60</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <aspectratio align="left" aligny="center">keep</aspectratio>
+                <texture>$INFO[ListItem.Property(ratingImage)]</texture>
+              </control>
+              <control type="label">
+                <posx>60</posx>
+                <posy>2</posy>
+                <width min="20" max="140">auto</width>
+                <height>60</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[ListItem.Property(ratingPercent)]%</label>
+                <font>font48_bold</font>
+                <textcolor>grey</textcolor>
+              </control>
+            </control>
+            <control type="label">
+              <posy>52</posy>
+              <width>190</width>
+              <height>30</height>
+              <align>center</align>
+              <label>[LOWERCASE]$LOCALIZE[42258][/LOWERCASE]</label>
+              <font>font12</font>
+              <textcolor>grey</textcolor>
+            </control>
+          </control>
+          <control type="group">
+            <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+            <width>190</width>
+            <align>center</align>
+            <aligny>center</aligny>
+            <control type="grouplist">
+              <orientation>horizontal</orientation>
+              <width>190</width>
+              <height>60</height>
+              <align>center</align>
+              <aligny>center</aligny>
+              <control type="image">
+                <posx>0</posx>
+                <posy>2</posy>
+                <width>45</width>
+                <height>60</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <aspectratio align="left" aligny="center">keep</aspectratio>
+                <texture>$INFO[ListItem.Property(audienceRatingImage)]</texture>
+              </control>
+              <control type="label">
+                <posx>60</posx>
+                <posy>2</posy>
+                <width min="20" max="140">auto</width>
+                <height>60</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>$INFO[ListItem.Property(audienceRatingPercent)]%</label>
+                <font>font48_bold</font>
+                <textcolor>grey</textcolor>
+              </control>
+            </control>
+            <control type="label">
+              <posy>52</posy>
+              <width>190</width>
+              <height>30</height>
+              <align>center</align>
+              <label>[LOWERCASE]$LOCALIZE[42259][/LOWERCASE]</label>
+              <font>font12</font>
+              <textcolor>grey</textcolor>
+            </control>
+          </control>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <posx>-37</posx>
+          <posy>126</posy>
+          <width>1188</width>
+          <height>60</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+        <!-- Video Information with Extras (shorter) -->
+        <control type="panel" id="300">
+          <visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
+          <posx>-36</posx>
+          <posy>184</posy>
+          <width>1188</width>
+          <height>204</height>
+          <orientation>horizontal</orientation>
+          <include>VideoInfo</include>
+        </control>
+        <control type="button">
+          <posx>-36</posx>
+          <posy>184</posy>
+          <width>1188</width>
+          <height>204</height>
+          <onclick>noop</onclick>
+          <texturefocus>-</texturefocus>
+          <texturenofocus>-</texturenofocus>
+          <animation effect="fade" start="0" end="55" time="240">VisibleChange</animation>
+          <visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
+        </control>
+        <control type="scrollbar" id="9081">
+          <posx>-36</posx>
+          <posy>184</posy>
+          <width>1188</width>
+          <height>204</height>
+          <texturesliderbackground>-</texturesliderbackground>
+          <texturesliderbar>-</texturesliderbar>
+          <texturesliderbarfocus>-</texturesliderbarfocus>
+          <showonepage>false</showonepage>
+          <orientation>vertical</orientation>
+          <visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
+        </control>
+        <!-- Video Information without Extras (Movies) -->
+        <control type="panel" id="300">
+          <visible>IsEmpty(ListItem.Property(PlexExtras))</visible>
+          <posx>-36</posx>
+          <posy>184</posy>
+          <width>1188</width>
+          <height>306</height>
+          <orientation>horizontal</orientation>
+          <include>VideoInfo</include>
+        </control>
+        <control type="button">
+          <posx>-36</posx>
+          <posy>184</posy>
+          <width>1188</width>
+          <height>306</height>
+          <onclick>noop</onclick>
+          <texturefocus>-</texturefocus>
+          <texturenofocus>-</texturenofocus>
+          <animation effect="fade" start="0" end="55" time="240">VisibleChange</animation>
+          <visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
+        </control>
+        <control type="scrollbar" id="9081">
+          <posx>-36</posx>
+          <posy>184</posy>
+          <width>1188</width>
+          <height>306</height>
+          <texturesliderbackground>-</texturesliderbackground>
+          <texturesliderbar>-</texturesliderbar>
+          <texturesliderbarfocus>-</texturesliderbarfocus>
+          <showonepage>false</showonepage>
+          <orientation>vertical</orientation>
+          <visible>!IsEmpty(ListItem.Property(PlexExtras)) + system.getbool(input.enablemouse)</visible>
+        </control>
+        <!-- Plot Textbox-->
+        <control type="button" id="4003">
+          <posx>0</posx>
+          <posy>458</posy>
+          <width>1132</width>
+          <height>500</height>
+          <texturefocus>-</texturefocus>
+          <texturenofocus>-</texturenofocus>
+        </control>
+        <!-- Show Plot (With Media Flags, No Extras) -->
+        <control type="textbox" id="4">
+          <description>Plot</description>
+          <include>HiddenObject</include>
+        </control>
+        <control type="textbox" id="400">
+          <description>Plot</description>
+          <posx>0</posx>
+          <posy>560</posy>
+          <width>1132</width>
+          <height>402</height>
+          <font>font15_textbox</font>
+          <align>left</align>
+          <label>$VAR[PlotVar]</label>
+          <textcolor>white</textcolor>
+          <pagecontrol>60</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+          <visible>!Control.IsVisible(50) + IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        </control>
+        <control type="textbox" id="400">
+          <description>Plot</description>
+          <posx>0</posx>
+          <posy>560</posy>
+          <width>1132</width>
+          <height>402</height>
+          <font>font11_textbox</font>
+          <align>left</align>
+          <label>$VAR[PlotVar]</label>
+          <textcolor>white</textcolor>
+          <pagecontrol>60</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+          <visible>!Control.IsVisible(50) + IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        </control>
+        <!-- Show Plot (Without Media Flags, No Extras) -->
+        <control type="textbox" id="4">
+          <description>Plot</description>
+          <include>HiddenObject</include>
+        </control>
+        <control type="textbox" id="400">
+          <description>Plot</description>
+          <posx>0</posx>
+          <posy>577</posy>
+          <width>1132</width>
+          <height>472</height>
+          <font>font15_textbox</font>
+          <align>left</align>
+          <label>$VAR[PlotVar]</label>
+          <textcolor>white</textcolor>
+          <pagecontrol>60</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+          <visible>!Control.IsVisible(50) + IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        </control>
+        <control type="textbox" id="400">
+          <description>Plot</description>
+          <posx>0</posx>
+          <posy>573</posy>
+          <width>1132</width>
+          <height>472</height>
+          <font>font11_textbox</font>
+          <align>left</align>
+          <label>$VAR[PlotVar]</label>
+          <textcolor>white</textcolor>
+          <pagecontrol>60</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+          <visible>!Control.IsVisible(50) + IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        </control>
+        <!-- Show Plot (with Media Flags and Extras) -->
+        <control type="textbox" id="400">
+          <description>Plot</description>
+          <posx>0</posx>
+          <posy>458</posy>
+          <width>1132</width>
+          <height>242</height>
+          <font>font15_textbox</font>
+          <align>left</align>
+          <label>$VAR[PlotVar]</label>
+          <textcolor>white</textcolor>
+          <pagecontrol>60</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+          <visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        </control>
+        <control type="textbox" id="400">
+          <description>Plot</description>
+          <posx>0</posx>
+          <posy>458</posy>
+          <width>1132</width>
+          <height>242</height>
+          <font>font11_textbox</font>
+          <align>left</align>
+          <label>$VAR[PlotVar]</label>
+          <textcolor>white</textcolor>
+          <pagecontrol>60</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+          <visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + !Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        </control>
+        <!-- Show Plot (without Media Flags and Extras) -->
+        <control type="textbox" id="400">
+          <description>Plot</description>
+          <posx>0</posx>
+          <posy>478</posy>
+          <width>1132</width>
+          <height>292</height>
+          <font>font15_textbox</font>
+          <align>left</align>
+          <label>$VAR[PlotVar]</label>
+          <textcolor>white</textcolor>
+          <pagecontrol>60</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+          <visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + !Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        </control>
+        <control type="textbox" id="400">
+          <description>Plot</description>
+          <posx>0</posx>
+          <posy>458</posy>
+          <width>1132</width>
+          <height>317</height>
+          <font>font11_textbox</font>
+          <align>left</align>
+          <label>$VAR[PlotVar]</label>
+          <textcolor>white</textcolor>
+          <pagecontrol>60</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <animation effect="fade" start="100" end="78" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(4003)">Conditional</animation>
+          <visible>!Control.IsVisible(50) + !IsEmpty(ListItem.Property(PlexExtras)) + Skin.HasSetting(General.SmallPlotText) + Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+        </control>
+        <!-- Extras Title -->
+        <control type="label">
+          <animation effect="slide" end="0,105" condition="Skin.HasSetting(Preplay.DisableMediaFlags)">Conditional</animation>
+          <posx>0</posx>
+          <posy>700</posy>
+          <width>1107</width>
+          <height>30</height>
+          <aligny>center</aligny>
+          <align>left</align>
+          <font>font15</font>
+          <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+          <scroll>true</scroll>
+          <label>$LOCALIZE[41008] ($INFO[Container(30).NumItems]):</label>
+          <visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
+        </control>
+        <!-- Extras -->
+        <control type="list" id="30">
+          <animation effect="slide" end="0,105" condition="Skin.HasSetting(Preplay.DisableMediaFlags)">Conditional</animation>
+          <posy>740</posy>
+          <visible>!IsEmpty(ListItem.Property(PlexExtras))</visible>
+          <posx>0</posx>
+          <width>1107</width>
+          <height>198</height>
+          <zorder>10</zorder>
+          <onleft>30</onleft>
+          <onright>30</onright>
+          <onup>9000</onup>
+          <ondown>9000</ondown>
+          <pagecontrol>6111</pagecontrol>
+          <scrolltime>200</scrolltime>
+          <orientation>horizontal</orientation>
+          <itemlayout height="198" width="369">
+            <!-- Extra Thumb -->
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>369</width>
+              <height>198</height>
+              <aspectratio scalediffuse="false">scale</aspectratio>
+              <colordiffuse>BAffffff</colordiffuse>
+              <texture>$INFO[ListItem.Art(thumb)]</texture>
+            </control>
+            <!-- Text Label -->
+            <control type="image">
+              <posx>0</posx>
+              <posy>98</posy>
+              <width>369</width>
+              <height>100</height>
+              <texture>homewidgets/label.png</texture>
+              <fadetime>400</fadetime>
+            </control>
+            <control type="label">
+              <posx>184</posx>
+              <posy>148</posy>
+              <width>329</width>
+              <height>30</height>
+              <align>center</align>
+              <aligny>center</aligny>
+              <font>font12_title</font>
+              <wrapmultiline>true</wrapmultiline>
+              <textcolor>lightgrey</textcolor>
+              <shadowcolor>black</shadowcolor>
+              <label>$INFO[ListItem.Label]</label>
+            </control>
+            <!-- Extra Duration -->
+            <control type="label">
+              <posx>351</posx>
+              <posy>18</posy>
+              <width>369</width>
+              <height>30</height>
+              <align>right</align>
+              <aligny>center</aligny>
+              <font>font12_title</font>
+              <textcolor>lightgrey</textcolor>
+              <shadowcolor>black</shadowcolor>
+              <label>$INFO[ListItem.DurationStr]</label>
+            </control>
+            <!-- Extra Type Icon -->
+            <control type="image">
+              <posx>18</posx>
+              <posy>18</posy>
+              <width>37</width>
+              <height>37</height>
+              <texture>$INFO[ListItem.Property(extraTypeStr)].png</texture>
+              <fadetime>400</fadetime>
+            </control>
+          </itemlayout>
+          <focusedlayout height="198" width="369">
+            <control type="group">
+              <animation type="Focus" reversible="false">
+                <effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto"/>
+              </animation>
+              <!-- Extra Thumb -->
+              <control type="image">
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>369</width>
+                <height>198</height>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture>$INFO[ListItem.Art(thumb)]</texture>
+                <bordersize>8</bordersize>
+              </control>
+              <!-- Text Label -->
+              <control type="image">
+                <posx>0</posx>
+                <posy>98</posy>
+                <width>369</width>
+                <height>100</height>
+                <texture>homewidgets/label.png</texture>
+                <fadetime>400</fadetime>
+              </control>
+              <control type="label">
+                <posx>184</posx>
+                <posy>148</posy>
+                <width>329</width>
+                <height>30</height>
+                <align>center</align>
+                <aligny>center</aligny>
+                <font>font12_title</font>
+                <wrapmultiline>true</wrapmultiline>
+                <textcolor>$VAR[Colour_PreplayHighlightColourVar]</textcolor>
+                <shadowcolor>black</shadowcolor>
+                <label>$INFO[ListItem.Label]</label>
+              </control>
+              <!-- Extra Duration -->
+              <control type="label">
+                <posx>351</posx>
+                <posy>18</posy>
+                <width>369</width>
+                <height>30</height>
+                <align>right</align>
+                <aligny>center</aligny>
+                <font>font12_title</font>
+                <textcolor>$VAR[Colour_PreplayHighlightColourVar]</textcolor>
+                <shadowcolor>black</shadowcolor>
+                <label>$INFO[ListItem.DurationStr]</label>
+              </control>
+              <!-- Extra Type Icon -->
+              <control type="image">
+                <posx>18</posx>
+                <posy>18</posy>
+                <width>37</width>
+                <height>37</height>
+                <texture>$INFO[ListItem.Property(extraTypeStr)].png</texture>
+                <fadetime>400</fadetime>
+                <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+              </control>
+              <!-- Highlight -->
+              <control type="image">
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>369</width>
+                <height>198</height>
+                <aspectratio scalediffuse="false">scale</aspectratio>
+                <texture>empty.png</texture>
+                <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+                <bordersize>8</bordersize>
+                <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+              </control>
+            </control>
+          </focusedlayout>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+          <posx>-37</posx>
+          <posy>970</posy>
+          <width>1188</width>
+          <height>2</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+        <!-- Media Flags -->
+        <control type="grouplist">
+          <visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+          <posx>-37</posx>
+          <posy>970</posy>
+          <width>1188</width>
+          <height>90</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <itemgap>0</itemgap>
+          <orientation>horizontal</orientation>
+          <!-- Video Resolution Flag -->
+          <control type="image">
+            <width>196</width>
+            <include>MediaFlagVars</include>
+            <texture align="center" aligny="center" fallback="flags/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
+          </control>
+          <!-- Item Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- Video Codec Flag -->
+          <control type="image">
+            <width>196</width>
+            <include>MediaFlagVars</include>
+            <texture align="center" aligny="center" fallback="flags/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
+          </control>
+          <!-- Item Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- Aspect Ratio Flag -->
+          <control type="image">
+            <width>196</width>
+            <include>MediaFlagVars</include>
+            <texture align="center" aligny="center" fallback="flags/135x90/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag_135x90]</texture>
+          </control>
+          <!-- Item Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- Framerate Flag -->
+          <control type="image">
+            <width>196</width>
+            <include>MediaFlagVars</include>
+            <texture align="center" aligny="center" fallback="flags/135x90/framerate/default.png">$VAR[FramerateFlag_135x90]</texture>
+          </control>
+          <!-- Item Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- Audio Codec -->
+          <control type="image">
+            <width>196</width>
+            <include>MediaFlagVars</include>
+            <texture align="center" aligny="center" fallback="flags/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
+          </control>
+          <!-- Item Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>90</height>
+            <texture border="1">separator3.png</texture>
+          </control>
+          <!-- Audio Channels Flag -->
+          <control type="image">
+            <width>196</width>
+            <include>MediaFlagVars</include>
+            <texture align="center" aligny="center" fallback="flags/135x90/channels/0.png">$VAR[AudioChannelsFlag_135x90]</texture>
+          </control>
+        </control>
+        <!-- Item Separator -->
+        <control type="image">
+          <visible>!Skin.HasSetting(Preplay.DisableMediaFlags)</visible>
+          <posy>90</posy>
+          <width>1188</width>
+          <height>2</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+      </control>
+      <!-- Preplay Menu -->
+      <control type="group">
+        <visible/>
+        <posx>3</posx>
+        <posy>0</posy>
+        <control type="grouplist" id="9000">
+          <animation effect="slide" end="0,-102" time="0" condition="!IsEmpty(ListItem.Property(PlexExtras))">Conditional</animation>
+          <posx>1</posx>
+          <posy>510</posy>
+          <width>1192</width>
+          <height>60</height>
+          <onleft>9000</onleft>
+          <onright>9000</onright>
+          <onup>30</onup>
+          <ondown>30</ondown>
+          <align>left</align>
+          <orientation>horizontal</orientation>
+          <include>PreplayMenu</include>
+        </control>
+      </control>
+    </control>
+  </controls>
 </window>

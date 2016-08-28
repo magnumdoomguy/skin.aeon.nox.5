@@ -1,1003 +1,973 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
-	<!-- Video InfoWall -->
-	<include name="VideoInfoWall">
-		<control type="group">
-			<visible>Control.IsVisible(51) + !Window.IsActive(addoninformation)</visible>
-			<include>ViewAnimation</include>
-			<posy>-65</posy>
-			<control type="image">
-				<description>background image</description>
-				<posx>90</posx>
-				<posy>1080</posy>
-				<width>1740</width>
-				<height>964</height>
-				<texture border="40">panel_reflect.png</texture>
-			</control>
-			<control type="image">
-				<description>background image</description>
-				<posx>90</posx>
-				<posy>148</posy>
-				<width>1740</width>
-				<height>964</height>
-				<texture border="40">listpanel_back.png</texture>
-			</control>
-			<control type="panel" id="51">
-				<posx>120</posx>
-				<posy>179</posy>
-				<width>1000</width>
-				<height>900</height>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<onright>noop</onright>
-				<onup>51</onup>
-				<ondown>51</ondown>
-				<pagecontrol>60</pagecontrol>
-				<preloaditems>2</preloaditems>
-				<viewtype label="InfoWall">icons</viewtype>
-				<scrolltime tween="quadratic" easing="out">300</scrolltime>
-				<visible>[Container.Content(tvshows) | Container.Content(movies)] + ![Container.PlexContent(Clips) | Container.PlexContent(homemovies) | Container.PlexContent(Folders) | Container.PlexContent(Folder)]</visible>
-				<itemlayout height="300" width="200">
-					<control type="image">
-						<visible>!Skin.HasTheme(WhiteFlat)</visible>
-						<width>200</width>
-						<height>300</height>
-						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-						<bordersize>2</bordersize>
-						<colordiffuse>BAffffff</colordiffuse>
-					</control>
-					<!-- WhiteFlat - Non Selected Thumbnail Posters -->
-					<control type="image">
-						<visible>Skin.HasTheme(WhiteFlat)</visible>
-						<width>200</width>
-						<height>300</height>
-						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-						<bordersize>2</bordersize>						
-						<colordiffuse>BFababab</colordiffuse> 
-					</control>
-					<!-- End -->
-
-					<!-- Watched Status Ribbon -->
-					<control type="image">
-						<posx>120</posx>
-						<posy>0</posy>
-						<width>80</width>
-						<height>80</height>
-						<texture>$VAR[OverlayVar]</texture>
-						<aspectratio align="center" aligny="top">keep</aspectratio>
-						<bordersize>1</bordersize>
-						<visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
-					</control>
-					<!-- WhiteFlat - Watched Status Ribbon -->
-					<control type="image">
-						<posx>1</posx>
-						<posy>293</posy>
-						<width>198</width>
-						<height>6</height>						
-						<aspectratio>stretch</aspectratio>
-						<texture>$VAR[OverlayVar]</texture>
-                		<animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
-						<bordersize>1</bordersize>
-						<visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
-					</control>
-					<!-- End -->
-
-					<!-- Watched Status Upper Circle -->
-					<control type="image">
-						<posx>149</posx>
-						<posy>15</posy>
-						<width>36</width>
-						<height>36</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
-						<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-					</control>
-
-					<!-- Unwatched Episodes Upper -->
-					<control type="group">
-						<posx>15</posx>
-						<posy>15</posy>
-						<include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-					</control>
-
-					<!-- Watched Status Lower Circle -->
-					<control type="image">
-						<posx>149</posx>
-						<posy>249</posy>
-						<width>36</width>
-						<height>36</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[OverlayVar]</texture>
-						<colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
-						<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-					</control>
-
-					<!-- Unwatched Episodes Lower -->
-					<control type="group">
-						<posx>15</posx>
-						<posy>249</posy>
-						<include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-					</control>
-				</itemlayout>
-				<focusedlayout heigth="300" width="200">
-					<control type="group">
-						<animation type="Focus">
-							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-						</animation>
-						
-						<!-- Thumbnail -->
-						<control type="image">
-							<visible>!Skin.HasTheme(WhiteFlat)</visible>
-							<width>200</width>
-							<height>300</height>
-							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-							<bordersize>8</bordersize>
-						</control>
-						<!-- WhiteFlat - Selected Movie Thumbnail-->
-						<control type="image">							
-							<visible>Skin.HasTheme(WhiteFlat)</visible>
-							<posy>-2</posy>
-							<posx>-1</posx>
-							<width>202</width>
-							<height>300</height>
-							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-							<bordersize>8</bordersize>
-						</control>					
-						<!-- End -->
-						
-						<control type="image">
-							<visible>!Skin.HasTheme(WhiteFlat)</visible>
-							<width>200</width>
-							<height>300</height>
-							<aspectratio>stretch</aspectratio>
-							<texture>empty.png</texture>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-							<bordersize>8</bordersize>
-							<colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
-						</control>
-						<!-- WhiteFlat -Selected Movie Overlay  -->
-						<control type="image">
-							<visible>Skin.HasTheme(WhiteFlat)</visible>
-							<posx>2</posx>
-							<posy>2</posy>
-							<width>196</width>
-							<height>295</height>
-							<aspectratio scalediffuse="false">scale</aspectratio>
-							<texture>empty.png</texture>
-							<bordertexture border="8">thumbs/thumbnail_focused_medium.png</bordertexture>							
-							<colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
-						</control>
-						<!-- End -->
-
-						<!-- Watched Status Ribbon -->
-						<control type="image">
-							<visible>!Skin.HasTheme(WhiteFlat)</visible>
-							<posx>120</posx>
-							<posy>5</posy>
-							<width>80</width>
-							<height>80</height>
-							<texture>$VAR[OverlayVar]</texture>
-							<aspectratio align="center" aligny="top">keep</aspectratio>
-							<bordersize>2</bordersize>
-							<visible>!Skin.HasSetting(Enable.Circles)</visible>
-						</control>
-						<!-- WhiteFlat - Watched Status Ribbon - Selected Movie-->
-						<control type="image">
-							<posx>2</posx>
-							<posy>294</posy>
-							<width>196</width>
-							<height>4</height>						
-							<aspectratio>stretch</aspectratio>
-							<texture>$VAR[OverlayVar]</texture>
-                			<animation effect="fade" end="100" condition="true">Conditional</animation>							
-							<visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
-						</control>						
-						<!-- End -->
-
-						<!-- Watched Status Circle Upper -->
-						<control type="image">
-							<posx>149</posx>
-							<posy>15</posy>
-							<width>36</width>
-							<height>36</height>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
-							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-						</control>
-
-						<!-- Unwatched Episodes Upper -->
-						<control type="group">
-							<posx>15</posx>
-							<posy>15</posy>
-							<include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-						</control>
-
-						<!-- Watched Status Circle Lower -->
-						<control type="image">
-							<posx>149</posx>
-							<posy>249</posy>
-							<width>36</width>
-							<height>36</height>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
-							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-						</control>
-
-						<!-- Unwatched Episodes Lower -->
-						<control type="group">
-							<posx>15</posx>
-							<posy>249</posy>
-							<include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-						</control>
-					</control>
-				</focusedlayout>
-			</control>
-			<control type="scrollbar" id="60">
-				<posx>104</posx>
-				<posy>179</posy>
-				<width>14</width>
-				<height>900</height>
-				<colordiffuse>55ffffff</colordiffuse>
-				<onright>50</onright>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<ondown>60</ondown>
-				<onup>60</onup>
-				<showonepage>false</showonepage>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-			</control>	
-
-			<!-- Fanart -->
-			<control type="image">
-				<posx>1120</posx>
-				<posy>179</posy>
-				<width>680</width>
-				<height>400</height>
-				<aspectratio>scale</aspectratio>
-				<texture>$INFO[ListItem.Art(fanart)]</texture>
-				<fadetime>400</fadetime>
-				<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-				<bordersize>2</bordersize>
-			</control>
-			<control type="label">
-				<visible>!Skin.HasTheme(WhiteFlat)</visible>
-				<posx>1120</posx>
-				<posy>580</posy>
-				<width>628</width>
-				<height>60</height>
-				<font>font16_title</font>
-				<textcolor>grey</textcolor>
-				<scroll>true</scroll>
-				<label>[B]$VAR[FloorLabelVar][/B]</label>
-				<textoffsetx>15</textoffsetx>
-			</control>
-			<!-- WhiteFlat - Movie Name -->
-			<control type="label">
-				<visible>Skin.HasTheme(WhiteFlat)</visible>
-				<posx>1120</posx>
-				<posy>580</posy>
-				<width>628</width>
-				<height>60</height>
-				<font>font16_title</font>
-				<textcolor>FF505050</textcolor>
-				<scroll>true</scroll>
-				<label>[B]$VAR[FloorLabelVar][/B]</label>
-				<textoffsetx>15</textoffsetx>
-			</control>
-			<!-- End -->
-
-			<!-- Resolution Flag -->
-			<control type="image">
-				<visible>!Skin.HasTheme(WhiteFlat)</visible>
-				<posx>1748</posx>
-				<posy>596</posy>
-				<width>42</width>
-				<height>28</height>
-				<aspectratio>keep</aspectratio>
-				<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
-			</control>
-			<!-- WhiteFlat - Resolution Flag -->
-			<control type="image">
-				<visible>Skin.HasTheme(WhiteFlat)</visible>
-				<posx>1748</posx>
-				<posy>596</posy>
-				<width>42</width>
-				<height>28</height>
-				<aspectratio>keep</aspectratio>
-				<texture colordiffuse="FF505050">$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
-			</control>
-			<!-- End  -->
-			
-			<control type="grouplist">
-				<posx>1135</posx>
-				<posy>640</posy>
-				<width>680</width>
-				<height>270</height>
-
-				<!-- Genre -->
-				<control type="label">
-					<label>$INFO[ListItem.Genre]</label>
-					<width>680</width>
-					<height>40</height>
-					<aligny>top</aligny>
-					<font>font14</font>
-					<textcolor>$VAR[Colour_InfoWallThemeColourVar]</textcolor>
-					<visible>!IsEmpty(ListItem.Genre)</visible>
-				</control>
-
-				<!-- Info -->
-				<control type="grouplist">
-					<visible>!Container.Content(tvshows)</visible>
-					<orientation>horizontal</orientation>
-					<width>680</width>
-					<height>40</height>
-					<align>left</align>
-					<aligny>center</aligny>
-
-					<!-- Year -->
-					<control type="label">
-						<width min="20" max="226">auto</width>
-						<height>40</height>
-						<align>left</align>
-						<aligny>center</aligny>
-						<font>font14</font>
-						<textcolor>grey2</textcolor>
-						<label>$INFO[ListItem.Year] [B]•[/B] </label>
-						<visible>!IsEmpty(ListItem.Year) + ListItem.Type(movie)</visible>
-					</control>
-
-					<!-- Date -->
-					<control type="label">
-						<width min="20" max="226">auto</width>
-						<height>40</height>
-						<align>left</align>
-						<aligny>center</aligny>
-						<font>font14</font>
-						<textcolor>grey2</textcolor>
-						<label>$INFO[ListItem.Date] [B]•[/B] </label>
-						<visible>!IsEmpty(Container(11000).ListItem.Date) + ListItem.Type(episode)</visible>
-					</control>
-
-					<!-- User Rating -->
-					<control type="label">
-						<width min="20" max="299">auto</width>
-						<height>40</height>
-						<textcolor>$VAR[Colour_InfoWallThemeColourVar]</textcolor>
-						<align>left</align>
-						<aligny>center</aligny>
-						<font>font14</font>
-						<textcolor>grey2</textcolor>
-						<label>$VAR[RatingVar] [COLOR white2][B]•[/B][/COLOR] </label>
-						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-
-					<!-- Standard Rating -->
-					<control type="label">
-						<width min="20" max="299">auto</width>
-						<height>40</height>
-						<align>left</align>
-						<aligny>center</aligny>
-						<label>$VAR[RatingVar] [B]•[/B] </label>
-						<font>font14</font>
-						<textcolor>grey2</textcolor>
-						<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-					</control>
-					
-					<!-- IMDb Rating -->
-					<control type="image">
-						<width>51</width>
-						<height>40</height>
-						<align>left</align>
-						<aligny>center</aligny>
-						<texture>imdb_51x40.png</texture>
-						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-					</control>
-					<control type="label">
-						<width min="20" max="299">auto</width>
-						<height>40</height>
-						<align>left</align>
-						<aligny>center</aligny>
-						<label> $INFO[ListItem.Property(rating)] [B]•[/B] </label>
-						<font>font14</font>
-						<textcolor>grey2</textcolor>
-						<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-					</control>
-
-					<!-- Rotten Tomato Ratings -->
-					<control type="image">
-						<width>32</width>
-						<height>40</height>
-						<align>left</align>
-						<aligny>center</aligny>
-						<texture>rottentomatoes/32x32/$INFO[ListItem.Property(ratingImage)]</texture>
-						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-					<control type="label">
-						<height>40</height>
-						<width min="20" max="121">auto</width>
-						<aligny>center</aligny>
-						<font>font14</font>
-						<textcolor>grey2</textcolor>
-						<label>$INFO[ListItem.Property(ratingPercent)]%  </label>
-						<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-					<control type="image">
-						<width>32</width>
-						<height>40</height>
-						<aligny>center</aligny>
-						<texture>rottentomatoes/32x32/$INFO[ListItem.Property(audienceRatingImage)]</texture>
-						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-					<control type="label">
-						<height>40</height>
-						<width min="20" max="121">auto</width>
-						<aligny>center</aligny>
-						<font>font14</font>
-						<textcolor>grey2</textcolor>
-						<label>$INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
-						<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-
-					<!-- Duration On Deck -->
-					<control type="label">
-						<width min="20" max="299">auto</width>
-						<height>40</height>
-						<label>$VAR[DurationHrMinVar]</label>
-						<aligny>center</aligny>
-						<font>font14</font>
-						<textcolor>grey2</textcolor>
-					</control>
-				</control>
-
-				<!-- Display Number of Episodes -->
-				<control type="label">
-					<label>$LOCALIZE[42260]: $INFO[ListItem.episode] ($INFO[ListItem.Property(UnWatchedEpisodes)] $LOCALIZE[42261])</label>
-					<width>680</width>
-					<height>40</height>
-					<textoffset>0</textoffset>
-					<aligny>center</aligny>
-					<font>font14</font>
-					<textcolor>grey2</textcolor>
-					<visible>Container.Content(tvshows)</visible>
-				</control>
-			</control>
-
-			<!-- Plot -->
-			<control type="textbox">
-				<label>$VAR[PlotVar]</label>
-				<posy>734</posy>
-				<posx>1135</posx>
-				<width>650</width>
-				<height>342</height>
-				<font>font14_textbox</font>
-				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
-				<pagecontrol>61</pagecontrol>
-				<include>ShowCaseInfoPanelButtonsValues</include>
-			</control>
-
-			<!-- Scrollbar -->
-			<control type="scrollbar" id="61">
-				<posx>1797</posx>
-				<posy>734</posy>
-				<width>14</width>
-				<height>342</height>
-				<colordiffuse>55ffffff</colordiffuse>
-				<onleft>50</onleft>
-				<onright>SetProperty(MediaMenu,True,home)</onright>
-				<onright>SetFocus(9050,0)</onright>
-				<ondown>61</ondown>
-				<onup>61</onup>
-				<showonepage>false</showonepage>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-			</control>
-		</control>
-	</include>
-
-	<!-- Music InfoWall -->
-	<include name="MusicInfoWall">
-		<control type="group">
-			<visible>Control.IsVisible(51) + !Window.IsActive(addoninformation)</visible>
-			<include>ViewAnimation</include>
-			<posy>-65</posy>
-			<control type="image">
-				<description>background image</description>
-				<posx>140</posx>
-				<posy>1080</posy>
-				<width>1640</width>
-				<height>964</height>
-				<texture border="40">panel_reflect.png</texture>
-			</control>
-			<control type="image">
-				<description>background image</description>
-				<posx>140</posx>
-				<posy>148</posy>
-				<width>1640</width>
-				<height>964</height>
-				<texture border="40">listpanel_back.png</texture>
-			</control>
-			<control type="panel" id="51">
-				<posx>170</posx>
-				<posy>179</posy>
-				<width>900</width>
-				<height>900</height>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<onright>noop</onright>
-				<onup>51</onup>
-				<ondown>51</ondown>
-				<pagecontrol>60</pagecontrol>
-				<preloaditems>2</preloaditems>
-				<viewtype label="InfoWall">icons</viewtype>
-				<scrolltime tween="quadratic" easing="out">300</scrolltime>
-				<visible>Container.Content(albums) | Container.Content(artists) | Container.Content(addons)</visible>
-				<itemlayout height="300" width="300" condition="Container.Content(albums)">
-					<control type="image">
-						<width>300</width>
-						<height>300</height>
-						<aspectratio>scale</aspectratio>
-						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-						<bordersize>2</bordersize>
-						<colordiffuse>BAffffff</colordiffuse>
-					</control>
-				</itemlayout>
-				<focusedlayout height="300" width="300" condition="Container.Content(albums)">
-					<control type="group">
-						<animation type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
-						</animation>
-						<control type="image">
-							<width>300</width>
-							<height>300</height>
-							<aspectratio>scale</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-							<bordersize>8</bordersize>
-						</control>
-						<control type="image">
-							<width>300</width>
-							<height>300</height>
-							<aspectratio>scale</aspectratio>
-							<texture>empty.png</texture>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-							<bordersize>8</bordersize>
-							<colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
-						</control>
-					</control>
-				</focusedlayout>
-				<itemlayout height="300" width="300" condition="Container.Content(artists)">
-					<control type="image">
-						<width>300</width>
-						<height>300</height>
-						<aspectratio>scale</aspectratio>
-						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-						<bordersize>2</bordersize>
-						<colordiffuse>BAffffff</colordiffuse>
-					</control>
-					<control type="image">
-						<width>300</width>
-						<height>300</height>
-						<texture>thumbs/poster_black.png</texture>
-						<bordersize>2</bordersize>
-					</control>
-					<control type="label">
-						<posx>150</posx>
-						<posy>260</posy>
-						<width>300</width>
-						<height>30</height>
-						<align>center</align>
-						<textoffsetx>15</textoffsetx>
-						<textcolor>grey2</textcolor>
-						<info>ListItem.Label</info>
-					</control>
-				</itemlayout>
-				<focusedlayout height="300" width="300" condition="Container.Content(artists)">
-					<control type="group">
-						<animation type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
-						</animation>
-						<control type="image">
-							<width>300</width>
-							<height>300</height>
-							<aspectratio>scale</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-							<bordersize>8</bordersize>
-						</control>
-						<control type="image">
-							<width>300</width>
-							<height>300</height>
-							<aspectratio>scale</aspectratio>
-							<texture>empty.png</texture>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-							<bordersize>8</bordersize>
-							<colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
-						</control>
-						<control type="group">
-							<control type="image">
-								<width>300</width>
-								<height>300</height>
-								<texture>thumbs/poster_black.png</texture>
-								<bordersize>8</bordersize>
-							</control>
-							<control type="label">
-								<posx>150</posx>
-								<posy>260</posy>
-								<width>300</width>
-								<height>30</height>
-								<align>center</align>
-								<textoffsetx>15</textoffsetx>
-								<textcolor>white</textcolor>
-								<info>ListItem.Label</info>
-							</control>
-						</control>
-					</control>
-				</focusedlayout>
-				<itemlayout height="300" width="300" condition="Container.Content(addons)">
-					<control type="image">
-						<width>300</width>
-						<height>300</height>
-						<aspectratio>scale</aspectratio>
-						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-						<bordersize>2</bordersize>
-						<colordiffuse>BAffffff</colordiffuse>
-					</control>
-					<control type="image">
-						<posx>200</posx>
-						<width>100</width>
-						<height>100</height>
-						<texture>overlays/addons/enabled.png</texture>
-						<aspectratio align="center" aligny="top">keep</aspectratio>
-						<visible>String.IsEqual(ListItem.Label2,$LOCALIZE[449])</visible>
-						<bordersize>2</bordersize>
-					</control>
-				</itemlayout>
-				<focusedlayout height="300" width="300" condition="Container.Content(addons)">
-					<control type="group">
-						<animation type="Focus" reversible="false">
-							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
-						</animation>
-						<control type="image">
-							<width>300</width>
-							<height>300</height>
-							<aspectratio>scale</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-							<bordersize>8</bordersize>
-						</control>
-						<control type="image">
-							<posx>200</posx>
-							<width>100</width>
-							<height>100</height>
-							<texture>overlays/addons/enabled.png</texture>
-							<aspectratio align="center" aligny="top">keep</aspectratio>
-							<visible>String.IsEqual(ListItem.Label2,$LOCALIZE[449])</visible>
-							<bordersize>8</bordersize>
-						</control>
-					</control>
-				</focusedlayout>
-			</control>
-			<control type="scrollbar" id="60">
-				<posx>154</posx>
-				<posy>179</posy>
-				<width>14</width>
-				<height>900</height>
-				<onright>noop</onright>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<ondown>60</ondown>
-				<onup>60</onup>
-				<showonepage>false</showonepage>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-			</control>
-			<control type="group">
-				<posx>1070</posx>
-				<posy>179</posy>
-				<control type="image">
-					<width>680</width>
-					<height>400</height>
-					<aspectratio>scale</aspectratio>
-					<texture>$INFO[ListItem.Art(fanart)]</texture>
-					<fadetime>300</fadetime>
-					<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-					<bordersize>2</bordersize>
-				</control>
-				<control type="label">
-					<posy>401</posy>
-					<width>628</width>
-					<height>60</height>
-					<font>font16_title_bold</font>
-					<textcolor>grey</textcolor>
-					<scroll>true</scroll>
-					<label>$VAR[FloorLabelVar]</label>
-					<textoffsetx>15</textoffsetx>
-				</control>
-				<control type="button">
-					<posy>461</posy>
-					<width>680</width>
-					<label>$INFO[ListItem.Artist]$INFO[ListItem.Year, • ,][CR][COLOR $VAR[Colour_InfoWallThemeColourVar]]$INFO[ListItem.Genre][/COLOR]</label>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>Container.Content(albums)</visible>
-				</control>
-				<control type="button">
-					<posy>461</posy>
-					<width>680</width>
-					<label>$INFO[ListItem.Genre]</label>
-					<height>50</height>
-					<width>501</width>
-					<textoffsetx>15</textoffsetx>
-					<aligny>top</aligny>
-					<font>font14</font>
-					<textcolor>$VAR[Colour_InfoWallThemeColourVar]</textcolor>
-					<texturefocus border="1">separator5.png</texturefocus>
-					<texturenofocus border="1">separator5.png</texturenofocus>
-					<onclick>noop</onclick>
-					<visible>Container.Content(artists)</visible>
-				</control>
-				<control type="button">
-					<posy>461</posy>
-					<width>680</width>
-					<label>$INFO[ListItem.Property(Addon.Creator),,[CR]]$INFO[ListItem.Property(Addon.Version)]</label>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>Container.Content(addons)</visible>
-				</control>
-				<control type="textbox">
-					<label>$INFO[ListItem.Property(summary)]</label>
-					<posy>555</posy>
-					<posx>15</posx>
-					<width>650</width>
-					<height>342</height>
-					<font>font14_textbox</font>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
-					<pagecontrol>61</pagecontrol>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>!Container.Content(artists) + !Skin.HasSetting(General.SmallPlotText)</visible>
-				</control>
-				<control type="textbox">
-					<label>$INFO[ListItem.Property(summary)]</label>
-					<posy>515</posy>
-					<posx>15</posx>
-					<width>650</width>
-					<height>358</height>
-					<font>font14_textbox</font>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
-					<pagecontrol>61</pagecontrol>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>Container.Content(artists) + !Skin.HasSetting(General.SmallPlotText)</visible>
-				</control>
-				<control type="textbox">
-					<label>$INFO[ListItem.Property(summary)]</label>
-					<posy>555</posy>
-					<posx>15</posx>
-					<width>650</width>
-					<height>342</height>
-					<font>font14_textbox_infowallmusic</font>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
-					<pagecontrol>61</pagecontrol>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>!Container.Content(artists) + Skin.HasSetting(General.SmallPlotText)</visible>
-				</control>
-				<control type="textbox">
-					<label>$INFO[ListItem.Property(summary)]</label>
-					<posy>515</posy>
-					<posx>15</posx>
-					<width>650</width>
-					<height>358</height>
-					<font>font14_textbox_infowallmusicalbums</font>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
-					<pagecontrol>61</pagecontrol>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>Container.Content(artists) + Skin.HasSetting(General.SmallPlotText)</visible>
-				</control>
-				<control type="scrollbar" id="61">
-					<posx>677</posx>
-					<posy>555</posy>
-					<width>14</width>
-					<height>342</height>
-					<onleft>50</onleft>
-					<onright>SetProperty(MediaMenu,True,home)</onright>
-					<onright>SetFocus(9050,0)</onright>
-					<ondown>61</ondown>
-					<onup>61</onup>
-					<showonepage>false</showonepage>
-					<texturesliderbackground>-</texturesliderbackground>
-					<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-					<visible>!Container.Content(artists)</visible>
-				</control>
-				<control type="scrollbar" id="61">
-					<posx>677</posx>
-					<posy>515</posy>
-					<width>14</width>
-					<height>382</height>
-					<onleft>50</onleft>
-					<onright>SetProperty(MediaMenu,True,home)</onright>
-					<onright>SetFocus(9050,0)</onright>
-					<ondown>61</ondown>
-					<onup>61</onup>
-					<showonepage>false</showonepage>
-					<texturesliderbackground>-</texturesliderbackground>
-					<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-					<visible>Container.Content(artists)</visible>
-				</control>
-			</control>
-		</control>
-	</include>
-
-	<!-- Addon InfoWall -->
-	<include name="AddonInfoWall">
-		<control type="group">
-			<visible>Control.IsVisible(51) + !Window.IsActive(addoninformation)</visible>
-			<include>ViewAnimation</include>
-			<posy>-65</posy>
-			<control type="image">
-				<description>background image</description>
-				<posx>140</posx>
-				<posy>1080</posy>
-				<width>1640</width>
-				<height>964</height>
-				<texture border="40">panel_reflect.png</texture>
-			</control>
-			<control type="image">
-				<description>background image</description>
-				<posx>140</posx>
-				<posy>148</posy>
-				<width>1640</width>
-				<height>964</height>
-				<texture border="40">listpanel_back.png</texture>
-			</control>
-			<control type="panel" id="51">
-				<posx>170</posx>
-				<posy>179</posy>
-				<width>900</width>
-				<height>900</height>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<onright>noop</onright>
-				<onup>51</onup>
-				<ondown>51</ondown>
-				<pagecontrol>60</pagecontrol>
-				<preloaditems>2</preloaditems>
-				<viewtype label="InfoWall">icons</viewtype>
-				<scrolltime tween="quadratic" easing="out">300</scrolltime>
-				<itemlayout height="300" width="300">
-					<control type="image">
-						<width>300</width>
-						<height>300</height>
-						<aspectratio>scale</aspectratio>
-						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-						<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-						<bordersize>2</bordersize>
-						<colordiffuse>BAffffff</colordiffuse>
-					</control>
-				</itemlayout>
-				<focusedlayout heigth="300" width="300">
-					<control type="group">
-						<animation type="Focus">
-							<effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-							<effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-						</animation>
-						<control type="image">
-							<width>300</width>
-							<height>300</height>
-							<aspectratio>scale</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-							<bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-							<bordersize>8</bordersize>
-						</control>
-					</control>
-				</focusedlayout>
-			</control>
-			<control type="scrollbar" id="60">
-				<posx>154</posx>
-				<posy>179</posy>
-				<width>14</width>
-				<height>900</height>
-				<colordiffuse>55ffffff</colordiffuse>
-				<onright>50</onright>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<ondown>60</ondown>
-				<onup>60</onup>
-				<showonepage>false</showonepage>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-			</control>
-			<control type="image">
-				<posx>1070</posx>
-				<posy>179</posy>
-				<width>680</width>
-				<height>400</height>
-				<aspectratio>scale</aspectratio>
-				<texture fallback="special://skin/backgrounds/default_settings.jpg">$INFO[ListItem.Art(fanart)]</texture>
-				<fadetime>400</fadetime>
-				<bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-				<bordersize>2</bordersize>
-			</control>
-			<control type="label">
-				<posx>1070</posx>
-				<posy>580</posy>
-				<width>680</width>
-				<height>60</height>
-				<font>font16_title</font>
-				<textcolor>grey</textcolor>
-				<scroll>true</scroll>
-				<label>[B]$VAR[FloorLabelVar][/B]</label>
-				<textoffsetx>15</textoffsetx>
-			</control>
-			<control type="grouplist">
-				<posx>1070</posx>
-				<posy>640</posy>
-				<width>680</width>
-				<height>270</height>
-				<control type="label">
-					<label>$INFO[ListItem.Property(Addon.Creator)]</label>
-					<width>680</width>
-					<height>40</height>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-				</control>
-				<control type="label">
-					<label>$INFO[ListItem.Property(Addon.Version)]</label>
-					<width>680</width>
-					<height>40</height>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-				</control>
-			</control>
-			<control type="textbox">
-				<label>$VAR[MusicPlotVar]</label>
-				<posy>734</posy>
-				<posx>1085</posx>
-				<width>650</width>
-				<height>342</height>
-				<font>font14_textbox</font>
-				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
-				<pagecontrol>61</pagecontrol>
-				<include>ShowCaseInfoPanelButtonsValues</include>
-			</control>
-			<control type="scrollbar" id="61">
-				<posx>1747</posx>
-				<posy>734</posy>
-				<width>14</width>
-				<height>342</height>
-				<colordiffuse>55ffffff</colordiffuse>
-				<onleft>50</onleft>
-				<onright>SetProperty(MediaMenu,True,home)</onright>
-				<onright>SetFocus(9050,0)</onright>
-				<ondown>61</ondown>
-				<onup>61</onup>
-				<showonepage>false</showonepage>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-			</control>
-		</control>
-	</include>
+  <!-- Video InfoWall -->
+  <include name="VideoInfoWall">
+    <control type="group">
+      <visible>Control.IsVisible(51) + !Window.IsActive(addoninformation)</visible>
+      <include>ViewAnimation</include>
+      <posy>-65</posy>
+      <control type="image">
+        <description>background image</description>
+        <posx>90</posx>
+        <posy>1080</posy>
+        <width>1740</width>
+        <height>964</height>
+        <texture border="40">panel_reflect.png</texture>
+      </control>
+      <control type="image">
+        <description>background image</description>
+        <posx>90</posx>
+        <posy>148</posy>
+        <width>1740</width>
+        <height>964</height>
+        <texture border="40">listpanel_back.png</texture>
+      </control>
+      <control type="panel" id="51">
+        <posx>120</posx>
+        <posy>179</posy>
+        <width>1000</width>
+        <height>900</height>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <onright>noop</onright>
+        <onup>51</onup>
+        <ondown>51</ondown>
+        <pagecontrol>60</pagecontrol>
+        <preloaditems>2</preloaditems>
+        <viewtype label="InfoWall">icons</viewtype>
+        <scrolltime tween="quadratic" easing="out">300</scrolltime>
+        <visible>[Container.Content(tvshows) | Container.Content(movies)] + ![Container.PlexContent(Clips) | Container.PlexContent(homemovies) | Container.PlexContent(Folders) | Container.PlexContent(Folder)]</visible>
+        <itemlayout height="300" width="200">
+          <control type="image">
+            <visible>!Skin.HasTheme(WhiteFlat)</visible>
+            <width>200</width>
+            <height>300</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>
+          <!-- WhiteFlat - Non Selected Thumbnail Posters -->
+          <control type="image">
+            <visible>Skin.HasTheme(WhiteFlat)</visible>
+            <width>200</width>
+            <height>300</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BFababab</colordiffuse>
+          </control>
+          <!-- End -->
+          <!-- Watched Status Ribbon -->
+          <control type="image">
+            <posx>120</posx>
+            <posy>0</posy>
+            <width>80</width>
+            <height>80</height>
+            <texture>$VAR[OverlayVar]</texture>
+            <aspectratio align="center" aligny="top">keep</aspectratio>
+            <bordersize>1</bordersize>
+            <visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
+          </control>
+          <!-- WhiteFlat - Watched Status Ribbon -->
+          <control type="image">
+            <posx>1</posx>
+            <posy>293</posy>
+            <width>198</width>
+            <height>6</height>
+            <aspectratio>stretch</aspectratio>
+            <texture>$VAR[OverlayVar]</texture>
+            <animation effect="fade" end="50" time="0" condition="true">Conditional</animation>
+            <bordersize>1</bordersize>
+            <visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+          </control>
+          <!-- End -->
+          <!-- Watched Status Upper Circle -->
+          <control type="image">
+            <posx>149</posx>
+            <posy>15</posy>
+            <width>36</width>
+            <height>36</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[OverlayVar]</texture>
+            <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
+            <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+          </control>
+          <!-- Unwatched Episodes Upper -->
+          <control type="group">
+            <posx>15</posx>
+            <posy>15</posy>
+            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+          </control>
+          <!-- Watched Status Lower Circle -->
+          <control type="image">
+            <posx>149</posx>
+            <posy>249</posy>
+            <width>36</width>
+            <height>36</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[OverlayVar]</texture>
+            <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
+            <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+          </control>
+          <!-- Unwatched Episodes Lower -->
+          <control type="group">
+            <posx>15</posx>
+            <posy>249</posy>
+            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+          </control>
+        </itemlayout>
+        <focusedlayout heigth="300" width="200">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+            </animation>
+            <!-- Thumbnail -->
+            <control type="image">
+              <visible>!Skin.HasTheme(WhiteFlat)</visible>
+              <width>200</width>
+              <height>300</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <!-- WhiteFlat - Selected Movie Thumbnail-->
+            <control type="image">
+              <visible>Skin.HasTheme(WhiteFlat)</visible>
+              <posy>-2</posy>
+              <posx>-1</posx>
+              <width>202</width>
+              <height>300</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <!-- End -->
+            <control type="image">
+              <visible>!Skin.HasTheme(WhiteFlat)</visible>
+              <width>200</width>
+              <height>300</height>
+              <aspectratio>stretch</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
+            </control>
+            <!-- WhiteFlat -Selected Movie Overlay  -->
+            <control type="image">
+              <visible>Skin.HasTheme(WhiteFlat)</visible>
+              <posx>2</posx>
+              <posy>2</posy>
+              <width>196</width>
+              <height>295</height>
+              <aspectratio scalediffuse="false">scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused_medium.png</bordertexture>
+              <colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
+            </control>
+            <!-- End -->
+            <!-- Watched Status Ribbon -->
+            <control type="image">
+              <visible>!Skin.HasTheme(WhiteFlat)</visible>
+              <posx>120</posx>
+              <posy>5</posy>
+              <width>80</width>
+              <height>80</height>
+              <texture>$VAR[OverlayVar]</texture>
+              <aspectratio align="center" aligny="top">keep</aspectratio>
+              <bordersize>2</bordersize>
+              <visible>!Skin.HasSetting(Enable.Circles)</visible>
+            </control>
+            <!-- WhiteFlat - Watched Status Ribbon - Selected Movie-->
+            <control type="image">
+              <posx>2</posx>
+              <posy>294</posy>
+              <width>196</width>
+              <height>4</height>
+              <aspectratio>stretch</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <animation effect="fade" end="100" condition="true">Conditional</animation>
+              <visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+            </control>
+            <!-- End -->
+            <!-- Watched Status Circle Upper -->
+            <control type="image">
+              <posx>149</posx>
+              <posy>15</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <!-- Unwatched Episodes Upper -->
+            <control type="group">
+              <posx>15</posx>
+              <posy>15</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+            <!-- Watched Status Circle Lower -->
+            <control type="image">
+              <posx>149</posx>
+              <posy>249</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <!-- Unwatched Episodes Lower -->
+            <control type="group">
+              <posx>15</posx>
+              <posy>249</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+          </control>
+        </focusedlayout>
+      </control>
+      <control type="scrollbar" id="60">
+        <posx>104</posx>
+        <posy>179</posy>
+        <width>14</width>
+        <height>900</height>
+        <colordiffuse>55ffffff</colordiffuse>
+        <onright>50</onright>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <ondown>60</ondown>
+        <onup>60</onup>
+        <showonepage>false</showonepage>
+        <texturesliderbackground>-</texturesliderbackground>
+        <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+        <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+      </control>
+      <!-- Fanart -->
+      <control type="image">
+        <posx>1120</posx>
+        <posy>179</posy>
+        <width>680</width>
+        <height>400</height>
+        <aspectratio>scale</aspectratio>
+        <texture>$INFO[ListItem.Art(fanart)]</texture>
+        <fadetime>400</fadetime>
+        <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+        <bordersize>2</bordersize>
+      </control>
+      <control type="label">
+        <visible>!Skin.HasTheme(WhiteFlat)</visible>
+        <posx>1120</posx>
+        <posy>580</posy>
+        <width>628</width>
+        <height>60</height>
+        <font>font16_title</font>
+        <textcolor>grey</textcolor>
+        <scroll>true</scroll>
+        <label>[B]$VAR[FloorLabelVar][/B]</label>
+        <textoffsetx>15</textoffsetx>
+      </control>
+      <!-- WhiteFlat - Movie Name -->
+      <control type="label">
+        <visible>Skin.HasTheme(WhiteFlat)</visible>
+        <posx>1120</posx>
+        <posy>580</posy>
+        <width>628</width>
+        <height>60</height>
+        <font>font16_title</font>
+        <textcolor>FF505050</textcolor>
+        <scroll>true</scroll>
+        <label>[B]$VAR[FloorLabelVar][/B]</label>
+        <textoffsetx>15</textoffsetx>
+      </control>
+      <!-- End -->
+      <!-- Resolution Flag -->
+      <control type="image">
+        <visible>!Skin.HasTheme(WhiteFlat)</visible>
+        <posx>1748</posx>
+        <posy>596</posy>
+        <width>42</width>
+        <height>28</height>
+        <aspectratio>keep</aspectratio>
+        <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+      </control>
+      <!-- WhiteFlat - Resolution Flag -->
+      <control type="image">
+        <visible>Skin.HasTheme(WhiteFlat)</visible>
+        <posx>1748</posx>
+        <posy>596</posy>
+        <width>42</width>
+        <height>28</height>
+        <aspectratio>keep</aspectratio>
+        <texture colordiffuse="FF505050">$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+      </control>
+      <!-- End  -->
+      <control type="grouplist">
+        <posx>1135</posx>
+        <posy>640</posy>
+        <width>680</width>
+        <height>270</height>
+        <!-- Genre -->
+        <control type="label">
+          <label>$INFO[ListItem.Genre]</label>
+          <width>680</width>
+          <height>40</height>
+          <aligny>top</aligny>
+          <font>font14</font>
+          <textcolor>$VAR[Colour_InfoWallThemeColourVar]</textcolor>
+          <visible>!IsEmpty(ListItem.Genre)</visible>
+        </control>
+        <!-- Info -->
+        <control type="grouplist">
+          <visible>!Container.Content(tvshows)</visible>
+          <orientation>horizontal</orientation>
+          <width>680</width>
+          <height>40</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <!-- Year -->
+          <control type="label">
+            <width min="20" max="226">auto</width>
+            <height>40</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <font>font14</font>
+            <textcolor>grey2</textcolor>
+            <label>$INFO[ListItem.Year] [B]•[/B] </label>
+            <visible>!IsEmpty(ListItem.Year) + ListItem.Type(movie)</visible>
+          </control>
+          <!-- Date -->
+          <control type="label">
+            <width min="20" max="226">auto</width>
+            <height>40</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <font>font14</font>
+            <textcolor>grey2</textcolor>
+            <label>$INFO[ListItem.Date] [B]•[/B] </label>
+            <visible>!IsEmpty(Container(11000).ListItem.Date) + ListItem.Type(episode)</visible>
+          </control>
+          <!-- User Rating -->
+          <control type="label">
+            <width min="20" max="299">auto</width>
+            <height>40</height>
+            <textcolor>$VAR[Colour_InfoWallThemeColourVar]</textcolor>
+            <align>left</align>
+            <aligny>center</aligny>
+            <font>font14</font>
+            <textcolor>grey2</textcolor>
+            <label>$VAR[RatingVar] [COLOR white2][B]•[/B][/COLOR] </label>
+            <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <!-- Standard Rating -->
+          <control type="label">
+            <width min="20" max="299">auto</width>
+            <height>40</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <label>$VAR[RatingVar] [B]•[/B] </label>
+            <font>font14</font>
+            <textcolor>grey2</textcolor>
+            <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <!-- IMDb Rating -->
+          <control type="image">
+            <width>51</width>
+            <height>40</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <texture>imdb_51x40.png</texture>
+            <aspectratio align="left" aligny="center">keep</aspectratio>
+            <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <control type="label">
+            <width min="20" max="299">auto</width>
+            <height>40</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <label> $INFO[ListItem.Property(rating)] [B]•[/B] </label>
+            <font>font14</font>
+            <textcolor>grey2</textcolor>
+            <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <!-- Rotten Tomato Ratings -->
+          <control type="image">
+            <width>32</width>
+            <height>40</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <texture>rottentomatoes/32x32/$INFO[ListItem.Property(ratingImage)]</texture>
+            <aspectratio align="left" aligny="center">keep</aspectratio>
+            <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <control type="label">
+            <height>40</height>
+            <width min="20" max="121">auto</width>
+            <aligny>center</aligny>
+            <font>font14</font>
+            <textcolor>grey2</textcolor>
+            <label>$INFO[ListItem.Property(ratingPercent)]%  </label>
+            <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <control type="image">
+            <width>32</width>
+            <height>40</height>
+            <aligny>center</aligny>
+            <texture>rottentomatoes/32x32/$INFO[ListItem.Property(audienceRatingImage)]</texture>
+            <aspectratio align="left" aligny="center">keep</aspectratio>
+            <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <control type="label">
+            <height>40</height>
+            <width min="20" max="121">auto</width>
+            <aligny>center</aligny>
+            <font>font14</font>
+            <textcolor>grey2</textcolor>
+            <label>$INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+            <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <!-- Duration On Deck -->
+          <control type="label">
+            <width min="20" max="299">auto</width>
+            <height>40</height>
+            <label>$VAR[DurationHrMinVar]</label>
+            <aligny>center</aligny>
+            <font>font14</font>
+            <textcolor>grey2</textcolor>
+          </control>
+        </control>
+        <!-- Display Number of Episodes -->
+        <control type="label">
+          <label>$LOCALIZE[42260]: $INFO[ListItem.episode] ($INFO[ListItem.Property(UnWatchedEpisodes)] $LOCALIZE[42261])</label>
+          <width>680</width>
+          <height>40</height>
+          <textoffset>0</textoffset>
+          <aligny>center</aligny>
+          <font>font14</font>
+          <textcolor>grey2</textcolor>
+          <visible>Container.Content(tvshows)</visible>
+        </control>
+      </control>
+      <!-- Plot -->
+      <control type="textbox">
+        <label>$VAR[PlotVar]</label>
+        <posy>734</posy>
+        <posx>1135</posx>
+        <width>650</width>
+        <height>342</height>
+        <font>font14_textbox</font>
+        <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
+        <pagecontrol>61</pagecontrol>
+        <include>ShowCaseInfoPanelButtonsValues</include>
+      </control>
+      <!-- Scrollbar -->
+      <control type="scrollbar" id="61">
+        <posx>1797</posx>
+        <posy>734</posy>
+        <width>14</width>
+        <height>342</height>
+        <colordiffuse>55ffffff</colordiffuse>
+        <onleft>50</onleft>
+        <onright>SetProperty(MediaMenu,True,home)</onright>
+        <onright>SetFocus(9050,0)</onright>
+        <ondown>61</ondown>
+        <onup>61</onup>
+        <showonepage>false</showonepage>
+        <texturesliderbackground>-</texturesliderbackground>
+        <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+        <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+      </control>
+    </control>
+  </include>
+  <!-- Music InfoWall -->
+  <include name="MusicInfoWall">
+    <control type="group">
+      <visible>Control.IsVisible(51) + !Window.IsActive(addoninformation)</visible>
+      <include>ViewAnimation</include>
+      <posy>-65</posy>
+      <control type="image">
+        <description>background image</description>
+        <posx>140</posx>
+        <posy>1080</posy>
+        <width>1640</width>
+        <height>964</height>
+        <texture border="40">panel_reflect.png</texture>
+      </control>
+      <control type="image">
+        <description>background image</description>
+        <posx>140</posx>
+        <posy>148</posy>
+        <width>1640</width>
+        <height>964</height>
+        <texture border="40">listpanel_back.png</texture>
+      </control>
+      <control type="panel" id="51">
+        <posx>170</posx>
+        <posy>179</posy>
+        <width>900</width>
+        <height>900</height>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <onright>noop</onright>
+        <onup>51</onup>
+        <ondown>51</ondown>
+        <pagecontrol>60</pagecontrol>
+        <preloaditems>2</preloaditems>
+        <viewtype label="InfoWall">icons</viewtype>
+        <scrolltime tween="quadratic" easing="out">300</scrolltime>
+        <visible>Container.Content(albums) | Container.Content(artists) | Container.Content(addons)</visible>
+        <itemlayout height="300" width="300" condition="Container.Content(albums)">
+          <control type="image">
+            <width>300</width>
+            <height>300</height>
+            <aspectratio>scale</aspectratio>
+            <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>
+        </itemlayout>
+        <focusedlayout height="300" width="300" condition="Container.Content(albums)">
+          <control type="group">
+            <animation type="Focus" reversible="false">
+              <effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto"/>
+              <effect type="fade" start="80" end="100" time="300" tween="sine" easing="in"/>
+            </animation>
+            <control type="image">
+              <width>300</width>
+              <height>300</height>
+              <aspectratio>scale</aspectratio>
+              <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <width>300</width>
+              <height>300</height>
+              <aspectratio>scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="300" width="300" condition="Container.Content(artists)">
+          <control type="image">
+            <width>300</width>
+            <height>300</height>
+            <aspectratio>scale</aspectratio>
+            <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>
+          <control type="image">
+            <width>300</width>
+            <height>300</height>
+            <texture>thumbs/poster_black.png</texture>
+            <bordersize>2</bordersize>
+          </control>
+          <control type="label">
+            <posx>150</posx>
+            <posy>260</posy>
+            <width>300</width>
+            <height>30</height>
+            <align>center</align>
+            <textoffsetx>15</textoffsetx>
+            <textcolor>grey2</textcolor>
+            <info>ListItem.Label</info>
+          </control>
+        </itemlayout>
+        <focusedlayout height="300" width="300" condition="Container.Content(artists)">
+          <control type="group">
+            <animation type="Focus" reversible="false">
+              <effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto"/>
+              <effect type="fade" start="80" end="100" time="300" tween="sine" easing="in"/>
+            </animation>
+            <control type="image">
+              <width>300</width>
+              <height>300</height>
+              <aspectratio>scale</aspectratio>
+              <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <width>300</width>
+              <height>300</height>
+              <aspectratio>scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <colordiffuse>$VAR[Colour_InfoWallHighlightColourVar]</colordiffuse>
+            </control>
+            <control type="group">
+              <control type="image">
+                <width>300</width>
+                <height>300</height>
+                <texture>thumbs/poster_black.png</texture>
+                <bordersize>8</bordersize>
+              </control>
+              <control type="label">
+                <posx>150</posx>
+                <posy>260</posy>
+                <width>300</width>
+                <height>30</height>
+                <align>center</align>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>white</textcolor>
+                <info>ListItem.Label</info>
+              </control>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="300" width="300" condition="Container.Content(addons)">
+          <control type="image">
+            <width>300</width>
+            <height>300</height>
+            <aspectratio>scale</aspectratio>
+            <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>
+          <control type="image">
+            <posx>200</posx>
+            <width>100</width>
+            <height>100</height>
+            <texture>overlays/addons/enabled.png</texture>
+            <aspectratio align="center" aligny="top">keep</aspectratio>
+            <visible>String.IsEqual(ListItem.Label2,$LOCALIZE[449])</visible>
+            <bordersize>2</bordersize>
+          </control>
+        </itemlayout>
+        <focusedlayout height="300" width="300" condition="Container.Content(addons)">
+          <control type="group">
+            <animation type="Focus" reversible="false">
+              <effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto"/>
+              <effect type="fade" start="80" end="100" time="300" tween="sine" easing="in"/>
+            </animation>
+            <control type="image">
+              <width>300</width>
+              <height>300</height>
+              <aspectratio>scale</aspectratio>
+              <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <posx>200</posx>
+              <width>100</width>
+              <height>100</height>
+              <texture>overlays/addons/enabled.png</texture>
+              <aspectratio align="center" aligny="top">keep</aspectratio>
+              <visible>String.IsEqual(ListItem.Label2,$LOCALIZE[449])</visible>
+              <bordersize>8</bordersize>
+            </control>
+          </control>
+        </focusedlayout>
+      </control>
+      <control type="scrollbar" id="60">
+        <posx>154</posx>
+        <posy>179</posy>
+        <width>14</width>
+        <height>900</height>
+        <onright>noop</onright>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <ondown>60</ondown>
+        <onup>60</onup>
+        <showonepage>false</showonepage>
+        <texturesliderbackground>-</texturesliderbackground>
+        <texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+        <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+      </control>
+      <control type="group">
+        <posx>1070</posx>
+        <posy>179</posy>
+        <control type="image">
+          <width>680</width>
+          <height>400</height>
+          <aspectratio>scale</aspectratio>
+          <texture>$INFO[ListItem.Art(fanart)]</texture>
+          <fadetime>300</fadetime>
+          <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+          <bordersize>2</bordersize>
+        </control>
+        <control type="label">
+          <posy>401</posy>
+          <width>628</width>
+          <height>60</height>
+          <font>font16_title_bold</font>
+          <textcolor>grey</textcolor>
+          <scroll>true</scroll>
+          <label>$VAR[FloorLabelVar]</label>
+          <textoffsetx>15</textoffsetx>
+        </control>
+        <control type="button">
+          <posy>461</posy>
+          <width>680</width>
+          <label>$INFO[ListItem.Artist]$INFO[ListItem.Year, • ,][CR][COLOR $VAR[Colour_InfoWallThemeColourVar]]$INFO[ListItem.Genre][/COLOR]</label>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>Container.Content(albums)</visible>
+        </control>
+        <control type="button">
+          <posy>461</posy>
+          <width>680</width>
+          <label>$INFO[ListItem.Genre]</label>
+          <height>50</height>
+          <width>501</width>
+          <textoffsetx>15</textoffsetx>
+          <aligny>top</aligny>
+          <font>font14</font>
+          <textcolor>$VAR[Colour_InfoWallThemeColourVar]</textcolor>
+          <texturefocus border="1">separator5.png</texturefocus>
+          <texturenofocus border="1">separator5.png</texturenofocus>
+          <onclick>noop</onclick>
+          <visible>Container.Content(artists)</visible>
+        </control>
+        <control type="button">
+          <posy>461</posy>
+          <width>680</width>
+          <label>$INFO[ListItem.Property(Addon.Creator),,[CR]]$INFO[ListItem.Property(Addon.Version)]</label>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>Container.Content(addons)</visible>
+        </control>
+        <control type="textbox">
+          <label>$INFO[ListItem.Property(summary)]</label>
+          <posy>555</posy>
+          <posx>15</posx>
+          <width>650</width>
+          <height>342</height>
+          <font>font14_textbox</font>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
+          <pagecontrol>61</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!Container.Content(artists) + !Skin.HasSetting(General.SmallPlotText)</visible>
+        </control>
+        <control type="textbox">
+          <label>$INFO[ListItem.Property(summary)]</label>
+          <posy>515</posy>
+          <posx>15</posx>
+          <width>650</width>
+          <height>358</height>
+          <font>font14_textbox</font>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
+          <pagecontrol>61</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>Container.Content(artists) + !Skin.HasSetting(General.SmallPlotText)</visible>
+        </control>
+        <control type="textbox">
+          <label>$INFO[ListItem.Property(summary)]</label>
+          <posy>555</posy>
+          <posx>15</posx>
+          <width>650</width>
+          <height>342</height>
+          <font>font14_textbox_infowallmusic</font>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
+          <pagecontrol>61</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!Container.Content(artists) + Skin.HasSetting(General.SmallPlotText)</visible>
+        </control>
+        <control type="textbox">
+          <label>$INFO[ListItem.Property(summary)]</label>
+          <posy>515</posy>
+          <posx>15</posx>
+          <width>650</width>
+          <height>358</height>
+          <font>font14_textbox_infowallmusicalbums</font>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
+          <pagecontrol>61</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>Container.Content(artists) + Skin.HasSetting(General.SmallPlotText)</visible>
+        </control>
+        <control type="scrollbar" id="61">
+          <posx>677</posx>
+          <posy>555</posy>
+          <width>14</width>
+          <height>342</height>
+          <onleft>50</onleft>
+          <onright>SetProperty(MediaMenu,True,home)</onright>
+          <onright>SetFocus(9050,0)</onright>
+          <ondown>61</ondown>
+          <onup>61</onup>
+          <showonepage>false</showonepage>
+          <texturesliderbackground>-</texturesliderbackground>
+          <texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+          <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+          <visible>!Container.Content(artists)</visible>
+        </control>
+        <control type="scrollbar" id="61">
+          <posx>677</posx>
+          <posy>515</posy>
+          <width>14</width>
+          <height>382</height>
+          <onleft>50</onleft>
+          <onright>SetProperty(MediaMenu,True,home)</onright>
+          <onright>SetFocus(9050,0)</onright>
+          <ondown>61</ondown>
+          <onup>61</onup>
+          <showonepage>false</showonepage>
+          <texturesliderbackground>-</texturesliderbackground>
+          <texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+          <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+          <visible>Container.Content(artists)</visible>
+        </control>
+      </control>
+    </control>
+  </include>
+  <!-- Addon InfoWall -->
+  <include name="AddonInfoWall">
+    <control type="group">
+      <visible>Control.IsVisible(51) + !Window.IsActive(addoninformation)</visible>
+      <include>ViewAnimation</include>
+      <posy>-65</posy>
+      <control type="image">
+        <description>background image</description>
+        <posx>140</posx>
+        <posy>1080</posy>
+        <width>1640</width>
+        <height>964</height>
+        <texture border="40">panel_reflect.png</texture>
+      </control>
+      <control type="image">
+        <description>background image</description>
+        <posx>140</posx>
+        <posy>148</posy>
+        <width>1640</width>
+        <height>964</height>
+        <texture border="40">listpanel_back.png</texture>
+      </control>
+      <control type="panel" id="51">
+        <posx>170</posx>
+        <posy>179</posy>
+        <width>900</width>
+        <height>900</height>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <onright>noop</onright>
+        <onup>51</onup>
+        <ondown>51</ondown>
+        <pagecontrol>60</pagecontrol>
+        <preloaditems>2</preloaditems>
+        <viewtype label="InfoWall">icons</viewtype>
+        <scrolltime tween="quadratic" easing="out">300</scrolltime>
+        <itemlayout height="300" width="300">
+          <control type="image">
+            <width>300</width>
+            <height>300</height>
+            <aspectratio>scale</aspectratio>
+            <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>
+        </itemlayout>
+        <focusedlayout heigth="300" width="300">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+            </animation>
+            <control type="image">
+              <width>300</width>
+              <height>300</height>
+              <aspectratio>scale</aspectratio>
+              <texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+            </control>
+          </control>
+        </focusedlayout>
+      </control>
+      <control type="scrollbar" id="60">
+        <posx>154</posx>
+        <posy>179</posy>
+        <width>14</width>
+        <height>900</height>
+        <colordiffuse>55ffffff</colordiffuse>
+        <onright>50</onright>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <ondown>60</ondown>
+        <onup>60</onup>
+        <showonepage>false</showonepage>
+        <texturesliderbackground>-</texturesliderbackground>
+        <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+        <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+      </control>
+      <control type="image">
+        <posx>1070</posx>
+        <posy>179</posy>
+        <width>680</width>
+        <height>400</height>
+        <aspectratio>scale</aspectratio>
+        <texture fallback="special://skin/backgrounds/default_settings.jpg">$INFO[ListItem.Art(fanart)]</texture>
+        <fadetime>400</fadetime>
+        <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+        <bordersize>2</bordersize>
+      </control>
+      <control type="label">
+        <posx>1070</posx>
+        <posy>580</posy>
+        <width>680</width>
+        <height>60</height>
+        <font>font16_title</font>
+        <textcolor>grey</textcolor>
+        <scroll>true</scroll>
+        <label>[B]$VAR[FloorLabelVar][/B]</label>
+        <textoffsetx>15</textoffsetx>
+      </control>
+      <control type="grouplist">
+        <posx>1070</posx>
+        <posy>640</posy>
+        <width>680</width>
+        <height>270</height>
+        <control type="label">
+          <label>$INFO[ListItem.Property(Addon.Creator)]</label>
+          <width>680</width>
+          <height>40</height>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+        </control>
+        <control type="label">
+          <label>$INFO[ListItem.Property(Addon.Version)]</label>
+          <width>680</width>
+          <height>40</height>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+        </control>
+      </control>
+      <control type="textbox">
+        <label>$VAR[MusicPlotVar]</label>
+        <posy>734</posy>
+        <posx>1085</posx>
+        <width>650</width>
+        <height>342</height>
+        <font>font14_textbox</font>
+        <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
+        <pagecontrol>61</pagecontrol>
+        <include>ShowCaseInfoPanelButtonsValues</include>
+      </control>
+      <control type="scrollbar" id="61">
+        <posx>1747</posx>
+        <posy>734</posy>
+        <width>14</width>
+        <height>342</height>
+        <colordiffuse>55ffffff</colordiffuse>
+        <onleft>50</onleft>
+        <onright>SetProperty(MediaMenu,True,home)</onright>
+        <onright>SetFocus(9050,0)</onright>
+        <ondown>61</ondown>
+        <onup>61</onup>
+        <showonepage>false</showonepage>
+        <texturesliderbackground>-</texturesliderbackground>
+        <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+        <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+      </control>
+    </control>
+  </include>
 </includes>

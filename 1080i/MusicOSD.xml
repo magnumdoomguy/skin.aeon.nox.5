@@ -1,934 +1,888 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="120">
-	<defaultcontrol always="true">410</defaultcontrol>
-	<zorder>2</zorder>
-	<controls>
-
-		<!-- Set Default OSD Button -->
-		<control type="button" id="410">
-			<include>HiddenObject</include>
-			<onfocus>Dialog.Close(FullscreenInfo)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Playlists)">SetFocus(11)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Visualization)">SetFocus(500)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),VizSettings)">SetFocus(702)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Previous)">SetFocus(9)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Rewind)">SetFocus(3)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Stop)">SetFocus(5)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Fast Forward)">SetFocus(6)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Next)">SetFocus(10)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Random)">SetFocus(704)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Repeat)">SetFocus(707)</onfocus>
-			<onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Options)">SetFocus(706)</onfocus>
-			<onfocus condition="IsEmpty(Skin.String(MusicOSD.DefaultButton))">SetFocus(4)</onfocus>
-		</control>
-
-		<control type="group">
-			<visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
-			<include>Animation_OpenCloseFade</include>
-			<include>Animation_FadedByOSDSettings</include>
-			<include>Topbar</include>
-
-			<control type="group">
-				<include>VisibleFadeEffect</include>
-				<include>Animation_FadedByOSDSettings</include>
-
-				<!-- OSD Background -->	
-				<control type="image">
-					<posx>0</posx>
-					<posy>878</posy>
-					<width>1920</width>
-					<height>427</height>
-					<texture flipy="true" border="1,40,1,1">black.png</texture>
-					<visible>Skin.HasSetting(OSD.OpaqueBackground.Enable)</visible>
-				</control>
-				<control type="image">
-					<posx>0</posx>
-					<posy>853</posy>
-					<width>1920</width>
-					<height>427</height>
-					<texture flipy="true" border="1,40,1,1">topbar.png</texture>
-					<colordiffuse>E6FFFFFF</colordiffuse>
-				</control>
-
-				<!-- Spinning Disc -->
-				<control type="group">
-					<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle)) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					<posx>119</posx>
-					<posy>799</posy>
-					<width>286</width>
-					<height>286</height>
-
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="262,942" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="262,942" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="262,942" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="262,942" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="262,942" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="262,942" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="262,942" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="262,942" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="262,942" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="262,942" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="262,942" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-
-					<bordersize>30</bordersize>
-
-					<control type="image">
-						<width>286</width>
-						<height>286</height>
-						<aligny>top</aligny>
-						<aspectratio align="left">keep</aspectratio>
-						<fadetime>300</fadetime>
-						<texture diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
-						<bordersize>30</bordersize>
-					</control>
-					<control type="label">
-						<posx>78</posx>
-						<posy>50</posy>
-						<width>129</width>
-						<height>47</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<font>fontCDartistSmall</font>
-						<label>$INFO[MusicPlayer.Artist, ,]</label>
-						<textcolor>black</textcolor>
-						<wrapmultiline>true</wrapmultiline>
-					</control>
-					<control type="label">
-						<posx>78</posx>
-						<posy>190</posy>
-						<width>127</width>
-						<height>52</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<font>fontCDalbumSmall</font>
-						<label>$INFO[MusicPlayer.Album, ,]</label>
-						<textcolor>black</textcolor>
-						<wrapmultiline>true</wrapmultiline>
-					</control>
-				</control>
-
-				<!-- Spinning Disc with Clear Case -->
-				<control type="group">
-					<visible>IsEmpty(Skin.String(Music.SpinningDiscStyle)) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					<posx>139</posx>
-					<posy>826</posy>
-					<width>256</width>
-					<height>256</height>
-
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-
-					<bordersize>30</bordersize>
-
-					<control type="image">
-						<width>256</width>
-						<height>256</height>
-						<aligny>top</aligny>
-						<aspectratio align="left">keep</aspectratio>
-						<fadetime>300</fadetime>
-						<texture diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
-						<bordersize>30</bordersize>
-					</control>
-					<control type="label">
-						<posx>70</posx>
-						<posy>45</posy>
-						<width>115</width>
-						<height>42</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<font>fontCDartistClear</font>
-						<label>$INFO[MusicPlayer.Artist, ,]</label>
-						<textcolor>black</textcolor>
-						<wrapmultiline>true</wrapmultiline>
-					</control>
-					<control type="label">
-						<posx>70</posx>
-						<posy>170</posy>
-						<width>114</width>
-						<height>47</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<font>fontCDalbumClear</font>
-						<label>$INFO[MusicPlayer.Album, ,]</label>
-						<textcolor>black</textcolor>
-						<wrapmultiline>true</wrapmultiline>
-					</control>
-				</control>
-
-				<!-- CD Disc -->
-				<control type="image">
-					<visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),CD) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					<posx>119</posx>
-					<posy>799</posy>
-					<width>286</width>
-					<height>286</height>
-					<aligny>top</aligny>
-					<aspectratio align="left">keep</aspectratio>
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-					<texture diffuse="thumbs/cdart_mask.png">cdart/sd.png</texture>
-					<bordersize>30</bordersize>
-				</control>
-
-				<!-- CD Disc for Clear Case -->
-				<control type="image">
-					<visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),CD) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					<posx>139</posx>
-					<posy>826</posy>
-					<width>256</width>
-					<height>256</height>
-					<aligny>top</aligny>
-					<aspectratio align="left">keep</aspectratio>
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-					<texture diffuse="thumbs/cdart_mask.png">cdart/sd.png</texture>
-					<bordersize>30</bordersize>
-				</control>
-
-				<!-- Record Disc -->
-				<control type="image">
-					<visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),Record) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					<posx>119</posx>
-					<posy>799</posy>
-					<width>286</width>
-					<height>286</height>
-					<aligny>top</aligny>
-					<aspectratio align="left">keep</aspectratio>
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-					<texture>cdart/record.png</texture>
-					<bordersize>30</bordersize>
-				</control>
-
-				<!-- Record Disc for Clear Case -->
-				<control type="image">
-					<visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),Record) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					<posx>139</posx>
-					<posy>826</posy>
-					<width>256</width>
-					<height>256</height>
-					<aligny>top</aligny>
-					<aspectratio align="left">keep</aspectratio>
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-					<texture>cdart/record.png</texture>
-					<bordersize>30</bordersize>
-				</control>
-
-				<!-- Gold Record Disc -->
-				<control type="image">
-					<visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),Gold Record) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					<posx>119</posx>
-					<posy>799</posy>
-					<width>286</width>
-					<height>286</height>
-					<aligny>top</aligny>
-					<aspectratio align="left">keep</aspectratio>
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-					<texture>cdart/goldrecord.png</texture>
-					<bordersize>30</bordersize>
-				</control>
-
-				<!-- Gold Record Disc for Clear Case -->
-				<control type="image">
-					<visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),Gold Record) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					<posx>139</posx>
-					<posy>826</posy>
-					<width>256</width>
-					<height>256</height>
-					<aligny>top</aligny>
-					<aspectratio align="left">keep</aspectratio>
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-					<texture>cdart/goldrecord.png</texture>
-					<bordersize>30</bordersize>
-				</control>
-
-				<control type="group">
-
-					<!-- Poster -->
-					<control type="image">
-						<description>Poster</description>
-						<posx>18</posx>
-						<posy>803</posy>
-						<width>277</width>
-						<height>277</height>
-						<texture diffuse="thumbs/cdcover_mask2.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
-						<bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
-						<bordersize>20</bordersize>
-						<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-						<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>18</posx>
-						<posy>803</posy>
-						<width>277</width>
-						<height>277</height>
-						<texture diffuse="thumbs/cdcover_mask2.png">black.png</texture>
-						<bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>18</posx>
-						<posy>803</posy>
-						<width>277</width>
-						<height>277</height>
-						<texture diffuse="thumbs/cdcover_mask2.png">defaultmusicalbums.png</texture>
-						<bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>18</posx>
-						<posy>803</posy>
-						<width>277</width>
-						<height>277</height>
-						<texture diffuse="thumbs/cdcover_mask_aa.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
-						<bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
-						<bordersize>20</bordersize>
-						<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-						<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>18</posx>
-						<posy>803</posy>
-						<width>277</width>
-						<height>277</height>
-						<texture diffuse="thumbs/cdcover_mask_aa.png">black.png</texture>
-						<bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>18</posx>
-						<posy>803</posy>
-						<width>277</width>
-						<height>277</height>
-						<texture diffuse="thumbs/cdcover_mask_aa.png">defaultmusicalbums.png</texture>
-						<bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					</control>
-
-					<!-- Glass Case -->
-					<control type="image">
-						<description>Poster</description>
-						<posx>22</posx>
-						<posy>806</posy>
-						<width>271</width>
-						<height>271</height>
-						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
-						<bordersize>20</bordersize>
-						<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>22</posx>
-						<posy>806</posy>
-						<width>271</width>
-						<height>271</height>
-						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">black.png</texture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>22</posx>
-						<posy>806</posy>
-						<width>271</width>
-						<height>271</height>
-						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">defaultmusicalbums.png</texture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>
-					<control type="image">
-						<description>Glass Overlay</description>
-						<posx>18</posx>
-						<posy>803</posy>
-						<width>277</width>
-						<height>277</height>
-						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
-						<fadetime>200</fadetime>	
-						<bordersize>20</bordersize>
-						<texture>thumbs/boxes/square.png</texture>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass)</visible>													
-					</control>
-
-					<!-- CD Case -->
-					<control type="image">
-						<description>Poster</description>
-						<posx>20</posx>
-						<posy>804</posy>
-						<width>276</width>
-						<height>276</height>
-						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
-						<bordersize>20</bordersize>
-						<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>	
-					<control type="image">
-						<description>Poster</description>
-						<posx>20</posx>
-						<posy>804</posy>
-						<width>276</width>
-						<height>276</height>
-						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">black.png</texture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>20</posx>
-						<posy>804</posy>
-						<width>276</width>
-						<height>276</height>
-						<texture diffuse="thumbs/boxes/cdcover_mask_aa.png">defaultmusicalbums.png</texture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>
-					<control type="image">
-						<description>CD Overlay</description>
-						<posx>18</posx>
-						<posy>803</posy>
-						<width>277</width>
-						<height>277</height>
-						<bordersize>20</bordersize>
-						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
-						<fadetime>200</fadetime>	
-						<texture>thumbs/boxes/cd.png</texture>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD)</visible>												
-					</control>	
-
-					<!-- Clear Cases -->
-					<control type="image">
-						<description>Poster</description>
-						<posx>41</posx>
-						<posy>830</posy>
-						<width>249</width>
-						<height>246</height>
-						<texture>$INFO[MusicPlayer.offset(0).Cover]</texture>
-						<bordersize>20</bordersize>
-						<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>41</posx>
-						<posy>830</posy>
-						<width>249</width>
-						<height>246</height>
-						<texture>black.png</texture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>
-					<control type="image">
-						<description>Poster</description>
-						<posx>41</posx>
-						<posy>830</posy>
-						<width>249</width>
-						<height>246</height>
-						<texture>defaultmusicalbums.png</texture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">stretch</aspectratio>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
-					</control>
-					<control type="image">
-						<description>Clear Overlay</description>
-						<posx>18</posx>
-						<posy>826</posy>
-						<width>277</width>
-						<height>254</height>
-						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
-						<fadetime>200</fadetime>	
-						<texture>cdcase.png</texture>
-						<bordersize>20</bordersize>
-						<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
-					</control>
-				</control>
-
-				<!-- Progress Bar -->
-				<control type="progress" id="23">
-					<description>ProgressbarCache</description>
-					<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<posx>393</posx>
-					<posy>953</posy>
-					<width>1489</width>
-					<height>22</height>
-					<info>Player.ProgressCache</info>
-					<reveal>true</reveal>
-					<texturebg border="2">osd/texturebg.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture_cache.png</midtexture>
-					<righttexture>-</righttexture>
-					<overlaytexture>-</overlaytexture>
-				</control>
-				<control type="progress" id="23">
-					<description>Progressbar</description>
-					<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<posx>393</posx>
-					<posy>954</posy>
-					<width>1489</width>
-					<height>20</height>
-					<info>Player.Progress</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-
-				<control type="progress" id="23">
-					<description>ProgressbarCache</description>
-					<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<posx>393</posx>
-					<posy>953</posy>
-					<width>1559</width>
-					<height>22</height>
-					<info>Player.ProgressCache</info>
-					<reveal>true</reveal>
-					<texturebg border="2">osd/texturebg.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture_cache.png</midtexture>
-					<righttexture>-</righttexture>
-					<overlaytexture>-</overlaytexture>
-				</control>
-				<control type="progress" id="23">
-					<description>Progressbar</description>
-					<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<posx>393</posx>
-					<posy>954</posy>
-					<width>1559</width>
-					<height>20</height>
-					<info>Player.Progress</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-
-				<control type="progress" id="23">
-					<description>ProgressbarCache</description>
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<posx>393</posx>
-					<posy>953</posy>
-					<width>1827</width>
-					<height>22</height>
-					<info>Player.ProgressCache</info>
-					<reveal>true</reveal>
-					<texturebg border="2">osd/texturebg.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture_cache.png</midtexture>
-					<righttexture>-</righttexture>
-					<overlaytexture>-</overlaytexture>
-				</control>
-				<control type="progress" id="23">
-					<description>Progressbar</description>
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-					<posx>393</posx>
-					<posy>954</posy>
-					<width>1827</width>
-					<height>20</height>
-					<info>Player.Progress</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-
-				<!-- Current position / Total Time -->
-				<control type="label">
-					<posx>1875</posx>
-					<posy>993</posy>
-					<width>375</width>
-					<height>60</height>
-					<aligny>center</aligny>
-					<align>right</align>
-					<font>font48</font>
-					<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-					<label>$INFO[MusicPlayer.Time] [COLOR grey2]/[/COLOR] $INFO[MusicPlayer.Duration]</label>
-				</control>
-
-				<!-- Title -->
-				<control type="label">
-					<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !Skin.HasSetting(Music.DisableCodecFlag)</visible>
-					<posx>393</posx>
-					<posy>893</posy>
-					<width>1183</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label> 
-				</control>
-
-				<control type="label">
-					<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !Skin.HasSetting(Music.DisableCodecFlag)</visible>
-					<posx>323</posx>
-					<posy>893</posy>
-					<width>1253</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label> 
-				</control>
-
-				<control type="label">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !Skin.HasSetting(Music.DisableCodecFlag)</visible>
-					<posx>55</posx>
-					<posy>893</posy>
-					<width>1521</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label> 
-				</control>
-
-				<!-- Title without Audio Codec Flag -->
-				<control type="label">
-					<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + Skin.HasSetting(Music.DisableCodecFlag)</visible>
-					<posx>393</posx>
-					<posy>893</posy>
-					<width>1487</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label> 
-				</control>
-
-				<control type="label">
-					<visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + Skin.HasSetting(Music.DisableCodecFlag)</visible>
-					<posx>323</posx>
-					<posy>893</posy>
-					<width>1557</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label> 
-				</control>
-
-				<control type="label">
-					<visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + Skin.HasSetting(Music.DisableCodecFlag)</visible>
-					<posx>55</posx>
-					<posy>893</posy>
-					<width>1825</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label> 
-				</control>
-
-				<!-- Audio Codec Flag -->
-				<control type="image">
-					<visible>!Skin.HasSetting(Music.DisableCodecFlag)</visible>
-					<posx>1752</posx>
-					<posy>865</posy>
-					<width>133</width>
-					<aspectratio align="left">keep</aspectratio>
-					<texture fallback="flags/music/default.png">$INFO[MusicPlayer.Codec,flags/music/,.png]</texture>
-					<colordiffuse>$VAR[Colour_OSDThemeColourVar]</colordiffuse>
-				</control>
-				<control type="label">
-					<visible>!Skin.HasSetting(Music.DisableCodecFlag)</visible>
-					<posx>1745</posx>
-					<posy>895</posy>
-					<width>667</width>
-					<height>50</height>
-					<font>font10</font>
-					<align>right</align>
-					<textcolor>grey</textcolor>
-					<shadowcolor>black</shadowcolor>
-					<label>$INFO[MusicPlayer.Bitrate][COLOR=$VAR[Colour_OSDThemeColourVar]] kbps[/COLOR] $INFO[MusicPlayer.Samplerate][COLOR=$VAR[Colour_OSDThemeColourVar]] kHz[/COLOR][CR]$INFO[MusicPlayer.BitsPerSample][COLOR=$VAR[Colour_OSDThemeColourVar]] Bits[/COLOR] $INFO[MusicPlayer.Channels][COLOR=$VAR[Colour_OSDThemeColourVar]] Ch[/COLOR]</label>
-				</control>
-			</control>
-		</control>
-
-		<control type="group">
-			<visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
-			<include>Animation_OpenCloseFade</include>
-			<include>Animation_FadedByOSDSettings</include>
-
-			<control type="grouplist" id="2001">
-				<animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-				<animation effect="slide" end="50,0" time="0" condition="!String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
-				<posx>323</posx>
-				<posy>975</posy>
-				<width>1577</width>
-				<itemgap>0</itemgap>
-				<orientation>horizontal</orientation>
-				<onleft>706</onleft>
-				<onright>11</onright>
-				<onup>noop</onup>
-				<ondown>noop</ondown>
-
-				<!-- OSD Playlist Button -->
-				<control type="button" id="11">
-					<description>Playlists</description>
-					<height>100</height>
-					<width>100</width>
-					<texturefocus>osd/buttons/osdplaylistfo.png</texturefocus>
-					<texturenofocus>osd/buttons/osdplaylistnf.png</texturenofocus>
-					<onclick>ReplaceWindow(10094, plexserver://playqueue/audio)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>  
-
-				<!-- Visualization Button -->
-				<control type="button" id="500">
-					<texturefocus>osd/buttons/OSDVizFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDVizNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<colordiffuse>-</colordiffuse>
-				</control>
-
-				<!-- Visualization Settings Button -->
-				<control type="button" id="702">
-					<texturefocus>osd/buttons/OSDSettingsFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDSettingsNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>
-
-				<!-- OSD Previous Button -->
-				<control type="button" id="9">
-					<description>Previous</description>
-					<height>100</height>
-					<width>100</width>
-					<texturefocus>osd/buttons/osdprevtrackfo.png</texturefocus>
-					<texturenofocus>osd/buttons/osdprevtracknf.png</texturenofocus>
-					<onclick>PlayerControl(Previous)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>
-
-				<!-- OSD Stop Button -->
-				<control type="button" id="5">
-					<description>Stop</description>
-					<height>100</height>
-					<width>100</width>
-					<texturefocus>osd/buttons/osdstopfo.png</texturefocus>
-					<texturenofocus>osd/buttons/osdstopnf.png</texturenofocus>
-					<onclick>PlayerControl(stop)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>
-
-				<!-- OSD Play/Pause Button -->
-				<control type="togglebutton" id="4">
-					<description>Play</description>
-					<height>100</height>
-					<width>100</width>
-					<texturefocus>osd/buttons/osdpausefo.png</texturefocus>
-					<texturenofocus>osd/buttons/osdpausenf.png</texturenofocus>
-					<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
-					<alttexturefocus>osd/buttons/osdplayfo.png</alttexturefocus>
-					<alttexturenofocus>osd/buttons/osdplaynf.png</alttexturenofocus>
-					<disabledcolor>-</disabledcolor>
-					<colordiffuse>-</colordiffuse>
-					<onclick>PlayerControl(play)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>
-
-				<!-- OSD Next Button -->
-				<control type="button" id="10">
-					<description>Next</description>
-					<height>100</height>
-					<width>100</width>
-					<texturefocus>osd/buttons/osdnexttrackfo.png</texturefocus>
-					<texturenofocus>osd/buttons/osdnexttracknf.png</texturenofocus>
-					<onclick>PlayerControl(Next)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>
-
-				<!-- Random Button -->
-				<control type="togglebutton" id="704">
-					<texturefocus>osd/buttons/OSDRandomOffFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDRandomOffNF.png</texturenofocus>
-					<alttexturefocus>osd/buttons/OSDRandomOnFO.png</alttexturefocus>
-					<alttexturenofocus>osd/buttons/OSDRandomOnNF.png</alttexturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<usealttexture>Playlist.IsRandom</usealttexture>
-					<onclick>PlayerControl(Random)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>
-
-				<!-- Repeat Button -->
-				<control type="button" id="707">
-					<width>0.1</width>
-					<height>0.1</height>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
-					<font>-</font>
-					<onclick>PlayerControl(Repeat)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>
-				<control type="image" id="708">
-					<texture>$VAR[MusicOSDRepeatButtonVar]</texture>
-					<width>100</width>
-					<height>100</height>
-				</control>
-
-				<!-- OSD Options -->
-				<control type="button" id="706">
-					<texturefocus>osd/buttons/OSDSkinFO.png</texturefocus>
-					<texturenofocus>osd/buttons/OSDSkinNF.png</texturenofocus>
-					<label>-</label>
-					<width>100</width>
-					<height>100</height>
-					<font>-</font>
-					<onclick>Dialog.Close(musicosd)</onclick>
-					<onclick>ActivateWindow(1120)</onclick>
-					<onclick>SetProperty(MusicOSD.Settings,True,home)</onclick>
-					<colordiffuse>-</colordiffuse>
-				</control>
-			</control>
-		</control>  
-	</controls>
+  <defaultcontrol always="true">410</defaultcontrol>
+  <zorder>2</zorder>
+  <controls>
+    <!-- Set Default OSD Button -->
+    <control type="button" id="410">
+      <include>HiddenObject</include>
+      <onfocus>Dialog.Close(FullscreenInfo)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Playlists)">SetFocus(11)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Visualization)">SetFocus(500)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),VizSettings)">SetFocus(702)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Previous)">SetFocus(9)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Rewind)">SetFocus(3)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Stop)">SetFocus(5)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Fast Forward)">SetFocus(6)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Next)">SetFocus(10)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Random)">SetFocus(704)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Repeat)">SetFocus(707)</onfocus>
+      <onfocus condition="String.Contains(Skin.String(MusicOSD.DefaultButton),Options)">SetFocus(706)</onfocus>
+      <onfocus condition="IsEmpty(Skin.String(MusicOSD.DefaultButton))">SetFocus(4)</onfocus>
+    </control>
+    <control type="group">
+      <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
+      <include>Animation_OpenCloseFade</include>
+      <include>Animation_FadedByOSDSettings</include>
+      <include>Topbar</include>
+      <control type="group">
+        <include>VisibleFadeEffect</include>
+        <include>Animation_FadedByOSDSettings</include>
+        <!-- OSD Background -->
+        <control type="image">
+          <posx>0</posx>
+          <posy>878</posy>
+          <width>1920</width>
+          <height>427</height>
+          <texture flipy="true" border="1,40,1,1">black.png</texture>
+          <visible>Skin.HasSetting(OSD.OpaqueBackground.Enable)</visible>
+        </control>
+        <control type="image">
+          <posx>0</posx>
+          <posy>853</posy>
+          <width>1920</width>
+          <height>427</height>
+          <texture flipy="true" border="1,40,1,1">topbar.png</texture>
+          <colordiffuse>E6FFFFFF</colordiffuse>
+        </control>
+        <!-- Spinning Disc -->
+        <control type="group">
+          <visible>IsEmpty(Skin.String(Music.SpinningDiscStyle)) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          <posx>119</posx>
+          <posy>799</posy>
+          <width>286</width>
+          <height>286</height>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="262,942" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="262,942" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="262,942" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="262,942" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="262,942" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="262,942" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="262,942" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="262,942" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="262,942" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="262,942" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="262,942" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <bordersize>30</bordersize>
+          <control type="image">
+            <width>286</width>
+            <height>286</height>
+            <aligny>top</aligny>
+            <aspectratio align="left">keep</aspectratio>
+            <fadetime>300</fadetime>
+            <texture diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
+            <bordersize>30</bordersize>
+          </control>
+          <control type="label">
+            <posx>78</posx>
+            <posy>50</posy>
+            <width>129</width>
+            <height>47</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>fontCDartistSmall</font>
+            <label>$INFO[MusicPlayer.Artist, ,]</label>
+            <textcolor>black</textcolor>
+            <wrapmultiline>true</wrapmultiline>
+          </control>
+          <control type="label">
+            <posx>78</posx>
+            <posy>190</posy>
+            <width>127</width>
+            <height>52</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>fontCDalbumSmall</font>
+            <label>$INFO[MusicPlayer.Album, ,]</label>
+            <textcolor>black</textcolor>
+            <wrapmultiline>true</wrapmultiline>
+          </control>
+        </control>
+        <!-- Spinning Disc with Clear Case -->
+        <control type="group">
+          <visible>IsEmpty(Skin.String(Music.SpinningDiscStyle)) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          <posx>139</posx>
+          <posy>826</posy>
+          <width>256</width>
+          <height>256</height>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <bordersize>30</bordersize>
+          <control type="image">
+            <width>256</width>
+            <height>256</height>
+            <aligny>top</aligny>
+            <aspectratio align="left">keep</aspectratio>
+            <fadetime>300</fadetime>
+            <texture diffuse="thumbs/cdart_mask.png">$VAR[VirtualCDArtVar]</texture>
+            <bordersize>30</bordersize>
+          </control>
+          <control type="label">
+            <posx>70</posx>
+            <posy>45</posy>
+            <width>115</width>
+            <height>42</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>fontCDartistClear</font>
+            <label>$INFO[MusicPlayer.Artist, ,]</label>
+            <textcolor>black</textcolor>
+            <wrapmultiline>true</wrapmultiline>
+          </control>
+          <control type="label">
+            <posx>70</posx>
+            <posy>170</posy>
+            <width>114</width>
+            <height>47</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>fontCDalbumClear</font>
+            <label>$INFO[MusicPlayer.Album, ,]</label>
+            <textcolor>black</textcolor>
+            <wrapmultiline>true</wrapmultiline>
+          </control>
+        </control>
+        <!-- CD Disc -->
+        <control type="image">
+          <visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),CD) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          <posx>119</posx>
+          <posy>799</posy>
+          <width>286</width>
+          <height>286</height>
+          <aligny>top</aligny>
+          <aspectratio align="left">keep</aspectratio>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <texture diffuse="thumbs/cdart_mask.png">cdart/sd.png</texture>
+          <bordersize>30</bordersize>
+        </control>
+        <!-- CD Disc for Clear Case -->
+        <control type="image">
+          <visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),CD) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          <posx>139</posx>
+          <posy>826</posy>
+          <width>256</width>
+          <height>256</height>
+          <aligny>top</aligny>
+          <aspectratio align="left">keep</aspectratio>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <texture diffuse="thumbs/cdart_mask.png">cdart/sd.png</texture>
+          <bordersize>30</bordersize>
+        </control>
+        <!-- Record Disc -->
+        <control type="image">
+          <visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),Record) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          <posx>119</posx>
+          <posy>799</posy>
+          <width>286</width>
+          <height>286</height>
+          <aligny>top</aligny>
+          <aspectratio align="left">keep</aspectratio>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <texture>cdart/record.png</texture>
+          <bordersize>30</bordersize>
+        </control>
+        <!-- Record Disc for Clear Case -->
+        <control type="image">
+          <visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),Record) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          <posx>139</posx>
+          <posy>826</posy>
+          <width>256</width>
+          <height>256</height>
+          <aligny>top</aligny>
+          <aspectratio align="left">keep</aspectratio>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <texture>cdart/record.png</texture>
+          <bordersize>30</bordersize>
+        </control>
+        <!-- Gold Record Disc -->
+        <control type="image">
+          <visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),Gold Record) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          <posx>119</posx>
+          <posy>799</posy>
+          <width>286</width>
+          <height>286</height>
+          <aligny>top</aligny>
+          <aspectratio align="left">keep</aspectratio>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <texture>cdart/goldrecord.png</texture>
+          <bordersize>30</bordersize>
+        </control>
+        <!-- Gold Record Disc for Clear Case -->
+        <control type="image">
+          <visible>String.IsEqual(Skin.String(Music.SpinningDiscStyle),Gold Record) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          <posx>139</posx>
+          <posy>826</posy>
+          <width>256</width>
+          <height>256</height>
+          <aligny>top</aligny>
+          <aspectratio align="left">keep</aspectratio>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="267,954" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="267,954" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <texture>cdart/goldrecord.png</texture>
+          <bordersize>30</bordersize>
+        </control>
+        <control type="group">
+          <!-- Poster -->
+          <control type="image">
+            <description>Poster</description>
+            <posx>18</posx>
+            <posy>803</posy>
+            <width>277</width>
+            <height>277</height>
+            <texture diffuse="thumbs/cdcover_mask2.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
+            <bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
+            <bordersize>20</bordersize>
+            <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+            <visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>18</posx>
+            <posy>803</posy>
+            <width>277</width>
+            <height>277</height>
+            <texture diffuse="thumbs/cdcover_mask2.png">black.png</texture>
+            <bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>18</posx>
+            <posy>803</posy>
+            <width>277</width>
+            <height>277</height>
+            <texture diffuse="thumbs/cdcover_mask2.png">defaultmusicalbums.png</texture>
+            <bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>18</posx>
+            <posy>803</posy>
+            <width>277</width>
+            <height>277</height>
+            <texture diffuse="thumbs/cdcover_mask_aa.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
+            <bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
+            <bordersize>20</bordersize>
+            <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+            <visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>18</posx>
+            <posy>803</posy>
+            <width>277</width>
+            <height>277</height>
+            <texture diffuse="thumbs/cdcover_mask_aa.png">black.png</texture>
+            <bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>18</posx>
+            <posy>803</posy>
+            <width>277</width>
+            <height>277</height>
+            <texture diffuse="thumbs/cdcover_mask_aa.png">defaultmusicalbums.png</texture>
+            <bordertexture border="20">thumbs/cd_shadow2.png</bordertexture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>IsEmpty(Skin.String(NowPlaying.IconStyle)) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          </control>
+          <!-- Glass Case -->
+          <control type="image">
+            <description>Poster</description>
+            <posx>22</posx>
+            <posy>806</posy>
+            <width>271</width>
+            <height>271</height>
+            <texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
+            <bordersize>20</bordersize>
+            <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>22</posx>
+            <posy>806</posy>
+            <width>271</width>
+            <height>271</height>
+            <texture diffuse="thumbs/boxes/cdcover_mask_aa.png">black.png</texture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>22</posx>
+            <posy>806</posy>
+            <width>271</width>
+            <height>271</height>
+            <texture diffuse="thumbs/boxes/cdcover_mask_aa.png">defaultmusicalbums.png</texture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>Glass Overlay</description>
+            <posx>18</posx>
+            <posy>803</posy>
+            <width>277</width>
+            <height>277</height>
+            <aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+            <fadetime>200</fadetime>
+            <bordersize>20</bordersize>
+            <texture>thumbs/boxes/square.png</texture>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Glass)</visible>
+          </control>
+          <!-- CD Case -->
+          <control type="image">
+            <description>Poster</description>
+            <posx>20</posx>
+            <posy>804</posy>
+            <width>276</width>
+            <height>276</height>
+            <texture diffuse="thumbs/boxes/cdcover_mask_aa.png">$INFO[MusicPlayer.offset(0).Cover]</texture>
+            <bordersize>20</bordersize>
+            <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>20</posx>
+            <posy>804</posy>
+            <width>276</width>
+            <height>276</height>
+            <texture diffuse="thumbs/boxes/cdcover_mask_aa.png">black.png</texture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>20</posx>
+            <posy>804</posy>
+            <width>276</width>
+            <height>276</height>
+            <texture diffuse="thumbs/boxes/cdcover_mask_aa.png">defaultmusicalbums.png</texture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>CD Overlay</description>
+            <posx>18</posx>
+            <posy>803</posy>
+            <width>277</width>
+            <height>277</height>
+            <bordersize>20</bordersize>
+            <aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+            <fadetime>200</fadetime>
+            <texture>thumbs/boxes/cd.png</texture>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),CD)</visible>
+          </control>
+          <!-- Clear Cases -->
+          <control type="image">
+            <description>Poster</description>
+            <posx>41</posx>
+            <posy>830</posy>
+            <width>249</width>
+            <height>246</height>
+            <texture>$INFO[MusicPlayer.offset(0).Cover]</texture>
+            <bordersize>20</bordersize>
+            <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + !String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>41</posx>
+            <posy>830</posy>
+            <width>249</width>
+            <height>246</height>
+            <texture>black.png</texture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>Poster</description>
+            <posx>41</posx>
+            <posy>830</posy>
+            <width>249</width>
+            <height>246</height>
+            <texture>defaultmusicalbums.png</texture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">stretch</aspectratio>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear) + String.Contains(MusicPlayer.offset(0).Cover,DefaultAlbumCover.png)</visible>
+          </control>
+          <control type="image">
+            <description>Clear Overlay</description>
+            <posx>18</posx>
+            <posy>826</posy>
+            <width>277</width>
+            <height>254</height>
+            <aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+            <fadetime>200</fadetime>
+            <texture>cdcase.png</texture>
+            <bordersize>20</bordersize>
+            <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Clear)</visible>
+          </control>
+        </control>
+        <!-- Progress Bar -->
+        <control type="progress" id="23">
+          <description>ProgressbarCache</description>
+          <visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <posx>393</posx>
+          <posy>953</posy>
+          <width>1489</width>
+          <height>22</height>
+          <info>Player.ProgressCache</info>
+          <reveal>true</reveal>
+          <texturebg border="2">osd/texturebg.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture_cache.png</midtexture>
+          <righttexture>-</righttexture>
+          <overlaytexture>-</overlaytexture>
+        </control>
+        <control type="progress" id="23">
+          <description>Progressbar</description>
+          <visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <posx>393</posx>
+          <posy>954</posy>
+          <width>1489</width>
+          <height>20</height>
+          <info>Player.Progress</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <control type="progress" id="23">
+          <description>ProgressbarCache</description>
+          <visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <posx>393</posx>
+          <posy>953</posy>
+          <width>1559</width>
+          <height>22</height>
+          <info>Player.ProgressCache</info>
+          <reveal>true</reveal>
+          <texturebg border="2">osd/texturebg.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture_cache.png</midtexture>
+          <righttexture>-</righttexture>
+          <overlaytexture>-</overlaytexture>
+        </control>
+        <control type="progress" id="23">
+          <description>Progressbar</description>
+          <visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled)</visible>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <posx>393</posx>
+          <posy>954</posy>
+          <width>1559</width>
+          <height>20</height>
+          <info>Player.Progress</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <control type="progress" id="23">
+          <description>ProgressbarCache</description>
+          <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <posx>393</posx>
+          <posy>953</posy>
+          <width>1827</width>
+          <height>22</height>
+          <info>Player.ProgressCache</info>
+          <reveal>true</reveal>
+          <texturebg border="2">osd/texturebg.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture_cache.png</midtexture>
+          <righttexture>-</righttexture>
+          <overlaytexture>-</overlaytexture>
+        </control>
+        <control type="progress" id="23">
+          <description>Progressbar</description>
+          <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)</visible>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+          <posx>393</posx>
+          <posy>954</posy>
+          <width>1827</width>
+          <height>20</height>
+          <info>Player.Progress</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <!-- Current position / Total Time -->
+        <control type="label">
+          <posx>1875</posx>
+          <posy>993</posy>
+          <width>375</width>
+          <height>60</height>
+          <aligny>center</aligny>
+          <align>right</align>
+          <font>font48</font>
+          <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+          <label>$INFO[MusicPlayer.Time] [COLOR grey2]/[/COLOR] $INFO[MusicPlayer.Duration]</label>
+        </control>
+        <!-- Title -->
+        <control type="label">
+          <visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !Skin.HasSetting(Music.DisableCodecFlag)</visible>
+          <posx>393</posx>
+          <posy>893</posy>
+          <width>1183</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label>
+        </control>
+        <control type="label">
+          <visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !Skin.HasSetting(Music.DisableCodecFlag)</visible>
+          <posx>323</posx>
+          <posy>893</posy>
+          <width>1253</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label>
+        </control>
+        <control type="label">
+          <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !Skin.HasSetting(Music.DisableCodecFlag)</visible>
+          <posx>55</posx>
+          <posy>893</posy>
+          <width>1521</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label>
+        </control>
+        <!-- Title without Audio Codec Flag -->
+        <control type="label">
+          <visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + !String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + Skin.HasSetting(Music.DisableCodecFlag)</visible>
+          <posx>393</posx>
+          <posy>893</posy>
+          <width>1487</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label>
+        </control>
+        <control type="label">
+          <visible>!String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + Skin.HasSetting(Music.DisableCodecFlag)</visible>
+          <posx>323</posx>
+          <posy>893</posy>
+          <width>1557</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label>
+        </control>
+        <control type="label">
+          <visible>String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled) + Skin.HasSetting(Music.DisableCodecFlag)</visible>
+          <posx>55</posx>
+          <posy>893</posy>
+          <width>1825</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>[COLOR $VAR[Colour_OSDThemeColourVar]]$INFO[MusicPlayer.TrackNumber,,. ]$INFO[MusicPlayer.Artist,, - ][/COLOR]$INFO[Player.Title]</label>
+        </control>
+        <!-- Audio Codec Flag -->
+        <control type="image">
+          <visible>!Skin.HasSetting(Music.DisableCodecFlag)</visible>
+          <posx>1752</posx>
+          <posy>865</posy>
+          <width>133</width>
+          <aspectratio align="left">keep</aspectratio>
+          <texture fallback="flags/music/default.png">$INFO[MusicPlayer.Codec,flags/music/,.png]</texture>
+          <colordiffuse>$VAR[Colour_OSDThemeColourVar]</colordiffuse>
+        </control>
+        <control type="label">
+          <visible>!Skin.HasSetting(Music.DisableCodecFlag)</visible>
+          <posx>1745</posx>
+          <posy>895</posy>
+          <width>667</width>
+          <height>50</height>
+          <font>font10</font>
+          <align>right</align>
+          <textcolor>grey</textcolor>
+          <shadowcolor>black</shadowcolor>
+          <label>$INFO[MusicPlayer.Bitrate][COLOR=$VAR[Colour_OSDThemeColourVar]] kbps[/COLOR] $INFO[MusicPlayer.Samplerate][COLOR=$VAR[Colour_OSDThemeColourVar]] kHz[/COLOR][CR]$INFO[MusicPlayer.BitsPerSample][COLOR=$VAR[Colour_OSDThemeColourVar]] Bits[/COLOR] $INFO[MusicPlayer.Channels][COLOR=$VAR[Colour_OSDThemeColourVar]] Ch[/COLOR]</label>
+        </control>
+      </control>
+    </control>
+    <control type="group">
+      <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
+      <include>Animation_OpenCloseFade</include>
+      <include>Animation_FadedByOSDSettings</include>
+      <control type="grouplist" id="2001">
+        <animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+        <animation effect="slide" end="50,0" time="0" condition="!String.IsEqual(Skin.String(Music.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(NowPlaying.IconStyle),Disabled)">Conditional</animation>
+        <posx>323</posx>
+        <posy>975</posy>
+        <width>1577</width>
+        <itemgap>0</itemgap>
+        <orientation>horizontal</orientation>
+        <onleft>706</onleft>
+        <onright>11</onright>
+        <onup>noop</onup>
+        <ondown>noop</ondown>
+        <!-- OSD Playlist Button -->
+        <control type="button" id="11">
+          <description>Playlists</description>
+          <height>100</height>
+          <width>100</width>
+          <texturefocus>osd/buttons/osdplaylistfo.png</texturefocus>
+          <texturenofocus>osd/buttons/osdplaylistnf.png</texturenofocus>
+          <onclick>ReplaceWindow(10094, plexserver://playqueue/audio)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <!-- Visualization Button -->
+        <control type="button" id="500">
+          <texturefocus>osd/buttons/OSDVizFO.png</texturefocus>
+          <texturenofocus>osd/buttons/OSDVizNF.png</texturenofocus>
+          <label>-</label>
+          <width>100</width>
+          <height>100</height>
+          <font>-</font>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <!-- Visualization Settings Button -->
+        <control type="button" id="702">
+          <texturefocus>osd/buttons/OSDSettingsFO.png</texturefocus>
+          <texturenofocus>osd/buttons/OSDSettingsNF.png</texturenofocus>
+          <label>-</label>
+          <width>100</width>
+          <height>100</height>
+          <font>-</font>
+          <onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <!-- OSD Previous Button -->
+        <control type="button" id="9">
+          <description>Previous</description>
+          <height>100</height>
+          <width>100</width>
+          <texturefocus>osd/buttons/osdprevtrackfo.png</texturefocus>
+          <texturenofocus>osd/buttons/osdprevtracknf.png</texturenofocus>
+          <onclick>PlayerControl(Previous)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <!-- OSD Stop Button -->
+        <control type="button" id="5">
+          <description>Stop</description>
+          <height>100</height>
+          <width>100</width>
+          <texturefocus>osd/buttons/osdstopfo.png</texturefocus>
+          <texturenofocus>osd/buttons/osdstopnf.png</texturenofocus>
+          <onclick>PlayerControl(stop)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <!-- OSD Play/Pause Button -->
+        <control type="togglebutton" id="4">
+          <description>Play</description>
+          <height>100</height>
+          <width>100</width>
+          <texturefocus>osd/buttons/osdpausefo.png</texturefocus>
+          <texturenofocus>osd/buttons/osdpausenf.png</texturenofocus>
+          <usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+          <alttexturefocus>osd/buttons/osdplayfo.png</alttexturefocus>
+          <alttexturenofocus>osd/buttons/osdplaynf.png</alttexturenofocus>
+          <disabledcolor>-</disabledcolor>
+          <colordiffuse>-</colordiffuse>
+          <onclick>PlayerControl(play)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <!-- OSD Next Button -->
+        <control type="button" id="10">
+          <description>Next</description>
+          <height>100</height>
+          <width>100</width>
+          <texturefocus>osd/buttons/osdnexttrackfo.png</texturefocus>
+          <texturenofocus>osd/buttons/osdnexttracknf.png</texturenofocus>
+          <onclick>PlayerControl(Next)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <!-- Random Button -->
+        <control type="togglebutton" id="704">
+          <texturefocus>osd/buttons/OSDRandomOffFO.png</texturefocus>
+          <texturenofocus>osd/buttons/OSDRandomOffNF.png</texturenofocus>
+          <alttexturefocus>osd/buttons/OSDRandomOnFO.png</alttexturefocus>
+          <alttexturenofocus>osd/buttons/OSDRandomOnNF.png</alttexturenofocus>
+          <label>-</label>
+          <width>100</width>
+          <height>100</height>
+          <font>-</font>
+          <usealttexture>Playlist.IsRandom</usealttexture>
+          <onclick>PlayerControl(Random)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <!-- Repeat Button -->
+        <control type="button" id="707">
+          <width>0.1</width>
+          <height>0.1</height>
+          <texturefocus>-</texturefocus>
+          <texturenofocus>-</texturenofocus>
+          <label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
+          <font>-</font>
+          <onclick>PlayerControl(Repeat)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+        <control type="image" id="708">
+          <texture>$VAR[MusicOSDRepeatButtonVar]</texture>
+          <width>100</width>
+          <height>100</height>
+        </control>
+        <!-- OSD Options -->
+        <control type="button" id="706">
+          <texturefocus>osd/buttons/OSDSkinFO.png</texturefocus>
+          <texturenofocus>osd/buttons/OSDSkinNF.png</texturenofocus>
+          <label>-</label>
+          <width>100</width>
+          <height>100</height>
+          <font>-</font>
+          <onclick>Dialog.Close(musicosd)</onclick>
+          <onclick>ActivateWindow(1120)</onclick>
+          <onclick>SetProperty(MusicOSD.Settings,True,home)</onclick>
+          <colordiffuse>-</colordiffuse>
+        </control>
+      </control>
+    </control>
+  </controls>
 </window>

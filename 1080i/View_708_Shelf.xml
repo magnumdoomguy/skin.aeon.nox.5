@@ -1,504 +1,491 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
-	<include name="Shelf">
-		<control type="group"><!-- default group -->
-			<visible>Control.IsVisible(708) + !Window.IsActive(addoninformation)</visible>
-			<control type="image">
-				<description>background image</description>
-				<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
-				<posx>95</posx>
-				<posy>60</posy>
-				<width>1730</width>
-				<height>900</height>
-				<texture border="40">listpanel_back.png</texture>
-				<colordiffuse>D9FFFFFF</colordiffuse>
-			</control>
-			<control type="group">
-				<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
-				<posx>5</posx>
-				<posy>-71</posy>
-				<control type="grouplist">
-					<posx>121</posx>
-					<posy>162</posy>
-					<control type="button">
-						<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</label>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-						<visible>!IsEmpty(ListItem.Director)</visible>
-					</control>
-					<control type="button">
-						<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[31001]:[/COLOR][CR]$INFO[ListItem.Writer]</label>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-						<visible>!IsEmpty(ListItem.Writer)</visible>
-					</control>
-				</control>
-				<control type="image">
-					<posx>622</posx>
-					<posy>162</posy>
-					<width>2</width>
-					<height>179</height>
-					<texture border="1">separator3.png</texture>
-				</control>
-				<control type="grouplist">
-					<posx>624</posx>
-					<posy>162</posy>
-					<control type="button">
-						<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</label>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-					</control>
-					<control type="group">
-						<!-- User Rating -->
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[CR]$VAR[RatingVar][/COLOR]</label>
-							<width>251</width>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-						</control>
-
-						<!-- Standard Rating -->
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</label>	
-							<width>251</width>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-						
-						<!-- IMDb Rating -->
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$INFO[ListItem.Property(rating)]</label>	
-							<width>251</width>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-
-						<!-- Rotten Tomatoes Rating -->
-						<control type="grouplist">
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
-							<orientation>vertical</orientation>
-							<posx>15</posx>
-
-							<control type="label">
-								<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[/COLOR]</label>	
-								<width>251</width>
-								<height>45</height>
-								<aligny>top</aligny>
-								<font>font14</font>
-								<textcolor>grey2</textcolor>
-							</control>
-
-							<control type="grouplist">
-								<orientation>horizontal</orientation>
-								<control type="image">
-									<width>32</width>
-									<height>40</height>
-									<align>left</align>
-									<aligny>center</aligny>
-									<texture>rottentomatoes/32x32/$INFO[ListItem.Property(ratingImage)]</texture>
-									<aspectratio align="left" aligny="center">keep</aspectratio>
-								</control>
-								<control type="label">
-									<height>40</height>
-									<width min="20" max="121">auto</width>
-									<aligny>center</aligny>
-									<font>font14</font>
-									<textcolor>grey2</textcolor>
-									<label>$INFO[ListItem.Property(ratingPercent)]%  </label>
-								</control>
-								<control type="image">
-									<width>32</width>
-									<height>40</height>
-									<aligny>center</aligny>
-									<texture>rottentomatoes/32x32/$INFO[ListItem.Property(audienceRatingImage)]</texture>
-									<aspectratio align="left" aligny="center">keep</aspectratio>
-								</control>
-								<control type="label">
-									<height>40</height>
-									<width min="20" max="121">auto</width>
-									<aligny>center</aligny>
-									<font>font14</font>
-									<textcolor>grey2</textcolor>
-									<label>$INFO[ListItem.Property(audienceRatingPercent)]%</label>
-								</control>
-							</control>
-						</control>
-						<control type="image">
-							<posx>0</posx>
-							<posy>30</posy>
-							<width>251</width>
-							<height>60</height>
-							<texture border="1">separator2.png</texture>
-							<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
-						</control>
-						<control type="image">
-							<posx>251</posx>
-							<width>2</width>
-							<height>88</height>
-							<texture border="1">separator3.png</texture>
-						</control>
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$INFO[ListItem.Year]</label>
-							<posx>251</posx>
-							<width>250</width>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-						</control>
-					</control>
-				</control>	
-				<control type="textbox">
-					<label>$VAR[PlotVar]</label>
-					<posy>345</posy>
-					<posx>136</posx>
-					<width>970</width>
-					<height>175</height>
-					<font>font14_textbox2</font>
-					<pagecontrol>62</pagecontrol>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-				</control>
-				<control type="scrollbar" id="62">
-					<posy>342</posy>
-					<posx>1112</posx>
-					<width>14</width>
-					<height>180</height>
-					<onup>SetProperty(MediaMenu,True,home)</onup>
-					<onup>SetFocus(9050,0)</onup>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<ondown>50</ondown>
-					<texturesliderbackground>scrollbar/texturesliderbackground3.png</texturesliderbackground>
-					<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar3.png</texturesliderbar>
-					<texturesliderbarfocus border="1">scrollbar/texturesliderbar3.png</texturesliderbarfocus>
-					<showonepage>false</showonepage>
-					<orientation>vertical</orientation>
-				</control>
-				<control type="image">
-					<posx>1126</posx>
-					<posy>162</posy>
-					<width>662</width>
-					<height>360</height>
-					<aspectratio aligny="top">scale</aspectratio>
-					<texture>$INFO[ListItem(0).Art(fanart)]</texture>
-					<bordertexture border="1,1,2,1">empty.png</bordertexture>
-					<bordersize>1,1,2,1</bordersize>
-				</control>
-				<control type="image">
-					<posx>121</posx>
-					<posy>464</posy>
-					<width>1670</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-				<control type="image">
-					<posx>121</posx>
-					<posy>104</posy>
-					<width>1670</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-				<control type="group">
-					<posx>450</posx>
-					<posy>535</posy>
-					<include>VisibleFadeEffect</include>
-					<control type="image" id="4756">
-						<posy>-24</posy>
-						<posx>-310</posx>
-						<bordersize>2</bordersize>
-						<texture>$VAR[StudioFlag]</texture>
-						<width>140</width>
-						<height>115</height>
-						<aspectratio>keep</aspectratio>
-						<fadetime>250</fadetime>
-						<animation effect="fade" time="200">VisibleChange</animation>
-					</control>
-					<control type="label">
-						<posy>-24</posy>
-						<posx>-310</posx>
-						<width>155</width>
-						<height>120</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<label>$INFO[Listitem.Property(mediaTag-Studio)]</label>
-						<font>font10</font>
-						<textcolor>grey</textcolor>
-						<wrapmultiline>true</wrapmultiline>
-						<visible>IsEmpty(Control.GetLabel(4756))</visible>
-					</control>
-					<control type="image">
-						<posx>-150</posx>
-						<aspectratio>keep</aspectratio>
-						<texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-						<include>MediaFlagVarsShelf</include>
-					</control>
-					<control type="image">
-						<posx>0</posx>
-						<include>MediaFlagVarsShelf</include>
-						<texture>$VAR[ResolutionFlag]</texture>
-					</control>
-					<control type="image">
-						<posx>150</posx>
-						<include>MediaFlagVarsShelf</include>
-						<texture>$VAR[VideoCodecFlag]</texture>
-					</control>
-					<control type="image">
-						<posx>300</posx>
-						<include>MediaFlagVarsShelf</include>
-						<texture>$VAR[AudioCodecFlag]</texture>
-					</control>
-					<control type="image">
-						<posx>450</posx>
-						<width>75</width>
-						<height>55</height>
-						<aspectratio>keep</aspectratio>
-						<fadetime>250</fadetime>
-						<animation effect="fade" time="200">VisibleChange</animation>
-						<posx>450</posx>
-						<posy>6</posy>
-						<texture>$VAR[AudioChannelsFlag]</texture>
-					</control>
-				</control>
-			</control>
-			<control type="group">
-				<control type="scrollbar" id="88">
-					<posx>110</posx>
-					<posy>1060</posy>
-					<width>1680</width>
-					<height>13</height>
-					<onup>708</onup>
-					<ondown>708</ondown>
-					<texturesliderbackground border="1">-</texturesliderbackground>
-					<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-					<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-					<textureslidernib>-</textureslidernib>
-					<textureslidernibfocus>-</textureslidernibfocus>
-					<showonepage>false</showonepage>
-					<orientation>horizontal</orientation>
-					<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(88) + !Container.Scrolling">Conditional</animation>
-				</control>
-
-				<include condition="!system.getbool(input.enablemouse)">Shelf3D_FixedList</include>
-				<include condition="system.getbool(input.enablemouse)">Shelf3D_List</include>
-				
-				<control type="group">
-					<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
-					<control type="label">
-						<posx>1125</posx>
-						<posy>960</posy>
-						<width>1120</width>
-						<height>40</height>
-						<align>right</align>
-						<font>font_movietit</font>
-						<scroll>true</scroll>
-						<scrollspeed>50</scrollspeed>
-						<textcolor>grey2</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-				</control>
-			</control>
-		</control>
-	</include>
-
-	<include name="Shelf3D_FixedList">
-		<control type="fixedlist" id="708">
-			<include>Shelf3D_Content</include>
-		</control>
-	</include>
-
-	<include name="Shelf3D_List">
-		<control type="list" id="708">
-			<include>Shelf3D_Content</include>
-		</control>
-	</include>
-
-	<include name="Shelf3D_Content">
-		<viewtype label="Shelf 3D">list</viewtype>
-		<posx>-30</posx>
-		<posy>415</posy>
-		<height>920</height>
-		<width>2050</width>
-		<onleft>708</onleft>
-		<onright>708</onright>
-		<onup>SetProperty(MediaMenu,True,home)</onup>
-		<onup>SetFocus(9050,0)</onup>
-		<ondown>noop</ondown>
-		<orientation>horizontal</orientation>
-		<focusposition>5</focusposition>
-		<scrolltime>100</scrolltime>
-		<preloaditems>2</preloaditems>
-		<pagecontrol>88</pagecontrol>
-		<camera x="2010" y="570" />
-		<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
-		<visible>Container.Content(movies)</visible>
-		<itemlayout width="268" height="434">
-			<control type="group">
-				<posx>150</posx>
-				<posy>0</posy>
-				<control type="image"><!-- Poster reflejo -->
-					<posx>-94</posx>
-					<posy>517</posy>
-					<width>249</width>
-					<height>340</height>
-					<texture flipy="true" diffuse="views/shelf/reflect_poster.png">$INFO[ListItem.Art(thumb)]</texture>
-					<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-				</control>
-				<control type="image"><!-- Poster lados -->
-					<posx>-94</posx>
-					<posy>162</posy>
-					<width>250</width>
-					<height>340</height>
-					<texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
-					<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-				</control>
-				<control type="image">
-					<posx>65</posx>
-					<posy>140</posy>
-					<width>120</width>
-					<height>120</height>
-					<bordersize>20</bordersize>
-					<visible>[Container.Content(movies)] | [Container.Content(seasons) | Container.Content(tvshows)]</visible>
-					<texture>$VAR[OverlayVar]</texture>
-					<visible>!Skin.HasSetting(Enable.Circles)</visible>
-				</control>
-
-				<!-- Watched Status Lower Circle -->
-				<control type="image">
-					<posx>105</posx>
-					<posy>451</posy>
-					<width>36</width>
-					<height>36</height>
-					<aspectratio>keep</aspectratio>
-					<texture>$VAR[OverlayVar]</texture>
-					<colordiffuse>$VAR[Colour_Shelf3DWatchedStatusColourVar]</colordiffuse>
-					<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-				</control>
-
-				<control type="image">
-					<posx>-100</posx>
-					<posy>131</posy>
-					<width>280</width>
-					<height>380</height>
-					<texture>$INFO[ListItem.Property(mediaTag-videoResolution),views/shelf/,.png]</texture>
-					<aspectratio>stretch</aspectratio>
-				</control>
-				<control type="image">
-					<posx>-100</posx>
-					<posy>505</posy>
-					<width>280</width>
-					<height>380</height>
-					<texture flipy="true" diffuse="views/shelf/reflect_box_overlay.png" >$INFO[ListItem.Property(mediaTag-videoResolution),views/shelf/,.png]</texture>
-					<aspectratio>stretch</aspectratio>
-				</control>
-
-				<!-- Watched Status Upper Circle -->
-				<control type="image">
-					<posx>105</posx>
-					<posy>177</posy>
-					<width>36</width>
-					<height>36</height>
-					<aspectratio>keep</aspectratio>
-					<texture>$VAR[OverlayVar]</texture>
-					<colordiffuse>$VAR[Colour_Shelf3DWatchedStatusColourVar]</colordiffuse>
-					<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-				</control>
-
-			</control>
-		</itemlayout>
-		<focusedlayout width="280" height="434">
-			<control type="group">
-				<posx>140</posx>
-				<posy>0</posy>
-				<control type="image"><!-- Poster  -->
-					<posx>-140</posx>
-					<posy>65</posy>
-					<width>340</width>
-					<height>480</height>
-					<texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
-					<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-					<animation type="Focus" reversible="false">
-						<effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out" />
-					</animation>
-				</control>
-				<control type="image"><!-- Poster reflejo  -->
-					<posx>-140</posx>
-					<posy>566</posy>
-					<width>336</width>
-					<height>480</height>
-					<colordiffuse>21FFFFFF</colordiffuse>
-					<texture flipy="true">$INFO[ListItem.Art(thumb)]</texture>
-					<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-					<animation type="Focus" reversible="false">
-						<effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out" />
-					</animation>
-				</control>
-				<control type="image">
-					<posx>82</posx>
-					<posy>46</posy>
-					<width>150</width>
-					<height>150</height>
-					<bordersize>20</bordersize>
-					<visible>[Container.Content(movies)] | [Container.Content(seasons) | Container.Content(tvshows)]</visible>
-					<texture>$VAR[OverlayVar]</texture>
-					<animation type="Focus" reversible="false">
-						<effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out" />
-					</animation>
-					<visible>!Skin.HasSetting(Enable.Circles)</visible>
-				</control>
-
-				<!-- Watched Status Lower Circle -->
-				<control type="image">
-					<posx>149</posx>
-					<posy>494</posy>
-					<width>36</width>
-					<height>36</height>
-					<aspectratio>keep</aspectratio>
-					<texture>$VAR[OverlayVar]</texture>
-					<colordiffuse>$VAR[Colour_Shelf3DWatchedStatusColourVar]</colordiffuse>
-					<animation type="Focus" reversible="false">
-						<effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out" />
-					</animation>
-					<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-				</control>
-
-				<control type="image"><!-- Estuche -->
-					<posx>-148</posx>
-					<posy>19</posy>
-					<width>380</width>
-					<height>540</height>
-					<texture>$INFO[ListItem.Property(mediaTag-videoResolution),views/shelf/,.png]</texture>
-					<aspectratio>stretch</aspectratio>
-					<animation type="Focus" reversible="false">
-						<effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out" />
-					</animation>
-				</control>
-				<control type="image"><!-- Estuche reflejo -->
-					<posx>-148</posx>
-					<posy>549</posy>
-					<width>380</width>
-					<height>540</height>
-					<colordiffuse>61FFFFFF</colordiffuse>
-					<texture flipy="true">$INFO[ListItem.Property(mediaTag-videoResolution),views/shelf/,.png]</texture>
-					<aspectratio>stretch</aspectratio>
-					<animation type="Focus" reversible="false">
-						<effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out" />
-					</animation>
-				</control>
-
-				<!-- Watched Status Upper Circle -->
-				<control type="image">
-					<posx>149</posx>
-					<posy>80</posy>
-					<width>36</width>
-					<height>36</height>
-					<aspectratio>keep</aspectratio>
-					<texture>$VAR[OverlayVar]</texture>
-					<colordiffuse>$VAR[Colour_Shelf3DWatchedStatusColourVar]</colordiffuse>
-					<animation type="Focus" reversible="false">
-						<effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out" />
-					</animation>
-					<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-				</control>
-
-			</control>					
-		</focusedlayout>
-	</include>
-
+  <include name="Shelf">
+    <control type="group">
+      <!-- default group -->
+      <visible>Control.IsVisible(708) + !Window.IsActive(addoninformation)</visible>
+      <control type="image">
+        <description>background image</description>
+        <animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+        <posx>95</posx>
+        <posy>60</posy>
+        <width>1730</width>
+        <height>900</height>
+        <texture border="40">listpanel_back.png</texture>
+        <colordiffuse>D9FFFFFF</colordiffuse>
+      </control>
+      <control type="group">
+        <animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+        <posx>5</posx>
+        <posy>-71</posy>
+        <control type="grouplist">
+          <posx>121</posx>
+          <posy>162</posy>
+          <control type="button">
+            <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</label>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Director)</visible>
+          </control>
+          <control type="button">
+            <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[31001]:[/COLOR][CR]$INFO[ListItem.Writer]</label>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Writer)</visible>
+          </control>
+        </control>
+        <control type="image">
+          <posx>622</posx>
+          <posy>162</posy>
+          <width>2</width>
+          <height>179</height>
+          <texture border="1">separator3.png</texture>
+        </control>
+        <control type="grouplist">
+          <posx>624</posx>
+          <posy>162</posy>
+          <control type="button">
+            <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</label>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+          </control>
+          <control type="group">
+            <!-- User Rating -->
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[CR]$VAR[RatingVar][/COLOR]</label>
+              <width>251</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+            </control>
+            <!-- Standard Rating -->
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</label>
+              <width>251</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <!-- IMDb Rating -->
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$INFO[ListItem.Property(rating)]</label>
+              <width>251</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <!-- Rotten Tomatoes Rating -->
+            <control type="grouplist">
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
+              <orientation>vertical</orientation>
+              <posx>15</posx>
+              <control type="label">
+                <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[/COLOR]</label>
+                <width>251</width>
+                <height>45</height>
+                <aligny>top</aligny>
+                <font>font14</font>
+                <textcolor>grey2</textcolor>
+              </control>
+              <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <control type="image">
+                  <width>32</width>
+                  <height>40</height>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <texture>rottentomatoes/32x32/$INFO[ListItem.Property(ratingImage)]</texture>
+                  <aspectratio align="left" aligny="center">keep</aspectratio>
+                </control>
+                <control type="label">
+                  <height>40</height>
+                  <width min="20" max="121">auto</width>
+                  <aligny>center</aligny>
+                  <font>font14</font>
+                  <textcolor>grey2</textcolor>
+                  <label>$INFO[ListItem.Property(ratingPercent)]%  </label>
+                </control>
+                <control type="image">
+                  <width>32</width>
+                  <height>40</height>
+                  <aligny>center</aligny>
+                  <texture>rottentomatoes/32x32/$INFO[ListItem.Property(audienceRatingImage)]</texture>
+                  <aspectratio align="left" aligny="center">keep</aspectratio>
+                </control>
+                <control type="label">
+                  <height>40</height>
+                  <width min="20" max="121">auto</width>
+                  <aligny>center</aligny>
+                  <font>font14</font>
+                  <textcolor>grey2</textcolor>
+                  <label>$INFO[ListItem.Property(audienceRatingPercent)]%</label>
+                </control>
+              </control>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>30</posy>
+              <width>251</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+            </control>
+            <control type="image">
+              <posx>251</posx>
+              <width>2</width>
+              <height>88</height>
+              <texture border="1">separator3.png</texture>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$INFO[ListItem.Year]</label>
+              <posx>251</posx>
+              <width>250</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+            </control>
+          </control>
+        </control>
+        <control type="textbox">
+          <label>$VAR[PlotVar]</label>
+          <posy>345</posy>
+          <posx>136</posx>
+          <width>970</width>
+          <height>175</height>
+          <font>font14_textbox2</font>
+          <pagecontrol>62</pagecontrol>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+        </control>
+        <control type="scrollbar" id="62">
+          <posy>342</posy>
+          <posx>1112</posx>
+          <width>14</width>
+          <height>180</height>
+          <onup>SetProperty(MediaMenu,True,home)</onup>
+          <onup>SetFocus(9050,0)</onup>
+          <onleft>50</onleft>
+          <onright>50</onright>
+          <ondown>50</ondown>
+          <texturesliderbackground>scrollbar/texturesliderbackground3.png</texturesliderbackground>
+          <texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar3.png</texturesliderbar>
+          <texturesliderbarfocus border="1">scrollbar/texturesliderbar3.png</texturesliderbarfocus>
+          <showonepage>false</showonepage>
+          <orientation>vertical</orientation>
+        </control>
+        <control type="image">
+          <posx>1126</posx>
+          <posy>162</posy>
+          <width>662</width>
+          <height>360</height>
+          <aspectratio aligny="top">scale</aspectratio>
+          <texture>$INFO[ListItem(0).Art(fanart)]</texture>
+          <bordertexture border="1,1,2,1">empty.png</bordertexture>
+          <bordersize>1,1,2,1</bordersize>
+        </control>
+        <control type="image">
+          <posx>121</posx>
+          <posy>464</posy>
+          <width>1670</width>
+          <height>60</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+        <control type="image">
+          <posx>121</posx>
+          <posy>104</posy>
+          <width>1670</width>
+          <height>60</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+        <control type="group">
+          <posx>450</posx>
+          <posy>535</posy>
+          <include>VisibleFadeEffect</include>
+          <control type="image" id="4756">
+            <posy>-24</posy>
+            <posx>-310</posx>
+            <bordersize>2</bordersize>
+            <texture>$VAR[StudioFlag]</texture>
+            <width>140</width>
+            <height>115</height>
+            <aspectratio>keep</aspectratio>
+            <fadetime>250</fadetime>
+            <animation effect="fade" time="200">VisibleChange</animation>
+          </control>
+          <control type="label">
+            <posy>-24</posy>
+            <posx>-310</posx>
+            <width>155</width>
+            <height>120</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <label>$INFO[Listitem.Property(mediaTag-Studio)]</label>
+            <font>font10</font>
+            <textcolor>grey</textcolor>
+            <wrapmultiline>true</wrapmultiline>
+            <visible>IsEmpty(Control.GetLabel(4756))</visible>
+          </control>
+          <control type="image">
+            <posx>-150</posx>
+            <aspectratio>keep</aspectratio>
+            <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+            <include>MediaFlagVarsShelf</include>
+          </control>
+          <control type="image">
+            <posx>0</posx>
+            <include>MediaFlagVarsShelf</include>
+            <texture>$VAR[ResolutionFlag]</texture>
+          </control>
+          <control type="image">
+            <posx>150</posx>
+            <include>MediaFlagVarsShelf</include>
+            <texture>$VAR[VideoCodecFlag]</texture>
+          </control>
+          <control type="image">
+            <posx>300</posx>
+            <include>MediaFlagVarsShelf</include>
+            <texture>$VAR[AudioCodecFlag]</texture>
+          </control>
+          <control type="image">
+            <posx>450</posx>
+            <width>75</width>
+            <height>55</height>
+            <aspectratio>keep</aspectratio>
+            <fadetime>250</fadetime>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <posx>450</posx>
+            <posy>6</posy>
+            <texture>$VAR[AudioChannelsFlag]</texture>
+          </control>
+        </control>
+      </control>
+      <control type="group">
+        <control type="scrollbar" id="88">
+          <posx>110</posx>
+          <posy>1060</posy>
+          <width>1680</width>
+          <height>13</height>
+          <onup>708</onup>
+          <ondown>708</ondown>
+          <texturesliderbackground border="1">-</texturesliderbackground>
+          <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+          <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+          <textureslidernib>-</textureslidernib>
+          <textureslidernibfocus>-</textureslidernibfocus>
+          <showonepage>false</showonepage>
+          <orientation>horizontal</orientation>
+          <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(88) + !Container.Scrolling">Conditional</animation>
+        </control>
+        <include condition="!system.getbool(input.enablemouse)">Shelf3D_FixedList</include>
+        <include condition="system.getbool(input.enablemouse)">Shelf3D_List</include>
+        <control type="group">
+          <animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+          <control type="label">
+            <posx>1125</posx>
+            <posy>960</posy>
+            <width>1120</width>
+            <height>40</height>
+            <align>right</align>
+            <font>font_movietit</font>
+            <scroll>true</scroll>
+            <scrollspeed>50</scrollspeed>
+            <textcolor>grey2</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+        </control>
+      </control>
+    </control>
+  </include>
+  <include name="Shelf3D_FixedList">
+    <control type="fixedlist" id="708">
+      <include>Shelf3D_Content</include>
+    </control>
+  </include>
+  <include name="Shelf3D_List">
+    <control type="list" id="708">
+      <include>Shelf3D_Content</include>
+    </control>
+  </include>
+  <include name="Shelf3D_Content">
+    <viewtype label="Shelf 3D">list</viewtype>
+    <posx>-30</posx>
+    <posy>415</posy>
+    <height>920</height>
+    <width>2050</width>
+    <onleft>708</onleft>
+    <onright>708</onright>
+    <onup>SetProperty(MediaMenu,True,home)</onup>
+    <onup>SetFocus(9050,0)</onup>
+    <ondown>noop</ondown>
+    <orientation>horizontal</orientation>
+    <focusposition>5</focusposition>
+    <scrolltime>100</scrolltime>
+    <preloaditems>2</preloaditems>
+    <pagecontrol>88</pagecontrol>
+    <camera x="2010" y="570"/>
+    <animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+    <visible>Container.Content(movies)</visible>
+    <itemlayout width="268" height="434">
+      <control type="group">
+        <posx>150</posx>
+        <posy>0</posy>
+        <control type="image">
+          <!-- Poster reflejo -->
+          <posx>-94</posx>
+          <posy>517</posy>
+          <width>249</width>
+          <height>340</height>
+          <texture flipy="true" diffuse="views/shelf/reflect_poster.png">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+        </control>
+        <control type="image">
+          <!-- Poster lados -->
+          <posx>-94</posx>
+          <posy>162</posy>
+          <width>250</width>
+          <height>340</height>
+          <texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+        </control>
+        <control type="image">
+          <posx>65</posx>
+          <posy>140</posy>
+          <width>120</width>
+          <height>120</height>
+          <bordersize>20</bordersize>
+          <visible>[Container.Content(movies)] | [Container.Content(seasons) | Container.Content(tvshows)]</visible>
+          <texture>$VAR[OverlayVar]</texture>
+          <visible>!Skin.HasSetting(Enable.Circles)</visible>
+        </control>
+        <!-- Watched Status Lower Circle -->
+        <control type="image">
+          <posx>105</posx>
+          <posy>451</posy>
+          <width>36</width>
+          <height>36</height>
+          <aspectratio>keep</aspectratio>
+          <texture>$VAR[OverlayVar]</texture>
+          <colordiffuse>$VAR[Colour_Shelf3DWatchedStatusColourVar]</colordiffuse>
+          <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+        </control>
+        <control type="image">
+          <posx>-100</posx>
+          <posy>131</posy>
+          <width>280</width>
+          <height>380</height>
+          <texture>$INFO[ListItem.Property(mediaTag-videoResolution),views/shelf/,.png]</texture>
+          <aspectratio>stretch</aspectratio>
+        </control>
+        <control type="image">
+          <posx>-100</posx>
+          <posy>505</posy>
+          <width>280</width>
+          <height>380</height>
+          <texture flipy="true" diffuse="views/shelf/reflect_box_overlay.png">$INFO[ListItem.Property(mediaTag-videoResolution),views/shelf/,.png]</texture>
+          <aspectratio>stretch</aspectratio>
+        </control>
+        <!-- Watched Status Upper Circle -->
+        <control type="image">
+          <posx>105</posx>
+          <posy>177</posy>
+          <width>36</width>
+          <height>36</height>
+          <aspectratio>keep</aspectratio>
+          <texture>$VAR[OverlayVar]</texture>
+          <colordiffuse>$VAR[Colour_Shelf3DWatchedStatusColourVar]</colordiffuse>
+          <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+        </control>
+      </control>
+    </itemlayout>
+    <focusedlayout width="280" height="434">
+      <control type="group">
+        <posx>140</posx>
+        <posy>0</posy>
+        <control type="image">
+          <!-- Poster  -->
+          <posx>-140</posx>
+          <posy>65</posy>
+          <width>340</width>
+          <height>480</height>
+          <texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <control type="image">
+          <!-- Poster reflejo  -->
+          <posx>-140</posx>
+          <posy>566</posy>
+          <width>336</width>
+          <height>480</height>
+          <colordiffuse>21FFFFFF</colordiffuse>
+          <texture flipy="true">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <control type="image">
+          <posx>82</posx>
+          <posy>46</posy>
+          <width>150</width>
+          <height>150</height>
+          <bordersize>20</bordersize>
+          <visible>[Container.Content(movies)] | [Container.Content(seasons) | Container.Content(tvshows)]</visible>
+          <texture>$VAR[OverlayVar]</texture>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out"/>
+          </animation>
+          <visible>!Skin.HasSetting(Enable.Circles)</visible>
+        </control>
+        <!-- Watched Status Lower Circle -->
+        <control type="image">
+          <posx>149</posx>
+          <posy>494</posy>
+          <width>36</width>
+          <height>36</height>
+          <aspectratio>keep</aspectratio>
+          <texture>$VAR[OverlayVar]</texture>
+          <colordiffuse>$VAR[Colour_Shelf3DWatchedStatusColourVar]</colordiffuse>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out"/>
+          </animation>
+          <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+        </control>
+        <control type="image">
+          <!-- Estuche -->
+          <posx>-148</posx>
+          <posy>19</posy>
+          <width>380</width>
+          <height>540</height>
+          <texture>$INFO[ListItem.Property(mediaTag-videoResolution),views/shelf/,.png]</texture>
+          <aspectratio>stretch</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <control type="image">
+          <!-- Estuche reflejo -->
+          <posx>-148</posx>
+          <posy>549</posy>
+          <width>380</width>
+          <height>540</height>
+          <colordiffuse>61FFFFFF</colordiffuse>
+          <texture flipy="true">$INFO[ListItem.Property(mediaTag-videoResolution),views/shelf/,.png]</texture>
+          <aspectratio>stretch</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <!-- Watched Status Upper Circle -->
+        <control type="image">
+          <posx>149</posx>
+          <posy>80</posy>
+          <width>36</width>
+          <height>36</height>
+          <aspectratio>keep</aspectratio>
+          <texture>$VAR[OverlayVar]</texture>
+          <colordiffuse>$VAR[Colour_Shelf3DWatchedStatusColourVar]</colordiffuse>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="600" tween="cubic" easing="out"/>
+          </animation>
+          <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+        </control>
+      </control>
+    </focusedlayout>
+  </include>
 </includes>
