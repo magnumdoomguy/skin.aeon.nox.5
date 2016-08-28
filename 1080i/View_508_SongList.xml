@@ -1,169 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-	<!-- Video Episode -->
-	<include name="View_508_SongList">
-		<control type="group">
-			<visible>Control.IsVisible(508) + !Window.IsActive(addoninformation)</visible>
-			<include>ViewAnimation</include>
-			<control type="group">
-				<posx>0</posx>
-				<posy>0</posy>
-				<control type="list" id="508">
-					<posx>310</posx>
-					<posy>75</posy>
-					<width>1300</width>
-					<height>980</height>
-					<orientation>vertical</orientation>
-					<movement>2</movement>
-					<focusposition>1</focusposition>
-					<onleft>SetProperty(MediaMenu,True,home)</onleft>
-					<onleft>SetFocus(9050,0)</onleft>
-					<onright>noop</onright>
-					<onup>508</onup>
-					<ondown>508</ondown>
-					<pagecontrol>60</pagecontrol>
-					<viewtype label="SongList">list</viewtype>
-					<scrolltime tween="quadratic" easing="out">200</scrolltime>
-					<visible>Container.Content(songs)</visible>
-					<animation effect="slide" end="0,0" time="160" condition="Container(508).Row(0)">Conditional</animation>
-					<animation effect="slide" end="0,0" time="160" condition="Container(508).Row(1)">Conditional</animation>
-					<animation effect="slide" end="0,0" time="160" condition="Container(508).Row(2)">Conditional</animation>
-					<animation effect="slide" end="0,0" time="160" condition="Container(508).Row(3)">Conditional</animation>
-					<animation effect="slide" end="0,0" time="160" condition="Container(508).Row(4)">Conditional</animation>
-					<animation effect="slide" end="0,0" time="160" condition="Container(508).Row(5)">Conditional</animation>
-					<itemlayout height="100" width="1300" condition="Container.Content(songs)">
-						<control type="group">
-							<posy>15</posy>
-							<posx>275</posx>
-							<width>1000</width>
-							<height>70</height>
-							<align>left</align>
-							
-							<orientation>horizontal</orientation>
-							<control type="label">
-								<width max="895" min="10">auto</width>
-								<height>70</height>
-								<font>font30</font>
-								<textcolor>grey</textcolor>
-								<selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
-								<aligny>center</aligny>
-								<label>$VAR[TrackNumberVar]. $INFO[ListItem.Title]</label>
-							</control>
-							<control type="label">
-								<posx>1000</posx>
-								<align>right</align>
-								<font>IconSmall</font>
-								<width>105</width>
-								<height>70</height>
-								<aligny>center</aligny>
-								<textcolor>grey2</textcolor>
-								<selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
-								<label></label>
-								<visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
-							</control>
-						</control>
-					</itemlayout>
-					<focusedlayout height="275" width="1300" condition="Container.Content(songs)">
-						<control type="image">
-							<posy>0</posy>
-							<width>1300</width>
-							<height>275</height>
-							<texture>listselect_fo.png</texture>
-							<colordiffuse>$VAR[Colour_SongListHighlightColourVar]</colordiffuse>
-						</control>
-						<control type="image">
-							<posx>15</posx>
-							<posy>15</posy>
-							<width>245</width>
-							<height>245</height>
-							<aspectratio>scale</aspectratio>
-							<texture>$INFO[ListItem.Art(smallThumb)]</texture>
-						</control>
-						<control type="label">
-							<posx>275</posx>
-							<posy>0</posy>
-							<width>1000</width>
-							<height>70</height>
-							<font>font30</font>
-							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>[B]$VAR[TrackNumberVar]. $INFO[ListItem.Title][/B]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
-						</control>
-						<control type="label">
-							<posx>1275</posx>
-							<posy>0</posy>
-							<align>right</align>
-							<font>IconSmall</font>
-							<width>105</width>
-							<height>70</height>
-							<aligny>center</aligny>
-							<textcolor>grey2</textcolor>
-							<selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
-							<label></label>
-							<visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
-						</control>
-						<control type="label">
-							<posx>275</posx>
-							<posy>55</posy>
-							<width>990</width>
-							<height>70</height>
-							<font>font16_title</font>
-							<textcolor>$VAR[Colour_SongListThemeColourVar]</textcolor>
-							<selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Artist]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
-						</control>
-						<control type="label">
-							<posx>275</posx>
-							<posy>105</posy>
-							<width>990</width>
-							<height>70</height>
-							<font>font16</font>
-							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label>$INFO[ListItem.Album] $INFO[ListItem.Year,[,]]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
-						</control>
-						<control type="label">
-							<posx>275</posx>
-							<posy>135</posy>
-							<width>990</width>
-							<height>110</height>
-							<font>font16</font>
-							<textcolor>white</textcolor>
-							<selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
-							<align>left</align>
-							<aligny>center</aligny>
-							<label fallback="• • • •">$VAR[MusicListLabel4Var]</label>
-							<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
-						</control>
-					</focusedlayout>
-				</control>
-				<control type="scrollbar" id="60">
-					<posx>1890</posx>
-					<posy>200</posy>
-					<width>14</width>
-					<height>780</height>
-					<onup>60</onup>
-					<ondown>60</ondown>
-					<onleft>508</onleft>
-					<onright>SetProperty(MediaMenu,True,home)</onright>
-					<onright>SetFocus(9050,0)</onright>
-					<texturesliderbackground>-</texturesliderbackground>
-					<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-					<showonepage>false</showonepage>
-					<orientation>vertical</orientation>
-					<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-				</control>
-			</control>
-		</control>
-	</include>
+  <!-- Video Episode -->
+  <include name="View_508_SongList">
+    <control type="group">
+      <visible>Control.IsVisible(508) + !Window.IsActive(addoninformation)</visible>
+      <include>ViewAnimation</include>
+      <control type="group">
+        <posx>0</posx>
+        <posy>0</posy>
+        <control type="list" id="508">
+          <posx>310</posx>
+          <posy>75</posy>
+          <width>1300</width>
+          <height>980</height>
+          <orientation>vertical</orientation>
+          <movement>2</movement>
+          <focusposition>1</focusposition>
+          <onleft>SetProperty(MediaMenu,True,home)</onleft>
+          <onleft>SetFocus(9050,0)</onleft>
+          <onright>noop</onright>
+          <onup>508</onup>
+          <ondown>508</ondown>
+          <pagecontrol>60</pagecontrol>
+          <viewtype label="SongList">list</viewtype>
+          <scrolltime tween="quadratic" easing="out">200</scrolltime>
+          <visible>Container.Content(songs)</visible>
+          <animation effect="slide" end="0,0" time="160" condition="Container(508).Row(0)">Conditional</animation>
+          <animation effect="slide" end="0,0" time="160" condition="Container(508).Row(1)">Conditional</animation>
+          <animation effect="slide" end="0,0" time="160" condition="Container(508).Row(2)">Conditional</animation>
+          <animation effect="slide" end="0,0" time="160" condition="Container(508).Row(3)">Conditional</animation>
+          <animation effect="slide" end="0,0" time="160" condition="Container(508).Row(4)">Conditional</animation>
+          <animation effect="slide" end="0,0" time="160" condition="Container(508).Row(5)">Conditional</animation>
+          <itemlayout height="100" width="1300" condition="Container.Content(songs)">
+            <control type="group">
+              <posy>15</posy>
+              <posx>275</posx>
+              <width>1000</width>
+              <height>70</height>
+              <align>left</align>
+              <orientation>horizontal</orientation>
+              <control type="label">
+                <width max="895" min="10">auto</width>
+                <height>70</height>
+                <font>font30</font>
+                <textcolor>grey</textcolor>
+                <selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
+                <aligny>center</aligny>
+                <label>$VAR[TrackNumberVar]. $INFO[ListItem.Title]</label>
+              </control>
+              <control type="label">
+                <posx>1000</posx>
+                <align>right</align>
+                <font>IconSmall</font>
+                <width>105</width>
+                <height>70</height>
+                <aligny>center</aligny>
+                <textcolor>grey2</textcolor>
+                <selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
+                <label></label>
+                <visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
+              </control>
+            </control>
+          </itemlayout>
+          <focusedlayout height="275" width="1300" condition="Container.Content(songs)">
+            <control type="image">
+              <posy>0</posy>
+              <width>1300</width>
+              <height>275</height>
+              <texture>listselect_fo.png</texture>
+              <colordiffuse>$VAR[Colour_SongListHighlightColourVar]</colordiffuse>
+            </control>
+            <control type="image">
+              <posx>15</posx>
+              <posy>15</posy>
+              <width>245</width>
+              <height>245</height>
+              <aspectratio>scale</aspectratio>
+              <texture>$INFO[ListItem.Art(smallThumb)]</texture>
+            </control>
+            <control type="label">
+              <posx>275</posx>
+              <posy>0</posy>
+              <width>1000</width>
+              <height>70</height>
+              <font>font30</font>
+              <textcolor>white</textcolor>
+              <selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>[B]$VAR[TrackNumberVar]. $INFO[ListItem.Title][/B]</label>
+              <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
+            </control>
+            <control type="label">
+              <posx>1275</posx>
+              <posy>0</posy>
+              <align>right</align>
+              <font>IconSmall</font>
+              <width>105</width>
+              <height>70</height>
+              <aligny>center</aligny>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
+              <label></label>
+              <visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
+            </control>
+            <control type="label">
+              <posx>275</posx>
+              <posy>55</posy>
+              <width>990</width>
+              <height>70</height>
+              <font>font16_title</font>
+              <textcolor>$VAR[Colour_SongListThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$INFO[ListItem.Artist]</label>
+              <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
+            </control>
+            <control type="label">
+              <posx>275</posx>
+              <posy>105</posy>
+              <width>990</width>
+              <height>70</height>
+              <font>font16</font>
+              <textcolor>white</textcolor>
+              <selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$INFO[ListItem.Album] $INFO[ListItem.Year,[,]]</label>
+              <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
+            </control>
+            <control type="label">
+              <posx>275</posx>
+              <posy>135</posy>
+              <width>990</width>
+              <height>110</height>
+              <font>font16</font>
+              <textcolor>white</textcolor>
+              <selectedcolor>$VAR[Colour_SongListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label fallback="• • • •">$VAR[MusicListLabel4Var]</label>
+              <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(508)">Conditional</animation>
+            </control>
+          </focusedlayout>
+        </control>
+        <control type="scrollbar" id="60">
+          <posx>1890</posx>
+          <posy>200</posy>
+          <width>14</width>
+          <height>780</height>
+          <onup>60</onup>
+          <ondown>60</ondown>
+          <onleft>508</onleft>
+          <onright>SetProperty(MediaMenu,True,home)</onright>
+          <onright>SetFocus(9050,0)</onright>
+          <texturesliderbackground>-</texturesliderbackground>
+          <texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+          <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+          <showonepage>false</showonepage>
+          <orientation>vertical</orientation>
+          <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+        </control>
+      </control>
+    </control>
+  </include>
 </includes>

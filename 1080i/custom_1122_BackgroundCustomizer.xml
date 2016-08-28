@@ -1,281 +1,281 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window id="1122" type="dialog">
-	<defaultcontrol always="true">90100</defaultcontrol>
-	<coordinates>
-		<system>1</system>
-		<posx>457</posx>
-		<posy>360</posy>
-	</coordinates>
-	<include>dialogeffect</include>
-	<onunload condition="!IsEmpty(Skin.String(ItemToEdit.MultiFanart))">Skin.SetString($INFO[Window(Home).Property(Nox.Temp)],$INFO[Skin.String(ItemToEdit.MultiFanart)])</onunload>
-	<onunload condition="!IsEmpty(Skin.String(ItemToEdit.BGType))">Skin.SetString($INFO[Window(Home).Property(Nox.BGType)],$INFO[Skin.String(ItemToEdit.BGType)])</onunload>
-	<onunload>ClearProperty(No.Cases,Home)</onunload>
-	<controls>
-		<control type="image">
-			<posx>157</posx>
-			<posy>0</posy>
-			<width>692</width>
-			<height>300</height>
-			<texture border="40">dialogs/default/bg.png</texture>
-		</control>
-		<control type="image">
-			<posx>187</posx>
-			<posy>86</posy>
-			<width>632</width>
-			<height>182</height>
-			<texture border="5">dialogs/default/inner.png</texture>
-		</control>
-		<control type="label" id="1">
-			<posx>30</posx>
-			<posy>32</posy>
-			<width>940</width>
-			<height>40</height>
-			<font>font15_title</font>
-			<label>$LOCALIZE[42001]</label>
-			<align>center</align>
-			<textcolor>dialogheader</textcolor>
-		</control>
-		<control type="list" id="90100">
-			<posx>189</posx>
-			<posy>88</posy>
-			<width>630</width>
-			<height>180</height>
-			<onup>90100</onup>
-			<ondown>90100</ondown>
-			<onleft>90100</onleft>
-			<onright>60</onright>
-			<pagecontrol>60</pagecontrol>
-			<scrolltime tween="quadratic" easing="out">200</scrolltime>
-			<itemlayout height="60" width="630">
-				<control type="image">
-					<width>630</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-				</control>
-				<control type="label">
-					<width>630</width>
-					<height>60</height>
-					<textoffsetx>15</textoffsetx>
-					<font>font14</font>
-					<textcolor>grey2</textcolor>
-					<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
-					<align>left</align>
-					<aligny>center</aligny>
-					<label>$INFO[ListItem.Label]</label>
-				</control>
-			</itemlayout>
-			<focusedlayout height="60" width="630">
-				<control type="image">
-					<width>630</width>
-					<height>60</height>
-					<texture border="1">separator2.png</texture>
-					<include>VisibleFadeEffect</include>
-				</control>
-				<control type="image">
-					<width>629</width>
-					<height>60</height>
-					<texture border="5">listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
-					<include>VisibleFadeEffect</include>
-				</control>
-				<control type="label">
-					<width>630</width>
-					<height>60</height>
-					<textoffsetx>15</textoffsetx>
-					<font>font14</font>
-					<textcolor>white</textcolor>
-					<selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
-					<scroll>true</scroll>
-					<align>left</align>
-					<aligny>center</aligny>
-					<label>$INFO[ListItem.Label]</label>
-					<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(90100)">Conditional</animation>
-				</control>
-			</focusedlayout>
-			<content>
-				<item>
-					<label>$LOCALIZE[31118]</label>
-					<onclick>Skin.Reset(CustomMovieSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomMovieSectionBackgroundFile)</onclick>
-					<onclick>Skin.Reset(CustomMovieSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomMovieSectionSlideshowPath)</onclick>
-					<visible>Container.Content(movies)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31118]</label>
-					<onclick>Skin.Reset(CustomTVSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomTVSectionBackgroundFile)</onclick>
-					<onclick>Skin.Reset(CustomTVSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomTVSectionSlideshowPath)</onclick>
-					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31118]</label>
-					<onclick>Skin.Reset(CustomHomeVideoSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomHomeVideoSectionBackgroundFile)</onclick>
-					<onclick>Skin.Reset(CustomHomeVideoSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomHomeVideoSectionSlideshowPath)</onclick>
-					<visible>Container.PlexContent(homemovies)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31118]</label>
-					<onclick>Skin.Reset(CustomMusicSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomMusicSectionBackgroundFile)</onclick>
-					<onclick>Skin.Reset(CustomMusicSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomMusicSectionSlideshowPath)</onclick>
-					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31704]</label>
-					<onclick>Skin.Reset(CustomPhotoSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomPhotoSectionBackgroundFile)</onclick>
-					<onclick>Skin.Reset(CustomPhotoSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomPhotoSectionSlideshowPath)</onclick>
-					<visible>Container.PlexContent(photos)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31118]</label>
-					<onclick>Skin.Reset(CustomChannelSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomChannelSectionBackgroundFile)</onclick>
-					<onclick>Skin.Reset(CustomChannelSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomChannelSectionSlideshowPath)</onclick>
-					<visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31118]</label>
-					<onclick>Skin.Reset(CustomWatchLaterBackground)</onclick>
-					<onclick>Skin.Reset(CustomWatchLaterBackgroundFile)</onclick>
-					<onclick>Skin.Reset(CustomWatchLaterSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomWatchLaterSlideshowPath)</onclick>
-					<visible>Container.Content(clips)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31023]</label>
-					<onclick>Skin.SetImage(CustomMovieSectionBackgroundFile)</onclick>
-					<onclick>Skin.SetBool(CustomMovieSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomMovieSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomMovieSectionSlideshowPath)</onclick>
-					<visible>Container.Content(movies)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31023]</label>
-					<onclick>Skin.SetImage(CustomTVSectionBackgroundFile)</onclick>
-					<onclick>Skin.SetBool(CustomTVSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomTVSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomTVSectionSlideshowPath)</onclick>
-					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31023]</label>
-					<onclick>Skin.SetImage(CustomHomeVideoSectionBackgroundFile)</onclick>
-					<onclick>Skin.SetBool(CustomHomeVideoSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomHomeVideoSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomHomeVideoSectionSlideshowPath)</onclick>
-					<visible>Container.PlexContent(homemovies)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31023]</label>
-					<onclick>Skin.SetImage(CustomMusicSectionBackgroundFile)</onclick>
-					<onclick>Skin.SetBool(CustomMusicSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomMusicSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomMusicSectionSlideshowPath)</onclick>
-					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31023]</label>
-					<onclick>Skin.SetImage(CustomPhotoSectionBackgroundFile)</onclick>
-					<onclick>Skin.SetBool(CustomPhotoSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomPhotoSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomPhotoSectionSlideshowPath)</onclick>
-					<visible>Container.PlexContent(photos)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31023]</label>
-					<onclick>Skin.SetImage(CustomChannelSectionBackgroundFile)</onclick>
-					<onclick>Skin.SetBool(CustomChannelSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomChannelSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomChannelSectionSlideshowPath)</onclick>
-					<visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31023]</label>
-					<onclick>Skin.SetImage(CustomWatchLaterBackgroundFile)</onclick>
-					<onclick>Skin.SetBool(CustomWatchLaterBackground)</onclick>
-					<onclick>Skin.Reset(CustomWatchLaterSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomWatchLaterSlideshowPath)</onclick>
-					<visible>Container.Content(clips)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31022]</label>
-					<onclick>Skin.SetPath(CustomMovieSectionSlideshowPath)</onclick>
-					<onclick>Skin.SetBool(CustomMovieSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomMovieSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomMovieSectionBackgroundFile)</onclick>
-					<visible>Container.Content(movies)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31022]</label>
-					<onclick>Skin.SetPath(CustomTVSectionSlideshowPath)</onclick>
-					<onclick>Skin.SetBool(CustomTVSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomTVSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomTVSectionBackgroundFile)</onclick>
-					<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31022]</label>
-					<onclick>Skin.SetPath(CustomHomeVideoSectionSlideshowPath)</onclick>
-					<onclick>Skin.SetBool(CustomHomeVideoSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomHomeVideoSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomHomeVideoSectionBackgroundFile)</onclick>
-					<visible>Container.PlexContent(homemovies)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31022]</label>
-					<onclick>Skin.SetPath(CustomMusicSectionSlideshowPath)</onclick>
-					<onclick>Skin.SetBool(CustomMusicSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomMusicSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomMusicSectionBackgroundFile)</onclick>
-					<visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31022]</label>
-					<onclick>Skin.SetPath(CustomPhotoSectionSlideshowPath)</onclick>
-					<onclick>Skin.SetBool(CustomPhotoSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomPhotoSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomPhotoSectionBackgroundFile)</onclick>
-					<visible>Container.PlexContent(photos)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31022]</label>
-					<onclick>Skin.SetPath(CustomChannelSectionSlideshowPath)</onclick>
-					<onclick>Skin.SetBool(CustomChannelSectionSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomChannelSectionBackground)</onclick>
-					<onclick>Skin.Reset(CustomChannelSectionBackgroundFile)</onclick>
-					<visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
-				</item>
-				<item>
-					<label>$LOCALIZE[31022]</label>
-					<onclick>Skin.SetPath(CustomWatchLaterSlideshowPath)</onclick>
-					<onclick>Skin.SetBool(CustomWatchLaterSlideshow)</onclick>
-					<onclick>Skin.Reset(CustomWatchLaterBackground)</onclick>
-					<onclick>Skin.Reset(CustomWatchLaterBackgroundFile)</onclick>
-					<visible>Container.Content(clips)</visible>
-				</item>
-			</content>
-		</control>
-		<control type="scrollbar" id="60">
-			<posx>820</posx>
-			<posy>88</posy>
-			<height>480</height>
-			<width>8</width>
-			<onleft>90100</onleft>
-			<onright>90100</onright>
-			<ondown>60</ondown>
-			<onup>60</onup>
-			<showonepage>false</showonepage>
-			<texturesliderbackground>-</texturesliderbackground>
-			<texturesliderbar colordiffuse="55ffffff" border="4">scrollbar/texturesliderbar3.png</texturesliderbar>
-			<texturesliderbarfocus border="4">scrollbar/texturesliderbar3.png</texturesliderbarfocus>
-		</control>
-	</controls>
+  <defaultcontrol always="true">90100</defaultcontrol>
+  <coordinates>
+    <system>1</system>
+    <posx>457</posx>
+    <posy>360</posy>
+  </coordinates>
+  <include>dialogeffect</include>
+  <onunload condition="!IsEmpty(Skin.String(ItemToEdit.MultiFanart))">Skin.SetString($INFO[Window(Home).Property(Nox.Temp)],$INFO[Skin.String(ItemToEdit.MultiFanart)])</onunload>
+  <onunload condition="!IsEmpty(Skin.String(ItemToEdit.BGType))">Skin.SetString($INFO[Window(Home).Property(Nox.BGType)],$INFO[Skin.String(ItemToEdit.BGType)])</onunload>
+  <onunload>ClearProperty(No.Cases,Home)</onunload>
+  <controls>
+    <control type="image">
+      <posx>157</posx>
+      <posy>0</posy>
+      <width>692</width>
+      <height>300</height>
+      <texture border="40">dialogs/default/bg.png</texture>
+    </control>
+    <control type="image">
+      <posx>187</posx>
+      <posy>86</posy>
+      <width>632</width>
+      <height>182</height>
+      <texture border="5">dialogs/default/inner.png</texture>
+    </control>
+    <control type="label" id="1">
+      <posx>30</posx>
+      <posy>32</posy>
+      <width>940</width>
+      <height>40</height>
+      <font>font15_title</font>
+      <label>$LOCALIZE[42001]</label>
+      <align>center</align>
+      <textcolor>dialogheader</textcolor>
+    </control>
+    <control type="list" id="90100">
+      <posx>189</posx>
+      <posy>88</posy>
+      <width>630</width>
+      <height>180</height>
+      <onup>90100</onup>
+      <ondown>90100</ondown>
+      <onleft>90100</onleft>
+      <onright>60</onright>
+      <pagecontrol>60</pagecontrol>
+      <scrolltime tween="quadratic" easing="out">200</scrolltime>
+      <itemlayout height="60" width="630">
+        <control type="image">
+          <width>630</width>
+          <height>60</height>
+          <texture border="1">separator2.png</texture>
+        </control>
+        <control type="label">
+          <width>630</width>
+          <height>60</height>
+          <textoffsetx>15</textoffsetx>
+          <font>font14</font>
+          <textcolor>grey2</textcolor>
+          <selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+          <align>left</align>
+          <aligny>center</aligny>
+          <label>$INFO[ListItem.Label]</label>
+        </control>
+      </itemlayout>
+      <focusedlayout height="60" width="630">
+        <control type="image">
+          <width>630</width>
+          <height>60</height>
+          <texture border="1">separator2.png</texture>
+          <include>VisibleFadeEffect</include>
+        </control>
+        <control type="image">
+          <width>629</width>
+          <height>60</height>
+          <texture border="5">listselect_fo.png</texture>
+          <colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+          <include>VisibleFadeEffect</include>
+        </control>
+        <control type="label">
+          <width>630</width>
+          <height>60</height>
+          <textoffsetx>15</textoffsetx>
+          <font>font14</font>
+          <textcolor>white</textcolor>
+          <selectedcolor>$VAR[Colour_ThemeColourVar]</selectedcolor>
+          <scroll>true</scroll>
+          <align>left</align>
+          <aligny>center</aligny>
+          <label>$INFO[ListItem.Label]</label>
+          <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(90100)">Conditional</animation>
+        </control>
+      </focusedlayout>
+      <content>
+        <item>
+          <label>$LOCALIZE[31118]</label>
+          <onclick>Skin.Reset(CustomMovieSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomMovieSectionBackgroundFile)</onclick>
+          <onclick>Skin.Reset(CustomMovieSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomMovieSectionSlideshowPath)</onclick>
+          <visible>Container.Content(movies)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31118]</label>
+          <onclick>Skin.Reset(CustomTVSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomTVSectionBackgroundFile)</onclick>
+          <onclick>Skin.Reset(CustomTVSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomTVSectionSlideshowPath)</onclick>
+          <visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31118]</label>
+          <onclick>Skin.Reset(CustomHomeVideoSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomHomeVideoSectionBackgroundFile)</onclick>
+          <onclick>Skin.Reset(CustomHomeVideoSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomHomeVideoSectionSlideshowPath)</onclick>
+          <visible>Container.PlexContent(homemovies)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31118]</label>
+          <onclick>Skin.Reset(CustomMusicSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomMusicSectionBackgroundFile)</onclick>
+          <onclick>Skin.Reset(CustomMusicSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomMusicSectionSlideshowPath)</onclick>
+          <visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31704]</label>
+          <onclick>Skin.Reset(CustomPhotoSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomPhotoSectionBackgroundFile)</onclick>
+          <onclick>Skin.Reset(CustomPhotoSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomPhotoSectionSlideshowPath)</onclick>
+          <visible>Container.PlexContent(photos)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31118]</label>
+          <onclick>Skin.Reset(CustomChannelSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomChannelSectionBackgroundFile)</onclick>
+          <onclick>Skin.Reset(CustomChannelSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomChannelSectionSlideshowPath)</onclick>
+          <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31118]</label>
+          <onclick>Skin.Reset(CustomWatchLaterBackground)</onclick>
+          <onclick>Skin.Reset(CustomWatchLaterBackgroundFile)</onclick>
+          <onclick>Skin.Reset(CustomWatchLaterSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomWatchLaterSlideshowPath)</onclick>
+          <visible>Container.Content(clips)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31023]</label>
+          <onclick>Skin.SetImage(CustomMovieSectionBackgroundFile)</onclick>
+          <onclick>Skin.SetBool(CustomMovieSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomMovieSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomMovieSectionSlideshowPath)</onclick>
+          <visible>Container.Content(movies)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31023]</label>
+          <onclick>Skin.SetImage(CustomTVSectionBackgroundFile)</onclick>
+          <onclick>Skin.SetBool(CustomTVSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomTVSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomTVSectionSlideshowPath)</onclick>
+          <visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31023]</label>
+          <onclick>Skin.SetImage(CustomHomeVideoSectionBackgroundFile)</onclick>
+          <onclick>Skin.SetBool(CustomHomeVideoSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomHomeVideoSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomHomeVideoSectionSlideshowPath)</onclick>
+          <visible>Container.PlexContent(homemovies)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31023]</label>
+          <onclick>Skin.SetImage(CustomMusicSectionBackgroundFile)</onclick>
+          <onclick>Skin.SetBool(CustomMusicSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomMusicSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomMusicSectionSlideshowPath)</onclick>
+          <visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31023]</label>
+          <onclick>Skin.SetImage(CustomPhotoSectionBackgroundFile)</onclick>
+          <onclick>Skin.SetBool(CustomPhotoSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomPhotoSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomPhotoSectionSlideshowPath)</onclick>
+          <visible>Container.PlexContent(photos)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31023]</label>
+          <onclick>Skin.SetImage(CustomChannelSectionBackgroundFile)</onclick>
+          <onclick>Skin.SetBool(CustomChannelSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomChannelSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomChannelSectionSlideshowPath)</onclick>
+          <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31023]</label>
+          <onclick>Skin.SetImage(CustomWatchLaterBackgroundFile)</onclick>
+          <onclick>Skin.SetBool(CustomWatchLaterBackground)</onclick>
+          <onclick>Skin.Reset(CustomWatchLaterSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomWatchLaterSlideshowPath)</onclick>
+          <visible>Container.Content(clips)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31022]</label>
+          <onclick>Skin.SetPath(CustomMovieSectionSlideshowPath)</onclick>
+          <onclick>Skin.SetBool(CustomMovieSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomMovieSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomMovieSectionBackgroundFile)</onclick>
+          <visible>Container.Content(movies)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31022]</label>
+          <onclick>Skin.SetPath(CustomTVSectionSlideshowPath)</onclick>
+          <onclick>Skin.SetBool(CustomTVSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomTVSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomTVSectionBackgroundFile)</onclick>
+          <visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31022]</label>
+          <onclick>Skin.SetPath(CustomHomeVideoSectionSlideshowPath)</onclick>
+          <onclick>Skin.SetBool(CustomHomeVideoSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomHomeVideoSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomHomeVideoSectionBackgroundFile)</onclick>
+          <visible>Container.PlexContent(homemovies)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31022]</label>
+          <onclick>Skin.SetPath(CustomMusicSectionSlideshowPath)</onclick>
+          <onclick>Skin.SetBool(CustomMusicSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomMusicSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomMusicSectionBackgroundFile)</onclick>
+          <visible>Container.Content(artists) | Container.Content(albums) | Container.Content(songs)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31022]</label>
+          <onclick>Skin.SetPath(CustomPhotoSectionSlideshowPath)</onclick>
+          <onclick>Skin.SetBool(CustomPhotoSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomPhotoSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomPhotoSectionBackgroundFile)</onclick>
+          <visible>Container.PlexContent(photos)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31022]</label>
+          <onclick>Skin.SetPath(CustomChannelSectionSlideshowPath)</onclick>
+          <onclick>Skin.SetBool(CustomChannelSectionSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomChannelSectionBackground)</onclick>
+          <onclick>Skin.Reset(CustomChannelSectionBackgroundFile)</onclick>
+          <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+        </item>
+        <item>
+          <label>$LOCALIZE[31022]</label>
+          <onclick>Skin.SetPath(CustomWatchLaterSlideshowPath)</onclick>
+          <onclick>Skin.SetBool(CustomWatchLaterSlideshow)</onclick>
+          <onclick>Skin.Reset(CustomWatchLaterBackground)</onclick>
+          <onclick>Skin.Reset(CustomWatchLaterBackgroundFile)</onclick>
+          <visible>Container.Content(clips)</visible>
+        </item>
+      </content>
+    </control>
+    <control type="scrollbar" id="60">
+      <posx>820</posx>
+      <posy>88</posy>
+      <height>480</height>
+      <width>8</width>
+      <onleft>90100</onleft>
+      <onright>90100</onright>
+      <ondown>60</ondown>
+      <onup>60</onup>
+      <showonepage>false</showonepage>
+      <texturesliderbackground>-</texturesliderbackground>
+      <texturesliderbar colordiffuse="55ffffff" border="4">scrollbar/texturesliderbar3.png</texturesliderbar>
+      <texturesliderbarfocus border="4">scrollbar/texturesliderbar3.png</texturesliderbarfocus>
+    </control>
+  </controls>
 </window>

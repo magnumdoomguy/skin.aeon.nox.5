@@ -1,1741 +1,1627 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol>1</defaultcontrol>
-	<visible>[Window.IsActive(VideoOSD) | Window.IsActive(fullscreeninfo) | Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo)</visible>
-	<zorder>1</zorder>
-	<controls>
-		<control type="image" id="9999">
-			<include>HiddenObject</include>
-			<texture>$INFO[MusicPlayer.Property(mediaTag-Studio),flags/studios/,.png]</texture>
-		</control>
-
-		<control type="group">
-			<visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
-			<include>Animation_OpenCloseFade</include>
-			<include>Animation_FadedByOSDSettings</include>
-			<include>Topbar</include>
-			
-			<control type="group">
-				<include>VisibleFadeEffect</include>
-				<include>Animation_FadedByOSDSettings</include>
-
-				<!-- OSD Background -->	
-				<control type="image">
-					<animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)">Conditional</animation>
-					<posx>0</posx>
-					<posy>878</posy>
-					<width>1920</width>
-					<height>427</height>
-					<texture flipy="true" border="1,40,1,1">black.png</texture>
-					<visible>Skin.HasSetting(OSD.OpaqueBackground.Enable)</visible>
-				</control>
-				<control type="image">
-					<visible>!Skin.HasTheme(WhiteFlat)</visible>
-					<animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)">Conditional</animation>
-					<posx>0</posx>
-					<posy>853</posy>
-					<width>1920</width>
-					<height>427</height>
-					<texture flipy="true" border="1,40,1,1">topbar.png</texture>
-					<colordiffuse>E6FFFFFF</colordiffuse>
-				</control>
-				<!-- Dupe WhiteFlat -->
-				<control type="image">
-					<visible>Skin.HasTheme(WhiteFlat)</visible>
-					<animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)">Conditional</animation>
-					<posx>0</posx>
-					<posy>878</posy>
-					<width>1920</width>
-					<height>402</height>
-					<texture border="1,40,1,1">topbar.png</texture>
-					<colordiffuse>E6FFFFFF</colordiffuse>
-				</control>
-				<!-- End -->
-
-				<!-- Spinning Disc -->
-				<control type="group">
-					<visible>IsEmpty(Skin.String(OSD.SpinningDiscStyle)) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-					<posx>162</posx>
-					<posy>766</posy>
-					<width>226</width>
-					<height>226</height>
-
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="275,879" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="275,879" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="275,879" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="275,879" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="275,879" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="275,879" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="275,879" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="275,879" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="275,879" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="275,879" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="275,879" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-
-					<bordersize>30</bordersize>
-
-					<control type="image">
-						<width>226</width>
-						<height>226</height>
-						<texture>views/shelf/center_disk.png</texture>
+  <defaultcontrol>1</defaultcontrol>
+  <visible>[Window.IsActive(VideoOSD) | Window.IsActive(fullscreeninfo) | Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo)</visible>
+  <zorder>1</zorder>
+  <controls>
+    <control type="image" id="9999">
+      <include>HiddenObject</include>
+      <texture>$INFO[MusicPlayer.Property(mediaTag-Studio),flags/studios/,.png]</texture>
+    </control>
+    <control type="group">
+      <visible>![Window.IsVisible(SliderDialog) | Window.IsVisible(VideoBookmarks) | Window.IsVisible(1115) | Window.IsVisible(10204)] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
+      <include>Animation_OpenCloseFade</include>
+      <include>Animation_FadedByOSDSettings</include>
+      <include>Topbar</include>
+      <control type="group">
+        <include>VisibleFadeEffect</include>
+        <include>Animation_FadedByOSDSettings</include>
+        <!-- OSD Background -->
+        <control type="image">
+          <animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)">Conditional</animation>
+          <posx>0</posx>
+          <posy>878</posy>
+          <width>1920</width>
+          <height>427</height>
+          <texture flipy="true" border="1,40,1,1">black.png</texture>
+          <visible>Skin.HasSetting(OSD.OpaqueBackground.Enable)</visible>
+        </control>
+        <control type="image">
+          <visible>!Skin.HasTheme(WhiteFlat)</visible>
+          <animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)">Conditional</animation>
+          <posx>0</posx>
+          <posy>853</posy>
+          <width>1920</width>
+          <height>427</height>
+          <texture flipy="true" border="1,40,1,1">topbar.png</texture>
+          <colordiffuse>E6FFFFFF</colordiffuse>
+        </control>
+        <!-- Dupe WhiteFlat -->
+        <control type="image">
+          <visible>Skin.HasTheme(WhiteFlat)</visible>
+          <animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo) | [String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)">Conditional</animation>
+          <posx>0</posx>
+          <posy>878</posy>
+          <width>1920</width>
+          <height>402</height>
+          <texture border="1,40,1,1">topbar.png</texture>
+          <colordiffuse>E6FFFFFF</colordiffuse>
+        </control>
+        <!-- End -->
+        <!-- Spinning Disc -->
+        <control type="group">
+          <visible>IsEmpty(Skin.String(OSD.SpinningDiscStyle)) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+          <posx>162</posx>
+          <posy>766</posy>
+          <width>226</width>
+          <height>226</height>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="275,879" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="275,879" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="275,879" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="275,879" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="275,879" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="275,879" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="275,879" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="275,879" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="275,879" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="275,879" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="275,879" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <bordersize>30</bordersize>
+          <control type="image">
+            <width>226</width>
+            <height>226</height>
+            <texture>views/shelf/center_disk.png</texture>
+          </control>
+          <control type="image">
+            <visible>!VideoPlayer.Content(episodes)</visible>
+            <width>226</width>
+            <height>226</height>
+            <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+            <texture diffuse="views/shelf/disc_diffuse.png">$INFO[Player.Art(fanart)]</texture>
+          </control>
+          <control type="image">
+            <visible>VideoPlayer.Content(episodes)</visible>
+            <width>226</width>
+            <height>226</height>
+            <aspectratio scalediffuse="false" aligny="bottom">scale</aspectratio>
+            <texture diffuse="views/shelf/disc_diffuse.png">$INFO[Player.Art(smallThumb)]</texture>
+          </control>
+          <control type="image">
+            <width>226</width>
+            <height>226</height>
+            <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+            <texture>$VAR[OSDringcdVar]</texture>
+          </control>
+          <control type="image" id="84757">
+            <visible>!VideoPlayer.Content(episodes)</visible>
+            <posx>21</posx>
+            <posy>78</posy>
+            <texture align="left">$INFO[MusicPlayer.Property(mediaTag-Studio),flags/white/studios/,.png]</texture>
+            <width>47</width>
+            <height>47</height>
+            <aspectratio>keep</aspectratio>
+          </control>
+          <control type="image" id="84757">
+            <visible>VideoPlayer.Content(episodes)</visible>
+            <posx>21</posx>
+            <posy>78</posy>
+            <texture align="left">$INFO[VideoPlayer.AudioChannels,flags/white/channels/,.png]</texture>
+            <width>47</width>
+            <height>47</height>
+            <aspectratio>keep</aspectratio>
+          </control>
+          <control type="textbox">
+            <posx>19</posx>
+            <posy>90</posy>
+            <width>55</width>
+            <height>30</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <label>$INFO[MusicPlayer.Property(mediaTag-Studio),flags/white/studios/,.png]</label>
+            <font>Bluback2</font>
+            <textcolor>white</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <visible>IsEmpty(Control.GetLabel(84757)) + !VideoPlayer.Content(episodes)</visible>
+          </control>
+          <control type="image">
+            <posx>23</posx>
+            <posy>113</posy>
+            <width>47</width>
+            <height>47</height>
+            <aspectratio>keep</aspectratio>
+            <texture align="left" fallback="flags/white/mpaa/NR.png">$INFO[MusicPlayer.Property(mediaTag-contentRating),flags/white/mpaa/,.png]</texture>
+          </control>
+          <control type="image">
+            <posx>156</posx>
+            <posy>78</posy>
+            <width>47</width>
+            <height>47</height>
+            <aspectratio>keep</aspectratio>
+            <texture align="left">$INFO[VideoPlayer.videoResolution,cdart/source/,.png]</texture>
+          </control>
+          <control type="image">
+            <posx>156</posx>
+            <posy>113</posy>
+            <width>47</width>
+            <height>47</height>
+            <aspectratio>keep</aspectratio>
+            <texture align="left">$INFO[VideoPlayer.AudioCodec,flags/white/audio/,.png]</texture>
+          </control>
+          <control type="textbox"><posx>44</posx><posy>30</posy><width>140</width><height>164</height><align>center</align><aligny>center</aligny><font>font_cdvvv</font><textcolor>white</textcolor><shadowcolor>black</shadowcolor><label>[CR][CR][CR][CR][CR][CR]$VAR[OSDSimulatedDiscartLabel2Var]</label><scroll>false</scroll><wrapmultiline>true</wrapmultiline>--&gt;
 					</control>
-					<control type="image">
-						<visible>!VideoPlayer.Content(episodes)</visible>
-						<width>226</width>
-						<height>226</height>
-						<aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-						<texture diffuse="views/shelf/disc_diffuse.png">$INFO[Player.Art(fanart)]</texture>
-					</control>
-					<control type="image">
-						<visible>VideoPlayer.Content(episodes)</visible>
-						<width>226</width>
-						<height>226</height>
-						<aspectratio scalediffuse="false" aligny="bottom">scale</aspectratio>
-						<texture diffuse="views/shelf/disc_diffuse.png">$INFO[Player.Art(smallThumb)]</texture>
-					</control>
-					<control type="image">
-						<width>226</width>
-						<height>226</height>
-						<aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-						<texture>$VAR[OSDringcdVar]</texture>
-					</control>
-					<control type="image" id="84757">
-						<visible>!VideoPlayer.Content(episodes)</visible>
-						<posx>21</posx>
-						<posy>78</posy>
-						<texture align="left">$INFO[MusicPlayer.Property(mediaTag-Studio),flags/white/studios/,.png]</texture>
-						<width>47</width>
-						<height>47</height>
-						<aspectratio>keep</aspectratio>
-					</control>
-					<control type="image" id="84757">
-						<visible>VideoPlayer.Content(episodes)</visible>
-						<posx>21</posx>
-						<posy>78</posy>
-						<texture align="left">$INFO[VideoPlayer.AudioChannels,flags/white/channels/,.png]</texture>
-						<width>47</width>
-						<height>47</height>
-						<aspectratio>keep</aspectratio>
-					</control>
-					<control type="textbox">
-						<posx>19</posx>
-						<posy>90</posy>	
-						<width>55</width>
-						<height>30</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<label>$INFO[MusicPlayer.Property(mediaTag-Studio),flags/white/studios/,.png]</label>
-						<font>Bluback2</font>
-						<textcolor>white</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<visible>IsEmpty(Control.GetLabel(84757)) + !VideoPlayer.Content(episodes)</visible>
-					</control>
-					<control type="image">
-						<posx>23</posx>
-						<posy>113</posy>
-						<width>47</width>
-						<height>47</height>
-						<aspectratio>keep</aspectratio>
-						<texture align="left" fallback="flags/white/mpaa/NR.png">$INFO[MusicPlayer.Property(mediaTag-contentRating),flags/white/mpaa/,.png]</texture>
-					</control>
-					<control type="image">
-						<posx>156</posx>
-						<posy>78</posy>
-						<width>47</width>
-						<height>47</height>
-						<aspectratio>keep</aspectratio>
-						<texture align="left">$INFO[VideoPlayer.videoResolution,cdart/source/,.png]</texture>
-					</control>
-					<control type="image">
-						<posx>156</posx>
-						<posy>113</posy>
-						<width>47</width>
-						<height>47</height>
-						<aspectratio>keep</aspectratio>
-						<texture align="left">$INFO[VideoPlayer.AudioCodec,flags/white/audio/,.png]</texture>
-					</control>
-					<control type="textbox">
-						<posx>44</posx>
-						<posy>30</posy>
-						<width>140</width>
-						<height>164</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<font>font_cdvvv</font>
-						<textcolor>white</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>[CR][CR][CR][CR][CR][CR]$VAR[OSDSimulatedDiscartLabel2Var]</label>
-						<scroll>false</scroll>
-						<wrapmultiline>true</wrapmultiline>-->
-					</control>
-
-					<!-- TV Show Title -->
-					<control type="label">
-						<visible>VideoPlayer.Content(episodes)</visible>
-						<posx>44</posx>
-						<posy>30</posy>
-						<width>140</width>
-						<height>60</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<font>font_cdvvv</font>
-						<textcolor>white</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[VideoPlayer.TVShowTitle]</label>
-						<scroll>false</scroll>
-						<wrapmultiline>false</wrapmultiline>
-					</control>
-				</control>
-
-				<!-- DVD/Bluray Disc -->
-				<control type="image">
-					<visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),DVD/Bluray) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-					<posx>137</posx>
-					<posy>746</posy>
-					<width>277</width>
-					<height>277</height>
-					<aligny>top</aligny>
-					<aspectratio align="left">keep</aspectratio>
-					<fadetime>300</fadetime>
-					<animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
-					<animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
-					<animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
-					<texture diffuse="thumbs/cdart_mask.png">$INFO[VideoPlayer.videoResolution,cdart/,.png]</texture>
-					<bordersize>30</bordersize>
-				</control>
-
-				<!-- Index Thumbnail -->
-				<control type="image">
-					<animation effect="slide" end="-360,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-91,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-20,-220" time="0" condition="String.IsEqual(Skin.String(OSD.Plot),Always)">Conditional</animation>
-					<posx>385</posx>
-					<posy>688</posy>
-					<height>200</height>
-					<width>340</width>
-					<fadetime>1</fadetime>
-					<texture>$INFO[VideoPlayer.SeekImage]</texture>
-					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-					<bordersize>20</bordersize>
-					<aspectratio scalediffuse="false">scale</aspectratio>
-					<visible>Player.Seeking + !IsEmpty(VideoPlayer.SeekImage) + !Window.IsActive(fullscreeninfo)</visible>
-				</control>
-
-				<control type="group">
-
-					<!-- Movie Poster -->
-					<control type="image">
-						<description>Movie Poster</description>
-						<posx>18</posx>
-						<posy>688</posy>
-						<width>277</width>
-						<height>392</height>
-						<texture fallback="DefaultMovies_poster.png">$VAR[OSDPosterArtworkVar]</texture>
-						<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-						<bordersize>20</bordersize>
-						<aspectratio scalediffuse="false">scale</aspectratio>
-						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + IsEmpty(Skin.String(OSD.VideoIconStyle))</visible>
-					</control>
-
-					<!-- Glass Case -->
-					<control type="image">
-						<description>Movie Poster</description>
-						<posx>43</posx>
-						<posy>710</posy>
-						<width>229</width>
-						<height>346</height>
-						<texture diffuse="thumbs/boxes/movieposter_mask.png" fallback="DefaultMovies_poster.png">$VAR[OSDPosterArtworkVar]</texture>
-						<aspectratio scalediffuse="false">scale</aspectratio>
-						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Glass)</visible>
-					</control>
-					<control type="image">
-						<description>Glass Overlay</description>
-						<posx>29</posx>
-						<posy>701</posy>
-						<width>255</width>
-						<height>370</height>
-						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
-						<fadetime>200</fadetime>	
-						<texture>thumbs/boxes/poster_shadow.png</texture>
-						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Glass)</visible>													
-					</control>
-
-					<!-- DVD / Bluray Cases -->
-					<control type="image">
-						<description>Movie Poster</description>
-						<posx>44</posx>
-						<posy>739</posy>
-						<width>225</width>
-						<height>316</height>
-						<texture fallback="DefaultMovies_poster.png">$VAR[OSDPosterArtworkVar]</texture>
-						<aspectratio scalediffuse="false">scale</aspectratio>
-						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>
-					</control>				
-					<control type="image">
-						<description>Glass Overlay</description>
-						<posx>-2</posx>
-						<posy>706</posy>
-						<width>290</width>
-						<height>370</height>
-						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
-						<fadetime>200</fadetime>	
-						<texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/,.png]</texture>
-						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>												
-					</control>	
-
-					<!-- Clear Cases -->
-					<control type="image">
-						<description>Movie Poster</description>
-						<posx>41</posx>
-						<posy>712</posy>
-						<width>231</width>
-						<height>346</height>
-						<texture diffuse="thumbs/boxes/movieposter_mask.png" fallback="DefaultMovies_poster.png">$VAR[OSDPosterArtworkVar]</texture>
-						<aspectratio scalediffuse="false">scale</aspectratio>
-						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Clear)</visible>
-					</control>
-					<control type="image">
-						<description>Glass Overlay</description>
-						<posx>4</posx>
-						<posy>684</posy>
-						<width>281</width>
-						<height>391</height>
-						<aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
-						<fadetime>200</fadetime>	
-						<texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/clearcases/,.png]</texture>
-						<visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Clear)</visible>
-					</control>
-				</control>
-
-				<control type="progress" id="23">
-					<visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-					<description>ProgressbarCache</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1499</width>
-					<height>22</height>
-					<info>Player.ProgressCache</info>
-					<reveal>true</reveal>
-					<texturebg border="2">osd/texturebg.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture_cache.png</midtexture>
-					<righttexture>-</righttexture>
-					<overlaytexture>-</overlaytexture>
-				</control>
-				<control type="progress" id="23">
-					<visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Player.Seeking</visible>
-					<description>Progressbar</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1499</width>
-					<height>22</height>
-					<info>Player.Progress</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-				<control type="progress" id="401">
-					<visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Player.Seeking</visible>
-					<description>Seek Slider</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1499</width>
-					<height>22</height>
-					<info>Player.Seekbar</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-
-				<control type="progress" id="23">
-					<visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-					<description>ProgressbarCache</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1569</width>
-					<height>22</height>
-					<info>Player.ProgressCache</info>
-					<reveal>true</reveal>
-					<texturebg border="2">osd/texturebg.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture_cache.png</midtexture>
-					<righttexture>-</righttexture>
-					<overlaytexture>-</overlaytexture>
-				</control>
-				<control type="progress" id="23">
-					<visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Player.Seeking</visible>
-					<description>Progressbar</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1569</width>
-					<height>22</height>
-					<info>Player.Progress</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-				<control type="progress" id="87">
-					<visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Player.Seeking</visible>
-					<description>Progressbar</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1569</width>
-					<height>22</height>
-					<info>Player.Seekbar</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-
-				<control type="progress" id="23">
-					<visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-					<description>ProgressbarCache</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1837</width>
-					<height>22</height>
-					<info>Player.ProgressCache</info>
-					<reveal>true</reveal>
-					<texturebg border="2">osd/texturebg.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture_cache.png</midtexture>
-					<righttexture>-</righttexture>
-					<overlaytexture>-</overlaytexture>
-				</control>
-				<control type="progress" id="23">
-					<visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Player.Seeking</visible>
-					<description>Progressbar</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1837</width>
-					<height>22</height>
-					<info>Player.Progress</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-				<control type="progress" id="87">
-					<visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Player.Seeking</visible>
-					<description>Progressbar</description>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>953</posy>
-					<width>1837</width>
-					<height>22</height>
-					<info>Player.Seekbar</info>
-					<reveal>true</reveal>
-					<texturebg border="1">osd/texturebg_cache.png</texturebg>
-					<lefttexture>-</lefttexture>
-					<midtexture border="2">osd/midtexture.png</midtexture>
-					<righttexture>-</righttexture>
-					<colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
-				</control>
-
-				<!-- Current position / Total Time -->
-				<control type="label">
-					<posx>1875</posx>
-					<posy>975</posy>
-					<width>375</width>
-					<height>60</height>
-					<aligny>center</aligny>
-					<align>right</align>
-					<font>font14</font>
-					<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-					<label>$INFO[VideoPlayer.Time] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
-					<visible>!Player.Seeking + !Skin.HasSetting(OSD.TimeRemaining.Enable)</visible>
-				</control>
-				<control type="label">
-					<posx>1875</posx>
-					<posy>975</posy>
-					<width>375</width>
-					<height>60</height>
-					<aligny>center</aligny>
-					<align>right</align>
-					<font>font14</font>
-					<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-					<label>$INFO[VideoPlayer.Time] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.TimeRemaining]</label>
-					<visible>!Player.Seeking + Skin.HasSetting(OSD.TimeRemaining.Enable)</visible>
-				</control>
-				<control type="label">
-					<posx>1875</posx>
-					<posy>975</posy>
-					<width>375</width>
-					<height>60</height>
-					<aligny>center</aligny>
-					<align>right</align>
-					<font>font14</font>
-					<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-					<label>$INFO[Player.SeekTime] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
-					<visible>Player.Seeking</visible>
-				</control>
-
-				<!-- End Time -->
-				<control type="label">
-					<posx>1875</posx>
-					<posy>1015</posy>
-					<width>375</width>
-					<height>60</height>
-					<aligny>center</aligny>
-					<align>right</align>
-					<font>font14</font>
-					<textcolor>white</textcolor>
-					<label>[UPPERCASE]$LOCALIZE[42104]:  $INFO[Player.FinishTime][/UPPERCASE]</label>
-					<visible>!Skin.HasSetting(OSD.EndTime.Disable)</visible>
-				</control>
-
-				<!-- Title -->
-				<control type="label">
-					<visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<posx>403</posx>
-					<posy>893</posy>
-					<width>1033</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label> 
-				</control>
-				<control type="label">
-					<visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<posx>403</posx>
-					<posy>893</posy>
-					<width>1479</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label> 
-				</control>
-				<control type="grouplist">
-					<animation effect="slide" end="-90,-193" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
-					<posx>403</posx>
-					<posy>893</posy>
-					<width>1149</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<itemgap>18</itemgap>
-					<orientation>horizontal</orientation>
-					<visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<control type="label">
-						<width max="1058" min="1">auto</width>
-						<height max="60" min="1">auto</height>
-						<font>font26</font>
-						<textcolor>white</textcolor>
-						<scrollout>false</scrollout>
-						<pauseatend>3800</pauseatend>
-						<scrollspeed>40</scrollspeed>
-						<scroll>true</scroll>
-						<label>$VAR[OSDTitleVar]</label> 
-					</control>
-					<control type="image">
-						<height>60</height>
-						<width>44</width>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
-						<visible>!Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-					</control>
-				</control>
-				<control type="grouplist">
-					<animation effect="slide" end="0,-193" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
-					<posx>313</posx>
-					<posy>893</posy>
-					<width>1208</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<itemgap>18</itemgap>
-					<orientation>horizontal</orientation>
-					<visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.MediaFlags.Disable) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<control type="label">
-						<width max="1146" min="1">auto</width>
-						<height max="60" min="1">auto</height>
-						<font>font26</font>
-						<textcolor>white</textcolor>
-						<scrollout>false</scrollout>
-						<pauseatend>3800</pauseatend>
-						<scrollspeed>40</scrollspeed>
-						<scroll>true</scroll>
-						<label>$VAR[OSDTitleVar]</label>
-					</control>
-					<control type="image">
-						<height max="60" min="1">auto</height>
-						<width>44</width>
-						<aspectratio>keep</aspectratio>
-						<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
-						<visible></visible>
-					</control>
-				</control>
-				<control type="label">
-					<visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.MediaFlags.Disable) + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<posx>313</posx>
-					<posy>893</posy>
-					<width>1124</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label>
-				</control>
-				<control type="label">
-					<visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<posx>45</posx>
-					<posy>893</posy>
-					<width>1837</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label>
-				</control>
-				<control type="label"> 
-					<visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<posx>313</posx>
-					<posy>893</posy>
-					<width>1569</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label>
-				</control>
-				<control type="grouplist">
-					<animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
-					<posx>45</posx>
-					<posy>893</posy>
-					<width>1476</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<itemgap>18</itemgap>
-					<orientation>horizontal</orientation>
-					<visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<control type="label">
-						<width max="1412" min="1">auto</width>
-						<height max="60" min="1">auto</height>
-						<font>font26</font>
-						<textcolor>white</textcolor>
-						<scrollout>false</scrollout>
-						<pauseatend>3800</pauseatend>
-						<scrollspeed>40</scrollspeed>
-						<scroll>true</scroll>
-						<label>$VAR[OSDTitleVar]</label>
-					</control>
-					<control type="image">
-						<height>60</height>
-						<width>44</width>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
-					</control>
-				</control>
-				<control type="label">
-					<visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
-					<posx>45</posx>
-					<posy>893</posy>
-					<width>1391</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<width max="1146" min="1">auto</width>
-					<height max="60" min="1">auto</height>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label>
-				</control>
-
-				<control type="label">
-					<visible>[!String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + Skin.HasSetting(OSD.MediaFlags.Disable) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)]</visible>
-					<posx>313</posx>
-					<posy>693</posy>
-					<width>1562</width>
-					<height>60</height>
-					<font>font26</font>
-					<align>left</align>
-					<aligny>center</aligny>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label> 
-				</control>
-				<control type="grouplist">
-					<posx>313</posx>
-					<posy>693</posy>
-					<width>1562</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<itemgap>18</itemgap>
-					<orientation>horizontal</orientation>
-					<visible>[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
-					<control type="label">
-						<width max="1486" min="1">auto</width>
-						<height max="60" min="1">auto</height>
-						<font>font26</font>
-						<textcolor>white</textcolor>
-						<scrollout>false</scrollout>
-						<pauseatend>3800</pauseatend>
-						<scrollspeed>40</scrollspeed>
-						<scroll>true</scroll>
-						<label>$VAR[OSDTitleVar]</label> 
-					</control>
-					<control type="image">
-						<height>60</height>
-						<width>44</width>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
-						<visible>!Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-					</control>
-				</control>
-				<control type="label">
-					<visible>[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
-					<posx>313</posx>
-					<posy>693</posy>
-					<width>1562</width>
-					<height>60</height>
-					<font>font26</font>
-					<align>left</align>
-					<aligny>center</aligny>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label> 
-				</control>
-
-				<control type="label">
-					<visible>[String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)]</visible>
-					<posx>45</posx>
-					<posy>693</posy>
-					<width>1837</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font26</font>
-					<textcolor>white</textcolor>
-					<scrollout>false</scrollout>
-					<pauseatend>3800</pauseatend>
-					<scrollspeed>40</scrollspeed>
-					<scroll>true</scroll>
-					<label>$VAR[OSDTitleVar]</label>
-				</control>
-				<control type="grouplist">
-					<posx>45</posx>
-					<posy>693</posy>
-					<width>1837</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<itemgap>18</itemgap>
-					<orientation>horizontal</orientation>
-					<visible>[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
-					<control type="label">
-						<width max="1769" min="1">auto</width>
-						<height max="60" min="1">auto</height>
-						<font>font26</font>
-						<textcolor>white</textcolor>
-						<scrollout>false</scrollout>
-						<pauseatend>3800</pauseatend>
-						<scrollspeed>40</scrollspeed>
-						<scroll>true</scroll>
-						<label>$VAR[OSDTitleVar]</label> 
-					</control>
-					<control type="image">
-						<height>60</height>
-						<width>44</width>
-						<aligny>center</aligny>
-						<aspectratio>keep</aspectratio>
-						<texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
-						<visible>!Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-					</control>
-				</control>
-
-				<control type="label">
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<posx>383</posx>
-					<posy>745</posy>
-					<label>$VAR[OSDGenreShowName]</label>
-					<width>680</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font14</font>
-					<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-					<visible>[!IsEmpty(VideoPlayer.TVShowTitle) + Window.IsActive(fullscreeninfo)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + !IsEmpty(VideoPlayer.TVShowTitle)]</visible>
-				</control>
-
-				<!-- Genre / Rating -->
-				<control type="grouplist">
-					<animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-					<visible>[[!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)] + Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.TVShowTitle)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + !IsEmpty(VideoPlayer.Genre)]</visible>
-					<posx>383</posx>
-					<posy>745</posy>
-					<width>680</width>
-					<height>60</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<font>font14</font>
-					<orientation>horizontal</orientation>
-					<control type="label">
-
-						<label>$VAR[OSDGenreShowName]</label>
-						<width min="20" max="299">auto</width>
-						<height>60</height>
-						<aligny>center</aligny>
-						<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<visible>[[!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)] + Window.IsActive(fullscreeninfo)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)]]</visible>
-					</control>
-
-					<!-- Separator -->
-					<control type="label">
-						<width min="20" max="299">auto</width>
-						<height>60</height>
-						<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<aligny>center</aligny>
-						<label> [B]•[/B] </label>
-						<visible>!IsEmpty(VideoPlayer.Genre) + [!IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]</visible>
-					</control>
-
-					<!-- User Rating -->
-					<control type="label">
-						<width min="20" max="299">auto</width>
-						<height>60</height>
-						<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<aligny>center</aligny>
-						<label>[COLOR grey2]$VAR[OSD_UserRating][/COLOR]</label>
-						<visible>!IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
-					</control>
-
-					<!-- Standard Rating -->
-					<control type="label">
-						<width min="20" max="299">auto</width>
-						<height>60</height>
-						<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<aligny>center</aligny>
-						<label>$VAR[OSD_Rating]</label>
-						<visible>IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage))</visible>
-					</control>
-
-					<!-- Rotten Tomato Ratings -->
-					<control type="image">
-						<width>23</width>
-						<height>60</height>
-						<aligny>center</aligny>
-						<texture>rottentomatoes/23x23/$INFO[MusicPlayer.Property(ratingImage)]</texture>
-						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.Property(hasUserRating))</visible>
-					</control>
-					<control type="label">
-						<height>60</height>
-						<width min="20" max="121">auto</width>
-						<aligny>center</aligny>
-						<label>$INFO[MusicPlayer.Property(ratingPercent)]%  </label>
-						<visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
-					</control>
-					<control type="image">
-						<width>23</width>
-						<height>60</height>
-						<aligny>center</aligny>
-						<texture>rottentomatoes/23x23/$INFO[MusicPlayer.Property(audienceRatingImage)]</texture>
-						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
-					</control>
-					<control type="label">
-						<height>60</height>
-						<width min="20" max="121">auto</width>
-						<aligny>center</aligny>
-						<label>$INFO[MusicPlayer.Property(audienceRatingPercent)]%</label>
-						<visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
-					</control>
-				</control>
-
-				<!-- Plot -->
-				<control type="textbox">
-					<posx>403</posx>
-					<posy>798</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1033</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>403</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1033</width>
-					<height>199</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>403</posx>
-					<posy>797</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1033</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmall</font>
-					<visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>403</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1033</width>
-					<height>198</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmallNoGenre</font>
-					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-
-				<control type="textbox">
-					<posx>403</posx>
-					<posy>798</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1131</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>403</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1131</width>
-					<height>199</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>403</posx>
-					<posy>797</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1131</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmall</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>403</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1131</width>
-					<height>198</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmallNoGenre</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>				
-
-				<control type="textbox">
-					<posx>313</posx>
-					<posy>798</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1221</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>313</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1221</width>
-					<height>199</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>313</posx>
-					<posy>797</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1221</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmall</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>313</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1221</width>
-					<height>198</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmallNoGenre</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-
-				<control type="textbox">
-					<posx>313</posx>
-					<posy>798</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1123</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)]  | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + 
+          <!-- TV Show Title -->
+          <control type="label">
+            <visible>VideoPlayer.Content(episodes)</visible>
+            <posx>44</posx>
+            <posy>30</posy>
+            <width>140</width>
+            <height>60</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font_cdvvv</font>
+            <textcolor>white</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <label>$INFO[VideoPlayer.TVShowTitle]</label>
+            <scroll>false</scroll>
+            <wrapmultiline>false</wrapmultiline>
+          </control>
+        </control>
+        <!-- DVD/Bluray Disc -->
+        <control type="image">
+          <visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),DVD/Bluray) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+          <posx>137</posx>
+          <posy>746</posy>
+          <width>277</width>
+          <height>277</height>
+          <aligny>top</aligny>
+          <aspectratio align="left">keep</aspectratio>
+          <fadetime>300</fadetime>
+          <animation effect="rotate" end="-360" center="auto" time="5000" loop="true" reversible="false" condition="!Player.Paused + !Player.Rewinding + !Player.Forwarding">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Rewinding2x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Rewinding4x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Rewinding8x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Rewinding16x">Conditional</animation>
+          <animation effect="rotate" end="360" center="auto" time="833" loop="true" reversible="false" condition="Player.Rewinding32x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="4165" loop="true" reversible="false" condition="Player.Forwarding2x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="3332" loop="true" reversible="false" condition="Player.Forwarding4x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="2499" loop="true" reversible="false" condition="Player.Forwarding8x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="1666" loop="true" reversible="false" condition="Player.Forwarding16x">Conditional</animation>
+          <animation effect="rotate" end="-360" center="auto" time="833" loop="true" reversible="false" condition="Player.Forwarding32x">Conditional</animation>
+          <texture diffuse="thumbs/cdart_mask.png">$INFO[VideoPlayer.videoResolution,cdart/,.png]</texture>
+          <bordersize>30</bordersize>
+        </control>
+        <!-- Index Thumbnail -->
+        <control type="image">
+          <animation effect="slide" end="-360,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-91,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-20,-220" time="0" condition="String.IsEqual(Skin.String(OSD.Plot),Always)">Conditional</animation>
+          <posx>385</posx>
+          <posy>688</posy>
+          <height>200</height>
+          <width>340</width>
+          <fadetime>1</fadetime>
+          <texture>$INFO[VideoPlayer.SeekImage]</texture>
+          <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+          <bordersize>20</bordersize>
+          <aspectratio scalediffuse="false">scale</aspectratio>
+          <visible>Player.Seeking + !IsEmpty(VideoPlayer.SeekImage) + !Window.IsActive(fullscreeninfo)</visible>
+        </control>
+        <control type="group">
+          <!-- Movie Poster -->
+          <control type="image">
+            <description>Movie Poster</description>
+            <posx>18</posx>
+            <posy>688</posy>
+            <width>277</width>
+            <height>392</height>
+            <texture fallback="DefaultMovies_poster.png">$VAR[OSDPosterArtworkVar]</texture>
+            <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+            <bordersize>20</bordersize>
+            <aspectratio scalediffuse="false">scale</aspectratio>
+            <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + IsEmpty(Skin.String(OSD.VideoIconStyle))</visible>
+          </control>
+          <!-- Glass Case -->
+          <control type="image">
+            <description>Movie Poster</description>
+            <posx>43</posx>
+            <posy>710</posy>
+            <width>229</width>
+            <height>346</height>
+            <texture diffuse="thumbs/boxes/movieposter_mask.png" fallback="DefaultMovies_poster.png">$VAR[OSDPosterArtworkVar]</texture>
+            <aspectratio scalediffuse="false">scale</aspectratio>
+            <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Glass)</visible>
+          </control>
+          <control type="image">
+            <description>Glass Overlay</description>
+            <posx>29</posx>
+            <posy>701</posy>
+            <width>255</width>
+            <height>370</height>
+            <aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+            <fadetime>200</fadetime>
+            <texture>thumbs/boxes/poster_shadow.png</texture>
+            <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Glass)</visible>
+          </control>
+          <!-- DVD / Bluray Cases -->
+          <control type="image">
+            <description>Movie Poster</description>
+            <posx>44</posx>
+            <posy>739</posy>
+            <width>225</width>
+            <height>316</height>
+            <texture fallback="DefaultMovies_poster.png">$VAR[OSDPosterArtworkVar]</texture>
+            <aspectratio scalediffuse="false">scale</aspectratio>
+            <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>
+          </control>
+          <control type="image">
+            <description>Glass Overlay</description>
+            <posx>-2</posx>
+            <posy>706</posy>
+            <width>290</width>
+            <height>370</height>
+            <aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+            <fadetime>200</fadetime>
+            <texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/,.png]</texture>
+            <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),DVD/Bluray)</visible>
+          </control>
+          <!-- Clear Cases -->
+          <control type="image">
+            <description>Movie Poster</description>
+            <posx>41</posx>
+            <posy>712</posy>
+            <width>231</width>
+            <height>346</height>
+            <texture diffuse="thumbs/boxes/movieposter_mask.png" fallback="DefaultMovies_poster.png">$VAR[OSDPosterArtworkVar]</texture>
+            <aspectratio scalediffuse="false">scale</aspectratio>
+            <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Clear)</visible>
+          </control>
+          <control type="image">
+            <description>Glass Overlay</description>
+            <posx>4</posx>
+            <posy>684</posy>
+            <width>281</width>
+            <height>391</height>
+            <aspectratio aligny="top" scalediffuse="false">stretch</aspectratio>
+            <fadetime>200</fadetime>
+            <texture>$INFO[VideoPlayer.videoResolution,thumbs/boxes/clearcases/,.png]</texture>
+            <visible>[VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Clear)</visible>
+          </control>
+        </control>
+        <control type="progress" id="23">
+          <visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+          <description>ProgressbarCache</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1499</width>
+          <height>22</height>
+          <info>Player.ProgressCache</info>
+          <reveal>true</reveal>
+          <texturebg border="2">osd/texturebg.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture_cache.png</midtexture>
+          <righttexture>-</righttexture>
+          <overlaytexture>-</overlaytexture>
+        </control>
+        <control type="progress" id="23">
+          <visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Player.Seeking</visible>
+          <description>Progressbar</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1499</width>
+          <height>22</height>
+          <info>Player.Progress</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <control type="progress" id="401">
+          <visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Player.Seeking</visible>
+          <description>Seek Slider</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1499</width>
+          <height>22</height>
+          <info>Player.Seekbar</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <control type="progress" id="23">
+          <visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+          <description>ProgressbarCache</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1569</width>
+          <height>22</height>
+          <info>Player.ProgressCache</info>
+          <reveal>true</reveal>
+          <texturebg border="2">osd/texturebg.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture_cache.png</midtexture>
+          <righttexture>-</righttexture>
+          <overlaytexture>-</overlaytexture>
+        </control>
+        <control type="progress" id="23">
+          <visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Player.Seeking</visible>
+          <description>Progressbar</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1569</width>
+          <height>22</height>
+          <info>Player.Progress</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <control type="progress" id="87">
+          <visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Player.Seeking</visible>
+          <description>Progressbar</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1569</width>
+          <height>22</height>
+          <info>Player.Seekbar</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <control type="progress" id="23">
+          <visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+          <description>ProgressbarCache</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1837</width>
+          <height>22</height>
+          <info>Player.ProgressCache</info>
+          <reveal>true</reveal>
+          <texturebg border="2">osd/texturebg.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture_cache.png</midtexture>
+          <righttexture>-</righttexture>
+          <overlaytexture>-</overlaytexture>
+        </control>
+        <control type="progress" id="23">
+          <visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Player.Seeking</visible>
+          <description>Progressbar</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1837</width>
+          <height>22</height>
+          <info>Player.Progress</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <control type="progress" id="87">
+          <visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Player.Seeking</visible>
+          <description>Progressbar</description>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>953</posy>
+          <width>1837</width>
+          <height>22</height>
+          <info>Player.Seekbar</info>
+          <reveal>true</reveal>
+          <texturebg border="1">osd/texturebg_cache.png</texturebg>
+          <lefttexture>-</lefttexture>
+          <midtexture border="2">osd/midtexture.png</midtexture>
+          <righttexture>-</righttexture>
+          <colordiffuse>$VAR[Colour_OSDProgressBarColourVar]</colordiffuse>
+        </control>
+        <!-- Current position / Total Time -->
+        <control type="label">
+          <posx>1875</posx>
+          <posy>975</posy>
+          <width>375</width>
+          <height>60</height>
+          <aligny>center</aligny>
+          <align>right</align>
+          <font>font14</font>
+          <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+          <label>$INFO[VideoPlayer.Time] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
+          <visible>!Player.Seeking + !Skin.HasSetting(OSD.TimeRemaining.Enable)</visible>
+        </control>
+        <control type="label">
+          <posx>1875</posx>
+          <posy>975</posy>
+          <width>375</width>
+          <height>60</height>
+          <aligny>center</aligny>
+          <align>right</align>
+          <font>font14</font>
+          <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+          <label>$INFO[VideoPlayer.Time] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.TimeRemaining]</label>
+          <visible>!Player.Seeking + Skin.HasSetting(OSD.TimeRemaining.Enable)</visible>
+        </control>
+        <control type="label">
+          <posx>1875</posx>
+          <posy>975</posy>
+          <width>375</width>
+          <height>60</height>
+          <aligny>center</aligny>
+          <align>right</align>
+          <font>font14</font>
+          <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+          <label>$INFO[Player.SeekTime] [COLOR grey2]/[/COLOR] $INFO[VideoPlayer.Duration]</label>
+          <visible>Player.Seeking</visible>
+        </control>
+        <!-- End Time -->
+        <control type="label">
+          <posx>1875</posx>
+          <posy>1015</posy>
+          <width>375</width>
+          <height>60</height>
+          <aligny>center</aligny>
+          <align>right</align>
+          <font>font14</font>
+          <textcolor>white</textcolor>
+          <label>[UPPERCASE]$LOCALIZE[42104]:  $INFO[Player.FinishTime][/UPPERCASE]</label>
+          <visible>!Skin.HasSetting(OSD.EndTime.Disable)</visible>
+        </control>
+        <!-- Title -->
+        <control type="label">
+          <visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <posx>403</posx>
+          <posy>893</posy>
+          <width>1033</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="label">
+          <visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <posx>403</posx>
+          <posy>893</posy>
+          <width>1479</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="grouplist">
+          <animation effect="slide" end="-90,-193" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
+          <posx>403</posx>
+          <posy>893</posy>
+          <width>1149</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <itemgap>18</itemgap>
+          <orientation>horizontal</orientation>
+          <visible>!String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <control type="label">
+            <width max="1058" min="1">auto</width>
+            <height max="60" min="1">auto</height>
+            <font>font26</font>
+            <textcolor>white</textcolor>
+            <scrollout>false</scrollout>
+            <pauseatend>3800</pauseatend>
+            <scrollspeed>40</scrollspeed>
+            <scroll>true</scroll>
+            <label>$VAR[OSDTitleVar]</label>
+          </control>
+          <control type="image">
+            <height>60</height>
+            <width>44</width>
+            <aligny>center</aligny>
+            <aspectratio>keep</aspectratio>
+            <texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
+            <visible>!Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+          </control>
+        </control>
+        <control type="grouplist">
+          <animation effect="slide" end="0,-193" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
+          <posx>313</posx>
+          <posy>893</posy>
+          <width>1208</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <itemgap>18</itemgap>
+          <orientation>horizontal</orientation>
+          <visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.MediaFlags.Disable) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <control type="label">
+            <width max="1146" min="1">auto</width>
+            <height max="60" min="1">auto</height>
+            <font>font26</font>
+            <textcolor>white</textcolor>
+            <scrollout>false</scrollout>
+            <pauseatend>3800</pauseatend>
+            <scrollspeed>40</scrollspeed>
+            <scroll>true</scroll>
+            <label>$VAR[OSDTitleVar]</label>
+          </control>
+          <control type="image">
+            <height max="60" min="1">auto</height>
+            <width>44</width>
+            <aspectratio>keep</aspectratio>
+            <texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
+            <visible/>
+          </control>
+        </control>
+        <control type="label">
+          <visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.MediaFlags.Disable) + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <posx>313</posx>
+          <posy>893</posy>
+          <width>1124</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="label">
+          <visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <posx>45</posx>
+          <posy>893</posy>
+          <width>1837</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="label">
+          <visible>String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <posx>313</posx>
+          <posy>893</posy>
+          <width>1569</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="grouplist">
+          <animation effect="slide" end="0,-200" time="0" condition="Window.IsActive(fullscreeninfo)">Conditional</animation>
+          <posx>45</posx>
+          <posy>893</posy>
+          <width>1476</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <itemgap>18</itemgap>
+          <orientation>horizontal</orientation>
+          <visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <control type="label">
+            <width max="1412" min="1">auto</width>
+            <height max="60" min="1">auto</height>
+            <font>font26</font>
+            <textcolor>white</textcolor>
+            <scrollout>false</scrollout>
+            <pauseatend>3800</pauseatend>
+            <scrollspeed>40</scrollspeed>
+            <scroll>true</scroll>
+            <label>$VAR[OSDTitleVar]</label>
+          </control>
+          <control type="image">
+            <height>60</height>
+            <width>44</width>
+            <aligny>center</aligny>
+            <aspectratio>keep</aspectratio>
+            <texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
+          </control>
+        </control>
+        <control type="label">
+          <visible>String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo) + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + ![[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]</visible>
+          <posx>45</posx>
+          <posy>893</posy>
+          <width>1391</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <width max="1146" min="1">auto</width>
+          <height max="60" min="1">auto</height>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="label">
+          <visible>[!String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + Skin.HasSetting(OSD.MediaFlags.Disable) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)]</visible>
+          <posx>313</posx>
+          <posy>693</posy>
+          <width>1562</width>
+          <height>60</height>
+          <font>font26</font>
+          <align>left</align>
+          <aligny>center</aligny>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="grouplist">
+          <posx>313</posx>
+          <posy>693</posy>
+          <width>1562</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <itemgap>18</itemgap>
+          <orientation>horizontal</orientation>
+          <visible>[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
+          <control type="label">
+            <width max="1486" min="1">auto</width>
+            <height max="60" min="1">auto</height>
+            <font>font26</font>
+            <textcolor>white</textcolor>
+            <scrollout>false</scrollout>
+            <pauseatend>3800</pauseatend>
+            <scrollspeed>40</scrollspeed>
+            <scroll>true</scroll>
+            <label>$VAR[OSDTitleVar]</label>
+          </control>
+          <control type="image">
+            <height>60</height>
+            <width>44</width>
+            <aligny>center</aligny>
+            <aspectratio>keep</aspectratio>
+            <texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
+            <visible>!Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+          </control>
+        </control>
+        <control type="label">
+          <visible>[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
+          <posx>313</posx>
+          <posy>693</posy>
+          <width>1562</width>
+          <height>60</height>
+          <font>font26</font>
+          <align>left</align>
+          <aligny>center</aligny>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="label">
+          <visible>[String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + Window.IsActive(fullscreeninfo)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)] + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)]</visible>
+          <posx>45</posx>
+          <posy>693</posy>
+          <width>1837</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font26</font>
+          <textcolor>white</textcolor>
+          <scrollout>false</scrollout>
+          <pauseatend>3800</pauseatend>
+          <scrollspeed>40</scrollspeed>
+          <scroll>true</scroll>
+          <label>$VAR[OSDTitleVar]</label>
+        </control>
+        <control type="grouplist">
+          <posx>45</posx>
+          <posy>693</posy>
+          <width>1837</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <itemgap>18</itemgap>
+          <orientation>horizontal</orientation>
+          <visible>[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Window.IsActive(fullscreeninfo)</visible>
+          <control type="label">
+            <width max="1769" min="1">auto</width>
+            <height max="60" min="1">auto</height>
+            <font>font26</font>
+            <textcolor>white</textcolor>
+            <scrollout>false</scrollout>
+            <pauseatend>3800</pauseatend>
+            <scrollspeed>40</scrollspeed>
+            <scroll>true</scroll>
+            <label>$VAR[OSDTitleVar]</label>
+          </control>
+          <control type="image">
+            <height>60</height>
+            <width>44</width>
+            <aligny>center</aligny>
+            <aspectratio>keep</aspectratio>
+            <texture>$INFO[VideoPlayer.videoResolution,overlays/list/,.png]</texture>
+            <visible>!Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+          </control>
+        </control>
+        <control type="label">
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <posx>383</posx>
+          <posy>745</posy>
+          <label>$VAR[OSDGenreShowName]</label>
+          <width>680</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font14</font>
+          <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+          <visible>[!IsEmpty(VideoPlayer.TVShowTitle) + Window.IsActive(fullscreeninfo)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + !IsEmpty(VideoPlayer.TVShowTitle)]</visible>
+        </control>
+        <!-- Genre / Rating -->
+        <control type="grouplist">
+          <animation effect="slide" end="-70,0" time="0" condition="String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <animation effect="slide" end="-338,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+          <visible>[[!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)] + Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.TVShowTitle)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + !IsEmpty(VideoPlayer.Genre)]</visible>
+          <posx>383</posx>
+          <posy>745</posy>
+          <width>680</width>
+          <height>60</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <font>font14</font>
+          <orientation>horizontal</orientation>
+          <control type="label">
+            <label>$VAR[OSDGenreShowName]</label>
+            <width min="20" max="299">auto</width>
+            <height>60</height>
+            <aligny>center</aligny>
+            <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <visible>[[!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)] + Window.IsActive(fullscreeninfo)] | [[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)]]</visible>
+          </control>
+          <!-- Separator -->
+          <control type="label">
+            <width min="20" max="299">auto</width>
+            <height>60</height>
+            <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <aligny>center</aligny>
+            <label> [B]•[/B] </label>
+            <visible>!IsEmpty(VideoPlayer.Genre) + [!IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]</visible>
+          </control>
+          <!-- User Rating -->
+          <control type="label">
+            <width min="20" max="299">auto</width>
+            <height>60</height>
+            <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <aligny>center</aligny>
+            <label>[COLOR grey2]$VAR[OSD_UserRating][/COLOR]</label>
+            <visible>!IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
+          </control>
+          <!-- Standard Rating -->
+          <control type="label">
+            <width min="20" max="299">auto</width>
+            <height>60</height>
+            <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <aligny>center</aligny>
+            <label>$VAR[OSD_Rating]</label>
+            <visible>IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage))</visible>
+          </control>
+          <!-- Rotten Tomato Ratings -->
+          <control type="image">
+            <width>23</width>
+            <height>60</height>
+            <aligny>center</aligny>
+            <texture>rottentomatoes/23x23/$INFO[MusicPlayer.Property(ratingImage)]</texture>
+            <aspectratio align="left" aligny="center">keep</aspectratio>
+            <visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.Property(hasUserRating))</visible>
+          </control>
+          <control type="label">
+            <height>60</height>
+            <width min="20" max="121">auto</width>
+            <aligny>center</aligny>
+            <label>$INFO[MusicPlayer.Property(ratingPercent)]%  </label>
+            <visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
+          </control>
+          <control type="image">
+            <width>23</width>
+            <height>60</height>
+            <aligny>center</aligny>
+            <texture>rottentomatoes/23x23/$INFO[MusicPlayer.Property(audienceRatingImage)]</texture>
+            <aspectratio align="left" aligny="center">keep</aspectratio>
+            <visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
+          </control>
+          <control type="label">
+            <height>60</height>
+            <width min="20" max="121">auto</width>
+            <aligny>center</aligny>
+            <label>$INFO[MusicPlayer.Property(audienceRatingPercent)]%</label>
+            <visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
+          </control>
+        </control>
+        <!-- Plot -->
+        <control type="textbox">
+          <posx>403</posx>
+          <posy>798</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1033</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+        </control>
+        <control type="textbox">
+          <posx>403</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1033</width>
+          <height>199</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+        </control>
+        <control type="textbox">
+          <posx>403</posx>
+          <posy>797</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1033</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmall</font>
+          <visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+        </control>
+        <control type="textbox">
+          <posx>403</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1033</width>
+          <height>198</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmallNoGenre</font>
+          <visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+        </control>
+        <control type="textbox">
+          <posx>403</posx>
+          <posy>798</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1131</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>403</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1131</width>
+          <height>199</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>403</posx>
+          <posy>797</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1131</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmall</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>403</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1131</width>
+          <height>198</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmallNoGenre</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + !String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>313</posx>
+          <posy>798</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1221</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>313</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1221</width>
+          <height>199</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>313</posx>
+          <posy>797</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1221</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmall</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>313</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1221</width>
+          <height>198</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmallNoGenre</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>313</posx>
+          <posy>798</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1123</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)]  | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + 
 					String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>313</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1123</width>
-					<height>199</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + 
+        </control>
+        <control type="textbox">
+          <posx>313</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1123</width>
+          <height>199</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + 
 					String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>313</posx>
-					<posy>797</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1123</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmall</font>
-					<visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + 
+        </control>
+        <control type="textbox">
+          <posx>313</posx>
+          <posy>797</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1123</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmall</font>
+          <visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + 
 					String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>313</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1123</width>
-					<height>198</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmallNoGenre</font>
-					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + 
+        </control>
+        <control type="textbox">
+          <posx>313</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1123</width>
+          <height>198</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmallNoGenre</font>
+          <visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + 
 					String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-
-				<control type="textbox">
-					<posx>45</posx>
-					<posy>798</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1391</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>45</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1391</width>
-					<height>199</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>45</posx>
-					<posy>797</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1391</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmall</font>
-					<visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-				<control type="textbox">
-					<posx>45</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1391</width>
-					<height>198</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmallNoGenre</font>
-					<visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
-				</control>
-
-				<control type="textbox">
-					<posx>45</posx>
-					<posy>798</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1489</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>45</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1489</width>
-					<height>199</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>45</posx>
-					<posy>797</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1489</width>
-					<height>148</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmall</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>
-				<control type="textbox">
-					<posx>45</posx>
-					<posy>755</posy>
-					<label>$VAR[OSDPlot]</label>
-					<width>1489</width>
-					<height>198</height>
-					<align>justify</align>
-					<textcolor>grey</textcolor>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-					<font>font14_textbox_OSDSmallNoGenre</font>
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-				</control>				
-
-				<!-- Other Video Info -->
-				<control type="panel" id="300">
-					<visible>Window.IsActive(fullscreeninfo) | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + Skin.HasSetting(OSD.MediaFlags.Disable)]</visible>
-					<posx>1436</posx>
-					<posy>750</posy>
-					<width>472</width>
-					<height>204</height>
-					<itemgap>5</itemgap>
-					<orientation>vertical</orientation>
-					<scrolltime tween="quadratic" easing="out">200</scrolltime>
-					<itemlayout height="102" width="472">
-
-						<!-- Item Type Label -->
-						<control type="label">
-							<posy>53</posy>
-							<width>472</width>
-							<height>40</height>
-							<font>font14</font>
-							<textcolor>grey</textcolor>
-							<selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
-							<label>$INFO[ListItem.Label]</label>
-							<textoffsetx>36</textoffsetx>
-						</control>
-
-						<!-- Item Info Label -->
-						<control type="label">
-							<posy>2</posy>
-							<width>472</width>
-							<height>40</height>
-							<font>font14</font>
-							<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-							<selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
-							<label>$INFO[ListItem.Label2]</label>
-							<textoffsetx>36</textoffsetx>
-						</control>
-
-					</itemlayout>
-
-					<focusedlayout height="102" width="594">
+        </control>
+        <control type="textbox">
+          <posx>45</posx>
+          <posy>798</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1391</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+        </control>
+        <control type="textbox">
+          <posx>45</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1391</width>
+          <height>199</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+        </control>
+        <control type="textbox">
+          <posx>45</posx>
+          <posy>797</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1391</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmall</font>
+          <visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+        </control>
+        <control type="textbox">
+          <posx>45</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1391</width>
+          <height>198</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmallNoGenre</font>
+          <visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+        </control>
+        <control type="textbox">
+          <posx>45</posx>
+          <posy>798</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1489</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>45</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1489</width>
+          <height>199</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>45</posx>
+          <posy>797</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1489</width>
+          <height>148</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmall</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <control type="textbox">
+          <posx>45</posx>
+          <posy>755</posy>
+          <label>$VAR[OSDPlot]</label>
+          <width>1489</width>
+          <height>198</height>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <font>font14_textbox_OSDSmallNoGenre</font>
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+        </control>
+        <!-- Other Video Info -->
+        <control type="panel" id="300">
+          <visible>Window.IsActive(fullscreeninfo) | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + Skin.HasSetting(OSD.MediaFlags.Disable)]</visible>
+          <posx>1436</posx>
+          <posy>750</posy>
+          <width>472</width>
+          <height>204</height>
+          <itemgap>5</itemgap>
+          <orientation>vertical</orientation>
+          <scrolltime tween="quadratic" easing="out">200</scrolltime>
+          <itemlayout height="102" width="472">
+            <!-- Item Type Label -->
+            <control type="label">
+              <posy>53</posy>
+              <width>472</width>
+              <height>40</height>
+              <font>font14</font>
+              <textcolor>grey</textcolor>
+              <selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <textoffsetx>36</textoffsetx>
+            </control>
+            <!-- Item Info Label -->
+            <control type="label">
+              <posy>2</posy>
+              <width>472</width>
+              <height>40</height>
+              <font>font14</font>
+              <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label2]</label>
+              <textoffsetx>36</textoffsetx>
+            </control>
+          </itemlayout>
+          <focusedlayout height="102" width="594">
 					</focusedlayout>
-
-					<content>
-
-						<!-- Display Original Title -->
-						<item>
-							<label>$INFO[VideoPlayer.OriginalTitle]</label>
-							<label2>$LOCALIZE[20376]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.OriginalTitle) + !String.IsEqual(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
-						</item>
-
-						<!-- Display Director -->
-						<item>
-							<label>$INFO[VideoPlayer.Director]</label>
-							<label2>$LOCALIZE[20339]:</label2>
-							<onclick>SendClick(2003,13)</onclick>
-							<visible>!IsEmpty(VideoPlayer.Director)</visible>
-						</item>
-
-						<!-- Display Writer -->
-						<item>
-							<label>$INFO[VideoPlayer.Writer]</label>
-							<label2>$LOCALIZE[20417]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.Writer)</visible>
-						</item>
-
-						<!-- Display Country -->
-						<item>
-							<label>$INFO[VideoPlayer.Country]</label>
-							<label2>$LOCALIZE[574]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.Country)</visible>
-						</item>
-
-					</content>
-				</control>
-
-				<control type="panel" id="300">
-					<visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
-					<posx>1436</posx>
-					<posy>750</posy>
-					<width>472</width>
-					<height>102</height>
-					<itemgap>0</itemgap>
-					<orientation>vertical</orientation>
-					<scrolltime tween="quadratic" easing="out">200</scrolltime>
-					<itemlayout height="102" width="472">
-
-						<!-- Item Type Label -->
-						<control type="label">
-							<posy>53</posy>
-							<width>472</width>
-							<height>40</height>
-							<font>font14</font>
-							<textcolor>grey</textcolor>
-							<selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
-							<label>$INFO[ListItem.Label]</label>
-							<textoffsetx>36</textoffsetx>
-						</control>
-
-						<!-- Item Info Label -->
-						<control type="label">
-							<posy>2</posy>
-							<width>472</width>
-							<height>40</height>
-							<font>font14</font>
-							<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-							<selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
-							<label>$INFO[ListItem.Label2]</label>
-							<textoffsetx>36</textoffsetx>
-						</control>
-
-					</itemlayout>
-
-					<focusedlayout height="102" width="594">
+          <content>
+            <!-- Display Original Title -->
+            <item>
+              <label>$INFO[VideoPlayer.OriginalTitle]</label>
+              <label2>$LOCALIZE[20376]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.OriginalTitle) + !String.IsEqual(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
+            </item>
+            <!-- Display Director -->
+            <item>
+              <label>$INFO[VideoPlayer.Director]</label>
+              <label2>$LOCALIZE[20339]:</label2>
+              <onclick>SendClick(2003,13)</onclick>
+              <visible>!IsEmpty(VideoPlayer.Director)</visible>
+            </item>
+            <!-- Display Writer -->
+            <item>
+              <label>$INFO[VideoPlayer.Writer]</label>
+              <label2>$LOCALIZE[20417]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.Writer)</visible>
+            </item>
+            <!-- Display Country -->
+            <item>
+              <label>$INFO[VideoPlayer.Country]</label>
+              <label2>$LOCALIZE[574]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.Country)</visible>
+            </item>
+          </content>
+        </control>
+        <control type="panel" id="300">
+          <visible>[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)</visible>
+          <posx>1436</posx>
+          <posy>750</posy>
+          <width>472</width>
+          <height>102</height>
+          <itemgap>0</itemgap>
+          <orientation>vertical</orientation>
+          <scrolltime tween="quadratic" easing="out">200</scrolltime>
+          <itemlayout height="102" width="472">
+            <!-- Item Type Label -->
+            <control type="label">
+              <posy>53</posy>
+              <width>472</width>
+              <height>40</height>
+              <font>font14</font>
+              <textcolor>grey</textcolor>
+              <selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <textoffsetx>36</textoffsetx>
+            </control>
+            <!-- Item Info Label -->
+            <control type="label">
+              <posy>2</posy>
+              <width>472</width>
+              <height>40</height>
+              <font>font14</font>
+              <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label2]</label>
+              <textoffsetx>36</textoffsetx>
+            </control>
+          </itemlayout>
+          <focusedlayout height="102" width="594">
 					</focusedlayout>
-
-					<content>
-
-						<!-- Display Original Title -->
-						<item>
-							<label>$INFO[VideoPlayer.OriginalTitle]</label>
-							<label2>$LOCALIZE[20376]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.OriginalTitle) + !String.IsEqual(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
-						</item>
-
-						<!-- Display Director -->
-						<item>
-							<label>$INFO[VideoPlayer.Director]</label>
-							<label2>$LOCALIZE[20339]:</label2>
-							<onclick>SendClick(2003,13)</onclick>
-							<visible>!IsEmpty(VideoPlayer.Director)</visible>
-						</item>
-
-						<!-- Display Writer -->
-						<item>
-							<label>$INFO[VideoPlayer.Writer]</label>
-							<label2>$LOCALIZE[20417]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.Writer)</visible>
-						</item>
-
-						<!-- Display Country -->
-						<item>
-							<label>$INFO[VideoPlayer.Country]</label>
-							<label2>$LOCALIZE[574]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.Country)</visible>
-						</item>
-
-					</content>
-				</control>
-
-				<control type="panel" id="300">
-					<visible>[[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)]</visible>
-					<posx>1534</posx>
-					<posy>750</posy>
-					<width>354</width>
-					<height>102</height>
-					<itemgap>0</itemgap>
-					<orientation>vertical</orientation>
-					<scrolltime tween="quadratic" easing="out">200</scrolltime>
-					<itemlayout height="102" width="354">
-
-						<!-- Item Type Label -->
-						<control type="label">
-							<posy>53</posy>
-							<width>354</width>
-							<height>40</height>
-							<font>font14</font>
-							<textcolor>grey</textcolor>
-							<selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
-							<label>$INFO[ListItem.Label]</label>
-							<textoffsetx>36</textoffsetx>
-						</control>
-
-						<!-- Item Info Label -->
-						<control type="label">
-							<posy>2</posy>
-							<width>354</width>
-							<height>40</height>
-							<font>font14</font>
-							<textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
-							<selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
-							<label>$INFO[ListItem.Label2]</label>
-							<textoffsetx>36</textoffsetx>
-						</control>
-
-					</itemlayout>
-
-					<focusedlayout height="102" width="594">
+          <content>
+            <!-- Display Original Title -->
+            <item>
+              <label>$INFO[VideoPlayer.OriginalTitle]</label>
+              <label2>$LOCALIZE[20376]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.OriginalTitle) + !String.IsEqual(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
+            </item>
+            <!-- Display Director -->
+            <item>
+              <label>$INFO[VideoPlayer.Director]</label>
+              <label2>$LOCALIZE[20339]:</label2>
+              <onclick>SendClick(2003,13)</onclick>
+              <visible>!IsEmpty(VideoPlayer.Director)</visible>
+            </item>
+            <!-- Display Writer -->
+            <item>
+              <label>$INFO[VideoPlayer.Writer]</label>
+              <label2>$LOCALIZE[20417]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.Writer)</visible>
+            </item>
+            <!-- Display Country -->
+            <item>
+              <label>$INFO[VideoPlayer.Country]</label>
+              <label2>$LOCALIZE[574]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.Country)</visible>
+            </item>
+          </content>
+        </control>
+        <control type="panel" id="300">
+          <visible>[[[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)] + !Window.IsActive(fullscreeninfo) + !Skin.HasSetting(OSD.FullResolutionFlag.Enable) + !Skin.HasSetting(OSD.MediaFlags.Disable)]</visible>
+          <posx>1534</posx>
+          <posy>750</posy>
+          <width>354</width>
+          <height>102</height>
+          <itemgap>0</itemgap>
+          <orientation>vertical</orientation>
+          <scrolltime tween="quadratic" easing="out">200</scrolltime>
+          <itemlayout height="102" width="354">
+            <!-- Item Type Label -->
+            <control type="label">
+              <posy>53</posy>
+              <width>354</width>
+              <height>40</height>
+              <font>font14</font>
+              <textcolor>grey</textcolor>
+              <selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <textoffsetx>36</textoffsetx>
+            </control>
+            <!-- Item Info Label -->
+            <control type="label">
+              <posy>2</posy>
+              <width>354</width>
+              <height>40</height>
+              <font>font14</font>
+              <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_OSDThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label2]</label>
+              <textoffsetx>36</textoffsetx>
+            </control>
+          </itemlayout>
+          <focusedlayout height="102" width="594">
 					</focusedlayout>
-
-					<content>
-
-						<!-- Display Original Title -->
-						<item>
-							<label>$INFO[VideoPlayer.OriginalTitle]</label>
-							<label2>$LOCALIZE[20376]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.OriginalTitle) + !String.IsEqual(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
-						</item>
-
-						<!-- Display Director -->
-						<item>
-							<label>$INFO[VideoPlayer.Director]</label>
-							<label2>$LOCALIZE[20339]:</label2>
-							<onclick>SendClick(2003,13)</onclick>
-							<visible>!IsEmpty(VideoPlayer.Director)</visible>
-						</item>
-
-						<!-- Display Writer -->
-						<item>
-							<label>$INFO[VideoPlayer.Writer]</label>
-							<label2>$LOCALIZE[20417]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.Writer)</visible>
-						</item>
-
-						<!-- Display Country -->
-						<item>
-							<label>$INFO[VideoPlayer.Country]</label>
-							<label2>$LOCALIZE[574]:</label2>
-							<onclick>noop</onclick>
-							<visible>!IsEmpty(VideoPlayer.Country)</visible>
-						</item>
-
-					</content>
-				</control>
-
-				<!-- Media Flags -->
-				<control type="grouplist">
-					<posx>1436</posx>
-					<posy>883</posy>
-					<width>472</width>
-					<height>80</height>
-					<align>left</align>
-					<aligny>center</aligny>
-					<itemgap>0</itemgap>
-					<orientation>horizontal</orientation>
-					<visible>!Skin.HasSetting(OSD.MediaFlags.Disable) + !Window.IsActive(fullscreeninfo)</visible>
-					<control type="image">
-						<width>118</width>
-						<height>80</height>
-						<bordersize>2</bordersize>
-						<texture>$INFO[VideoPlayer.videoResolution,flags/resolution/,.png]</texture>
-						<include>MediaFlagVars</include>
-						<visible>Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
-					</control>
-					<control type="image">
-						<width>118</width>
-						<height>80</height>
-						<bordersize>2</bordersize>
-						<texture>-</texture>
-						<include>MediaFlagVars</include>
-						<visible>!Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
-					</control>
-					<control type="image">
-						<width>118</width>
-						<height>80</height>
-						<bordersize>2</bordersize>
-						<texture>$INFO[VideoPlayer.VideoCodec,flags/video/,.png]</texture>
-						<include>MediaFlagVars</include>
-					</control>
-					<control type="image">
-						<width>118</width>
-						<height>80</height>
-						<bordersize>2</bordersize>
-						<texture>$INFO[VideoPlayer.AudioCodec,flags/audio/,.png]</texture>
-						<include>MediaFlagVars</include>
-					</control>
-					<control type="image">
-						<width>118</width>
-						<height>80</height>
-						<bordersize>2</bordersize>
-						<texture>$INFO[VideoPlayer.AudioChannels,flags/channels/,.png]</texture>
-						<include>MediaFlagVars</include>
-					</control>
-				</control>   
-			</control>
-		</control>
-
-		<control type="grouplist">
-			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
-			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-			<animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-			<include>Animation_OpenCloseFade</include>
-			<include>Animation_FadedByOSDSettings</include>
-
-			<posx>285</posx>
-			<posy>980</posy>
-			<width>1577</width>
-			<itemgap>27</itemgap>
-			<orientation>horizontal</orientation>
-			<visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !IsEmpty(Control.GetLabel(9999)) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-
-			<include>OSD_MediaFlags</include>
-
-		</control>
-
-		<control type="grouplist">
-			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
-			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-			<animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-			<include>Animation_OpenCloseFade</include>
-			<include>Animation_FadedByOSDSettings</include>
-
-			<posx>285</posx>
-			<posy>980</posy>
-			<width>1577</width>
-			<itemgap>57</itemgap>
-			<orientation>horizontal</orientation>
-			<visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + IsEmpty(Control.GetLabel(9999)) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-
-			<include>OSD_MediaFlags</include>
-
-		</control>
-
-		<control type="grouplist">
-			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
-			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-			<animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-			<include>Animation_OpenCloseFade</include>
-			<include>Animation_FadedByOSDSettings</include>
-
-			<posx>285</posx>
-			<posy>980</posy>
-			<width>1577</width>
-			<itemgap>66</itemgap>
-			<orientation>horizontal</orientation>
-			<visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !IsEmpty(Control.GetLabel(9999)) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-
-			<include>OSD_MediaFlags</include>
-
-		</control>
-
-		<control type="grouplist">
-			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
-			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-			<animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-			<include>Animation_OpenCloseFade</include>
-			<include>Animation_FadedByOSDSettings</include>
-
-			<posx>285</posx>
-			<posy>980</posy>
-			<width>1577</width>
-			<itemgap>100</itemgap>
-			<orientation>horizontal</orientation>
-			<visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + IsEmpty(Control.GetLabel(9999)) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
-
-			<include>OSD_MediaFlags</include>
-
-		</control>
-
-		<control type="grouplist">
-			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
-			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-			<animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
-			<include>Animation_OpenCloseFade</include>
-			<include>Animation_FadedByOSDSettings</include>
-
-			<posx>298</posx>
-			<posy>975</posy>
-			<width>1577</width>
-			<itemgap>0</itemgap>
-			<orientation>horizontal</orientation>
-			<visible>!Window.IsActive(VideoOSD) + [Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !Window.IsActive(fullscreeninfo)</visible>
-
-			<!-- Dummy OSD Playlist Button -->
-			<control type="image">
-				<description>Playlists</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdplaylistnf.png</texture>
-			</control>  
-
-			<!-- Dummy OSD Bookmarks Button -->
-			<control type="image">
-				<description>Bookmarks</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdbookmarksnf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Subtitles Button -->
-			<control type="image">
-				<description>OSD Subtitles</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdsubtitlesnf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Previous Button -->
-			<control type="image">
-				<description>Previous</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdprevtracknf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Rewind Button -->
-			<control type="image">
-				<description>Rewind</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdrewindnf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Stop Button -->
-			<control type="image">
-				<description>Stop</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdstopnf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Play/Pause Button -->
-			<control type="image">
-				<description>Play</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdpausenf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Fast Forward Button -->
-			<control type="image">
-				<description>Forward</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdforwardnf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Next Button -->
-			<control type="image">
-				<description>Next</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdnexttracknf.png</texture>
-			</control>
-
-			<!-- Dummy Screenshot Button -->
-			<control type="image">
-				<texture>osd/buttons/osdscreenshotnf.png</texture>
-				<width>100</width>
-				<height>100</height>
-			</control>
-
-			<!-- Dummy OSD Video Settings -->
-			<control type="image">
-				<description>Video Settings</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdvideonf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Audio Settings -->
-			<control type="image">
-				<description>Audio Settings</description>
-				<height>100</height>
-				<width>100</width>
-				<texture>osd/buttons/osdaudionf.png</texture>
-			</control>
-
-			<!-- Dummy OSD Options -->
-			<control type="image">
-				<texture>osd/buttons/OSDSkinNF.png</texture>
-				<width>100</width>
-				<height>100</height>
-			</control>
-		</control>	
-
-		<!-- Seek Offset Display -->
-		<control type="label">
-			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
-			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-			<label>$INFO[Player.SeekStepSize]</label>
-			<posx>30</posx>
-			<posy>66</posy>
-			<width>748</width>
-			<height>150</height>
-			<textoffsetx>0</textoffsetx>
-			<align>left</align>
-			<aligny>center</aligny>
-			<font>font_MainMenu</font>
-			<shadowcolor>44000000</shadowcolor>
-			<textcolor>DDe5e5e5</textcolor>
-			<include>VisibleFadeEffect</include>
-			<visible>!IsEmpty(Player.SeekStepSize) + ![Player.Forwarding | Player.Rewinding] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
-		</control>	
-		<control type="label">
-			<animation effect="fade" start="0" end="100" time="200">Visible</animation>
-			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
-			<label>$INFO[Player.SeekOffset]</label>
-			<posx>30</posx>
-			<posy>66</posy>
-			<width>748</width>
-			<height>150</height>
-			<textoffsetx>0</textoffsetx>
-			<align>left</align>
-			<aligny>center</aligny>
-			<font>font_MainMenu</font>
-			<shadowcolor>44000000</shadowcolor>
-			<textcolor>DDe5e5e5</textcolor>
-			<include>VisibleFadeEffect</include>
-			<visible>IsEmpty(Player.SeekStepSize) + !Window.IsActive(VideoOSD) + [Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
-		</control>	
-	</controls>
+          <content>
+            <!-- Display Original Title -->
+            <item>
+              <label>$INFO[VideoPlayer.OriginalTitle]</label>
+              <label2>$LOCALIZE[20376]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.OriginalTitle) + !String.IsEqual(VideoPlayer.OriginalTitle,VideoPlayer.Title)</visible>
+            </item>
+            <!-- Display Director -->
+            <item>
+              <label>$INFO[VideoPlayer.Director]</label>
+              <label2>$LOCALIZE[20339]:</label2>
+              <onclick>SendClick(2003,13)</onclick>
+              <visible>!IsEmpty(VideoPlayer.Director)</visible>
+            </item>
+            <!-- Display Writer -->
+            <item>
+              <label>$INFO[VideoPlayer.Writer]</label>
+              <label2>$LOCALIZE[20417]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.Writer)</visible>
+            </item>
+            <!-- Display Country -->
+            <item>
+              <label>$INFO[VideoPlayer.Country]</label>
+              <label2>$LOCALIZE[574]:</label2>
+              <onclick>noop</onclick>
+              <visible>!IsEmpty(VideoPlayer.Country)</visible>
+            </item>
+          </content>
+        </control>
+        <!-- Media Flags -->
+        <control type="grouplist">
+          <posx>1436</posx>
+          <posy>883</posy>
+          <width>472</width>
+          <height>80</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <itemgap>0</itemgap>
+          <orientation>horizontal</orientation>
+          <visible>!Skin.HasSetting(OSD.MediaFlags.Disable) + !Window.IsActive(fullscreeninfo)</visible>
+          <control type="image">
+            <width>118</width>
+            <height>80</height>
+            <bordersize>2</bordersize>
+            <texture>$INFO[VideoPlayer.videoResolution,flags/resolution/,.png]</texture>
+            <include>MediaFlagVars</include>
+            <visible>Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
+          </control>
+          <control type="image">
+            <width>118</width>
+            <height>80</height>
+            <bordersize>2</bordersize>
+            <texture>-</texture>
+            <include>MediaFlagVars</include>
+            <visible>!Skin.HasSetting(OSD.FullResolutionFlag.Enable)</visible>
+          </control>
+          <control type="image">
+            <width>118</width>
+            <height>80</height>
+            <bordersize>2</bordersize>
+            <texture>$INFO[VideoPlayer.VideoCodec,flags/video/,.png]</texture>
+            <include>MediaFlagVars</include>
+          </control>
+          <control type="image">
+            <width>118</width>
+            <height>80</height>
+            <bordersize>2</bordersize>
+            <texture>$INFO[VideoPlayer.AudioCodec,flags/audio/,.png]</texture>
+            <include>MediaFlagVars</include>
+          </control>
+          <control type="image">
+            <width>118</width>
+            <height>80</height>
+            <bordersize>2</bordersize>
+            <texture>$INFO[VideoPlayer.AudioChannels,flags/channels/,.png]</texture>
+            <include>MediaFlagVars</include>
+          </control>
+        </control>
+      </control>
+    </control>
+    <control type="grouplist">
+      <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+      <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+      <animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+      <include>Animation_OpenCloseFade</include>
+      <include>Animation_FadedByOSDSettings</include>
+      <posx>285</posx>
+      <posy>980</posy>
+      <width>1577</width>
+      <itemgap>27</itemgap>
+      <orientation>horizontal</orientation>
+      <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !IsEmpty(Control.GetLabel(9999)) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+      <include>OSD_MediaFlags</include>
+    </control>
+    <control type="grouplist">
+      <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+      <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+      <animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+      <include>Animation_OpenCloseFade</include>
+      <include>Animation_FadedByOSDSettings</include>
+      <posx>285</posx>
+      <posy>980</posy>
+      <width>1577</width>
+      <itemgap>57</itemgap>
+      <orientation>horizontal</orientation>
+      <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + IsEmpty(Control.GetLabel(9999)) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+      <include>OSD_MediaFlags</include>
+    </control>
+    <control type="grouplist">
+      <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+      <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+      <animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+      <include>Animation_OpenCloseFade</include>
+      <include>Animation_FadedByOSDSettings</include>
+      <posx>285</posx>
+      <posy>980</posy>
+      <width>1577</width>
+      <itemgap>66</itemgap>
+      <orientation>horizontal</orientation>
+      <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !IsEmpty(Control.GetLabel(9999)) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+      <include>OSD_MediaFlags</include>
+    </control>
+    <control type="grouplist">
+      <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+      <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+      <animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+      <include>Animation_OpenCloseFade</include>
+      <include>Animation_FadedByOSDSettings</include>
+      <posx>285</posx>
+      <posy>980</posy>
+      <width>1577</width>
+      <itemgap>100</itemgap>
+      <orientation>horizontal</orientation>
+      <visible>Window.IsActive(fullscreeninfo) + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + IsEmpty(Control.GetLabel(9999)) + String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)</visible>
+      <include>OSD_MediaFlags</include>
+    </control>
+    <control type="grouplist">
+      <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+      <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+      <animation effect="slide" end="-268,0" time="0" condition="String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)">Conditional</animation>
+      <include>Animation_OpenCloseFade</include>
+      <include>Animation_FadedByOSDSettings</include>
+      <posx>298</posx>
+      <posy>975</posy>
+      <width>1577</width>
+      <itemgap>0</itemgap>
+      <orientation>horizontal</orientation>
+      <visible>!Window.IsActive(VideoOSD) + [Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode) + !Window.IsActive(fullscreeninfo)</visible>
+      <!-- Dummy OSD Playlist Button -->
+      <control type="image">
+        <description>Playlists</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdplaylistnf.png</texture>
+      </control>
+      <!-- Dummy OSD Bookmarks Button -->
+      <control type="image">
+        <description>Bookmarks</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdbookmarksnf.png</texture>
+      </control>
+      <!-- Dummy OSD Subtitles Button -->
+      <control type="image">
+        <description>OSD Subtitles</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdsubtitlesnf.png</texture>
+      </control>
+      <!-- Dummy OSD Previous Button -->
+      <control type="image">
+        <description>Previous</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdprevtracknf.png</texture>
+      </control>
+      <!-- Dummy OSD Rewind Button -->
+      <control type="image">
+        <description>Rewind</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdrewindnf.png</texture>
+      </control>
+      <!-- Dummy OSD Stop Button -->
+      <control type="image">
+        <description>Stop</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdstopnf.png</texture>
+      </control>
+      <!-- Dummy OSD Play/Pause Button -->
+      <control type="image">
+        <description>Play</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdpausenf.png</texture>
+      </control>
+      <!-- Dummy OSD Fast Forward Button -->
+      <control type="image">
+        <description>Forward</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdforwardnf.png</texture>
+      </control>
+      <!-- Dummy OSD Next Button -->
+      <control type="image">
+        <description>Next</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdnexttracknf.png</texture>
+      </control>
+      <!-- Dummy Screenshot Button -->
+      <control type="image">
+        <texture>osd/buttons/osdscreenshotnf.png</texture>
+        <width>100</width>
+        <height>100</height>
+      </control>
+      <!-- Dummy OSD Video Settings -->
+      <control type="image">
+        <description>Video Settings</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdvideonf.png</texture>
+      </control>
+      <!-- Dummy OSD Audio Settings -->
+      <control type="image">
+        <description>Audio Settings</description>
+        <height>100</height>
+        <width>100</width>
+        <texture>osd/buttons/osdaudionf.png</texture>
+      </control>
+      <!-- Dummy OSD Options -->
+      <control type="image">
+        <texture>osd/buttons/OSDSkinNF.png</texture>
+        <width>100</width>
+        <height>100</height>
+      </control>
+    </control>
+    <!-- Seek Offset Display -->
+    <control type="label">
+      <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+      <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+      <label>$INFO[Player.SeekStepSize]</label>
+      <posx>30</posx>
+      <posy>66</posy>
+      <width>748</width>
+      <height>150</height>
+      <textoffsetx>0</textoffsetx>
+      <align>left</align>
+      <aligny>center</aligny>
+      <font>font_MainMenu</font>
+      <shadowcolor>44000000</shadowcolor>
+      <textcolor>DDe5e5e5</textcolor>
+      <include>VisibleFadeEffect</include>
+      <visible>!IsEmpty(Player.SeekStepSize) + ![Player.Forwarding | Player.Rewinding] + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
+    </control>
+    <control type="label">
+      <animation effect="fade" start="0" end="100" time="200">Visible</animation>
+      <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+      <label>$INFO[Player.SeekOffset]</label>
+      <posx>30</posx>
+      <posy>66</posy>
+      <width>748</width>
+      <height>150</height>
+      <textoffsetx>0</textoffsetx>
+      <align>left</align>
+      <aligny>center</aligny>
+      <font>font_MainMenu</font>
+      <shadowcolor>44000000</shadowcolor>
+      <textcolor>DDe5e5e5</textcolor>
+      <include>VisibleFadeEffect</include>
+      <visible>IsEmpty(Player.SeekStepSize) + !Window.IsActive(VideoOSD) + [Player.Seeking | Player.DisplayAfterSeek | Player.Caching] + Window.IsActive(FullScreenVideo) + !Skin.HasSetting(Enable.ScreenshotMode)</visible>
+    </control>
+  </controls>
 </window>

@@ -1,662 +1,628 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
-	<!--BIG LIST-->
-	<include name="View_510_BigList">
-		<control type="group">
-			<visible>Control.IsVisible(510) + !Window.IsActive(addoninformation)</visible>
-			<include>ViewAnimation</include>
-			<control type="group">
-				<posx>58</posx>
-				<posy>-55</posy>
-				<control type="image">
-					<posx>-58</posx>
-					<posy>550</posy>
-					<width>1920</width>
-					<height>680</height>
-					<texture>floor.png</texture>
-					<colordiffuse>$VAR[Colour_BigListThemeColourVar]</colordiffuse>
-					<visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
-				</control>
-				<control type="image">
-					<description>background image</description>
-					<posx>-32</posx>
-					<posy>118</posy>
-					<width>1867</width>
-					<height>995</height>
-					<texture border="40">listpanel_back.png</texture>
-					<visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
-				</control>
-			</control>
-
-			<!-- Container -->
-			<control type="list" id="510">
-				<viewtype label="BigList">biglist</viewtype>
-				<posx>58</posx>
-				<posy>95</posy>
-				<width>1808</width>
-				<height>950</height>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<onright>noop</onright>
-				<onup>510</onup>
-				<ondown>510</ondown>
-				<preloaditems>2</preloaditems>
-				<pagecontrol>60</pagecontrol>
-				<orientation>vertical</orientation>
-				<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(artists)</visible>
-
-				<!-- Landscape Layout -->
-				<itemlayout width="1808" height="235">
-					<control type="image">
-						<posx>0</posx>
-						<posy>9</posy>
-						<width>1804</width>
-						<height>217</height>
-						<texture border="5">separator2.png</texture>
-						<visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
-					</control>
-					<include>view_BigList-LandscapeCommons</include>
-					<control type="group">
-						<posx>382</posx>
-						<posy>6</posy>
-
-						<!-- Title -->
-						<control type="label">
-							<width>1290</width>
-							<label>$INFO[ListItem.Label]</label>
-							<font>font16_title_bold</font>
-							<textcolor>grey</textcolor>
-							<aligny>top</aligny>
-							<visible>!Container.Content(episodes)</visible>
-						</control>
-
-						<!-- Episode Title -->
-						<control type="label">
-							<width>1290</width>
-							<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-							<font>font16_title_bold</font>
-							<textcolor>grey</textcolor>
-							<aligny>top</aligny>
-							<visible>Container.Content(episodes)</visible>
-						</control>
-
-						<!-- No Rating -->
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Year,, • ]$VAR[DurationHrMinVar]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-
-						<!-- User Rating -->
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Year,, • ][COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR] • $VAR[DurationHrMinVar]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
-						</control>
-
-						<!-- Standard Rating -->
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Year,, • ]$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-						
-						<!-- IMDb Rating -->
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(rating)] • $VAR[DurationHrMinVar]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-
-						<!-- Rotten Tomatoes Rating -->
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
-						</control>
-
-						<!-- Song Duration -->
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Duration]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(songs)</visible>
-						</control>
-
-						<!-- TV Show Info -->
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • $VAR[RatingVar]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • [COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
-						</control>
-
-						<!-- Episode Info -->
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Date,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Date,, • ]$VAR[RatingVar] • $INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-						</control>
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Date,, • ][COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR] • $INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>grey</textcolor>
-							<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
-						</control>
-
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Genre]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>$VAR[Colour_BigListThemeColourVar]</textcolor>
-							<visible>Container.Content(artists) | Container.Content(albums)</visible>
-						</control>
-						<control type="label">
-							<posy>42</posy>
-							<width>1380</width>
-							<label>$INFO[ListItem.Artist]</label>
-							<aligny>top</aligny>
-							<font>font15</font>
-							<textcolor>$VAR[Colour_BigListThemeColourVar]</textcolor>
-							<visible>Container.Content(albums)</visible>
-						</control>
-
-						<!-- Plot -->
-						<control type="textbox">
-							<posy>90</posy>
-							<width>1380</width>
-							<height>108</height>
-							<label>$VAR[PlotVar]</label>
-							<autoscroll>false</autoscroll>
-							<font>font14_textbox</font>
-							<textcolor>grey</textcolor>
-							<visible>!Container.Content(artists)</visible>
-						</control>
-						<control type="textbox">
-							<posy>90</posy>
-							<width>1380</width>
-							<height>108</height>
-							<label>$INFO[ListItem.Property(summary)]</label>
-							<autoscroll>false</autoscroll>
-							<font>font14_textbox</font>
-							<textcolor>grey</textcolor>
-							<visible>[Container.Content(artists) | Container.Content(albums)]</visible>
-						</control>
-						<control type="image">
-							<posx>1200</posx>
-							<posy>16</posy>
-							<width>192</width>
-							<height>33</height>
-							<texture colordiffuse="$VAR[Colour_BigListThemeColourVar]" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
-							<aspectratio align="right">keep</aspectratio>
-							<visible>Container.Content(albums) | Container.Content(songs)</visible>
-						</control>
-
-						<!-- Watched Status Indicator -->
-						<control type="image">
-							<posx>1360</posx>
-							<posy>0</posy>
-							<width>64</width>
-							<height>64</height>
-							<aspectratio>keep</aspectratio>
-							<texture>overlays/list/$INFO[ListItem.Overlay]</texture>
-							<colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
-							<visible>!Container.Content(tvshows)</visible>
-						</control>
-						<control type="image">
-							<posx>1360</posx>
-							<posy>0</posy>
-							<width>64</width>
-							<height>64</height>
-							<aspectratio>keep</aspectratio>
-							<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
-							<colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
-							<visible>Container.Content(tvshows)</visible>
-						</control>
-
-						<control type="group">
-							<visible>!Container.Content(episodes)</visible>
-							<description>Unwatched episodes</description>
-							<posx>1360</posx>
-							<posy>-28</posy>
-							<control type="image">
-								<posx>0</posx>
-								<posy>28</posy>
-								<width>64</width>
-								<height>64</height>
-								<texture>overlays/list/OverlayUnWatched.png</texture>
-								<colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
-								<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-							</control>
-							<control type="label">
-								<posx>32</posx>
-								<posy>0</posy>
-								<width>100</width>
-								<height>120</height>
-								<font>font12_title</font>
-								<align>center</align>
-								<aligny>center</aligny>
-								<label>$VAR[ListOverlayEpisodesVar]</label>
-								<textcolor>grey3</textcolor>
-								<textoffsetx>18</textoffsetx>
-								<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-							</control>
-						</control>
-
-						<!-- Resolution Indicator -->
-						<control type="image">
-							<posx>1320</posx>
-							<posy>9</posy>
-							<width>42</width>
-							<height>46.5</height>
-							<colordiffuse>grey</colordiffuse>
-							<aspectratio>keep</aspectratio>
-							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
-						</control>
-					</control>
-				</itemlayout>
-				<focusedlayout width="1808" height="235">
-					<control type="image">
-						<posx>0</posx>
-						<posy>9</posy>
-						<width>1804</width>
-						<height>217</height>
-						<texture border="5">separator2.png</texture>
-						<visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
-					</control>
-					<control type="image">
-						<posy>-8</posy>
-						<width>1803</width>
-						<height>231</height>
-						<texture>listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_BigListHighlightColourVar]</colordiffuse>
-						<visible>[Container.Content(albums) + !Skin.HasSetting(alternatebiglistlayout)] | [Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(artists)]</visible>
-					</control>
-					<control type="image">
-						<posx>90</posx>
-						<posy>-8</posy>
-						<width>1713</width>
-						<height>231</height>
-						<texture>listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_BigListHighlightColourVar]</colordiffuse>
-						<visible>Container.Content(albums) + Skin.HasSetting(alternatebiglistlayout)</visible>
-					</control>
-					<include>view_BigList-LandscapeCommons</include>
-					<control type="group">
-						<posx>382</posx>
-						<posy>6</posy>
-						<control type="group">
-
-							<!-- Title -->
-							<control type="label">
-								<width>1290</width>
-								<label>$INFO[ListItem.Label]</label>
-								<font>font16_title_bold</font>
-								<textcolor>white</textcolor>
-								<aligny>top</aligny>
-								<visible>!Container.Content(episodes)</visible>
-							</control>
-
-							<!-- Episode Title -->
-							<control type="label">
-								<width>1290</width>
-								<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-								<font>font16_title_bold</font>
-								<textcolor>white</textcolor>
-								<aligny>top</aligny>
-								<visible>Container.Content(episodes)</visible>
-							</control>
-
-							<!-- No Rating -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Year,, • ]$VAR[DurationHrMinVar]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>grey</textcolor>
-								<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-
-							<!-- User Rating -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Year,, • ][COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR] • $VAR[DurationHrMinVar]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>grey</textcolor>
-								<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-
-							<!-- Standard Rating -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Year,, • ]$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>grey</textcolor>
-								<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-							
-							<!-- IMDb Rating -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(rating)] • $VAR[DurationHrMinVar]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>grey</textcolor>
-								<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-
-							<!-- Rotten Tomatoes Rating -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>grey</textcolor>
-								<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
-							</control>
-
-							<!-- Song Duration -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Duration]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>white</textcolor>
-								<visible>Container.Content(songs)</visible>
-							</control>
-
-							<!-- TV Show Info -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>white</textcolor>
-								<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • $VAR[RatingVar]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>white</textcolor>
-								<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • [COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>white</textcolor>
-								<visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-
-							<!-- Episode Info -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Date,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>white</textcolor>
-								<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Date,, • ]$VAR[RatingVar] • $INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>white</textcolor>
-								<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-							</control>
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Date,, • ][COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR] • $INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>white</textcolor>
-								<visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
-							</control>
-
-							<!-- Artist Genre -->
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Genre]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>$VAR[Colour_BigListThemeColourVar]</textcolor>
-								<visible>Container.Content(artists)</visible>
-							</control>
-							<control type="label">
-								<posy>42</posy>
-								<width>1380</width>
-								<label>$INFO[ListItem.Artist]</label>
-								<aligny>top</aligny>
-								<font>font15</font>
-								<textcolor>$VAR[Colour_BigListThemeColourVar]</textcolor>
-								<visible>Container.Content(albums)</visible>
-							</control>
-
-							<!-- Plot -->
-							<control type="textbox">
-								<visible>!Container.Content(artists)</visible>
-								<posy>90</posy>
-								<width>1380</width>
-								<height>108</height>
-								<label>$VAR[PlotVar]</label>
-								<textcolor>white</textcolor>
-								<font>font14_textbox</font>
-								<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-							</control>
-							<control type="textbox">
-								<posy>90</posy>
-								<width>1380</width>
-								<height>108</height>
-								<label>$INFO[ListItem.Property(summary)]</label>
-								<font>font14_textbox</font>
-								<textcolor>white</textcolor>
-								<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-								<visible>[Container.Content(artists) | Container.Content(albums)]</visible>
-							</control>
-							<control type="image">
-								<posx>1200</posx>
-								<posy>16</posy>
-								<width>192</width>
-								<height>33</height>
-								<texture colordiffuse="$VAR[Colour_BigListThemeColourVar]" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
-								<aspectratio align="right">keep</aspectratio>
-								<visible>Container.Content(albums) | Container.Content(songs)</visible>
-							</control>
-
-							<!-- Watched Status Indicator -->
-							<control type="image">
-								<posx>1360</posx>
-								<posy>0</posy>
-								<width>64</width>
-								<height>64</height>
-								<aspectratio>keep</aspectratio>
-								<texture>overlays/list/$INFO[ListItem.Overlay]</texture>
-								<colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
-								<visible>!Container.Content(tvshows)</visible>
-							</control>
-							<control type="image">
-								<posx>1360</posx>
-								<posy>0</posy>
-								<width>64</width>
-								<height>64</height>
-								<aspectratio>keep</aspectratio>
-								<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
-								<colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
-								<visible>Container.Content(tvshows)</visible>
-							</control>
-
-							<control type="group">
-								<description>Unwatched episodes</description>
-								<visible>!Container.Content(episodes)</visible>
-								<posx>1360</posx>
-								<posy>-28</posy>
-								<control type="image">
-									<posx>0</posx>
-									<posy>28</posy>
-									<width>64</width>
-									<height>64</height>
-									<texture>overlays/list/OverlayUnWatched.png</texture>
-									<colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
-									<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-								</control>
-								<control type="label">
-									<posx>32</posx>
-									<posy>0</posy>
-									<width>100</width>
-									<height>120</height>
-									<font>font12_title</font>
-									<align>center</align>
-									<aligny>center</aligny>
-									<label>$VAR[ListOverlayEpisodesVar]</label>
-									<textcolor>white</textcolor>
-									<textoffsetx>18</textoffsetx>
-									<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-								</control>
-							</control>
-
-							<!-- Resolution Indicator -->
-							<control type="image">
-								<posx>1320</posx>
-								<posy>9</posy>
-								<width>42</width>
-								<height>46.5</height>
-								<aspectratio>keep</aspectratio>
-								<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
-							</control>
-						</control>
-					</control>
-				</focusedlayout>
-			</control>
-			<control type="scrollbar" id="60">
-				<posx>1860</posx>
-				<posy>200</posy>
-				<width>14</width>
-				<height>780</height>
-				<onup>60</onup>
-				<ondown>60</ondown>
-				<onleft>510</onleft>
-				<onright>SetProperty(MediaMenu,True,home)</onright>
-				<onright>SetFocus(9050,0)</onright>
-				<texturesliderbackground>-</texturesliderbackground>
-				<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
-				<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-				<showonepage>false</showonepage>
-				<orientation>vertical</orientation>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-			</control>
-		</control>
-	</include>
-
-	<!--landscape layout commons-->
-	<include name="view_BigList-LandscapeCommons">
-		<control type="group">
-			<posx>18</posx>
-			<posy>10</posy>
-			<control type="image">
-				<posx>100</posx>
-				<posy>-2</posy>
-				<width>200</width>
-				<height>200</height>
-				<aspectratio>scale</aspectratio>
-				<texture>$INFO[ListItem.Art(smallThumb)]</texture>
-				<visible>Container.Content(albums) | Container.Content(songs)</visible>
-			</control>
-			<control type="image">
-				<width>346</width>
-				<height>195</height>
-				<texture>$INFO[ListItem.Art(fanart)]</texture>
-				<aspectratio>scale</aspectratio>
-				<visible>![Container.Content(episodes) | Container.Content(albums) | Container.Content(songs)]</visible>
-			</control>
-			<control type="image">
-				<width>346</width>
-				<height>195</height>
-				<texture>$VAR[EpisodeSmallThumbnailVar]</texture>
-				<aspectratio>scale</aspectratio>
-				<visible>Container.Content(episodes)</visible>
-			</control>
-		</control>
-	</include>
+  <!--BIG LIST-->
+  <include name="View_510_BigList">
+    <control type="group">
+      <visible>Control.IsVisible(510) + !Window.IsActive(addoninformation)</visible>
+      <include>ViewAnimation</include>
+      <control type="group">
+        <posx>58</posx>
+        <posy>-55</posy>
+        <control type="image">
+          <posx>-58</posx>
+          <posy>550</posy>
+          <width>1920</width>
+          <height>680</height>
+          <texture>floor.png</texture>
+          <colordiffuse>$VAR[Colour_BigListThemeColourVar]</colordiffuse>
+          <visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
+        </control>
+        <control type="image">
+          <description>background image</description>
+          <posx>-32</posx>
+          <posy>118</posy>
+          <width>1867</width>
+          <height>995</height>
+          <texture border="40">listpanel_back.png</texture>
+          <visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
+        </control>
+      </control>
+      <!-- Container -->
+      <control type="list" id="510">
+        <viewtype label="BigList">biglist</viewtype>
+        <posx>58</posx>
+        <posy>95</posy>
+        <width>1808</width>
+        <height>950</height>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <onright>noop</onright>
+        <onup>510</onup>
+        <ondown>510</ondown>
+        <preloaditems>2</preloaditems>
+        <pagecontrol>60</pagecontrol>
+        <orientation>vertical</orientation>
+        <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(artists)</visible>
+        <!-- Landscape Layout -->
+        <itemlayout width="1808" height="235">
+          <control type="image">
+            <posx>0</posx>
+            <posy>9</posy>
+            <width>1804</width>
+            <height>217</height>
+            <texture border="5">separator2.png</texture>
+            <visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
+          </control>
+          <include>view_BigList-LandscapeCommons</include>
+          <control type="group">
+            <posx>382</posx>
+            <posy>6</posy>
+            <!-- Title -->
+            <control type="label">
+              <width>1290</width>
+              <label>$INFO[ListItem.Label]</label>
+              <font>font16_title_bold</font>
+              <textcolor>grey</textcolor>
+              <aligny>top</aligny>
+              <visible>!Container.Content(episodes)</visible>
+            </control>
+            <!-- Episode Title -->
+            <control type="label">
+              <width>1290</width>
+              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <font>font16_title_bold</font>
+              <textcolor>grey</textcolor>
+              <aligny>top</aligny>
+              <visible>Container.Content(episodes)</visible>
+            </control>
+            <!-- No Rating -->
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Year,, • ]$VAR[DurationHrMinVar]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <!-- User Rating -->
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Year,, • ][COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR] • $VAR[DurationHrMinVar]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+            </control>
+            <!-- Standard Rating -->
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Year,, • ]$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <!-- IMDb Rating -->
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(rating)] • $VAR[DurationHrMinVar]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <!-- Rotten Tomatoes Rating -->
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
+            </control>
+            <!-- Song Duration -->
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Duration]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(songs)</visible>
+            </control>
+            <!-- TV Show Info -->
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • $VAR[RatingVar]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • [COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+            </control>
+            <!-- Episode Info -->
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Date,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Date,, • ]$VAR[RatingVar] • $INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Date,, • ][COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR] • $INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>grey</textcolor>
+              <visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+            </control>
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Genre]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>$VAR[Colour_BigListThemeColourVar]</textcolor>
+              <visible>Container.Content(artists) | Container.Content(albums)</visible>
+            </control>
+            <control type="label">
+              <posy>42</posy>
+              <width>1380</width>
+              <label>$INFO[ListItem.Artist]</label>
+              <aligny>top</aligny>
+              <font>font15</font>
+              <textcolor>$VAR[Colour_BigListThemeColourVar]</textcolor>
+              <visible>Container.Content(albums)</visible>
+            </control>
+            <!-- Plot -->
+            <control type="textbox">
+              <posy>90</posy>
+              <width>1380</width>
+              <height>108</height>
+              <label>$VAR[PlotVar]</label>
+              <autoscroll>false</autoscroll>
+              <font>font14_textbox</font>
+              <textcolor>grey</textcolor>
+              <visible>!Container.Content(artists)</visible>
+            </control>
+            <control type="textbox">
+              <posy>90</posy>
+              <width>1380</width>
+              <height>108</height>
+              <label>$INFO[ListItem.Property(summary)]</label>
+              <autoscroll>false</autoscroll>
+              <font>font14_textbox</font>
+              <textcolor>grey</textcolor>
+              <visible>[Container.Content(artists) | Container.Content(albums)]</visible>
+            </control>
+            <control type="image">
+              <posx>1200</posx>
+              <posy>16</posy>
+              <width>192</width>
+              <height>33</height>
+              <texture colordiffuse="$VAR[Colour_BigListThemeColourVar]" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
+              <aspectratio align="right">keep</aspectratio>
+              <visible>Container.Content(albums) | Container.Content(songs)</visible>
+            </control>
+            <!-- Watched Status Indicator -->
+            <control type="image">
+              <posx>1360</posx>
+              <posy>0</posy>
+              <width>64</width>
+              <height>64</height>
+              <aspectratio>keep</aspectratio>
+              <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+              <colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
+              <visible>!Container.Content(tvshows)</visible>
+            </control>
+            <control type="image">
+              <posx>1360</posx>
+              <posy>0</posy>
+              <width>64</width>
+              <height>64</height>
+              <aspectratio>keep</aspectratio>
+              <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+              <colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
+              <visible>Container.Content(tvshows)</visible>
+            </control>
+            <control type="group">
+              <visible>!Container.Content(episodes)</visible>
+              <description>Unwatched episodes</description>
+              <posx>1360</posx>
+              <posy>-28</posy>
+              <control type="image">
+                <posx>0</posx>
+                <posy>28</posy>
+                <width>64</width>
+                <height>64</height>
+                <texture>overlays/list/OverlayUnWatched.png</texture>
+                <colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
+                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+              </control>
+              <control type="label">
+                <posx>32</posx>
+                <posy>0</posy>
+                <width>100</width>
+                <height>120</height>
+                <font>font12_title</font>
+                <align>center</align>
+                <aligny>center</aligny>
+                <label>$VAR[ListOverlayEpisodesVar]</label>
+                <textcolor>grey3</textcolor>
+                <textoffsetx>18</textoffsetx>
+                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+              </control>
+            </control>
+            <!-- Resolution Indicator -->
+            <control type="image">
+              <posx>1320</posx>
+              <posy>9</posy>
+              <width>42</width>
+              <height>46.5</height>
+              <colordiffuse>grey</colordiffuse>
+              <aspectratio>keep</aspectratio>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+            </control>
+          </control>
+        </itemlayout>
+        <focusedlayout width="1808" height="235">
+          <control type="image">
+            <posx>0</posx>
+            <posy>9</posy>
+            <width>1804</width>
+            <height>217</height>
+            <texture border="5">separator2.png</texture>
+            <visible>!Skin.HasSetting(alternatebiglistlayout)</visible>
+          </control>
+          <control type="image">
+            <posy>-8</posy>
+            <width>1803</width>
+            <height>231</height>
+            <texture>listselect_fo.png</texture>
+            <colordiffuse>$VAR[Colour_BigListHighlightColourVar]</colordiffuse>
+            <visible>[Container.Content(albums) + !Skin.HasSetting(alternatebiglistlayout)] | [Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(artists)]</visible>
+          </control>
+          <control type="image">
+            <posx>90</posx>
+            <posy>-8</posy>
+            <width>1713</width>
+            <height>231</height>
+            <texture>listselect_fo.png</texture>
+            <colordiffuse>$VAR[Colour_BigListHighlightColourVar]</colordiffuse>
+            <visible>Container.Content(albums) + Skin.HasSetting(alternatebiglistlayout)</visible>
+          </control>
+          <include>view_BigList-LandscapeCommons</include>
+          <control type="group">
+            <posx>382</posx>
+            <posy>6</posy>
+            <control type="group">
+              <!-- Title -->
+              <control type="label">
+                <width>1290</width>
+                <label>$INFO[ListItem.Label]</label>
+                <font>font16_title_bold</font>
+                <textcolor>white</textcolor>
+                <aligny>top</aligny>
+                <visible>!Container.Content(episodes)</visible>
+              </control>
+              <!-- Episode Title -->
+              <control type="label">
+                <width>1290</width>
+                <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+                <font>font16_title_bold</font>
+                <textcolor>white</textcolor>
+                <aligny>top</aligny>
+                <visible>Container.Content(episodes)</visible>
+              </control>
+              <!-- No Rating -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Year,, • ]$VAR[DurationHrMinVar]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>grey</textcolor>
+                <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <!-- User Rating -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Year,, • ][COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR] • $VAR[DurationHrMinVar]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>grey</textcolor>
+                <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <!-- Standard Rating -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Year,, • ]$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>grey</textcolor>
+                <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <!-- IMDb Rating -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(rating)] • $VAR[DurationHrMinVar]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>grey</textcolor>
+                <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <!-- Rotten Tomatoes Rating -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>grey</textcolor>
+                <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
+              </control>
+              <!-- Song Duration -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Duration]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>white</textcolor>
+                <visible>Container.Content(songs)</visible>
+              </control>
+              <!-- TV Show Info -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>white</textcolor>
+                <visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • $VAR[RatingVar]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>white</textcolor>
+                <visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>[COLOR $VAR[Colour_BigListThemeColourVar]]$LOCALIZE[20360]: [/COLOR]$INFO[ListItem.Episode] $INFO[ListItem.Property(UnWatchedEpisodes), ($LOCALIZE[16101]: ,)] • [COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>white</textcolor>
+                <visible>Container.Content(tvshows) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <!-- Episode Info -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Date,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>white</textcolor>
+                <visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Date,, • ]$VAR[RatingVar] • $INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>white</textcolor>
+                <visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+              </control>
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Date,, • ][COLOR $VAR[Colour_BigListThemeColourVar]]$VAR[RatingVar][/COLOR] • $INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>white</textcolor>
+                <visible>Container.Content(episodes) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+              </control>
+              <!-- Artist Genre -->
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Genre]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>$VAR[Colour_BigListThemeColourVar]</textcolor>
+                <visible>Container.Content(artists)</visible>
+              </control>
+              <control type="label">
+                <posy>42</posy>
+                <width>1380</width>
+                <label>$INFO[ListItem.Artist]</label>
+                <aligny>top</aligny>
+                <font>font15</font>
+                <textcolor>$VAR[Colour_BigListThemeColourVar]</textcolor>
+                <visible>Container.Content(albums)</visible>
+              </control>
+              <!-- Plot -->
+              <control type="textbox">
+                <visible>!Container.Content(artists)</visible>
+                <posy>90</posy>
+                <width>1380</width>
+                <height>108</height>
+                <label>$VAR[PlotVar]</label>
+                <textcolor>white</textcolor>
+                <font>font14_textbox</font>
+                <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+              </control>
+              <control type="textbox">
+                <posy>90</posy>
+                <width>1380</width>
+                <height>108</height>
+                <label>$INFO[ListItem.Property(summary)]</label>
+                <font>font14_textbox</font>
+                <textcolor>white</textcolor>
+                <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+                <visible>[Container.Content(artists) | Container.Content(albums)]</visible>
+              </control>
+              <control type="image">
+                <posx>1200</posx>
+                <posy>16</posy>
+                <width>192</width>
+                <height>33</height>
+                <texture colordiffuse="$VAR[Colour_BigListThemeColourVar]" fallback="rating0.png">$INFO[ListItem.StarRating]</texture>
+                <aspectratio align="right">keep</aspectratio>
+                <visible>Container.Content(albums) | Container.Content(songs)</visible>
+              </control>
+              <!-- Watched Status Indicator -->
+              <control type="image">
+                <posx>1360</posx>
+                <posy>0</posy>
+                <width>64</width>
+                <height>64</height>
+                <aspectratio>keep</aspectratio>
+                <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+                <colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
+                <visible>!Container.Content(tvshows)</visible>
+              </control>
+              <control type="image">
+                <posx>1360</posx>
+                <posy>0</posy>
+                <width>64</width>
+                <height>64</height>
+                <aspectratio>keep</aspectratio>
+                <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+                <colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
+                <visible>Container.Content(tvshows)</visible>
+              </control>
+              <control type="group">
+                <description>Unwatched episodes</description>
+                <visible>!Container.Content(episodes)</visible>
+                <posx>1360</posx>
+                <posy>-28</posy>
+                <control type="image">
+                  <posx>0</posx>
+                  <posy>28</posy>
+                  <width>64</width>
+                  <height>64</height>
+                  <texture>overlays/list/OverlayUnWatched.png</texture>
+                  <colordiffuse>$VAR[Colour_BigListWatchedStatusColourVar]</colordiffuse>
+                  <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+                </control>
+                <control type="label">
+                  <posx>32</posx>
+                  <posy>0</posy>
+                  <width>100</width>
+                  <height>120</height>
+                  <font>font12_title</font>
+                  <align>center</align>
+                  <aligny>center</aligny>
+                  <label>$VAR[ListOverlayEpisodesVar]</label>
+                  <textcolor>white</textcolor>
+                  <textoffsetx>18</textoffsetx>
+                  <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+                </control>
+              </control>
+              <!-- Resolution Indicator -->
+              <control type="image">
+                <posx>1320</posx>
+                <posy>9</posy>
+                <width>42</width>
+                <height>46.5</height>
+                <aspectratio>keep</aspectratio>
+                <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+              </control>
+            </control>
+          </control>
+        </focusedlayout>
+      </control>
+      <control type="scrollbar" id="60">
+        <posx>1860</posx>
+        <posy>200</posy>
+        <width>14</width>
+        <height>780</height>
+        <onup>60</onup>
+        <ondown>60</ondown>
+        <onleft>510</onleft>
+        <onright>SetProperty(MediaMenu,True,home)</onright>
+        <onright>SetFocus(9050,0)</onright>
+        <texturesliderbackground>-</texturesliderbackground>
+        <texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+        <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+        <showonepage>false</showonepage>
+        <orientation>vertical</orientation>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+      </control>
+    </control>
+  </include>
+  <!--landscape layout commons-->
+  <include name="view_BigList-LandscapeCommons">
+    <control type="group">
+      <posx>18</posx>
+      <posy>10</posy>
+      <control type="image">
+        <posx>100</posx>
+        <posy>-2</posy>
+        <width>200</width>
+        <height>200</height>
+        <aspectratio>scale</aspectratio>
+        <texture>$INFO[ListItem.Art(smallThumb)]</texture>
+        <visible>Container.Content(albums) | Container.Content(songs)</visible>
+      </control>
+      <control type="image">
+        <width>346</width>
+        <height>195</height>
+        <texture>$INFO[ListItem.Art(fanart)]</texture>
+        <aspectratio>scale</aspectratio>
+        <visible>![Container.Content(episodes) | Container.Content(albums) | Container.Content(songs)]</visible>
+      </control>
+      <control type="image">
+        <width>346</width>
+        <height>195</height>
+        <texture>$VAR[EpisodeSmallThumbnailVar]</texture>
+        <aspectratio>scale</aspectratio>
+        <visible>Container.Content(episodes)</visible>
+      </control>
+    </control>
+  </include>
 </includes>

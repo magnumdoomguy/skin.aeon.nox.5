@@ -1,360 +1,340 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
-	<include name="ShiftPosterThumbs">
-		<control type="image">
-			<posx>-12</posx>
-			<posy>130</posy>
-			<width>340</width>
-			<height>490</height>
-			<aspectratio scalediffuse="false">scale</aspectratio>
-			<texture>$INFO[ListItem.Art(thumb)]</texture>
-			<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-			<bordersize>20</bordersize>
-		</control>
-		<control type="image">
-			<posx>8</posx>
-			<posy>601</posy>
-			<width>300</width>
-			<height>450</height>
-			<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-			<texture flipy="true" diffuse="thumbs/thumb_diffuse.png">$INFO[ListItem.Art(thumb)]</texture>
-			<animation effect="fade" start="100" end="30" time="160">Focus</animation>
-			<animation effect="fade" start="30" end="100" time="160">UnFocus</animation>
-		</control>
-
-		<!-- Ribbon Watched Status -->
-		<control type="image">
-			<posx>200</posx>
-			<posy>149</posy>
-			<width>100</width>
-			<height>100</height>
-			<texture>$VAR[OverlayVar]</texture>
-			<aspectratio align="center" aligny="top">keep</aspectratio>
-			<bordersize>1</bordersize>
-			<visible>!Skin.HasSetting(Enable.Circles)</visible>
-		</control>
-
-		<!-- Circle Watched Status (Upper) -->
-		<control type="image">
-			<posx>250</posx>
-			<posy>170</posy>
-			<width>36</width>
-			<height>36</height>
-			<aspectratio>keep</aspectratio>
-			<texture>$VAR[OverlayVar]</texture>
-			<colordiffuse>$VAR[Colour_ShiftWatchedStatusColourVar]</colordiffuse>
-			<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-		</control>
-
-		<!-- Circle Watched Status (Lower) -->
-		<control type="image">
-			<posx>250</posx>
-			<posy>544</posy>
-			<width>36</width>
-			<height>36</height>
-			<aspectratio>keep</aspectratio>
-			<texture>$VAR[OverlayVar]</texture>
-			<colordiffuse>$VAR[Colour_ShiftWatchedStatusColourVar]</colordiffuse>
-			<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-		</control>
-
-		<control type="group">
-			<posx>30</posx>
-			<posy>170</posy>
-			<include condition="!Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
-		</control>
-
-		<control type="group">
-			<posx>30</posx>
-			<posy>544</posy>
-			<include condition="Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
-		</control>
-	</include>
-	<include name="ShiftSquareThumbs">
-		<control type="image">
-			<posx>-12</posx>
-			<posy>280</posy>
-			<width>340</width>
-			<height>340</height>
-			<aspectratio scalediffuse="false">scale</aspectratio>
-			<texture>$INFO[ListItem.Art(smallThumb)]</texture>
-			<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-			<bordersize>20</bordersize>
-		</control>
-
-		<control type="image">
-			<posx>8</posx>
-			<posy>600</posy>
-			<width>300</width>
-			<height>300</height>
-			<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-			<texture flipy="true" diffuse="thumbs/thumb_diffuse.png">$INFO[ListItem.Art(smallThumb)]</texture>
-			<animation effect="fade" start="100" end="30" time="160">Focus</animation>
-			<animation effect="fade" start="30" end="100" time="160">UnFocus</animation>
-		</control>
-		<control type="image">
-			<posx>200</posx>
-			<posy>149</posy>
-			<width>100</width>
-			<height>100</height>
-			<texture>$VAR[OverlayVar]</texture>
-			<aspectratio align="center" aligny="top">keep</aspectratio>
-			<bordersize>1</bordersize>
-		</control>
-	</include>
-	<include name="ShiftSharedThumbs">
-		<control type="image">
-			<posx>-12</posx>
-			<posy>280</posy>
-			<width>340</width>
-			<height>340</height>
-			<aspectratio scalediffuse="false">scale</aspectratio>
-			<texture>$INFO[ListItem.CompositeImage(width=340;height=340;cols=2;rows=2)]</texture>
-			<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-			<bordersize>20</bordersize>
-		</control>
-
-		<control type="image">
-			<posx>8</posx>
-			<posy>600</posy>
-			<width>300</width>
-			<height>300</height>
-			<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-			<texture flipy="true" diffuse="thumbs/thumb_diffuse.png">$INFO[ListItem.CompositeImage(width=300;height=300;cols=2;rows=2)]</texture>
-			<animation effect="fade" start="100" end="30" time="160">Focus</animation>
-			<animation effect="fade" start="30" end="100" time="160">UnFocus</animation>
-		</control>
-	</include>
-	<include name="PosterShift">
-		<control type="group">
-			<include>ViewAnimation</include>
-			<visible>Control.IsVisible(57)</visible>
-
-			<include condition="!system.getbool(input.enablemouse)">PosterShiftFixed</include>
-			<include condition="system.getbool(input.enablemouse)">PosterShiftList</include>
-
-			<control type="scrollbar" id="61">
-				<posx>0</posx>
-				<posy>970</posy>
-				<width>1920</width>
-				<height>12</height>
-				<onup>57</onup>
-				<ondown>noop</ondown>
-				<texturesliderbackground border="1">-</texturesliderbackground>
-				<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-				<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-				<textureslidernib>-</textureslidernib>
-				<textureslidernibfocus>-</textureslidernibfocus>
-				<showonepage>false</showonepage>
-				<orientation>horizontal</orientation>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
-			</control>
-		</control>
-	</include>
-
-	<include name="PosterShiftFixed">
-		<control type="fixedlist" id="57">
-			<include>PosterShiftContent</include>  
-		</control>
-	</include>
-
-	<include name="PosterShiftList">
-		<control type="list" id="57">
-			<include>PosterShiftContent</include>
-		</control>
-	</include>
-
-	<include name="PosterShiftContent">	
-		<definition>
-			<posx>-120</posx>
-			<posy>300</posy>
-			<width>2100</width>
-			<height>750</height>
-			<onup>SetProperty(MediaMenu,True,home)</onup>
-			<onup>SetFocus(9050,0)</onup>
-			<onleft>57</onleft>
-			<onright>57</onright>
-			<ondown>noop</ondown>
-			<orientation>horizontal</orientation>
-			<viewtype label="31079">BigWrap</viewtype>
-			<pagecontrol>61</pagecontrol>
-			<preloaditems>2</preloaditems>
-			<scrolltime tween="quadratic">200</scrolltime>
-			<focusposition>1</focusposition>
-			<visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.PlexContent(channels)</visible>
-			<itemlayout width="315" height="750" condition="!Container.Content(addons)">
-				<include>ShiftPosterThumbs</include>
-			</itemlayout>
-			<focusedlayout width="315" height="750" condition="!Container.Content(addons)">
-				<control type="group">
-					<animation effect="zoom" center="auto" start="100" end="130" time="160" tween="quadratic">Focus</animation>
-					<animation effect="zoom" center="auto" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
-					<include>ShiftPosterThumbs</include>
-				</control>
-			</focusedlayout>
-			<itemlayout width="315" height="750" condition="Container.Content(addons)">
-				<include>ShiftSquareThumbs</include>
-			</itemlayout>
-			<focusedlayout width="315" height="750" condition="Container.Content(addons)">
-				<control type="group">
-					<animation effect="zoom" center="150,450" start="100" end="130" time="160" tween="quadratic">Focus</animation>
-					<animation effect="zoom" center="150,450" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
-					<include>ShiftSquareThumbs</include>
-				</control>
-			</focusedlayout>
-		</definition>
-	</include>
-
-	<include name="AlbumShift">
-		<control type="group">
-			<include>ViewAnimation</include>
-			<visible>Control.IsVisible(57) + !Window.IsActive(addoninformation)</visible>
-
-			<include condition="!system.getbool(input.enablemouse)">AlbumShift_Fixed</include>
-			<include condition="system.getbool(input.enablemouse)">AlbumShift_List</include>
-
-			<control type="scrollbar" id="61">
-				<posx>0</posx>
-				<posy>970</posy>
-				<width>1920</width>
-				<height>12</height>
-				<onup>57</onup>
-				<ondown>noop</ondown>
-				<texturesliderbackground border="1">-</texturesliderbackground>
-				<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-				<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-				<textureslidernib>-</textureslidernib>
-				<textureslidernibfocus>-</textureslidernibfocus>
-				<showonepage>false</showonepage>
-				<orientation>horizontal</orientation>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
-			</control>
-		</control>
-	</include>
-
-	<include name="AlbumShift_Fixed">
-		<control type="fixedlist" id="57">
-			<include>AlbumShift_Content</include>
-		</control>
-	</include>
-
-	<include name="AlbumShift_List">
-		<control type="list" id="57">
-			<include>AlbumShift_Content</include>
-		</control>
-	</include>
-
-	<include name="AlbumShift_Content">
-		<posx>-120</posx>
-		<posy>300</posy>
-		<width>2100</width>
-		<height>750</height>
-		<onup>SetProperty(MediaMenu,True,home)</onup>
-		<onup>SetFocus(9050,0)</onup>
-		<onleft>57</onleft>
-		<onright>57</onright>
-		<ondown>61</ondown>
-		<orientation>horizontal</orientation>
-		<viewtype label="31079">BigWrap</viewtype>
-		<pagecontrol>61</pagecontrol>
-		<scrolltime tween="quadratic">200</scrolltime>
-		<focusposition>1</focusposition>
-		<visible>Container.Content(addons) | Container.Content(artists) | Container.Content(albums)</visible>
-		<itemlayout width="315" height="750">
-			<include>ShiftSquareThumbs</include>
-			<control type="image">
-				<posx>-12</posx>
-				<posy>280</posy>
-				<width>340</width>
-				<height>340</height>
-				<texture>thumbs/poster_black.png</texture>
-				<bordersize>20</bordersize>
-			</control>
-			<control type="label">
-				<posx>158</posx>
-				<posy>560</posy>
-				<width>300</width>
-				<height>30</height>
-				<align>center</align>
-				<textoffsetx>15</textoffsetx>
-				<textcolor>grey2</textcolor>
-				<info>ListItem.Label</info>
-			</control>
-		</itemlayout>
-		<focusedlayout width="315" height="750">
-			<control type="group">
-				<animation effect="zoom" center="150,450" start="100" end="130" time="160" tween="quadratic">Focus</animation>
-				<animation effect="zoom" center="150,450" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
-				<include>ShiftSquareThumbs</include>
-			</control>
-		</focusedlayout>
-	</include>
-
-	<include name="SharedShift">
-		<control type="group">
-			<include>ViewAnimation</include>
-			<visible>Control.IsVisible(57) + !Window.IsActive(addoninformation)</visible>
-			<control type="fixedlist" id="57">
-				<posx>-120</posx>
-				<posy>300</posy>
-				<width>2100</width>
-				<height>750</height>
-				<onup>SetProperty(MediaMenu,True,home)</onup>
-				<onup>SetFocus(9050,0)</onup>
-				<onleft>57</onleft>
-				<onright>57</onright>
-				<ondown>noop</ondown>
-				<orientation>horizontal</orientation>
-				<viewtype label="31079">BigWrap</viewtype>
-				<pagecontrol>61</pagecontrol>
-				<scrolltime tween="quadratic">200</scrolltime>
-				<focusposition>1</focusposition>
-
-				<itemlayout width="315" height="750">
-					<include>ShiftSharedThumbs</include>
-					<control type="image">
-						<posx>-12</posx>
-						<posy>280</posy>
-						<width>340</width>
-						<height>340</height>
-						<texture>thumbs/poster_black.png</texture>
-						<bordersize>20</bordersize>
-					</control>
-					<control type="label">
-						<posx>158</posx>
-						<posy>560</posy>
-						<width>300</width>
-						<height>30</height>
-						<align>center</align>
-						<textoffsetx>15</textoffsetx>
-						<textcolor>grey2</textcolor>
-						<info>ListItem.Label</info>
-					</control>
-				</itemlayout>
-				<focusedlayout width="315" height="750">
-					<control type="group">
-						<animation effect="zoom" center="150,450" start="100" end="130" time="160" tween="quadratic">Focus</animation>
-						<animation effect="zoom" center="150,450" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
-						<include>ShiftSharedThumbs</include>
-					</control>
-				</focusedlayout>
-			</control>
-			<control type="scrollbar" id="61">
-				<posx>0</posx>
-				<posy>970</posy>
-				<width>1920</width>
-				<height>12</height>
-				<onup>57</onup>
-				<ondown>noop</ondown>
-				<texturesliderbackground border="1">-</texturesliderbackground>
-				<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-				<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-				<textureslidernib>-</textureslidernib>
-				<textureslidernibfocus>-</textureslidernibfocus>
-				<showonepage>false</showonepage>
-				<orientation>horizontal</orientation>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
-			</control>
-		</control>
-	</include>
+  <include name="ShiftPosterThumbs">
+    <control type="image">
+      <posx>-12</posx>
+      <posy>130</posy>
+      <width>340</width>
+      <height>490</height>
+      <aspectratio scalediffuse="false">scale</aspectratio>
+      <texture>$INFO[ListItem.Art(thumb)]</texture>
+      <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+      <bordersize>20</bordersize>
+    </control>
+    <control type="image">
+      <posx>8</posx>
+      <posy>601</posy>
+      <width>300</width>
+      <height>450</height>
+      <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+      <texture flipy="true" diffuse="thumbs/thumb_diffuse.png">$INFO[ListItem.Art(thumb)]</texture>
+      <animation effect="fade" start="100" end="30" time="160">Focus</animation>
+      <animation effect="fade" start="30" end="100" time="160">UnFocus</animation>
+    </control>
+    <!-- Ribbon Watched Status -->
+    <control type="image">
+      <posx>200</posx>
+      <posy>149</posy>
+      <width>100</width>
+      <height>100</height>
+      <texture>$VAR[OverlayVar]</texture>
+      <aspectratio align="center" aligny="top">keep</aspectratio>
+      <bordersize>1</bordersize>
+      <visible>!Skin.HasSetting(Enable.Circles)</visible>
+    </control>
+    <!-- Circle Watched Status (Upper) -->
+    <control type="image">
+      <posx>250</posx>
+      <posy>170</posy>
+      <width>36</width>
+      <height>36</height>
+      <aspectratio>keep</aspectratio>
+      <texture>$VAR[OverlayVar]</texture>
+      <colordiffuse>$VAR[Colour_ShiftWatchedStatusColourVar]</colordiffuse>
+      <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+    </control>
+    <!-- Circle Watched Status (Lower) -->
+    <control type="image">
+      <posx>250</posx>
+      <posy>544</posy>
+      <width>36</width>
+      <height>36</height>
+      <aspectratio>keep</aspectratio>
+      <texture>$VAR[OverlayVar]</texture>
+      <colordiffuse>$VAR[Colour_ShiftWatchedStatusColourVar]</colordiffuse>
+      <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+    </control>
+    <control type="group">
+      <posx>30</posx>
+      <posy>170</posy>
+      <include condition="!Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+    </control>
+    <control type="group">
+      <posx>30</posx>
+      <posy>544</posy>
+      <include condition="Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+    </control>
+  </include>
+  <include name="ShiftSquareThumbs">
+    <control type="image">
+      <posx>-12</posx>
+      <posy>280</posy>
+      <width>340</width>
+      <height>340</height>
+      <aspectratio scalediffuse="false">scale</aspectratio>
+      <texture>$INFO[ListItem.Art(smallThumb)]</texture>
+      <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+      <bordersize>20</bordersize>
+    </control>
+    <control type="image">
+      <posx>8</posx>
+      <posy>600</posy>
+      <width>300</width>
+      <height>300</height>
+      <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+      <texture flipy="true" diffuse="thumbs/thumb_diffuse.png">$INFO[ListItem.Art(smallThumb)]</texture>
+      <animation effect="fade" start="100" end="30" time="160">Focus</animation>
+      <animation effect="fade" start="30" end="100" time="160">UnFocus</animation>
+    </control>
+    <control type="image">
+      <posx>200</posx>
+      <posy>149</posy>
+      <width>100</width>
+      <height>100</height>
+      <texture>$VAR[OverlayVar]</texture>
+      <aspectratio align="center" aligny="top">keep</aspectratio>
+      <bordersize>1</bordersize>
+    </control>
+  </include>
+  <include name="ShiftSharedThumbs">
+    <control type="image">
+      <posx>-12</posx>
+      <posy>280</posy>
+      <width>340</width>
+      <height>340</height>
+      <aspectratio scalediffuse="false">scale</aspectratio>
+      <texture>$INFO[ListItem.CompositeImage(width=340;height=340;cols=2;rows=2)]</texture>
+      <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+      <bordersize>20</bordersize>
+    </control>
+    <control type="image">
+      <posx>8</posx>
+      <posy>600</posy>
+      <width>300</width>
+      <height>300</height>
+      <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+      <texture flipy="true" diffuse="thumbs/thumb_diffuse.png">$INFO[ListItem.CompositeImage(width=300;height=300;cols=2;rows=2)]</texture>
+      <animation effect="fade" start="100" end="30" time="160">Focus</animation>
+      <animation effect="fade" start="30" end="100" time="160">UnFocus</animation>
+    </control>
+  </include>
+  <include name="PosterShift">
+    <control type="group">
+      <include>ViewAnimation</include>
+      <visible>Control.IsVisible(57)</visible>
+      <include condition="!system.getbool(input.enablemouse)">PosterShiftFixed</include>
+      <include condition="system.getbool(input.enablemouse)">PosterShiftList</include>
+      <control type="scrollbar" id="61">
+        <posx>0</posx>
+        <posy>970</posy>
+        <width>1920</width>
+        <height>12</height>
+        <onup>57</onup>
+        <ondown>noop</ondown>
+        <texturesliderbackground border="1">-</texturesliderbackground>
+        <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+        <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+        <textureslidernib>-</textureslidernib>
+        <textureslidernibfocus>-</textureslidernibfocus>
+        <showonepage>false</showonepage>
+        <orientation>horizontal</orientation>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
+      </control>
+    </control>
+  </include>
+  <include name="PosterShiftFixed">
+    <control type="fixedlist" id="57">
+      <include>PosterShiftContent</include>
+    </control>
+  </include>
+  <include name="PosterShiftList">
+    <control type="list" id="57">
+      <include>PosterShiftContent</include>
+    </control>
+  </include>
+  <include name="PosterShiftContent">
+    <definition>
+      <posx>-120</posx>
+      <posy>300</posy>
+      <width>2100</width>
+      <height>750</height>
+      <onup>SetProperty(MediaMenu,True,home)</onup>
+      <onup>SetFocus(9050,0)</onup>
+      <onleft>57</onleft>
+      <onright>57</onright>
+      <ondown>noop</ondown>
+      <orientation>horizontal</orientation>
+      <viewtype label="31079">BigWrap</viewtype>
+      <pagecontrol>61</pagecontrol>
+      <preloaditems>2</preloaditems>
+      <scrolltime tween="quadratic">200</scrolltime>
+      <focusposition>1</focusposition>
+      <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.PlexContent(channels)</visible>
+      <itemlayout width="315" height="750" condition="!Container.Content(addons)">
+        <include>ShiftPosterThumbs</include>
+      </itemlayout>
+      <focusedlayout width="315" height="750" condition="!Container.Content(addons)">
+        <control type="group">
+          <animation effect="zoom" center="auto" start="100" end="130" time="160" tween="quadratic">Focus</animation>
+          <animation effect="zoom" center="auto" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
+          <include>ShiftPosterThumbs</include>
+        </control>
+      </focusedlayout>
+      <itemlayout width="315" height="750" condition="Container.Content(addons)">
+        <include>ShiftSquareThumbs</include>
+      </itemlayout>
+      <focusedlayout width="315" height="750" condition="Container.Content(addons)">
+        <control type="group">
+          <animation effect="zoom" center="150,450" start="100" end="130" time="160" tween="quadratic">Focus</animation>
+          <animation effect="zoom" center="150,450" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
+          <include>ShiftSquareThumbs</include>
+        </control>
+      </focusedlayout>
+    </definition>
+  </include>
+  <include name="AlbumShift">
+    <control type="group">
+      <include>ViewAnimation</include>
+      <visible>Control.IsVisible(57) + !Window.IsActive(addoninformation)</visible>
+      <include condition="!system.getbool(input.enablemouse)">AlbumShift_Fixed</include>
+      <include condition="system.getbool(input.enablemouse)">AlbumShift_List</include>
+      <control type="scrollbar" id="61">
+        <posx>0</posx>
+        <posy>970</posy>
+        <width>1920</width>
+        <height>12</height>
+        <onup>57</onup>
+        <ondown>noop</ondown>
+        <texturesliderbackground border="1">-</texturesliderbackground>
+        <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+        <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+        <textureslidernib>-</textureslidernib>
+        <textureslidernibfocus>-</textureslidernibfocus>
+        <showonepage>false</showonepage>
+        <orientation>horizontal</orientation>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
+      </control>
+    </control>
+  </include>
+  <include name="AlbumShift_Fixed">
+    <control type="fixedlist" id="57">
+      <include>AlbumShift_Content</include>
+    </control>
+  </include>
+  <include name="AlbumShift_List">
+    <control type="list" id="57">
+      <include>AlbumShift_Content</include>
+    </control>
+  </include>
+  <include name="AlbumShift_Content">
+    <posx>-120</posx>
+    <posy>300</posy>
+    <width>2100</width>
+    <height>750</height>
+    <onup>SetProperty(MediaMenu,True,home)</onup>
+    <onup>SetFocus(9050,0)</onup>
+    <onleft>57</onleft>
+    <onright>57</onright>
+    <ondown>61</ondown>
+    <orientation>horizontal</orientation>
+    <viewtype label="31079">BigWrap</viewtype>
+    <pagecontrol>61</pagecontrol>
+    <scrolltime tween="quadratic">200</scrolltime>
+    <focusposition>1</focusposition>
+    <visible>Container.Content(addons) | Container.Content(artists) | Container.Content(albums)</visible>
+    <itemlayout width="315" height="750">
+      <include>ShiftSquareThumbs</include>
+      <control type="image">
+        <posx>-12</posx>
+        <posy>280</posy>
+        <width>340</width>
+        <height>340</height>
+        <texture>thumbs/poster_black.png</texture>
+        <bordersize>20</bordersize>
+      </control>
+      <control type="label">
+        <posx>158</posx>
+        <posy>560</posy>
+        <width>300</width>
+        <height>30</height>
+        <align>center</align>
+        <textoffsetx>15</textoffsetx>
+        <textcolor>grey2</textcolor>
+        <info>ListItem.Label</info>
+      </control>
+    </itemlayout>
+    <focusedlayout width="315" height="750">
+      <control type="group">
+        <animation effect="zoom" center="150,450" start="100" end="130" time="160" tween="quadratic">Focus</animation>
+        <animation effect="zoom" center="150,450" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
+        <include>ShiftSquareThumbs</include>
+      </control>
+    </focusedlayout>
+  </include>
+  <include name="SharedShift">
+    <control type="group">
+      <include>ViewAnimation</include>
+      <visible>Control.IsVisible(57) + !Window.IsActive(addoninformation)</visible>
+      <control type="fixedlist" id="57">
+        <posx>-120</posx>
+        <posy>300</posy>
+        <width>2100</width>
+        <height>750</height>
+        <onup>SetProperty(MediaMenu,True,home)</onup>
+        <onup>SetFocus(9050,0)</onup>
+        <onleft>57</onleft>
+        <onright>57</onright>
+        <ondown>noop</ondown>
+        <orientation>horizontal</orientation>
+        <viewtype label="31079">BigWrap</viewtype>
+        <pagecontrol>61</pagecontrol>
+        <scrolltime tween="quadratic">200</scrolltime>
+        <focusposition>1</focusposition>
+        <itemlayout width="315" height="750">
+          <include>ShiftSharedThumbs</include>
+          <control type="image">
+            <posx>-12</posx>
+            <posy>280</posy>
+            <width>340</width>
+            <height>340</height>
+            <texture>thumbs/poster_black.png</texture>
+            <bordersize>20</bordersize>
+          </control>
+          <control type="label">
+            <posx>158</posx>
+            <posy>560</posy>
+            <width>300</width>
+            <height>30</height>
+            <align>center</align>
+            <textoffsetx>15</textoffsetx>
+            <textcolor>grey2</textcolor>
+            <info>ListItem.Label</info>
+          </control>
+        </itemlayout>
+        <focusedlayout width="315" height="750">
+          <control type="group">
+            <animation effect="zoom" center="150,450" start="100" end="130" time="160" tween="quadratic">Focus</animation>
+            <animation effect="zoom" center="150,450" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
+            <include>ShiftSharedThumbs</include>
+          </control>
+        </focusedlayout>
+      </control>
+      <control type="scrollbar" id="61">
+        <posx>0</posx>
+        <posy>970</posy>
+        <width>1920</width>
+        <height>12</height>
+        <onup>57</onup>
+        <ondown>noop</ondown>
+        <texturesliderbackground border="1">-</texturesliderbackground>
+        <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+        <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+        <textureslidernib>-</textureslidernib>
+        <textureslidernibfocus>-</textureslidernibfocus>
+        <showonepage>false</showonepage>
+        <orientation>horizontal</orientation>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(61) + !Container.Scrolling">Conditional</animation>
+      </control>
+    </control>
+  </include>
 </includes>

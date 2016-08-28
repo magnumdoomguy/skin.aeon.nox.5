@@ -1,1233 +1,410 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-    <!-- Search Background -->
-    <variable name="SearchBackgroundVar">
-        <value condition="Control.IsVisible(7001) + Control.HasFocus(9001)">$INFO[Container(9001).ListItem.Art(fanart)]</value>
-        <value condition="Control.IsVisible(7002) + Control.HasFocus(9002)">$INFO[Container(9002).ListItem.Art(fanart)]</value>
-        <value condition="Control.IsVisible(7004) + Control.HasFocus(9004)">$INFO[Container(9004).ListItem.Art(fanart)]</value>
-        <value condition="Control.IsVisible(7008) + Control.HasFocus(9008)">$INFO[Container(9008).ListItem.Art(fanart)]</value>
-        <value condition="Control.IsVisible(7009) + Control.HasFocus(9009)">$INFO[Container(9009).ListItem.Art(fanart)]</value>
-        <value condition="Control.IsVisible(7010) + Control.HasFocus(9010)">$INFO[Container(9010).ListItem.Art(fanart)]</value>
-        <value>special://skin/backgrounds/search.jpg</value>
-    </variable>
-    <!-- Darken Background (Default Theme) -->
-    <include name="DarkenBackground_Default">
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <texture>black.png</texture>
-            <visible>!Window.IsVisible(skinsettings) + [Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)]</visible>
-            <animation effect="fade" start="100" end="55" time="240" condition="true">conditional</animation>
-        </control>
-    </include>
-    <!-- Darken Background (White Flat Theme) -->
-    <include name="DarkenBackground_WhiteFlat">
-        <control type="image">
-            <include>FullscreenDimensions</include>
-            <texture>black.png</texture>
-            <visible>!Window.IsVisible(skinsettings) + [Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)]</visible>
-            <animation effect="fade" end="0" condition="true">Conditional</animation>
-        </control>
-    </include>
-    <include name="CommonBackground">
-        <control type="group">
-            <!-- Window Open and Close Animations -->
-            <animation effect="fade" time="600">WindowOpen</animation>
-            <animation effect="fade" time="600">WindowClose</animation>
-            <!-- Home Window Fanart -->
-            <include condition="Window.IsActive(home) + !system.getbool(input.enablemouse)">HomeFanart</include>
-            <include condition="Window.IsActive(home) + system.getbool(input.enablemouse)">HomeFanart_Mouse</include>
-            <!-- Live DVD/Bluray Cases -->
-            <include condition="Window.IsActive(home)">LiveCasesBackground</include>
-            <!-- Fanart -->
-            <include condition="Window.IsActive(videos) | Window.IsActive(videoplaylist)">VideoFanart</include>
-            <include condition="Window.IsActive(10002)">PhotosFanart</include>
-            <include condition="Window.IsActive(10051)">SearchFanart</include>
-            <include condition="Window.IsActive(10004)">SettingsFanart</include>
-            <include condition="Window.IsActive(filemanager)">FileManagerFanart</include>
-            <include condition="Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings) | Window.IsActive(systeminfo)">SettingsCategoryFanart</include>
-            <include condition="Window.IsActive(skinsettings)">SkinSettingsFanart</include>
-            <include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002) + !Window.IsActive(10051) + !Window.IsActive(10004) + ![Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings) | Window.IsActive(systeminfo)] + !Window.IsActive(skinsettings) + !Window.IsActive(filemanager)">GlobalFanart</include>
-            <!-- Background Visualization -->
-            <control type="visualisation">
-                <include>FullscreenDimensions</include>
-                <visible>Player.HasAudio</visible>
-                <visible>!Skin.HasSetting(Backgrounds.VisualizationDisable)</visible>
-                <visible>IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
-            </control>
-            <!-- Snow Animation -->
-            <include>SnowBackground</include>
-        </control>
-        <control type="group">
-            <!-- "Now Playing" Video Background -->
-            <control type="image">
-                <include>FullscreenDimensions</include>
-                <texture>black.png</texture>
-                <visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
-            </control>
-            <control type="videowindow">
-                <include>FullscreenDimensions</include>
-                <visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
-            </control>
-            <!-- Darken Background -->
-            <include condition="!Skin.HasTheme(WhiteFlat)">DarkenBackground_Default</include>
-			<include condition="Skin.HasTheme(WhiteFlat)">DarkenBackground_WhiteFlat</include>
-        </control>
-        <!-- Vignette -->
-        <control type="group">
-            <visible>Control.IsVisible(50) | Control.IsVisible(507) | Control.IsVisible(55) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(499) | [Control.IsVisible(51) + !Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + !Skin.HasSetting(Enable.AlternateBannerInfo)] | Control.IsVisible(58) | Control.IsVisible(601) | Control.IsVisible(52) | Control.IsVisible(53) | [Control.IsVisible(510) + !Skin.HasSetting(alternatebiglistlayout)] | Control.IsVisible(54)</visible>
-            <!-- Mapped from Kodi to OpenPHT -->
-            <control type="image">
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>696</width>
-                <height>1080</height>
-                <texture border="1">vignette.png</texture>
-            </control>
-            <control type="image">
-                <posx>1224</posx>
-                <posy>0</posy>
-                <width>696</width>
-                <height>1080</height>
-                <texture flipx="true" border="1">vignette.png</texture>
-            </control>
-        </control>
-        <!-- Infopanel -->
-        <!--<include>NewInfoPanel</include>-->
-        <!-- Floor -->
-        <control type="group">
-            <include>Window_OpenClose_Animation</include>
-            <visible>Control.IsVisible(50) | [Control.IsVisible(51) + !Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + !Skin.HasSetting(Enable.AlternateBannerInfo)] | Control.IsVisible(52) | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(58) | Control.IsVisible(499) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(601) | Control.IsVisible(507) | Control.IsVisible(509) | [Control.IsVisible(510) + !Skin.HasSetting(alternatebiglistlayout)] | Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings) | Window.IsActive(10051) | [Control.IsVisible(700) + Container.Content(movies) + IsEmpty(Skin.String(700.movies.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(tvshows) + IsEmpty(Skin.String(700.tvshows.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(seasons) + IsEmpty(Skin.String(700.seasons.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(episodes) + IsEmpty(Skin.String(700.episodes.ViewFloorStatus))] | Control.IsVisible(708) | Control.IsVisible(728) | Window.IsActive(skinsettings) | Window.IsActive(filemanager) | [Window.IsActive(addoninformation) + Control.IsVisible(503)] | Window.IsActive(1142) | Window.IsActive(1143) | Window.IsActive(1144) | Window.IsActive(1145) | Window.IsActive(1146) | Window.IsActive(1147) | Window.IsActive(1148) | Window.IsActive(1149) | Window.IsActive(1150) | Window.IsActive(1151) | Window.IsActive(1152) | Window.IsActive(1153) | Window.IsActive(1154) | Window.IsActive(1156) | Window.IsActive(1157) | Window.IsActive(1158) | Window.IsActive(1160) | Window.IsActive(1161) | Window.IsActive(1162) | Window.IsActive(1163) | Window.IsActive(1164) | Window.IsActive(1165) | Window.IsActive(1166) | Window.IsActive(1167) | Window.IsActive(1168) | Window.IsActive(1169) | Window.IsActive(1170) | Window.IsActive(1171) | Window.IsActive(1172) | Window.IsActive(1173) | Window.IsActive(1174) | Window.IsActive(1175) | Window.IsActive(1176) | Window.IsActive(1177) | Window.IsActive(1178) | Window.IsActive(1179) | Window.IsActive(1180) | Window.IsActive(1181) | Window.IsActive(1182) | Window.IsActive(1183) | Window.IsActive(1184) | Window.IsActive(1185) | Window.IsActive(1186) | Window.IsActive(1187) | Window.IsActive(1188) | Window.IsActive(1189) | Window.IsActive(1190) | Window.IsActive(1191) | Window.IsActive(1192) | Window.IsActive(1193) | Window.IsActive(1194) | Window.IsActive(1195) | Window.IsActive(1196) | Window.IsActive(1197) | Window.IsActive(1198) | Window.IsActive(1199) | Window.IsActive(1200) | Window.IsActive(1201) | Window.IsActive(1202) | Window.IsActive(1203) | Window.IsActive(1204) | Window.IsActive(1205) | Window.IsActive(1206) | Window.IsActive(1207) | Window.IsActive(1208) | Window.IsActive(1209) | Window.IsActive(1210) | Window.IsActive(1211) | Window.IsActive(1212) | Window.IsActive(1213) | Window.IsActive(1214) | Window.IsActive(1215) | Window.IsActive(1216) | Window.IsActive(1217) | Window.IsActive(1219)</visible>
-            <!-- Mapped from Kodi to OpenPHT -->
-            <include>ViewAnimation</include>
-            <animation effect="slide" start="0,0" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.IsVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(57)] | Window.IsActive(skinsettings) | Window.IsActive(1140) | Window.IsActive(1141) | Window.IsActive(1142) | Window.IsActive(1143) | Window.IsActive(1144) | Window.IsActive(1145) | Window.IsActive(1146) | Window.IsActive(1147) | Window.IsActive(1148) | Window.IsActive(1149) | Window.IsActive(1150) | Window.IsActive(1151) | Window.IsActive(1152) | Window.IsActive(1153) | Window.IsActive(1154) | Window.IsActive(1156) | Window.IsActive(1157) | Window.IsActive(1158) | Window.IsActive(1160) | Window.IsActive(1161) | Window.IsActive(1162) | Window.IsActive(1163) | Window.IsActive(1164) | Window.IsActive(1165) | Window.IsActive(1166) | Window.IsActive(1167) | Window.IsActive(1168) | Window.IsActive(1169) | Window.IsActive(1170) | Window.IsActive(1171) | Window.IsActive(1172) | Window.IsActive(1173) | Window.IsActive(1174) | Window.IsActive(1175) | Window.IsActive(1176) | Window.IsActive(1177) | Window.IsActive(1178) | Window.IsActive(1179) | Window.IsActive(1180) | Window.IsActive(1181) | Window.IsActive(1182) | Window.IsActive(1183) | Window.IsActive(1184) | Window.IsActive(1185) | Window.IsActive(1186) | Window.IsActive(1187) | Window.IsActive(1188) | Window.IsActive(1189) | Window.IsActive(1190) | Window.IsActive(1191) | Window.IsActive(1192) | Window.IsActive(1193) | Window.IsActive(1194) | Window.IsActive(1195) | Window.IsActive(1196) | Window.IsActive(1197) | Window.IsActive(1198) | Window.IsActive(1199) | Window.IsActive(1200) | Window.IsActive(1201) | Window.IsActive(1202) | Window.IsActive(1203) | Window.IsActive(1204) | Window.IsActive(1205) | Window.IsActive(1206) | Window.IsActive(1207) | Window.IsActive(1208) | Window.IsActive(1209) | Window.IsActive(1210) | Window.IsActive(1211) | Window.IsActive(1212) | Window.IsActive(1213) | Window.IsActive(1214) | Window.IsActive(1215) | Window.IsActive(1216) | Window.IsActive(1217) | Window.IsActive(1219)">Conditional</animation>
-            <!-- Mapped from Kodi to OpenPHT -->
-            <animation effect="slide" start="0,0" end="0,40" time="720" tween="cubic" easing="inout" condition="Control.IsVisible(700) + !Window.IsActive(skinsettings)">Conditional</animation>
-            <!-- Mapped from Kodi to OpenPHT -->
-            <control type="image">
-				<visible>!Skin.HasTheme(WhiteFlat)</visible>
-                <posx>0</posx>
-                <posy>400</posy>
-                <width>1920</width>
-                <height>680</height>
-                <texture>floor.png</texture>
-                <colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
-            </control>
-        </control>
-        <!-- Darken Bottom of Screen -->
-        <control type="group">
-            <include>Window_OpenClose_Animation</include>
-            <control type="image">
-                <include>FullscreenDimensions</include>
-                <texture border="1">logo_back.png</texture>
-                <visible>Control.IsVisible(591) | Control.IsVisible(592)</visible>
-            </control>
-        </control>
-    </include>
-    <include name="FileManagerFanart">
-        <control type="image">
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/filemanager.jpg</texture>
-        </control>
-    </include>
-    <include name="VideoFanart">
-		<!-- FanArt Underlay for WhiteFlat -->
-		<control type="image">
-			<visible>!Container.Content(clips)</visible>
-			<visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
-			<visible>Skin.HasTheme(WhiteFlat)</visible>
-			<texture>fanartunderlay.png</texture>
-		</control>
-        <!-- Standard Video Background -->
-        <control type="image">
-            <visible>!Container.Content(clips)</visible>
-            <visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
-            <visible>!Skin.HasTheme(WhiteFlat)</visible>
-            <include>FanartCommonValues</include>
-            <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
-        </control>
-        <!-- Dupe for WhiteFlat -->
-		<control type="image">
-			<visible>!Container.Content(clips)</visible>
-			<visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
-			<visible>Skin.HasTheme(WhiteFlat)</visible>
-			<include>FanartCommonValues</include>			
-			<texture colordiffuse="40FFFFFF" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
-		</control>
-		<!-- End -->
-        <!-- Home Videos Fanart -->
-        <control type="image">
-            <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + !IsEmpty(ListItem.Art(smallThumb))</visible>
-            <include>FanartCommonValues</include>
-            <texture fallback="special://skin/backgrounds/homevideos.jpg">$INFO[ListItem.Art(fanart)]</texture>
-        </control>
-        <control type="image">
-            <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + IsEmpty(ListItem.Art(smallThumb))</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/homevideos.jpg</texture>
-        </control>
-        <!-- Background for Empty List -->
-        <control type="image">
-            <visible>Container.Content(empty)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/movies.jpg</texture>
-        </control>
-        <!-- Custom Movie Background Image -->
-        <control type="image">
-            <visible>!Container.Content(clips)</visible>
-            <visible>!IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + Container.Content(movies)</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomMovieSectionBackgroundFile)</info>
-        </control>
-        <!-- Custom TV Background Image -->
-        <control type="image">
-            <visible>!Container.Content(clips)</visible>
-            <visible>!IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomTVSectionBackgroundFile)</info>
-        </control>
-        <!-- Custom Home Video Background Image -->
-        <control type="image">
-            <visible>!Container.Content(clips)</visible>
-            <visible>!IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + Container.PlexContent(homemovies)</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomHomeVideoSectionBackgroundFile)</info>
-        </control>
-        <!-- Custom Channel Background Image -->
-        <control type="image">
-            <visible>!Container.Content(clips)</visible>
-            <visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
-        </control>
-        <!-- Custom Movie Slideshow -->
-        <control type="multiimage">
-            <visible>!Container.Content(clips)</visible>
-            <visible>!IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomMovieSectionSlideshowPath)</info>
-        </control>
-        <!-- Custom TV Slideshow -->
-        <control type="multiimage">
-            <visible>!Container.Content(clips)</visible>
-            <visible>!IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomTVSectionSlideshowPath)</info>
-        </control>
-        <!-- Custom Home Video Slideshow -->
-        <control type="multiimage">
-            <visible>!Container.Content(clips)</visible>
-            <visible>!IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomHomeVideoSectionSlideshowPath)</info>
-        </control>
-        <!-- Custom Channel Slideshow -->
-        <control type="multiimage">
-            <visible>!Container.Content(clips)</visible>
-            <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
-        </control>
-        <!-- Background for Watch Later -->
-        <control type="image">
-            <visible>Container.Content(clips)</visible>
-            <include>FanartCommonValues</include>
-            <texture fallback="special://skin/backgrounds/watchlater.jpg" blur="01">$INFO[ListItem.Icon]</texture>
-        </control>
-        <!-- Custom Watch Later Background Image -->
-        <control type="image">
-            <visible>!IsEmpty(Skin.String(CustomWatchLaterBackgroundFile)) + Container.Content(clips)</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomWatchLaterBackgroundFile)</info>
-        </control>
-        <!-- Custom Watch Later Background Image -->
-        <control type="multiimage">
-            <visible>!IsEmpty(Skin.String(CustomWatchLaterSlideshowPath)) + Container.Content(clips)</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomWatchLaterSlideshowPath)</info>
-        </control>
-    </include>
-    <!-- Photo Fanart -->
-    <include name="PhotosFanart">
-        <!-- Photo Background -->
-        <control type="image">
-            <description>Normal Default Background Image</description>
-            <visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
-            <include>FanartCommonValues</include>
-            <texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.PicturePath]</texture>
-            <visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]</visible>
-        </control>
-        <control type="image">
-            <description>Normal Default Background Image</description>
-            <visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
-            <include>FanartCommonValues</include>
-            <texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
-            <visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]] | ListItem.Type(photoAlbum) | ListItem.Type(clip)</visible>
-        </control>
-        <!-- Background for Empty List -->
-        <control type="image">
-            <visible>Container.Content(empty)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/pictures.jpg</texture>
-        </control>
-        <!-- Photo Channel Background -->
-        <control type="image">
-            <description>Normal Default Background Image</description>
-            <visible>[Container.PlexContent(channels) | Container.PlexContent(channel)] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomChannelSectionSlideshowPath))]</visible>
-            <include>FanartCommonValues</include>
-            <texture fallback="special://skin/backgrounds/channels.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
-        </control>
-        <!-- Custom Photo Background -->
-        <control type="image">
-            <description>Custom Background Image</description>
-            <visible>!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) + Container.PlexContent(photos)</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomPhotoSectionBackgroundFile)</info>
-        </control>
-        <!-- Custom Photo Channel Background -->
-        <control type="image">
-            <description>Custom Background Image</description>
-            <visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
-        </control>
-        <!-- Custom Photo Slideshow Background -->
-        <control type="multiimage">
-            <description>Custom Slideshow Background</description>
-            <visible>!IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath)) + Container.PlexContent(photos)</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomPhotoSectionSlideshowPath)</info>
-        </control>
-        <!-- Custom Photo Channel Background -->
-        <control type="multiimage">
-            <description>Custom Slideshow Background</description>
-            <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
-        </control>
-    </include>
-    <include name="SearchFanart">
-        <control type="image">
-            <description>Normal Default Background Image</description>
-            <include>FanartCommonValues</include>
-            <texture fallback="special://skin/backgrounds/search.jpg">$VAR[SearchBackgroundVar]</texture>
-        </control>
-    </include>
-    <include name="SettingsFanart">
-        <!-- Appearance Background -->
-        <control type="image">
-            <visible>Container(9000).HasFocus(1) | system.getbool(input.enablemouse)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/appearance.jpg</texture>
-        </control>
-        <control type="image">
-            <visible>Container(9000).HasFocus(2) + !system.getbool(input.enablemouse)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/playback.jpg</texture>
-        </control>
-        <control type="image">
-            <visible>Container(9000).HasFocus(8) + !system.getbool(input.enablemouse)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/system.jpg</texture>
-        </control>
-        <control type="image">
-            <visible>Container(9000).HasFocus(9) + !system.getbool(input.enablemouse)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/network.jpg</texture>
-        </control>
-        <control type="image">
-            <visible>Container(9000).HasFocus(10) + !system.getbool(input.enablemouse)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/systeminfo.jpg</texture>
-        </control>
-    </include>
-    <include name="SettingsCategoryFanart">
-        <!-- Appearance Background -->
-        <control type="image">
-            <visible>Window.IsActive(appearancesettings)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/appearance.jpg</texture>
-        </control>
-        <!-- Playback Background -->
-        <control type="image">
-            <visible>Window.IsActive(videossettings)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/playback.jpg</texture>
-        </control>
-        <!-- System Background -->
-        <control type="image">
-            <visible>Window.IsActive(SystemSettings)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/system.jpg</texture>
-        </control>
-        <!-- System Info Background -->
-        <control type="image">
-            <visible>Window.IsActive(systeminfo)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/systeminfo.jpg</texture>
-        </control>
-        <!-- Network Background -->
-        <control type="image">
-            <visible>Window.IsActive(ServiceSettings)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/network.jpg</texture>
-        </control>
-    </include>
-    <!-- Skin Settings Fanart -->
-    <include name="SkinSettingsFanart">
-        <control type="image">
-            <description>Normal Default Background Image</description>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/appearance.jpg</texture>
-        </control>
-    </include>
-    <include name="GlobalFanart">
-        <!-- Fanart Background -->
-        <control type="group">
-            <visible>![Control.IsVisible(509) + Window.IsActive(videos)]</visible>
-            <visible>![!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
-            <control type="image">
-                <description>Normal Default Background Image</description>
-                <include>FanartCommonValues</include>
-                <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
-            </control>
-        </control>
-        <!-- MyFlix Background -->
-        <control type="group">
-            <visible>Control.IsVisible(509) + !Window.IsActive(skinsettings)</visible>
-            <visible>![!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
-            <control type="image">
-                <include>FullscreenDimensions</include>
-                <texture>black.png</texture>
-            </control>
-            <control type="multiimage">
-                <description>MyFlix Background Image</description>
-                <posx>412</posx>
-                <width>1520</width>
-                <height>855</height>
-                <texture fallback="special://skin/backgrounds/movies.jpg" background="true" diffuse="views/myflix/fanart_diffuse.png">$INFO[ListItem.Property(Fanart_Image)]</texture>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
-                <include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
-            </control>
-        </control>
-        <!-- Background for Colour Customizer -->
-        <control type="image">
-            <visible>Window.IsActive(1140) | Window.IsActive(1141) | Window.IsActive(1142) | Window.IsActive(1143) | Window.IsActive(1144) | Window.IsActive(1145) | Window.IsActive(1146) | Window.IsActive(1147) | Window.IsActive(1148) | Window.IsActive(1149) | Window.IsActive(1150) | Window.IsActive(1151) | Window.IsActive(1152) | Window.IsActive(1153) | Window.IsActive(1154) | Window.IsActive(1156) | Window.IsActive(1157) | Window.IsActive(1158) | Window.IsActive(1160) | Window.IsActive(1161) | Window.IsActive(1162) | Window.IsActive(1163) | Window.IsActive(1164) | Window.IsActive(1165) | Window.IsActive(1166) | Window.IsActive(1167) | Window.IsActive(1168) | Window.IsActive(1169) | Window.IsActive(1170) | Window.IsActive(1171) | Window.IsActive(1172) | Window.IsActive(1173) | Window.IsActive(1174) | Window.IsActive(1175) | Window.IsActive(1176) | Window.IsActive(1177) | Window.IsActive(1178) | Window.IsActive(1179) | Window.IsActive(1180) | Window.IsActive(1181) | Window.IsActive(1182) | Window.IsActive(1183) | Window.IsActive(1184) | Window.IsActive(1185) | Window.IsActive(1186) | Window.IsActive(1187) | Window.IsActive(1188) | Window.IsActive(1189) | Window.IsActive(1190) | Window.IsActive(1191) | Window.IsActive(1192) | Window.IsActive(1193) | Window.IsActive(1194) | Window.IsActive(1195) | Window.IsActive(1196) | Window.IsActive(1197) | Window.IsActive(1198) | Window.IsActive(1199) | Window.IsActive(1200) | Window.IsActive(1201) | Window.IsActive(1202) | Window.IsActive(1203) | Window.IsActive(1204) | Window.IsActive(1205) | Window.IsActive(1206) | Window.IsActive(1207) | Window.IsActive(1208) | Window.IsActive(1209) | Window.IsActive(1210) | Window.IsActive(1211) | Window.IsActive(1212) | Window.IsActive(1213) | Window.IsActive(1214) | Window.IsActive(1215) | Window.IsActive(1216) | Window.IsActive(1217) | Window.IsActive(1219)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/system.jpg</texture>
-        </control>
-        <!-- Background for Empty List -->
-        <control type="image">
-            <visible>Container.Content(empty)</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/music.jpg</texture>
-        </control>
-        <!-- Custom Music Background Image -->
-        <control type="image">
-            <description>Custom Background Image</description>
-            <visible>!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomMusicSectionBackgroundFile)</info>
-        </control>
-        <!-- Custom Channel Background Image -->
-        <control type="image">
-            <description>Custom Background Image</description>
-            <visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
-        </control>
-        <!-- Custom Music Slideshow -->
-        <control type="multiimage">
-            <description>Custom Slideshow Background</description>
-            <visible>!IsEmpty(Skin.String(CustomMusicSectionSlideshowPath)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomMusicSectionSlideshowPath)</info>
-        </control>
-        <!-- Custom Channel Slideshow -->
-        <control type="multiimage">
-            <description>Custom Slideshow Background</description>
-            <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
-            <include>FanartCommonValues</include>
-            <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
-        </control>
-    </include>
-    <include name="HomeFanart">
-        <!-- Single Image Custom Background -->
-        <control type="image">
-            <visible>Skin.HasSetting(CustomHomeUniversal)</visible>
-            <include>FullscreenDimensions</include>
-            <include>AnimatedBackgroundAnimation</include>
-            <fadetime>600</fadetime>
-            <info>Skin.String(CustomHomeUniversalImage)</info>
-        </control>
-        <!-- No Single Image Custom Background -->
-        <control type="group">
-            <visible>!Skin.HasSetting(CustomHomeUniversal)</visible>
-            <!-- Custom Home Slideshow -->
-            <control type="multiimage">
-                <visible>Skin.HasSetting(CustomHomeSlideshow)</visible>
-                <include>FanartCommonValues</include>
-                <info>Skin.String(CustomHomeSlideshowPath)</info>
-            </control>
-            <!-- No Custom Home Slideshow -->
-            <control type="group">
-                <visible>!Skin.HasSetting(CustomHomeSlideshow)</visible>
-                <!-- Home Menu Backgrounds -->
-                <control type="group">
-                    <visible>Control.HasFocus(300) | Control.HasFocus(9027)</visible>
-                    <!-- Custom Home Menu Backgrounds -->
-                    <control type="group">
-                        <visible>Skin.HasSetting(CustomHomeBackground1) | Skin.HasSetting(CustomHomeBackground2) | Skin.HasSetting(CustomHomeBackground3) | Skin.HasSetting(CustomHomeBackground4) | Skin.HasSetting(CustomHomeBackground5) | Skin.HasSetting(CustomHomeBackground6) | Skin.HasSetting(CustomHomeBackground7) | Skin.HasSetting(CustomHomeBackground8) | Skin.HasSetting(CustomHomeBackground9) | Skin.HasSetting(CustomHomeBackground10) | Skin.HasSetting(CustomHomeBackground11) | Skin.HasSetting(CustomHomeBackground12) | Skin.HasSetting(CustomHomeBackground13) | Skin.HasSetting(CustomHomeBackground14) | Skin.HasSetting(CustomHomeBackground15)</visible>
-                        <!-- Custom Home Background Slideshow 1 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground1Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 2 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground2Label)) + Skin.HasSetting(CustomHomeBackground2)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground2Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 3 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground3Label)) + Skin.HasSetting(CustomHomeBackground3)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground3Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 4 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground4Label)) + Skin.HasSetting(CustomHomeBackground4)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground4Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 5 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground5Label)) + Skin.HasSetting(CustomHomeBackground5)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground5Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 6 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground6Label)) + Skin.HasSetting(CustomHomeBackground6)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground6Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 7 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground7Label)) + Skin.HasSetting(CustomHomeBackground7)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground7Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 8 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground8Label)) + Skin.HasSetting(CustomHomeBackground8)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground8Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 9 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground9Label)) + Skin.HasSetting(CustomHomeBackground9)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground9Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 10 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground10Label)) + Skin.HasSetting(CustomHomeBackground10)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground10Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 11 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground11Label)) + Skin.HasSetting(CustomHomeBackground11)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground11Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 12 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground12Label)) + Skin.HasSetting(CustomHomeBackground12)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground12Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 13 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground13Label)) + Skin.HasSetting(CustomHomeBackground13)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground13Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 14 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground14Label)) + Skin.HasSetting(CustomHomeBackground14)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground14Path)</info>
-                        </control>
-                        <!-- Custom Home Background Slideshow 15 -->
-                        <control type="multiimage">
-                            <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground15Label)) + Skin.HasSetting(CustomHomeBackground15)]</visible>
-                            <include>FanartCommonValues</include>
-                            <info>Skin.String(CustomHomeBackground15Path)</info>
-                        </control>
-                    </control>
-                    <!-- Display Plex Fanart -->
-                    <control type="multiimage" id="10101">
-                        <include>FanartCommonValues</include>
-                        <visible>!String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42137]) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42004]) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[136]) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42081]) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[137]) + !String.IsEqual(Container(300).ListItem.Label,Playlists) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42021]) + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground2Label)) + Skin.HasSetting(CustomHomeBackground2)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground3Label)) + Skin.HasSetting(CustomHomeBackground3)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground4Label)) + Skin.HasSetting(CustomHomeBackground4)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground5Label)) + Skin.HasSetting(CustomHomeBackground5)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground6Label)) + Skin.HasSetting(CustomHomeBackground6)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground7Label)) + Skin.HasSetting(CustomHomeBackground7)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground8Label)) + Skin.HasSetting(CustomHomeBackground8)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground9Label)) + Skin.HasSetting(CustomHomeBackground9)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground10Label)) + Skin.HasSetting(CustomHomeBackground10)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground11Label)) + Skin.HasSetting(CustomHomeBackground11)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground12Label)) + Skin.HasSetting(CustomHomeBackground12)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground13Label)) + Skin.HasSetting(CustomHomeBackground13)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground14Label)) + Skin.HasSetting(CustomHomeBackground14)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground15Label)) + Skin.HasSetting(CustomHomeBackground15)]</visible>
-                    </control>
-                    <!-- Now Playing -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42137])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture fallback="special://skin/backgrounds/music.jpg">$INFO[Player.Art(fanart)]</texture>
-                    </control>
-                    <!-- Sign In -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42004])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/logoff.jpg</texture>
-                    </control>
-                    <!-- Playlists -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[136]) | String.IsEqual(Container(300).ListItem.Label,Playlists)</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/playlist.jpg</texture>
-                    </control>
-                    <!-- Watch Later -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42081])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/watchlater.jpg</texture>
-                    </control>
-                    <!-- Search -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[137])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/search.jpg</texture>
-                    </control>
-                    <!-- Shared Content -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42021])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/sharedcontent.jpg</texture>
-                    </control>
-                    <include>LiveCasesBackground</include>
-                </control>
-                <!-- Submenu Backgrounds -->
-                <control type="group">
-                    <visible>ControlGroup(9001).HasFocus()</visible>
-                    <!-- Log off / Sign in -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[20126]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42004])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/logoff.jpg</texture>
-                    </control>
-                    <!-- Channel Directory -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[31952])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/channels.jpg</texture>
-                    </control>
-                    <!-- File Manager -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42430])</visible>
-                        <!-- STRING: File Manager -->
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/filemanager.jpg</texture>
-                    </control>
-                    <!-- Preferences -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[31955]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[20077]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[41000])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/preferences.jpg</texture>
-                    </control>
-                    <!-- Quit -->
-                    <control type="image">
-                        <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[13009]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[13011]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42225]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[13013])</visible>
-                        <include>FanartCommonValues</include>
-                        <texture>special://skin/backgrounds/shutdown.jpg</texture>
-                    </control>
-                </control>
-            </control>
-        </control>
-        <!-- On Deck Widgets -->
-        <control type="group">
-            <visible>ControlGroup(8001).HasFocus()</visible>
-            <!-- Widget On Deck Background -->
-            <control type="image">
-                <visible>Control.IsVisible(11001)</visible>
-                <include>FanartCommonValues</include>
-                <texture>$INFO[Container(11001).ListItem.Art(fanart)]</texture>
-            </control>
-            <!-- Channels Background -->
-            <control type="image">
-                <visible>Control.IsVisible(11002) + !IsEmpty(Container(11002).ListItem.Label)</visible>
-                <include>FanartCommonValues</include>
-                <texture>$INFO[Container(11002).ListItem.Art(fanart)]</texture>
-            </control>
-            <!-- Widget Playlists Background -->
-            <control type="image">
-                <visible>Control.IsVisible(11005) + !IsEmpty(Container(11005).ListItem.Label)</visible>
-                <include>FanartCommonValues</include>
-                <texture>special://skin/backgrounds/playlist.jpg</texture>
-            </control>
-            <!-- Widget Recommended Background -->
-            <control type="image">
-                <visible>Control.IsVisible(11004) + !IsEmpty(Container(11004).ListItem.Label)</visible>
-                <include>FanartCommonValues</include>
-                <texture>$INFO[Container(11004).ListItem.Art(bigThumb)]</texture>
-            </control>
-        </control>
-        <!-- Recently Added Widget -->
-        <control type="group">
-            <visible>ControlGroup(8002).HasFocus()</visible>
-            <!-- Widget Recently Added Background -->
-            <control type="image">
-                <visible>!Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000)</visible>
-                <include>FanartCommonValues</include>
-                <texture>$INFO[Container(11000).ListItem.Art(fanart)]</texture>
-            </control>
-            <!-- Widget Recently Added Background (Photo) -->
-            <control type="image">
-                <visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000) + System.GetBool(myplex.disablepicturetranscode)</visible>
-                <include>FullscreenDimensions</include>
-                <include>AnimatedBackgroundAnimation</include>
-                <fadetime>600</fadetime>
-                <aspectratio>keep</aspectratio>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
-                <include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
-                <texture>$INFO[Container(11000).ListItem.PicturePath]</texture>
-            </control>
-            <control type="image">
-                <visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000) + !System.GetBool(myplex.disablepicturetranscode)</visible>
-                <include>FullscreenDimensions</include>
-                <include>AnimatedBackgroundAnimation</include>
-                <fadetime>600</fadetime>
-                <aspectratio>keep</aspectratio>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
-                <include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
-                <include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
-                <texture>$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
-            </control>
-            <!-- Widget Watch Later Background -->
-            <control type="image">
-                <visible>Control.IsVisible(11003) + !IsEmpty(Container(11003).ListItem.Label)</visible>
-                <include>FanartCommonValues</include>
-                <texture>$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
-            </control>
-        </control>
-    </include>
-    <include name="HomeFanart_Mouse">
-        <!-- Single Image Custom Background -->
-        <control type="image">
-            <visible>Skin.HasSetting(CustomHomeUniversal)</visible>
-            <include>FullscreenDimensions</include>
-            <include>AnimatedBackgroundAnimation</include>
-            <fadetime>600</fadetime>
-            <info>Skin.String(CustomHomeUniversalImage)</info>
-        </control>
-        <!-- No Single Image Custom Background -->
-        <control type="group">
-            <visible>!Skin.HasSetting(CustomHomeUniversal)</visible>
-            <!-- Custom Home Slideshow -->
-            <control type="multiimage">
-                <visible>Skin.HasSetting(CustomHomeSlideshow)</visible>
-                <include>FanartCommonValues</include>
-                <info>Skin.String(CustomHomeSlideshowPath)</info>
-            </control>
-            <!-- No Custom Home Slideshow -->
-            <control type="group">
-                <visible>!Skin.HasSetting(CustomHomeSlideshow)</visible>
-                <!-- Home Menu Backgrounds -->
-                <control type="group">
-                    <!--<visible>Control.HasFocus(300) | Control.HasFocus(9027)</visible>-->
-                    <!-- Display Plex Fanart -->
-                    <control type="multiimage" id="10101">
-                        <include>FanartCommonValues</include>
-                    </control>
-                    <include>LiveCasesBackground</include>
-                </control>
-            </control>
-        </control>
-    </include>
-    <!-- Snow Animation -->
-    <include name="SnowBackground">
-        <control type="group">
-            <visible>Skin.HasSetting(Backgrounds.SnowAnimation)</visible>
-            <control type="group">
-                <posx>100</posx>
-                <control type="image">
-                    <posx>60</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow3.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-50" end="0,1180" time="19000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>260</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow5.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-600" end="0,1180" time="28000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="14000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>380</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow2.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-960" end="0,1180" time="34000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="17000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>622</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow4.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-100" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>960</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow2.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-500" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1200</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow3.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-260" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1426</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow5.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-850" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1587</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow4.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-1080" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="17500" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-            </control>
-            <control type="group">
-                <control type="image">
-                    <posx>60</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>260</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-200" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>380</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-500" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="13500" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>622</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-800" end="0,1180" time="32000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="16000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>960</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-50" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1200</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-960" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="15000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1426</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-160" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1587</posx>
-                    <width>35</width>
-                    <height>35</height>
-                    <texture>snow/snow.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-300" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-            </control>
-            <control type="group">
-                <control type="image">
-                    <posx>520</posx>
-                    <width>55</width>
-                    <height>55</height>
-                    <texture>snow/snow3.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-200" end="0,1180" time="22000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="11000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>730</posx>
-                    <width>55</width>
-                    <height>55</height>
-                    <texture>snow/snow5.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-300" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="12500" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>980</posx>
-                    <width>55</width>
-                    <height>55</height>
-                    <texture>snow/snow2.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-560" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="15000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1100</posx>
-                    <width>55</width>
-                    <height>55</height>
-                    <texture>snow/snow4.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-700" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1375</posx>
-                    <width>55</width>
-                    <height>55</height>
-                    <texture>snow/snow2.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-1000" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="17500" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1615</posx>
-                    <width>55</width>
-                    <height>55</height>
-                    <texture>snow/snow3.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-460" end="0,1180" time="23000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="11500" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-                <control type="image">
-                    <posx>1826</posx>
-                    <width>55</width>
-                    <height>55</height>
-                    <texture>snow/snow5.png</texture>
-                    <aspectratio scalediffuse="false">keep</aspectratio>
-                    <animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
-                    <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                    <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
-                </control>
-            </control>
-        </control>
-    </include>
-    <!-- Fanart Time Per Image -->
-    <include name="FanartTimePerImage5">
-        <timeperimage>5000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage6">
-        <timeperimage>6000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage7">
-        <timeperimage>7000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage8">
-        <timeperimage>8000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage9">
-        <timeperimage>9000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage10">
-        <timeperimage>10000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage15">
-        <timeperimage>15000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage20">
-        <timeperimage>20000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage30">
-        <timeperimage>30000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage60">
-        <timeperimage>60000</timeperimage>
-    </include>
-    <include name="FanartTimePerImage90">
-        <timeperimage>90000</timeperimage>
-    </include>
-    <!-- Extrafanart Fadelabel Pause -->
-    <include name="FadelabelPauseAtEnd5">
-        <pauseatend>5000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd6">
-        <pauseatend>6000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd7">
-        <pauseatend>7000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd8">
-        <pauseatend>8000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd9">
-        <pauseatend>9000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd10">
-        <pauseatend>10000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd15">
-        <pauseatend>15000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd20">
-        <pauseatend>20000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd30">
-        <pauseatend>30000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd60">
-        <pauseatend>60000</pauseatend>
-    </include>
-    <include name="FadelabelPauseAtEnd90">
-        <pauseatend>90000</pauseatend>
-    </include>
-    <include name="NewInfoPanel">
-        <control type="image">
-            <description>background image</description>
-            <include>FullscreenDimensions</include>
-            <texture colordiffuse="80FFFFFF">black.png</texture>
-            <visible>!IsEmpty(Control.GetLabel(4421)) + Control.IsVisible(4421) + ![Skin.HasSetting(Enable.ManualNewInfoPanel) + !Control.IsVisible(601)] | [!IsEmpty(Control.GetLabel(4421)) + Skin.HasSetting(Enable.ManualNewInfoPanel) + Control.HasFocus(4401)]</visible>
-            <animation effect="fade" time="320">Visible</animation>
-            <animation effect="fade" time="720">Hidden</animation>
-        </control>
-        <control type="group" id="13000">
-            <visible>[!IsEmpty(Control.GetLabel(4421)) + Control.IsVisible(4421) + ![Skin.HasSetting(Enable.ManualNewInfoPanel) + !Control.IsVisible(601)]] | [!IsEmpty(Control.GetLabel(4421)) + Skin.HasSetting(Enable.ManualNewInfoPanel) + Control.HasFocus(4401)]</visible>
-            <animation effect="slide" start="0,-1080" end="0,0" time="840" tween="cubic">Visible</animation>
-            <animation effect="slide" start="0,0" end="0,-1080" time="720" tween="cubic">Hidden</animation>
-            <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
-            <animation effect="slide" end="0,-1200" start="0,0" time="720" tween="cubic">WindowClose</animation>
-            <control type="group">
-                <visible>String.IsEqual(Control.GetLabel(4421),fanart)</visible>
-                <include>SettingsFadeEffect</include>
-                <control type="grouplist">
-                    <posx>5</posx>
-                    <posy>50</posy>
-                    <control type="button">
-                        <label>$VAR[InfoPanelLabel1Var]</label>
-                        <include>NewInfoPanelButtonsValues</include>
-                    </control>
-                    <control type="button">
-                        <label>$VAR[InfoPanelLabel2Var]</label>
-                        <include>NewInfoPanelButtonsValues</include>
-                    </control>
-                    <control type="group">
-                        <control type="button">
-                            <label>$VAR[InfoPanelLabel3Var]</label>
-                            <width>auto</width>
-                            <include>NewInfoPanelButtonsValues</include>
-                        </control>
-                        <control type="button">
-                            <posx>501</posx>
-                            <width>251</width>
-                            <label>$VAR[InfoPanelLabel4Var]</label>
-                            <include>NewInfoPanelButtonsValues</include>
-                        </control>
-                        <control type="button">
-                            <posx>752</posx>
-                            <width>250</width>
-                            <label>$VAR[InfoPanelLabel5Var]</label>
-                            <include>NewInfoPanelButtonsValues</include>
-                        </control>
-                    </control>
-                </control>
-                <control type="textbox">
-                    <label>$VAR[VideoPlotVar]</label>
-                    <posy>337</posy>
-                    <posx>20</posx>
-                    <width>1090</width>
-                    <height>130</height>
-                    <font>font14_textbox2</font>
-                    <pagecontrol>-</pagecontrol>
-                    <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-                    <include>NewInfoPanelButtonsValues</include>
-                </control>
-                <control type="image">
-                    <posx>1132</posx>
-                    <posy>60</posy>
-                    <width>768</width>
-                    <height>415</height>
-                    <fadetime>200</fadetime>
-                    <texture background="true">$VAR[GlobalBackgroundVar]</texture>
-                    <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
-                    <bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
-                    <bordersize>20</bordersize>
-                </control>
-            </control>
-            <control type="group">
-                <visible>String.IsEqual(Control.GetLabel(4421),poster)</visible>
-                <include>SettingsFadeEffect</include>
-                <control type="grouplist">
-                    <posx>5</posx>
-                    <posy>50</posy>
-                    <control type="button">
-                        <label>$VAR[InfoPanelLabel1Var]</label>
-                        <width>615</width>
-                        <include>NewInfoPanelButtonsValues</include>
-                    </control>
-                    <control type="button">
-                        <label>$VAR[InfoPanelLabel2Var]</label>
-                        <width>615</width>
-                        <include>NewInfoPanelButtonsValues</include>
-                    </control>
-                    <control type="button">
-                        <label>$VAR[InfoPanelLabel3Var]</label>
-                        <width>615</width>
-                        <include>NewInfoPanelButtonsValues</include>
-                    </control>
-                    <control type="group">
-                        <control type="button">
-                            <width>251</width>
-                            <label>$VAR[InfoPanelLabel4Var]</label>
-                            <include>NewInfoPanelButtonsValues</include>
-                        </control>
-                        <control type="button">
-                            <posx>251</posx>
-                            <width>364</width>
-                            <label>$VAR[InfoPanelLabel5Var]</label>
-                            <include>NewInfoPanelButtonsValues</include>
-                        </control>
-                    </control>
-                </control>
-                <control type="textbox">
-                    <label>$VAR[VideoPlotVar]</label>
-                    <posy>62</posy>
-                    <posx>650</posx>
-                    <width>900</width>
-                    <height>350</height>
-                    <font>font14_textbox2</font>
-                    <pagecontrol>-</pagecontrol>
-                    <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
-                    <include>NewInfoPanelButtonsValues</include>
-                </control>
-                <control type="image">
-                    <posx>1601</posx>
-                    <posy>50</posy>
-                    <width>298</width>
-                    <height>447</height>
-                    <fadetime>200</fadetime>
-                    <texture background="true">$VAR[PosterThumbVar]</texture>
-                    <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
-                    <bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
-                    <bordersize>20</bordersize>
-                </control>
-            </control>
-        </control>
-    </include>
-    <!-- Slide & Zoom Animation -->
-    <include name="AnimatedBackgroundAnimation">
-        <animation effect="zoom" start="110" end="130" center="auto" time="9000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
-        <animation effect="slide" start="-15,-15" end="15,15" time="4500" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
-    </include>
-    <!-- Common Value for Fanart -->
-    <include name="FanartCommonValues">
+  <!-- Search Background -->
+  <variable name="SearchBackgroundVar">
+    <value condition="Control.IsVisible(7001) + Control.HasFocus(9001)">$INFO[Container(9001).ListItem.Art(fanart)]</value>
+    <value condition="Control.IsVisible(7002) + Control.HasFocus(9002)">$INFO[Container(9002).ListItem.Art(fanart)]</value>
+    <value condition="Control.IsVisible(7004) + Control.HasFocus(9004)">$INFO[Container(9004).ListItem.Art(fanart)]</value>
+    <value condition="Control.IsVisible(7008) + Control.HasFocus(9008)">$INFO[Container(9008).ListItem.Art(fanart)]</value>
+    <value condition="Control.IsVisible(7009) + Control.HasFocus(9009)">$INFO[Container(9009).ListItem.Art(fanart)]</value>
+    <value condition="Control.IsVisible(7010) + Control.HasFocus(9010)">$INFO[Container(9010).ListItem.Art(fanart)]</value>
+    <value>special://skin/backgrounds/search.jpg</value>
+  </variable>
+  <!-- Darken Background (Default Theme) -->
+  <include name="DarkenBackground_Default">
+    <control type="image">
+      <include>FullscreenDimensions</include>
+      <texture>black.png</texture>
+      <visible>!Window.IsVisible(skinsettings) + [Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)]</visible>
+      <animation effect="fade" start="100" end="55" time="240" condition="true">conditional</animation>
+    </control>
+  </include>
+  <!-- Darken Background (White Flat Theme) -->
+  <include name="DarkenBackground_WhiteFlat">
+    <control type="image">
+      <include>FullscreenDimensions</include>
+      <texture>black.png</texture>
+      <visible>!Window.IsVisible(skinsettings) + [Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)]</visible>
+      <animation effect="fade" end="0" condition="true">Conditional</animation>
+    </control>
+  </include>
+  <include name="CommonBackground">
+    <control type="group">
+      <!-- Window Open and Close Animations -->
+      <animation effect="fade" time="600">WindowOpen</animation>
+      <animation effect="fade" time="600">WindowClose</animation>
+      <!-- Home Window Fanart -->
+      <include condition="Window.IsActive(home) + !system.getbool(input.enablemouse)">HomeFanart</include>
+      <include condition="Window.IsActive(home) + system.getbool(input.enablemouse)">HomeFanart_Mouse</include>
+      <!-- Live DVD/Bluray Cases -->
+      <include condition="Window.IsActive(home)">LiveCasesBackground</include>
+      <!-- Fanart -->
+      <include condition="Window.IsActive(videos) | Window.IsActive(videoplaylist)">VideoFanart</include>
+      <include condition="Window.IsActive(10002)">PhotosFanart</include>
+      <include condition="Window.IsActive(10051)">SearchFanart</include>
+      <include condition="Window.IsActive(10004)">SettingsFanart</include>
+      <include condition="Window.IsActive(filemanager)">FileManagerFanart</include>
+      <include condition="Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings) | Window.IsActive(systeminfo)">SettingsCategoryFanart</include>
+      <include condition="Window.IsActive(skinsettings)">SkinSettingsFanart</include>
+      <include condition="!Window.IsActive(home) + ![Window.IsActive(videos) | Window.IsActive(videoplaylist)] + !Window.IsActive(10002) + !Window.IsActive(10051) + !Window.IsActive(10004) + ![Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings) | Window.IsActive(systeminfo)] + !Window.IsActive(skinsettings) + !Window.IsActive(filemanager)">GlobalFanart</include>
+      <!-- Background Visualization -->
+      <control type="visualisation">
         <include>FullscreenDimensions</include>
-        <include>AnimatedBackgroundAnimation</include>
-        <fadetime>600</fadetime>
-        <aspectratio>scale</aspectratio>
+        <visible>Player.HasAudio</visible>
+        <visible>!Skin.HasSetting(Backgrounds.VisualizationDisable)</visible>
+        <visible>IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
+      </control>
+      <!-- Snow Animation -->
+      <include>SnowBackground</include>
+    </control>
+    <control type="group">
+      <!-- "Now Playing" Video Background -->
+      <control type="image">
+        <include>FullscreenDimensions</include>
+        <texture>black.png</texture>
+        <visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
+      </control>
+      <control type="videowindow">
+        <include>FullscreenDimensions</include>
+        <visible>Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable)</visible>
+      </control>
+      <!-- Darken Background -->
+      <include condition="!Skin.HasTheme(WhiteFlat)">DarkenBackground_Default</include>
+      <include condition="Skin.HasTheme(WhiteFlat)">DarkenBackground_WhiteFlat</include>
+    </control>
+    <!-- Vignette -->
+    <control type="group">
+      <visible>Control.IsVisible(50) | Control.IsVisible(507) | Control.IsVisible(55) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(499) | [Control.IsVisible(51) + !Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + !Skin.HasSetting(Enable.AlternateBannerInfo)] | Control.IsVisible(58) | Control.IsVisible(601) | Control.IsVisible(52) | Control.IsVisible(53) | [Control.IsVisible(510) + !Skin.HasSetting(alternatebiglistlayout)] | Control.IsVisible(54)</visible>
+      <!-- Mapped from Kodi to OpenPHT -->
+      <control type="image">
+        <posx>0</posx>
+        <posy>0</posy>
+        <width>696</width>
+        <height>1080</height>
+        <texture border="1">vignette.png</texture>
+      </control>
+      <control type="image">
+        <posx>1224</posx>
+        <posy>0</posy>
+        <width>696</width>
+        <height>1080</height>
+        <texture flipx="true" border="1">vignette.png</texture>
+      </control>
+    </control>
+    <!-- Infopanel -->
+    <!--<include>NewInfoPanel</include>-->
+    <!-- Floor -->
+    <control type="group">
+      <include>Window_OpenClose_Animation</include>
+      <visible>Control.IsVisible(50) | [Control.IsVisible(51) + !Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + !Skin.HasSetting(Enable.AlternateBannerInfo)] | Control.IsVisible(52) | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(57) | Control.IsVisible(58) | Control.IsVisible(499) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(601) | Control.IsVisible(507) | Control.IsVisible(509) | [Control.IsVisible(510) + !Skin.HasSetting(alternatebiglistlayout)] | Window.IsActive(appearancesettings) | Window.IsActive(videossettings) | Window.IsActive(SystemSettings) | Window.IsActive(ServiceSettings) | Window.IsActive(10051) | [Control.IsVisible(700) + Container.Content(movies) + IsEmpty(Skin.String(700.movies.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(tvshows) + IsEmpty(Skin.String(700.tvshows.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(seasons) + IsEmpty(Skin.String(700.seasons.ViewFloorStatus))] | [Control.IsVisible(700) + Container.Content(episodes) + IsEmpty(Skin.String(700.episodes.ViewFloorStatus))] | Control.IsVisible(708) | Control.IsVisible(728) | Window.IsActive(skinsettings) | Window.IsActive(filemanager) | [Window.IsActive(addoninformation) + Control.IsVisible(503)] | Window.IsActive(1142) | Window.IsActive(1143) | Window.IsActive(1144) | Window.IsActive(1145) | Window.IsActive(1146) | Window.IsActive(1147) | Window.IsActive(1148) | Window.IsActive(1149) | Window.IsActive(1150) | Window.IsActive(1151) | Window.IsActive(1152) | Window.IsActive(1153) | Window.IsActive(1154) | Window.IsActive(1156) | Window.IsActive(1157) | Window.IsActive(1158) | Window.IsActive(1160) | Window.IsActive(1161) | Window.IsActive(1162) | Window.IsActive(1163) | Window.IsActive(1164) | Window.IsActive(1165) | Window.IsActive(1166) | Window.IsActive(1167) | Window.IsActive(1168) | Window.IsActive(1169) | Window.IsActive(1170) | Window.IsActive(1171) | Window.IsActive(1172) | Window.IsActive(1173) | Window.IsActive(1174) | Window.IsActive(1175) | Window.IsActive(1176) | Window.IsActive(1177) | Window.IsActive(1178) | Window.IsActive(1179) | Window.IsActive(1180) | Window.IsActive(1181) | Window.IsActive(1182) | Window.IsActive(1183) | Window.IsActive(1184) | Window.IsActive(1185) | Window.IsActive(1186) | Window.IsActive(1187) | Window.IsActive(1188) | Window.IsActive(1189) | Window.IsActive(1190) | Window.IsActive(1191) | Window.IsActive(1192) | Window.IsActive(1193) | Window.IsActive(1194) | Window.IsActive(1195) | Window.IsActive(1196) | Window.IsActive(1197) | Window.IsActive(1198) | Window.IsActive(1199) | Window.IsActive(1200) | Window.IsActive(1201) | Window.IsActive(1202) | Window.IsActive(1203) | Window.IsActive(1204) | Window.IsActive(1205) | Window.IsActive(1206) | Window.IsActive(1207) | Window.IsActive(1208) | Window.IsActive(1209) | Window.IsActive(1210) | Window.IsActive(1211) | Window.IsActive(1212) | Window.IsActive(1213) | Window.IsActive(1214) | Window.IsActive(1215) | Window.IsActive(1216) | Window.IsActive(1217) | Window.IsActive(1219)</visible>
+      <!-- Mapped from Kodi to OpenPHT -->
+      <include>ViewAnimation</include>
+      <animation effect="slide" start="0,0" end="0,80" time="720" tween="cubic" easing="inout" condition="![[Control.IsVisible(52) + !Window.IsActive(systeminfo)] | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(511) | Control.IsVisible(590) | Control.IsVisible(57)] | Window.IsActive(skinsettings) | Window.IsActive(1140) | Window.IsActive(1141) | Window.IsActive(1142) | Window.IsActive(1143) | Window.IsActive(1144) | Window.IsActive(1145) | Window.IsActive(1146) | Window.IsActive(1147) | Window.IsActive(1148) | Window.IsActive(1149) | Window.IsActive(1150) | Window.IsActive(1151) | Window.IsActive(1152) | Window.IsActive(1153) | Window.IsActive(1154) | Window.IsActive(1156) | Window.IsActive(1157) | Window.IsActive(1158) | Window.IsActive(1160) | Window.IsActive(1161) | Window.IsActive(1162) | Window.IsActive(1163) | Window.IsActive(1164) | Window.IsActive(1165) | Window.IsActive(1166) | Window.IsActive(1167) | Window.IsActive(1168) | Window.IsActive(1169) | Window.IsActive(1170) | Window.IsActive(1171) | Window.IsActive(1172) | Window.IsActive(1173) | Window.IsActive(1174) | Window.IsActive(1175) | Window.IsActive(1176) | Window.IsActive(1177) | Window.IsActive(1178) | Window.IsActive(1179) | Window.IsActive(1180) | Window.IsActive(1181) | Window.IsActive(1182) | Window.IsActive(1183) | Window.IsActive(1184) | Window.IsActive(1185) | Window.IsActive(1186) | Window.IsActive(1187) | Window.IsActive(1188) | Window.IsActive(1189) | Window.IsActive(1190) | Window.IsActive(1191) | Window.IsActive(1192) | Window.IsActive(1193) | Window.IsActive(1194) | Window.IsActive(1195) | Window.IsActive(1196) | Window.IsActive(1197) | Window.IsActive(1198) | Window.IsActive(1199) | Window.IsActive(1200) | Window.IsActive(1201) | Window.IsActive(1202) | Window.IsActive(1203) | Window.IsActive(1204) | Window.IsActive(1205) | Window.IsActive(1206) | Window.IsActive(1207) | Window.IsActive(1208) | Window.IsActive(1209) | Window.IsActive(1210) | Window.IsActive(1211) | Window.IsActive(1212) | Window.IsActive(1213) | Window.IsActive(1214) | Window.IsActive(1215) | Window.IsActive(1216) | Window.IsActive(1217) | Window.IsActive(1219)">Conditional</animation>
+      <!-- Mapped from Kodi to OpenPHT -->
+      <animation effect="slide" start="0,0" end="0,40" time="720" tween="cubic" easing="inout" condition="Control.IsVisible(700) + !Window.IsActive(skinsettings)">Conditional</animation>
+      <!-- Mapped from Kodi to OpenPHT -->
+      <control type="image">
+        <visible>!Skin.HasTheme(WhiteFlat)</visible>
+        <posx>0</posx>
+        <posy>400</posy>
+        <width>1920</width>
+        <height>680</height>
+        <texture>floor.png</texture>
+        <colordiffuse>$VAR[Colour_FloorColourVar]</colordiffuse>
+      </control>
+    </control>
+    <!-- Darken Bottom of Screen -->
+    <control type="group">
+      <include>Window_OpenClose_Animation</include>
+      <control type="image">
+        <include>FullscreenDimensions</include>
+        <texture border="1">logo_back.png</texture>
+        <visible>Control.IsVisible(591) | Control.IsVisible(592)</visible>
+      </control>
+    </control>
+  </include>
+  <include name="FileManagerFanart">
+    <control type="image">
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/filemanager.jpg</texture>
+    </control>
+  </include>
+  <include name="VideoFanart">
+    <!-- FanArt Underlay for WhiteFlat -->
+    <control type="image">
+      <visible>!Container.Content(clips)</visible>
+      <visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+      <visible>Skin.HasTheme(WhiteFlat)</visible>
+      <texture>fanartunderlay.png</texture>
+    </control>
+    <!-- Standard Video Background -->
+    <control type="image">
+      <visible>!Container.Content(clips)</visible>
+      <visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+      <visible>!Skin.HasTheme(WhiteFlat)</visible>
+      <include>FanartCommonValues</include>
+      <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
+    </control>
+    <!-- Dupe for WhiteFlat -->
+    <control type="image">
+      <visible>!Container.Content(clips)</visible>
+      <visible>[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]</visible>
+      <visible>Skin.HasTheme(WhiteFlat)</visible>
+      <include>FanartCommonValues</include>
+      <texture colordiffuse="40FFFFFF" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
+    </control>
+    <!-- End -->
+    <!-- Home Videos Fanart -->
+    <control type="image">
+      <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + !IsEmpty(ListItem.Art(smallThumb))</visible>
+      <include>FanartCommonValues</include>
+      <texture fallback="special://skin/backgrounds/homevideos.jpg">$INFO[ListItem.Art(fanart)]</texture>
+    </control>
+    <control type="image">
+      <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + IsEmpty(ListItem.Art(smallThumb))</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/homevideos.jpg</texture>
+    </control>
+    <!-- Background for Empty List -->
+    <control type="image">
+      <visible>Container.Content(empty)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/movies.jpg</texture>
+    </control>
+    <!-- Custom Movie Background Image -->
+    <control type="image">
+      <visible>!Container.Content(clips)</visible>
+      <visible>!IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + Container.Content(movies)</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomMovieSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom TV Background Image -->
+    <control type="image">
+      <visible>!Container.Content(clips)</visible>
+      <visible>!IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomTVSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom Home Video Background Image -->
+    <control type="image">
+      <visible>!Container.Content(clips)</visible>
+      <visible>!IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + Container.PlexContent(homemovies)</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomHomeVideoSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom Channel Background Image -->
+    <control type="image">
+      <visible>!Container.Content(clips)</visible>
+      <visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom Movie Slideshow -->
+    <control type="multiimage">
+      <visible>!Container.Content(clips)</visible>
+      <visible>!IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomMovieSectionSlideshowPath)</info>
+    </control>
+    <!-- Custom TV Slideshow -->
+    <control type="multiimage">
+      <visible>!Container.Content(clips)</visible>
+      <visible>!IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomTVSectionSlideshowPath)</info>
+    </control>
+    <!-- Custom Home Video Slideshow -->
+    <control type="multiimage">
+      <visible>!Container.Content(clips)</visible>
+      <visible>!IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomHomeVideoSectionSlideshowPath)</info>
+    </control>
+    <!-- Custom Channel Slideshow -->
+    <control type="multiimage">
+      <visible>!Container.Content(clips)</visible>
+      <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
+    </control>
+    <!-- Background for Watch Later -->
+    <control type="image">
+      <visible>Container.Content(clips)</visible>
+      <include>FanartCommonValues</include>
+      <texture fallback="special://skin/backgrounds/watchlater.jpg" blur="01">$INFO[ListItem.Icon]</texture>
+    </control>
+    <!-- Custom Watch Later Background Image -->
+    <control type="image">
+      <visible>!IsEmpty(Skin.String(CustomWatchLaterBackgroundFile)) + Container.Content(clips)</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomWatchLaterBackgroundFile)</info>
+    </control>
+    <!-- Custom Watch Later Background Image -->
+    <control type="multiimage">
+      <visible>!IsEmpty(Skin.String(CustomWatchLaterSlideshowPath)) + Container.Content(clips)</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomWatchLaterSlideshowPath)</info>
+    </control>
+  </include>
+  <!-- Photo Fanart -->
+  <include name="PhotosFanart">
+    <!-- Photo Background -->
+    <control type="image">
+      <description>Normal Default Background Image</description>
+      <visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
+      <include>FanartCommonValues</include>
+      <texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.PicturePath]</texture>
+      <visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]</visible>
+    </control>
+    <control type="image">
+      <description>Normal Default Background Image</description>
+      <visible>![!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath))]</visible>
+      <include>FanartCommonValues</include>
+      <texture fallback="special://skin/backgrounds/pictures.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
+      <visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]] | ListItem.Type(photoAlbum) | ListItem.Type(clip)</visible>
+    </control>
+    <!-- Background for Empty List -->
+    <control type="image">
+      <visible>Container.Content(empty)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/pictures.jpg</texture>
+    </control>
+    <!-- Photo Channel Background -->
+    <control type="image">
+      <description>Normal Default Background Image</description>
+      <visible>[Container.PlexContent(channels) | Container.PlexContent(channel)] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) | !IsEmpty(Skin.String(CustomChannelSectionSlideshowPath))]</visible>
+      <include>FanartCommonValues</include>
+      <texture fallback="special://skin/backgrounds/channels.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
+    </control>
+    <!-- Custom Photo Background -->
+    <control type="image">
+      <description>Custom Background Image</description>
+      <visible>!IsEmpty(Skin.String(CustomPhotoSectionBackgroundFile)) + Container.PlexContent(photos)</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomPhotoSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom Photo Channel Background -->
+    <control type="image">
+      <description>Custom Background Image</description>
+      <visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom Photo Slideshow Background -->
+    <control type="multiimage">
+      <description>Custom Slideshow Background</description>
+      <visible>!IsEmpty(Skin.String(CustomPhotoSectionSlideshowPath)) + Container.PlexContent(photos)</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomPhotoSectionSlideshowPath)</info>
+    </control>
+    <!-- Custom Photo Channel Background -->
+    <control type="multiimage">
+      <description>Custom Slideshow Background</description>
+      <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
+    </control>
+  </include>
+  <include name="SearchFanart">
+    <control type="image">
+      <description>Normal Default Background Image</description>
+      <include>FanartCommonValues</include>
+      <texture fallback="special://skin/backgrounds/search.jpg">$VAR[SearchBackgroundVar]</texture>
+    </control>
+  </include>
+  <include name="SettingsFanart">
+    <!-- Appearance Background -->
+    <control type="image">
+      <visible>Container(9000).HasFocus(1) | system.getbool(input.enablemouse)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/appearance.jpg</texture>
+    </control>
+    <control type="image">
+      <visible>Container(9000).HasFocus(2) + !system.getbool(input.enablemouse)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/playback.jpg</texture>
+    </control>
+    <control type="image">
+      <visible>Container(9000).HasFocus(8) + !system.getbool(input.enablemouse)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/system.jpg</texture>
+    </control>
+    <control type="image">
+      <visible>Container(9000).HasFocus(9) + !system.getbool(input.enablemouse)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/network.jpg</texture>
+    </control>
+    <control type="image">
+      <visible>Container(9000).HasFocus(10) + !system.getbool(input.enablemouse)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/systeminfo.jpg</texture>
+    </control>
+  </include>
+  <include name="SettingsCategoryFanart">
+    <!-- Appearance Background -->
+    <control type="image">
+      <visible>Window.IsActive(appearancesettings)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/appearance.jpg</texture>
+    </control>
+    <!-- Playback Background -->
+    <control type="image">
+      <visible>Window.IsActive(videossettings)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/playback.jpg</texture>
+    </control>
+    <!-- System Background -->
+    <control type="image">
+      <visible>Window.IsActive(SystemSettings)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/system.jpg</texture>
+    </control>
+    <!-- System Info Background -->
+    <control type="image">
+      <visible>Window.IsActive(systeminfo)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/systeminfo.jpg</texture>
+    </control>
+    <!-- Network Background -->
+    <control type="image">
+      <visible>Window.IsActive(ServiceSettings)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/network.jpg</texture>
+    </control>
+  </include>
+  <!-- Skin Settings Fanart -->
+  <include name="SkinSettingsFanart">
+    <control type="image">
+      <description>Normal Default Background Image</description>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/appearance.jpg</texture>
+    </control>
+  </include>
+  <include name="GlobalFanart">
+    <!-- Fanart Background -->
+    <control type="group">
+      <visible>![Control.IsVisible(509) + Window.IsActive(videos)]</visible>
+      <visible>![!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
+      <control type="image">
+        <description>Normal Default Background Image</description>
+        <include>FanartCommonValues</include>
+        <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
+      </control>
+    </control>
+    <!-- MyFlix Background -->
+    <control type="group">
+      <visible>Control.IsVisible(509) + !Window.IsActive(skinsettings)</visible>
+      <visible>![!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
+      <control type="image">
+        <include>FullscreenDimensions</include>
+        <texture>black.png</texture>
+      </control>
+      <control type="multiimage">
+        <description>MyFlix Background Image</description>
+        <posx>412</posx>
+        <width>1520</width>
+        <height>855</height>
+        <texture fallback="special://skin/backgrounds/movies.jpg" background="true" diffuse="views/myflix/fanart_diffuse.png">$INFO[ListItem.Property(Fanart_Image)]</texture>
         <include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
         <include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
         <include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
@@ -1239,5 +416,828 @@
         <include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
         <include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
         <include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
-    </include>
+      </control>
+    </control>
+    <!-- Background for Colour Customizer -->
+    <control type="image">
+      <visible>Window.IsActive(1140) | Window.IsActive(1141) | Window.IsActive(1142) | Window.IsActive(1143) | Window.IsActive(1144) | Window.IsActive(1145) | Window.IsActive(1146) | Window.IsActive(1147) | Window.IsActive(1148) | Window.IsActive(1149) | Window.IsActive(1150) | Window.IsActive(1151) | Window.IsActive(1152) | Window.IsActive(1153) | Window.IsActive(1154) | Window.IsActive(1156) | Window.IsActive(1157) | Window.IsActive(1158) | Window.IsActive(1160) | Window.IsActive(1161) | Window.IsActive(1162) | Window.IsActive(1163) | Window.IsActive(1164) | Window.IsActive(1165) | Window.IsActive(1166) | Window.IsActive(1167) | Window.IsActive(1168) | Window.IsActive(1169) | Window.IsActive(1170) | Window.IsActive(1171) | Window.IsActive(1172) | Window.IsActive(1173) | Window.IsActive(1174) | Window.IsActive(1175) | Window.IsActive(1176) | Window.IsActive(1177) | Window.IsActive(1178) | Window.IsActive(1179) | Window.IsActive(1180) | Window.IsActive(1181) | Window.IsActive(1182) | Window.IsActive(1183) | Window.IsActive(1184) | Window.IsActive(1185) | Window.IsActive(1186) | Window.IsActive(1187) | Window.IsActive(1188) | Window.IsActive(1189) | Window.IsActive(1190) | Window.IsActive(1191) | Window.IsActive(1192) | Window.IsActive(1193) | Window.IsActive(1194) | Window.IsActive(1195) | Window.IsActive(1196) | Window.IsActive(1197) | Window.IsActive(1198) | Window.IsActive(1199) | Window.IsActive(1200) | Window.IsActive(1201) | Window.IsActive(1202) | Window.IsActive(1203) | Window.IsActive(1204) | Window.IsActive(1205) | Window.IsActive(1206) | Window.IsActive(1207) | Window.IsActive(1208) | Window.IsActive(1209) | Window.IsActive(1210) | Window.IsActive(1211) | Window.IsActive(1212) | Window.IsActive(1213) | Window.IsActive(1214) | Window.IsActive(1215) | Window.IsActive(1216) | Window.IsActive(1217) | Window.IsActive(1219)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/system.jpg</texture>
+    </control>
+    <!-- Background for Empty List -->
+    <control type="image">
+      <visible>Container.Content(empty)</visible>
+      <include>FanartCommonValues</include>
+      <texture>special://skin/backgrounds/music.jpg</texture>
+    </control>
+    <!-- Custom Music Background Image -->
+    <control type="image">
+      <description>Custom Background Image</description>
+      <visible>!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomMusicSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom Channel Background Image -->
+    <control type="image">
+      <description>Custom Background Image</description>
+      <visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom Music Slideshow -->
+    <control type="multiimage">
+      <description>Custom Slideshow Background</description>
+      <visible>!IsEmpty(Skin.String(CustomMusicSectionSlideshowPath)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomMusicSectionSlideshowPath)</info>
+    </control>
+    <!-- Custom Channel Slideshow -->
+    <control type="multiimage">
+      <description>Custom Slideshow Background</description>
+      <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
+    </control>
+  </include>
+  <include name="HomeFanart">
+    <!-- Single Image Custom Background -->
+    <control type="image">
+      <visible>Skin.HasSetting(CustomHomeUniversal)</visible>
+      <include>FullscreenDimensions</include>
+      <include>AnimatedBackgroundAnimation</include>
+      <fadetime>600</fadetime>
+      <info>Skin.String(CustomHomeUniversalImage)</info>
+    </control>
+    <!-- No Single Image Custom Background -->
+    <control type="group">
+      <visible>!Skin.HasSetting(CustomHomeUniversal)</visible>
+      <!-- Custom Home Slideshow -->
+      <control type="multiimage">
+        <visible>Skin.HasSetting(CustomHomeSlideshow)</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomHomeSlideshowPath)</info>
+      </control>
+      <!-- No Custom Home Slideshow -->
+      <control type="group">
+        <visible>!Skin.HasSetting(CustomHomeSlideshow)</visible>
+        <!-- Home Menu Backgrounds -->
+        <control type="group">
+          <visible>Control.HasFocus(300) | Control.HasFocus(9027)</visible>
+          <!-- Custom Home Menu Backgrounds -->
+          <control type="group">
+            <visible>Skin.HasSetting(CustomHomeBackground1) | Skin.HasSetting(CustomHomeBackground2) | Skin.HasSetting(CustomHomeBackground3) | Skin.HasSetting(CustomHomeBackground4) | Skin.HasSetting(CustomHomeBackground5) | Skin.HasSetting(CustomHomeBackground6) | Skin.HasSetting(CustomHomeBackground7) | Skin.HasSetting(CustomHomeBackground8) | Skin.HasSetting(CustomHomeBackground9) | Skin.HasSetting(CustomHomeBackground10) | Skin.HasSetting(CustomHomeBackground11) | Skin.HasSetting(CustomHomeBackground12) | Skin.HasSetting(CustomHomeBackground13) | Skin.HasSetting(CustomHomeBackground14) | Skin.HasSetting(CustomHomeBackground15)</visible>
+            <!-- Custom Home Background Slideshow 1 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground1Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 2 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground2Label)) + Skin.HasSetting(CustomHomeBackground2)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground2Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 3 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground3Label)) + Skin.HasSetting(CustomHomeBackground3)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground3Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 4 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground4Label)) + Skin.HasSetting(CustomHomeBackground4)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground4Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 5 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground5Label)) + Skin.HasSetting(CustomHomeBackground5)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground5Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 6 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground6Label)) + Skin.HasSetting(CustomHomeBackground6)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground6Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 7 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground7Label)) + Skin.HasSetting(CustomHomeBackground7)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground7Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 8 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground8Label)) + Skin.HasSetting(CustomHomeBackground8)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground8Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 9 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground9Label)) + Skin.HasSetting(CustomHomeBackground9)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground9Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 10 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground10Label)) + Skin.HasSetting(CustomHomeBackground10)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground10Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 11 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground11Label)) + Skin.HasSetting(CustomHomeBackground11)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground11Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 12 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground12Label)) + Skin.HasSetting(CustomHomeBackground12)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground12Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 13 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground13Label)) + Skin.HasSetting(CustomHomeBackground13)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground13Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 14 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground14Label)) + Skin.HasSetting(CustomHomeBackground14)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground14Path)</info>
+            </control>
+            <!-- Custom Home Background Slideshow 15 -->
+            <control type="multiimage">
+              <visible>[String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground15Label)) + Skin.HasSetting(CustomHomeBackground15)]</visible>
+              <include>FanartCommonValues</include>
+              <info>Skin.String(CustomHomeBackground15Path)</info>
+            </control>
+          </control>
+          <!-- Display Plex Fanart -->
+          <control type="multiimage" id="10101">
+            <include>FanartCommonValues</include>
+            <visible>!String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42137]) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42004]) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[136]) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42081]) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[137]) + !String.IsEqual(Container(300).ListItem.Label,Playlists) + !String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42021]) + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground1Label)) + Skin.HasSetting(CustomHomeBackground1)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground2Label)) + Skin.HasSetting(CustomHomeBackground2)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground3Label)) + Skin.HasSetting(CustomHomeBackground3)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground4Label)) + Skin.HasSetting(CustomHomeBackground4)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground5Label)) + Skin.HasSetting(CustomHomeBackground5)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground6Label)) + Skin.HasSetting(CustomHomeBackground6)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground7Label)) + Skin.HasSetting(CustomHomeBackground7)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground8Label)) + Skin.HasSetting(CustomHomeBackground8)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground9Label)) + Skin.HasSetting(CustomHomeBackground9)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground10Label)) + Skin.HasSetting(CustomHomeBackground10)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground11Label)) + Skin.HasSetting(CustomHomeBackground11)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground12Label)) + Skin.HasSetting(CustomHomeBackground12)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground13Label)) + Skin.HasSetting(CustomHomeBackground13)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground14Label)) + Skin.HasSetting(CustomHomeBackground14)] + ![String.IsEqual(Container(300).ListItem.Label,Skin.String(CustomHomeBackground15Label)) + Skin.HasSetting(CustomHomeBackground15)]</visible>
+          </control>
+          <!-- Now Playing -->
+          <control type="image">
+            <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42137])</visible>
+            <include>FanartCommonValues</include>
+            <texture fallback="special://skin/backgrounds/music.jpg">$INFO[Player.Art(fanart)]</texture>
+          </control>
+          <!-- Sign In -->
+          <control type="image">
+            <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42004])</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/logoff.jpg</texture>
+          </control>
+          <!-- Playlists -->
+          <control type="image">
+            <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[136]) | String.IsEqual(Container(300).ListItem.Label,Playlists)</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/playlist.jpg</texture>
+          </control>
+          <!-- Watch Later -->
+          <control type="image">
+            <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42081])</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/watchlater.jpg</texture>
+          </control>
+          <!-- Search -->
+          <control type="image">
+            <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[137])</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/search.jpg</texture>
+          </control>
+          <!-- Shared Content -->
+          <control type="image">
+            <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42021])</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/sharedcontent.jpg</texture>
+          </control>
+          <include>LiveCasesBackground</include>
+        </control>
+        <!-- Submenu Backgrounds -->
+        <control type="group">
+          <visible>ControlGroup(9001).HasFocus()</visible>
+          <!-- Log off / Sign in -->
+          <control type="image">
+            <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[20126]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42004])</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/logoff.jpg</texture>
+          </control>
+          <!-- Channel Directory -->
+          <control type="image">
+            <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[31952])</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/channels.jpg</texture>
+          </control>
+          <!-- File Manager -->
+          <control type="image">
+            <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42430])</visible>
+            <!-- STRING: File Manager -->
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/filemanager.jpg</texture>
+          </control>
+          <!-- Preferences -->
+          <control type="image">
+            <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[31955]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[20077]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[41000])</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/preferences.jpg</texture>
+          </control>
+          <!-- Quit -->
+          <control type="image">
+            <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[13009]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[13011]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42225]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[13013])</visible>
+            <include>FanartCommonValues</include>
+            <texture>special://skin/backgrounds/shutdown.jpg</texture>
+          </control>
+        </control>
+      </control>
+    </control>
+    <!-- On Deck Widgets -->
+    <control type="group">
+      <visible>ControlGroup(8001).HasFocus()</visible>
+      <!-- Widget On Deck Background -->
+      <control type="image">
+        <visible>Control.IsVisible(11001)</visible>
+        <include>FanartCommonValues</include>
+        <texture>$INFO[Container(11001).ListItem.Art(fanart)]</texture>
+      </control>
+      <!-- Channels Background -->
+      <control type="image">
+        <visible>Control.IsVisible(11002) + !IsEmpty(Container(11002).ListItem.Label)</visible>
+        <include>FanartCommonValues</include>
+        <texture>$INFO[Container(11002).ListItem.Art(fanart)]</texture>
+      </control>
+      <!-- Widget Playlists Background -->
+      <control type="image">
+        <visible>Control.IsVisible(11005) + !IsEmpty(Container(11005).ListItem.Label)</visible>
+        <include>FanartCommonValues</include>
+        <texture>special://skin/backgrounds/playlist.jpg</texture>
+      </control>
+      <!-- Widget Recommended Background -->
+      <control type="image">
+        <visible>Control.IsVisible(11004) + !IsEmpty(Container(11004).ListItem.Label)</visible>
+        <include>FanartCommonValues</include>
+        <texture>$INFO[Container(11004).ListItem.Art(bigThumb)]</texture>
+      </control>
+    </control>
+    <!-- Recently Added Widget -->
+    <control type="group">
+      <visible>ControlGroup(8002).HasFocus()</visible>
+      <!-- Widget Recently Added Background -->
+      <control type="image">
+        <visible>!Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000)</visible>
+        <include>FanartCommonValues</include>
+        <texture>$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+      </control>
+      <!-- Widget Recently Added Background (Photo) -->
+      <control type="image">
+        <visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000) + System.GetBool(myplex.disablepicturetranscode)</visible>
+        <include>FullscreenDimensions</include>
+        <include>AnimatedBackgroundAnimation</include>
+        <fadetime>600</fadetime>
+        <aspectratio>keep</aspectratio>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
+        <include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
+        <texture>$INFO[Container(11000).ListItem.PicturePath]</texture>
+      </control>
+      <control type="image">
+        <visible>Container(11000).ListItem.Type(Photo) + Control.IsVisible(11000) + !System.GetBool(myplex.disablepicturetranscode)</visible>
+        <include>FullscreenDimensions</include>
+        <include>AnimatedBackgroundAnimation</include>
+        <fadetime>600</fadetime>
+        <aspectratio>keep</aspectratio>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
+        <include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
+        <include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
+        <texture>$INFO[Container(11000).ListItem.Art(bigThumb)]</texture>
+      </control>
+      <!-- Widget Watch Later Background -->
+      <control type="image">
+        <visible>Control.IsVisible(11003) + !IsEmpty(Container(11003).ListItem.Label)</visible>
+        <include>FanartCommonValues</include>
+        <texture>$INFO[Container(11003).ListItem.Art(bigThumb)]</texture>
+      </control>
+    </control>
+  </include>
+  <include name="HomeFanart_Mouse">
+    <!-- Single Image Custom Background -->
+    <control type="image">
+      <visible>Skin.HasSetting(CustomHomeUniversal)</visible>
+      <include>FullscreenDimensions</include>
+      <include>AnimatedBackgroundAnimation</include>
+      <fadetime>600</fadetime>
+      <info>Skin.String(CustomHomeUniversalImage)</info>
+    </control>
+    <!-- No Single Image Custom Background -->
+    <control type="group">
+      <visible>!Skin.HasSetting(CustomHomeUniversal)</visible>
+      <!-- Custom Home Slideshow -->
+      <control type="multiimage">
+        <visible>Skin.HasSetting(CustomHomeSlideshow)</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomHomeSlideshowPath)</info>
+      </control>
+      <!-- No Custom Home Slideshow -->
+      <control type="group">
+        <visible>!Skin.HasSetting(CustomHomeSlideshow)</visible>
+        <!-- Home Menu Backgrounds -->
+        <control type="group">
+          <!--<visible>Control.HasFocus(300) | Control.HasFocus(9027)</visible>-->
+          <!-- Display Plex Fanart -->
+          <control type="multiimage" id="10101">
+            <include>FanartCommonValues</include>
+          </control>
+          <include>LiveCasesBackground</include>
+        </control>
+      </control>
+    </control>
+  </include>
+  <!-- Snow Animation -->
+  <include name="SnowBackground">
+    <control type="group">
+      <visible>Skin.HasSetting(Backgrounds.SnowAnimation)</visible>
+      <control type="group">
+        <posx>100</posx>
+        <control type="image">
+          <posx>60</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow3.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-50" end="0,1180" time="19000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>260</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow5.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-600" end="0,1180" time="28000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="14000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>380</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow2.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-960" end="0,1180" time="34000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="17000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>622</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow4.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-100" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>960</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow2.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-500" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1200</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow3.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-260" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1426</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow5.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-850" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1587</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow4.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-1080" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="17500" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+      </control>
+      <control type="group">
+        <control type="image">
+          <posx>60</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>260</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-200" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>380</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-500" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="13500" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>622</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-800" end="0,1180" time="32000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="16000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>960</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-50" end="0,1180" time="18000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="9000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1200</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-960" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="15000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1426</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-160" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1587</posx>
+          <width>35</width>
+          <height>35</height>
+          <texture>snow/snow.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-300" end="0,1180" time="20000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+      </control>
+      <control type="group">
+        <control type="image">
+          <posx>520</posx>
+          <width>55</width>
+          <height>55</height>
+          <texture>snow/snow3.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-200" end="0,1180" time="22000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="11000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>730</posx>
+          <width>55</width>
+          <height>55</height>
+          <texture>snow/snow5.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-300" end="0,1180" time="25000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="12500" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>980</posx>
+          <width>55</width>
+          <height>55</height>
+          <texture>snow/snow2.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-560" end="0,1180" time="30000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="10000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="15000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1100</posx>
+          <width>55</width>
+          <height>55</height>
+          <texture>snow/snow4.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-700" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="8000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1375</posx>
+          <width>55</width>
+          <height>55</height>
+          <texture>snow/snow2.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-1000" end="0,1180" time="35000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="17500" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1615</posx>
+          <width>55</width>
+          <height>55</height>
+          <texture>snow/snow3.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-460" end="0,1180" time="23000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="11500" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <posx>1826</posx>
+          <width>55</width>
+          <height>55</height>
+          <texture>snow/snow5.png</texture>
+          <aspectratio scalediffuse="false">keep</aspectratio>
+          <animation effect="slide" start="0,-450" end="0,1180" time="24000" delay="0" reversible="false" loop="true" condition="true">Conditional</animation>
+          <animation effect="rotate" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+          <animation effect="rotatey" end="-360" time="12000" loop="true" center="auto" condition="true">Conditional</animation>
+        </control>
+      </control>
+    </control>
+  </include>
+  <!-- Fanart Time Per Image -->
+  <include name="FanartTimePerImage5">
+    <timeperimage>5000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage6">
+    <timeperimage>6000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage7">
+    <timeperimage>7000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage8">
+    <timeperimage>8000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage9">
+    <timeperimage>9000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage10">
+    <timeperimage>10000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage15">
+    <timeperimage>15000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage20">
+    <timeperimage>20000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage30">
+    <timeperimage>30000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage60">
+    <timeperimage>60000</timeperimage>
+  </include>
+  <include name="FanartTimePerImage90">
+    <timeperimage>90000</timeperimage>
+  </include>
+  <!-- Extrafanart Fadelabel Pause -->
+  <include name="FadelabelPauseAtEnd5">
+    <pauseatend>5000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd6">
+    <pauseatend>6000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd7">
+    <pauseatend>7000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd8">
+    <pauseatend>8000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd9">
+    <pauseatend>9000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd10">
+    <pauseatend>10000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd15">
+    <pauseatend>15000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd20">
+    <pauseatend>20000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd30">
+    <pauseatend>30000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd60">
+    <pauseatend>60000</pauseatend>
+  </include>
+  <include name="FadelabelPauseAtEnd90">
+    <pauseatend>90000</pauseatend>
+  </include>
+  <include name="NewInfoPanel">
+    <control type="image">
+      <description>background image</description>
+      <include>FullscreenDimensions</include>
+      <texture colordiffuse="80FFFFFF">black.png</texture>
+      <visible>!IsEmpty(Control.GetLabel(4421)) + Control.IsVisible(4421) + ![Skin.HasSetting(Enable.ManualNewInfoPanel) + !Control.IsVisible(601)] | [!IsEmpty(Control.GetLabel(4421)) + Skin.HasSetting(Enable.ManualNewInfoPanel) + Control.HasFocus(4401)]</visible>
+      <animation effect="fade" time="320">Visible</animation>
+      <animation effect="fade" time="720">Hidden</animation>
+    </control>
+    <control type="group" id="13000">
+      <visible>[!IsEmpty(Control.GetLabel(4421)) + Control.IsVisible(4421) + ![Skin.HasSetting(Enable.ManualNewInfoPanel) + !Control.IsVisible(601)]] | [!IsEmpty(Control.GetLabel(4421)) + Skin.HasSetting(Enable.ManualNewInfoPanel) + Control.HasFocus(4401)]</visible>
+      <animation effect="slide" start="0,-1080" end="0,0" time="840" tween="cubic">Visible</animation>
+      <animation effect="slide" start="0,0" end="0,-1080" time="720" tween="cubic">Hidden</animation>
+      <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
+      <animation effect="slide" end="0,-1200" start="0,0" time="720" tween="cubic">WindowClose</animation>
+      <control type="group">
+        <visible>String.IsEqual(Control.GetLabel(4421),fanart)</visible>
+        <include>SettingsFadeEffect</include>
+        <control type="grouplist">
+          <posx>5</posx>
+          <posy>50</posy>
+          <control type="button">
+            <label>$VAR[InfoPanelLabel1Var]</label>
+            <include>NewInfoPanelButtonsValues</include>
+          </control>
+          <control type="button">
+            <label>$VAR[InfoPanelLabel2Var]</label>
+            <include>NewInfoPanelButtonsValues</include>
+          </control>
+          <control type="group">
+            <control type="button">
+              <label>$VAR[InfoPanelLabel3Var]</label>
+              <width>auto</width>
+              <include>NewInfoPanelButtonsValues</include>
+            </control>
+            <control type="button">
+              <posx>501</posx>
+              <width>251</width>
+              <label>$VAR[InfoPanelLabel4Var]</label>
+              <include>NewInfoPanelButtonsValues</include>
+            </control>
+            <control type="button">
+              <posx>752</posx>
+              <width>250</width>
+              <label>$VAR[InfoPanelLabel5Var]</label>
+              <include>NewInfoPanelButtonsValues</include>
+            </control>
+          </control>
+        </control>
+        <control type="textbox">
+          <label>$VAR[VideoPlotVar]</label>
+          <posy>337</posy>
+          <posx>20</posx>
+          <width>1090</width>
+          <height>130</height>
+          <font>font14_textbox2</font>
+          <pagecontrol>-</pagecontrol>
+          <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+          <include>NewInfoPanelButtonsValues</include>
+        </control>
+        <control type="image">
+          <posx>1132</posx>
+          <posy>60</posy>
+          <width>768</width>
+          <height>415</height>
+          <fadetime>200</fadetime>
+          <texture background="true">$VAR[GlobalBackgroundVar]</texture>
+          <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+          <bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
+          <bordersize>20</bordersize>
+        </control>
+      </control>
+      <control type="group">
+        <visible>String.IsEqual(Control.GetLabel(4421),poster)</visible>
+        <include>SettingsFadeEffect</include>
+        <control type="grouplist">
+          <posx>5</posx>
+          <posy>50</posy>
+          <control type="button">
+            <label>$VAR[InfoPanelLabel1Var]</label>
+            <width>615</width>
+            <include>NewInfoPanelButtonsValues</include>
+          </control>
+          <control type="button">
+            <label>$VAR[InfoPanelLabel2Var]</label>
+            <width>615</width>
+            <include>NewInfoPanelButtonsValues</include>
+          </control>
+          <control type="button">
+            <label>$VAR[InfoPanelLabel3Var]</label>
+            <width>615</width>
+            <include>NewInfoPanelButtonsValues</include>
+          </control>
+          <control type="group">
+            <control type="button">
+              <width>251</width>
+              <label>$VAR[InfoPanelLabel4Var]</label>
+              <include>NewInfoPanelButtonsValues</include>
+            </control>
+            <control type="button">
+              <posx>251</posx>
+              <width>364</width>
+              <label>$VAR[InfoPanelLabel5Var]</label>
+              <include>NewInfoPanelButtonsValues</include>
+            </control>
+          </control>
+        </control>
+        <control type="textbox">
+          <label>$VAR[VideoPlotVar]</label>
+          <posy>62</posy>
+          <posx>650</posx>
+          <width>900</width>
+          <height>350</height>
+          <font>font14_textbox2</font>
+          <pagecontrol>-</pagecontrol>
+          <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+          <include>NewInfoPanelButtonsValues</include>
+        </control>
+        <control type="image">
+          <posx>1601</posx>
+          <posy>50</posy>
+          <width>298</width>
+          <height>447</height>
+          <fadetime>200</fadetime>
+          <texture background="true">$VAR[PosterThumbVar]</texture>
+          <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+          <bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
+          <bordersize>20</bordersize>
+        </control>
+      </control>
+    </control>
+  </include>
+  <!-- Slide & Zoom Animation -->
+  <include name="AnimatedBackgroundAnimation">
+    <animation effect="zoom" start="110" end="130" center="auto" time="9000" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+    <animation effect="slide" start="-15,-15" end="15,15" time="4500" pulse="true" condition="Skin.HasSetting(Backgrounds.Animation)">Conditional</animation>
+  </include>
+  <!-- Common Value for Fanart -->
+  <include name="FanartCommonValues">
+    <include>FullscreenDimensions</include>
+    <include>AnimatedBackgroundAnimation</include>
+    <fadetime>600</fadetime>
+    <aspectratio>scale</aspectratio>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),5)">FanartTimePerImage5</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),6)">FanartTimePerImage6</include>
+    <include condition="IsEmpty(Skin.String(FanartTimePerImage))">FanartTimePerImage7</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),8)">FanartTimePerImage8</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),9)">FanartTimePerImage9</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),10)">FanartTimePerImage10</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),15)">FanartTimePerImage15</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),20)">FanartTimePerImage20</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),30)">FanartTimePerImage30</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),60)">FanartTimePerImage60</include>
+    <include condition="String.IsEqual(Skin.String(FanartTimePerImage),90)">FanartTimePerImage90</include>
+  </include>
 </includes>

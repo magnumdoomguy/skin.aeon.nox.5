@@ -1,223 +1,214 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
-	<!-- Details -->
-	<include name="BigInfo">
-		<control type="group">
-			<visible>Container.Content(movies) | Container.Content(tvshows)</visible>
-			<control type="image">
-				<visible>!Skin.HasTheme(WhiteFlat)</visible>
-				<posx>30</posx>
-				<posy>20</posy>
-				<width>234</width>
-				<height>350</height>
-				<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-				<texture>$INFO[ListItem.Art(thumb)]</texture>
-			</control>
-			<!-- WhiteFlat - Thumbnail (Poster) -->
-			<control type="image">
-				<visible>Skin.HasTheme(WhiteFlat)</visible>
-				<posx>30</posx>
-				<posy>17</posy>
-				<width>254</width>
-				<height>370</height>
-				<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-				<texture>$INFO[ListItem.Art(thumb)]</texture>
-				<bordertexture border="20" colordiffuse="40FFFFFF">thumbs/wf_thumb_shadow.png</bordertexture>
-				<bordersize>23</bordersize>
-			</control>
-			<!-- End -->
-			<control type="label">
-				<posy>15</posy>
-				<posx>290</posx>
-				<width>1200</width>
-				<height>70</height>
-				<font>font35_title</font>
-				<textcolor>grey</textcolor>
-				<align>left</align>
-				<aligny>top</aligny>
-				<label>$INFO[ListItem.Label]</label>
-				<scroll>true</scroll>
-			</control>
-
-			<control type="label">
-				<posy>82</posy>
-				<posx>290</posx>
-				<width>1200</width>
-				<height>65</height>
-				<font>font28_title</font>
-				<textcolor>grey</textcolor>
-				<label>$VAR[FloorSubLabelVar]</label>
-				<visible>!Container.Content(movies)</visible>
-			</control>
-
-			<!-- No Rating -->
-			<control type="label">
-				<posy>82</posy>
-				<posx>290</posx>
-				<width>1200</width>
-				<height>65</height>
-				<font>font28_title</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[ListItem.Year,, • ]$VAR[DurationHrMinVar]</label>
-				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
-			</control>
-
-			<!-- User Rating -->
-			<control type="label">
-				<posy>82</posy>
-				<posx>290</posx>
-				<width>1200</width>
-				<height>65</height>
-				<font>font28_title</font>
-				<textcolor>$VAR[Colour_BigInfoThemeColourVar]</textcolor>
-				<label>[COLOR grey]$INFO[ListItem.Year,, • ][/COLOR]$VAR[RatingVar][COLOR grey] • $VAR[DurationHrMinVar][/COLOR]</label>
-				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
-			</control>
-			
-			<!-- Standard Rating -->
-			<control type="label">
-				<posy>82</posy>
-				<posx>290</posx>
-				<width>1200</width>
-				<height>65</height>
-				<font>font28_title</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[ListItem.Year,, • ]$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
-				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-			</control>
-			
-			<!-- IMDb Rating -->
-			<control type="label">
-				<posy>82</posy>
-				<posx>290</posx>
-				<width>1200</width>
-				<height>65</height>
-				<font>font28_title</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(rating)] • $VAR[DurationHrMinVar]</label>
-				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-			</control>
-
-			<!-- Rotten Tomatoes Rating -->
-			<control type="label">
-				<posy>82</posy>
-				<posx>290</posx>
-				<width>1200</width>
-				<height>65</height>
-				<font>font28_title</font>
-				<textcolor>grey</textcolor>
-				<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
-				<visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
-			</control>
-
-			<control type="textbox">
-				<posy>150</posy>
-				<posx>290</posx>
-				<width>1600</width>
-				<height>210</height>
-				<font>font14_textbox</font>
-				<textcolor>grey</textcolor>
-				<align>left</align>
-				<aligny>top</aligny>
-				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-				<include>ShowCaseInfoPanelButtonsValues</include>
-				<label>$VAR[PlotVar]</label>
-			</control>
-		</control>
-		<control type="group">
-			<visible>Container.Content(artists)</visible>
-			<control type="image">
-				<posx>30</posx>
-				<posy>30</posy>
-				<width>340</width>
-				<height>340</height>
-				<aspectratio aligny="center" align="center">scale</aspectratio>
-				<texture>$INFO[ListItem.Art(thumb)]</texture>
-			</control>
-			<control type="label">
-				<posy>15</posy>
-				<posx>403</posx>
-				<width>1200</width>
-				<height>70</height>
-				<font>font35_title</font>
-				<textcolor>grey</textcolor>
-				<align>left</align>
-				<aligny>top</aligny>
-				<label>$INFO[ListItem.Label]</label>
-				<scroll>true</scroll>
-			</control>
-			<control type="label">
-				<posy>82</posy>
-				<posx>403</posx>
-				<width>1200</width>
-				<height>65</height>
-				<font>font28_title</font>
-				<textcolor>$VAR[Colour_BigInfoThemeColourVar]</textcolor>
-				<label>$INFO[ListItem.Genre]</label>
-			</control>
-			<control type="textbox">
-				<posy>160</posy>
-				<posx>403</posx>
-				<width>1487</width>
-				<height>210</height>
-				<font>font14_textbox</font>
-				<textcolor>grey</textcolor>
-				<align>left</align>
-				<aligny>top</aligny>
-				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-				<include>ShowCaseInfoPanelButtonsValues</include>
-				<label>$INFO[ListItem.Property(summary)]</label>
-				<visible>!Skin.HasSetting(General.SmallPlotText)</visible>
-			</control>
-			<control type="textbox">
-				<posy>160</posy>
-				<posx>403</posx>
-				<width>1487</width>
-				<height>205</height>
-				<font>font14_textbox_biginfo</font>
-				<textcolor>grey</textcolor>
-				<align>left</align>
-				<aligny>top</aligny>
-				<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-				<include>ShowCaseInfoPanelButtonsValues</include>
-				<label>$INFO[ListItem.Property(summary)]</label>
-				<visible>Skin.HasSetting(General.SmallPlotText)</visible>
-			</control>
-		</control>
-	</include>
-	<include name="View_592_BigInfo">
-		<control type="group">
-			<visible>Control.IsVisible(592) + !Window.IsActive(addoninformation)</visible>
-			<control type="list" id="592">
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>1920</width>
-				<height>1080</height>
-				<onleft>592</onleft>
-				<onright>592</onright>
-				<onup>SetProperty(MediaMenu,True,home)</onup>
-				<onup>SetFocus(9050,0)</onup>
-				<preloaditems>2</preloaditems>
-				<focusposition>0</focusposition>
-				<viewtype label="BigInfo">list</viewtype>
-				<scrolltime tween="quadratic" easing="out">300</scrolltime>
-				<visible>Container.Content(tvshows) | Container.Content(movies) | Container.Content(artists)</visible>
-				<orientation>horizontal</orientation>
-				<itemlayout width="1920" height="400">
-					<control type="group">
-						<posy>665</posy>
-						<include>BigInfo</include>
-					</control>
-					
-				</itemlayout>
-				<focusedlayout width="1920" height="400">
-					<control type="group">
-						<posy>665</posy>
-						<include>BigInfo</include>
-					</control>
-				</focusedlayout>
-			</control>
-		</control>
-	</include>
+  <!-- Details -->
+  <include name="BigInfo">
+    <control type="group">
+      <visible>Container.Content(movies) | Container.Content(tvshows)</visible>
+      <control type="image">
+        <visible>!Skin.HasTheme(WhiteFlat)</visible>
+        <posx>30</posx>
+        <posy>20</posy>
+        <width>234</width>
+        <height>350</height>
+        <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+        <texture>$INFO[ListItem.Art(thumb)]</texture>
+      </control>
+      <!-- WhiteFlat - Thumbnail (Poster) -->
+      <control type="image">
+        <visible>Skin.HasTheme(WhiteFlat)</visible>
+        <posx>30</posx>
+        <posy>17</posy>
+        <width>254</width>
+        <height>370</height>
+        <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+        <texture>$INFO[ListItem.Art(thumb)]</texture>
+        <bordertexture border="20" colordiffuse="40FFFFFF">thumbs/wf_thumb_shadow.png</bordertexture>
+        <bordersize>23</bordersize>
+      </control>
+      <!-- End -->
+      <control type="label">
+        <posy>15</posy>
+        <posx>290</posx>
+        <width>1200</width>
+        <height>70</height>
+        <font>font35_title</font>
+        <textcolor>grey</textcolor>
+        <align>left</align>
+        <aligny>top</aligny>
+        <label>$INFO[ListItem.Label]</label>
+        <scroll>true</scroll>
+      </control>
+      <control type="label">
+        <posy>82</posy>
+        <posx>290</posx>
+        <width>1200</width>
+        <height>65</height>
+        <font>font28_title</font>
+        <textcolor>grey</textcolor>
+        <label>$VAR[FloorSubLabelVar]</label>
+        <visible>!Container.Content(movies)</visible>
+      </control>
+      <!-- No Rating -->
+      <control type="label">
+        <posy>82</posy>
+        <posx>290</posx>
+        <width>1200</width>
+        <height>65</height>
+        <font>font28_title</font>
+        <textcolor>grey</textcolor>
+        <label>$INFO[ListItem.Year,, • ]$VAR[DurationHrMinVar]</label>
+        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.RatingAndVotes)</visible>
+      </control>
+      <!-- User Rating -->
+      <control type="label">
+        <posy>82</posy>
+        <posx>290</posx>
+        <width>1200</width>
+        <height>65</height>
+        <font>font28_title</font>
+        <textcolor>$VAR[Colour_BigInfoThemeColourVar]</textcolor>
+        <label>[COLOR grey]$INFO[ListItem.Year,, • ][/COLOR]$VAR[RatingVar][COLOR grey] • $VAR[DurationHrMinVar][/COLOR]</label>
+        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + !IsEmpty(ListItem.Property(hasUserRating))</visible>
+      </control>
+      <!-- Standard Rating -->
+      <control type="label">
+        <posy>82</posy>
+        <posx>290</posx>
+        <width>1200</width>
+        <height>65</height>
+        <font>font28_title</font>
+        <textcolor>grey</textcolor>
+        <label>$INFO[ListItem.Year,, • ]$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
+        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+      </control>
+      <!-- IMDb Rating -->
+      <control type="label">
+        <posy>82</posy>
+        <posx>290</posx>
+        <width>1200</width>
+        <height>65</height>
+        <font>font28_title</font>
+        <textcolor>grey</textcolor>
+        <label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(rating)] • $VAR[DurationHrMinVar]</label>
+        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+      </control>
+      <!-- Rotten Tomatoes Rating -->
+      <control type="label">
+        <posy>82</posy>
+        <posx>290</posx>
+        <width>1200</width>
+        <height>65</height>
+        <font>font28_title</font>
+        <textcolor>grey</textcolor>
+        <label>$INFO[ListItem.Year,, • ]$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
+        <visible>Container.Content(movies) + !IsEmpty(ListItem.Title) + IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
+      </control>
+      <control type="textbox">
+        <posy>150</posy>
+        <posx>290</posx>
+        <width>1600</width>
+        <height>210</height>
+        <font>font14_textbox</font>
+        <textcolor>grey</textcolor>
+        <align>left</align>
+        <aligny>top</aligny>
+        <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+        <include>ShowCaseInfoPanelButtonsValues</include>
+        <label>$VAR[PlotVar]</label>
+      </control>
+    </control>
+    <control type="group">
+      <visible>Container.Content(artists)</visible>
+      <control type="image">
+        <posx>30</posx>
+        <posy>30</posy>
+        <width>340</width>
+        <height>340</height>
+        <aspectratio aligny="center" align="center">scale</aspectratio>
+        <texture>$INFO[ListItem.Art(thumb)]</texture>
+      </control>
+      <control type="label">
+        <posy>15</posy>
+        <posx>403</posx>
+        <width>1200</width>
+        <height>70</height>
+        <font>font35_title</font>
+        <textcolor>grey</textcolor>
+        <align>left</align>
+        <aligny>top</aligny>
+        <label>$INFO[ListItem.Label]</label>
+        <scroll>true</scroll>
+      </control>
+      <control type="label">
+        <posy>82</posy>
+        <posx>403</posx>
+        <width>1200</width>
+        <height>65</height>
+        <font>font28_title</font>
+        <textcolor>$VAR[Colour_BigInfoThemeColourVar]</textcolor>
+        <label>$INFO[ListItem.Genre]</label>
+      </control>
+      <control type="textbox">
+        <posy>160</posy>
+        <posx>403</posx>
+        <width>1487</width>
+        <height>210</height>
+        <font>font14_textbox</font>
+        <textcolor>grey</textcolor>
+        <align>left</align>
+        <aligny>top</aligny>
+        <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+        <include>ShowCaseInfoPanelButtonsValues</include>
+        <label>$INFO[ListItem.Property(summary)]</label>
+        <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+      </control>
+      <control type="textbox">
+        <posy>160</posy>
+        <posx>403</posx>
+        <width>1487</width>
+        <height>205</height>
+        <font>font14_textbox_biginfo</font>
+        <textcolor>grey</textcolor>
+        <align>left</align>
+        <aligny>top</aligny>
+        <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+        <include>ShowCaseInfoPanelButtonsValues</include>
+        <label>$INFO[ListItem.Property(summary)]</label>
+        <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+      </control>
+    </control>
+  </include>
+  <include name="View_592_BigInfo">
+    <control type="group">
+      <visible>Control.IsVisible(592) + !Window.IsActive(addoninformation)</visible>
+      <control type="list" id="592">
+        <posx>0</posx>
+        <posy>0</posy>
+        <width>1920</width>
+        <height>1080</height>
+        <onleft>592</onleft>
+        <onright>592</onright>
+        <onup>SetProperty(MediaMenu,True,home)</onup>
+        <onup>SetFocus(9050,0)</onup>
+        <preloaditems>2</preloaditems>
+        <focusposition>0</focusposition>
+        <viewtype label="BigInfo">list</viewtype>
+        <scrolltime tween="quadratic" easing="out">300</scrolltime>
+        <visible>Container.Content(tvshows) | Container.Content(movies) | Container.Content(artists)</visible>
+        <orientation>horizontal</orientation>
+        <itemlayout width="1920" height="400">
+          <control type="group">
+            <posy>665</posy>
+            <include>BigInfo</include>
+          </control>
+        </itemlayout>
+        <focusedlayout width="1920" height="400">
+          <control type="group">
+            <posy>665</posy>
+            <include>BigInfo</include>
+          </control>
+        </focusedlayout>
+      </control>
+    </control>
+  </include>
 </includes>

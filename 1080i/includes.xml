@@ -1,444 +1,410 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
-	<!-- Common -->
-	<include file="defaults.xml" />
-	<include file="debug.xml" />
-	<include file="Includes_CommonValues.xml" />
-	<include file="Includes_Animations.xml" />
-	<include file="includes_colours.xml" />
-	<include file="includes_osd.xml" />
-	<include file="includes_music.xml" />
-	<include file="includes_homecustom.xml" />
-	<include file="SideBlade.xml" />
-	<include file="Topbar.xml" />
-	<include file="Widgets.xml" />
-
-	<!-- Home menu -->
-	<include file="Includes_Home.xml" />
-	<include file="HomeMenu.xml" />
-	<include file="Includes_LiveBG.xml" />
-	<include file="Backgrounds.xml" />
-	<include file="PlexPreplayVideo_includes.xml" />
-	<include file="Includes_Widgets.xml" />
-	<include file="includes_widgetspanel1.xml" />
-	<include file="includes_widgetspanel2.xml" />
-	<include file="includes_widgetslist1.xml" />
-	<include file="includes_widgetslist2.xml" />
-
-	<!-- Viewtypes -->
-	<include file="ViewNowPlaying.xml" />
-	<include file="View_50_List.xml" />
-	<include file="View_51_InfoWall.xml" />
-	<include file="View_52_Landscape.xml" />
-	<include file="View_53_ShowCase.xml" />
-	<include file="View_54_ShowCase.xml" />
-	<include file="View_55_TriPanel.xml" />
-	<include file="View_56_Posters.xml" />
-	<include file="View_57_Shift.xml" />
-	<include file="View_58_BannerWall.xml" />
-	<include file="View_59_Logo.xml" />
-	<include file="View_499_Wall_Large.xml" />
-	<include file="View_500_Wall.xml" />
-	<include file="View_501_LowList.xml" />
-	<include file="View_502_Episode.xml" />
-	<include file="View_503_Wall.xml" />
-	<include file="View_504_Gallery.xml" />
-	<include file="View_505_BannerInfo.xml" />
-	<include file="View_506_Panel.xml" />
-	<include file="View_507_FanartList.xml" />
-	<include file="View_508_SongList.xml" />
-	<include file="View_510_BigList.xml" />
-	<include file="View_511_HomeVideoWall.xml" />
-	<include file="View_590_BigWall.xml" />
-	<include file="View_591_BigFan.xml" />
-	<include file="View_592_BigInfo.xml" />
-	<include file="View_601_BannerPlex.xml" />
-	<include file="View_609_Fullscreen_Wall.xml" />
-	<include file="View_700_RightList.xml" />
-	<include file="View_701_MyFlix.xml" />
-	<include file="View_708_Shelf.xml" />
-	<include file="View_728_Shelf.xml" />
-	<include file="View_66_Empty.xml" />
-
-	<!-- Variables -->
-	<include file="Variables.xml" />
-	<include file="Variables_Backgrounds.xml" />
-	<include file="variables_colours.xml" />
-	<include file="Variables_Icons.xml" />
-	<include file="Variables_Infopanel.xml" />
-	<include file="Variables_MediaFlags.xml" />
-	<include file="Variables_MediaInfo.xml" />
-	<include file="Variables_Music.xml" />
-	<include file="Variables_OSD.xml" />
-	<include file="Variables_Overlays.xml" />
-	<include file="Variables_Settings.xml" />
-	<include file="variables_widgets.xml" />	
-
-	<include name="MyVideoNav_InfoLine">
-		<!-- Standard Rating -->
-		<control type="label">
-			<width min="20" max="299">auto</width>
-			<height>30</height>
-			<align>left</align>
-			<aligny>center</aligny>
-			<label>$VAR[RatingVar] [B]•[/B] </label>
-			<font>font13_title</font>
-			<textcolor>white</textcolor>
-			<visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-		</control>
-
-		<!-- IMDb Rating -->
-		<control type="image">
-			<width>53</width>
-			<height>30</height>
-			<align>left</align>
-			<aligny>center</aligny>
-			<texture>imdb_53x30.png</texture>
-			<aspectratio align="left" aligny="center">keep</aspectratio>
-			<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-		</control>
-		<control type="label">
-			<width min="20" max="299">auto</width>
-			<height>30</height>
-			<align>left</align>
-			<aligny>center</aligny>
-			<label> $INFO[ListItem.Property(rating)] [B]•[/B] </label>
-			<font>font13_title</font>
-			<textcolor>white</textcolor>
-			<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
-		</control>
-
-		<!-- Rotten Tomato Ratings -->
-		<control type="image">
-			<width>30</width>
-			<height>30</height>
-			<align>left</align>
-			<aligny>center</aligny>
-			<texture>rottentomatoes/30x30/$INFO[ListItem.Property(ratingImage)]</texture>
-			<aspectratio align="left" aligny="center">keep</aspectratio>
-			<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-		</control>
-		<control type="label">
-			<height>30</height>
-			<width min="20" max="121">auto</width>
-			<aligny>center</aligny>
-			<font>font13_title</font>
-			<textcolor>white</textcolor>
-			<label>$INFO[ListItem.Property(ratingPercent)]%  </label>
-			<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-		</control>
-		<control type="image">
-			<width>30</width>
-			<height>30</height>
-			<aligny>center</aligny>
-			<texture>rottentomatoes/30x30/$INFO[ListItem.Property(audienceRatingImage)]</texture>
-			<aspectratio align="left" aligny="center">keep</aspectratio>
-			<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-		</control>
-		<control type="label">
-			<height>30</height>
-			<width min="20" max="121">auto</width>
-			<aligny>center</aligny>
-			<font>font13_title</font>
-			<textcolor>white</textcolor>
-			<label>$INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
-			<visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
-		</control>
-
-		<!-- Duration On Deck -->
-		<control type="label">
-			<width min="20" max="299">auto</width>
-			<height>30</height>
-			<label>$VAR[DurationHrMinVar]</label>
-			<aligny>center</aligny>
-			<font>font13_title</font>
-			<textcolor>white</textcolor>
-		</control>
-	</include>	
-
-	<!-- Colour Swatch -->
-	<include name="ColourSwatch">
-		<include condition="String.IsEqual(Container(3110).ListItem.Label,ffe8e8e8)">ffe8e8e8</include>
-		<include condition="String.IsEqual(Container(3110).ListItem.Label,fff7d6d4)">fff7d6d4</include>
-	</include>
-
-	<include name="ffe8e8e8">
-		<colordiffuse>ffe8e8e8</colordiffuse>
-	</include>
-
-	<include name="fff7d6d4">
-		<colordiffuse>fff7d6d4</colordiffuse>
-	</include>
-
-	<!-- Coloured Circle Watched Status -->
-	<variable name="ColouredCircles">
-		<value condition="Skin.HasSetting(Enable.ColouredCircles)">$VAR[Colour_WatchedStatusColourVar]</value>
-		<value condition="Control.IsVisible(500) + Container.Content(episodes)">grey2</value>
-		<value>FFFFFFFF</value>
-	</variable>
-
-	<!-- Thumbs -->
-	<variable name="BannerThumb">
-		<value condition="!IsEmpty(ListItem.Art(banner))">$INFO[ListItem.Art(banner)]</value>
-		<value>$INFO[ListItem.Icon]</value>
-	</variable>
-	<variable name="PosterThumb">
-		<value condition="!IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(smallThumb)]</value>
-		<value>$INFO[ListItem.Icon]</value>
-	</variable>
-
-	<!-- Side Blade Navigation -->
-	<include name="SideBladeNavigation">
-		<onleft>1300</onleft>
-	</include>
-
-	<!-- Side Blade Navigation Channels -->
-	<include name="SideBladeNavigationChannels">
-		<onleft>Control.SetFocus(200)</onleft>
-	</include>
-
-	<!-- Media Menu -->
-	<include name="SideBladeLeft"></include>
-
-	<!-- Kiosk Mode Button -->
-	<include name="KioskModeButton">
-		<control type="button">
-			<description>Kiosk Mode button</description>
-			<include>ButtonCommonValues</include>
-			<label>-</label>
-			<onfocus>ClearProperty(MediaMenu,Home)</onfocus>
-			<onfocus>SetFocus(50)</onfocus>
-		</control>
-	</include>
-
-	<include name="Mouse_Trigger">
-		<label>-</label>
-		<font>-</font>
-		<onfocus>-</onfocus>
-		<onclick>-</onclick>
-		<texturenofocus>-</texturenofocus>
-		<texturefocus>-</texturefocus>
-		<visible>system.getbool(input.enablemouse)</visible>
-	</include>
-
-	<include name="MediaMenuTop"></include>
-
-	<include name="BackgrLabelArtist">
-		<control type="image">
-			<width>262</width>
-			<height>300</height>
-			<texture diffuse="photo_mask.png">rot2_mask.png</texture>
-		</control>
-	</include>
-
-	<include name="LabelArtist">
-		<posy>257</posy>
-		<posx>5</posx>
-		<width>253</width>
-		<height>45</height>
-		<scroll>true</scroll>
-		<scrollsuffix>  -  </scrollsuffix>
-		<font>font_musicdet</font>
-		<align>center</align>
-		<textcolor>black</textcolor>
-	</include>
-
-	<include name="Rot_discog">
-		<posx>6</posx>
-		<posy>-25</posy>
-		<width>313</width>
-		<height>38</height>
-		<animation effect="fade" time="50" delay="2000">Visible</animation>
-		<texture diffuse="photo_mask.png">rot_mask.png</texture>
-	</include>
-
-	<include name="Rot_next">
-		<posx>53</posx>
-		<posy>18</posy>
-		<width>281</width>
-		<height>35</height>
-		<texture diffuse="photo_mask.png">rot_mask.png</texture>
-	</include>
-
-	<include name="Rot_next2">
-		<posx>54</posx>
-		<posy>316</posy>
-		<width>279</width>
-		<height>35</height>
-		<animation type="Visible" reversible="false">
-			<effect type="rotatey" delay="1300" center="194" start="-180" end="0" time="800" tween="quadratic" easing="out"/>
-			<effect type="fade" start="0" end="100" delay="1500" time="250"/>
-		</animation>
-		<texture diffuse="photo_mask.png">rot_mask.png</texture>
-	</include>
-
-	<include name="Image_discog">
-		<posx>8</posx>
-		<posy>10</posy>
-		<width>310</width>
-		<height>310</height>
-		<animation effect="fade" time="250" delay="2000">Visible</animation>
-		<aspectratio aligny="top">scale</aspectratio>
-	</include>
-
-	<include name="Text_discog">
-		<posy>-28</posy>
-		<posx>12</posx>
-		<width>300</width>
-		<height>45</height>
-		<animation effect="fade" time="250" delay="2250">Visible</animation>
-		<scroll>true</scroll>
-		<scrollsuffix>  -  </scrollsuffix>
-		<font>font_musicdet</font>
-		<align>center</align>
-		<textcolor>black</textcolor>
-	</include>
-
-	<include name="Text_next">
-		<posx>62</posx>
-		<posy>13</posy>
-		<width>264</width>
-		<height>36</height>
-		<align>left</align>
-		<aligny>top</aligny>
-		<scroll>true</scroll>
-		<scrollsuffix>  -  </scrollsuffix>
-		<font>font_musicdet</font>
-		<textcolor>black</textcolor>
-	</include>
-
-	<include name="Text_next2">
-		<posx>62</posx>
-		<posy>311</posy>
-		<width>264</width>
-		<height>36</height>
-		<align>right</align>
-		<aligny>top</aligny>
-		<scroll>true</scroll>
-		<scrollsuffix>  -  </scrollsuffix>
-		<font>font_musicdet</font>
-		<textcolor>black</textcolor>
-	</include>
-
-	<include name="Image_art">
-		<posy>45</posy>
-		<posx>54</posx>
-		<width>280</width>
-		<height>280</height>
-		<animation type="Visible" reversible="false">
-			<effect type="rotatey" delay="1300" center="194" start="-180" end="0" time="800" tween="quadratic" easing="out"/>
-			<effect type="fade" start="0" end="100" delay="1500" time="250"/>
-		</animation>
-		<aspectratio align="center" aligny="top">scale</aspectratio>	
-	</include>
-
-	<include name="Image_cov">
-		<posy>45</posy>
-		<posx>54</posx>
-		<width>280</width>
-		<height>280</height>
-		<aspectratio align="center" aligny="top">scale</aspectratio>
-	</include>
-
-	<!-- Scroll Label -->
-	<include name="ScrollOffsetLabel">
-		<control type="group">
-			<visible>Container.Scrolling + !Skin.HasSetting(Disable.ScrollIndicator)</visible>
-			<include>dialogeffect</include>
-			<posx>1794</posx>
-			<posy>36</posy>
-			<control type="image">
-				<posx>0</posx>
-				<posy>0</posy>
-				<width>160</width>
-				<height>160</height>
-				<texture border="35">listpanel_back.png</texture>
-			</control>
-			<control type="label">
-				<visible>!Skin.HasTheme(WhiteFlat)</visible>
-				<posx>0</posx>
-				<posy>15</posy>
-				<width>160</width>
-				<height>120</height>
-				<align>center</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.SortLetter]</label>
-				<textcolor>white</textcolor>
-				<font>font_MainMenu</font>
-			</control>
-			<!-- WhiteFlat Dupe -->
-			<control type="label">
-				<visible>Skin.HasTheme(WhiteFlat)</visible>
-				<posx>0</posx>
-				<posy>15</posy>
-				<width>160</width>
-				<height>120</height>
-				<align>center</align>
-				<aligny>center</aligny>
-				<label>$INFO[ListItem.SortLetter]</label>
-				<textcolor>black</textcolor>
-				<font>font_MainMenu</font>
-			</control>
-			<!-- End -->
-		</control>
-	</include>
-
-	<!-- System windows -->
-	<include name="SystemLeftPanel">
-		<control type="image">
-			<posx>50</posx>
-			<posy>874</posy>
-			<width>420</width>
-			<height>904</height>
-			<texture border="40">panel_reflect.png</texture>
-		</control>
-		<control type="image">
-			<posx>50</posx>
-			<posy>0</posy>
-			<width>420</width>
-			<height>904</height>
-			<texture border="40">listpanel_back.png</texture>
-		</control>
-	</include>
-
-	<include name="SystemRightPanel">
-		<control type="image">
-			<posx>490</posx>
-			<posy>874</posy>
-			<width>1380</width>
-			<height>904</height>
-			<texture border="40">panel_reflect.png</texture>
-		</control>
-		<control type="image">
-			<posx>490</posx>
-			<posy>0</posy>
-			<width>1380</width>
-			<height>904</height>
-			<texture border="40">listpanel_back.png</texture>
-		</control>
-	</include>
-
-	<!-- Search -->
-	<include name="HomeSearchButton">
-		<control type="button" id="9027">
-			<label></label>
-			<textoffsetx>0</textoffsetx>
-			<width>50</width>
-			<height>41</height>
-			<align>center</align>
-			<font>IconTiny</font>
-			<textcolor>grey</textcolor>
-			<shadowcolor>shadow</shadowcolor>
-			<onclick>Plex.ActivateWindow(10051)</onclick>
-			<animation type="Visible">
-				<effect type="fade" start="0" end="100" tween="sine" easing="inout" time="300" />
-				<effect type="zoom" start="50" end="100" center="auto" tween="sine" easing="inout" time="300" />
-			</animation>
-			<animation type="Hidden">
-				<effect type="fade" start="100" end="0" tween="sine" easing="inout" time="300" />
-				<effect type="zoom" start="100" end="50" center="auto" tween="sine" easing="inout" time="300" />
-			</animation>
-		</control>
-	</include>
+  <!-- Common -->
+  <include file="defaults.xml"/>
+  <include file="debug.xml"/>
+  <include file="Includes_CommonValues.xml"/>
+  <include file="Includes_Animations.xml"/>
+  <include file="includes_colours.xml"/>
+  <include file="includes_osd.xml"/>
+  <include file="includes_music.xml"/>
+  <include file="includes_homecustom.xml"/>
+  <include file="SideBlade.xml"/>
+  <include file="Topbar.xml"/>
+  <include file="Widgets.xml"/>
+  <!-- Home menu -->
+  <include file="Includes_Home.xml"/>
+  <include file="HomeMenu.xml"/>
+  <include file="Includes_LiveBG.xml"/>
+  <include file="Backgrounds.xml"/>
+  <include file="PlexPreplayVideo_includes.xml"/>
+  <include file="Includes_Widgets.xml"/>
+  <include file="includes_widgetspanel1.xml"/>
+  <include file="includes_widgetspanel2.xml"/>
+  <include file="includes_widgetslist1.xml"/>
+  <include file="includes_widgetslist2.xml"/>
+  <!-- Viewtypes -->
+  <include file="ViewNowPlaying.xml"/>
+  <include file="View_50_List.xml"/>
+  <include file="View_51_InfoWall.xml"/>
+  <include file="View_52_Landscape.xml"/>
+  <include file="View_53_ShowCase.xml"/>
+  <include file="View_54_ShowCase.xml"/>
+  <include file="View_55_TriPanel.xml"/>
+  <include file="View_56_Posters.xml"/>
+  <include file="View_57_Shift.xml"/>
+  <include file="View_58_BannerWall.xml"/>
+  <include file="View_59_Logo.xml"/>
+  <include file="View_499_Wall_Large.xml"/>
+  <include file="View_500_Wall.xml"/>
+  <include file="View_501_LowList.xml"/>
+  <include file="View_502_Episode.xml"/>
+  <include file="View_503_Wall.xml"/>
+  <include file="View_504_Gallery.xml"/>
+  <include file="View_505_BannerInfo.xml"/>
+  <include file="View_506_Panel.xml"/>
+  <include file="View_507_FanartList.xml"/>
+  <include file="View_508_SongList.xml"/>
+  <include file="View_510_BigList.xml"/>
+  <include file="View_511_HomeVideoWall.xml"/>
+  <include file="View_590_BigWall.xml"/>
+  <include file="View_591_BigFan.xml"/>
+  <include file="View_592_BigInfo.xml"/>
+  <include file="View_601_BannerPlex.xml"/>
+  <include file="View_609_Fullscreen_Wall.xml"/>
+  <include file="View_700_RightList.xml"/>
+  <include file="View_701_MyFlix.xml"/>
+  <include file="View_708_Shelf.xml"/>
+  <include file="View_728_Shelf.xml"/>
+  <include file="View_66_Empty.xml"/>
+  <!-- Variables -->
+  <include file="Variables.xml"/>
+  <include file="Variables_Backgrounds.xml"/>
+  <include file="variables_colours.xml"/>
+  <include file="Variables_Icons.xml"/>
+  <include file="Variables_Infopanel.xml"/>
+  <include file="Variables_MediaFlags.xml"/>
+  <include file="Variables_MediaInfo.xml"/>
+  <include file="Variables_Music.xml"/>
+  <include file="Variables_OSD.xml"/>
+  <include file="Variables_Overlays.xml"/>
+  <include file="Variables_Settings.xml"/>
+  <include file="variables_widgets.xml"/>
+  <include name="MyVideoNav_InfoLine">
+    <!-- Standard Rating -->
+    <control type="label">
+      <width min="20" max="299">auto</width>
+      <height>30</height>
+      <align>left</align>
+      <aligny>center</aligny>
+      <label>$VAR[RatingVar] [B]•[/B] </label>
+      <font>font13_title</font>
+      <textcolor>white</textcolor>
+      <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+    </control>
+    <!-- IMDb Rating -->
+    <control type="image">
+      <width>53</width>
+      <height>30</height>
+      <align>left</align>
+      <aligny>center</aligny>
+      <texture>imdb_53x30.png</texture>
+      <aspectratio align="left" aligny="center">keep</aspectratio>
+      <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+    </control>
+    <control type="label">
+      <width min="20" max="299">auto</width>
+      <height>30</height>
+      <align>left</align>
+      <aligny>center</aligny>
+      <label> $INFO[ListItem.Property(rating)] [B]•[/B] </label>
+      <font>font13_title</font>
+      <textcolor>white</textcolor>
+      <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+    </control>
+    <!-- Rotten Tomato Ratings -->
+    <control type="image">
+      <width>30</width>
+      <height>30</height>
+      <align>left</align>
+      <aligny>center</aligny>
+      <texture>rottentomatoes/30x30/$INFO[ListItem.Property(ratingImage)]</texture>
+      <aspectratio align="left" aligny="center">keep</aspectratio>
+      <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+    </control>
+    <control type="label">
+      <height>30</height>
+      <width min="20" max="121">auto</width>
+      <aligny>center</aligny>
+      <font>font13_title</font>
+      <textcolor>white</textcolor>
+      <label>$INFO[ListItem.Property(ratingPercent)]%  </label>
+      <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+    </control>
+    <control type="image">
+      <width>30</width>
+      <height>30</height>
+      <aligny>center</aligny>
+      <texture>rottentomatoes/30x30/$INFO[ListItem.Property(audienceRatingImage)]</texture>
+      <aspectratio align="left" aligny="center">keep</aspectratio>
+      <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+    </control>
+    <control type="label">
+      <height>30</height>
+      <width min="20" max="121">auto</width>
+      <aligny>center</aligny>
+      <font>font13_title</font>
+      <textcolor>white</textcolor>
+      <label>$INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
+      <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+    </control>
+    <!-- Duration On Deck -->
+    <control type="label">
+      <width min="20" max="299">auto</width>
+      <height>30</height>
+      <label>$VAR[DurationHrMinVar]</label>
+      <aligny>center</aligny>
+      <font>font13_title</font>
+      <textcolor>white</textcolor>
+    </control>
+  </include>
+  <!-- Colour Swatch -->
+  <include name="ColourSwatch">
+    <include condition="String.IsEqual(Container(3110).ListItem.Label,ffe8e8e8)">ffe8e8e8</include>
+    <include condition="String.IsEqual(Container(3110).ListItem.Label,fff7d6d4)">fff7d6d4</include>
+  </include>
+  <include name="ffe8e8e8">
+    <colordiffuse>ffe8e8e8</colordiffuse>
+  </include>
+  <include name="fff7d6d4">
+    <colordiffuse>fff7d6d4</colordiffuse>
+  </include>
+  <!-- Coloured Circle Watched Status -->
+  <variable name="ColouredCircles">
+    <value condition="Skin.HasSetting(Enable.ColouredCircles)">$VAR[Colour_WatchedStatusColourVar]</value>
+    <value condition="Control.IsVisible(500) + Container.Content(episodes)">grey2</value>
+    <value>FFFFFFFF</value>
+  </variable>
+  <!-- Thumbs -->
+  <variable name="BannerThumb">
+    <value condition="!IsEmpty(ListItem.Art(banner))">$INFO[ListItem.Art(banner)]</value>
+    <value>$INFO[ListItem.Icon]</value>
+  </variable>
+  <variable name="PosterThumb">
+    <value condition="!IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(smallThumb)]</value>
+    <value>$INFO[ListItem.Icon]</value>
+  </variable>
+  <!-- Side Blade Navigation -->
+  <include name="SideBladeNavigation">
+    <onleft>1300</onleft>
+  </include>
+  <!-- Side Blade Navigation Channels -->
+  <include name="SideBladeNavigationChannels">
+    <onleft>Control.SetFocus(200)</onleft>
+  </include>
+  <!-- Media Menu -->
+  <include name="SideBladeLeft"/>
+  <!-- Kiosk Mode Button -->
+  <include name="KioskModeButton">
+    <control type="button">
+      <description>Kiosk Mode button</description>
+      <include>ButtonCommonValues</include>
+      <label>-</label>
+      <onfocus>ClearProperty(MediaMenu,Home)</onfocus>
+      <onfocus>SetFocus(50)</onfocus>
+    </control>
+  </include>
+  <include name="Mouse_Trigger">
+    <label>-</label>
+    <font>-</font>
+    <onfocus>-</onfocus>
+    <onclick>-</onclick>
+    <texturenofocus>-</texturenofocus>
+    <texturefocus>-</texturefocus>
+    <visible>system.getbool(input.enablemouse)</visible>
+  </include>
+  <include name="MediaMenuTop"/>
+  <include name="BackgrLabelArtist">
+    <control type="image">
+      <width>262</width>
+      <height>300</height>
+      <texture diffuse="photo_mask.png">rot2_mask.png</texture>
+    </control>
+  </include>
+  <include name="LabelArtist">
+    <posy>257</posy>
+    <posx>5</posx>
+    <width>253</width>
+    <height>45</height>
+    <scroll>true</scroll>
+    <scrollsuffix>  -  </scrollsuffix>
+    <font>font_musicdet</font>
+    <align>center</align>
+    <textcolor>black</textcolor>
+  </include>
+  <include name="Rot_discog">
+    <posx>6</posx>
+    <posy>-25</posy>
+    <width>313</width>
+    <height>38</height>
+    <animation effect="fade" time="50" delay="2000">Visible</animation>
+    <texture diffuse="photo_mask.png">rot_mask.png</texture>
+  </include>
+  <include name="Rot_next">
+    <posx>53</posx>
+    <posy>18</posy>
+    <width>281</width>
+    <height>35</height>
+    <texture diffuse="photo_mask.png">rot_mask.png</texture>
+  </include>
+  <include name="Rot_next2">
+    <posx>54</posx>
+    <posy>316</posy>
+    <width>279</width>
+    <height>35</height>
+    <animation type="Visible" reversible="false">
+      <effect type="rotatey" delay="1300" center="194" start="-180" end="0" time="800" tween="quadratic" easing="out"/>
+      <effect type="fade" start="0" end="100" delay="1500" time="250"/>
+    </animation>
+    <texture diffuse="photo_mask.png">rot_mask.png</texture>
+  </include>
+  <include name="Image_discog">
+    <posx>8</posx>
+    <posy>10</posy>
+    <width>310</width>
+    <height>310</height>
+    <animation effect="fade" time="250" delay="2000">Visible</animation>
+    <aspectratio aligny="top">scale</aspectratio>
+  </include>
+  <include name="Text_discog">
+    <posy>-28</posy>
+    <posx>12</posx>
+    <width>300</width>
+    <height>45</height>
+    <animation effect="fade" time="250" delay="2250">Visible</animation>
+    <scroll>true</scroll>
+    <scrollsuffix>  -  </scrollsuffix>
+    <font>font_musicdet</font>
+    <align>center</align>
+    <textcolor>black</textcolor>
+  </include>
+  <include name="Text_next">
+    <posx>62</posx>
+    <posy>13</posy>
+    <width>264</width>
+    <height>36</height>
+    <align>left</align>
+    <aligny>top</aligny>
+    <scroll>true</scroll>
+    <scrollsuffix>  -  </scrollsuffix>
+    <font>font_musicdet</font>
+    <textcolor>black</textcolor>
+  </include>
+  <include name="Text_next2">
+    <posx>62</posx>
+    <posy>311</posy>
+    <width>264</width>
+    <height>36</height>
+    <align>right</align>
+    <aligny>top</aligny>
+    <scroll>true</scroll>
+    <scrollsuffix>  -  </scrollsuffix>
+    <font>font_musicdet</font>
+    <textcolor>black</textcolor>
+  </include>
+  <include name="Image_art">
+    <posy>45</posy>
+    <posx>54</posx>
+    <width>280</width>
+    <height>280</height>
+    <animation type="Visible" reversible="false">
+      <effect type="rotatey" delay="1300" center="194" start="-180" end="0" time="800" tween="quadratic" easing="out"/>
+      <effect type="fade" start="0" end="100" delay="1500" time="250"/>
+    </animation>
+    <aspectratio align="center" aligny="top">scale</aspectratio>
+  </include>
+  <include name="Image_cov">
+    <posy>45</posy>
+    <posx>54</posx>
+    <width>280</width>
+    <height>280</height>
+    <aspectratio align="center" aligny="top">scale</aspectratio>
+  </include>
+  <!-- Scroll Label -->
+  <include name="ScrollOffsetLabel">
+    <control type="group">
+      <visible>Container.Scrolling + !Skin.HasSetting(Disable.ScrollIndicator)</visible>
+      <include>dialogeffect</include>
+      <posx>1794</posx>
+      <posy>36</posy>
+      <control type="image">
+        <posx>0</posx>
+        <posy>0</posy>
+        <width>160</width>
+        <height>160</height>
+        <texture border="35">listpanel_back.png</texture>
+      </control>
+      <control type="label">
+        <visible>!Skin.HasTheme(WhiteFlat)</visible>
+        <posx>0</posx>
+        <posy>15</posy>
+        <width>160</width>
+        <height>120</height>
+        <align>center</align>
+        <aligny>center</aligny>
+        <label>$INFO[ListItem.SortLetter]</label>
+        <textcolor>white</textcolor>
+        <font>font_MainMenu</font>
+      </control>
+      <!-- WhiteFlat Dupe -->
+      <control type="label">
+        <visible>Skin.HasTheme(WhiteFlat)</visible>
+        <posx>0</posx>
+        <posy>15</posy>
+        <width>160</width>
+        <height>120</height>
+        <align>center</align>
+        <aligny>center</aligny>
+        <label>$INFO[ListItem.SortLetter]</label>
+        <textcolor>black</textcolor>
+        <font>font_MainMenu</font>
+      </control>
+      <!-- End -->
+    </control>
+  </include>
+  <!-- System windows -->
+  <include name="SystemLeftPanel">
+    <control type="image">
+      <posx>50</posx>
+      <posy>874</posy>
+      <width>420</width>
+      <height>904</height>
+      <texture border="40">panel_reflect.png</texture>
+    </control>
+    <control type="image">
+      <posx>50</posx>
+      <posy>0</posy>
+      <width>420</width>
+      <height>904</height>
+      <texture border="40">listpanel_back.png</texture>
+    </control>
+  </include>
+  <include name="SystemRightPanel">
+    <control type="image">
+      <posx>490</posx>
+      <posy>874</posy>
+      <width>1380</width>
+      <height>904</height>
+      <texture border="40">panel_reflect.png</texture>
+    </control>
+    <control type="image">
+      <posx>490</posx>
+      <posy>0</posy>
+      <width>1380</width>
+      <height>904</height>
+      <texture border="40">listpanel_back.png</texture>
+    </control>
+  </include>
+  <!-- Search -->
+  <include name="HomeSearchButton">
+    <control type="button" id="9027">
+      <label></label>
+      <textoffsetx>0</textoffsetx>
+      <width>50</width>
+      <height>41</height>
+      <align>center</align>
+      <font>IconTiny</font>
+      <textcolor>grey</textcolor>
+      <shadowcolor>shadow</shadowcolor>
+      <onclick>Plex.ActivateWindow(10051)</onclick>
+      <animation type="Visible">
+        <effect type="fade" start="0" end="100" tween="sine" easing="inout" time="300"/>
+        <effect type="zoom" start="50" end="100" center="auto" tween="sine" easing="inout" time="300"/>
+      </animation>
+      <animation type="Hidden">
+        <effect type="fade" start="100" end="0" tween="sine" easing="inout" time="300"/>
+        <effect type="zoom" start="100" end="50" center="auto" tween="sine" easing="inout" time="300"/>
+      </animation>
+    </control>
+  </include>
 </includes>

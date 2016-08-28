@@ -1,318 +1,307 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-    <!-- Fullscreen Wall -->
-    <include name="View_609_Fullscreen_Wall">
-        <control type="group">
-            <visible>Control.IsVisible(609)</visible>
-            <include>ViewAnimation</include>
-            <control type="group">
-                <visible>Container.Content(artists) | Container.Content(albums)</visible>
-                <control type="image">
-                    <posx>0</posx>
-                    <width>1</width>
-                    <height>1080</height>
-                    <texture>black.png</texture>
-                </control>
-                <control type="image">
-                    <posx>1919</posx>
-                    <width>1</width>
-                    <height>1080</height>
-                    <texture>black.png</texture>
-                </control>
-            </control>
-            <control type="panel" id="609">
-                <width>1920</width>
-                <height>1080</height>
-                <onleft>SetProperty(MediaMenu,True,home)</onleft>
-                <onleft>SetFocus(9050,0)</onleft>
-                <onright>noop</onright>
-                <onup>609</onup>
-                <ondown>609</ondown>
-                <orientation>vertical</orientation>
-                <viewtype label="Fullscreen Wall">icon</viewtype>
-                <pagecontrol>60</pagecontrol>
-                <preloaditems>2</preloaditems>
-                <scrolltime tween="quadratic">400</scrolltime>
-                <focusposition>1</focusposition>
-                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(artists) | Container.Content(albums)</visible>
-                <itemlayout width="240" height="360" condition="Container.Content(movies) | Container.Content(tvshows)">
-                    <control type="group">
-                        <control type="image">
-                            <posx>0</posx>
-                            <width>240</width>
-                            <height>360</height>
-                           <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-                            <texture>$INFO[ListItem.Art(thumb)]</texture>
-                        </control>
-                        <control type="image">
-                            <width>240</width>
-                            <height>360</height>
-                            <texture>thumbs/diffuse.png</texture>
-                        </control>
-						
-						<!-- Watch Status Ribbon Overlay -->
-                        <control type="image">
-                            <posx>187</posx>
-                            <posy>0</posy>
-                            <width>60</width>
-                            <height>60</height>
-                            <texture>$VAR[OverlayVar]</texture>
-                            <aspectratio align="center" aligny="top">keep</aspectratio>
-							<visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
-                        </control>
-                        <!-- WhiteFlat - Watch Status Ribbon Overlay -->
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>354</posy>
-                            <width>240</width>
-                            <height>6</height>
-                            <texture>$VAR[OverlayVar]</texture>
-                            <aspectratio align="center" aligny="top">stretch</aspectratio>
-                            <animation effect="fade" end="50" condition="true">Conditional</animation>
-                            <visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
-                        </control>
-                        <!-- End -->
-						
-						<!-- Watched Status Upper Circle -->
-						<control type="image">
-							<posx>194</posx>
-							<posy>20</posy>
-							<width>36</width>
-							<height>36</height>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
-							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-						</control>
-					
-						<!-- Watched Status Lower Circle -->
-						<control type="image">
-							<posx>194</posx>
-							<posy>304</posy>
-							<width>36</width>
-							<height>36</height>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
-							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-						</control>
-					
-                        <control type="group">
-                            <posx>10</posx>
-                            <posy>20</posy>
-                            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-                        </control>
-						
-						<control type="group">
-                            <posx>10</posx>
-                            <posy>304</posy>
-                            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-                        </control>
-                    </control>
-                </itemlayout>
-                <focusedlayout width="240" height="360" condition="Container.Content(movies) | Container.Content(tvshows)">
-                    <control type="group">
-                        <animation effect="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" reversible="false">Focus</animation>
-                        <control type="image">
-							<visible>!Skin.HasTheme(WhiteFlat)</visible>
-                            <posx>0</posx>
-                            <width>240</width>
-                            <height>360</height>
-                            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-                            <texture>$INFO[ListItem.Art(thumb)]</texture>
-                            <bordersize>8</bordersize>
-                        </control>
-                        <!-- WhiteFlat - Thumbnail -->
-                        <control type="image">
-                            <visible>Skin.HasTheme(WhiteFlat)</visible>
-                            <posx>0</posx>
-                            <width>240</width>
-                            <height>354</height>
-                            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-                            <texture>$INFO[ListItem.Art(thumb)]</texture>
-                            <bordersize>8</bordersize>
-                        </control>
-                        <!-- End -->
-						<control type="image">
-							<visible>!Skin.HasTheme(WhiteFlat)</visible>
-                            <posx>0</posx>
-                            <width>240</width>
-                            <height>360</height>
-                            <aspectratio scalediffuse="false">scale</aspectratio>
-                            <texture>empty.png</texture>
-                            <bordertexture border="9">thumbs/thumbnail_focused.png</bordertexture>
-                            <bordersize>8</bordersize>
-							<colordiffuse>$VAR[Colour_FullscreenWallHighlightColourVar]</colordiffuse>
-                        </control>
-                        <!-- WhiteFlat - Selection Overlay -->
-                        <control type="image">
-                            <visible>Skin.HasTheme(WhiteFlat)</visible>
-                            <posx>0</posx>
-                            <width>240</width>
-                            <height>360</height>
-                            <aspectratio scalediffuse="false">scale</aspectratio>
-                            <texture>empty.png</texture>
-                            <bordertexture border="9">thumbs/thumbnail_focused_large.png</bordertexture>                            
-                            <colordiffuse>$VAR[Colour_FullscreenWallHighlightColourVar]</colordiffuse>
-                        </control>
-                        <!-- End -->
-						
-						<!-- Watched Status Ribbon Overlay -->
-                        <control type="image">
-                            <posx>180</posx>
-                            <posy>8</posy>
-                            <width>60</width>
-                            <height>60</height>
-                            <texture>$VAR[OverlayVar]</texture>
-                            <aspectratio align="center" aligny="top">keep</aspectratio>
-							<visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
-                        </control>
-                         <!-- WhiteFlat - Watched Status Ribbon Overlay Selected -->
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>353</posy>
-                            <width>240</width>
-                            <height>7</height>
-                            <texture>$VAR[OverlayVar]</texture>
-                            <aspectratio align="center" aligny="top">stretch</aspectratio>
-                            <animation effect="fade" end="50" condition="true">Conditional</animation>
-                            <visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat) + Skin.HasTheme(WhiteFlat)</visible>
-                        </control>
-                        <!-- End -->
-						
-                        <!-- Watched Status Upper Circle -->
-						<control type="image">
-							<posx>194</posx>
-							<posy>20</posy>
-							<width>36</width>
-							<height>36</height>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
-							<visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-						</control>
-					
-						<!-- Watched Status Lower Circle -->
-						<control type="image">
-							<posx>194</posx>
-							<posy>304</posy>
-							<width>36</width>
-							<height>36</height>
-							<aspectratio>keep</aspectratio>
-							<texture>$VAR[OverlayVar]</texture>
-							<colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
-							<visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-						</control>
-					
-                        <control type="group">
-                            <posx>10</posx>
-                            <posy>20</posy>
-                            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-                        </control>
-						
-						<control type="group">
-                            <posx>10</posx>
-                            <posy>304</posy>
-                            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-                        </control>
-                    </control>
-                </focusedlayout>
-                <itemlayout width="274" height="270" condition="Container.Content(artists) | Container.Content(albums)">
-                    <control type="group">
-                        <posx>1</posx>
-                        <control type="image">
-                            <posx>0</posx>
-                            <width>274</width>
-                            <height>270</height>
-                            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-                            <texture>$INFO[ListItem.Art(smallThumb)]</texture>
-                        </control>
-                        <control type="image">
-                            <visible>Container.Content(albums)</visible>
-                            <width>274</width>
-                            <height>270</height>
-                            <texture>thumbs/diffuse.png</texture>
-                        </control>
-                        <control type="group">
-                            <visible>Container.Content(artists)</visible>
-                            <control type="image">
-                                <width>274</width>
-                                <height>270</height>
-                                <texture border="0,0,0,50">thumbs/diffuse_music.png</texture>
-                            </control>
-                            <control type="label">
-								<posx>137</posx>
-                                <posy>230</posy>
-                                <width>274</width>
-                                <height>28</height>
-                                <align>center</align>
-                                <textoffsetx>4</textoffsetx>
-                                <textcolor>grey</textcolor>
-                                <info>ListItem.Label</info>
-                            </control>
-                        </control>
-                    </control>
-                </itemlayout>
-                <focusedlayout width="274" height="270" condition="Container.Content(artists) | Container.Content(albums)">
-                    <control type="group">
-                        <animation effect="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" reversible="false">Focus</animation>
-                        <posx>1</posx>
-                        <control type="image">
-                            <width>274</width>
-                            <height>270</height>
-                            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-                            <texture>$INFO[ListItem.Art(smallThumb)]</texture>
-                            <bordersize>8</bordersize>
-                        </control>
-						<control type="image">
-                            <width>274</width>
-                            <height>270</height>
-                            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-                            <texture>empty.png</texture>
-                            <bordertexture border="9">thumbs/thumbnail_focused.png</bordertexture>
-                            <bordersize>8</bordersize>
-							<colordiffuse>$VAR[Colour_FullscreenWallHighlightColourVar]</colordiffuse>
-                        </control>
-						
-                        <control type="group">
-                            <visible>Container.Content(artists)</visible>
-                            <control type="image">
-                                <posx>8</posx>
-                                <posy>220</posy>
-                                <width>258</width>
-                                <height>42</height>
-                                <texture>black.png</texture>
-                                <colordiffuse>99ffffff</colordiffuse>
-                            </control>
-                            <control type="label">
-								<posx>129</posx>
-                                <posy>225</posy>
-                                <width>274</width>
-                                <height>28</height>
-                                <align>center</align>
-                                <textoffsetx>10</textoffsetx>
-                                <textcolor>grey</textcolor>
-                                <info>ListItem.Label</info>
-                            </control>
-                        </control>
-                    </control>
-                </focusedlayout>
-            </control>
-            <control type="scrollbar" id="60">
-                <posx>1906</posx>
-                <posy>0</posy>
-                <width>14</width>
-                <height>1080</height>
-				<colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
-                <onup>60</onup>
-                <ondown>60</ondown>
-                <onleft>609</onleft>
-                <onright>SetProperty(MediaMenu,True,home)</onright>
-                <onright>SetFocus(9050,0)</onright>
-                <orientation>vertical</orientation>
-                <texturesliderbarfocus>solid_bg.png</texturesliderbarfocus>
-                <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-            </control>
+  <!-- Fullscreen Wall -->
+  <include name="View_609_Fullscreen_Wall">
+    <control type="group">
+      <visible>Control.IsVisible(609)</visible>
+      <include>ViewAnimation</include>
+      <control type="group">
+        <visible>Container.Content(artists) | Container.Content(albums)</visible>
+        <control type="image">
+          <posx>0</posx>
+          <width>1</width>
+          <height>1080</height>
+          <texture>black.png</texture>
         </control>
-    </include>
+        <control type="image">
+          <posx>1919</posx>
+          <width>1</width>
+          <height>1080</height>
+          <texture>black.png</texture>
+        </control>
+      </control>
+      <control type="panel" id="609">
+        <width>1920</width>
+        <height>1080</height>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <onright>noop</onright>
+        <onup>609</onup>
+        <ondown>609</ondown>
+        <orientation>vertical</orientation>
+        <viewtype label="Fullscreen Wall">icon</viewtype>
+        <pagecontrol>60</pagecontrol>
+        <preloaditems>2</preloaditems>
+        <scrolltime tween="quadratic">400</scrolltime>
+        <focusposition>1</focusposition>
+        <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(artists) | Container.Content(albums)</visible>
+        <itemlayout width="240" height="360" condition="Container.Content(movies) | Container.Content(tvshows)">
+          <control type="group">
+            <control type="image">
+              <posx>0</posx>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>$INFO[ListItem.Art(thumb)]</texture>
+            </control>
+            <control type="image">
+              <width>240</width>
+              <height>360</height>
+              <texture>thumbs/diffuse.png</texture>
+            </control>
+            <!-- Watch Status Ribbon Overlay -->
+            <control type="image">
+              <posx>187</posx>
+              <posy>0</posy>
+              <width>60</width>
+              <height>60</height>
+              <texture>$VAR[OverlayVar]</texture>
+              <aspectratio align="center" aligny="top">keep</aspectratio>
+              <visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
+            </control>
+            <!-- WhiteFlat - Watch Status Ribbon Overlay -->
+            <control type="image">
+              <posx>0</posx>
+              <posy>354</posy>
+              <width>240</width>
+              <height>6</height>
+              <texture>$VAR[OverlayVar]</texture>
+              <aspectratio align="center" aligny="top">stretch</aspectratio>
+              <animation effect="fade" end="50" condition="true">Conditional</animation>
+              <visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat)</visible>
+            </control>
+            <!-- End -->
+            <!-- Watched Status Upper Circle -->
+            <control type="image">
+              <posx>194</posx>
+              <posy>20</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <!-- Watched Status Lower Circle -->
+            <control type="image">
+              <posx>194</posx>
+              <posy>304</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <control type="group">
+              <posx>10</posx>
+              <posy>20</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+            <control type="group">
+              <posx>10</posx>
+              <posy>304</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+          </control>
+        </itemlayout>
+        <focusedlayout width="240" height="360" condition="Container.Content(movies) | Container.Content(tvshows)">
+          <control type="group">
+            <animation effect="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" reversible="false">Focus</animation>
+            <control type="image">
+              <visible>!Skin.HasTheme(WhiteFlat)</visible>
+              <posx>0</posx>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>$INFO[ListItem.Art(thumb)]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <!-- WhiteFlat - Thumbnail -->
+            <control type="image">
+              <visible>Skin.HasTheme(WhiteFlat)</visible>
+              <posx>0</posx>
+              <width>240</width>
+              <height>354</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>$INFO[ListItem.Art(thumb)]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <!-- End -->
+            <control type="image">
+              <visible>!Skin.HasTheme(WhiteFlat)</visible>
+              <posx>0</posx>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio scalediffuse="false">scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="9">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <colordiffuse>$VAR[Colour_FullscreenWallHighlightColourVar]</colordiffuse>
+            </control>
+            <!-- WhiteFlat - Selection Overlay -->
+            <control type="image">
+              <visible>Skin.HasTheme(WhiteFlat)</visible>
+              <posx>0</posx>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio scalediffuse="false">scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="9">thumbs/thumbnail_focused_large.png</bordertexture>
+              <colordiffuse>$VAR[Colour_FullscreenWallHighlightColourVar]</colordiffuse>
+            </control>
+            <!-- End -->
+            <!-- Watched Status Ribbon Overlay -->
+            <control type="image">
+              <posx>180</posx>
+              <posy>8</posy>
+              <width>60</width>
+              <height>60</height>
+              <texture>$VAR[OverlayVar]</texture>
+              <aspectratio align="center" aligny="top">keep</aspectratio>
+              <visible>!Skin.HasSetting(Enable.Circles) + !Skin.HasTheme(WhiteFlat)</visible>
+            </control>
+            <!-- WhiteFlat - Watched Status Ribbon Overlay Selected -->
+            <control type="image">
+              <posx>0</posx>
+              <posy>353</posy>
+              <width>240</width>
+              <height>7</height>
+              <texture>$VAR[OverlayVar]</texture>
+              <aspectratio align="center" aligny="top">stretch</aspectratio>
+              <animation effect="fade" end="50" condition="true">Conditional</animation>
+              <visible>!Skin.HasSetting(Enable.Circles) + Skin.HasTheme(WhiteFlat) + Skin.HasTheme(WhiteFlat)</visible>
+            </control>
+            <!-- End -->
+            <!-- Watched Status Upper Circle -->
+            <control type="image">
+              <posx>194</posx>
+              <posy>20</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <!-- Watched Status Lower Circle -->
+            <control type="image">
+              <posx>194</posx>
+              <posy>304</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_FullscreenWallWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <control type="group">
+              <posx>10</posx>
+              <posy>20</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+            <control type="group">
+              <posx>10</posx>
+              <posy>304</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout width="274" height="270" condition="Container.Content(artists) | Container.Content(albums)">
+          <control type="group">
+            <posx>1</posx>
+            <control type="image">
+              <posx>0</posx>
+              <width>274</width>
+              <height>270</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>$INFO[ListItem.Art(smallThumb)]</texture>
+            </control>
+            <control type="image">
+              <visible>Container.Content(albums)</visible>
+              <width>274</width>
+              <height>270</height>
+              <texture>thumbs/diffuse.png</texture>
+            </control>
+            <control type="group">
+              <visible>Container.Content(artists)</visible>
+              <control type="image">
+                <width>274</width>
+                <height>270</height>
+                <texture border="0,0,0,50">thumbs/diffuse_music.png</texture>
+              </control>
+              <control type="label">
+                <posx>137</posx>
+                <posy>230</posy>
+                <width>274</width>
+                <height>28</height>
+                <align>center</align>
+                <textoffsetx>4</textoffsetx>
+                <textcolor>grey</textcolor>
+                <info>ListItem.Label</info>
+              </control>
+            </control>
+          </control>
+        </itemlayout>
+        <focusedlayout width="274" height="270" condition="Container.Content(artists) | Container.Content(albums)">
+          <control type="group">
+            <animation effect="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" reversible="false">Focus</animation>
+            <posx>1</posx>
+            <control type="image">
+              <width>274</width>
+              <height>270</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>$INFO[ListItem.Art(smallThumb)]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <width>274</width>
+              <height>270</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="9">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <colordiffuse>$VAR[Colour_FullscreenWallHighlightColourVar]</colordiffuse>
+            </control>
+            <control type="group">
+              <visible>Container.Content(artists)</visible>
+              <control type="image">
+                <posx>8</posx>
+                <posy>220</posy>
+                <width>258</width>
+                <height>42</height>
+                <texture>black.png</texture>
+                <colordiffuse>99ffffff</colordiffuse>
+              </control>
+              <control type="label">
+                <posx>129</posx>
+                <posy>225</posy>
+                <width>274</width>
+                <height>28</height>
+                <align>center</align>
+                <textoffsetx>10</textoffsetx>
+                <textcolor>grey</textcolor>
+                <info>ListItem.Label</info>
+              </control>
+            </control>
+          </control>
+        </focusedlayout>
+      </control>
+      <control type="scrollbar" id="60">
+        <posx>1906</posx>
+        <posy>0</posy>
+        <width>14</width>
+        <height>1080</height>
+        <colordiffuse>$VAR[Colour_ThemeColourVar]</colordiffuse>
+        <onup>60</onup>
+        <ondown>60</ondown>
+        <onleft>609</onleft>
+        <onright>SetProperty(MediaMenu,True,home)</onright>
+        <onright>SetFocus(9050,0)</onright>
+        <orientation>vertical</orientation>
+        <texturesliderbarfocus>solid_bg.png</texturesliderbarfocus>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+      </control>
+    </control>
+  </include>
 </includes>

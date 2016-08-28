@@ -1,464 +1,454 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
-	<!-- Shelf 3D Music -->
-	<include name="Shelf3Dm">
-		<control type="group"><!-- default group -->
-			<visible>Control.IsVisible(728)</visible>
-			<control type="group">
-				<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
-				<posy>-30</posy>
-				<control type="image">
-					<description>background image</description>
-					<posx>106</posx>
-					<posy>834</posy>
-					<width>1706</width>
-					<height>734</height>
-					<colordiffuse>D8FFFFFF</colordiffuse>
-					<texture border="40">panel_reflect.png</texture>
-				</control>
-				<control type="image">
-					<description>background image</description>
-					<posx>106</posx>
-					<posy>130</posy>
-					<width>1706</width>
-					<height>734</height>
-					<colordiffuse>D8FFFFFF</colordiffuse>
-					<texture border="40">listpanel_back.png</texture>
-				</control>
-				<control type="group">
-					<include>SettingsFadeEffect</include>
-					<control type="grouplist">
-						<posx>137</posx>
-						<posy>162</posy>
-						<visible>Container.Content(albums)</visible>
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]Album:[/COLOR][CR]$INFO[ListItem.Label]</label>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>!IsEmpty(ListItem.Label)</visible>
-						</control>
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]Artist:[/COLOR][CR]$INFO[ListItem.Artist]</label>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>!IsEmpty(ListItem.Artist)</visible>
-						</control>
-					</control>
-					<control type="grouplist">
-						<posx>625</posx>
-						<posy>162</posy>
-						<visible>Container.Content(albums)</visible>
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
-							<width>486</width>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>!IsEmpty(ListItem.Genre)</visible>
-						</control>
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$LOCALIZE[31103]</label>
-							<width>486</width>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>IsEmpty(ListItem.Genre)</visible>
-						</control>
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$INFO[ListItem.Year]</label>
-							<width>486</width>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>!IsEmpty(ListItem.Year)</visible>
-						</control>
-						<control type="button">
-							<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$LOCALIZE[1446]</label>
-							<width>486</width>
-							<include>ShowCaseInfoPanelButtonsValues</include>
-							<visible>IsEmpty(ListItem.Year)</visible>
-						</control>
-					</control>
-					<control type="image">
-						<posx>638</posx>
-						<posy>162</posy>
-						<width>2</width>
-						<height>179</height>
-						<texture border="1">separator3.png</texture>
-						<visible>!Container.Content(artists)</visible>
-					</control>
-					<control type="textbox">
-						<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[183]:[CR][/COLOR]$INFO[ListItem.Property(summary)]</label>
-						<posy>342</posy>
-						<posx>152</posx>
-						<width>970</width>
-						<height>180</height>
-						<font>font14_textbox2</font>
-						<pagecontrol>62</pagecontrol>
-						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-						<visible>Container.Content(albums)</visible>
-					</control>
-					<control type="textbox">
-						<label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[21887]:[CR][/COLOR]$INFO[ListItem.Property(summary)]</label>
-						<posy>162</posy>
-						<posx>152</posx>
-						<width>940</width>
-						<height>350</height>
-						<font>font14_textbox</font>
-						<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
-						<pagecontrol>62</pagecontrol>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-						<visible>Container.Content(artists)</visible>
-					</control>
-					<control type="scrollbar" id="62">
-						<posy>342</posy>
-						<posx>1128</posx>
-						<width>14</width>
-						<height>180</height>
-						<onup>SetProperty(MediaMenu,True,home)</onup>
-						<onup>SetFocus(9050,0)</onup>
-						<onleft>50</onleft>
-						<onright>50</onright>
-						<ondown>50</ondown>
-						<texturesliderbackground>scrollbar/texturesliderbackground3.png</texturesliderbackground>
-						<texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar3.png</texturesliderbar>
-						<texturesliderbarfocus border="1">scrollbar/texturesliderbar3.png</texturesliderbarfocus>
-						<showonepage>false</showonepage>
-						<orientation>vertical</orientation>
-					</control>
-					<control type="image">
-						<posx>1142</posx>
-						<posy>162</posy>
-						<width>640</width>
-						<height>360</height>
-						<fadetime>200</fadetime>
-						<texture>$INFO[ListItem.Art(fanart)]</texture>
-						<bordertexture border="1,1,2,1">empty.png</bordertexture>
-						<bordersize>1,1,2,1</bordersize>
-					</control>
-					<control type="image">
-						<posx>137</posx>
-						<posy>464</posy>
-						<width>1643</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="image">
-						<posx>137</posx>
-						<posy>103</posy>
-						<width>1643</width>
-						<height>60</height>
-						<texture border="2">separator2.png</texture>
-					</control>
-				</control>
-			</control>
-			<control type="group">
-				<control type="scrollbar" id="788">
-					<posx>110</posx>
-					<posy>1060</posy>
-					<width>1680</width>
-					<height>13</height>
-					<onup>728</onup>
-					<ondown>728</ondown>
-					<texturesliderbackground border="1">-</texturesliderbackground>
-					<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-					<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-					<textureslidernib>-</textureslidernib>
-					<textureslidernibfocus>-</textureslidernibfocus>
-					<showonepage>false</showonepage>
-					<orientation>horizontal</orientation>
-					<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(788) + !Container.Scrolling">Conditional</animation>
-				</control>
-				<control type="group">
-					<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
-					<control type="label">
-						<visible>!system.getbool(input.enablemouse)</visible>
-						<posx>937</posx>
-						<posy>508</posy>
-						<width>787</width>
-						<height>80</height>
-						<font>font_musictit2</font>
-						<align>right</align>
-						<textcolor>white</textcolor>
-						<shadowcolor>black</shadowcolor>
-						<label>$INFO[ListItem.Artist]</label>
-						<scroll>true</scroll>
-						<scrollspeed>50</scrollspeed>
-						<scrollsuffix> - </scrollsuffix>
-					</control>
-					<control type="label">
-						<posx>940</posx>
-						<posy>960</posy>
-						<width>915</width>
-						<height>40</height>
-						<align>right</align>
-						<font>font_movietit</font>
-						<scroll>true</scroll>
-						<scrollspeed>50</scrollspeed>
-						<textcolor>white</textcolor>
-						<scrollsuffix> - </scrollsuffix>
-						<shadowcolor>black</shadowcolor>
-						<visible>Container.Content(artists)</visible>
-						<label>$INFO[ListItem.Property(Artist_Genre)]</label>
-					</control>
-					<control type="label">
-						<visible>!system.getbool(input.enablemouse)</visible>
-						<posx>940</posx>
-						<posy>960</posy>
-						<width>915</width>
-						<height>40</height>
-						<align>right</align>
-						<font>font_movietit</font>
-						<scroll>true</scroll>
-						<scrollspeed>50</scrollspeed>
-						<textcolor>white</textcolor>
-						<scrollsuffix> - </scrollsuffix>
-						<shadowcolor>black</shadowcolor>
-						<visible>Container.Content(albums)</visible>
-						<label>$VAR[FloorLabelVar]</label>
-					</control>
-				</control>
-				<include condition="!system.getbool(input.enablemouse)">Shelf3D_MusicFixed</include>
-				<include condition="system.getbool(input.enablemouse)">Shelf3D_MusicList</include>
-			</control>
-		</control>
-		<control type="label">
-			<animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
-			<visible>Control.IsVisible(728) + !system.getbool(input.enablemouse)</visible>
-			<posx>1495</posx>
-			<posy>525</posy>
-			<width>150</width>
-			<height>40</height>
-			<align>left</align>
-			<font>font_movietit</font>
-			<textcolor>white</textcolor>
-			<shadowcolor>black</shadowcolor>
-			<label>$INFO[ListItem.Year]</label>
-		</control>
-	</include>
-	
-	<include name="Shelf3D_MusicFixed">
-		<control type="fixedlist" id="728">
-			<include>Shelf3D_MusicContent</include>
-		</control>
-	</include>
-	
-	<include name="Shelf3D_MusicList">
-		<control type="list" id="728">
-			<include>Shelf3D_MusicContent</include>
-		</control>
-	</include>
-	
-	<include name="Shelf3D_MusicContent">
-					<viewtype label="Shelf 3D">list</viewtype>
-					<posx>-18</posx>
-					<posy>380</posy>
-					<height>920</height>
-					<width>2250</width>
-					<onleft>728</onleft>
-					<onright>728</onright>
-					<onup>SetProperty(MediaMenu,True,home)</onup>
-					<onup>SetFocus(9050,0)</onup>
-					<ondown>noop</ondown>
-					<orientation>horizontal</orientation>
-					<focusposition>3</focusposition>
-					<scrolltime>100</scrolltime>
-					<preloaditems>2</preloaditems>
-					<pagecontrol>788</pagecontrol>
-					<visible>Container.Content(artists) | Container.Content(albums)</visible>
-					<animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
-					<itemlayout width="335" height="534">
-						<control type="group">
-							<posx>150</posx>
-							<posy>-20</posy>
-
-							<!-- Poster Reflection -->
-							<control type="image">
-								<visible>Container.Content(albums)</visible>
-								<posx>-63</posx>
-								<posy>564</posy>
-								<width>281</width>
-								<height>308</height>
-								<colordiffuse>65FFFFFF</colordiffuse>
-								<texture flipy="true" diffuse="views/shelf/reflect_poster2.png">$INFO[ListItem.Art(smallThumb)]</texture>
-								<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-							</control>
-							<control type="image">
-								<visible>Container.Content(artists)</visible>
-								<posx>-63</posx>
-								<posy>564</posy>
-								<width>281</width>
-								<height>308</height>
-								<colordiffuse>65FFFFFF</colordiffuse>
-								<texture flipy="true" diffuse="views/shelf/reflect_poster2.png">$INFO[ListItem.Art(smallThumb)]</texture>
-								<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-							</control>
-
-							<!-- Poster -->
-							<control type="image">
-								<visible>Container.Content(albums)</visible>
-								<posx>-63</posx>
-								<posy>251</posy>
-								<width>281</width>
-								<height>308</height>
-								<texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(smallThumb)]</texture>
-								<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-							</control>
-							<control type="image">
-								<visible>Container.Content(artists)</visible>
-								<posx>-63</posx>
-								<posy>251</posy>
-								<width>281</width>
-								<height>308</height>
-								<texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(smallThumb)]</texture>
-								<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-							</control>
-							<control type="image">
-								<posx>-100</posx>
-								<posy>247</posy>
-								<width>330</width>
-								<height>317</height>
-								<texture>views/shelf/caja_cd.png</texture>
-								<aspectratio>stretch</aspectratio>
-							</control>
-							<control type="label">
-								<posx>70</posx>
-								<posy>240</posy>
-								<width>310</width>
-								<height>13</height>
-								<align>center</align>
-								<aligny>top</aligny>
-								<scroll>false</scroll>
-								<animation effect="rotate" center="auto" start="90" end="90" time="0" condition="true">Conditional</animation>
-								<font>spiner2</font>
-								<label>$INFO[ListItem.Artist]</label>
-								<textcolor>white</textcolor>
-							</control>
-							<control type="image">
-								<posx>-100</posx>
-								<posy>557</posy>
-								<width>330</width>
-								<height>317</height>
-								<colordiffuse>65FFFFFF</colordiffuse>
-								<texture diffuse="views/shelf/reflect_poster2.png" >views/shelf/caja_cdr.png</texture>
-								<aspectratio>stretch</aspectratio>
-							</control>
-						</control>
-					</itemlayout>
-					<focusedlayout width="335" height="534">
-
-						<control type="group"><!--Portada-->
-
-							<animation type="Hidden" reversible="true">
-								<effect type="rotatey" delay="0" center="185" start="0" end="180" time="800" tween="quadratic" easing="out" />
-								<effect type="fade" delay="200" start="100" end="0" time="100" />
-								<effect type="zoom" delay="200" center="50,180" start="100" end="20" time="200" tween="cubic" easing="out" />
-							</animation>
-							<posx>90</posx>
-							<posy>95</posy>
-
-							<!-- Poster -->
-							<control type="image">
-								<visible>Container.Content(albums)</visible>
-								<posx>-58</posx>
-								<posy>12</posy>
-								<width>419</width>
-								<height>473</height>
-								<texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
-								<aspectratio scalediffuse="false">stretch</aspectratio>
-								<animation type="Focus" reversible="false">
-									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
-								</animation>
-							</control>
-							<control type="image">
-								<visible>Container.Content(artists)</visible>
-								<posx>-58</posx>
-								<posy>12</posy>
-								<width>419</width>
-								<height>473</height>
-								<texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
-								<aspectratio scalediffuse="false">scale</aspectratio>
-								<animation type="Focus" reversible="false">
-									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
-								</animation>
-							</control>
-							<control type="image">
-								<visible>Container.Content(albums) + IsEmpty(ListItem.Album)</visible>
-								<posx>-58</posx>
-								<posy>12</posy>
-								<width>419</width>
-								<height>473</height>
-								<texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
-								<aspectratio scalediffuse="false">scale</aspectratio>
-								<animation type="Focus" reversible="false">
-									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
-								</animation>
-							</control>
-
-							<!-- Poster Reflection -->
-							<control type="image">
-								<visible>Container.Content(albums)</visible>
-								<posx>-58</posx>
-								<posy>491</posy>
-								<width>419</width>
-								<height>473</height>	
-								<colordiffuse>45FFFFFF</colordiffuse>
-								<texture flipy="true">$INFO[ListItem.Art(thumb)]</texture>
-								<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-								<animation type="Focus" reversible="false">
-									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
-								</animation>
-							</control>
-
-							<!-- Poster Reflection -->
-							<control type="image">
-								<visible>Container.Content(artists)</visible>
-								<posx>-58</posx>
-								<posy>491</posy>
-								<width>419</width>
-								<height>473</height>
-								<colordiffuse>45FFFFFF</colordiffuse>
-								<texture flipy="true">$INFO[ListItem.Art(thumb)]</texture>
-								<aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
-								<animation type="Focus" reversible="false">
-									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
-								</animation>
-							</control>
-							<control type="image">
-								<posx>-114</posx>
-								<posy>5</posy>
-								<width>498</width>
-								<height>487</height>
-								<texture>views/shelf/caja_cd.png</texture>
-								<aspectratio>stretch</aspectratio>
-								<animation type="Focus" reversible="false">
-									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
-								</animation>
-							</control>
-							<control type="image">
-								<posx>-114</posx>
-								<posy>480</posy>
-								<width>498</width>
-								<height>487</height>
-								<colordiffuse>89FFFFFF</colordiffuse>
-								<texture>views/shelf/caja_cdr.png</texture>
-								<aspectratio>stretch</aspectratio>
-								<animation type="Focus" reversible="false">
-									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out" />
-								</animation>
-							</control>
-							<control type="label">
-								<posx>218</posx> 
-								<posy>95</posy>
-								<width>310</width>
-								<height>13</height>
-								<align>center</align>
-								<aligny>top</aligny>
-								<scroll>false</scroll>
-								<animation type="Focus" reversible="false">
-									<effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
-								</animation>
-								<animation effect="rotate" center="auto" start="90" end="90" time="0" condition="true">Conditional</animation>
-								<font>spiner</font>
-								<label>$INFO[ListItem.Artist]</label>
-								<textcolor>white</textcolor>
-							</control>
-						</control>
-					</focusedlayout>
-	</include>
-	
+  <!-- Shelf 3D Music -->
+  <include name="Shelf3Dm">
+    <control type="group">
+      <!-- default group -->
+      <visible>Control.IsVisible(728)</visible>
+      <control type="group">
+        <animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+        <posy>-30</posy>
+        <control type="image">
+          <description>background image</description>
+          <posx>106</posx>
+          <posy>834</posy>
+          <width>1706</width>
+          <height>734</height>
+          <colordiffuse>D8FFFFFF</colordiffuse>
+          <texture border="40">panel_reflect.png</texture>
+        </control>
+        <control type="image">
+          <description>background image</description>
+          <posx>106</posx>
+          <posy>130</posy>
+          <width>1706</width>
+          <height>734</height>
+          <colordiffuse>D8FFFFFF</colordiffuse>
+          <texture border="40">listpanel_back.png</texture>
+        </control>
+        <control type="group">
+          <include>SettingsFadeEffect</include>
+          <control type="grouplist">
+            <posx>137</posx>
+            <posy>162</posy>
+            <visible>Container.Content(albums)</visible>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]Album:[/COLOR][CR]$INFO[ListItem.Label]</label>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>!IsEmpty(ListItem.Label)</visible>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]Artist:[/COLOR][CR]$INFO[ListItem.Artist]</label>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>!IsEmpty(ListItem.Artist)</visible>
+            </control>
+          </control>
+          <control type="grouplist">
+            <posx>625</posx>
+            <posy>162</posy>
+            <visible>Container.Content(albums)</visible>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
+              <width>486</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>!IsEmpty(ListItem.Genre)</visible>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$LOCALIZE[31103]</label>
+              <width>486</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>IsEmpty(ListItem.Genre)</visible>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$INFO[ListItem.Year]</label>
+              <width>486</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>!IsEmpty(ListItem.Year)</visible>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$LOCALIZE[1446]</label>
+              <width>486</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>IsEmpty(ListItem.Year)</visible>
+            </control>
+          </control>
+          <control type="image">
+            <posx>638</posx>
+            <posy>162</posy>
+            <width>2</width>
+            <height>179</height>
+            <texture border="1">separator3.png</texture>
+            <visible>!Container.Content(artists)</visible>
+          </control>
+          <control type="textbox">
+            <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[183]:[CR][/COLOR]$INFO[ListItem.Property(summary)]</label>
+            <posy>342</posy>
+            <posx>152</posx>
+            <width>970</width>
+            <height>180</height>
+            <font>font14_textbox2</font>
+            <pagecontrol>62</pagecontrol>
+            <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>Container.Content(albums)</visible>
+          </control>
+          <control type="textbox">
+            <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[21887]:[CR][/COLOR]$INFO[ListItem.Property(summary)]</label>
+            <posy>162</posy>
+            <posx>152</posx>
+            <width>940</width>
+            <height>350</height>
+            <font>font14_textbox</font>
+            <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+            <pagecontrol>62</pagecontrol>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>Container.Content(artists)</visible>
+          </control>
+          <control type="scrollbar" id="62">
+            <posy>342</posy>
+            <posx>1128</posx>
+            <width>14</width>
+            <height>180</height>
+            <onup>SetProperty(MediaMenu,True,home)</onup>
+            <onup>SetFocus(9050,0)</onup>
+            <onleft>50</onleft>
+            <onright>50</onright>
+            <ondown>50</ondown>
+            <texturesliderbackground>scrollbar/texturesliderbackground3.png</texturesliderbackground>
+            <texturesliderbar colordiffuse="55ffffff" border="1">scrollbar/texturesliderbar3.png</texturesliderbar>
+            <texturesliderbarfocus border="1">scrollbar/texturesliderbar3.png</texturesliderbarfocus>
+            <showonepage>false</showonepage>
+            <orientation>vertical</orientation>
+          </control>
+          <control type="image">
+            <posx>1142</posx>
+            <posy>162</posy>
+            <width>640</width>
+            <height>360</height>
+            <fadetime>200</fadetime>
+            <texture>$INFO[ListItem.Art(fanart)]</texture>
+            <bordertexture border="1,1,2,1">empty.png</bordertexture>
+            <bordersize>1,1,2,1</bordersize>
+          </control>
+          <control type="image">
+            <posx>137</posx>
+            <posy>464</posy>
+            <width>1643</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <control type="image">
+            <posx>137</posx>
+            <posy>103</posy>
+            <width>1643</width>
+            <height>60</height>
+            <texture border="2">separator2.png</texture>
+          </control>
+        </control>
+      </control>
+      <control type="group">
+        <control type="scrollbar" id="788">
+          <posx>110</posx>
+          <posy>1060</posy>
+          <width>1680</width>
+          <height>13</height>
+          <onup>728</onup>
+          <ondown>728</ondown>
+          <texturesliderbackground border="1">-</texturesliderbackground>
+          <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+          <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+          <textureslidernib>-</textureslidernib>
+          <textureslidernibfocus>-</textureslidernibfocus>
+          <showonepage>false</showonepage>
+          <orientation>horizontal</orientation>
+          <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(788) + !Container.Scrolling">Conditional</animation>
+        </control>
+        <control type="group">
+          <animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+          <control type="label">
+            <visible>!system.getbool(input.enablemouse)</visible>
+            <posx>937</posx>
+            <posy>508</posy>
+            <width>787</width>
+            <height>80</height>
+            <font>font_musictit2</font>
+            <align>right</align>
+            <textcolor>white</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <label>$INFO[ListItem.Artist]</label>
+            <scroll>true</scroll>
+            <scrollspeed>50</scrollspeed>
+            <scrollsuffix> - </scrollsuffix>
+          </control>
+          <control type="label">
+            <posx>940</posx>
+            <posy>960</posy>
+            <width>915</width>
+            <height>40</height>
+            <align>right</align>
+            <font>font_movietit</font>
+            <scroll>true</scroll>
+            <scrollspeed>50</scrollspeed>
+            <textcolor>white</textcolor>
+            <scrollsuffix> - </scrollsuffix>
+            <shadowcolor>black</shadowcolor>
+            <visible>Container.Content(artists)</visible>
+            <label>$INFO[ListItem.Property(Artist_Genre)]</label>
+          </control>
+          <control type="label">
+            <visible>!system.getbool(input.enablemouse)</visible>
+            <posx>940</posx>
+            <posy>960</posy>
+            <width>915</width>
+            <height>40</height>
+            <align>right</align>
+            <font>font_movietit</font>
+            <scroll>true</scroll>
+            <scrollspeed>50</scrollspeed>
+            <textcolor>white</textcolor>
+            <scrollsuffix> - </scrollsuffix>
+            <shadowcolor>black</shadowcolor>
+            <visible>Container.Content(albums)</visible>
+            <label>$VAR[FloorLabelVar]</label>
+          </control>
+        </control>
+        <include condition="!system.getbool(input.enablemouse)">Shelf3D_MusicFixed</include>
+        <include condition="system.getbool(input.enablemouse)">Shelf3D_MusicList</include>
+      </control>
+    </control>
+    <control type="label">
+      <animation effect="rotatey" center="50" start="7" end="7" time="0" condition="true">Conditional</animation>
+      <visible>Control.IsVisible(728) + !system.getbool(input.enablemouse)</visible>
+      <posx>1495</posx>
+      <posy>525</posy>
+      <width>150</width>
+      <height>40</height>
+      <align>left</align>
+      <font>font_movietit</font>
+      <textcolor>white</textcolor>
+      <shadowcolor>black</shadowcolor>
+      <label>$INFO[ListItem.Year]</label>
+    </control>
+  </include>
+  <include name="Shelf3D_MusicFixed">
+    <control type="fixedlist" id="728">
+      <include>Shelf3D_MusicContent</include>
+    </control>
+  </include>
+  <include name="Shelf3D_MusicList">
+    <control type="list" id="728">
+      <include>Shelf3D_MusicContent</include>
+    </control>
+  </include>
+  <include name="Shelf3D_MusicContent">
+    <viewtype label="Shelf 3D">list</viewtype>
+    <posx>-18</posx>
+    <posy>380</posy>
+    <height>920</height>
+    <width>2250</width>
+    <onleft>728</onleft>
+    <onright>728</onright>
+    <onup>SetProperty(MediaMenu,True,home)</onup>
+    <onup>SetFocus(9050,0)</onup>
+    <ondown>noop</ondown>
+    <orientation>horizontal</orientation>
+    <focusposition>3</focusposition>
+    <scrolltime>100</scrolltime>
+    <preloaditems>2</preloaditems>
+    <pagecontrol>788</pagecontrol>
+    <visible>Container.Content(artists) | Container.Content(albums)</visible>
+    <animation effect="rotatey" center="50" start="8" end="8" time="0" condition="true">Conditional</animation>
+    <itemlayout width="335" height="534">
+      <control type="group">
+        <posx>150</posx>
+        <posy>-20</posy>
+        <!-- Poster Reflection -->
+        <control type="image">
+          <visible>Container.Content(albums)</visible>
+          <posx>-63</posx>
+          <posy>564</posy>
+          <width>281</width>
+          <height>308</height>
+          <colordiffuse>65FFFFFF</colordiffuse>
+          <texture flipy="true" diffuse="views/shelf/reflect_poster2.png">$INFO[ListItem.Art(smallThumb)]</texture>
+          <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+        </control>
+        <control type="image">
+          <visible>Container.Content(artists)</visible>
+          <posx>-63</posx>
+          <posy>564</posy>
+          <width>281</width>
+          <height>308</height>
+          <colordiffuse>65FFFFFF</colordiffuse>
+          <texture flipy="true" diffuse="views/shelf/reflect_poster2.png">$INFO[ListItem.Art(smallThumb)]</texture>
+          <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+        </control>
+        <!-- Poster -->
+        <control type="image">
+          <visible>Container.Content(albums)</visible>
+          <posx>-63</posx>
+          <posy>251</posy>
+          <width>281</width>
+          <height>308</height>
+          <texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(smallThumb)]</texture>
+          <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+        </control>
+        <control type="image">
+          <visible>Container.Content(artists)</visible>
+          <posx>-63</posx>
+          <posy>251</posy>
+          <width>281</width>
+          <height>308</height>
+          <texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(smallThumb)]</texture>
+          <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+        </control>
+        <control type="image">
+          <posx>-100</posx>
+          <posy>247</posy>
+          <width>330</width>
+          <height>317</height>
+          <texture>views/shelf/caja_cd.png</texture>
+          <aspectratio>stretch</aspectratio>
+        </control>
+        <control type="label">
+          <posx>70</posx>
+          <posy>240</posy>
+          <width>310</width>
+          <height>13</height>
+          <align>center</align>
+          <aligny>top</aligny>
+          <scroll>false</scroll>
+          <animation effect="rotate" center="auto" start="90" end="90" time="0" condition="true">Conditional</animation>
+          <font>spiner2</font>
+          <label>$INFO[ListItem.Artist]</label>
+          <textcolor>white</textcolor>
+        </control>
+        <control type="image">
+          <posx>-100</posx>
+          <posy>557</posy>
+          <width>330</width>
+          <height>317</height>
+          <colordiffuse>65FFFFFF</colordiffuse>
+          <texture diffuse="views/shelf/reflect_poster2.png">views/shelf/caja_cdr.png</texture>
+          <aspectratio>stretch</aspectratio>
+        </control>
+      </control>
+    </itemlayout>
+    <focusedlayout width="335" height="534">
+      <control type="group">
+        <!--Portada-->
+        <animation type="Hidden" reversible="true">
+          <effect type="rotatey" delay="0" center="185" start="0" end="180" time="800" tween="quadratic" easing="out"/>
+          <effect type="fade" delay="200" start="100" end="0" time="100"/>
+          <effect type="zoom" delay="200" center="50,180" start="100" end="20" time="200" tween="cubic" easing="out"/>
+        </animation>
+        <posx>90</posx>
+        <posy>95</posy>
+        <!-- Poster -->
+        <control type="image">
+          <visible>Container.Content(albums)</visible>
+          <posx>-58</posx>
+          <posy>12</posy>
+          <width>419</width>
+          <height>473</height>
+          <texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio scalediffuse="false">stretch</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <control type="image">
+          <visible>Container.Content(artists)</visible>
+          <posx>-58</posx>
+          <posy>12</posy>
+          <width>419</width>
+          <height>473</height>
+          <texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio scalediffuse="false">scale</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <control type="image">
+          <visible>Container.Content(albums) + IsEmpty(ListItem.Album)</visible>
+          <posx>-58</posx>
+          <posy>12</posy>
+          <width>419</width>
+          <height>473</height>
+          <texture diffuse="views/shelf/diffuse_box.png">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio scalediffuse="false">scale</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <!-- Poster Reflection -->
+        <control type="image">
+          <visible>Container.Content(albums)</visible>
+          <posx>-58</posx>
+          <posy>491</posy>
+          <width>419</width>
+          <height>473</height>
+          <colordiffuse>45FFFFFF</colordiffuse>
+          <texture flipy="true">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <!-- Poster Reflection -->
+        <control type="image">
+          <visible>Container.Content(artists)</visible>
+          <posx>-58</posx>
+          <posy>491</posy>
+          <width>419</width>
+          <height>473</height>
+          <colordiffuse>45FFFFFF</colordiffuse>
+          <texture flipy="true">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio aligny="center" scalediffuse="false">scale</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <control type="image">
+          <posx>-114</posx>
+          <posy>5</posy>
+          <width>498</width>
+          <height>487</height>
+          <texture>views/shelf/caja_cd.png</texture>
+          <aspectratio>stretch</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <control type="image">
+          <posx>-114</posx>
+          <posy>480</posy>
+          <width>498</width>
+          <height>487</height>
+          <colordiffuse>89FFFFFF</colordiffuse>
+          <texture>views/shelf/caja_cdr.png</texture>
+          <aspectratio>stretch</aspectratio>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+          </animation>
+        </control>
+        <control type="label">
+          <posx>218</posx>
+          <posy>95</posy>
+          <width>310</width>
+          <height>13</height>
+          <align>center</align>
+          <aligny>top</aligny>
+          <scroll>false</scroll>
+          <animation type="Focus" reversible="false">
+            <effect type="zoom" center="50,180" start="80" end="100" time="400" tween="cubic" easing="out"/>
+          </animation>
+          <animation effect="rotate" center="auto" start="90" end="90" time="0" condition="true">Conditional</animation>
+          <font>spiner</font>
+          <label>$INFO[ListItem.Artist]</label>
+          <textcolor>white</textcolor>
+        </control>
+      </control>
+    </focusedlayout>
+  </include>
 </includes>

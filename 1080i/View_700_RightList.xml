@@ -1,1425 +1,1419 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-	<!-- Video RightList -->
-	<include name="Video_RightList">
-		<control type="group">
-			<visible>Control.IsVisible(700) + !Window.IsActive(addoninformation)</visible>
-			<include>ViewAnimation</include>
-			<control type="group">
-				<posx>5</posx>
-				<posy>425</posy>
-				<control type="image">
-					<visible>!Skin.HasTheme(WhiteFlat)</visible>
-					<width>440</width>
-					<height>640</height>
-					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
-					<texture>$VAR[PosterVar]</texture>
-					<fadetime>400</fadetime>
-					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-					<bordersize>20</bordersize>
-				</control>
-				<!-- WhiteFlat - Poster -->
-				<control type="image">
-					<visible>Skin.HasTheme(WhiteFlat)</visible>
-					<posx>10</posx>
-					<posy>-15</posy>
-					<width>460</width>
-					<height>660</height>
-					<aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
-					<texture>$VAR[PosterVar]</texture>
-					<fadetime>400</fadetime>
-					<bordertexture border="20" colordiffuse="80000000">thumbs/wf_thumb_shadow.png</bordertexture>										
-					<bordersize>25</bordersize>
-				</control>
-				<!-- end -->
-			</control>
-			<control type="group">
-				<posx>434</posx>
-				<posy>550</posy>
-				<width>650</width>
-				<height>270</height>
-				<include>VisibleFadeEffect</include>
-				<textcolor>grey</textcolor>
-				<visible>Skin.HasSetting(inforightlist)</visible>
-				<control type="grouplist">
-					<visible>Container.Content(movies)</visible>
-					<control type="label">
-						<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</label>
-						<width>650</width>
-						<textcolor>grey</textcolor>
-						<include>RighListButtonsValues</include>
-						<visible>!IsEmpty(ListItem.Director)</visible>
-					</control>
-					<control type="label">
-						<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
-						<width>650</width>
-						<include>RighListButtonsValues</include>
-					</control>
-				</control>
-				<control type="grouplist">
-					<visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
-					<control type="label">
-						<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
-						<width>650</width>
-						<include>RighListButtonsValues</include>
-					</control>
-				</control>
-				<control type="grouplist">
-					<visible>Container.Content(episodes)</visible>
-					<control type="label">
-						<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
-						<width>650</width>
-						<include>RighListButtonsValues</include>
-						<visible>!IsEmpty(ListItem.Date)</visible>
-					</control>
-					<control type="label">
-						<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
-						<width>650</width>
-						<include>RighListButtonsValues</include>
-						<visible>!IsEmpty(ListItem.Duration)</visible>
-					</control>
-				</control>
-			</control>
-			<control type="group">
-				<posx>435</posx>
-				<posy>640</posy>
-				<visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + Skin.HasSetting(inforightlist)</visible>
-				<include>VisibleFadeEffect</include>
-				<control type="textbox" id="70">
-					<label>$VAR[PlotVar]</label>
-					<posx>15</posx>
-					<posy>90</posy>
-					<width>620</width>
-					<height>248</height>
-					<textcolor>grey</textcolor>
-					<font>font14_textbox</font>
-					<pagecontrol>63</pagecontrol>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
-				</control>
-				<control type="scrollbar" id="63">
-					<posx>640</posx>
-					<posy>120</posy>
-					<width>12</width>
-					<height>198</height>
-					<onup>PageUp(70)</onup>
-					<ondown>PageUp(70)</ondown>
-					<onleft>SetProperty(MediaMenu,True,home)</onleft>
-					<onleft>SetFocus(9050,0)</onleft>
-					<onright>700</onright>
-					<texturesliderbackground>scrollbar/texturesliderbackground2.png</texturesliderbackground>
-					<texturesliderbar>scrollbar/texturesliderbar2.png</texturesliderbar>
-					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-					<showonepage>false</showonepage>
-					<orientation>vertical</orientation>
-					<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(63) + !Container.Scrolling">Conditional</animation>
-				</control>
-			</control>
-			<control type="group">
-				<posx>500</posx>
-				<posy>980</posy>
-				<width>1840</width>
-				<height>90</height>
-				<control type="image">
-					<posx>0</posx>
-					<include>MediaFlagVars</include>
-					<texture >$VAR[StudioFlag]</texture>
-					<visible>!Container.Content(tvshows) + !Container.Content(seasons)</visible>
-					<include>VisibleFadeEffect</include>
-				</control>
-				<control type="image">
-					<posx>165</posx>
-					<width>200</width>
-					<include>MediaFlagVars</include>
-					<texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !IsEmpty(ListItem.Title)</visible>
-				</control>
-				<control type="image">
-					<posx>400</posx>
-					<include>MediaFlagVars</include>
-					<texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
-					<include>VisibleFadeEffect</include>
-					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
-				</control>
-				<control type="image">
-					<posx>600</posx>
-					<include>MediaFlagVars</include>
-					<texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
-					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
-					<include>VisibleFadeEffect</include>
-				</control>
-				<control type="image">
-					<posx>800</posx>
-					<include>MediaFlagVars</include>
-					<texture fallback="flags/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag]</texture>
-					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
-					<include>VisibleFadeEffect</include>
-				</control>
-				<control type="image">
-					<posx>1000</posx>
-					<include>MediaFlagVars</include>
-					<texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
-					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
-					<include>VisibleFadeEffect</include>
-				</control>
-				<control type="image">
-					<posx>1200</posx>
-					<include>MediaFlagVars</include>
-					<texture>$VAR[AudioChannelsFlag]</texture>
-					<visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
-					<include>VisibleFadeEffect</include>
-				</control>
-				<control type="group">
-					<visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
-					<include>VisibleFadeEffect</include>
-					<control type="image">
-						<posx>800</posx>
-						<include>MediaFlagVars</include>
-						<texture>$VAR[StudioFlag]</texture>
-					</control>
-					<control type="image">
-						<posx>960</posx>
-						<include>MediaFlagVars</include>
-						<texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
-					</control>
-					<control type="group">
-						<visible>!String.IsEqual(ListItem.Label,All Episodes)</visible>
-						<width>162.5</width>
-						<posx>1100</posx>
-						<posy>-6</posy>
-						<control type="label">
-							<posx>0</posx>
-							<posy>2</posy>
-							<width>162.5</width>
-							<height>60</height>
-							<align>center</align>
-							<label>$INFO[ListItem.episode]</label>
-							<font>font48_bold</font>
-							<wrapmultiline>true</wrapmultiline>
-							<textcolor>grey</textcolor>
-						</control>
-						<control type="label">
-							<posy>52</posy>
-							<width>162.5</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$VAR[OneOrMoreEpisodesVar][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>grey</textcolor>
-						</control>
-					</control>
-					<control type="group">
-						<visible>!IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
-						<width>200</width>
-						<posx>1220</posx>
-						<posy>-6</posy>
-						<control type="label">
-							<posx>0</posx>
-							<width>200</width>
-							<height>60</height>
-							<align>center</align>
-							<label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
-							<font>font48_bold</font>
-							<wrapmultiline>true</wrapmultiline>
-							<textcolor>grey</textcolor>
-						</control>
-						<control type="label">
-							<posy>52</posy>
-							<width>200</width>
-							<height>30</height>
-							<align>center</align>
-							<label>[LOWERCASE]$LOCALIZE[16101][/LOWERCASE]</label>
-							<font>font12</font>
-							<textcolor>grey</textcolor>
-						</control>
-					</control>
-				</control>
-			</control>
-			<control type="list" id="700">
-				<posx>1090</posx>
-				<posy>95</posy>
-				<width>1000</width>
-				<height>840</height>
-				<onright>noop</onright>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<onup>700</onup>
-				<ondown>700</ondown>
-				<pagecontrol>60</pagecontrol>
-				<viewtype label="RightList">list</viewtype>
-				<visible>Container.Content(movies)| Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				<scrolltime tween="quadratic" easing="out">200</scrolltime>
-				<itemlayout height="68" width="806" condition="!Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
-					<control type="image">
-						<posy>8</posy>
-						<posx>20</posx>
-						<width>810</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="label">
-						<posx>630</posx>
-						<width>600</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="label">
-						<posx>730</posx>
-						<width>100</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<label>$INFO[ListItem.Year]</label>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-				</itemlayout>
-				<focusedlayout height="85" width="806" condition="!Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
-					<control type="image">
-						<visible>!Skin.HasTheme(WhiteFlat)</visible>
-						<posy>0</posy>
-						<posx>20</posx>
-						<width>825</width>
-						<height>85</height>
-						<texture border="4">listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
-						<include>VisibleFadeEffect</include>
-					</control>
-					<!-- WhiteFlat - Selection Graphic -->
-					<control type="image">
-						<visible>Skin.HasTheme(WhiteFlat)</visible>
-						<posy>0</posy>
-						<posx>20</posx>
-						<width>825</width>
-						<height>85</height>
-						<texture border="4">wf_listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
-						<animation effect="fade" end="100" condition="true">Conditional</animation>
-						<include>VisibleFadeEffect</include>
-					</control>	
-					<control type="label">
-						<visible>!Skin.HasTheme(WhiteFlat)</visible>
-						<posy>-12</posy>
-						<posx>630</posx>
-						<width>600</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<!-- WhiteFlat - Selected Title -->
-					<control type="label">
-						<visible>Skin.HasTheme(WhiteFlat)</visible>
-						<posy>-12</posy>
-						<posx>630</posx>
-						<width>600</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<selectedcolor>white</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="100" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					
-					<!-- No Rating -->
-					<control type="label">
-						<posx>630</posx>
-						<posy>27</posy>
-						<width>600</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$VAR[DurationHrMinVar]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>IsEmpty(ListItem.RatingAndVotes)</visible>
-					</control>
-
-					<!-- User Rating -->
-					<control type="label">
-						<posx>630</posx>
-						<posy>27</posy>
-						<width>600</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$VAR[RatingVar][COLOR white] • $VAR[DurationHrMinVar][/COLOR]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-
-					<!-- Standard Rating -->
-					<control type="label">
-						<posx>630</posx>
-						<posy>27</posy>
-						<width>600</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>!IsEmpty(ListItem.RatingAndVotes) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage))</visible>
-					</control>
-
-					<!-- Rotten Tomatoes Rating -->
-					<control type="label">
-						<posx>630</posx>
-						<posy>27</posy>
-						<width>600</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
-					</control>
-
-					<control type="label">
-						<posx>730</posx>
-						<posy>8</posy>
-						<width>100</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Year]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>12</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="image">
-						<posy>28</posy>
-						<posx>20</posx>
-						<width>810</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout height="68" width="806" condition="Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
-					<control type="label">
-						<posx>730</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-				</itemlayout>
-				<focusedlayout height="85" width="806" condition="Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
-					<control type="label">
-						<posy>-12</posy>
-						<posx>730</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>![SubString(ListItem.Path,videodb://movies/sets) + !String.IsEqual(ListItem.Label,..)]</visible>
-					</control>
-					<control type="label">
-						<posy>7</posy>
-						<posx>730</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>[SubString(ListItem.Path,videodb://movies/sets) + !String.IsEqual(ListItem.Label,..)]</visible>
-					</control>
-					<control type="label">
-						<posx>130</posx>
-						<posy>27</posy>
-						<width>600</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$VAR[FloorSubLabelVar]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>![SubString(ListItem.Path,videodb://movies/sets) + !String.IsEqual(ListItem.Label,..)]</visible>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>12</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-				</focusedlayout>
-				<itemlayout height="68" width="806" condition="!Skin.HasSetting(rightlistalternatetv) + Container.Content(tvshows)">
-					<control type="image">
-						<posx>20</posx>
-						<posy>8</posy>
-						<width>810</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="label">
-						<posx>630</posx>
-						<width>600</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="label">
-						<posx>730</posx>
-						<width>100</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<label>$INFO[ListItem.Year]</label>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="group">
-						<description>Unwatched episodes</description>
-						<posx>742</posx>
-						<posy>-1</posy>
-						<control type="image">
-							<posx>0</posx>
-							<posy>3</posy>
-							<width>64</width>
-							<height>64</height>
-							<texture>overlays/tvlist/OverlayUnWatched.png</texture>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-						</control>
-						<control type="label">
-							<posx>32</posx>
-							<posy>0</posy>
-							<width>100</width>
-							<height>68</height>
-							<font>font12_title</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<label>$VAR[ListOverlayEpisodesVar]</label>
-							<textcolor>grey3</textcolor>
-							<textoffsetx>18</textoffsetx>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-						</control>
-					</control>
-				</itemlayout>
-				<focusedlayout height="85" width="806" condition="!Skin.HasSetting(rightlistalternatetv) + Container.Content(tvshows)">
-					<control type="image">
-						<posy>0</posy>
-						<posx>20</posx>
-						<width>825</width>
-						<height>85</height>
-						<texture border="4">listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
-						<include>VisibleFadeEffect</include>
-					</control>
-					<control type="label">
-						<posy>-12</posy>
-						<posx>630</posx>
-						<width>600</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<control type="label">
-						<posx>630</posx>
-						<posy>27</posy>
-						<width>600</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$VAR[RatingVar]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-					<control type="label">
-						<posx>630</posx>
-						<posy>27</posy>
-						<width>600</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$VAR[RatingVar]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-					<control type="label">
-						<posx>730</posx>
-						<posy>8</posy>
-						<width>100</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Year]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>12</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="group">
-						<description>Unwatched episodes</description>
-						<posx>742</posx>
-						<posy>10</posy>
-						<control type="image">
-							<posx>0</posx>
-							<posy>3</posy>
-							<width>64</width>
-							<height>64</height>
-							<texture>overlays/tvlist/OverlayUnWatched.png</texture>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-						</control>
-						<control type="label">
-							<posx>32</posx>
-							<posy>0</posy>
-							<width>100</width>
-							<height>68</height>
-							<font>font12_title</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<label>$VAR[ListOverlayEpisodesVar]</label>
-							<textcolor>white</textcolor>
-							<textoffsetx>18</textoffsetx>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-						</control>
-					</control>
-					<control type="image">
-						<posy>28</posy>
-						<posx>20</posx>
-						<width>810</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout height="68" width="806" condition="Skin.HasSetting(rightlistalternatetv) + Container.Content(tvshows)">
-					<control type="label">
-						<posx>30</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="group">
-						<description>Unwatched episodes</description>
-						<posx>742</posx>
-						<posy>-1</posy>
-						<control type="image">
-							<posx>0</posx>
-							<posy>3</posy>
-							<width>64</width>
-							<height>64</height>
-							<texture>overlays/list/OverlayUnWatched.png</texture>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-						</control>
-						<control type="label">
-							<posx>-18</posx>
-							<posy>0</posy>
-							<width>100</width>
-							<height>68</height>
-							<font>font12_title</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<label>$VAR[ListOverlayEpisodesVar]</label>
-							<textcolor>grey3</textcolor>
-							<textoffsetx>18</textoffsetx>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-						</control>
-					</control>
-				</itemlayout>
-				<focusedlayout height="85" width="806" condition="Skin.HasSetting(rightlistalternatetv) + Container.Content(tvshows)">
-					<control type="label">
-						<posy>-12</posy>
-						<posx>30</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<control type="label">
-						<posx>130</posx>
-						<posy>27</posy>
-						<width>600</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Year,, • ]$INFO[ListItem.RatingAndVotes]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>12</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="group">
-						<description>Unwatched episodes</description>
-						<posx>742</posx>
-						<posy>10</posy>
-						<control type="image">
-							<posx>0</posx>
-							<posy>3</posy>
-							<width>64</width>
-							<height>64</height>
-							<texture>overlays/list/OverlayUnWatched.png</texture>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-						</control>
-						<control type="label">
-							<posx>-18</posx>
-							<posy>0</posy>
-							<width>100</width>
-							<height>68</height>
-							<font>font12_title</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<label>$VAR[ListOverlayEpisodesVar]</label>
-							<textcolor>white</textcolor>
-							<textoffsetx>18</textoffsetx>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-						</control>
-					</control>
-				</focusedlayout>
-				<itemlayout height="68" width="806" condition="Container.Content(seasons) + !Skin.HasSetting(rightlistalternateseasons)">
-					<control type="image">
-						<posy>8</posy>
-						<posx>20</posx>
-						<width>800</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="label">
-						<posx>730</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="group">
-						<description>Unwatched episodes</description>
-						<posx>742</posx>
-						<posy>-1</posy>
-						<control type="image">
-							<posx>0</posx>
-							<posy>3</posy>
-							<width>64</width>
-							<height>64</height>
-							<texture>overlays/tvlist/OverlayUnWatched.png</texture>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-						</control>
-						<control type="label">
-							<posx>32</posx>
-							<posy>0</posy>
-							<width>100</width>
-							<height>68</height>
-							<font>font12_title</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<label>$VAR[ListOverlayEpisodesVar]</label>
-							<textcolor>grey3</textcolor>
-							<textoffsetx>18</textoffsetx>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-						</control>
-					</control>
-				</itemlayout>
-				<focusedlayout height="68" width="806" condition="Container.Content(seasons) + !Skin.HasSetting(rightlistalternateseasons)">
-					<control type="image">
-						<posy>10</posy>
-						<posx>20</posx>
-						<width>800</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="image">
-						<posy>0</posy>
-						<posx>20</posx>
-						<width>825</width>
-						<height>68</height>
-						<texture border="4">listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
-						<include>VisibleFadeEffect</include>
-					</control>
-					<control type="label">
-						<posx>730</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="group">
-						<description>Unwatched episodes</description>
-						<posx>742</posx>
-						<posy>-1</posy>
-						<control type="image">
-							<posx>0</posx>
-							<posy>3</posy>
-							<width>64</width>
-							<height>64</height>
-							<texture>overlays/tvlist/OverlayUnWatched.png</texture>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-						</control>
-						<control type="label">
-							<posx>32</posx>
-							<posy>0</posy>
-							<width>100</width>
-							<height>68</height>
-							<font>font12_title</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<label>$VAR[ListOverlayEpisodesVar]</label>
-							<textcolor>white</textcolor>
-							<textoffsetx>18</textoffsetx>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-						</control>
-					</control>
-				</focusedlayout>
-				<itemlayout height="68" width="806" condition="Container.Content(seasons) + Skin.HasSetting(rightlistalternateseasons)">
-					<control type="label">
-						<posx>30</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="group">
-						<description>Unwatched episodes</description>
-						<posx>742</posx>
-						<posy>-1</posy>
-						<control type="image">
-							<posx>0</posx>
-							<posy>3</posy>
-							<width>64</width>
-							<height>64</height>
-							<texture>overlays/list/OverlayUnWatched.png</texture>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-						</control>
-						<control type="label">
-							<posx>32</posx>
-							<posy>0</posy>
-							<width>100</width>
-							<height>68</height>
-							<font>font12_title</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<label>$VAR[ListOverlayEpisodesVar]</label>
-							<textcolor>grey3</textcolor>
-							<textoffsetx>18</textoffsetx>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-						</control>
-					</control>
-				</itemlayout>
-				<focusedlayout height="68" width="806" condition="Container.Content(seasons) + Skin.HasSetting(rightlistalternateseasons)">
-					<control type="label">
-						<posx>30</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="group">
-						<description>Unwatched episodes</description>
-						<posx>742</posx>
-						<posy>-1</posy>
-						<control type="image">
-							<posx>0</posx>
-							<posy>3</posy>
-							<width>64</width>
-							<height>64</height>
-							<texture>overlays/list/OverlayUnWatched.png</texture>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-						</control>
-						<control type="label">
-							<posx>32</posx>
-							<posy>0</posy>
-							<width>100</width>
-							<height>68</height>
-							<font>font12_title</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<label>$VAR[ListOverlayEpisodesVar]</label>
-							<textcolor>white</textcolor>
-							<textoffsetx>18</textoffsetx>
-							<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-						</control>
-					</control>
-				</focusedlayout>
-				<itemlayout height="68" width="806" condition="Container.Content(episodes) + !Skin.HasSetting(rightlistalternateepisode)">
-					<control type="image">
-						<posx>20</posx>
-						<posy>8</posy>
-						<width>810</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="label">
-						<posx>730</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<texture>overlays/list/OverlayUnWatched.png</texture>
-						<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-					</control>
-				</itemlayout>
-				<focusedlayout height="85" width="806" condition="Container.Content(episodes) + !Skin.HasSetting(rightlistalternateepisode)">
-					<control type="image">
-						<posy>0</posy>
-						<posx>20</posx>
-						<width>825</width>
-						<height>85</height>
-						<texture border="4">listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
-						<include>VisibleFadeEffect</include>
-					</control>
-					<control type="label">
-						<posy>-12</posy>
-						<posx>730</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>!IsEmpty(ListItem.RatingAndVotes)</visible>
-					</control>
-					<control type="label">
-						<posy>8</posy>
-						<posx>730</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>IsEmpty(ListItem.RatingAndVotes)</visible>
-					</control>
-					<control type="label">
-						<posx>730</posx>
-						<posy>27</posy>
-						<width>700</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$VAR[RatingVar]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-					<control type="label">
-						<posx>730</posx>
-						<posy>27</posy>
-						<width>700</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$VAR[RatingVar]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>12</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>13</posy>
-						<width>64</width>
-						<height>64</height>
-						<texture>overlays/list/OverlayUnWatched.png</texture>
-						<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-					</control>
-					<control type="image">
-						<posy>28</posy>
-						<posx>20</posx>
-						<width>810</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-				</focusedlayout>
-				<itemlayout height="68" width="806" condition="Container.Content(episodes) + Skin.HasSetting(rightlistalternateepisode)">
-					<control type="label">
-						<posx>30</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>2</posy>
-						<width>64</width>
-						<height>64</height>
-						<texture>overlays/list/OverlayUnWatched.png</texture>
-						<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-					</control>
-				</itemlayout>
-				<focusedlayout height="85" width="806" condition="Container.Content(episodes) + Skin.HasSetting(rightlistalternateepisode)">
-					<control type="label">
-						<posy>-12</posy>
-						<posx>30</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>!IsEmpty(ListItem.RatingAndVotes)</visible>
-					</control>
-					<control type="label">
-						<posy>8</posy>
-						<posx>30</posx>
-						<width>700</width>
-						<height>68</height>
-						<font>font16</font>
-						<align>right</align>
-						<textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-						<visible>IsEmpty(ListItem.RatingAndVotes)</visible>
-					</control>
-					<control type="label">
-						<posx>30</posx>
-						<posy>27</posy>
-						<width>700</width>
-						<height>68</height>
-						<font>font13</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.RatingAndVotes]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>12</posy>
-						<width>64</width>
-						<height>64</height>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[ListItem.Overlay]</texture>
-						<colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
-					</control>
-					<control type="image">
-						<posx>742</posx>
-						<posy>13</posy>
-						<width>64</width>
-						<height>64</height>
-						<texture>overlays/list/OverlayUnWatched.png</texture>
-						<visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-					</control>
-				</focusedlayout>
-			</control>
-			<control type="scrollbar" id="60">
-				<posx>1904</posx>
-				<posy>40</posy>
-				<width>14</width>
-				<height>920</height>
-				<onup>60</onup>
-				<ondown>60</ondown>
-				<onleft>700</onleft>
-				<onright>SetProperty(MediaMenu,True,home)</onright>
-				<onright>SetFocus(9050,0)</onright>
-				<texturesliderbackground border="1">-</texturesliderbackground>
-				<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-				<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-				<textureslidernib>-</textureslidernib>
-				<textureslidernibfocus>-</textureslidernibfocus>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-				<showonepage>false</showonepage>
-				<orientation>vertical</orientation>
-			</control>
-		</control>
-	</include>
-
-	<!-- Music RightList -->
-	<include name="Music_RightList">
-		<control type="group">
-			<visible>Control.IsVisible(700) + !Window.IsActive(addoninformation)</visible>
-			<include>ViewAnimation</include>
-			<control type="group">
-				<posx>2</posx>
-				<posy>420</posy>
-				<control type="image">
-					<width>450</width>
-					<height>650</height>
-					<aspectratio aligny="bottom">keep</aspectratio>
-					<texture>$INFO[ListItem.Icon]</texture>
-					<fadetime>400</fadetime>
-					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-					<bordersize>20</bordersize>
-				</control>
-			</control>
-			<control type="grouplist">
-				<posx>434</posx>
-				<posy>620</posy>
-				<width>650</width>
-				<height>270</height>
-				<usecontrolcoords>true</usecontrolcoords>
-				<control type="label">
-					<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[557]:[/COLOR][CR]$INFO[ListItem.Artist]</label>
-					<width>650</width>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>!IsEmpty(ListItem.Artist)</visible>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
-					<width>650</width>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>!IsEmpty(ListItem.Genre)</visible>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[180]:[/COLOR][CR]$INFO[ListItem.Duration]</label>
-					<width>650</width>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>!IsEmpty(ListItem.Duration)</visible>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[21894]:[/COLOR][CR]$INFO[ListItem.Property(Artist_Formed)]</label>
-					<width>650</width>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>!IsEmpty(ListItem.Property(Artist_Formed)) + IsEmpty(ListItem.Property(Artist_Genre)) + IsEmpty(ListItem.Property(Artist_Born))</visible>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[21893]:[/COLOR][CR]$INFO[ListItem.Property(Artist_Born)]</label>
-					<width>650</width>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>!IsEmpty(ListItem.Property(Artist_Born)) + IsEmpty(ListItem.Property(Artist_Genre))</visible>
-				</control>
-				<control type="label">
-					<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Property(Artist_Genre)]</label>
-					<width>650</width>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<visible>!IsEmpty(ListItem.Property(Artist_Genre))</visible>
-				</control>
-				<control type="textbox">
-					<label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[569]:[/COLOR][CR]$INFO[ListItem.Comment]</label>
-					<posx>15</posx>
-					<posy>0</posy>
-					<width>615</width>
-					<height>180</height>
-					<font>font14_textbox</font>
-					<pagecontrol>62</pagecontrol>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-					<visible>!IsEmpty(ListItem.Comment)</visible>
-				</control>
-			</control>
-			<control type="group">
-				<posx>435</posx>
-				<posy>810</posy>
-				<control type="textbox" id="70">
-					<label>$INFO[ListItem.Property(summary)]</label>
-					<posx>15</posx>
-					<posy>0</posy>
-					<width>615</width>
-					<height>245</height>
-					<font>font14_textbox</font>
-					<pagecontrol>63</pagecontrol>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
-					<visible>!Skin.HasSetting(General.SmallPlotText)</visible>
-				</control>
-				<control type="textbox" id="70">
-					<label>$INFO[ListItem.Property(summary)]</label>
-					<posx>15</posx>
-					<posy>0</posy>
-					<width>615</width>
-					<height>245</height>
-					<font>font14_textbox_rightlistmusic</font>
-					<pagecontrol>63</pagecontrol>
-					<include>ShowCaseInfoPanelButtonsValues</include>
-					<autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
-					<visible>Skin.HasSetting(General.SmallPlotText)</visible>
-				</control>
-				<control type="scrollbar" id="63">
-					<posx>636</posx>
-					<posy>0</posy>
-					<width>14</width>
-					<height>245</height>
-					<onup>PageUp(70)</onup>
-					<ondown>PageUp(70)</ondown>
-					<onleft>SetProperty(MediaMenu,True,home)</onleft>
-					<onleft>SetFocus(9050,0)</onleft>
-					<onright>700</onright>
-					<texturesliderbackground>scrollbar/texturesliderbackground2.png</texturesliderbackground>
-					<texturesliderbar>scrollbar/texturesliderbar2.png</texturesliderbar>
-					<texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
-					<showonepage>false</showonepage>
-					<orientation>vertical</orientation>
-					<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(63) + !Container.Scrolling">Conditional</animation>
-				</control>
-			</control>
-			<control type="list" id="700">
-				<posx>1090</posx>
-				<posy>95</posy>
-				<width>1000</width>
-				<height>830</height>
-				<onleft>SetProperty(MediaMenu,True,home)</onleft>
-				<onleft>SetFocus(9050,0)</onleft>
-				<onright>noop</onright>
-				<onup>700</onup>
-				<ondown>700</ondown>
-				<pagecontrol>60</pagecontrol>
-				<viewtype label="RightList">list</viewtype>
-				<visible>Container.Content(artists) | Container.Content(albums)</visible>
-				<scrolltime tween="quadratic" easing="out">200</scrolltime>
-				<itemlayout height="68" width="806" condition="Container.Content(artists)">
-					<control type="image">
-						<posy>8</posy>
-						<posx>20</posx>
-						<width>800</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="label">
-						<posx>805</posx>
-						<width>775</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>grey</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-					</control>
-					<control type="label">
-						<posx>790</posx>
-						<width>680</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<textcolor>white</textcolor>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<aligny>center</aligny>
-						<label>$INFO[ListItem.Label2]</label>
-					</control>
-				</itemlayout>
-				<focusedlayout height="68" width="806" condition="Container.Content(artists)">
-					<control type="image">
-						<posy>10</posy>
-						<posx>20</posx>
-						<width>800</width>
-						<height>60</height>
-						<texture border="1">separator2.png</texture>
-					</control>
-					<control type="image">
-						<posx>20</posx>
-						<width>825</width>
-						<height>68</height>
-						<texture border="4">listselect_fo.png</texture>
-						<colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
-						<include>VisibleFadeEffect</include>
-					</control>
-					<control type="label">
-						<posx>805</posx>
-						<width>775</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
-					</control>
-					<control type="label">
-						<posx>790</posx>
-						<width>680</width>
-						<height>68</height>
-						<font>font15</font>
-						<align>right</align>
-						<selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
-						<aligny>center</aligny>
-						<label>$INFO[ListItem.label2]</label>
-						<animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
-					</control>
-				</focusedlayout>
-			</control>
-			<control type="scrollbar" id="60">
-				<posx>1904</posx>
-				<posy>40</posy>
-				<width>14</width>
-				<height>920</height>
-				<onup>60</onup>
-				<ondown>60</ondown>
-				<onleft>700</onleft>
-				<onright>SetProperty(MediaMenu,True,home)</onright>
-				<onright>SetFocus(9050,0)</onright>
-				<texturesliderbackground border="1">-</texturesliderbackground>
-				<texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
-				<texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
-				<textureslidernib>-</textureslidernib>
-				<textureslidernibfocus>-</textureslidernibfocus>
-				<animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
-				<showonepage>false</showonepage>
-				<orientation>vertical</orientation>
-			</control>
-		</control>
-	</include>
+  <!-- Video RightList -->
+  <include name="Video_RightList">
+    <control type="group">
+      <visible>Control.IsVisible(700) + !Window.IsActive(addoninformation)</visible>
+      <include>ViewAnimation</include>
+      <control type="group">
+        <posx>5</posx>
+        <posy>425</posy>
+        <control type="image">
+          <visible>!Skin.HasTheme(WhiteFlat)</visible>
+          <width>440</width>
+          <height>640</height>
+          <aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
+          <texture>$VAR[PosterVar]</texture>
+          <fadetime>400</fadetime>
+          <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+          <bordersize>20</bordersize>
+        </control>
+        <!-- WhiteFlat - Poster -->
+        <control type="image">
+          <visible>Skin.HasTheme(WhiteFlat)</visible>
+          <posx>10</posx>
+          <posy>-15</posy>
+          <width>460</width>
+          <height>660</height>
+          <aspectratio aligny="bottom" scalediffuse="false">scale</aspectratio>
+          <texture>$VAR[PosterVar]</texture>
+          <fadetime>400</fadetime>
+          <bordertexture border="20" colordiffuse="80000000">thumbs/wf_thumb_shadow.png</bordertexture>
+          <bordersize>25</bordersize>
+        </control>
+        <!-- end -->
+      </control>
+      <control type="group">
+        <posx>434</posx>
+        <posy>550</posy>
+        <width>650</width>
+        <height>270</height>
+        <include>VisibleFadeEffect</include>
+        <textcolor>grey</textcolor>
+        <visible>Skin.HasSetting(inforightlist)</visible>
+        <control type="grouplist">
+          <visible>Container.Content(movies)</visible>
+          <control type="label">
+            <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</label>
+            <width>650</width>
+            <textcolor>grey</textcolor>
+            <include>RighListButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Director)</visible>
+          </control>
+          <control type="label">
+            <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
+            <width>650</width>
+            <include>RighListButtonsValues</include>
+          </control>
+        </control>
+        <control type="grouplist">
+          <visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
+          <control type="label">
+            <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
+            <width>650</width>
+            <include>RighListButtonsValues</include>
+          </control>
+        </control>
+        <control type="grouplist">
+          <visible>Container.Content(episodes)</visible>
+          <control type="label">
+            <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
+            <width>650</width>
+            <include>RighListButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Date)</visible>
+          </control>
+          <control type="label">
+            <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+            <width>650</width>
+            <include>RighListButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Duration)</visible>
+          </control>
+        </control>
+      </control>
+      <control type="group">
+        <posx>435</posx>
+        <posy>640</posy>
+        <visible>[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + Skin.HasSetting(inforightlist)</visible>
+        <include>VisibleFadeEffect</include>
+        <control type="textbox" id="70">
+          <label>$VAR[PlotVar]</label>
+          <posx>15</posx>
+          <posy>90</posy>
+          <width>620</width>
+          <height>248</height>
+          <textcolor>grey</textcolor>
+          <font>font14_textbox</font>
+          <pagecontrol>63</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
+        </control>
+        <control type="scrollbar" id="63">
+          <posx>640</posx>
+          <posy>120</posy>
+          <width>12</width>
+          <height>198</height>
+          <onup>PageUp(70)</onup>
+          <ondown>PageUp(70)</ondown>
+          <onleft>SetProperty(MediaMenu,True,home)</onleft>
+          <onleft>SetFocus(9050,0)</onleft>
+          <onright>700</onright>
+          <texturesliderbackground>scrollbar/texturesliderbackground2.png</texturesliderbackground>
+          <texturesliderbar>scrollbar/texturesliderbar2.png</texturesliderbar>
+          <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+          <showonepage>false</showonepage>
+          <orientation>vertical</orientation>
+          <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(63) + !Container.Scrolling">Conditional</animation>
+        </control>
+      </control>
+      <control type="group">
+        <posx>500</posx>
+        <posy>980</posy>
+        <width>1840</width>
+        <height>90</height>
+        <control type="image">
+          <posx>0</posx>
+          <include>MediaFlagVars</include>
+          <texture>$VAR[StudioFlag]</texture>
+          <visible>!Container.Content(tvshows) + !Container.Content(seasons)</visible>
+          <include>VisibleFadeEffect</include>
+        </control>
+        <control type="image">
+          <posx>165</posx>
+          <width>200</width>
+          <include>MediaFlagVars</include>
+          <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+          <visible>!Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !IsEmpty(ListItem.Title)</visible>
+        </control>
+        <control type="image">
+          <posx>400</posx>
+          <include>MediaFlagVars</include>
+          <texture fallback="flags/resolution/defaultscreen.png">$VAR[ResolutionFlag]</texture>
+          <include>VisibleFadeEffect</include>
+          <visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
+        </control>
+        <control type="image">
+          <posx>600</posx>
+          <include>MediaFlagVars</include>
+          <texture fallback="flags/video/default.png">$VAR[VideoCodecFlag]</texture>
+          <visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
+          <include>VisibleFadeEffect</include>
+        </control>
+        <control type="image">
+          <posx>800</posx>
+          <include>MediaFlagVars</include>
+          <texture fallback="flags/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag]</texture>
+          <visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
+          <include>VisibleFadeEffect</include>
+        </control>
+        <control type="image">
+          <posx>1000</posx>
+          <include>MediaFlagVars</include>
+          <texture fallback="flags/audio/defaultsound.png">$VAR[AudioCodecFlag]</texture>
+          <visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
+          <include>VisibleFadeEffect</include>
+        </control>
+        <control type="image">
+          <posx>1200</posx>
+          <include>MediaFlagVars</include>
+          <texture>$VAR[AudioChannelsFlag]</texture>
+          <visible>!Container.Content(tvshows) + !Container.Content(seasons) + !IsEmpty(ListItem.Title)</visible>
+          <include>VisibleFadeEffect</include>
+        </control>
+        <control type="group">
+          <visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
+          <include>VisibleFadeEffect</include>
+          <control type="image">
+            <posx>800</posx>
+            <include>MediaFlagVars</include>
+            <texture>$VAR[StudioFlag]</texture>
+          </control>
+          <control type="image">
+            <posx>960</posx>
+            <include>MediaFlagVars</include>
+            <texture fallback="flags/mpaa/NR.png">$VAR[MPAAFlag]</texture>
+          </control>
+          <control type="group">
+            <visible>!String.IsEqual(ListItem.Label,All Episodes)</visible>
+            <width>162.5</width>
+            <posx>1100</posx>
+            <posy>-6</posy>
+            <control type="label">
+              <posx>0</posx>
+              <posy>2</posy>
+              <width>162.5</width>
+              <height>60</height>
+              <align>center</align>
+              <label>$INFO[ListItem.episode]</label>
+              <font>font48_bold</font>
+              <wrapmultiline>true</wrapmultiline>
+              <textcolor>grey</textcolor>
+            </control>
+            <control type="label">
+              <posy>52</posy>
+              <width>162.5</width>
+              <height>30</height>
+              <align>center</align>
+              <label>[LOWERCASE]$VAR[OneOrMoreEpisodesVar][/LOWERCASE]</label>
+              <font>font12</font>
+              <textcolor>grey</textcolor>
+            </control>
+          </control>
+          <control type="group">
+            <visible>!IsEmpty(ListItem.Property(UnWatchedEpisodes))</visible>
+            <width>200</width>
+            <posx>1220</posx>
+            <posy>-6</posy>
+            <control type="label">
+              <posx>0</posx>
+              <width>200</width>
+              <height>60</height>
+              <align>center</align>
+              <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+              <font>font48_bold</font>
+              <wrapmultiline>true</wrapmultiline>
+              <textcolor>grey</textcolor>
+            </control>
+            <control type="label">
+              <posy>52</posy>
+              <width>200</width>
+              <height>30</height>
+              <align>center</align>
+              <label>[LOWERCASE]$LOCALIZE[16101][/LOWERCASE]</label>
+              <font>font12</font>
+              <textcolor>grey</textcolor>
+            </control>
+          </control>
+        </control>
+      </control>
+      <control type="list" id="700">
+        <posx>1090</posx>
+        <posy>95</posy>
+        <width>1000</width>
+        <height>840</height>
+        <onright>noop</onright>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <onup>700</onup>
+        <ondown>700</ondown>
+        <pagecontrol>60</pagecontrol>
+        <viewtype label="RightList">list</viewtype>
+        <visible>Container.Content(movies)| Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+        <scrolltime tween="quadratic" easing="out">200</scrolltime>
+        <itemlayout height="68" width="806" condition="!Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
+          <control type="image">
+            <posy>8</posy>
+            <posx>20</posx>
+            <width>810</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <control type="label">
+            <posx>630</posx>
+            <width>600</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <width>100</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <label>$INFO[ListItem.Year]</label>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+        </itemlayout>
+        <focusedlayout height="85" width="806" condition="!Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
+          <control type="image">
+            <visible>!Skin.HasTheme(WhiteFlat)</visible>
+            <posy>0</posy>
+            <posx>20</posx>
+            <width>825</width>
+            <height>85</height>
+            <texture border="4">listselect_fo.png</texture>
+            <colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
+            <include>VisibleFadeEffect</include>
+          </control>
+          <!-- WhiteFlat - Selection Graphic -->
+          <control type="image">
+            <visible>Skin.HasTheme(WhiteFlat)</visible>
+            <posy>0</posy>
+            <posx>20</posx>
+            <width>825</width>
+            <height>85</height>
+            <texture border="4">wf_listselect_fo.png</texture>
+            <colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
+            <animation effect="fade" end="100" condition="true">Conditional</animation>
+            <include>VisibleFadeEffect</include>
+          </control>
+          <control type="label">
+            <visible>!Skin.HasTheme(WhiteFlat)</visible>
+            <posy>-12</posy>
+            <posx>630</posx>
+            <width>600</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <!-- WhiteFlat - Selected Title -->
+          <control type="label">
+            <visible>Skin.HasTheme(WhiteFlat)</visible>
+            <posy>-12</posy>
+            <posx>630</posx>
+            <width>600</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <selectedcolor>white</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="100" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <!-- No Rating -->
+          <control type="label">
+            <posx>630</posx>
+            <posy>27</posy>
+            <width>600</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$VAR[DurationHrMinVar]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <!-- User Rating -->
+          <control type="label">
+            <posx>630</posx>
+            <posy>27</posy>
+            <width>600</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$VAR[RatingVar][COLOR white] • $VAR[DurationHrMinVar][/COLOR]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <!-- Standard Rating -->
+          <control type="label">
+            <posx>630</posx>
+            <posy>27</posy>
+            <width>600</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$VAR[RatingVar] • $VAR[DurationHrMinVar]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>!IsEmpty(ListItem.RatingAndVotes) + IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage))</visible>
+          </control>
+          <!-- Rotten Tomatoes Rating -->
+          <control type="label">
+            <posx>630</posx>
+            <posy>27</posy>
+            <width>600</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Property(ratingPercent),,% • ]$VAR[DurationHrMinVar]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <posy>8</posy>
+            <width>100</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Year]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>12</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="image">
+            <posy>28</posy>
+            <posx>20</posx>
+            <width>810</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+        </focusedlayout>
+        <itemlayout height="68" width="806" condition="Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
+          <control type="label">
+            <posx>730</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+        </itemlayout>
+        <focusedlayout height="85" width="806" condition="Skin.HasSetting(rightlistalternate) + Container.Content(movies)">
+          <control type="label">
+            <posy>-12</posy>
+            <posx>730</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>![SubString(ListItem.Path,videodb://movies/sets) + !String.IsEqual(ListItem.Label,..)]</visible>
+          </control>
+          <control type="label">
+            <posy>7</posy>
+            <posx>730</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>[SubString(ListItem.Path,videodb://movies/sets) + !String.IsEqual(ListItem.Label,..)]</visible>
+          </control>
+          <control type="label">
+            <posx>130</posx>
+            <posy>27</posy>
+            <width>600</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$VAR[FloorSubLabelVar]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>![SubString(ListItem.Path,videodb://movies/sets) + !String.IsEqual(ListItem.Label,..)]</visible>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>12</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+        </focusedlayout>
+        <itemlayout height="68" width="806" condition="!Skin.HasSetting(rightlistalternatetv) + Container.Content(tvshows)">
+          <control type="image">
+            <posx>20</posx>
+            <posy>8</posy>
+            <width>810</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <control type="label">
+            <posx>630</posx>
+            <width>600</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <width>100</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <label>$INFO[ListItem.Year]</label>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="group">
+            <description>Unwatched episodes</description>
+            <posx>742</posx>
+            <posy>-1</posy>
+            <control type="image">
+              <posx>0</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <texture>overlays/tvlist/OverlayUnWatched.png</texture>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+            </control>
+            <control type="label">
+              <posx>32</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>68</height>
+              <font>font12_title</font>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$VAR[ListOverlayEpisodesVar]</label>
+              <textcolor>grey3</textcolor>
+              <textoffsetx>18</textoffsetx>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+            </control>
+          </control>
+        </itemlayout>
+        <focusedlayout height="85" width="806" condition="!Skin.HasSetting(rightlistalternatetv) + Container.Content(tvshows)">
+          <control type="image">
+            <posy>0</posy>
+            <posx>20</posx>
+            <width>825</width>
+            <height>85</height>
+            <texture border="4">listselect_fo.png</texture>
+            <colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
+            <include>VisibleFadeEffect</include>
+          </control>
+          <control type="label">
+            <posy>-12</posy>
+            <posx>630</posx>
+            <width>600</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <control type="label">
+            <posx>630</posx>
+            <posy>27</posy>
+            <width>600</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$VAR[RatingVar]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <control type="label">
+            <posx>630</posx>
+            <posy>27</posy>
+            <width>600</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$VAR[RatingVar]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <posy>8</posy>
+            <width>100</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Year]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>12</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="group">
+            <description>Unwatched episodes</description>
+            <posx>742</posx>
+            <posy>10</posy>
+            <control type="image">
+              <posx>0</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <texture>overlays/tvlist/OverlayUnWatched.png</texture>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+            </control>
+            <control type="label">
+              <posx>32</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>68</height>
+              <font>font12_title</font>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$VAR[ListOverlayEpisodesVar]</label>
+              <textcolor>white</textcolor>
+              <textoffsetx>18</textoffsetx>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+            </control>
+          </control>
+          <control type="image">
+            <posy>28</posy>
+            <posx>20</posx>
+            <width>810</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+        </focusedlayout>
+        <itemlayout height="68" width="806" condition="Skin.HasSetting(rightlistalternatetv) + Container.Content(tvshows)">
+          <control type="label">
+            <posx>30</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="group">
+            <description>Unwatched episodes</description>
+            <posx>742</posx>
+            <posy>-1</posy>
+            <control type="image">
+              <posx>0</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <texture>overlays/list/OverlayUnWatched.png</texture>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+            </control>
+            <control type="label">
+              <posx>-18</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>68</height>
+              <font>font12_title</font>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$VAR[ListOverlayEpisodesVar]</label>
+              <textcolor>grey3</textcolor>
+              <textoffsetx>18</textoffsetx>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+            </control>
+          </control>
+        </itemlayout>
+        <focusedlayout height="85" width="806" condition="Skin.HasSetting(rightlistalternatetv) + Container.Content(tvshows)">
+          <control type="label">
+            <posy>-12</posy>
+            <posx>30</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <control type="label">
+            <posx>130</posx>
+            <posy>27</posy>
+            <width>600</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Year,, • ]$INFO[ListItem.RatingAndVotes]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>12</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="group">
+            <description>Unwatched episodes</description>
+            <posx>742</posx>
+            <posy>10</posy>
+            <control type="image">
+              <posx>0</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <texture>overlays/list/OverlayUnWatched.png</texture>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+            </control>
+            <control type="label">
+              <posx>-18</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>68</height>
+              <font>font12_title</font>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$VAR[ListOverlayEpisodesVar]</label>
+              <textcolor>white</textcolor>
+              <textoffsetx>18</textoffsetx>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="68" width="806" condition="Container.Content(seasons) + !Skin.HasSetting(rightlistalternateseasons)">
+          <control type="image">
+            <posy>8</posy>
+            <posx>20</posx>
+            <width>800</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="group">
+            <description>Unwatched episodes</description>
+            <posx>742</posx>
+            <posy>-1</posy>
+            <control type="image">
+              <posx>0</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <texture>overlays/tvlist/OverlayUnWatched.png</texture>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+            </control>
+            <control type="label">
+              <posx>32</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>68</height>
+              <font>font12_title</font>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$VAR[ListOverlayEpisodesVar]</label>
+              <textcolor>grey3</textcolor>
+              <textoffsetx>18</textoffsetx>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+            </control>
+          </control>
+        </itemlayout>
+        <focusedlayout height="68" width="806" condition="Container.Content(seasons) + !Skin.HasSetting(rightlistalternateseasons)">
+          <control type="image">
+            <posy>10</posy>
+            <posx>20</posx>
+            <width>800</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <control type="image">
+            <posy>0</posy>
+            <posx>20</posx>
+            <width>825</width>
+            <height>68</height>
+            <texture border="4">listselect_fo.png</texture>
+            <colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
+            <include>VisibleFadeEffect</include>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="group">
+            <description>Unwatched episodes</description>
+            <posx>742</posx>
+            <posy>-1</posy>
+            <control type="image">
+              <posx>0</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <texture>overlays/tvlist/OverlayUnWatched.png</texture>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+            </control>
+            <control type="label">
+              <posx>32</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>68</height>
+              <font>font12_title</font>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$VAR[ListOverlayEpisodesVar]</label>
+              <textcolor>white</textcolor>
+              <textoffsetx>18</textoffsetx>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="68" width="806" condition="Container.Content(seasons) + Skin.HasSetting(rightlistalternateseasons)">
+          <control type="label">
+            <posx>30</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="group">
+            <description>Unwatched episodes</description>
+            <posx>742</posx>
+            <posy>-1</posy>
+            <control type="image">
+              <posx>0</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <texture>overlays/list/OverlayUnWatched.png</texture>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+            </control>
+            <control type="label">
+              <posx>32</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>68</height>
+              <font>font12_title</font>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$VAR[ListOverlayEpisodesVar]</label>
+              <textcolor>grey3</textcolor>
+              <textoffsetx>18</textoffsetx>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+            </control>
+          </control>
+        </itemlayout>
+        <focusedlayout height="68" width="806" condition="Container.Content(seasons) + Skin.HasSetting(rightlistalternateseasons)">
+          <control type="label">
+            <posx>30</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="group">
+            <description>Unwatched episodes</description>
+            <posx>742</posx>
+            <posy>-1</posy>
+            <control type="image">
+              <posx>0</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <texture>overlays/list/OverlayUnWatched.png</texture>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+            </control>
+            <control type="label">
+              <posx>32</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>68</height>
+              <font>font12_title</font>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>$VAR[ListOverlayEpisodesVar]</label>
+              <textcolor>white</textcolor>
+              <textoffsetx>18</textoffsetx>
+              <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="68" width="806" condition="Container.Content(episodes) + !Skin.HasSetting(rightlistalternateepisode)">
+          <control type="image">
+            <posx>20</posx>
+            <posy>8</posy>
+            <width>810</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>overlays/list/OverlayUnWatched.png</texture>
+            <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+          </control>
+        </itemlayout>
+        <focusedlayout height="85" width="806" condition="Container.Content(episodes) + !Skin.HasSetting(rightlistalternateepisode)">
+          <control type="image">
+            <posy>0</posy>
+            <posx>20</posx>
+            <width>825</width>
+            <height>85</height>
+            <texture border="4">listselect_fo.png</texture>
+            <colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
+            <include>VisibleFadeEffect</include>
+          </control>
+          <control type="label">
+            <posy>-12</posy>
+            <posx>730</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>!IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <control type="label">
+            <posy>8</posy>
+            <posx>730</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <posy>27</posy>
+            <width>700</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$VAR[RatingVar]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <control type="label">
+            <posx>730</posx>
+            <posy>27</posy>
+            <width>700</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$VAR[RatingVar]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>12</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>13</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>overlays/list/OverlayUnWatched.png</texture>
+            <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+          </control>
+          <control type="image">
+            <posy>28</posy>
+            <posx>20</posx>
+            <width>810</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+        </focusedlayout>
+        <itemlayout height="68" width="806" condition="Container.Content(episodes) + Skin.HasSetting(rightlistalternateepisode)">
+          <control type="label">
+            <posx>30</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>2</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>overlays/list/OverlayUnWatched.png</texture>
+            <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+          </control>
+        </itemlayout>
+        <focusedlayout height="85" width="806" condition="Container.Content(episodes) + Skin.HasSetting(rightlistalternateepisode)">
+          <control type="label">
+            <posy>-12</posy>
+            <posx>30</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>!IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <control type="label">
+            <posy>8</posy>
+            <posx>30</posx>
+            <width>700</width>
+            <height>68</height>
+            <font>font16</font>
+            <align>right</align>
+            <textcolor>$VAR[Colour_RightListThemeColourVar]</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+            <visible>IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <control type="label">
+            <posx>30</posx>
+            <posy>27</posy>
+            <width>700</width>
+            <height>68</height>
+            <font>font13</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.RatingAndVotes]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(700)">Conditional</animation>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>12</posy>
+            <width>64</width>
+            <height>64</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[ListItem.Overlay]</texture>
+            <colordiffuse>$VAR[Colour_RightListWatchedStatusColourVar]</colordiffuse>
+          </control>
+          <control type="image">
+            <posx>742</posx>
+            <posy>13</posy>
+            <width>64</width>
+            <height>64</height>
+            <texture>overlays/list/OverlayUnWatched.png</texture>
+            <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
+          </control>
+        </focusedlayout>
+      </control>
+      <control type="scrollbar" id="60">
+        <posx>1904</posx>
+        <posy>40</posy>
+        <width>14</width>
+        <height>920</height>
+        <onup>60</onup>
+        <ondown>60</ondown>
+        <onleft>700</onleft>
+        <onright>SetProperty(MediaMenu,True,home)</onright>
+        <onright>SetFocus(9050,0)</onright>
+        <texturesliderbackground border="1">-</texturesliderbackground>
+        <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+        <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+        <textureslidernib>-</textureslidernib>
+        <textureslidernibfocus>-</textureslidernibfocus>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+        <showonepage>false</showonepage>
+        <orientation>vertical</orientation>
+      </control>
+    </control>
+  </include>
+  <!-- Music RightList -->
+  <include name="Music_RightList">
+    <control type="group">
+      <visible>Control.IsVisible(700) + !Window.IsActive(addoninformation)</visible>
+      <include>ViewAnimation</include>
+      <control type="group">
+        <posx>2</posx>
+        <posy>420</posy>
+        <control type="image">
+          <width>450</width>
+          <height>650</height>
+          <aspectratio aligny="bottom">keep</aspectratio>
+          <texture>$INFO[ListItem.Icon]</texture>
+          <fadetime>400</fadetime>
+          <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+          <bordersize>20</bordersize>
+        </control>
+      </control>
+      <control type="grouplist">
+        <posx>434</posx>
+        <posy>620</posy>
+        <width>650</width>
+        <height>270</height>
+        <usecontrolcoords>true</usecontrolcoords>
+        <control type="label">
+          <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[557]:[/COLOR][CR]$INFO[ListItem.Artist]</label>
+          <width>650</width>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!IsEmpty(ListItem.Artist)</visible>
+        </control>
+        <control type="label">
+          <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
+          <width>650</width>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!IsEmpty(ListItem.Genre)</visible>
+        </control>
+        <control type="label">
+          <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[180]:[/COLOR][CR]$INFO[ListItem.Duration]</label>
+          <width>650</width>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!IsEmpty(ListItem.Duration)</visible>
+        </control>
+        <control type="label">
+          <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[21894]:[/COLOR][CR]$INFO[ListItem.Property(Artist_Formed)]</label>
+          <width>650</width>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!IsEmpty(ListItem.Property(Artist_Formed)) + IsEmpty(ListItem.Property(Artist_Genre)) + IsEmpty(ListItem.Property(Artist_Born))</visible>
+        </control>
+        <control type="label">
+          <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[21893]:[/COLOR][CR]$INFO[ListItem.Property(Artist_Born)]</label>
+          <width>650</width>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!IsEmpty(ListItem.Property(Artist_Born)) + IsEmpty(ListItem.Property(Artist_Genre))</visible>
+        </control>
+        <control type="label">
+          <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Property(Artist_Genre)]</label>
+          <width>650</width>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!IsEmpty(ListItem.Property(Artist_Genre))</visible>
+        </control>
+        <control type="textbox">
+          <label>[COLOR $VAR[Colour_RightListThemeColourVar]]$LOCALIZE[569]:[/COLOR][CR]$INFO[ListItem.Comment]</label>
+          <posx>15</posx>
+          <posy>0</posy>
+          <width>615</width>
+          <height>180</height>
+          <font>font14_textbox</font>
+          <pagecontrol>62</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>!IsEmpty(ListItem.Comment)</visible>
+        </control>
+      </control>
+      <control type="group">
+        <posx>435</posx>
+        <posy>810</posy>
+        <control type="textbox" id="70">
+          <label>$INFO[ListItem.Property(summary)]</label>
+          <posx>15</posx>
+          <posy>0</posy>
+          <width>615</width>
+          <height>245</height>
+          <font>font14_textbox</font>
+          <pagecontrol>63</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
+          <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$INFO[ListItem.Property(summary)]</label>
+          <posx>15</posx>
+          <posy>0</posy>
+          <width>615</width>
+          <height>245</height>
+          <font>font14_textbox_rightlistmusic</font>
+          <pagecontrol>63</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
+          <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+        </control>
+        <control type="scrollbar" id="63">
+          <posx>636</posx>
+          <posy>0</posy>
+          <width>14</width>
+          <height>245</height>
+          <onup>PageUp(70)</onup>
+          <ondown>PageUp(70)</ondown>
+          <onleft>SetProperty(MediaMenu,True,home)</onleft>
+          <onleft>SetFocus(9050,0)</onleft>
+          <onright>700</onright>
+          <texturesliderbackground>scrollbar/texturesliderbackground2.png</texturesliderbackground>
+          <texturesliderbar>scrollbar/texturesliderbar2.png</texturesliderbar>
+          <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+          <showonepage>false</showonepage>
+          <orientation>vertical</orientation>
+          <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(63) + !Container.Scrolling">Conditional</animation>
+        </control>
+      </control>
+      <control type="list" id="700">
+        <posx>1090</posx>
+        <posy>95</posy>
+        <width>1000</width>
+        <height>830</height>
+        <onleft>SetProperty(MediaMenu,True,home)</onleft>
+        <onleft>SetFocus(9050,0)</onleft>
+        <onright>noop</onright>
+        <onup>700</onup>
+        <ondown>700</ondown>
+        <pagecontrol>60</pagecontrol>
+        <viewtype label="RightList">list</viewtype>
+        <visible>Container.Content(artists) | Container.Content(albums)</visible>
+        <scrolltime tween="quadratic" easing="out">200</scrolltime>
+        <itemlayout height="68" width="806" condition="Container.Content(artists)">
+          <control type="image">
+            <posy>8</posy>
+            <posx>20</posx>
+            <width>800</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <control type="label">
+            <posx>805</posx>
+            <width>775</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>grey</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+          </control>
+          <control type="label">
+            <posx>790</posx>
+            <width>680</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <textcolor>white</textcolor>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <aligny>center</aligny>
+            <label>$INFO[ListItem.Label2]</label>
+          </control>
+        </itemlayout>
+        <focusedlayout height="68" width="806" condition="Container.Content(artists)">
+          <control type="image">
+            <posy>10</posy>
+            <posx>20</posx>
+            <width>800</width>
+            <height>60</height>
+            <texture border="1">separator2.png</texture>
+          </control>
+          <control type="image">
+            <posx>20</posx>
+            <width>825</width>
+            <height>68</height>
+            <texture border="4">listselect_fo.png</texture>
+            <colordiffuse>$VAR[Colour_RightListHighlightColourVar]</colordiffuse>
+            <include>VisibleFadeEffect</include>
+          </control>
+          <control type="label">
+            <posx>805</posx>
+            <width>775</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
+          </control>
+          <control type="label">
+            <posx>790</posx>
+            <width>680</width>
+            <height>68</height>
+            <font>font15</font>
+            <align>right</align>
+            <selectedcolor>$VAR[Colour_RightListThemeColourVar]</selectedcolor>
+            <aligny>center</aligny>
+            <label>$INFO[ListItem.label2]</label>
+            <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(501)">Conditional</animation>
+          </control>
+        </focusedlayout>
+      </control>
+      <control type="scrollbar" id="60">
+        <posx>1904</posx>
+        <posy>40</posy>
+        <width>14</width>
+        <height>920</height>
+        <onup>60</onup>
+        <ondown>60</ondown>
+        <onleft>700</onleft>
+        <onright>SetProperty(MediaMenu,True,home)</onright>
+        <onright>SetFocus(9050,0)</onright>
+        <texturesliderbackground border="1">-</texturesliderbackground>
+        <texturesliderbar border="6,0,6,0">scrollbar/texturesliderbar_hor.png</texturesliderbar>
+        <texturesliderbarfocus border="6,0,6,0">scrollbar/texturesliderbarfocus_hor.png</texturesliderbarfocus>
+        <textureslidernib>-</textureslidernib>
+        <textureslidernibfocus>-</textureslidernibfocus>
+        <animation effect="fade" start="100" end="0" time="500" delay="500" condition="!Control.HasFocus(60) + !Container.Scrolling">Conditional</animation>
+        <showonepage>false</showonepage>
+        <orientation>vertical</orientation>
+      </control>
+    </control>
+  </include>
 </includes>
