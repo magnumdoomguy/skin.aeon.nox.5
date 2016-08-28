@@ -26,15 +26,15 @@
 
 	<!-- List Label -->
 	<variable name="VideoListLabel2Var">
-		<value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | StringCompare(Skin.String(SectionType),playqueue)]">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-		<value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | StringCompare(Skin.String(SectionType),playqueue)]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue)]">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+		<value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue)]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
 		<value condition="Container.PlexContent(homemovies) | Container.Content(episodes)">$INFO[ListItem.Date]</value>
 		<value>$INFO[ListItem.Genre]</value>
 	</variable>
 
 	<!-- Episode Title -->
 	<variable name="ListEpisodeTitleVar">
-		<value condition="Container.PlexContent(episodes) + [!IsEmpty(Container.Property(primaryFilterActivated)) | StringCompare(Skin.String(SectionType),playqueue)]">$INFO[ListItem.TvShowTitle]</value>
+		<value condition="Container.PlexContent(episodes) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue)]">$INFO[ListItem.TvShowTitle]</value>
 		<value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(mixedParents))">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
 		<value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(mixedParents))">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
 		<value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
@@ -298,7 +298,7 @@
 			<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 			<aligny>center</aligny>
 			<label>$VAR[RatingVar]</label>
-			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !String.IsEqual(Container.Property(currentSortOrder),originallyavailableat) + !String.IsEqual(Container.Property(PlexFilter),newest)</visible>
 		</control>
 
 		<!-- Standard / IMDb Rating -->
@@ -313,7 +313,7 @@
 			<selectedcolor>grey2</selectedcolor>
 			<aligny>center</aligny>
 			<label>$INFO[ListItem.Property(rating)]</label>
-			<visible>IsEmpty(ListItem.Property(hasUserRating)) + [IsEmpty(ListItem.Property(ratingType)) | StringCompare(ListItem.Property(ratingType),imdb)] + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>IsEmpty(ListItem.Property(hasUserRating)) + [IsEmpty(ListItem.Property(ratingType)) | String.IsEqual(ListItem.Property(ratingType),imdb)] + !String.IsEqual(Container.Property(currentSortOrder),originallyavailableat) + !String.IsEqual(Container.Property(PlexFilter),newest)</visible>
 		</control>
 
 		<!-- Rotten Tomatoes Rating -->
@@ -328,7 +328,7 @@
 			<selectedcolor>grey2</selectedcolor>
 			<aligny>center</aligny>
 			<label>$INFO[ListItem.Property(ratingPercent)]%</label>
-			<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),rottentomatoes) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + !String.IsEqual(Container.Property(currentSortOrder),originallyavailableat) + !String.IsEqual(Container.Property(PlexFilter),newest)</visible>
 		</control>
 
 		<!-- Year -->
@@ -343,7 +343,7 @@
 			<selectedcolor>grey2</selectedcolor>
 			<aligny>center</aligny>
 			<label>$INFO[ListItem.Year]</label>
-			<visible>StringCompare(Container.Property(currentSortOrder),originallyavailableat) | StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>String.IsEqual(Container.Property(currentSortOrder),originallyavailableat) | String.IsEqual(Container.Property(PlexFilter),newest)</visible>
 		</control>
 
 		<!-- Watched Status -->
@@ -411,7 +411,7 @@
 			<selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
 			<aligny>center</aligny>
 			<label>$VAR[RatingVar]</label>
-			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>!IsEmpty(ListItem.Property(hasUserRating)) + !String.IsEqual(Container.Property(currentSortOrder),originallyavailableat) + !String.IsEqual(Container.Property(PlexFilter),newest)</visible>
 		</control>
 
 		<!-- Standard / IMDb Rating -->
@@ -426,7 +426,7 @@
 			<selectedcolor>white</selectedcolor>
 			<aligny>center</aligny>
 			<label>$INFO[ListItem.Property(rating)]</label>
-			<visible>IsEmpty(ListItem.Property(hasUserRating)) + [IsEmpty(ListItem.Property(ratingType)) | StringCompare(ListItem.Property(ratingType),imdb)] + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>IsEmpty(ListItem.Property(hasUserRating)) + [IsEmpty(ListItem.Property(ratingType)) | String.IsEqual(ListItem.Property(ratingType),imdb)] + !String.IsEqual(Container.Property(currentSortOrder),originallyavailableat) + !String.IsEqual(Container.Property(PlexFilter),newest)</visible>
 		</control>
 		
 		<!-- Rotten Tomatoes Rating -->
@@ -441,7 +441,7 @@
 			<selectedcolor>white</selectedcolor>
 			<aligny>center</aligny>
 			<label>$INFO[ListItem.Property(ratingPercent)]%</label>
-			<visible>IsEmpty(ListItem.Property(hasUserRating)) + StringCompare(ListItem.Property(ratingType),rottentomatoes) + !StringCompare(Container.Property(currentSortOrder),originallyavailableat) + !StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + !String.IsEqual(Container.Property(currentSortOrder),originallyavailableat) + !String.IsEqual(Container.Property(PlexFilter),newest)</visible>
 		</control>
 
 		<!-- Year -->
@@ -456,7 +456,7 @@
 			<selectedcolor>white</selectedcolor>
 			<aligny>center</aligny>
 			<label>$INFO[ListItem.Year]</label>
-			<visible>StringCompare(Container.Property(currentSortOrder),originallyavailableat) | StringCompare(Container.Property(PlexFilter),newest)</visible>
+			<visible>String.IsEqual(Container.Property(currentSortOrder),originallyavailableat) | String.IsEqual(Container.Property(PlexFilter),newest)</visible>
 		</control>
 
 		<!-- Watched Status -->
@@ -857,7 +857,7 @@
 							<selectedcolor>grey2</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.episode] episodes</label>
-							<visible>!stringcompare(ListItem.Label,All Episodes)</visible>
+							<visible>!String.IsEqual(ListItem.Label,All Episodes)</visible>
 						</control>
 						<control type="image">
 							<posx>1076</posx>
@@ -926,7 +926,7 @@
 							<selectedcolor>white</selectedcolor>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.episode] episodes</label>
-							<visible>!stringcompare(ListItem.Label,All Episodes)</visible>
+							<visible>!String.IsEqual(ListItem.Label,All Episodes)</visible>
 						</control>
 						<control type="image">
 							<posx>1076</posx>
@@ -2326,7 +2326,7 @@
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
+					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]</visible>
 				</control>
 				<control type="image">
 					<width>570</width>
@@ -2336,7 +2336,7 @@
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
+					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]]</visible>
 				</control>
 				
 				<!-- Reflection -->
@@ -2348,7 +2348,7 @@
 					<fadetime>400</fadetime>
 					<texture fallback="defaultfolder.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
 					<bordersize>20</bordersize>
-					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
+					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]</visible>
 				</control>
 				<control type="image">
 					<posy>795</posy>
@@ -2358,7 +2358,7 @@
 					<fadetime>400</fadetime>
 					<texture fallback="defaultpicture.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
 					<bordersize>20</bordersize>
-					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
+					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]]</visible>
 				</control>
 			</control>
 			<control type="group">
@@ -2987,7 +2987,7 @@
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
+					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]</visible>
 				</control>
 				<control type="image">
 					<width>570</width>
@@ -2997,7 +2997,7 @@
 					<fadetime>400</fadetime>
 					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 					<bordersize>20</bordersize>
-					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
+					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]]</visible>
 				</control>
 				<control type="image">
 					<width>570</width>
@@ -3029,7 +3029,7 @@
 					<fadetime>400</fadetime>
 					<texture fallback="defaultfolder.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
 					<bordersize>20</bordersize>
-					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]</visible>
+					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]</visible>
 				</control>
 				<control type="image">
 					<posy>795</posy>
@@ -3039,7 +3039,7 @@
 					<fadetime>400</fadetime>
 					<texture fallback="defaultpicture.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
 					<bordersize>20</bordersize>
-					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![StringCompare(ListItem.Filename,file.jpg) | StringCompare(ListItem.Filename,file.png)]]</visible>
+					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]]</visible>
 				</control>
 				<control type="image">
 					<posy>795</posy>

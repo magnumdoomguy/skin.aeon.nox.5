@@ -9,7 +9,7 @@
 	<expression name="Widgets_1stWidgetVisible">[Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11004) | Control.IsVisible(11005)]</expression>
 	<expression name="RecentlyAdded_MoviesPoster">[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000) + !Control.IsVisible(11001)]</expression>
 	<expression name="RecentlyAdded_PortraitHomeVideos">[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Control.IsVisible(11000) + !Control.IsVisible(11001)]</expression>
-	<expression name="RecentlyAdded_TVPoster">[[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  StringCompare(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode) + [Control.IsVisible(11000) + !Control.IsVisible(11001)]]</expression>
+	<expression name="RecentlyAdded_TVPoster">[[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode) + [Control.IsVisible(11000) + !Control.IsVisible(11001)]]</expression>
 	<expression name="RecentlyAdded_SquarePhoto">[IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo) + Control.IsVisible(11000) + !Control.IsVisible(11001)]</expression>
 	<expression name="OnDeck_PortraitHomeVideos">[Container(11001).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Control.IsVisible(11001)]</expression>
 	<expression name="OnDeck_MoviesPoster">[!Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Container(11001).ListItem.Type(movie) + Control.IsVisible(11001)]</expression>
@@ -271,22 +271,22 @@
 			</control>
 
 			<!-- Main Menu -->
-			<include condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + IsEmpty(Skin.String(MainMenu.Font))">OneMainMenuItemListContent</include>
-			<include content="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Linear)">
+			<include condition="String.IsEqual(Skin.String(MainMenu.Layout),1 Item) + IsEmpty(Skin.String(MainMenu.Font))">OneMainMenuItemListContent</include>
+			<include content="OneMainMenuItemListContent" condition="String.IsEqual(Skin.String(MainMenu.Layout),1 Item) + String.IsEqual(Skin.String(MainMenu.Font),Linear)">
 				<param name="font">font_MainMenu_linear</param>
 				<param name="top">12</param>
 			</include>
-			<include content="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Open Sans)">
+			<include content="OneMainMenuItemListContent" condition="String.IsEqual(Skin.String(MainMenu.Layout),1 Item) + String.IsEqual(Skin.String(MainMenu.Font),Open Sans)">
 				<param name="font">font_MainMenu_OpenSans</param>
 			</include>
-			<include content="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Source Sans)">
+			<include content="OneMainMenuItemListContent" condition="String.IsEqual(Skin.String(MainMenu.Layout),1 Item) + String.IsEqual(Skin.String(MainMenu.Font),Source Sans)">
 				<param name="font">font_MainMenu_SourceSans</param>
 			</include>
-			<include content="OneMainMenuItemListContent" condition="StringCompare(Skin.String(MainMenu.Layout),1 Item) + StringCompare(Skin.String(MainMenu.Font),Trueno)">
+			<include content="OneMainMenuItemListContent" condition="String.IsEqual(Skin.String(MainMenu.Layout),1 Item) + String.IsEqual(Skin.String(MainMenu.Font),Trueno)">
 				<param name="font">font_MainMenu_Trueno</param>
 			</include>
-			<include condition="Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListFixed</include>
-			<include condition="!Skin.HasSetting(MainHorizontalListNav) + !StringCompare(Skin.String(MainMenu.Layout),1 Item)">MainMenuListWrapped</include>
+			<include condition="Skin.HasSetting(MainHorizontalListNav) + !String.IsEqual(Skin.String(MainMenu.Layout),1 Item)">MainMenuListFixed</include>
+			<include condition="!Skin.HasSetting(MainHorizontalListNav) + !String.IsEqual(Skin.String(MainMenu.Layout),1 Item)">MainMenuListWrapped</include>
 
 			<control type="image">
 				<posx>0</posx>
@@ -591,7 +591,7 @@
 			<orientation>Horizontal</orientation>
 			<animation effect="slide" start="0" end="-350,0" time="320" tween="cubic" easing="inout" condition="IsEmpty(Skin.String(MainMenu.Layout))">Conditional</animation>
 
-			<itemlayout height="100" width="500" condition="StringCompare(Skin.String(MainMenu.Layout),5 Items)">
+			<itemlayout height="100" width="500" condition="String.IsEqual(Skin.String(MainMenu.Layout),5 Items)">
 				<control type="label">
 					<posx>250</posx>
 					<posy>$PARAM[top]</posy>
@@ -604,7 +604,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 			</itemlayout>
-			<focusedlayout height="100" width="500" condition="StringCompare(Skin.String(MainMenu.Layout),5 Items)">
+			<focusedlayout height="100" width="500" condition="String.IsEqual(Skin.String(MainMenu.Layout),5 Items)">
 				<control type="label">
 					<posx>250</posx>
 					<posy>$PARAM[top]</posy>
@@ -767,17 +767,17 @@
 
 	<include name="MainMenuList">
 		<definition>
-			<include content="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Linear)">
+			<include content="MainMenuListContent" condition="String.IsEqual(Skin.String(MainMenu.Font),Linear)">
 				<param name="font">font_MainMenu_linear</param>
 				<param name="top">12</param>
 			</include>
-			<include content="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">
+			<include content="MainMenuListContent" condition="String.IsEqual(Skin.String(MainMenu.Font),Open Sans)">
 				<param name="font">font_MainMenu_OpenSans</param>
 			</include>
-			<include content="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">
+			<include content="MainMenuListContent" condition="String.IsEqual(Skin.String(MainMenu.Font),Source Sans)">
 				<param name="font">font_MainMenu_SourceSans</param>
 			</include>
-			<include content="MainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Trueno)">
+			<include content="MainMenuListContent" condition="String.IsEqual(Skin.String(MainMenu.Font),Trueno)">
 				<param name="font">font_MainMenu_Trueno</param>
 			</include>
 			<include condition="IsEmpty(Skin.String(MainMenu.Font))">MainMenuListContent</include>
@@ -801,21 +801,21 @@
 	</include>
 
 	<include name="VerticalMenuList">
-		<include content="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Linear)">
+		<include content="VerticalMainMenuListContent" condition="String.IsEqual(Skin.String(MainMenu.Font),Linear)">
 				<param name="font">font_MainMenu_medium_linear</param>
 				<param name="menuTop">20</param>
 				<param name="menuHeight">1040</param>
 				<param name="focusPosition">6</param>
 				<param name="itemHeight">80</param>
 			</include>
-			<include content="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Open Sans)">
+			<include content="VerticalMainMenuListContent" condition="String.IsEqual(Skin.String(MainMenu.Font),Open Sans)">
 				<param name="font">font_MainMenu_medium_OpenSans</param>
 				<param name="menuTop">53</param>
 				<param name="menuHeight">975</param>
 				<param name="focusPosition">6</param>
 				<param name="itemHeight">75</param>
 			</include>
-			<include content="VerticalMainMenuListContent" condition="StringCompare(Skin.String(MainMenu.Font),Source Sans)">
+			<include content="VerticalMainMenuListContent" condition="String.IsEqual(Skin.String(MainMenu.Font),Source Sans)">
 				<param name="font">font_MainMenu_medium_SourceSans</param>
 				<param name="menuTop">53</param>
 				<param name="menuHeight">975</param>
