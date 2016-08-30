@@ -1,30 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-  <coordinates>
-    <system>1</system>
-    <posx>0</posx>
-    <posy>0</posy>
-  </coordinates>
   <controls>
-    <control type="image">
-      <description>Busy animation</description>
-      <posx>890</posx>
-      <posy>470</posy>
-      <width>140</width>
-      <height>140</height>
-      <texture>android/spinner_48_inner_holo.png</texture>
-      <aspectratio>keep</aspectratio>
-      <animation effect="rotate" start="0" end="360" center="auto" time="2000" loop="true" condition="true">conditional</animation>
+    <control type="progress" id="10">
+      <description>progress control</description>
+      <posx>0</posx>
+      <posy>0</posy>
+      <width>1</width>
+      <height>1</height>
+      <texturebg />
+      <lefttexture />
+      <midtexture />
+      <righttexture />
+      <overlaytexture />
     </control>
     <control type="image">
-      <description>Busy animation</description>
-      <posx>890</posx>
-      <posy>470</posy>
-      <width>140</width>
-      <height>140</height>
-      <texture>android/spinner_48_outer_holo.png</texture>
-      <aspectratio>keep</aspectratio>
-      <animation effect="rotate" start="360" end="0" center="auto" time="2000" loop="true" condition="true">conditional</animation>
+      <include>FullscreenDimensions</include>
+      <colordiffuse>AAFFFFFF</colordiffuse>
+      <texture border="1">black.png</texture>
+      <animation effect="fade" time="300">WindowOpen</animation>
+      <animation effect="fade" time="300">WindowClose</animation>
+    </control>
+    <control type="group">
+      <include>DialogOpenCloseAnimation</include>
+      <control type="group">
+        <visible>!System.Platform.Linux.RaspberryPi</visible>
+        <posx>912</posx>
+        <posy>492</posy>
+        <control type="image">
+          <description>Busy animation</description>
+          <width>96</width>
+          <height>96</height>
+          <texture colordiffuse="$VAR[Colour_ThemeColourVar]">android/spinner_48_inner_holo.png</texture>
+          <aspectratio>keep</aspectratio>
+          <animation effect="rotate" start="0" end="360" center="auto" time="2000" loop="true" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+          <description>Busy animation</description>
+          <width>96</width>
+          <height>96</height>
+          <texture colordiffuse="$VAR[Colour_ThemeColourVar]">android/spinner_48_outer_holo.png</texture>
+          <aspectratio>keep</aspectratio>
+          <animation effect="rotate" start="360" end="0" center="auto" time="2000" loop="true" condition="true">Conditional</animation>
+        </control>
+        <control type="label">
+          <description>Busy label</description>
+          <width>96</width>
+          <height>96</height>
+          <textcolor>grey</textcolor>
+          <align>center</align>
+          <label>$INFO[Control.GetLabel(10),,%]</label>
+          <font>font12</font>
+          <visible>!Integer.IsEqual(Control.GetLabel(10), 0)</visible>
+        </control>
+      </control>
+      <control type="list">
+        <posx>880</posx>
+        <posy>490</posy>
+        <width>180</width>
+        <height>100</height>
+        <scrolltime tween="quadratic" easing="out">0</scrolltime>
+        <autoscroll time="1000" repeat="1000">true</autoscroll>
+        <orientation>vertical</orientation>
+        <visible>System.Platform.Linux.RaspberryPi</visible>
+        <itemlayout height="100">
+          <control type="label">
+            <description>Busy label</description>
+            <width>180</width>
+            <height>100</height>
+            <textcolor>grey</textcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <font>font16</font>
+          </control>
+        </itemlayout>
+        <focusedlayout height="100">
+          <control type="label">
+            <description>Busy label</description>
+            <width>180</width>
+            <height>100</height>
+            <textcolor>grey</textcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <font>font16</font>
+          </control>
+        </focusedlayout>
+        <content>
+          <item>
+            <label>$LOCALIZE[31004]</label>
+            <onclick>noop</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[31004].</label>
+            <onclick>noop</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[31004]..</label>
+            <onclick>noop</onclick>
+          </item>
+          <item>
+            <label>$LOCALIZE[31004]...</label>
+            <onclick>noop</onclick>
+          </item>
+        </content>
+      </control>
     </control>
   </controls>
 </window>
