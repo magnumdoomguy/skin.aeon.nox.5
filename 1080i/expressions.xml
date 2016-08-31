@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+  <!-- Widgets General -->
+  <expression name="Widgets_HaveFocus">[Control.HasFocus(11000) | Control.HasFocus(11001) | Control.HasFocus(11002) | Control.HasFocus(11003) | Control.HasFocus(11004) | Control.HasFocus(11005)]</expression>
+  <expression name="Widgets_RecommendedAndWatchLaterVisible">[Control.IsVisible(11003) + Control.IsVisible(11004)]</expression>
+  <expression name="Widgets_1stWidgetVisible">[Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11004) | Control.IsVisible(11005)]</expression>
+  <expression name="Widgets_MoviePoster">[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie)]</expression>
+  <expression name="Widget_InfoPanelEnabled">[!system.getbool(input.enablemouse) + !Skin.HasSetting(Widget.DisableInfopanel)]</expression>
+  <expression name="Widget_InfoPanelDisabled">[system.getbool(input.enablemouse) | Skin.HasSetting(Widget.DisableInfopanel)]</expression>
+  <!-- Widgets On Deck -->
+  <expression name="Widgets_OnDeckAndRecentlyAddedVisible">[Control.IsVisible(11000) + Control.IsVisible(11001)]</expression>
+  <expression name="OnDeck_PortraitHomeVideos">[Container(11001).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Control.IsVisible(11001)]</expression>
+  <expression name="OnDeck_MoviesPoster">[!Skin.HasSetting(Widget.OnDeck.Movies.Fanart) + Container(11001).ListItem.Type(movie) + Control.IsVisible(11001)]</expression>
+  <expression name="OnDeck_TVPoster">[IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork)) + Container(11001).ListItem.Type(episode) + Control.IsVisible(11001)]</expression>
+  <!-- Widgets Recently Added -->
+  <expression name="Widgets_RecentlyAddedOnlyVisible">[Control.IsVisible(11000) + !Control.IsVisible(11001)]</expression>
+  <expression name="RecentlyAdded_MoviesPoster">[!Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000) + !Control.IsVisible(11001)]</expression>
+  <expression name="RecentlyAdded_PortraitHomeVideos">[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Control.IsVisible(11000) + !Control.IsVisible(11001)]</expression>
+  <expression name="RecentlyAdded_TVPoster">[[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + Container(11000).ListItem.Type(episode) + [Control.IsVisible(11000) + !Control.IsVisible(11001)]]</expression>
+  <expression name="RecentlyAdded_SquarePhoto">[IsEmpty(Skin.String(Widget.RecentlyAdded.Photo.Artwork)) + Container(11000).ListItem.Type(photo) + Control.IsVisible(11000) + !Control.IsVisible(11001)]</expression>
+</includes>
