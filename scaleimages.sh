@@ -1,0 +1,2 @@
+rm ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/aspectratio/*.*
+mogrify -path ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/aspectratio/ -filter LanczosRadius -distort Resize 135x90 -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB ~/.plexht/addons/skin.aeon.nox.5/media-master/flags/Coloured/aspectratio/*.*
