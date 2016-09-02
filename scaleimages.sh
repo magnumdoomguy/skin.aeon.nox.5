@@ -1,2 +1,16 @@
 rm ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/aspectratio/*.*
+rm ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/audio/*.*
+rm ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/channels/*.*
+rm ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/framerate/*.*
+rm ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/resolution/*.*
+rm ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/studios/*.*
+rm ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/video/*.*
 mogrify -path ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/aspectratio/ -filter LanczosRadius -distort Resize 135x90 -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB ~/.plexht/addons/skin.aeon.nox.5/media-master/flags/Coloured/aspectratio/*.*
+mogrify -path ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/audio/ -filter LanczosRadius -distort Resize 135x90 -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB ~/.plexht/addons/skin.aeon.nox.5/media-master/flags/Coloured/audio/*.*
+mogrify -path ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/channels/ -filter LanczosRadius -distort Resize 135x90 -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB ~/.plexht/addons/skin.aeon.nox.5/media-master/flags/Coloured/channels/*.*
+mogrify -path ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/framerate/ -filter LanczosRadius -distort Resize 135x90 -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB ~/.plexht/addons/skin.aeon.nox.5/media-master/flags/Coloured/framerate/*.*
+mogrify -path ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/resolution/ -filter LanczosRadius -distort Resize 135x90 -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB ~/.plexht/addons/skin.aeon.nox.5/media-master/flags/Coloured/resolution/*.*
+mogrify -path ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/studios/ -filter LanczosRadius -distort Resize 135x90 -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB ~/.plexht/addons/skin.aeon.nox.5/media-master/flags/Coloured/studios/*.*
+mogrify -path ~/.plexht/addons/skin.aeon.nox.5/media/flags/colour/135x90/video/ -filter LanczosRadius -distort Resize 135x90 -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB ~/.plexht/addons/skin.aeon.nox.5/media-master/flags/Coloured/video/*.*
+rm ~/.plexht/addons/skin.aeon.nox.5/media/Textures.xbt
+TexturePacker -dupecheck -input ~/.plexht/addons/skin.aeon.nox.5/media/ -output ~/.plexht/addons/skin.aeon.nox.5/media/Textures.xbt
