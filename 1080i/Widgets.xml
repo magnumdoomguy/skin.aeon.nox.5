@@ -1827,7 +1827,8 @@
   </variable>
   <!-- TV Poster -->
   <variable name="WidgetTVPosterVar">
-    <value condition="Container(11000).ListItem.Type(season)">$INFO[ListItem.Art(smallThumb)]</value>
+    <value condition="Container(11000).ListItem.Type(season) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork))">$INFO[ListItem.Art(parentThumb)]</value>
+    <value condition="Container(11000).ListItem.Type(season) + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)">$INFO[ListItem.Art(smallThumb)]</value>
     <value condition="String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)">$INFO[ListItem.Art(parentThumb)]</value>
     <value>$INFO[ListItem.Art(smallGrandparentThumb)]</value>
   </variable>
@@ -1840,7 +1841,9 @@
   <variable name="HomeWidgetPosterList3Var">
     <value condition="!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(movie) + Control.IsVisible(11000)">$INFO[Container(11000).ListItem.Art(thumb)]</value>
     <value condition="!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork))">$INFO[Container(11000).ListItem.Art(grandparentThumb)]</value>
+    <value condition="!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(season) + Control.IsVisible(11000) + IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork))">$INFO[Container(11000).ListItem.Art(parentThumb)]</value>
     <value condition="!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(episode) + Control.IsVisible(11000) + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)">$INFO[Container(11000).ListItem.Art(parentThumb)]</value>
+    <value condition="!IsEmpty(Container(11000).ListItem.Label) + Container(11000).ListItem.Type(season) + Control.IsVisible(11000) + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)">$INFO[Container(11000).ListItem.Art(thumb)]</value>
     <value>$INFO[Container(11000).ListItem.Art(thumb)]</value>
   </variable>
   <!-- List Widget Recently Added Poster Image  -->
