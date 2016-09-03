@@ -80,7 +80,7 @@
       <control type="group">
         <visible>Control.HasFocus(11000) + $EXP[Widget_InfoPanelEnabled] + [[Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart)] | [Skin.HasSetting(Advanced.PortraitHomeVideos) + Container(11000).ListItem.Type(clip) + Control.IsVisible(11000)] | [[Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)]]] + [!Skin.HasSetting(middlemainmenu) | [Skin.HasSetting(middlemainmenu) + Skin.HasSetting(Homemenu.Vertical)]]</visible>
         <animation effect="slide" end="0,648" condition="[Control.IsVisible(11001) + !Skin.HasSetting(Homemenu.Vertical)] | [!Control.IsVisible(11001) + Skin.HasSetting(Homemenu.Vertical)]">Conditional</animation>
-        <!-- Movie Poster -->
+        <!-- Movie / Home Video Portrait Poster -->
         <control type="image">
           <posx>247</posx>
           <posy>-339</posy>
@@ -89,18 +89,7 @@
           <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
           <texture>$INFO[Container(11000).ListItem.Art(thumb)]</texture>
           <fadetime>400</fadetime>
-          <visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))</visible>
-        </control>
-        <!-- Home Videos Portrait -->
-        <control type="image">
-          <posx>247</posx>
-          <posy>-339</posy>
-          <width>220</width>
-          <height>330</height>
-          <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-          <texture>$INFO[Container(11000).ListItem.Art(thumb)]</texture>
-          <fadetime>400</fadetime>
-          <visible>Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + !Skin.HasSetting(Widget.RecentlyAdded.HomeVideos.Fanart.Glass)</visible>
+          <visible>[Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + IsEmpty(Skin.String(Widget.RecentlyAdded.Movies.Case))] | [Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + !Skin.HasSetting(Widget.RecentlyAdded.HomeVideos.Fanart.Glass)]</visible>
         </control>
         <!-- Movie Clear Case -->
         <control type="image">
@@ -119,10 +108,10 @@
           <width>220</width>
           <height>330</height>
           <aspectratio aligny="top">stretch</aspectratio>
-          <texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+          <texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),cases/clearcases/220x330/,.png]</texture>
           <visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Movies.Case),Clear)</visible>
         </control>
-        <!-- Movie Glass Case -->
+        <!-- Movie / Home Video Portrait Glass Case -->
         <control type="image">
           <posx>251</posx>
           <posy>-335</posy>
@@ -131,7 +120,7 @@
           <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
           <texture diffuse="thumbs/boxes/movieposter_mask.png">$INFO[Container(11000).ListItem.Art(thumb)]</texture>
           <fadetime>400</fadetime>
-          <visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)</visible>
+          <visible>[Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)] | [Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Skin.HasSetting(Widget.RecentlyAdded.HomeVideos.Fanart.Glass)]</visible>
         </control>
         <control type="image">
           <posx>247</posx>
@@ -139,28 +128,8 @@
           <width>220</width>
           <height>330</height>
           <aspectratio aligny="top">stretch</aspectratio>
-          <texture>homewidgets/glass/portrait.png</texture>
-          <visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)</visible>
-        </control>
-        <!-- Home Videos (Portrait Glass Case) -->
-        <control type="image">
-          <posx>251</posx>
-          <posy>-335</posy>
-          <width>212</width>
-          <height>322</height>
-          <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-          <texture diffuse="thumbs/boxes/movieposter_mask.png">$INFO[Container(11000).ListItem.Art(thumb)]</texture>
-          <fadetime>400</fadetime>
-          <visible>Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Skin.HasSetting(Widget.RecentlyAdded.HomeVideos.Fanart.Glass)</visible>
-        </control>
-        <control type="image">
-          <posx>247</posx>
-          <posy>-339</posy>
-          <width>220</width>
-          <height>330</height>
-          <aspectratio aligny="top">stretch</aspectratio>
-          <texture>homewidgets/glass/portrait.png</texture>
-          <visible>Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Skin.HasSetting(Widget.RecentlyAdded.HomeVideos.Fanart.Glass)</visible>
+          <texture>cases/glass/portrait/glass_220x330.png</texture>
+          <visible>[Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Movies.Case),Glass)] | [Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Skin.HasSetting(Widget.RecentlyAdded.HomeVideos.Fanart.Glass)]</visible>
         </control>
         <!-- Movie DVD/Bluray Case -->
         <control type="image">
@@ -179,7 +148,7 @@
           <width>220</width>
           <height>330</height>
           <aspectratio aligny="top">stretch</aspectratio>
-          <texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+          <texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),cases/dvd-bluray/220x330/,.png]</texture>
           <visible>Container(11000).ListItem.Type(movie) + !Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Movies.Case),DVD/Bluray)</visible>
         </control>
         <!-- TV Poster -->
@@ -210,7 +179,7 @@
           <width>220</width>
           <height>330</height>
           <aspectratio aligny="top">stretch</aspectratio>
-          <texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+          <texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),cases/clearcases/220x330/,.png]</texture>
           <visible>[Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Case),Clear)</visible>
         </control>
         <!-- TV Glass Case -->
@@ -230,7 +199,7 @@
           <width>220</width>
           <height>330</height>
           <aspectratio aligny="top">stretch</aspectratio>
-          <texture>homewidgets/glass/portrait.png</texture>
+          <texture>cases/glass/portrait/glass_220x330.png</texture>
           <fadetime>400</fadetime>
           <visible>[Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Case),Glass)</visible>
         </control>
@@ -251,7 +220,7 @@
           <width>220</width>
           <height>330</height>
           <aspectratio aligny="top">stretch</aspectratio>
-          <texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+          <texture>$INFO[Container(11000).ListItem.Property(mediaTag-videoResolution),cases/dvd-bluray/220x330/,.png]</texture>
           <visible>[Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + [IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Case),DVD/Bluray)</visible>
         </control>
         <!-- Item Separator -->
@@ -669,7 +638,7 @@
           <width>526</width>
           <height>296</height>
           <aspectratio scalediffuse="false">stretch</aspectratio>
-          <texture>homewidgets/glass/landscape.png</texture>
+          <texture>cases/glass/landscape/glass_526x296.png</texture>
           <visible>Container(11000).ListItem.Type(movie) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart) + Skin.HasSetting(Widget.RecentlyAdded.Movies.Fanart.Glass)</visible>
         </control>
         <!-- TV Thumbnail -->
@@ -700,7 +669,7 @@
           <width>526</width>
           <height>296</height>
           <aspectratio scalediffuse="false">stretch</aspectratio>
-          <texture>homewidgets/glass/landscape.png</texture>
+          <texture>cases/glass/landscape/glass_526x296.png</texture>
           <visible>[Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
         </control>
         <!-- Fanart TV -->
@@ -731,7 +700,7 @@
           <width>526</width>
           <height>296</height>
           <aspectratio scalediffuse="false">stretch</aspectratio>
-          <texture>homewidgets/glass/landscape.png</texture>
+          <texture>cases/glass/landscape/glass_526x296.png</texture>
           <visible>[Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart) + Skin.HasSetting(Widget.RecentlyAdded.TV.Fanart.Glass)</visible>
         </control>
         <!-- Home Videos -->
@@ -762,7 +731,7 @@
           <width>526</width>
           <height>296</height>
           <aspectratio scalediffuse="false">stretch</aspectratio>
-          <texture>homewidgets/glass/landscape.png</texture>
+          <texture>cases/glass/landscape/glass_526x296.png</texture>
           <visible>[Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)] + Skin.HasSetting(Widget.RecentlyAdded.HomeVideos.Fanart.Glass)</visible>
         </control>
         <!-- Item Separator -->
@@ -1245,7 +1214,7 @@
           <width>526</width>
           <height>296</height>
           <aspectratio scalediffuse="false">stretch</aspectratio>
-          <texture>homewidgets/glass/landscape.png</texture>
+          <texture>cases/glass/landscape/glass_526x296.png</texture>
           <visible>Skin.HasSetting(Widget.WatchLater.Fanart.Glass)</visible>
         </control>
         <!-- Item Separator -->
@@ -1415,7 +1384,7 @@
           <width>526</width>
           <height>296</height>
           <aspectratio scalediffuse="false">stretch</aspectratio>
-          <texture>homewidgets/glass/landscape.png</texture>
+          <texture>cases/glass/landscape/glass_526x296.png</texture>
           <visible>String.IsEqual(Skin.String(Widget.RecentlyAdded.Music.Artwork),Fanart) + Skin.HasSetting(Widget.RecentlyAdded.Music.Fanart.Glass)</visible>
         </control>
         <!-- Item Separator -->
@@ -1559,7 +1528,7 @@
           <posy>-323</posy>
           <width>317</width>
           <height>317</height>
-          <texture>homewidgets/clearcase/cd.png</texture>
+          <texture>cases/cd/clearcases/clearcase_317x317.png</texture>
           <visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + Container(11000).ListItem.Type(album) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Music.Case),Clear)</visible>
         </control>
         <!-- Glass Case -->
@@ -1578,7 +1547,7 @@
           <posy>-323</posy>
           <width>317</width>
           <height>317</height>
-          <texture>homewidgets/glass/square.png</texture>
+          <texture>cases/glass/square/glass_317x317.png</texture>
           <visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Music.Case),Glass)</visible>
         </control>
         <!-- CD Case -->
@@ -1597,7 +1566,7 @@
           <posy>-323</posy>
           <width>317</width>
           <height>317</height>
-          <texture>homewidgets/case/cd.png</texture>
+          <texture>cases/cd/cd/cd_317x317.png</texture>
           <visible>IsEmpty(Skin.String(Widget.RecentlyAdded.Music.Artwork)) + String.IsEqual(Skin.String(Widget.RecentlyAdded.Music.Case),CD)</visible>
         </control>
         <!-- Item Separator -->
@@ -1942,7 +1911,7 @@
             <width>200</width>
             <height>300</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),cases/clearcases/200x300/,.png]</texture>
           </control>
         </itemlayout>
         <!-- Glass Case -->
@@ -1987,7 +1956,7 @@
             <width>200</width>
             <height>300</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>homewidgets/glass/portrait.png</texture>
+            <texture>cases/glass/portrait/glass_200x300.png</texture>
           </control>
         </itemlayout>
         <!-- Home Videos (Portrait Glass) -->
@@ -2032,7 +2001,7 @@
             <width>200</width>
             <height>300</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>homewidgets/glass/portrait.png</texture>
+            <texture>cases/glass/portrait/glass_200x300.png</texture>
           </control>
         </itemlayout>
         <!-- DVD/Bluray Case -->
@@ -2077,7 +2046,7 @@
             <width>200</width>
             <height>300</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),cases/dvd-bluray/200x300/,.png]</texture>
           </control>
         </itemlayout>
         <!-- Fanart -->
@@ -2160,7 +2129,7 @@
             <aspectratio scalediffuse="false">stretch</aspectratio>
             <width>473</width>
             <height>266</height>
-            <texture>homewidgets/glass/landscape.png</texture>
+            <texture>cases/glass/landscape/glass_473x266.png</texture>
             <colordiffuse>BAffffff</colordiffuse>
           </control>
         </itemlayout>
@@ -2243,7 +2212,17 @@
             <width>200</width>
             <height>300</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),cases/clearcases/200x300/,.png]</texture>
+            <visible>ListItem.Type(episode)</visible>
+          </control>
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>200</width>
+            <height>300</height>
+            <colordiffuse>BAffffff</colordiffuse>
+            <texture>cases/clearcases/200x300/tvseries.png</texture>
+            <visible>ListItem.Type(season)</visible>
           </control>
         </itemlayout>
         <!-- Glass Case -->
@@ -2288,7 +2267,7 @@
             <width>200</width>
             <height>300</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>homewidgets/glass/portrait.png</texture>
+            <texture>cases/glass/portrait/glass_200x300.png</texture>
           </control>
         </itemlayout>
         <!-- DVD/Bluray Case -->
@@ -2333,7 +2312,17 @@
             <width>200</width>
             <height>300</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+            <texture>$INFO[ListItem.Property(mediaTag-videoResolution),cases/dvd-bluray/200x300/,.png]</texture>
+            <visible>ListItem.Type(episode)</visible>
+          </control>
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>200</width>
+            <height>300</height>
+            <colordiffuse>BAffffff</colordiffuse>
+            <texture>cases/dvd-bluray/200x300/tvseries.png</texture>
+            <visible>ListItem.Type(season)</visible>
           </control>
         </itemlayout>
         <!-- Thumbnail -->
@@ -2437,7 +2426,7 @@
             <posy>0</posy>
             <width>473</width>
             <height>266</height>
-            <texture>homewidgets/glass/landscape.png</texture>
+            <texture>cases/glass/landscape/glass_473x266.png</texture>
             <colordiffuse>BAffffff</colordiffuse>
           </control>
         </itemlayout>
@@ -2542,7 +2531,7 @@
             <posy>0</posy>
             <width>473</width>
             <height>266</height>
-            <texture>homewidgets/glass/landscape.png</texture>
+            <texture>cases/glass/landscape/glass_473x266.png</texture>
             <colordiffuse>BAffffff</colordiffuse>
           </control>
         </itemlayout>
@@ -2625,7 +2614,7 @@
             <width>282</width>
             <height>282</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>homewidgets/clearcase/cd.png</texture>
+            <texture>cases/cd/clearcases/clearcase_282x282.png</texture>
           </control>
         </itemlayout>
         <!-- Glass Case -->
@@ -2670,7 +2659,7 @@
             <width>282</width>
             <height>282</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>homewidgets/glass/square.png</texture>
+            <texture>cases/glass/square/glass_282x282.png</texture>
           </control>
         </itemlayout>
         <!-- CD Case -->
@@ -2715,7 +2704,7 @@
             <width>282</width>
             <height>282</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>homewidgets/case/cd.png</texture>
+            <texture>cases/cd/cd/cd_282x282.png</texture>
           </control>
         </itemlayout>
         <!-- Music Fanart -->
@@ -2819,7 +2808,7 @@
             <posy>0</posy>
             <width>473</width>
             <height>266</height>
-            <texture>homewidgets/glass/landscape.png</texture>
+            <texture>cases/glass/landscape/glass_473x266.png</texture>
             <colordiffuse>BAffffff</colordiffuse>
           </control>
         </itemlayout>
@@ -2951,7 +2940,7 @@
             <width>282</width>
             <height>282</height>
             <colordiffuse>BAffffff</colordiffuse>
-            <texture>homewidgets/glass/square.png</texture>
+            <texture>cases/glass/square/glass_282x282.png</texture>
           </control>
         </itemlayout>
         <!-- Recently Added Photos Landscape -->
@@ -3081,7 +3070,7 @@
             <posy>0</posy>
             <width>473</width>
             <height>266</height>
-            <texture>homewidgets/glass/landscape.png</texture>
+            <texture>cases/glass/landscape/glass_473x266.png</texture>
             <colordiffuse>BAffffff</colordiffuse>
           </control>
         </itemlayout>
@@ -3242,7 +3231,7 @@
               <height>300</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),cases/clearcases/200x300/,.png]</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -3297,7 +3286,7 @@
               <label>$VAR[HomeWidgetTitleVar]</label>
               <visible>Skin.HasSetting(Widget.RecentlyAdded.Movies.Label)</visible>
             </control>
-            <!-- Clear Case -->
+            <!-- Case -->
             <control type="image">
               <posx>0</posx>
               <posy>0</posy>
@@ -3305,7 +3294,7 @@
               <height>300</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>homewidgets/glass/portrait.png</texture>
+              <texture>cases/glass/portrait/glass_200x300.png</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -3360,7 +3349,7 @@
               <label>$VAR[HomeWidgetTitleVar]</label>
               <visible>!Skin.HasSetting(Widget.RecentlyAdded.HomeVideos.DisableLabel)</visible>
             </control>
-            <!-- Clear Case -->
+            <!-- Case -->
             <control type="image">
               <posx>0</posx>
               <posy>0</posy>
@@ -3368,7 +3357,7 @@
               <height>300</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>homewidgets/glass/portrait.png</texture>
+              <texture>cases/glass/portrait/glass_200x300.png</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -3431,7 +3420,7 @@
               <height>300</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),cases/dvd-bluray/200x300/,.png]</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -3549,7 +3538,7 @@
               <width>473</width>
               <height>266</height>
               <aspectratio scalediffuse="false">stretch</aspectratio>
-              <texture>homewidgets/glass/landscape.png</texture>
+              <texture>cases/glass/landscape/glass_473x266.png</texture>
               <bordersize>8</bordersize>
             </control>
             <!-- Highlight -->
@@ -3669,7 +3658,18 @@
               <height>300</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/clearcase/,.png]</texture>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),cases/clearcases/200x300/,.png]</texture>
+              <visible>ListItem.Type(episode)</visible>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>200</width>
+              <height>300</height>
+              <bordersize>8</bordersize>
+              <aspectratio aligny="top">stretch</aspectratio>
+              <texture>cases/clearcases/200x300/tvseries.png</texture>
+              <visible>ListItem.Type(season)</visible>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -3732,7 +3732,7 @@
               <height>300</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>homewidgets/glass/portrait.png</texture>
+              <texture>cases/glass/portrait/glass_200x300.png</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -3795,7 +3795,18 @@
               <height>300</height>
               <aspectratio aligny="top">stretch</aspectratio>
               <bordersize>8</bordersize>
-              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),homewidgets/case/,.png]</texture>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),cases/dvd-bluray/200x300/,.png]</texture>
+              <visible>ListItem.Type(episode)</visible>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>200</width>
+              <height>300</height>
+              <aspectratio aligny="top">stretch</aspectratio>
+              <bordersize>8</bordersize>
+              <texture>cases/dvd-bluray/200x300/tvseries.png</texture>
+              <visible>ListItem.Type(season)</visible>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -3935,7 +3946,7 @@
               <width>473</width>
               <height>266</height>
               <aspectratio>stretch</aspectratio>
-              <texture>homewidgets/glass/landscape.png</texture>
+              <texture>cases/glass/landscape/glass_473x266.png</texture>
               <bordersize>8</bordersize>
             </control>
             <!-- Highlight -->
@@ -4077,7 +4088,7 @@
               <width>473</width>
               <height>266</height>
               <aspectratio>stretch</aspectratio>
-              <texture>homewidgets/glass/landscape.png</texture>
+              <texture>cases/glass/landscape/glass_473x266.png</texture>
               <bordersize>8</bordersize>
             </control>
             <!-- Highlight -->
@@ -4197,7 +4208,7 @@
               <height>282</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>homewidgets/clearcase/cd.png</texture>
+              <texture>cases/cd/clearcases/clearcase_282x282.png</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -4259,7 +4270,7 @@
               <height>282</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>homewidgets/glass/square.png</texture>
+              <texture>cases/glass/square/glass_282x282.png</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -4321,7 +4332,7 @@
               <height>282</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>homewidgets/case/cd.png</texture>
+              <texture>cases/cd/cd/cd_282x282.png</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -4461,7 +4472,7 @@
               <width>473</width>
               <height>266</height>
               <aspectratio>stretch</aspectratio>
-              <texture>homewidgets/glass/landscape.png</texture>
+              <texture>cases/glass/landscape/glass_473x266.png</texture>
               <bordersize>8</bordersize>
             </control>
             <!-- Highlight -->
@@ -4630,7 +4641,7 @@
               <height>282</height>
               <bordersize>8</bordersize>
               <aspectratio aligny="top">stretch</aspectratio>
-              <texture>homewidgets/glass/square.png</texture>
+              <texture>cases/glass/square/glass_282x282.png</texture>
             </control>
             <!-- Highlight -->
             <control type="image">
@@ -4796,7 +4807,7 @@
               <width>473</width>
               <height>266</height>
               <aspectratio>stretch</aspectratio>
-              <texture>homewidgets/glass/landscape.png</texture>
+              <texture>cases/glass/landscape/glass_473x266.png</texture>
               <bordersize>8</bordersize>
             </control>
             <!-- Highlight -->
@@ -4918,7 +4929,7 @@
             <posy>0</posy>
             <width>473</width>
             <height>266</height>
-            <texture>homewidgets/glass/landscape.png</texture>
+            <texture>cases/glass/landscape/glass_473x266.png</texture>
             <colordiffuse>BAffffff</colordiffuse>
           </control>
         </itemlayout>
@@ -5051,7 +5062,7 @@
               <width>473</width>
               <height>266</height>
               <aspectratio>stretch</aspectratio>
-              <texture>homewidgets/glass/landscape.png</texture>
+              <texture>cases/glass/landscape/glass_473x266.png</texture>
               <bordersize>8</bordersize>
             </control>
             <!-- Highlight -->
@@ -5178,7 +5189,7 @@
             <posy>0</posy>
             <width>473</width>
             <height>266</height>
-            <texture>homewidgets/glass/landscape.png</texture>
+            <texture>cases/glass/landscape/glass_473x266.png</texture>
             <colordiffuse>BAffffff</colordiffuse>
           </control>
         </itemlayout>
@@ -5305,7 +5316,7 @@
               <width>473</width>
               <height>266</height>
               <aspectratio>stretch</aspectratio>
-              <texture>homewidgets/glass/landscape.png</texture>
+              <texture>cases/glass/landscape/glass_473x266.png</texture>
               <bordersize>8</bordersize>
             </control>
             <!-- Highlight -->
