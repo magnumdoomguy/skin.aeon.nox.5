@@ -668,7 +668,17 @@
           <aspectratio scalediffuse="false">scale</aspectratio>
           <texture>$VAR[Widget_RecentlyAddedThumbnail]</texture>
           <fadetime>400</fadetime>
-          <visible>[Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
+          <visible>Container(11000).ListItem.Type(episode) + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
+        </control>
+        <control type="image">
+          <posx>247</posx>
+          <posy>-305</posy>
+          <width>526</width>
+          <height>296</height>
+          <aspectratio scalediffuse="false">scale</aspectratio>
+          <texture>$INFO[Container(11000).ListItem.Art(fanart)]</texture>
+          <fadetime>400</fadetime>
+          <visible>Container(11000).ListItem.Type(season) + String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail) + !Skin.HasSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</visible>
         </control>
         <!-- TV Thumbnail Glass -->
         <control type="image">
@@ -796,7 +806,18 @@
             <shadowcolor>black</shadowcolor>
             <scroll>true</scroll>
             <label>[UPPERCASE]$INFO[Container(11000).ListItem.TVShowTitle][/UPPERCASE]</label>
-            <visible>Control.IsVisible(11000) + [Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)]</visible>
+            <visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode)</visible>
+          </control>
+          <!-- Season -->
+          <control type="label">
+            <width>855</width>
+            <height>35</height>
+            <font>font12</font>
+            <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <scroll>true</scroll>
+            <label>[UPPERCASE]$INFO[Container(11000).ListItem.Label][/UPPERCASE]</label>
+            <visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(season)</visible>
           </control>
         </control>
         <!-- Info -->
@@ -811,10 +832,12 @@
           <align>left</align>
           <aligny>center</aligny>
           <include>RecentlyAdded_Infoline</include>
+          <visible>!Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
           <animation effect="slide" end="0,-23" condition="[Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)]">Conditional</animation>
+          <animation effect="slide" end="0,-31" condition="Container(11000).ListItem.Type(season)">Conditional</animation>
           <posx>782</posx>
           <posy>-252</posy>
           <width>895</width>
@@ -832,7 +855,7 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[RecentlyAddedPlotVar]</label>
-          <visible>!Skin.HasSetting(General.SmallPlotText) + ![Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)]</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + ![Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)] + !Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Info Plot (Small) -->
         <control type="textbox">
@@ -845,7 +868,7 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[RecentlyAddedPlotVar]</label>
-          <visible>Skin.HasSetting(General.SmallPlotText) + ![Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)]</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + ![Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)] + !Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Info Plot (Home Videos)-->
         <control type="textbox">
@@ -858,7 +881,7 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[RecentlyAddedPlotVar]</label>
-          <visible>!Skin.HasSetting(General.SmallPlotText) + [Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)]</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)] + !Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Info Plot (Small Home Videos) -->
         <control type="textbox">
@@ -871,7 +894,20 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[RecentlyAddedPlotVar]</label>
-          <visible>Skin.HasSetting(General.SmallPlotText) + [Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)]</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + [Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)] + !Container(11000).ListItem.Type(season)</visible>
+        </control>
+        <!-- Info Plot (Seasons) -->
+        <control type="textbox">
+          <posy>-210</posy>
+          <posx>802</posx>
+          <height>182</height>
+          <width>855</width>
+          <font>font12_textbox</font>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <label>$VAR[RecentlyAddedPlotVar]</label>
+          <visible>Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
@@ -880,9 +916,10 @@
           <width>895</width>
           <height>60</height>
           <texture border="1">separator2.png</texture>
+          <visible>!Container(11000).ListItem.Type(season)</visible>
         </control>
         <control type="grouplist">
-          <visible>!IsEmpty(Control.GetLabel(9999)) + ![Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)]</visible>
+          <visible>!IsEmpty(Control.GetLabel(9999)) + ![Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)] + !Container(11000).ListItem.Type(season)</visible>
           <posy>-66</posy>
           <posx>782</posx>
           <height>60</height>
@@ -1003,7 +1040,7 @@
           </control>
         </control>
         <control type="grouplist">
-          <visible>IsEmpty(Control.GetLabel(9999)) + ![Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)]</visible>
+          <visible>IsEmpty(Control.GetLabel(9999)) + ![Container(11000).ListItem.Type(clip) + !Skin.HasSetting(Advanced.PortraitHomeVideos)] + !Container(11000).ListItem.Type(season)</visible>
           <posy>-66</posy>
           <posx>782</posx>
           <height>62</height>
@@ -2354,6 +2391,17 @@
             <aspectratio>scale</aspectratio>
             <colordiffuse>BAffffff</colordiffuse>
             <texture background="true">$VAR[Widget_RecentlyAddedThumbnail2]</texture>
+            <visible>ListItem.Type(episode)</visible>
+          </control>
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>473</width>
+            <height>266</height>
+            <aspectratio>scale</aspectratio>
+            <colordiffuse>BAffffff</colordiffuse>
+            <texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+            <visible>ListItem.Type(season)</visible>
           </control>
           <!-- Text Label -->
           <control type="image">
@@ -3854,6 +3902,17 @@
               <aspectratio>scale</aspectratio>
               <texture background="true">$VAR[Widget_RecentlyAddedThumbnail2]</texture>
               <bordersize>8</bordersize>
+              <visible>ListItem.Type(episode)</visible>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>473</width>
+              <height>266</height>
+              <aspectratio>scale</aspectratio>
+              <texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+              <bordersize>8</bordersize>
+              <visible>ListItem.Type(season)</visible>
             </control>
             <!-- Text Label -->
             <control type="image">
