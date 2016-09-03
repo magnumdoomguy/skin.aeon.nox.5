@@ -327,7 +327,8 @@
         </control>
         <!-- Item Separator -->
         <control type="image">
-          <animation effect="slide" end="0,-23" condition="Control.IsVisible(11000) + [[[Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + IsEmpty(Container(11000).ListItem.Genre)] | Container(11000).ListItem.Type(season)]">Conditional</animation>
+          <animation effect="slide" end="0,-23" condition="Control.IsVisible(11000) + [[Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + IsEmpty(Container(11000).ListItem.Genre)]">Conditional</animation>
+          <animation effect="slide" end="0,-31" condition="Container(11000).ListItem.Type(season)">Conditional</animation>
           <posx>476</posx>
           <posy>-286</posy>
           <width>1201</width>
@@ -345,7 +346,7 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[RecentlyAddedPlotVar]</label>
-          <visible>[Control.IsVisible(11000) + [Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !IsEmpty(Container(11000).ListItem.Genre) + !Skin.HasSetting(General.SmallPlotText)] | [Control.IsVisible(11000) + [Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + !Skin.HasSetting(General.SmallPlotText)]</visible>
+          <visible>[[Control.IsVisible(11000) + [Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !IsEmpty(Container(11000).ListItem.Genre) + !Skin.HasSetting(General.SmallPlotText)] | [Control.IsVisible(11000) + [Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + !Skin.HasSetting(General.SmallPlotText)]] + !Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Info Plot (Small) -->
         <control type="textbox">
@@ -358,7 +359,7 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[RecentlyAddedPlotVar]</label>
-          <visible>[Control.IsVisible(11000) + [Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !IsEmpty(Container(11000).ListItem.Genre) + Skin.HasSetting(General.SmallPlotText)] | [Control.IsVisible(11000) + [Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + Skin.HasSetting(General.SmallPlotText)]</visible>
+          <visible>[[Control.IsVisible(11000) + [Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !IsEmpty(Container(11000).ListItem.Genre) + Skin.HasSetting(General.SmallPlotText)] | [Control.IsVisible(11000) + [Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)] + Skin.HasSetting(General.SmallPlotText)]] + !Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Info Plot (No Genre) -->
         <control type="textbox">
@@ -371,7 +372,7 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[RecentlyAddedPlotVar]</label>
-          <visible>Control.IsVisible(11000) + [Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + IsEmpty(Container(11000).ListItem.Genre) + !Skin.HasSetting(General.SmallPlotText) + ![Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)]</visible>
+          <visible>[Control.IsVisible(11000) + [Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + IsEmpty(Container(11000).ListItem.Genre) + !Skin.HasSetting(General.SmallPlotText) + ![Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)]] + !Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Info Plot (No Genre, Small) -->
         <control type="textbox">
@@ -384,7 +385,20 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[RecentlyAddedPlotVar]</label>
-          <visible>Control.IsVisible(11000) + [Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + IsEmpty(Container(11000).ListItem.Genre) + Skin.HasSetting(General.SmallPlotText) + ![Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)]</visible>
+          <visible>[Control.IsVisible(11000) + [Container(11000).ListItem.Type(movie) |[Container(11000).ListItem.Type(clip) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + IsEmpty(Container(11000).ListItem.Genre) + Skin.HasSetting(General.SmallPlotText) + ![Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)]] + !Container(11000).ListItem.Type(season)</visible>
+        </control>
+        <!-- Info Plot (Seasons) -->
+        <control type="textbox">
+          <posy>-242</posy>
+          <posx>496</posx>
+          <height>220</height>
+          <width>1156</width>
+          <font>font12_textbox</font>
+          <align>justify</align>
+          <textcolor>grey</textcolor>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <label>$VAR[RecentlyAddedPlotVar]</label>
+          <visible>Container(11000).ListItem.Type(season)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
@@ -393,6 +407,7 @@
           <width>1201</width>
           <height>60</height>
           <texture border="1">separator2.png</texture>
+          <visible>!Container(11000).ListItem.Type(season)</visible>
         </control>
         <control type="grouplist">
           <visible>!IsEmpty(Control.GetLabel(9999)) + !Container(11000).ListItem.Type(season)</visible>
