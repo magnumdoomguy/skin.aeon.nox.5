@@ -21,34 +21,26 @@
           <orientation>horizontal</orientation>
           <posx>0</posx>
           <posy>46</posy>
+          <width>1500</width>
+          <height>41</height>
+          <align>left</align>
+          <aligny>center</aligny>
+          <itemgap>0</itemgap>
           <include>Home_UserServerInfo</include>
         </control>
-        <!-- Homemenu Upper Bar -->
-        <control type="grouplist" id="9020">
-          <posx>945</posx>
+        <!-- Date & Time -->
+        <control type="label" id="9025">
+          <posx>1905</posx>
           <posy>46</posy>
-          <width>960</width>
+          <width>400</width>
           <height>41</height>
           <align>right</align>
-          <orientation>horizontal</orientation>
-          <!-- Space -->
-          <control type="label" id="9026">
-            <width>5</width>
-            <height>41</height>
-            <label>-</label>
-            <font>font13_title</font>
-            <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
-          </control>
-          <!-- Date & Time -->
-          <control type="label" id="9025">
-            <width min="10" max="1780">auto</width>
-            <height>41</height>
-            <label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
-            <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
-            <include condition="!Skin.HasTheme(WhiteFlat)">Font13Title</include>
-            <include condition="Skin.HasTheme(WhiteFlat)">Font13Title_WhiteFlat</include>
-            <include condition="!Skin.HasTheme(WhiteFlat)">ShadowColour</include>
-          </control>
+          <textoffset>15</textoffset>
+          <label>$INFO[System.Date,[COLOR grey], | [/COLOR]]$INFO[System.Time]</label>
+          <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+          <include condition="!Skin.HasTheme(WhiteFlat)">Font13Title</include>
+          <include condition="Skin.HasTheme(WhiteFlat)">Font13Title_WhiteFlat</include>
+          <include condition="!Skin.HasTheme(WhiteFlat)">ShadowColour</include>
         </control>
       </control>
     </control>
@@ -307,46 +299,35 @@
       </control>
     </control>
   </include>
+  <variable name="ServerInfoVar">
+    <value condition="!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))">$INFO[System.CurrentUser] | [COLOR $VAR[Colour_HomeWindowThemeColourVar]]$INFO[Container(300).ListItem(0).Label2][/COLOR]</value>
+    <value condition="!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo) + IsEmpty(Container(300).ListItem(0).Property(isSecure))">$INFO[System.CurrentUser] | $INFO[Container(300).ListItem(0).Label2]</value>
+    <value condition="!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))">[COLOR $VAR[Colour_HomeWindowThemeColourVar]]$INFO[Container(300).ListItem(0).Label2][/COLOR]</value>
+    <value condition="!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo) + IsEmpty(Container(300).ListItem(0).Property(isSecure))">$INFO[Container(300).ListItem(0).Label2]</value>
+    <value>$INFO[System.CurrentUser]</value>
+  </variable>
   <!-- User and Server Info -->
   <include name="Home_UserServerInfo">
     <control type="label">
-      <width min="10" max="780">auto</width>
+      <width>700</width>
       <height>41</height>
-      <label>$INFO[System.CurrentUser]</label>
+      <label>$VAR[ServerInfoVar]</label>
       <textoffsetx>15</textoffsetx>
       <textcolor>grey</textcolor>
+      <align>left</align>
+      <aligny>center</aligny>
       <include condition="!Skin.HasTheme(WhiteFlat)">Font13Title</include>
       <include condition="Skin.HasTheme(WhiteFlat)">Font13Title_WhiteFlat</include>
       <include condition="!Skin.HasTheme(WhiteFlat)">ShadowColour</include>
       <visible>!Skin.HasSetting(Disable.Userinfo)</visible>
     </control>
-    <control type="label">
-      <visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !Skin.HasSetting(Disable.Userinfo)</visible>
-      <width min="10" max="780">auto</width>
-      <height>41</height>
-      <label>[COLOR grey]  |  [/COLOR]$INFO[Container(300).ListItem(0).Label2]</label>
-      <textoffsetx>15</textoffsetx>
-      <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
-      <include condition="!Skin.HasTheme(WhiteFlat)">Font13Title</include>
-      <include condition="Skin.HasTheme(WhiteFlat)">Font13Title_WhiteFlat</include>
-      <include condition="!Skin.HasTheme(WhiteFlat)">ShadowColour</include>
-    </control>
-    <control type="label">
-      <visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + Skin.HasSetting(Disable.Userinfo)</visible>
-      <width min="10" max="780">auto</width>
-      <height>41</height>
-      <label>$INFO[Container(300).ListItem(0).Label2]</label>
-      <textoffsetx>15</textoffsetx>
-      <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
-      <include condition="!Skin.HasTheme(WhiteFlat)">Font13Title</include>
-      <include condition="Skin.HasTheme(WhiteFlat)">Font13Title_WhiteFlat</include>
-      <include condition="!Skin.HasTheme(WhiteFlat)">ShadowColour</include>
-    </control>
-    <control type="label">
+    <!--<control type="label">
       <visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + !IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
-      <width min="10" max="780">auto</width>
+      <width min="10" max="50">auto</width>
       <height>41</height>
       <label></label>
+       <align>left</align>
+      <aligny>center</aligny>
       <textoffsetx>30</textoffsetx>
       <font>IconSmaller</font>
       <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
@@ -354,14 +335,16 @@
     </control>
     <control type="label">
       <visible>!IsEmpty(Container(300).ListItem(0).Label2) + !Skin.HasSetting(Disable.Serverinfo) + IsEmpty(Container(300).ListItem(0).Property(isSecure))</visible>
-      <width min="10" max="780">auto</width>
+      <width min="10" max="50">auto</width>
       <height>41</height>
       <label></label>
+       <align>left</align>
+      <aligny>center</aligny>
       <textoffsetx>30</textoffsetx>
       <font>IconSmaller</font>
       <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
       <include condition="!Skin.HasTheme(WhiteFlat)">ShadowColour</include>
-    </control>
+    </control>-->
   </include>
   <!-- Home Menu Content -->
   <include name="HomeMenuContent">
@@ -739,7 +722,7 @@
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade)</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
     </item>
-     <item>
+    <item>
       <label>By Director</label>
       <icon>-</icon>
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/director)</onclick>
@@ -749,7 +732,7 @@
       <label>By Actor</label>
       <icon>-</icon>
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/actor)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),show)</visible>
     </item>
     <item>
       <label>By Country</label>
@@ -757,31 +740,31 @@
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country)</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
     </item>
-     <item>
+    <item>
       <label>By Content Rating</label>
       <icon>-</icon>
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/contentRating)</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),show)</visible>
     </item>
-     <item>
+    <item>
       <label>By Rating</label>
       <icon>-</icon>
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/rating)</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
     </item>
-     <item>
+    <item>
       <label>By Resolution</label>
       <icon>-</icon>
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/resolution)</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
     </item>
-     <item>
+    <item>
       <label>By First Letter</label>
       <icon>-</icon>
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter)</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),show)</visible>
     </item>
-     <item>
+    <item>
       <label>By Folder</label>
       <icon>-</icon>
       <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder)</onclick>
