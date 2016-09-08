@@ -482,7 +482,17 @@
             <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
             <shadowcolor>black</shadowcolor>
             <label>$INFO[Container(11000).ListItem.TVShowTitle]</label>
-            <visible>Control.IsVisible(11000) + [Container(11000).ListItem.Type(episode) | Container(11000).ListItem.Type(season)]</visible>
+            <visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(episode)</visible>
+          </control>
+          <!-- Season Number -->
+          <control type="label">
+            <width>898</width>
+            <height>27</height>
+            <font>font14_title</font>
+            <textcolor>$VAR[Colour_HomeWindowThemeColourVar]</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <label>$INFO[Container(11000).ListItem.Label]</label>
+            <visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(Season)</visible>
           </control>
           <!-- Music Artist -->
           <control type="label">
@@ -586,7 +596,16 @@
               <textcolor>white2</textcolor>
               <shadowcolor>black</shadowcolor>
               <label>$VAR[RecentlyAdded_Duration]</label>
-              <visible>Control.IsVisible(11000)</visible>
+              <visible>Control.IsVisible(11000) + !Container(11000).ListItem.Type(season)</visible>
+            </control>
+            <!-- Watched / Unwatched Episodes -->
+            <control type="label">
+              <width min="20" max="299">auto</width>
+              <height>35</height>
+              <textcolor>white2</textcolor>
+              <shadowcolor>black</shadowcolor>
+              <label>$LOCALIZE[42260]: $INFO[Container(11000).ListItem.episode] ($INFO[Container(11000).ListItem.Property(UnWatchedEpisodes)] $LOCALIZE[42261])</label>
+              <visible>Control.IsVisible(11000) + Container(11000).ListItem.Type(season)</visible>
             </control>
             <!-- Duration Watch Later -->
             <control type="label">
