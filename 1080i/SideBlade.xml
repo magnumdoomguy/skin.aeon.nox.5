@@ -78,7 +78,7 @@
       </control>
       <!-- Icon Menu -->
       <control type="panel" id="9050">
-        <animation effect="slide" end="0,15" condition="[Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">Conditional</animation>
+        <animation effect="slide" end="0,15" condition="[Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | String.IsEqual(Container.SecondTitle,Unwatched) | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">Conditional</animation>
         <animation effect="slide" end="0,-17" condition="Container.PlexContent(homemovies)">Conditional</animation>
         <visible>!Window.IsActive(10202)</visible>
         <!-- Filter Dialog Window -->
@@ -89,11 +89,11 @@
         <orientation>vertical</orientation>
         <itemgap>70</itemgap>
         <onleft condition="!IsEmpty(Window(Home).Property(ViewTypeMenu))">9000</onleft>
-        <onleft condition="!IsEmpty(Window(Home).Property(OptionsMenu))">200</onleft>
+        <onleft condition="!IsEmpty(Window(Home).Property(OptionsMenu)) | String.IsEqual(Container.SecondTitle,Unwatched)">200</onleft>
         <onleft condition="!IsEmpty(Window(Home).Property(VideoExtrasMenu))">3</onleft>
         <onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">SetProperty(MediaMenu,True,home)</onleft>
         <onleft condition="![Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">1300</onleft>
-        <onleft condition="Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)">200</onleft>
+        <onleft condition="Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums) | String.IsEqual(Container.SecondTitle,Unwatched)">200</onleft>
         <onright condition="IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))">ClearProperty(MediaMenu,Home)</onright>
         <onright condition="IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))">50</onright>
         <onright condition="!IsEmpty(Window(Home).Property(ViewTypeMenu))">ClearProperty(ViewTypeMenu,Home)</onright>
@@ -182,7 +182,7 @@
             <onclick>SetProperty(OptionsMenu,True,home)</onclick>
             <onclick>Control.SetFocus(202)</onclick>
             <label>&#xF00F;</label>
-            <visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + [![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums) | Container.Content(songs) | Skin.String(SectionType,shared) | Container.Content(photos) | Skin.String(SectionType,playqueue)]]</visible>
+            <visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + [![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums) | Container.Content(songs) | Skin.String(SectionType,shared) | Container.Content(photos) | Skin.String(SectionType,playqueue) | String.IsEqual(Container.SecondTitle,Unwatched)]]</visible>
           </item>
         </content>
       </control>
@@ -597,7 +597,7 @@
       </control>
       <!-- Options Menu -->
       <control type="grouplist" id="200">
-        <visible>[[ControlGroup(200).HasFocus + IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))] | [!IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))] | [Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]] + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + IsEmpty(Window(Home).Property(VideoExtrasMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu))</visible>
+        <visible>[[ControlGroup(200).HasFocus + IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))] | [!IsEmpty(Window(Home).Property(OptionsMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + IsEmpty(Window(Home).Property(VideoExtrasMenu))] | [Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | String.IsEqual(Container.SecondTitle,Unwatched) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]] + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + IsEmpty(Window(Home).Property(VideoExtrasMenu)) + IsEmpty(Window(Home).Property(ViewTypeMenu))</visible>
         <animation effect="slide" end="0,-17" condition="Container.PlexContent(homemovies)">Conditional</animation>
         <posx>0</posx>
         <posy>100</posy>
@@ -2058,7 +2058,7 @@
       </control>
       <!-- Filters -->
       <control type="grouplist" id="1300">
-        <visible>!ControlGroup(200).HasFocus + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + !Container.PlexContent(channels) + !Container.PlexContent(channel) + !Container.Content(seasons) + ![Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] + ![Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] + !Container.Content(songs) + !Container.PlexContent(photoalbums) + !Skin.String(SectionType,shared) + !Skin.String(SectionType,playqueue) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + !Window.IsActive(10202) + IsEmpty(Window(Home).Property(OptionsMenu))</visible>
+        <visible>!ControlGroup(200).HasFocus + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + !Container.PlexContent(channels) + !Container.PlexContent(channel) + !String.IsEqual(Container.SecondTitle,Unwatched) + !Container.Content(seasons) + ![Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] + ![Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] + !Container.Content(songs) + !Container.PlexContent(photoalbums) + !Skin.String(SectionType,shared) + !Skin.String(SectionType,playqueue) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + !Window.IsActive(10202) + IsEmpty(Window(Home).Property(OptionsMenu))</visible>
         <animation effect="slide" end="0,-17" condition="Container.PlexContent(homemovies)">Conditional</animation>
         <posx>0</posx>
         <posy>100</posy>
