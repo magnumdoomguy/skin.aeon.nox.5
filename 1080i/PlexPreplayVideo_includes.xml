@@ -1461,19 +1461,19 @@
     <value>$LOCALIZE[208]</value>
   </variable>
   <!-- Rating Colour -->
-  <variable name="Preplay_RatingColorVar">        
+  <variable name="Preplay_RatingColorVar">    
     <value condition="!IsEmpty(ListItem.Property(hasUserRating))">$VAR[Colour_PreplayThemeColourVar]</value>    
     <value>grey</value>
   </variable>
   <!-- Preplay Theme Colour -->
-  <variable name="Colour_PreplayThemeColourVar">    
+  <variable name="Colour_PreplayThemeColourVar">
     <value condition="Skin.HasTheme(WhiteFlat)">FF575757</value>
     <value condition="!IsEmpty(Skin.String(Colour.PreplayThemeColour))">$INFO[Skin.String(Colour.PreplayThemeColour)]</value>
     <value condition="!IsEmpty(Skin.String(Colour.ThemeColour))">$INFO[Skin.String(Colour.ThemeColour)]</value>
     <value>FF6db9e5</value>
   </variable>
   <!-- Preplay Highlight Colour -->
-  <variable name="Colour_PreplayHighlightColourVar">    
+  <variable name="Colour_PreplayHighlightColourVar">
     <value condition="!IsEmpty(Skin.String(Colour.PreplayHighlightColour))">$INFO[Skin.String(Colour.PreplayHighlightColour)]</value>
     <value condition="!IsEmpty(Skin.String(Colour.GeneralHighlightColour))">$INFO[Skin.String(Colour.GeneralHighlightColour)]</value>
     <value condition="!IsEmpty(Skin.String(Colour.ThemeColour))">$INFO[Skin.String(Colour.ThemeColour)]</value>
@@ -1482,22 +1482,12 @@
   <!-- Portrait Watched Status Ribbon -->
   <include name="Preplay_PortraitWatchedStatusRibbon">
     <control type="image">
-        <visible>!Skin.HasTheme(WhiteFlat)</visible>
-        <posx>527</posx>
-        <width>166</width>
-        <height>166</height>
-        <texture>$VAR[OverlayVar]</texture>
+      <posx>527</posx>
+      <width>166</width>
+      <height>166</height>
+      <texture>$VAR[OverlayVar]</texture>
     </control>
-    <!-- WhiteFlat - Watched Status Ribbon -->
-    <control type="image">
-        <visible>Skin.HasTheme(WhiteFlat)</visible>
-        <posx>0</posx>
-        <posy>1075</posy>
-        <width>729</width>
-        <height>5</height>
-        <texture>$VAR[OverlayVar]</texture>
-    </control>
-  </include>  
+  </include>
   <!-- Portrait Watched Status Upper Circles -->
   <include name="Preplay_PortraitWatchedStatusUpperCircles">
     <control type="image">
@@ -1713,20 +1703,8 @@
   </include>
   <include name="PreplayMenu">
     <!-- Play Button -->
-    <control type="button" id="102">
-            <description>Play/browse to Show</description>
-            <height>60</height>
-            <width>216</width>
-			<textoffsetx>0</textoffsetx><align>center</align><aligny>center</aligny>
-            <textcolor condition="Skin.HasTheme(WhiteFlat)">grey3</textcolor>
-            <textcolor>grey</textcolor>
-            <focusedcolor condition="Skin.HasTheme(WhiteFlat)">grey3</focusedcolor>
-            <focusedcolor>white</focusedcolor>
-            <label>$VAR[Preplay_PlayResumeButtonVar]</label>
-            <font>font15</font><width>80</width>
-            <onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick>
-            <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
-    </control>
+    <control type="button" id="102"><description>Play/browse to Show</description><height>60</height><width>216</width>--&gt;
+			<textoffsetx>0</textoffsetx><align>center</align><aligny>center</aligny><textcolor>grey</textcolor><focusedcolor>white</focusedcolor><label>$VAR[Preplay_PlayResumeButtonVar]</label><font>font15</font><width>80</width><onclick>Plex.PlayWith(VideoDefaultPlayer)</onclick><colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse></control>
     <!-- Item Separator -->
     <control type="image" id="200">
       <width>2</width>
@@ -1734,25 +1712,8 @@
       <texture border="1">separator3.png</texture>
     </control>
     <!-- Audio Button -->
-    <control type="button" id="103">
-            <description>Audio</description>
-            <height>60</height>
-            <width>216</width>
-			<textoffsetx>0</textoffsetx>
-            <align>center</align>
-            <aligny>center</aligny>
-            <textcolor condition="Skin.HasTheme(WhiteFlat)">grey3</textcolor>
-            <textcolor>grey</textcolor>
-            <focusedcolor condition="Skin.HasTheme(WhiteFlat)">grey3</focusedcolor>
-            <focusedcolor>white</focusedcolor>
-            <label>$LOCALIZE[292]</label>
-            <font>font15</font>
-            <width>80</width>
-            <onfocus>Skin.SetString(DialogPos,audiostreampicker)</onfocus>
-            <onunfocus>Skin.Reset(DialogPos)</onunfocus>
-            <onclick>ActivateWindow(10205)</onclick>            
-            <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
-    </control>
+    <control type="button" id="103"><description>Audio</description><height>60</height><width>216</width>--&gt;
+			<textoffsetx>0</textoffsetx><align>center</align><aligny>center</aligny><textcolor>grey</textcolor><focusedcolor>white</focusedcolor><label>$LOCALIZE[292]</label><font>font15</font><width>80</width><onfocus>Skin.SetString(DialogPos,audiostreampicker)</onfocus><onunfocus>Skin.Reset(DialogPos)</onunfocus><onclick>ActivateWindow(10205)</onclick><colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse></control>
     <!-- Item Separator -->
     <control type="image" id="201">
       <width>2</width>
@@ -1761,23 +1722,21 @@
     </control>
     <!-- Subtitles Button -->
     <control type="button" id="104">
-         <description>Subtitles</description>
-        <height>60</height>
-        <width>216</width>
-        <textoffsetx>0</textoffsetx>
-        <align>center</align>
-        <aligny>center</aligny>
-        <textcolor condition="Skin.HasTheme(WhiteFlat)">grey3</textcolor>
-        <textcolor>grey</textcolor>
-        <focusedcolor condition="Skin.HasTheme(WhiteFlat)">grey3</focusedcolor>
-        <focusedcolor>white</focusedcolor>
-        <label>$LOCALIZE[31133]</label>
-        <font>font15</font>
-        <width>80</width>
-        <onclick>ActivateWindow(10204)</onclick>
-        <onfocus>Skin.SetString(DialogPos,subtitlestreampicker)</onfocus>
-        <onunfocus>Skin.Reset(DialogPos)</onunfocus>
-        <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
+      <description>Subtitles</description>
+      <height>60</height>
+      <width>216</width>
+      <textoffsetx>0</textoffsetx>
+      <align>center</align>
+      <aligny>center</aligny>
+      <textcolor>grey</textcolor>
+      <focusedcolor>white</focusedcolor>
+      <label>$LOCALIZE[31133]</label>
+      <font>font15</font>
+      <width>80</width>
+      <onclick>ActivateWindow(10204)</onclick>
+      <onfocus>Skin.SetString(DialogPos,subtitlestreampicker)</onfocus>
+      <onunfocus>Skin.Reset(DialogPos)</onunfocus>
+      <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
     </control>
     <!-- Item Separator -->
     <control type="image" id="202">
@@ -1786,23 +1745,8 @@
       <texture border="1">separator3.png</texture>
     </control>
     <!-- Ratings Button -->
-    <control type="button" id="105">
-        <description>Ratings</description>
-        <height>60</height>
-        <width>216</width>
-		<textoffsetx>0</textoffsetx>
-        <align>center</align>
-        <aligny>center</aligny>
-        <textcolor condition="Skin.HasTheme(WhiteFlat)">grey3</textcolor>
-        <textcolor>grey</textcolor>
-        <focusedcolor condition="Skin.HasTheme(WhiteFlat)">grey3</focusedcolor>
-        <focusedcolor>white</focusedcolor>
-        <label>$LOCALIZE[42029]</label><font>font15</font>
-        <width>80</width><onclick>ActivateWindow(10200,$INFO[ListItem(0).Path])</onclick>
-        <onfocus>Skin.SetString(DialogPos,rate)</onfocus>
-        <onunfocus>Skin.Reset(DialogPos)</onunfocus>
-        <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
-    </control>
+    <control type="button" id="105"><description>Ratings</description><height>60</height><width>216</width>--&gt;
+			<textoffsetx>0</textoffsetx><align>center</align><aligny>center</aligny><textcolor>grey</textcolor><focusedcolor>white</focusedcolor><label>$LOCALIZE[42029]</label><font>font15</font><width>80</width><onclick>ActivateWindow(10200,$INFO[ListItem(0).Path])</onclick><onfocus>Skin.SetString(DialogPos,rate)</onfocus><onunfocus>Skin.Reset(DialogPos)</onunfocus><colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse></control>
     <!-- Item Separator -->
     <control type="image" id="204">
       <width>2</width>
@@ -1817,9 +1761,7 @@
       <textoffsetx>0</textoffsetx>
       <align>center</align>
       <aligny>center</aligny>
-      <textcolor condition="Skin.HasTheme(WhiteFlat)">grey3</textcolor>
       <textcolor>grey</textcolor>
-      <focusedcolor condition="Skin.HasTheme(WhiteFlat)">grey3</focusedcolor>
       <focusedcolor>white</focusedcolor>
       <label>$LOCALIZE[31139]</label>
       <font>font15</font>
@@ -1839,13 +1781,11 @@
       <textoffsetx>0</textoffsetx>
       <align>center</align>
       <aligny>center</aligny>
-      <textcolor condition="Skin.HasTheme(WhiteFlat)">grey3</textcolor>
       <textcolor>grey</textcolor>
-      <focusedcolor condition="Skin.HasTheme(WhiteFlat)">grey3</focusedcolor>
       <focusedcolor>white</focusedcolor>
       <label></label>
       <font>IconMedium</font>
-      <onclick>ActivateWindow(1221)</onclick>      
+      <onclick>ActivateWindow(1221)</onclick>
       <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
     </control>
   </include>
@@ -2009,11 +1949,11 @@
       <textoffsetx>0</textoffsetx>
       <align>center</align>
       <aligny>center</aligny>
-      <textcolor>grey</textcolor>      
+      <textcolor>grey</textcolor>
       <focusedcolor>white</focusedcolor>
       <label></label>
       <font>IconMedium</font>
-      <onclick>ActivateWindow(1221)</onclick>      
+      <onclick>ActivateWindow(1221)</onclick>
       <colordiffuse>$VAR[Colour_PreplayHighlightColourVar]</colordiffuse>
     </control>
     <!-- Item Separator -->
