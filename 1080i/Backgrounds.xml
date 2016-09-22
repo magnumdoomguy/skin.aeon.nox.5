@@ -233,6 +233,29 @@
       <include>FanartCommonValues</include>
       <info>Skin.String(CustomWatchLaterSlideshowPath)</info>
     </control>
+     <control type="group">
+      <visible>![Control.IsVisible(509) + Window.IsActive(videos)]</visible>
+      <visible>![!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
+      <control type="image">
+        <description>Normal Default Background Image</description>
+        <include>FanartCommonValues</include>
+        <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
+      </control>
+    </control>
+    <!-- Custom Music Background Image -->
+    <control type="image">
+      <description>Custom Background Image</description>
+      <visible>!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomMusicSectionBackgroundFile)</info>
+    </control>
+    <!-- Custom Music Slideshow -->
+    <control type="multiimage">
+      <description>Custom Slideshow Background</description>
+      <visible>!IsEmpty(Skin.String(CustomMusicSectionSlideshowPath)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomMusicSectionSlideshowPath)</info>
+    </control>
   </include>
   <!-- Photo Fanart -->
   <include name="PhotosFanart">

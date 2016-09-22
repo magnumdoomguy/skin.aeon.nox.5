@@ -1342,6 +1342,34 @@
               <selectedcolor>white</selectedcolor>
             </control>
           </focusedlayout>
+          <itemlayout height="120" width="1140" condition="Container.Content(artists)">
+            <include>ListSeparator</include>
+            <!-- Artist Thumb -->
+            <control type="image">
+              <include>ListSquareIcon</include>
+              <texture fallback="defaultartist.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <colordiffuse>grey2</colordiffuse>
+            </control>
+            <!-- Artist Name -->
+            <control type="label">
+              <include>ListSquareTitleFullLength</include>
+              <textcolor>grey2</textcolor>
+            </control>
+          </itemlayout>
+          <focusedlayout height="120" width="1140" condition="Container.Content(artists)">
+            <include>ListSeparator</include>
+            <include>ListHighlight</include>
+            <!-- Artist Thumb -->
+            <control type="image">
+              <include>ListSquareIcon</include>
+              <texture fallback="defaultartist.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            </control>
+            <!-- Artist Name -->
+            <control type="label">
+              <include>ListSquareTitleFullLength</include>
+              <textcolor>white</textcolor>
+            </control>
+          </focusedlayout>
         </control>
         <!-- Scrollbar -->
         <include>ListScrollbar</include>
@@ -1596,6 +1624,84 @@
           <include>ShowCaseInfoPanelButtonsValues</include>
           <pagecontrol>62</pagecontrol>
           <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+        </control>
+      </control>
+      <control type="group">
+        <posx>1296</posx>
+        <posy>185</posy>
+        <control type="image">
+          <posy>140</posy>
+          <posx>98</posx>
+          <width>335</width>
+          <height>335</height>
+          <aspectratio scalediffuse="false" aligny="top">stretch</aspectratio>
+          <texture background="true">back.png</texture>
+          <fadetime>400</fadetime>
+        </control>
+        <control type="image">
+          <posy>140</posy>
+          <posx>98</posx>
+          <width>335</width>
+          <height>335</height>
+          <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+          <texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+          <fadetime>400</fadetime>
+          <visible>![Container.Content(artists) + IsEmpty(ListItem.Art(smallThumb))]</visible>
+        </control>
+        <control type="image">
+          <posy>140</posy>
+          <posx>98</posx>
+          <width>335</width>
+          <height>335</height>
+          <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+          <texture>defaultartist.png</texture>
+          <fadetime>400</fadetime>
+          <visible>Container.Content(artists) + IsEmpty(ListItem.Art(smallThumb))</visible>
+        </control>
+        <control type="image">
+          <width>600</width>
+          <height>935</height>
+          <aspectratio aligny="top">keep</aspectratio>
+          <texture>thumbs/1mp3.png</texture>
+        </control>
+        <control type="label">
+          <posy>480</posy>
+          <posx>105</posx>
+          <width>320</width>
+          <height>50</height>
+          <align>center</align>
+          <visible>Container.Content(artists)</visible>
+          <font>font15_bold</font>
+          <textcolor>white</textcolor>
+          <scroll>true</scroll>
+          <scrollsuffix>-</scrollsuffix>
+          <label>$INFO[ListItem.Artist]</label>
+        </control>
+        <control type="label">
+          <posy>480</posy>
+          <posx>105</posx>
+          <width>320</width>
+          <height>50</height>
+          <align>center</align>
+          <visible>Container.Content(albums)</visible>
+          <font>font15_bold</font>
+          <textcolor>white</textcolor>
+          <scroll>true</scroll>
+          <scrollsuffix>-</scrollsuffix>
+          <label>$INFO[ListItem.Album]</label>
+        </control>
+        <control type="label">
+          <posy>480</posy>
+          <posx>105</posx>
+          <width>320</width>
+          <height>50</height>
+          <align>center</align>
+          <visible>Container.Content(songs)</visible>
+          <font>font15_bold</font>
+          <textcolor>white</textcolor>
+          <scroll>true</scroll>
+          <scrollsuffix>-</scrollsuffix>
+          <label>$INFO[ListItem.Title]</label>
         </control>
       </control>
     </control>
