@@ -1370,6 +1370,90 @@
               <textcolor>white</textcolor>
             </control>
           </focusedlayout>
+          <itemlayout height="120" width="1140" condition="Container.Content(albums)">
+            <include>ListSeparator</include>
+            <!-- Album Cover -->
+            <control type="image">
+              <include>ListSquareIcon</include>
+              <texture fallback="defaultalbumcover.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <colordiffuse>grey2</colordiffuse>
+            </control>
+            <!-- Album Title -->
+            <control type="label">
+              <include>ListAlbumTitle</include>
+              <textcolor>grey2</textcolor>
+            </control>
+            <!-- Album Artist -->
+            <control type="label">
+              <posx>135</posx>
+              <posy>50</posy>
+              <width>970</width>
+              <height>60</height>
+              <font>font15</font>
+              <textcolor>grey3</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$INFO[ListItem.Artist]</label>
+            </control>
+            <!-- Year -->
+            <control type="label">
+              <posx>1120</posx>
+              <posy>0</posy>
+              <width>1060</width>
+              <height>105</height>
+              <font>font30</font>
+              <align>right</align>
+              <aligny>center</aligny>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>grey2</selectedcolor>
+              <aligny>center</aligny>
+              <label fallback="• • • •">$VAR[MusicListLabel4Var]</label>
+              <visible>!IsEmpty(ListItem.Title)</visible>
+            </control>
+          </itemlayout>
+          <focusedlayout height="120" width="1140" condition="Container.Content(albums)">
+            <include>ListSeparator</include>
+            <include>ListHighlight</include>
+            <!-- Album Cover -->
+            <control type="image">
+              <include>ListSquareIcon</include>
+              <texture fallback="defaultalbumcover.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            </control>
+            <!-- Album Title -->
+            <control type="label">
+              <include>ListAlbumTitle</include>
+              <textcolor>white</textcolor>
+            </control>
+            <!-- Album Artist -->
+            <control type="label">
+              <posx>135</posx>
+              <posy>50</posy>
+              <width>970</width>
+              <height>60</height>
+              <font>font15</font>
+              <textcolor>white</textcolor>
+              <selectedcolor>white</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$INFO[ListItem.Artist]</label>
+            </control>
+            <!-- Year -->
+            <control type="label">
+              <posx>1120</posx>
+              <posy>0</posy>
+              <width>1060</width>
+              <height>105</height>
+              <font>font30</font>
+              <align>right</align>
+              <aligny>center</aligny>
+              <textcolor>white</textcolor>
+              <selectedcolor>white</selectedcolor>
+              <aligny>center</aligny>
+              <label fallback="• • • •">$VAR[MusicListLabel4Var]</label>
+              <visible>!IsEmpty(ListItem.Title)</visible>
+            </control>
+          </focusedlayout>
         </control>
         <!-- Scrollbar -->
         <include>ListScrollbar</include>
@@ -1377,7 +1461,7 @@
       <control type="group">
         <posx>1296</posx>
         <posy>155</posy>
-        <visible>!Container.Content(episodes) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.PlexContent(homemovies) | Container.PlexContent(clips)]</visible>
+        <visible>!Container.Content(episodes) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.PlexContent(homemovies) | Container.PlexContent(clips) | Container.PlexContent(artists) | Container.PlexContent(albums)]</visible>
         <!-- Genre Icons -->
         <control type="image">
           <width>570</width>
