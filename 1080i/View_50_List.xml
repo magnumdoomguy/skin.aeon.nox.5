@@ -1139,8 +1139,8 @@
               <selectedcolor>white</selectedcolor>
             </control>
           </focusedlayout>
-          <!-- Genres -->
-          <itemlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Genre)">
+          <!-- Video Genres -->
+          <itemlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Genre) + !String.IsEqual(Filter.Type,music)">
             <include>ListSeparator</include>
             <!-- Genre Icon -->
             <control type="image">
@@ -1185,7 +1185,7 @@
               <selectedcolor>grey2</selectedcolor>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Genre)">
+          <focusedlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Genre) + !String.IsEqual(Filter.Type,music)">
             <include>ListSeparator</include>
             <!-- Highlight -->
             <include>ListHighlight</include>
@@ -1222,6 +1222,63 @@
               <posx>100</posx>
               <posy>25</posy>
               <width>1040</width>
+              <height>70</height>
+              <font>font30</font>
+              <align>left</align>
+              <aligny>center</aligny>
+              <textoffsetx>15</textoffsetx>
+              <label>$INFO[ListItem.Label]</label>
+              <textcolor>white</textcolor>
+              <selectedcolor>white</selectedcolor>
+            </control>
+          </focusedlayout>
+		  <!-- Music Genres -->
+          <itemlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Filter.Type,music)">
+            <include>ListSeparator</include>
+            <!-- Genre Icon -->
+            <control type="image">
+              <posx>15</posx>
+              <posy>8</posy>
+              <width>105</width>
+              <height>105</height>
+              <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/music/105x105/,.png]</texture>
+              <visible>String.IsEqual(Skin.String(Filter.Type),movies)</visible>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>135</posx>
+              <posy>25</posy>
+              <width>1005</width>
+              <height>70</height>
+              <font>font30</font>
+              <align>left</align>
+              <aligny>center</aligny>
+              <textoffsetx>15</textoffsetx>
+              <label>$INFO[ListItem.Label]</label>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>grey2</selectedcolor>
+            </control>
+          </itemlayout>
+          <focusedlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Genre)">
+            <include>ListSeparator</include>
+            <!-- Highlight -->
+            <include>ListHighlight</include>
+            <!-- Genre Icon -->
+            <control type="image">
+              <posx>15</posx>
+              <posy>8</posy>
+              <width>105</width>
+              <height>105</height>
+              <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/music/105x105/,.png]</texture>
+              <visible>String.IsEqual(Skin.String(Filter.Type),movies)</visible>
+            </control>
+            <!-- Display Poster -->
+            <control type="label">
+              <posx>135</posx>
+              <posy>25</posy>
+              <width>1005</width>
               <height>70</height>
               <font>font30</font>
               <align>left</align>
