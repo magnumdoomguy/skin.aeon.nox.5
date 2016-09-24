@@ -174,7 +174,7 @@
     <width>42</width>
     <height>28</height>
     <aspectratio>keep</aspectratio>
-    <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+    <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/views/list/,.png]</texture>
   </include>
   <!-- Watched Status -->
   <include name="ListWatchedStatus">
@@ -632,7 +632,7 @@
               <width>64</width>
               <height>64</height>
               <aspectratio>scale</aspectratio>
-              <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+              <texture>overlays/tvviews/list/$INFO[ListItem.Overlay]</texture>
               <colordiffuse>$VAR[Colour_ListWatchedStatusColourVar]</colordiffuse>
             </control>
             <control type="group">
@@ -644,7 +644,7 @@
                 <posy>28</posy>
                 <width>64</width>
                 <height>64</height>
-                <texture>overlays/tvlist/OverlayUnWatched.png</texture>
+                <texture>overlays/tvviews/list/OverlayUnWatched.png</texture>
                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
               </control>
               <control type="label">
@@ -702,7 +702,7 @@
               <width>64</width>
               <height>64</height>
               <aspectratio>scale</aspectratio>
-              <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+              <texture>overlays/tvviews/list/$INFO[ListItem.Overlay]</texture>
               <colordiffuse>$VAR[Colour_ListWatchedStatusColourVar]</colordiffuse>
             </control>
             <control type="group">
@@ -714,7 +714,7 @@
                 <posy>28</posy>
                 <width>64</width>
                 <height>64</height>
-                <texture>overlays/tvlist/OverlayUnWatched.png</texture>
+                <texture>overlays/tvviews/list/OverlayUnWatched.png</texture>
                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
               </control>
               <control type="label">
@@ -767,7 +767,7 @@
               <width>64</width>
               <height>64</height>
               <aspectratio>scale</aspectratio>
-              <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+              <texture>overlays/tvviews/list/$INFO[ListItem.Overlay]</texture>
               <colordiffuse>$VAR[Colour_ListWatchedStatusColourVar]</colordiffuse>
             </control>
             <control type="group">
@@ -779,7 +779,7 @@
                 <posy>28</posy>
                 <width>64</width>
                 <height>64</height>
-                <texture>overlays/tvlist/OverlayUnWatched.png</texture>
+                <texture>overlays/tvviews/list/OverlayUnWatched.png</texture>
                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
               </control>
               <control type="label">
@@ -831,7 +831,7 @@
               <width>64</width>
               <height>64</height>
               <aspectratio>scale</aspectratio>
-              <texture>overlays/tvlist/$INFO[ListItem.Overlay]</texture>
+              <texture>overlays/tvviews/list/$INFO[ListItem.Overlay]</texture>
               <colordiffuse>$VAR[Colour_ListWatchedStatusColourVar]</colordiffuse>
             </control>
             <control type="group">
@@ -843,7 +843,7 @@
                 <posy>28</posy>
                 <width>64</width>
                 <height>64</height>
-                <texture>overlays/tvlist/OverlayUnWatched.png</texture>
+                <texture>overlays/tvviews/list/OverlayUnWatched.png</texture>
                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
               </control>
               <control type="label">
@@ -961,7 +961,7 @@
               <width>42</width>
               <height>28</height>
               <aspectratio>keep</aspectratio>
-              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/views/list/,.png]</texture>
               <colordiffuse>grey2</colordiffuse>
             </control>
             <!-- Watched Status -->
@@ -1013,7 +1013,7 @@
               <width>42</width>
               <height>28</height>
               <aspectratio>keep</aspectratio>
-              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/views/list/,.png]</texture>
             </control>
             <!-- Watched Status -->
             <include>ListWatchedStatus</include>
@@ -1105,9 +1105,18 @@
           <!-- By Collection, By Year, By Decade, By Content Rating, By Rating, By First Letter, By Folder -->
           <itemlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder)">
             <include>ListSeparator</include>
+            <!-- Folder Icon -->
+            <control type="image">
+              <posx>15</posx>
+              <posy>8</posy>
+              <width>105</width>
+              <height>105</height>
+              <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+              <texture>views/list/defaultfolder.png</texture>
+            </control>
             <!-- Title -->
             <control type="label">
-              <posx>0</posx>
+              <posx>120</posx>
               <posy>25</posy>
               <width>1140</width>
               <height>70</height>
@@ -1124,9 +1133,18 @@
             <include>ListSeparator</include>
             <!-- Highlight -->
             <include>ListHighlight</include>
+            <!-- Folder Icon -->
+            <control type="image">
+              <posx>15</posx>
+              <posy>8</posy>
+              <width>105</width>
+              <height>105</height>
+              <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+              <texture>views/list/defaultfolder.png</texture>
+            </control>
             <!-- Title -->
             <control type="label">
-              <posx>0</posx>
+              <posx>120</posx>
               <posy>25</posy>
               <width>1140</width>
               <height>70</height>
@@ -1149,7 +1167,7 @@
               <width>70</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/movies/70x105/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultgenre.png">$INFO[ListItem.Label,genres/movies/70x105/,.png]</texture>
               <visible>String.IsEqual(Skin.String(Filter.Type),movies)</visible>
             </control>
             <control type="image">
@@ -1158,7 +1176,7 @@
               <width>70</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/tv/70x105/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultgenre.png">$INFO[ListItem.Label,genres/tv/70x105/,.png]</texture>
               <visible>String.IsEqual(Skin.String(Filter.Type),tv)</visible>
             </control>
             <control type="image">
@@ -1167,7 +1185,7 @@
               <width>70</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/anime/70x105/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultgenre.png">$INFO[ListItem.Label,genres/anime/70x105/,.png]</texture>
               <visible>String.IsEqual(Skin.String(Filter.Type),anime)</visible>
             </control>
             <!-- Title -->
@@ -1196,7 +1214,7 @@
               <width>70</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/movies/70x105/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultgenre.png">$INFO[ListItem.Label,genres/movies/70x105/,.png]</texture>
               <visible>String.IsEqual(Skin.String(Filter.Type),movies)</visible>
             </control>
             <control type="image">
@@ -1205,7 +1223,7 @@
               <width>70</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/tv/70x105/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultgenre.png">$INFO[ListItem.Label,genres/tv/70x105/,.png]</texture>
               <visible>String.IsEqual(Skin.String(Filter.Type),tv)</visible>
             </control>
             <control type="image">
@@ -1214,7 +1232,7 @@
               <width>70</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/anime/70x105/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultgenre.png">$INFO[ListItem.Label,genres/anime/70x105/,.png]</texture>
               <visible>String.IsEqual(Skin.String(Filter.Type),anime)</visible>
             </control>
             <!-- Display Poster -->
@@ -1242,7 +1260,7 @@
               <width>105</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/music/105x105/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultgenre.png">$INFO[ListItem.Label,genres/music/105x105/,.png]</texture>
               <visible>String.IsEqual(Skin.String(Filter.Type),movies)</visible>
             </control>
             <!-- Title -->
@@ -1271,7 +1289,7 @@
               <width>105</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/music/105x105/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultgenre.png">$INFO[ListItem.Label,genres/music/105x105/,.png]</texture>
               <visible>String.IsEqual(Skin.String(Filter.Type),movies)</visible>
             </control>
             <!-- Display Poster -->
@@ -1299,7 +1317,7 @@
               <width>105</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
-              <texture background="true" fallback="defaultcountry.png">$INFO[ListItem.Label,countries/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultcountry.png">$INFO[ListItem.Label,countries/,.png]</texture>
             </control>
             <!-- Title -->
             <control type="label">
@@ -1327,7 +1345,7 @@
               <width>105</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
-              <texture background="true" fallback="defaultcountry.png">$INFO[ListItem.Label,countries/,.png]</texture>
+              <texture background="true" fallback="views/list/defaultcountry.png">$INFO[ListItem.Label,countries/,.png]</texture>
             </control>
             <!-- Title -->
             <control type="label">
@@ -1354,7 +1372,7 @@
               <width>70</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultdirector.png">$INFO[ListItem.Art(smallThumb)]</texture>
+              <texture background="true" fallback="views/list/defaultdirector.png">$INFO[ListItem.Art(smallThumb)]</texture>
             </control>
             <!-- Title -->
             <control type="label">
@@ -1382,7 +1400,7 @@
               <width>70</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture background="true" fallback="defaultdirector.png">$INFO[ListItem.Art(smallThumb)]</texture>
+              <texture background="true" fallback="views/list/defaultdirector.png">$INFO[ListItem.Art(smallThumb)]</texture>
             </control>
             <!-- Title -->
             <control type="label">
@@ -1404,7 +1422,7 @@
             <!-- Artist Thumb -->
             <control type="image">
               <include>ListSquareIcon</include>
-              <texture fallback="defaultartist.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <texture fallback="views/list/defaultartist.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
               <colordiffuse>grey2</colordiffuse>
             </control>
             <!-- Artist Name -->
@@ -1419,7 +1437,7 @@
             <!-- Artist Thumb -->
             <control type="image">
               <include>ListSquareIcon</include>
-              <texture fallback="defaultartist.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <texture fallback="views/list/defaultartist.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
             </control>
             <!-- Artist Name -->
             <control type="label">
@@ -1432,7 +1450,7 @@
             <!-- Album Cover -->
             <control type="image">
               <include>ListSquareIcon</include>
-              <texture fallback="defaultalbumcover.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <texture fallback="views/list/defaultalbumcover.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
               <colordiffuse>grey2</colordiffuse>
             </control>
             <!-- Album Title -->
@@ -1475,7 +1493,7 @@
             <!-- Album Cover -->
             <control type="image">
               <include>ListSquareIcon</include>
-              <texture fallback="defaultalbumcover.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+              <texture fallback="views/list/defaultalbumcover.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
             </control>
             <!-- Album Title -->
             <control type="label">
