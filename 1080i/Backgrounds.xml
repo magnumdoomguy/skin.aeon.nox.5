@@ -12,8 +12,8 @@
   </variable>
   <!-- Fanart Colour Diffuse -->
   <variable name="Colour_Fanart">
-	<value condition="Skin.HasTheme(WhiteFlat)">40FFFFFF</value>
-	<value>FFFFFFFF</value>
+    <value condition="Skin.HasTheme(WhiteFlat)">40FFFFFF</value>
+    <value>FFFFFFFF</value>
   </variable>
   <include name="CommonBackground">
     <control type="group">
@@ -57,12 +57,12 @@
       </control>
       <!-- Darken Background -->
       <control type="image">
-		<visible>!Window.IsVisible(skinsettings) + [Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)]</visible>
-		<include>FullscreenDimensions</include>
-		<texture>black.png</texture>
-		<animation effect="fade" start="100" end="55" time="240" condition="!Skin.HasTheme(WhiteFlat)">conditional</animation>
-		<animation effect="fade" end="0" condition="Skin.HasTheme(WhiteFlat)">Conditional</animation>
-	  </control>
+        <visible>!Window.IsVisible(skinsettings) + [Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(506) | Control.IsVisible(508) | Control.IsVisible(609) | [Control.IsVisible(510) + Skin.HasSetting(alternatebiglistlayout)] | [Control.IsVisible(51) + Skin.HasSetting(Enable.AlternateInfowall)] | [Control.IsVisible(505) + Skin.HasSetting(Enable.AlternateBannerInfo)] | [Player.HasVideo + !Skin.HasSetting(Backgrounds.VideoDisable) + Control.IsVisible(509)] | Control.IsVisible(700)]</visible>
+        <include>FullscreenDimensions</include>
+        <texture>black.png</texture>
+        <animation effect="fade" start="100" end="55" time="240" condition="!Skin.HasTheme(WhiteFlat)">conditional</animation>
+        <animation effect="fade" end="0" condition="Skin.HasTheme(WhiteFlat)">Conditional</animation>
+      </control>
     </control>
     <!-- Vignette -->
     <control type="group">
@@ -138,126 +138,126 @@
     </control>
     <control type="group">
       <visible>![String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Director) | String.IsEqual(Container.SecondTitle,By Starring Actor) | String.IsEqual(Container.SecondTitle,By Country) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Genre)]</visible>
-    <!-- Standard Video Background -->
-    <control type="image">
-      <visible>!Container.Content(clips) + [[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]] + ![String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Director) | String.IsEqual(Container.SecondTitle,By Starring Actor) | String.IsEqual(Container.SecondTitle,By Country) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Genre)]</visible>
-      <include>FanartCommonValues</include>
-      <texture colordiffuse="$VAR[Colour_Fanart]" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
-    </control>
-    <!-- Home Videos Fanart -->
-    <control type="image">
-      <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + !IsEmpty(ListItem.Art(smallThumb))</visible>
-      <include>FanartCommonValues</include>
-      <texture fallback="special://skin/backgrounds/homevideos.jpg">$INFO[ListItem.Art(fanart)]</texture>
-    </control>
-    <control type="image">
-      <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + IsEmpty(ListItem.Art(smallThumb))</visible>
-      <include>FanartCommonValues</include>
-      <texture>special://skin/backgrounds/homevideos.jpg</texture>
-    </control>
-    <!-- Background for Empty List -->
-    <control type="image">
-      <visible>Container.Content(empty)</visible>
-      <include>FanartCommonValues</include>
-      <texture>special://skin/backgrounds/fallback.jpg</texture>
-    </control>
-    <!-- Custom Movie Background Image -->
-    <control type="image">
-      <visible>!Container.Content(clips)</visible>
-      <visible>!IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + Container.Content(movies)</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomMovieSectionBackgroundFile)</info>
-    </control>
-    <!-- Custom TV Background Image -->
-    <control type="image">
-      <visible>!Container.Content(clips)</visible>
-      <visible>!IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomTVSectionBackgroundFile)</info>
-    </control>
-    <!-- Custom Home Video Background Image -->
-    <control type="image">
-      <visible>!Container.Content(clips)</visible>
-      <visible>!IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + Container.PlexContent(homemovies)</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomHomeVideoSectionBackgroundFile)</info>
-    </control>
-    <!-- Custom Channel Background Image -->
-    <control type="image">
-      <visible>!Container.Content(clips)</visible>
-      <visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
-    </control>
-    <!-- Custom Movie Slideshow -->
-    <control type="multiimage">
-      <visible>!Container.Content(clips)</visible>
-      <visible>!IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomMovieSectionSlideshowPath)</info>
-    </control>
-    <!-- Custom TV Slideshow -->
-    <control type="multiimage">
-      <visible>!Container.Content(clips)</visible>
-      <visible>!IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomTVSectionSlideshowPath)</info>
-    </control>
-    <!-- Custom Home Video Slideshow -->
-    <control type="multiimage">
-      <visible>!Container.Content(clips)</visible>
-      <visible>!IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomHomeVideoSectionSlideshowPath)</info>
-    </control>
-    <!-- Custom Channel Slideshow -->
-    <control type="multiimage">
-      <visible>!Container.Content(clips)</visible>
-      <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
-    </control>
-    <!-- Background for Watch Later -->
-    <control type="image">
-      <visible>Container.Content(clips)</visible>
-      <include>FanartCommonValues</include>
-      <texture fallback="special://skin/backgrounds/watchlater.jpg" blur="01">$INFO[ListItem.Icon]</texture>
-    </control>
-    <!-- Custom Watch Later Background Image -->
-    <control type="image">
-      <visible>!IsEmpty(Skin.String(CustomWatchLaterBackgroundFile)) + Container.Content(clips)</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomWatchLaterBackgroundFile)</info>
-    </control>
-    <!-- Custom Watch Later Background Image -->
-    <control type="multiimage">
-      <visible>!IsEmpty(Skin.String(CustomWatchLaterSlideshowPath)) + Container.Content(clips)</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomWatchLaterSlideshowPath)</info>
-    </control>
-     <control type="group">
-      <visible>![Control.IsVisible(509) + Window.IsActive(videos)]</visible>
-      <visible>![!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
+      <!-- Standard Video Background -->
       <control type="image">
-        <description>Normal Default Background Image</description>
+        <visible>!Container.Content(clips) + [[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]] + ![String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Director) | String.IsEqual(Container.SecondTitle,By Starring Actor) | String.IsEqual(Container.SecondTitle,By Country) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Genre)]</visible>
         <include>FanartCommonValues</include>
-        <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
+        <texture colordiffuse="$VAR[Colour_Fanart]" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
       </control>
-    </control>
-    <!-- Custom Music Background Image -->
-    <control type="image">
-      <description>Custom Background Image</description>
-      <visible>!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomMusicSectionBackgroundFile)</info>
-    </control>
-    <!-- Custom Music Slideshow -->
-    <control type="multiimage">
-      <description>Custom Slideshow Background</description>
-      <visible>!IsEmpty(Skin.String(CustomMusicSectionSlideshowPath)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
-      <include>FanartCommonValues</include>
-      <info>Skin.String(CustomMusicSectionSlideshowPath)</info>
-    </control>
+      <!-- Home Videos Fanart -->
+      <control type="image">
+        <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + !IsEmpty(ListItem.Art(smallThumb))</visible>
+        <include>FanartCommonValues</include>
+        <texture fallback="special://skin/backgrounds/homevideos.jpg">$INFO[ListItem.Art(fanart)]</texture>
+      </control>
+      <control type="image">
+        <visible>IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies) + IsEmpty(ListItem.Art(smallThumb))</visible>
+        <include>FanartCommonValues</include>
+        <texture>special://skin/backgrounds/homevideos.jpg</texture>
+      </control>
+      <!-- Background for Empty List -->
+      <control type="image">
+        <visible>Container.Content(empty)</visible>
+        <include>FanartCommonValues</include>
+        <texture>special://skin/backgrounds/fallback.jpg</texture>
+      </control>
+      <!-- Custom Movie Background Image -->
+      <control type="image">
+        <visible>!Container.Content(clips)</visible>
+        <visible>!IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + Container.Content(movies)</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomMovieSectionBackgroundFile)</info>
+      </control>
+      <!-- Custom TV Background Image -->
+      <control type="image">
+        <visible>!Container.Content(clips)</visible>
+        <visible>!IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomTVSectionBackgroundFile)</info>
+      </control>
+      <!-- Custom Home Video Background Image -->
+      <control type="image">
+        <visible>!Container.Content(clips)</visible>
+        <visible>!IsEmpty(Skin.String(CustomHomeVideoSectionBackgroundFile)) + Container.PlexContent(homemovies)</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomHomeVideoSectionBackgroundFile)</info>
+      </control>
+      <!-- Custom Channel Background Image -->
+      <control type="image">
+        <visible>!Container.Content(clips)</visible>
+        <visible>!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomChannelSectionBackgroundFile)</info>
+      </control>
+      <!-- Custom Movie Slideshow -->
+      <control type="multiimage">
+        <visible>!Container.Content(clips)</visible>
+        <visible>!IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomMovieSectionSlideshowPath)</info>
+      </control>
+      <!-- Custom TV Slideshow -->
+      <control type="multiimage">
+        <visible>!Container.Content(clips)</visible>
+        <visible>!IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomTVSectionSlideshowPath)</info>
+      </control>
+      <!-- Custom Home Video Slideshow -->
+      <control type="multiimage">
+        <visible>!Container.Content(clips)</visible>
+        <visible>!IsEmpty(Skin.String(CustomHomeVideoSectionSlideshowPath)) + Container.PlexContent(homemovies)</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomHomeVideoSectionSlideshowPath)</info>
+      </control>
+      <!-- Custom Channel Slideshow -->
+      <control type="multiimage">
+        <visible>!Container.Content(clips)</visible>
+        <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
+      </control>
+      <!-- Background for Watch Later -->
+      <control type="image">
+        <visible>Container.Content(clips)</visible>
+        <include>FanartCommonValues</include>
+        <texture fallback="special://skin/backgrounds/watchlater.jpg" blur="01">$INFO[ListItem.Icon]</texture>
+      </control>
+      <!-- Custom Watch Later Background Image -->
+      <control type="image">
+        <visible>!IsEmpty(Skin.String(CustomWatchLaterBackgroundFile)) + Container.Content(clips)</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomWatchLaterBackgroundFile)</info>
+      </control>
+      <!-- Custom Watch Later Background Image -->
+      <control type="multiimage">
+        <visible>!IsEmpty(Skin.String(CustomWatchLaterSlideshowPath)) + Container.Content(clips)</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomWatchLaterSlideshowPath)</info>
+      </control>
+      <control type="group">
+        <visible>![Control.IsVisible(509) + Window.IsActive(videos)]</visible>
+        <visible>![!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] + ![!IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]] + !Container.Content(empty)</visible>
+        <control type="image">
+          <description>Normal Default Background Image</description>
+          <include>FanartCommonValues</include>
+          <texture fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Property(Fanart_Image)]</texture>
+        </control>
+      </control>
+      <!-- Custom Music Background Image -->
+      <control type="image">
+        <description>Custom Background Image</description>
+        <visible>!IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomMusicSectionBackgroundFile)</info>
+      </control>
+      <!-- Custom Music Slideshow -->
+      <control type="multiimage">
+        <description>Custom Slideshow Background</description>
+        <visible>!IsEmpty(Skin.String(CustomMusicSectionSlideshowPath)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]</visible>
+        <include>FanartCommonValues</include>
+        <info>Skin.String(CustomMusicSectionSlideshowPath)</info>
+      </control>
     </control>
   </include>
   <!-- Photo Fanart -->
@@ -632,7 +632,7 @@
             <include>FanartCommonValues</include>
             <texture>special://skin/backgrounds/sharedcontent.jpg</texture>
           </control>
-		  <!-- System -->
+          <!-- System -->
           <control type="image">
             <visible>String.IsEqual(Container(300).ListItem.Label,System)</visible>
             <include>FanartCommonValues</include>
@@ -648,28 +648,28 @@
         </control>
         <!-- Submenu Backgrounds -->
         <!--<control type="group">
-          <visible>ControlGroup(9001).HasFocus()</visible> -->
-          <!-- Log off / Sign in -->
-          <!--<control type="image">
-            <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[20126]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42004])</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/logoff.jpg</texture>
-          </control> -->
-          <!-- Channel Directory -->
-          <!-- <control type="image">
-            <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[31952])</visible>
-            <include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/channels.jpg</texture>
-          </control> -->
-          <!-- File Manager -->
-          <!-- <control type="image">
-            <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42430])</visible> -->
-            <!-- STRING: File Manager -->
-            <!--<include>FanartCommonValues</include>
-            <texture>special://skin/backgrounds/filemanager.jpg</texture>
-          </control>
-          
-        </control> -->
+             <visible>ControlGroup(9001).HasFocus()</visible> -->
+        <!-- Log off / Sign in -->
+        <!--<control type="image">
+             <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[20126]) | String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42004])</visible>
+             <include>FanartCommonValues</include>
+             <texture>special://skin/backgrounds/logoff.jpg</texture>
+             </control> -->
+        <!-- Channel Directory -->
+        <!-- <control type="image">
+             <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[31952])</visible>
+             <include>FanartCommonValues</include>
+             <texture>special://skin/backgrounds/channels.jpg</texture>
+             </control> -->
+        <!-- File Manager -->
+        <!-- <control type="image">
+             <visible>String.IsEqual(Container(9010).ListItem.Label,$LOCALIZE[42430])</visible> -->
+        <!-- STRING: File Manager -->
+        <!--<include>FanartCommonValues</include>
+             <texture>special://skin/backgrounds/filemanager.jpg</texture>
+             </control>
+             
+             </control> -->
       </control>
     </control>
     <!-- On Deck Widgets -->
