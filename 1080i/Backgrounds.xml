@@ -132,9 +132,14 @@
     </control>
     <!-- Genres -->
     <control type="image">
-      <visible>String.IsEqual(Container.SecondTitle,By Genre)</visible>
+      <visible>String.IsEqual(Container.SecondTitle,By Genre) + !String.IsEqual(Skin.String(Filter.Type),music)</visible>
       <include>FanartCommonValues</include>
       <texture fallback="special://skin/backgrounds/fallback.jpg">$INFO[ListItem.Label,special://skin/backgrounds/genres/,.jpg]</texture>
+    </control>
+    <control type="image">
+      <visible>String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),music)</visible>
+      <include>FanartCommonValues</include>
+      <texture fallback="special://skin/backgrounds/fallback.jpg">$INFO[ListItem.Label,special://skin/backgrounds/musicgenres/,.jpg]</texture>
     </control>
     <control type="group">
       <visible>![String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Director) | String.IsEqual(Container.SecondTitle,By Starring Actor) | String.IsEqual(Container.SecondTitle,By Country) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Genre)]</visible>
