@@ -205,7 +205,7 @@
             </control>
           </control>
         </focusedlayout>
-        <itemlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]">
+        <itemlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(FilterActive)">
           <!-- Thumb -->
           <control type="image">
             <posx>0</posx>
@@ -326,7 +326,7 @@
             <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
           </control>
         </itemlayout>
-        <focusedlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]">
+        <focusedlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(FilterActive)">
           <control type="group">
             <animation type="Focus">
               <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
@@ -455,6 +455,113 @@
               <texture>$VAR[OverlayVar]</texture>
               <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
               <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+          </control>
+        </focusedlayout>
+        
+        <itemlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,By Shutter Speed) | String.IsEqual(Container.SecondTitle,By ISO) | String.IsEqual(Container.SecondTitle,By Lens)">
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>240</width>
+            <height>240</height>
+            <aspectratio>scale</aspectratio>
+            <texture>defaultfolder.png</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>
+          <control type="group">
+            <control type="image">
+              <posy>190</posy>
+              <width>240</width>
+              <height>50</height>
+              <texture>black.png</texture>
+              <bordersize>2</bordersize>
+              <colordiffuse>88ffffff</colordiffuse>
+            </control>
+            <control type="label">
+              <posx>120</posx>
+              <posy>200</posy>
+              <width>240</width>
+              <height>30</height>
+              <align>center</align>
+              <textoffsetx>4</textoffsetx>
+              <textcolor>grey2</textcolor>
+              <info>ListItem.Label</info>
+            </control>
+          </control>
+        </itemlayout>
+        <focusedlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,By Shutter Speed) | String.IsEqual(Container.SecondTitle,By ISO) | String.IsEqual(Container.SecondTitle,By Lens)">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+            </animation>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>240</height>
+              <aspectratio>scale</aspectratio>
+              <texture>defaultfolder.png</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>240</height>
+              <aspectratio>scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+            </control>
+            <control type="group">
+              <control type="image">
+                <posx>6</posx>
+                <posy>190</posy>
+                <width>228</width>
+                <height>44</height>
+                <texture>black.png</texture>
+                <bordersize>2</bordersize>
+                <colordiffuse>88ffffff</colordiffuse>
+              </control>
+              <control type="label">
+                <posx>120</posx>
+                <posy>200</posy>
+                <width>240</width>
+                <height>30</height>
+                <align>center</align>
+                <textoffsetx>4</textoffsetx>
+                <textcolor>white</textcolor>
+                <info>ListItem.Label</info>
+              </control>
+            </control>
+            <control type="group">
+              <animation type="Focus">
+                <effect type="fade" start="100" end="0" time="100" tween="sine" easing="in"/>
+                <effect type="slide" start="0,0" end="0,30" time="200" tween="sine" easing="in"/>
+              </animation>
+              <control type="image">
+                <posy>190</posy>
+                <width>240</width>
+                <height>50</height>
+                <texture>black.png</texture>
+                <bordersize>8</bordersize>
+                <colordiffuse>88ffffff</colordiffuse>
+              </control>
+              <control type="label">
+                <posx>120</posx>
+                <posy>200</posy>
+                <width>240</width>
+                <height>30</height>
+                <align>center</align>
+                <textoffsetx>10</textoffsetx>
+                <textcolor>grey2</textcolor>
+                <info>ListItem.Label</info>
+              </control>
             </control>
           </control>
         </focusedlayout>
