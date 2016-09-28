@@ -97,8 +97,8 @@
         <focusedlayout height="360" width="240" condition="Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]">
           <control type="group">
             <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
             </animation>
             <control type="image">
               <posx>0</posx>
@@ -180,8 +180,8 @@
         <focusedlayout height="240" width="240" condition="Container.Content(addons)">
           <control type="group">
             <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
             </animation>
             <control type="image">
               <posx>0</posx>
@@ -329,8 +329,8 @@
         <focusedlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(FilterActive)">
           <control type="group">
             <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
             </animation>
             <!-- Thumbnail (not episodes)-->
             <control type="image">
@@ -458,7 +458,7 @@
             </control>
           </control>
         </focusedlayout>
-        
+        <!-- By Collection, By Year, By Decade, By Content Rating, By Rating, By First Letter, By Folder, By Camera Make, By Shutter Speed, By ISO, By Lens -->
         <itemlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,By Shutter Speed) | String.IsEqual(Container.SecondTitle,By ISO) | String.IsEqual(Container.SecondTitle,By Lens)">
           <control type="image">
             <posx>0</posx>
@@ -495,8 +495,8 @@
         <focusedlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,By Shutter Speed) | String.IsEqual(Container.SecondTitle,By ISO) | String.IsEqual(Container.SecondTitle,By Lens)">
           <control type="group">
             <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
             </animation>
             <control type="image">
               <posx>0</posx>
@@ -539,29 +539,134 @@
                 <info>ListItem.Label</info>
               </control>
             </control>
-            <control type="group">
-              <animation type="Focus">
-                <effect type="fade" start="100" end="0" time="100" tween="sine" easing="in"/>
-                <effect type="slide" start="0,0" end="0,30" time="200" tween="sine" easing="in"/>
-              </animation>
-              <control type="image">
-                <posy>190</posy>
-                <width>240</width>
-                <height>50</height>
-                <texture>black.png</texture>
-                <bordersize>8</bordersize>
-                <colordiffuse>88ffffff</colordiffuse>
-              </control>
-              <control type="label">
-                <posx>120</posx>
-                <posy>200</posy>
-                <width>240</width>
-                <height>30</height>
-                <align>center</align>
-                <textoffsetx>10</textoffsetx>
-                <textcolor>grey2</textcolor>
-                <info>ListItem.Label</info>
-              </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="360" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),movies)">
+          
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>240</width>
+            <height>360</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/movies/240x360/,.png]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>            
+        </itemlayout>
+        <focusedlayout height="360" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),movies)">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
+            </animation>
+            
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/movies/240x360/,.png]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio>stretch</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+              <bordersize>8</bordersize>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="360" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),tv)">
+          
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>240</width>
+            <height>360</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/tv/240x360/,.png]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>            
+        </itemlayout>
+        <focusedlayout height="360" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),tv)">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
+            </animation>
+            
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/tv/240x360/,.png]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio>stretch</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+              <bordersize>8</bordersize>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="360" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),anime)">
+          
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>240</width>
+            <height>360</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/anime/240x360/,.png]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>BAffffff</colordiffuse>
+          </control>            
+        </itemlayout>
+        <focusedlayout height="360" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),anime)">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
+            </animation>
+            
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture background="true" fallback="defaultgenre.png">$INFO[ListItem.Label,genres/anime/240x360/,.png]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio>stretch</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+              <bordersize>8</bordersize>
             </control>
           </control>
         </focusedlayout>
@@ -661,8 +766,8 @@
         <focusedlayout height="240" width="240" condition="!Container.Content(genres)">
           <control type="group">
             <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
             </animation>
             <control type="image">
               <posx>0</posx>
@@ -709,8 +814,8 @@
             <control type="group">
               <visible>Container.Content(artists)</visible>
               <animation type="Focus">
-                <effect type="fade" start="100" end="0" time="100" tween="sine" easing="in"/>
-                <effect type="slide" start="0,0" end="0,30" time="200" tween="sine" easing="in"/>
+                <effect type="fade" start="100" end="0" time="100" tween="sine" easing="in" />
+                <effect type="slide" start="0,0" end="0,30" time="200" tween="sine" easing="in" />
               </animation>
               <control type="image">
                 <posy>190</posy>
@@ -804,8 +909,8 @@
         <focusedlayout height="240" width="240">
           <control type="group">
             <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
             </animation>
             <control type="image">
               <posx>0</posx>
@@ -902,8 +1007,8 @@
         <focusedlayout height="240" width="240">
           <control type="group">
             <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
             </animation>
             <control type="image">
               <posx>0</posx>
@@ -1054,8 +1159,8 @@
         <focusedlayout heigth="300" width="560">
           <control type="group">
             <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
             </animation>
             <!-- Photo Thumb -->
             <control type="image">
