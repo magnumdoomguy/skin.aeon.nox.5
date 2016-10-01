@@ -27,7 +27,7 @@
     <control type="group">
       <animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
-      <visible>Container.PlexContent(movie) | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
+      <visible>[[Container.PlexContent(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
       <!-- Display Poster -->
       <control type="image">
         <width>729</width>
@@ -46,7 +46,7 @@
     <control type="group">
       <animation effect="slide" start="0,-570" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" end="0,-570" time="500" tween="quadratic">WindowClose</animation>
-      <visible>!Container.PlexContent(movie) + ![Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
+      <visible>![[![Container.PlexContent(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + !Skin.HasSetting(Advanced.PortraitHomeVideos)] | [[Container.PlexContent(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] | [Container.PlexContent(episode) + !Skin.HasSetting(Preplay.PortraitEpisodeLayout)] | Container.Content(clip)</visible>
       <posx>0</posx>
       <posy>0</posy>
       <width>1920</width>
@@ -421,27 +421,39 @@
         <visible>ListItem.Type(episode)</visible>
       </control>
       <!-- Preplay Menu Clips -->
-      <control type="grouplist" id="9000">
+      <control type="grouplist" id="9001">
         <posx>3</posx>
         <posy>510</posy>
         <width>1920</width>
         <height>60</height>
         <itemgap>0</itemgap>
-        <onleft>9000</onleft>
-        <onright>9000</onright>
-        <onup>XBMC.PrevItem</onup>
+        <onleft>9001</onleft>
+        <onright>9001</onright>
         <align>left</align>
-        <ondown>XBMC.NextItem</ondown>
         <orientation>horizontal</orientation>
         <include>PreplayMenu_Clips</include>
-        <visible>!ListItem.Type(episode)</visible>
+        <visible>ListItem.Type(clip)</visible>
+      </control>
+      <!-- Preplay Menu Home Videos -->
+      <control type="grouplist" id="9002">
+        <posx>3</posx>
+        <posy>510</posy>
+        <width>1920</width>
+        <height>60</height>
+        <itemgap>0</itemgap>
+        <onleft>9002</onleft>
+        <onright>9002</onright>
+        <align>left</align>
+        <orientation>horizontal</orientation>
+        <include>PreplayMenu_HomeVideos</include>
+        <visible>ListItem.Type(movie) | Container.PlexContent(homemovie)</visible>
       </control>
     </control>
     <!-- Bottom Landscape -->
     <control type="group">
       <animation effect="slide" start="0,530" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" start="0,0" end="0,530" time="320" tween="quadratic">WindowClose</animation>
-      <visible>!Container.PlexContent(movie) + ![Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
+      <visible>![[![Container.PlexContent(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + !Skin.HasSetting(Advanced.PortraitHomeVideos)] | [[Container.PlexContent(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] | [Container.PlexContent(episode) + !Skin.HasSetting(Preplay.PortraitEpisodeLayout)] | Container.Content(clip)</visible>
       <posx>0</posx>
       <posy>570</posy>
       <width>1920</width>
@@ -508,13 +520,13 @@
           <width>318</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
         <control type="image">
           <width>638</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
-          <visible>!ListItem.Type(episode)</visible>
+          <visible>ListItem.Type(clip)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
@@ -527,13 +539,13 @@
           <width>318</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
         <control type="image">
           <width>638</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
-          <visible>!ListItem.Type(episode)</visible>
+          <visible>ListItem.Type(clip)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
@@ -546,55 +558,55 @@
           <width>318</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/aspectratio/defaultaspect.png">$VAR[AspectRatioFlag_135x90]</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
           <width>2</width>
           <height>90</height>
           <texture border="1">separator3.png</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
         <!-- Framerate Flag -->
         <control type="image">
           <width>318</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/framerate/default.png">$VAR[FramerateFlag_135x90]</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
           <width>2</width>
           <height>90</height>
           <texture border="1">separator3.png</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
         <!-- Audio Codec -->
         <control type="image">
           <width>318</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
         <control type="image">
           <width>638</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
-          <visible>!ListItem.Type(episode)</visible>
+          <visible>ListItem.Type(clip)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
           <width>2</width>
           <height>90</height>
           <texture border="1">separator3.png</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
         <!-- Audio Channels Flag -->
         <control type="image">
           <width>318</width>
           <include>MediaFlagVars</include>
           <texture align="center" aligny="center" fallback="flags/colour/135x90/channels/0.png">$VAR[AudioChannelsFlag_135x90]</texture>
-          <visible>ListItem.Type(episode)</visible>
+          <visible>!ListItem.Type(clip)</visible>
         </control>
       </control>
       <!-- Item Separator -->
@@ -610,7 +622,7 @@
     <control type="group" id="1200">
       <animation effect="slide" start="1242,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" end="1242,0" time="500" tween="quadratic">WindowClose</animation>
-      <visible>Container.PlexContent(movie) | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
+      <visible>[[Container.PlexContent(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
       <posx>763</posx>
       <posy>448</posy>
       <width>394</width>
@@ -667,7 +679,7 @@
     <control type="group">
       <animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
-      <visible>Container.PlexContent(movie) | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
+      <visible>[[Container.PlexContent(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
       <posx>729</posx>
       <width>1192</width>
       <height>1080</height>
