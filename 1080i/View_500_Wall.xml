@@ -1047,47 +1047,6 @@
             </control>
           </control>
         </focusedlayout>
-        <itemlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),music)">
-          <control type="image">
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>240</width>
-            <height>240</height>
-            <aspectratio>scale</aspectratio>
-            <texture fallback="defaultgenre.png">$INFO[ListItem.Label,special://skin/extras/genres/music/240x240/,.jpg]</texture>
-            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-            <bordersize>2</bordersize>
-            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
-          </control>
-        </itemlayout>
-        <focusedlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),music)">
-          <control type="group">
-            <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
-            </animation>
-            <control type="image">
-              <posx>0</posx>
-              <posy>0</posy>
-              <width>240</width>
-              <height>240</height>
-              <aspectratio>scale</aspectratio>
-              <texture fallback="defaultgenre.png">$INFO[ListItem.Label,special://skin/extras/genres/music/240x240/,.jpg]</texture>
-              <bordersize>8</bordersize>
-            </control>
-            <control type="image">
-              <posx>0</posx>
-              <posy>0</posy>
-              <width>240</width>
-              <height>240</height>
-              <aspectratio>scale</aspectratio>
-              <texture>empty.png</texture>
-              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-              <bordersize>8</bordersize>
-              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
-            </control>
-          </control>
-        </focusedlayout>
       </control>
       <control type="scrollbar" id="60">
         <posx>1797</posx>
@@ -1147,7 +1106,7 @@
         <pagecontrol>60</pagecontrol>
         <scrolltime tween="quadratic" easing="out">300</scrolltime>
         <visible>!Container.Content(songs) + !Container.Content(empty)</visible>
-        <itemlayout height="240" width="240">
+        <itemlayout height="240" width="240" condition="Container.Content(artists) | Container.Content(albums)">
           <control type="image">
             <posx>0</posx>
             <posy>0</posy>
@@ -1181,7 +1140,7 @@
             </control>
           </control>
         </itemlayout>
-        <focusedlayout height="240" width="240">
+        <focusedlayout height="240" width="240" condition="Container.Content(artists) | Container.Content(albums)">
           <control type="group">
             <animation type="Focus">
               <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
@@ -1253,6 +1212,47 @@
                 <textcolor>grey2</textcolor>
                 <info>ListItem.Label</info>
               </control>
+            </control>
+          </control>
+        </focusedlayout>
+        <itemlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),music)">
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>240</width>
+            <height>240</height>
+            <aspectratio>scale</aspectratio>
+            <texture fallback="defaultgenre.png">$INFO[ListItem.Label,special://skin/extras/genres/music/240x240/,.jpg]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+          </control>
+        </itemlayout>
+        <focusedlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),music)">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto" />
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in" />
+            </animation>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>240</height>
+              <aspectratio>scale</aspectratio>
+              <texture fallback="defaultgenre.png">$INFO[ListItem.Label,special://skin/extras/genres/music/240x240/,.jpg]</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>240</height>
+              <aspectratio>scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
             </control>
           </control>
         </focusedlayout>
