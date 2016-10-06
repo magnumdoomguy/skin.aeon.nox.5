@@ -1746,9 +1746,86 @@
 				<include>ListScrollbar</include>
 			</control>
 			<control type="group">
+				<visible>Container.PlexContent(photos)</visible>
 				<posx>1296</posx>
 				<posy>155</posy>
-				<visible>!Container.Content(episodes) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | [Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] | Container.PlexContent(clips) | Container.PlexContent(artists) | Container.PlexContent(albums)]</visible>
+				<!-- Big Poster -->
+				<control type="image">
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture background="true">$INFO[ListItem.PicturePath]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]</visible>
+				</control>
+				<control type="image">
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture fallback="defaultpicture.png" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]]</visible>
+				</control>
+				<control type="image">
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture fallback="defaultvideo.png" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>ListItem.Type(clip)</visible>
+				</control>
+				<control type="image">
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="bottom">keep</aspectratio>
+					<texture fallback="defaultfolder.png" background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<fadetime>400</fadetime>
+					<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+					<visible>ListItem.Type(photoAlbum)</visible>
+				</control>
+				<!-- Reflection -->
+				<control type="image">
+					<posy>795</posy>
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>400</fadetime>
+					<texture fallback="defaultfolder.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<bordersize>20</bordersize>
+					<visible>ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + [String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]</visible>
+				</control>
+				<control type="image">
+					<posy>795</posy>
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>400</fadetime>
+					<texture fallback="defaultpicture.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<bordersize>20</bordersize>
+					<visible>[ListItem.Type(photo) + !System.GetBool(myplex.disablepicturetranscode)] | [ListItem.Type(photo) + System.GetBool(myplex.disablepicturetranscode) + ![String.IsEqual(ListItem.Filename,file.jpg) | String.IsEqual(ListItem.Filename,file.png)]]</visible>
+				</control>
+				<control type="image">
+					<posy>795</posy>
+					<width>570</width>
+					<height>835</height>
+					<aspectratio aligny="top">keep</aspectratio>
+					<fadetime>400</fadetime>
+					<texture fallback="defaultfolder.png" background="true" diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
+					<bordersize>20</bordersize>
+					<visible>ListItem.Type(photoAlbum)</visible>
+				</control>
+			</control>
+			<control type="group">
+				<posx>1296</posx>
+				<posy>155</posy>
+				<visible>!Container.Content(episodes) + ![Container.PlexContent(channels) | Container.PlexContent(channel) | [Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] | Container.PlexContent(clips) | Container.PlexContent(artists) | Container.PlexContent(albums) | Container.PlexContent(photos)]</visible>
 				<!-- Genre Icons -->
 				<control type="image">
 					<width>570</width>
