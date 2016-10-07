@@ -852,6 +852,22 @@
             <label>$VAR[OSD_Rating]</label>
             <visible>IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage))</visible>
           </control>
+          <!-- IMDb Rating -->
+          <control type="image">
+            <width>43</width>
+            <height>60</height>
+            <aligny>center</aligny>
+            <texture>imdb_43x23.png</texture>
+            <aspectratio align="left" aligny="center">keep</aspectratio>
+            <visible>IsEmpty(MusicPlayer.Property(hasUserRating)) + String.IsEqual(MusicPlayer.Property(ratingType),imdb)</visible>
+          </control>
+          <control type="label">
+            <height>60</height>
+            <width min="20" max="121">auto</width>
+            <aligny>center</aligny>
+            <label> $INFO[MusicPlayer.Property(rating)]</label>
+            <visible>IsEmpty(MusicPlayer.Property(hasUserRating)) + String.IsEqual(MusicPlayer.Property(ratingType),imdb)</visible>
+          </control>
           <!-- Rotten Tomato Ratings -->
           <control type="image">
             <width>23</width>
@@ -859,14 +875,14 @@
             <aligny>center</aligny>
             <texture>rottentomatoes/23x23/$INFO[MusicPlayer.Property(ratingImage)]</texture>
             <aspectratio align="left" aligny="center">keep</aspectratio>
-            <visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.Property(hasUserRating))</visible>
+            <visible>String.IsEqual(MusicPlayer.Property(ratingType),rottentomatoes) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
           </control>
           <control type="label">
             <height>60</height>
             <width min="20" max="121">auto</width>
             <aligny>center</aligny>
             <label>$INFO[MusicPlayer.Property(ratingPercent)]%  </label>
-            <visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
+            <visible>String.IsEqual(MusicPlayer.Property(ratingType),rottentomatoes) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
           </control>
           <control type="image">
             <width>23</width>
@@ -874,14 +890,14 @@
             <aligny>center</aligny>
             <texture>rottentomatoes/23x23/$INFO[MusicPlayer.Property(audienceRatingImage)]</texture>
             <aspectratio align="left" aligny="center">keep</aspectratio>
-            <visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
+            <visible>String.IsEqual(MusicPlayer.Property(ratingType),rottentomatoes) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
           </control>
           <control type="label">
             <height>60</height>
             <width min="20" max="121">auto</width>
             <aligny>center</aligny>
             <label>$INFO[MusicPlayer.Property(audienceRatingPercent)]%</label>
-            <visible>!IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
+            <visible>String.IsEqual(MusicPlayer.Property(ratingType),rottentomatoes) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
           </control>
         </control>
         <!-- Plot -->
