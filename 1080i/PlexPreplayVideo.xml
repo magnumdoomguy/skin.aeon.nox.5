@@ -27,13 +27,21 @@
     <control type="group">
       <animation effect="slide" start="-729,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" end="-729,0" time="500" tween="quadratic">WindowClose</animation>
-      <visible>[[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + ![String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
+      <visible>[[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + ![String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
       <!-- Display Poster -->
       <control type="image">
         <width>729</width>
         <height>1080</height>
         <aspectratio aligny="top">scale</aspectratio>
         <texture fallback="black.png">$INFO[ListItem.Art(bigThumb)]</texture>
+        <visible>![Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
+      </control>
+      <control type="image">
+        <width>729</width>
+        <height>1080</height>
+        <aspectratio aligny="top">scale</aspectratio>
+        <texture fallback="black.png">$INFO[ListItem.Art(bigGrandparentThumb)]</texture>
+        <visible>Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)</visible>
       </control>
       <!-- Display Watched Status Overlay (On the Poster, instead of next to the title) -->
       <include condition="!Skin.HasSetting(Enable.Circles)">Preplay_PortraitWatchedStatusRibbon</include>
@@ -46,7 +54,7 @@
     <control type="group">
       <animation effect="slide" start="0,-570" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" end="0,-570" time="500" tween="quadratic">WindowClose</animation>
-      <visible>![[![Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + !Skin.HasSetting(Advanced.PortraitHomeVideos)] | [[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] | [Container.PlexContent(episode) + !Skin.HasSetting(Preplay.PortraitEpisodeLayout)] | Container.Content(clip)</visible>
+      <visible>![[![Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + !Skin.HasSetting(Advanced.PortraitHomeVideos)] | [[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] | [Container.PlexContent(episode) + !Skin.HasSetting(Preplay.EpisodePortrait)] | Container.Content(clip)</visible>
       <posx>0</posx>
       <posy>0</posy>
       <width>1920</width>
@@ -453,7 +461,7 @@
     <control type="group">
       <animation effect="slide" start="0,530" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" start="0,0" end="0,530" time="320" tween="quadratic">WindowClose</animation>
-      <visible>![[![Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + !Skin.HasSetting(Advanced.PortraitHomeVideos)] | [[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] | [Container.PlexContent(episode) + !Skin.HasSetting(Preplay.PortraitEpisodeLayout)] | Container.Content(clip)</visible>
+      <visible>![[![Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + !Skin.HasSetting(Advanced.PortraitHomeVideos)] | [[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] | [Container.PlexContent(episode) + !Skin.HasSetting(Preplay.EpisodePortrait)] | Container.Content(clip)</visible>
       <posx>0</posx>
       <posy>570</posy>
       <width>1920</width>
@@ -618,11 +626,11 @@
         <texture border="1">separator2.png</texture>
       </control>
     </control>
-    <!-- Preplay Movies (Right) -->
+    <!-- Preplay Portrait (Right) -->
     <control type="group" id="1200">
       <animation effect="slide" start="1242,0" end="0,0" time="500" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" end="1242,0" time="500" tween="quadratic">WindowClose</animation>
-      <visible>[[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + ![String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
+      <visible>[[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + ![String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
       <posx>763</posx>
       <posy>448</posy>
       <width>394</width>
@@ -679,7 +687,7 @@
     <control type="group">
       <animation effect="slide" start="1242,0" end="0,0" time="320" tween="quadratic">WindowOpen</animation>
       <animation effect="slide" end="1242,0" time="320" tween="quadratic">WindowClose</animation>
-      <visible>[[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + ![String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.PortraitEpisodeLayout)]</visible>
+      <visible>[[Container.PlexContent(homemovie) | [String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [Container.Content(movie) + ![String.IsEqual(Skin.String(Filter.Type),homemovies) | String.IsEqual(Skin.String(Filter.Type),photos)]] | [Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
       <posx>729</posx>
       <width>1192</width>
       <height>1080</height>
@@ -730,6 +738,18 @@
             <textcolor>grey</textcolor>
             <scroll>true</scroll>
             <label>$INFO[ListItem.Label]</label>
+            <visible>![Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
+          </control>
+          <control type="label">
+            <width>1100</width>
+            <height>60</height>
+            <aligny>center</aligny>
+            <align>left</align>
+            <font>font30</font>
+            <textcolor>grey</textcolor>
+            <scroll>true</scroll>
+            <label>$VAR[Preplay_LandscapeTitleVar]</label>
+            <visible>Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)</visible>
           </control>
           <!-- Display Genre -->
           <control type="label">
@@ -741,7 +761,18 @@
             <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
             <scroll>true</scroll>
             <label>$INFO[ListItem.Genre]</label>
-            <visible>!IsEmpty(ListItem.Genre)</visible>
+            <visible>!IsEmpty(ListItem.Genre) + ![Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
+          </control>
+          <control type="label">
+            <width>1100</width>
+            <height>30</height>
+            <aligny>center</aligny>
+            <align>left</align>
+            <font>font15</font>
+            <textcolor>$VAR[Colour_PreplayThemeColourVar]</textcolor>
+            <scroll>true</scroll>
+            <label>[UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE]</label>
+            <visible>Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)</visible>
           </control>
         </control>
         <!-- Item Separator -->
@@ -769,7 +800,17 @@
             <label>[B]$INFO[ListItem.Year][/B]</label>
             <font>font35_title</font>
             <textcolor>grey</textcolor>
-            <visible>!IsEmpty(ListItem.Year)</visible>
+            <visible>!IsEmpty(ListItem.Year) + ![Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
+          </control>
+          <!-- Display Date -->
+          <control type="label">
+            <width>268</width>
+            <height>90</height>
+            <align>left</align>
+            <label>[B]$INFO[ListItem.Date][/B]</label>
+            <font>font35_title</font>
+            <textcolor>grey</textcolor>
+            <visible>Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)</visible>
           </control>
           <!-- Item Separator -->
           <control type="image">
