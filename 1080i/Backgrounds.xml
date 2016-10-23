@@ -123,10 +123,21 @@
   <!-- Weather Fanart -->
   <include name="WeatherFanart">
     <control type="image">
+	  <visible>!String.IsEqual(Skin.String(Weather.Fanart),Slideshow)</visible>
       <include>FanartCommonValues</include>
-      <texture>$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/,.jpg]</texture>
+      <texture>$VAR[WeatherFanartVar]</texture>
     </control>
+    <control type="multiimage">
+        <visible>String.IsEqual(Skin.String(Weather.Fanart),Slideshow)</visible>
+        <include>FanartCommonValues</include>
+        <imagepath>$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/slideshow/,/]</imagepath>
+      </control>
   </include>
+  <variable name="WeatherFanartVar">
+	<value condition="String.IsEqual(Skin.String(Weather.Fanart),Faded)">$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/faded/,.jpg]</value>
+	<value condition="String.IsEqual(Skin.String(Weather.Fanart),Prairie)">$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/prairie/,.jpg]</value>
+	<value>$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/single/,.jpg]</value>
+  </variable>
   <include name="VideoFanart">
     <!-- FanArt Underlay for WhiteFlat -->
     <control type="image">
