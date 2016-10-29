@@ -51,8 +51,8 @@
       <visible>Control.IsVisible(52) | Control.IsVisible(53) | Control.IsVisible(601)</visible>
       <posy>-30</posy>
       <animation type="VisibleChange" reversible="false">
-        <effect type="zoom" start="200" end="100" center="960,540" easing="out" tween="cubic" time="300" />
-        <effect type="fade" start="0" end="100" time="300" />
+        <effect type="zoom" start="200" end="100" center="960,540" easing="out" tween="cubic" time="300"/>
+        <effect type="fade" start="0" end="100" time="300"/>
       </animation>
       <include>ShowCaseInfoPanel</include>
     </control>
@@ -742,21 +742,85 @@
     <include>ScrollOffsetLabel</include>
     <include>Topbar</include>
     <include>SideBlade</include>
-    <!--debug to navs -->
+    <!--Debug Info -->
     <control type="image">
-      <posx>-90</posx>
+      <posx>0</posx>
       <posy>0</posy>
       <width>1920</width>
-      <height>300</height>
-      <texture>listpanel_back.png</texture>
-      <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+      <height>365</height>
+      <texture border="1,1,1,40">topbar.png</texture>
       <visible>Skin.HasSetting(DebugInfo)</visible>
     </control>
-    <control type="label">
-      <include>WindowID</include>
-      <label>MyVideoNav.xml -&gt; $INFO[Skin.String(SectionType)] - $INFO[Container(300).ListItem(0).Label] - $INFO[Container.PlexContent][CR] - $VAR[ListItemType] CC=$VAR[ContainerContent]- st. $INFO[Skin.String(SectionType)] ft. $INFO[Container.FirstTitle] pt. $INFO[Container.Property(parentTitle)] [CR]===&gt; fn. $INFO[Container.FolderName]  =&gt; ll. $INFO[ListItem.Label] &gt;300. $INFO[Container(300).ListItem(0).Label] &gt;pos. $INFO[Container.Position][CR] url. $INFO[ListItem.FileNameAndPath][CR]ltype = $VAR[ListItemType]</label>
-      <visible>Skin.HasSetting(DebugInfo)</visible>
+    <control type="grouplist">
+	  <visible>Skin.HasSetting(DebugInfo)</visible>
+	  <orientation>vertical</orientation>
+      <posx>30</posx>
+      <posy>0</posy>
+      <width>1920</width>
+      <height>317</height>
+      <align>center</align>
+      <aligny>center</aligny>
+      <itemgap>0</itemgap>
+      <control type="label">
+        <description>Debug Info</description>
+        <width>1770</width>
+        <height>60</height>
+        <align>left</align>
+        <aligny>center</aligny>
+        <font>font14</font>
+        <textcolor>grey2</textcolor>
+        <label>[COLOR $VAR[Colour_ThemeColourVar]]DEBUG INFO[/COLOR]</label>
+      </control>
+      <control type="label">
+        <description>Window Name</description>
+        <width>1770</width>
+        <height>45</height>
+        <align>left</align>
+        <aligny>center</aligny>
+        <font>font14</font>
+        <textcolor>grey2</textcolor>
+        <label>[COLOR $VAR[Colour_ThemeColourVar]]Window:[/COLOR] MyVideoNav.xml</label>
+      </control>
+      <control type="label">
+        <description>row 1 label</description>
+        <width>1770</width>
+        <height>45</height>
+        <align>left</align>
+        <aligny>center</aligny>
+        <font>font14</font>
+        <label>[COLOR $VAR[Colour_ThemeColourVar]]Section Type:[/COLOR] $INFO[Skin.String(SectionType)] [COLOR $VAR[Colour_ThemeColourVar]]- Container Content:[/COLOR] $VAR[ContainerContent] [COLOR $VAR[Colour_ThemeColourVar]]- ListItem Type:[/COLOR] $VAR[ListItemType]</label>
+        <textcolor>grey2</textcolor>
+      </control>
+      <control type="label">
+        <description>row 2 label</description>
+        <width>1770</width>
+        <height>60</height>
+        <align>left</align>
+        <aligny>center</aligny>
+        <font>font14</font>
+        <label>[COLOR $VAR[Colour_ThemeColourVar]]First Title:[/COLOR] $INFO[Container.FirstTitle] [COLOR $VAR[Colour_ThemeColourVar]]- Parent Title:[/COLOR] $INFO[Container.Property(parentTitle)]</label>
+        <textcolor>grey2</textcolor>
+      </control>
+      <control type="label">
+        <description>row 2 label</description>
+        <width>1770</width>
+        <height>45</height>
+        <align>left</align>
+        <aligny>center</aligny>
+        <font>font14</font>
+        <label>[COLOR $VAR[Colour_ThemeColourVar]]Folder Name:[/COLOR] $INFO[Container.FolderName] [COLOR $VAR[Colour_ThemeColourVar]]- ListItem Label:[/COLOR] $INFO[ListItem.Label] [COLOR $VAR[Colour_ThemeColourVar]]- Container Position:[/COLOR] $INFO[Container.Position]</label>
+        <textcolor>grey2</textcolor>
+      </control>
+      <control type="label">
+        <description>row 2 label</description>
+        <width>1770</width>
+        <height>45</height>
+        <align>left</align>
+        <aligny>center</aligny>
+        <font>font14</font>
+        <label>[COLOR $VAR[Colour_ThemeColourVar]]URL:[/COLOR] $INFO[ListItem.FileNameAndPath]</label>
+        <textcolor>grey2</textcolor>
+      </control>
     </control>
-    <!--debug to navs -->
   </controls>
 </window>
