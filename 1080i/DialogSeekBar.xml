@@ -146,8 +146,21 @@
             <aspectratio>keep</aspectratio>
             <texture align="left">$INFO[VideoPlayer.AudioCodec,flags/white/47x47/audio/,.png]</texture>
           </control>
-          <control type="textbox"><posx>44</posx><posy>30</posy><width>140</width><height>164</height><align>center</align><aligny>center</aligny><font>font_cdvvv</font><textcolor>white</textcolor><shadowcolor>black</shadowcolor><label>[CR][CR][CR][CR][CR][CR]$VAR[OSDSimulatedDiscartLabel2Var]</label><scroll>false</scroll><wrapmultiline>true</wrapmultiline>--&gt;
-					</control>
+          <control type="textbox">
+            <posx>44</posx>
+            <posy>30</posy>
+            <width>140</width>
+            <height>164</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font_cdvvv</font>
+            <textcolor>white</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <label>[CR][CR][CR][CR][CR][CR]$VAR[OSDSimulatedDiscartLabel2Var]</label>
+            <scroll>false</scroll>
+            <wrapmultiline>true</wrapmultiline>
+            --&gt;
+          </control>
           <!-- TV Show Title -->
           <control type="label">
             <visible>VideoPlayer.Content(episodes)</visible>
@@ -829,7 +842,7 @@
             <textcolor>$VAR[Colour_OSDThemeColourVar]</textcolor>
             <shadowcolor>black</shadowcolor>
             <aligny>center</aligny>
-            <label> [B]•[/B] </label>
+            <label>[B]•[/B]</label>
             <visible>!IsEmpty(VideoPlayer.Genre) + [!IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]</visible>
           </control>
           <!-- User Rating -->
@@ -865,7 +878,7 @@
             <height>60</height>
             <width min="20" max="121">auto</width>
             <aligny>center</aligny>
-            <label> $INFO[MusicPlayer.Property(rating)]</label>
+            <label>$INFO[MusicPlayer.Property(rating)]</label>
             <visible>IsEmpty(MusicPlayer.Property(hasUserRating)) + String.IsEqual(MusicPlayer.Property(ratingType),imdb)</visible>
           </control>
           <!-- Rotten Tomato Ratings -->
@@ -881,7 +894,7 @@
             <height>60</height>
             <width min="20" max="121">auto</width>
             <aligny>center</aligny>
-            <label>$INFO[MusicPlayer.Property(ratingPercent)]%  </label>
+            <label>$INFO[MusicPlayer.Property(ratingPercent)]%</label>
             <visible>String.IsEqual(MusicPlayer.Property(ratingType),rottentomatoes) + IsEmpty(MusicPlayer.Property(hasUserRating))</visible>
           </control>
           <control type="image">
@@ -1055,8 +1068,10 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <font>font14_textbox</font>
-          <visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)]  | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + 
-					String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+          <visible>
+            [Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)]  | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + 
+            String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]
+          </visible>
         </control>
         <control type="textbox">
           <posx>313</posx>
@@ -1068,8 +1083,10 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <font>font14_textbox</font>
-          <visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + 
-					String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+          <visible>
+            [Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + !Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle)] + !Skin.HasSetting(General.SmallPlotText) + 
+            String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]
+          </visible>
         </control>
         <control type="textbox">
           <posx>313</posx>
@@ -1081,8 +1098,10 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <font>font14_textbox_OSDSmall</font>
-          <visible>[Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + 
-					String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+          <visible>
+            [Window.IsActive(fullscreeninfo) + [[[IsEmpty(VideoPlayer.TVShowTitle)] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(MusicPlayer.Property(hasUserRating)) | !IsEmpty(MusicPlayer.Property(ratingImage)) | !IsEmpty(VideoPlayer.RatingAndVotes)]] | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + [!IsEmpty(VideoPlayer.Genre) | !IsEmpty(VideoPlayer.TVShowTitle)] + Skin.HasSetting(General.SmallPlotText) + 
+            String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]
+          </visible>
         </control>
         <control type="textbox">
           <posx>313</posx>
@@ -1094,8 +1113,10 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <font>font14_textbox_OSDSmallNoGenre</font>
-          <visible>[Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + 
-					String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]</visible>
+          <visible>
+            [Window.IsActive(fullscreeninfo) + IsEmpty(VideoPlayer.Genre) + IsEmpty(MusicPlayer.Property(hasUserRating)) + IsEmpty(MusicPlayer.Property(ratingImage)) + IsEmpty(VideoPlayer.RatingAndVotes) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled)] | [[!Window.IsActive(fullscreeninfo)+ [[String.IsEqual(Skin.String(OSD.Plot),Paused) + Player.Paused + !Player.Seeking + !Player.Caching] | String.IsEqual(Skin.String(OSD.Plot),Always)]] + IsEmpty(VideoPlayer.Genre) + IsEmpty(VideoPlayer.TVShowTitle) + Skin.HasSetting(General.SmallPlotText) + 
+            String.IsEqual(Skin.String(OSD.SpinningDiscStyle),Disabled) + !String.IsEqual(Skin.String(OSD.VideoIconStyle),Disabled) + [Skin.HasSetting(OSD.FullResolutionFlag.Enable) | Skin.HasSetting(OSD.MediaFlags.Disable)]]
+          </visible>
         </control>
         <control type="textbox">
           <posx>45</posx>
@@ -1227,8 +1248,7 @@
               <textoffsetx>36</textoffsetx>
             </control>
           </itemlayout>
-          <focusedlayout height="102" width="594">
-					</focusedlayout>
+          <focusedlayout height="102" width="594"></focusedlayout>
           <content>
             <!-- Display Original Title -->
             <item>
@@ -1293,8 +1313,7 @@
               <textoffsetx>36</textoffsetx>
             </control>
           </itemlayout>
-          <focusedlayout height="102" width="594">
-					</focusedlayout>
+          <focusedlayout height="102" width="594"></focusedlayout>
           <content>
             <!-- Display Original Title -->
             <item>
@@ -1359,8 +1378,7 @@
               <textoffsetx>36</textoffsetx>
             </control>
           </itemlayout>
-          <focusedlayout height="102" width="594">
-					</focusedlayout>
+          <focusedlayout height="102" width="594"></focusedlayout>
           <content>
             <!-- Display Original Title -->
             <item>
