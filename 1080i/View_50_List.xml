@@ -179,7 +179,7 @@
     <width>70</width>
     <height>105</height>
     <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-    <texture background="true" fallback="defaultmovietitle.png">$INFO[ListItem.Art(smallThumb)]</texture>
+    <texture background="true" fallback="views/list/defaultmovies.png">$INFO[ListItem.Art(smallThumb)]</texture> 
   </include>
   <!-- Square Thumb -->
   <include name="ListSquareIcon">
@@ -300,8 +300,24 @@
     <include>ListSeparator</include>
     <!-- Display Poster -->
     <control type="image">
-      <include>ListPoster</include>
+      <posx>15</posx>
+      <posy>8</posy>
+      <width>70</width>
+      <height>105</height>
+      <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+      <texture background="true" fallback="views/list/defaultmovies.png">$INFO[ListItem.Art(smallThumb)]</texture> 
       <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+      <visible>ListItem.Type(movie)</visible>
+    </control>
+    <control type="image">
+      <posx>15</posx>
+      <posy>8</posy>
+      <width>70</width>
+      <height>105</height>
+      <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+      <texture background="true">views/list/defaultfolder.png</texture> 
+      <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+      <visible>!ListItem.Type(movie)</visible>
     </control>
     <!-- Title -->
     <control type="label">
@@ -309,6 +325,21 @@
       <textcolor>grey2</textcolor>
       <selectedcolor>grey2</selectedcolor>
       <animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
+      <visible>ListItem.Type(movie)</visible>
+    </control>
+    <control type="label">
+      <posx>100</posx>
+      <posy>0</posy>
+      <width>1040</width>
+      <height>70</height>
+      <font>font30</font>
+      <align>left</align>
+      <aligny>center</aligny>
+      <label>$INFO[ListItem.Label]</label>
+      <textcolor>grey2</textcolor>
+      <selectedcolor>grey2</selectedcolor>
+      <animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
+      <visible>!ListItem.Type(movie)</visible>
     </control>
     <!-- Genre -->
     <control type="label">
@@ -386,7 +417,24 @@
     <include>ListHighlight</include>
     <!-- Display Poster -->
     <control type="image">
-      <include>ListPoster</include>
+      <posx>15</posx>
+      <posy>8</posy>
+      <width>70</width>
+      <height>105</height>
+      <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+      <texture background="true" fallback="views/list/defaultmovies.png">$INFO[ListItem.Art(smallThumb)]</texture> 
+      <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+      <visible>ListItem.Type(movie)</visible>
+    </control>
+    <control type="image">
+      <posx>15</posx>
+      <posy>8</posy>
+      <width>70</width>
+      <height>105</height>
+      <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+      <texture background="true">views/list/defaultfolder.png</texture> 
+      <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+      <visible>!ListItem.Type(movie)</visible>
     </control>
     <!-- Title -->
     <control type="label">
@@ -394,6 +442,21 @@
       <textcolor>white</textcolor>
       <selectedcolor>white</selectedcolor>
       <animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
+      <visible>ListItem.Type(movie)</visible>
+    </control>
+    <control type="label">
+      <posx>100</posx>
+      <posy>0</posy>
+      <width>1040</width>
+      <height>70</height>
+      <font>font30</font>
+      <align>left</align>
+      <aligny>center</aligny>
+      <label>$INFO[ListItem.Label]</label>
+      <textcolor>white</textcolor>
+      <selectedcolor>white</selectedcolor>
+      <animation effect="slide" start="0,0" end="0,25" time="0" condition="[IsEmpty(ListItem.Genre) + Container.Content(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos) + IsEmpty(ListItem.Date)]">Conditional</animation>
+      <visible>!ListItem.Type(movie)</visible>
     </control>
     <!-- Genre -->
     <control type="label">
@@ -420,7 +483,6 @@
       <include>ListResolution</include>
       <colordiffuse>grey</colordiffuse>
     </control>
-    <!-- End -->
     <!-- User Rating -->
     <control type="label">
       <posx>1035</posx>
