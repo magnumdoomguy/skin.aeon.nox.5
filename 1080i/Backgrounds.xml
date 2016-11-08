@@ -493,7 +493,7 @@
   <include name="HomeFanart">
     <!-- Home Menu Backgrounds -->
     <control type="group">
-      <visible>Control.HasFocus(300) | Control.HasFocus(9027) | ControlGroup(9001).HasFocus()</visible>
+      <visible>Control.HasFocus(300)</visible>
       <!-- Custom Movies Single Image -->
       <control type="image">
         <include>FanartCommonValues</include>
@@ -554,6 +554,27 @@
         <texture>special://skin/backgrounds/shutdown.jpg</texture>
       </control>
       <include>LiveCasesBackground</include>
+    </control>
+    <!-- Submenu Backgrounds -->
+    <control type="group">
+      <visible>Control.HasFocus(9010)</visible>
+      <!-- Custom Movies Single Image -->
+      <control type="image">
+        <include>FanartCommonValues</include>
+        <info>Skin.String(MoviesSubmenu1.SingleImage)</info>
+        <visible>String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu1.Label)) + !IsEmpty(Skin.String(MoviesSubmenu1.SingleImage))</visible>
+      </control>
+      <!-- Custom Movies Slideshow -->
+      <control type="multiimage">
+        <include>FanartCommonValues</include>
+        <info>Skin.String(MoviesSubmenu1.Slideshow)</info>
+        <visible>String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu1.Label)) + !IsEmpty(Skin.String(MoviesSubmenu1.Slideshow))</visible>
+      </control>
+      <!-- Display Plex Fanart -->
+      <control type="multiimage" id="10101">
+        <include>FanartCommonValues</include>
+        <visible>[String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu1.Label)) + IsEmpty(Skin.String(MoviesSubmenu1.SingleImage)) + IsEmpty(Skin.String(MoviesSubmenu1.Slideshow))]</visible>
+      </control>
     </control>
     <!-- On Deck Widgets -->
     <control type="group">
