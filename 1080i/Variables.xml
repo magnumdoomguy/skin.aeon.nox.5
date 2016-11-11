@@ -33,12 +33,6 @@
     <value condition="String.IsEqual(Skin.String(Fade.UnfocusedItem),50)">Skin.SetString(Fade.UnfocusedItem,40)</value>
     <value condition="String.IsEqual(Skin.String(Fade.UnfocusedItem),40)">Skin.Reset(Fade.UnfocusedItem)</value>
   </variable>
-  <!-- Episode Title -->
-  <variable name="EpisodeTitleVar">
-    <value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | !IsEmpty(Container.Property(mixedParents))]">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-    <value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | !IsEmpty(Container.Property(mixedParents))]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-    <value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
-  </variable>
   <variable name="listselect_foVar">
     <value condition="Skin.HasTheme(WhiteFlat)">wf_listselect_fo.png</value>
     <value>listselect_fo.png</value>
@@ -87,13 +81,6 @@
     <value condition="Skin.HasSetting(Disable.UnwatchedPlot) + ListItem.Type(episode) + [ListItem.Status(unwatched) | ListItem.Status(inprogress)]">$LOCALIZE[42277]</value>
     <value>$INFO[ListItem.Plot]</value>
   </variable>
-  <variable name="Search9001PlotVar">
-    <value condition="IsEmpty(Container(9001).ListItem.Plot) + Container(9001).ListItem.Type(episode)">$LOCALIZE[42129].[CR]$LOCALIZE[32104].</value>
-    <!-- STRING: There is no description available for this episode. You can add one for it in the Media Manager. -->
-    <value condition="IsEmpty(Container(9001).ListItem.Plot)">$LOCALIZE[42128].[CR]$LOCALIZE[32104].</value>
-    <!-- STRING: There is no description available for this video. You can add one for it in the Media Manager. -->
-    <value>$INFO[Container(9001).ListItem.Plot]</value>
-  </variable>
   <variable name="Search9002PlotVar">
     <value condition="IsEmpty(Container(9002).ListItem.Plot) + Container(9002).ListItem.Type(episode)">$LOCALIZE[42129].[CR]$LOCALIZE[32104].</value>
     <!-- STRING: There is no description available for this episode. You can add one for it in the Media Manager. -->
@@ -108,16 +95,6 @@
     <!-- STRING: There is no description available for this video. You can add one for it in the Media Manager. -->
     <value condition="Skin.HasSetting(Disable.UnwatchedPlot) + Container(9004).ListItem.Type(episode) + [Container(9004).ListItem.Status(unwatched) | Container(9004).ListItem.Status(inprogress)]">$LOCALIZE[42277]</value>
     <value>$INFO[Container(9004).ListItem.Plot]</value>
-  </variable>
-  <variable name="Search9008PlotVar">
-    <value condition="IsEmpty(Container(9008).ListItem.Property(summary)">$LOCALIZE[42278].[CR]$LOCALIZE[32104].</value>
-    <!-- STRING: There is no description available for this artist. You can add one for it in the Media Manager. -->
-    <value>$INFO[Container(9008).ListItem.Property(summary)]</value>
-  </variable>
-  <variable name="Search9008PlotVar">
-    <value condition="IsEmpty(Container(9009).ListItem.Property(summary)">$LOCALIZE[42224].[CR]$LOCALIZE[32104].</value>
-    <!-- STRING: There is no description available for this album. You can add one for it in the Media Manager. -->
-    <value>$INFO[Container(9009).ListItem.Property(summary)]</value>
   </variable>
   <!-- Duration -->
   <variable name="DurationHrMinVar">
@@ -560,12 +537,6 @@
     <value condition="String.IsEqual(ListItem.RatingAndVotes,1.0)">1</value>
     <value condition="String.IsEqual(ListItem.RatingAndVotes,0.0)">0</value>
     <value>$INFO[ListItem.RatingAndVotes]</value>
-  </variable>
-  <variable name="UnfocusedMainMenuColor">
-    <value>FF606060</value>
-  </variable>
-  <variable name="FocusedMainMenuColor">
-    <value>FFe5e5e5</value>
   </variable>
   <variable name="Homemenu_BarGraphic">
     <value condition="String.IsEqual(Skin.String(MainMenu.Graphic),Black Leaf)">homemenu/blackleaf.png</value>
