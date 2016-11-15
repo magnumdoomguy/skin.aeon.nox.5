@@ -372,9 +372,9 @@
   </include>
   <!-- SubMenu -->
   <include name="HomeSubMenu">
-    <!-- Movies and Home Videos (Type 1) -->
+    <!-- Custom Movies and Home Videos (Type 1) -->
     <!-- Movies Submenu Item 1 -->
-    <item>
+    <!--<item>
       <description>Movies Submenu Item 1</description>
       <label>$VAR[MoviesSubmenu1_LabelVar]</label>
       <icon>-</icon>
@@ -411,7 +411,152 @@
       <onclick condition="String.IsEqual(Skin.String(MoviesSubmenu1.Action),Restart)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(MoviesSubmenu1.Action),Shutdown)">Plex.Powerdown</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) + !String.IsEqual(Skin.String(MoviesSubmenu1.Action),None)</visible>
-    </item>
+    </item>-->
+    <!-- Movies and Home Videos (Type 1) -->
+    <item>
+         <description>Unwatched</description>
+         <label>$LOCALIZE[16101]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/unwatched?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>
+         <item>
+         <description>Recently Released</description>
+         <label>$LOCALIZE[42415]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/newest?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
+         </item>
+         <item>
+         <description>Recently Added</description>
+         <label>$LOCALIZE[42197]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>
+         <item>
+         <description>Recently Viewed</description>
+         <label>$LOCALIZE[42416]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyViewed?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>
+         <item>
+         <description>On Deck</description>
+         <label>$LOCALIZE[42023]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/onDeck?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>
+         <item>
+         <description>Collections</description>
+         <label>$LOCALIZE[42439]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>
+         <item>
+         <description>Genres</description>
+         <label>$LOCALIZE[135]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
+         </item>
+         <item>
+         <description>Years</description>
+         <label>$LOCALIZE[652]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>
+         <item>
+         <description>Decades</description>
+         <label>$LOCALIZE[42440]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>
+         <item>
+         <description>Directors</description>
+         <label>$LOCALIZE[20348]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/director?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
+         </item>
+         <item>
+         <description>Actors</description>
+         <label>$LOCALIZE[344]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/actor?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
+         </item>
+         <item>
+         <description>Countries</description>
+         <label>$LOCALIZE[20451]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
+         </item>
+         <item>
+         <description>Content Ratings</description>
+         <label>$LOCALIZE[42441]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/contentRating?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie)</visible>
+         </item>
+         <item>
+         <description>Resolution</description>
+         <label>$LOCALIZE[169]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/resolution?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>
+         <item>
+         <description>By Letter</description>
+         <label>$LOCALIZE[42442]</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>-->
+    <!-- By Folder (Broken) -->
+    <!--<item>
+         <label>Folders</label>
+         <icon>-</icon>
+         <onclick>Skin.SetBool(FilterActive)</onclick>
+         <onclick>Dialog.Close(4998)</onclick>
+         <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=1)</onclick>
+         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) | String.IsEqual(Container(300).ListItem.Property(type),homemovies)</visible>
+         </item>-->
     <!-- TV Libraries -->
     <item>
       <description>Unwatched</description>
