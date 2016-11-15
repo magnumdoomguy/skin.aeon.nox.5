@@ -62,11 +62,36 @@
               <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
             </control>
             <!-- IMDb Rating -->
-            <control type="button">
-              <label>[COLOR $VAR[Colour_Shelf3DThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$INFO[ListItem.Property(rating)]</label>
-              <width>251</width>
-              <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            <control type="grouplist">
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb)</visible>
+              <orientation>vertical</orientation>
+              <posx>15</posx>
+              <control type="label">
+                <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR]</label>
+                <width>251</width>
+                <height>45</height>
+                <aligny>top</aligny>
+                <font>font14</font>
+                <textcolor>grey2</textcolor>
+              </control>
+              <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <control type="image">
+                  <width>51</width>
+                  <height>40</height>
+                  <aligny>center</aligny>
+                  <texture>imdb_51x40.png</texture>
+                  <aspectratio align="left" aligny="center">keep</aspectratio>
+                </control>
+                <control type="label">
+                  <height>40</height>
+                  <width min="20" max="121">auto</width>
+                  <aligny>center</aligny>
+                  <font>font14</font>
+                  <textcolor>grey2</textcolor>
+                  <label> $INFO[ListItem.Property(rating)]</label>
+                </control>
+              </control>
             </control>
             <!-- Rotten Tomatoes Rating -->
             <control type="grouplist">
@@ -97,7 +122,7 @@
                   <aligny>center</aligny>
                   <font>font14</font>
                   <textcolor>grey2</textcolor>
-                  <label>$INFO[ListItem.Property(ratingPercent)]%</label>
+                  <label> $INFO[ListItem.Property(ratingPercent)]% </label>
                 </control>
                 <control type="image">
                   <width>32</width>
@@ -112,7 +137,7 @@
                   <aligny>center</aligny>
                   <font>font14</font>
                   <textcolor>grey2</textcolor>
-                  <label>$INFO[ListItem.Property(audienceRatingPercent)]%</label>
+                  <label> $INFO[ListItem.Property(audienceRatingPercent)]%</label>
                 </control>
               </control>
             </control>
