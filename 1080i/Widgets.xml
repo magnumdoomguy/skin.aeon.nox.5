@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-  <!-- On Deck: Duration -->
+  <!-- Widgets Duration (In Hours and Minutes) -->
   <variable name="Widgets_Duration">
     <value condition="String.IsEqual(Container.ListItem.Duration,)">$LOCALIZE[42407]</value>
     <value condition="String.IsEqual(Container.ListItem.Duration,0)">1 [LOWERCASE]$LOCALIZE[42223][/LOWERCASE]</value>
@@ -428,20 +428,20 @@
     <value condition="String.IsEqual(Container.ListItem.Duration,480)">8 [LOWERCASE]$LOCALIZE[42262][/LOWERCASE]</value>
     <value>$INFO[Container.ListItem.Duration] [LOWERCASE]$LOCALIZE[12391][/LOWERCASE]</value>
   </variable>
-  <!-- On Deck: Rating -->
-  <variable name="Widget_OnDeckRating">
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,10.0)">10</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,9.0)">9</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,8.0)">8</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,7.0)">7</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,6.0)">6</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,5.0)">5</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,4.0)">4</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,3.0)">3</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,2.0)">2</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,1.0)">1</value>
-    <value condition="String.IsEqual(Container(11001).ListItem.RatingAndVotes,0.0)">0</value>
-    <value>$INFO[Container(11001).ListItem.RatingAndVotes]</value>
+  <!-- Widgets Rating (Truncate .0)-->
+  <variable name="Widgets_Rating">
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,10.0)">10</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,9.0)">9</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,8.0)">8</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,7.0)">7</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,6.0)">6</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,5.0)">5</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,4.0)">4</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,3.0)">3</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,2.0)">2</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,1.0)">1</value>
+    <value condition="String.IsEqual(Container.ListItem.RatingAndVotes,0.0)">0</value>
+    <value>$INFO[Container.ListItem.RatingAndVotes]</value>
   </variable>
   <!-- On Deck: Thumbnail -->
   <variable name="Widget_OnDeckThumbnail">
@@ -2330,7 +2330,7 @@
       <shadowcolor>black</shadowcolor>
       <font>font12</font>
       <aligny>center</aligny>
-      <label>$VAR[Widget_OnDeckRating] [B]•[/B] </label>
+      <label>$VAR[Widgets_Rating] [B]•[/B] </label>
       <visible>Control.IsVisible(11001) + IsEmpty(Container(11001).ListItem.Property(hasUserRating)) + IsEmpty(Container(11001).ListItem.Property(ratingType)) + !IsEmpty(Container(11001).ListItem.RatingAndVotes)</visible>
     </control>
     <!-- IMDb Rating -->
