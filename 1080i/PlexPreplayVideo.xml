@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window type="dialog" id="10090">
   <onload condition="Window.Previous(fullscreenvideo) + ListItem.Type(episode) + ListItem.Status(watched)">XBMC.NextItem</onload>
-  <onload condition="Container.PlexContent(channel)">Plex.PlayWith(VideoDefaultPlayer)</onload>
+  <onload condition="Window.Previous(videolibrary)">Skin.SetString(Preplay.Previous,videolibrary)</onload>
+	<onload condition="Window.Previous(home)">Skin.SetString(Preplay.Previous,home)</onload>
+	<onload condition="Window.Previous(51)">Skin.SetString(Preplay.Previous,51)</onload>
+	<onload condition="Window.Previous(99)">Skin.SetString(Preplay.Previous,99)</onload>
   <defaultcontrol always="true">102</defaultcontrol>
   <allowoverlay>no</allowoverlay>
   <controls>
+    <!-- Disable PrePlay -->
+		<control type="group">
+			<visible>Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99)</visible>
+			<control type="button" id="102">
+				<include>HiddenObject</include>
+				<onfocus>Plex.PlayWith(VideoDefaultPlayer)</onfocus>
+				<visible>Container.PlexContent(channel)</visible>
+			</control>
+		</control>
+
+		<!-- Disable PostPlay -->
+		<control type="group">
+			<visible>![ Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99) ]</visible>
+			<control type="button" id="102">
+				<include>HiddenObject</include>
+				<onfocus>ActivateWindow($INFO[Skin.String(Preplay.Previous)])</onfocus>
+				<visible>Container.PlexContent(channel)</visible>
+			</control>
+		</control>
     <!-- Background -->
     <control type="image">
       <posx>0</posx>
@@ -752,6 +774,20 @@
         <posy>20</posy>
         <width>1042</width>
         <height>854</height>
+        <!-- System Time -->
+        <control type="label">
+          <posx>1100</posx>
+          <posy>-10</posy>
+          <width>1100</width>
+          <height>60</height>
+          <aligny>center</aligny>
+          <align>right</align>
+          <font>font30_title_bold</font>
+          <textcolor>grey</textcolor>
+          <scroll>true</scroll>
+          <label>$INFO[System.Time]</label>
+          <visible>![Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
+        </control>
         <control type="grouplist">
           <posy>-20</posy>
           <width>1100</width>
@@ -760,7 +796,7 @@
           <align>center</align>
           <!-- Display Video Title -->
           <control type="label">
-            <width>1100</width>
+            <width>900</width>
             <height>60</height>
             <aligny>center</aligny>
             <align>left</align>
