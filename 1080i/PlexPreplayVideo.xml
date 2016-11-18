@@ -8,7 +8,7 @@
   <defaultcontrol always="true">102</defaultcontrol>
   <allowoverlay>no</allowoverlay>
   <controls>
-    <!-- Disable PrePlay -->
+    <!-- Disable PrePlay (Channels)-->
 		<control type="group">
 			<visible>Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99)</visible>
 			<control type="button" id="102">
@@ -17,8 +17,7 @@
 				<visible>Container.PlexContent(channel)</visible>
 			</control>
 		</control>
-
-		<!-- Disable PostPlay -->
+		<!-- Disable PostPlay (Channels) -->
 		<control type="group">
 			<visible>![ Window.Previous(home) | Window.Previous(videolibrary) | Window.Previous(51) | Window.Previous(99) ]</visible>
 			<control type="button" id="102">
@@ -786,7 +785,20 @@
           <textcolor>grey</textcolor>
           <scroll>true</scroll>
           <label>$INFO[System.Time]</label>
-          <visible>![Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
+          <visible>!IsEmpty(ListItem.Genre) | !IsEmpty(ListItem.TvShowTitle)</visible>
+        </control>
+        <control type="label">
+          <posx>1100</posx>
+          <posy>-20</posy>
+          <width>1100</width>
+          <height>110</height>
+          <aligny>center</aligny>
+          <align>right</align>
+          <font>font30_title_bold</font>
+          <textcolor>grey</textcolor>
+          <scroll>true</scroll>
+          <label>$INFO[System.Time]</label>
+          <visible>IsEmpty(ListItem.Genre) + IsEmpty(ListItem.TvShowTitle)</visible>
         </control>
         <control type="grouplist">
           <posy>-20</posy>
@@ -807,7 +819,7 @@
             <visible>![Container.PlexContent(episode) + Skin.HasSetting(Preplay.EpisodePortrait)]</visible>
           </control>
           <control type="label">
-            <width>1100</width>
+            <width>900</width>
             <height>60</height>
             <aligny>center</aligny>
             <align>left</align>
