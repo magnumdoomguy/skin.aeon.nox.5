@@ -1495,14 +1495,14 @@
           <posx>802</posx>
           <orientation>horizontal</orientation>
           <width>855</width>
-          <height>23</height>
+          <height>30</height>
           <font>font12</font>
           <align>left</align>
           <aligny>center</aligny>
           <!-- Year -->
           <control type="label">
             <width min="20" max="285">auto</width>
-            <height>23</height>
+            <height>30</height>
             <aligny>center</aligny>
             <font>font12</font>
             <textcolor>white2</textcolor>
@@ -1510,15 +1510,26 @@
             <label>$INFO[Container(11000).ListItem.Year]</label>
             <visible>!IsEmpty(Container(11000).ListItem.Year)</visible>
           </control>
-          <!-- Genre -->
+          <!-- Dot Seperator -->
           <control type="label">
             <width min="20" max="285">auto</width>
-            <height>23</height>
+            <height>30</height>
             <aligny>center</aligny>
             <font>font12</font>
             <textcolor>white2</textcolor>
             <shadowcolor>black</shadowcolor>
-            <label>$INFO[Container(11000).ListItem.Genre, [B]•[/B] ]</label>
+            <label> [B]•[/B] </label>
+            <visible>!IsEmpty(Container(11000).ListItem.Year)</visible>
+          </control>
+          <!-- Genre -->
+          <control type="label">
+            <width min="20" max="770">auto</width>
+            <height>30</height>
+            <aligny>center</aligny>
+            <font>font12</font>
+            <textcolor>white2</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <label>$INFO[Container(11000).ListItem.Genre]</label>
           </control>
         </control>
         <!-- Item Separator -->
@@ -1528,6 +1539,7 @@
           <width>895</width>
           <height>60</height>
           <texture border="1">separator2.png</texture>
+          <animation effect="slide" end="0,-30" condition="IsEmpty(Container(11000).ListItem.Year) + IsEmpty(Container(11000).ListItem.Genre)">Conditional</animation>
         </control>
         <!-- Music Review -->
         <control type="textbox">
@@ -1540,20 +1552,20 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[Widgets_MusicReview]</label>
-          <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>!IsEmpty(Container(11000).ListItem.Year) | !IsEmpty(Container(11000).ListItem.Genre)</visible>
         </control>
-        <!-- Music Review (Small) -->
+        <!-- Music Review (No Genre or Year) -->
         <control type="textbox">
-          <posy>-188</posy>
+          <posy>-218</posy>
           <posx>802</posx>
-          <height>152</height>
+          <height>182</height>
           <width>855</width>
-          <font>font12_textbox_widgetpanellandscape</font>
+          <font>font12_textbox</font>
           <align>justify</align>
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[Widgets_MusicReview]</label>
-          <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>IsEmpty(Container(11000).ListItem.Year) + IsEmpty(Container(11000).ListItem.Genre)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
