@@ -1704,6 +1704,17 @@
             <label>$INFO[Container(11000).ListItem.Year]</label>
             <visible>!IsEmpty(Container(11000).ListItem.Year)</visible>
           </control>
+          <!-- Year -->
+          <control type="label">
+            <width min="20" max="532">auto</width>
+            <height>35</height>
+            <aligny>center</aligny>
+            <font>font12</font>
+            <textcolor>white2</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <label> [B]•[/B] </label>
+            <visible>!IsEmpty(Container(11000).ListItem.Year) + !IsEmpty(Container(11000).ListItem.Genre)</visible>
+          </control>
           <!-- Genre -->
           <control type="label">
             <width min="20" max="532">auto</width>
@@ -1713,7 +1724,7 @@
             <shadowcolor>black</shadowcolor>
             <aligny>center</aligny>
             <scroll>true</scroll>
-            <label>$INFO[Container(11000).ListItem.Genre, [B]•[/B] ]</label>
+            <label>$INFO[Container(11000).ListItem.Genre]</label>
           </control>
         </control>
         <!-- Item Separator -->
@@ -1723,8 +1734,9 @@
           <width>1104</width>
           <height>60</height>
           <texture border="1">separator2.png</texture>
+          <animation effect="slide" end="0,-35" condition="IsEmpty(Container(11000).ListItem.Year) + IsEmpty(Container(11000).ListItem.Genre)">Conditional</animation>
         </control>
-        <!-- Info Plot -->
+        <!-- Music Review -->
         <control type="textbox">
           <posy>-199</posy>
           <posx>593</posx>
@@ -1735,20 +1747,20 @@
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[Widgets_MusicReview]</label>
-          <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>!IsEmpty(Container(11000).ListItem.Year) | !IsEmpty(Container(11000).ListItem.Genre)</visible>
         </control>
-        <!-- Info Plot (Small) -->
+        <!-- Music Review (No Year or Genre) -->
         <control type="textbox">
-          <posy>-199</posy>
+          <posy>-234</posy>
           <posx>593</posx>
-          <height>181</height>
+          <height>216</height>
           <width>1064</width>
-          <font>font12_textbox_widgetpanelsquare</font>
+          <font>font12_textbox</font>
           <align>justify</align>
           <textcolor>grey</textcolor>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <label>$VAR[Widgets_MusicReview]</label>
-          <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>IsEmpty(Container(11000).ListItem.Year) + IsEmpty(Container(11000).ListItem.Genre)</visible>
         </control>
         <!-- Item Separator -->
         <control type="image">
