@@ -1,8 +1,8 @@
-<h1>Aeon Nox for Plex Home Theater</h1>
+<h1>Aeon Nox 5 for OpenPHT</h1>
 
 <p>I'm very pleased to announce the release of my port of the Aeon Nox 5 from Kodi for Plex Home Theater.</p>
 
-<p>Aeon Nox 5 for Plex has 28 different viewtypes, an intuitive and graceful GUI and lots of configuration options.</p>
+<p>Aeon Nox 5 has 28 different viewtypes, an intuitive and graceful GUI and lots of configuration options.</p>
 
 <h2>Installation:</h2>
 
