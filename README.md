@@ -1,34 +1,39 @@
-Aeon Nox for Plex Home Theater
+<h1>Aeon Nox for Plex Home Theater</h1>
 
-I'm very pleased to announce the release of my port of the Aeon Nox 5 from Kodi for Plex Home Theater.  
+<p>I'm very pleased to announce the release of my port of the Aeon Nox 5 from Kodi for Plex Home Theater.</p>
 
-Aeon Nox 5 for Plex has 28 different viewtypes, an intuitive and graceful GUI and lots of configuration options.  
+<p>Aeon Nox 5 for Plex has 28 different viewtypes, an intuitive and graceful GUI and lots of configuration options.</p>
 
-Installation:
+<h2>Installation:</h2>
 
-Extract the zip file then move the skin.aeon.nox.5 folder inside the zip to:
+<p>OpenPHT now supports automatic installation of Aeon Nox 5 from within the application itself.</p>
 
-Windows: C:\Users\<username>\AppData\Roaming\Plex Home Theater\addons
-Mac: ~/Library/Application Support/Plex Home Theater/addons
-Linux: ~/.plexht/addons
-Openelec: /storage/.plexht/addons (Use WinSCP or another FTP program to transfer)
+<h2>Screenshots:</h2>
 
-Screenshots: 
+<h2>Credits:</h2>
 
-Credits:
-
-Bignoid for creating Aeon Nox 5 for Kodi
-mikesilvo164 for Aeon Nox Silvo
-Steveb for the Fanartlist, BannerInfo and Shiftcase viewtypes
-Warner306 for the Small Icons viewtype
-Maniac for the white theme
-manfeed for the Music mods and Shelf 3D Viewtype
-schimi2k for media flags
-Mr. V for the homemenu widgets
-neurosis13 for the color media flags
-Tgx for fanart from his Black Glass Nova skin
-Aeon MQ for fanart
-Metropolis for some of the OSD options
-
-Special Thanks to Arjan1105 and FREAKJAM for testing
-Extra special thanks to i/o for his help during the early stages of this project.
+<ul>
+  <li>Bignoid for creating Aeon Nox 5 for Kodi</li>
+  <li>mikesilvo164 for Aeon Nox Silvo</li>
+  <li>kwiboo for all his hardwork on OpenPHT and his help with Aeon Nox</li>
+  <li>bkury for his hardwork on OpenPHT and adding so many cool skinning features to OpenPHT, and for his Night skin which has been a valuable resource for picking apart the OpenPHT skinning engine</li>
+  <li>Steveb for the Fanartlist, BannerInfo and Shiftcase viewtypes</li>
+  <li>Warner306 for the Small Icons viewtype</li>
+  <li>manfeed for the simulated discart, Music mods and Shelf 3D Viewtype</li>
+  <li>SeedyEvil for the Now Playing mod</li>
+  <li>schimi2k (RIP) for media flags</li>
+  <li>Mr. V for the homemenu widgets</li>
+  <li>neurosis13 for the color media flags</li>
+  <li>newyears1978 for the icons he made for Aeon Nox</li>
+  <li>Tgx for fanart from his Black Glass Nova skin</li>
+  <li>Aeon MQ for fanart</li>
+  <li>frodo19 for the Aeon Nox Genre Icon template</li>
+  <li>TBinfection for the Genre fanart</li>
+  <li>Metropolis for some of the OSD options</li>
+  <li>bugatsinho for the Greek translation</li>
+  <li>danichispa for the Spanish translation</li>
+  <li>sebastianklein for the German translation</li>
+  <li>aeronnl and FREAKJAM for the Dutch translation</li>
+  <li>aeronnl, FREAKJAM, nedthenerd, dlanor and dan-the-man for testing</li>
+  </li>Extra special thanks to i/o for his help during the early stages of this project.</li>
+</ul>
