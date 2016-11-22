@@ -490,6 +490,10 @@
   </include>
   <include name="HomeFanart">
     <!-- Home Menu Backgrounds -->
+    <!-- Display Plex Fanart -->
+      <control type="multiimage" id="10101">
+        <include>FanartCommonValues</include>
+      </control>
     <control type="group">
       <visible>Control.HasFocus(300)</visible>
       <!-- Custom Movies Single Image -->
@@ -503,11 +507,6 @@
         <include>FanartCommonValues</include>
         <info>Skin.String(Homemenu_Movies.Slideshow)</info>
         <visible>String.IsEqual(Container(300).ListItem.Property(type),movie) + !IsEmpty(Skin.String(Homemenu_Movies.Slideshow))</visible>
-      </control>
-      <!-- Display Plex Fanart -->
-      <control type="multiimage" id="10101">
-        <include>FanartCommonValues</include>
-        <visible>[String.IsEqual(Container(300).ListItem.Property(type),movie) + IsEmpty(Skin.String(Homemenu_Movies.SingleImage)) + IsEmpty(Skin.String(Homemenu_Movies.Slideshow))]</visible>
       </control>
       <!-- Now Playing -->
       <control type="image">
@@ -556,22 +555,29 @@
     <!-- Submenu Backgrounds -->
     <control type="group">
       <visible>Control.HasFocus(9010)</visible>
-      <!-- Custom Movies Single Image -->
+      <!-- Custom Movies Submenu Item 1 Single Image -->
       <control type="image">
         <include>FanartCommonValues</include>
         <info>Skin.String(MoviesSubmenu1.SingleImage)</info>
-        <visible>String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu1.Label)) + !IsEmpty(Skin.String(MoviesSubmenu1.SingleImage))</visible>
+        <visible>String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu1.Label)) + String.IsEqual(Container(300).ListItem.Property(type),movie) + !IsEmpty(Skin.String(MoviesSubmenu1.SingleImage))</visible>
       </control>
-      <!-- Custom Movies Slideshow -->
+      <!-- Custom Movies Submenu Item 1 Slideshow -->
       <control type="multiimage">
         <include>FanartCommonValues</include>
         <info>Skin.String(MoviesSubmenu1.Slideshow)</info>
-        <visible>String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu1.Label)) + !IsEmpty(Skin.String(MoviesSubmenu1.Slideshow))</visible>
+        <visible>String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu1.Label)) + String.IsEqual(Container(300).ListItem.Property(type),movie) + !IsEmpty(Skin.String(MoviesSubmenu1.Slideshow))</visible>
       </control>
-      <!-- Display Plex Fanart -->
-      <control type="multiimage" id="10101">
+      <!-- Custom Movies Submenu Item 2 Single Image -->
+      <control type="image">
         <include>FanartCommonValues</include>
-        <visible>[String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu1.Label)) + IsEmpty(Skin.String(MoviesSubmenu1.SingleImage)) + IsEmpty(Skin.String(MoviesSubmenu1.Slideshow))]</visible>
+        <info>Skin.String(MoviesSubmenu2.SingleImage)</info>
+        <visible>String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu2.Label)) + String.IsEqual(Container(300).ListItem.Property(type),movie) + !IsEmpty(Skin.String(MoviesSubmenu2.SingleImage))</visible>
+      </control>
+      <!-- Custom Movies Submenu Item 2 Slideshow -->
+      <control type="multiimage">
+        <include>FanartCommonValues</include>
+        <info>Skin.String(MoviesSubmenu2.Slideshow)</info>
+        <visible>String.IsEqual(Container(9010).ListItem.Label,Skin.String(MoviesSubmenu2.Label)) + String.IsEqual(Container(300).ListItem.Property(type),movie) + !IsEmpty(Skin.String(MoviesSubmenu2.Slideshow))</visible>
       </control>
     </control>
     <!-- On Deck Widgets -->
