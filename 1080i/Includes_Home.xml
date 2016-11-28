@@ -222,8 +222,7 @@
           <height>25</height>
           <texturefocus flipx="true">arrowright.png</texturefocus>
           <texturenofocus flipx="true">arrowright.png</texturenofocus>
-          <onclick>SetProperty(Submenu,True,home)</onclick>
-          <onclick>SetFocus(9010)</onclick>
+          <onclick>9010</onclick>
           <include>VisibleFadeEffect</include>
           <colordiffuse>$VAR[Color_HomeSubmenuButtonVar]</colordiffuse>
         </control>
@@ -257,11 +256,9 @@
     </control>
       <!-- Submenu -->
     <control type="group" id="9001">
-      <visible>!IsEmpty(Window(home).Property(Submenu)) + !String.IsEqual(Container(9010).NumItems,0)</visible>
-      <!--<animation effect="slide" end="-500,0" time="240" delay="0">WindowClose</animation>
-      <animation effect="slide" start="0,0" end="350,0" time="280" delay="0">WindowOpen</animation>-->
-      <!--<posx>-350</posx>-->
-      <posx>0</posx>
+      <animation effect="slide" end="-500,0" time="240" delay="0">WindowClose</animation>
+      <animation effect="slide" start="0,0" end="350,0" time="280" delay="0" condition="Control.HasFocus(9010)">conditional</animation>
+      <posx>-350</posx>
       <posy>0</posy>
       <onleft>9002</onleft>
       <!-- Submenu Background Panel -->
@@ -1799,8 +1796,7 @@
       <height>$PARAM[menuHeight]</height>
       <onup>300</onup>
       <ondown>300</ondown>
-      <onleft>SetProperty(Submenu,True,home)</onleft>
-      <onleft>SetFocus(9010)</onleft>
+      <onleft>9010</onleft>
       <onright condition="Control.IsVisible(11001)">11001</onright>
       <onright condition="Control.IsVisible(11002)">11002</onright>
       <onright condition="Control.IsVisible(11004)">11004</onright>
