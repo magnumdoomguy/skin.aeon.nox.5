@@ -217,11 +217,14 @@
         </control>
         <!-- Submenu Button -->
         <control type="button" id="4999">
-          <posy>528</posy>
+          <posy>0</posy>
           <width>25</width>
-          <height>25</height>
-          <texturefocus flipx="true">arrowright.png</texturefocus>
-          <texturenofocus flipx="true">arrowright.png</texturenofocus>
+          <height>1080</height>
+          <aspectratio>keep</aspectratio>
+          <aligny>center</aligny>
+          <texturefocus flipx="true">submenubutton.png</texturefocus>
+          <texturenofocus flipx="true">submenubutton.png</texturenofocus>
+          <onclick>SetProperty(Submenu,True,home)</onclick>
           <onclick>SetFocus(9010,0)</onclick>
           <include>VisibleFadeEffect</include>
           <colordiffuse>$VAR[Color_HomeSubmenuButtonVar]</colordiffuse>
@@ -241,7 +244,7 @@
       <texturefocus>black.png</texturefocus>
       <texturenofocus>black.png</texturenofocus>
       <animation effect="fade" start="0" end="55" time="240">VisibleChange</animation>
-      <visible>system.getbool(input.enablemouse) + !IsEmpty(Window(home).Property(Submenu))</visible>
+      <visible>Control.HasFocus(9010) | [system.getbool(input.enablemouse) + !IsEmpty(Window(home).Property(Submenu))]</visible>
     </control>
     <control type="scrollbar" id="9081">
       <posx>0</posx>
@@ -253,13 +256,13 @@
       <texturesliderbarfocus>-</texturesliderbarfocus>
       <showonepage>false</showonepage>
       <orientation>vertical</orientation>
-      <visible>system.getbool(input.enablemouse) + !IsEmpty(Window(home).Property(Submenu))</visible>
+      <visible>Control.HasFocus(9010) | [system.getbool(input.enablemouse) + !IsEmpty(Window(home).Property(Submenu))]</visible>
     </control>
-      <!-- Submenu -->
+    <!-- Submenu -->
     <control type="group" id="9001">
       <animation effect="slide" end="-500,0" time="240" delay="0">WindowClose</animation>
-      <animation effect="slide" start="0,0" end="350,0" time="280" delay="0" condition="Control.HasFocus(9010)">conditional</animation>
-      <posx>-350</posx>
+      <animation effect="slide" start="0,0" end="450,0" time="280" delay="0" condition="Control.HasFocus(9010) | [system.getbool(input.enablemouse) + !IsEmpty(Window(home).Property(Submenu))]">conditional</animation>
+      <posx>-450</posx>
       <posy>0</posy>
       <onleft>9002</onleft>
       <!-- Submenu Background Panel -->
