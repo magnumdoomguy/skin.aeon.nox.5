@@ -83,6 +83,13 @@
             <onclick>noop</onclick>
             <icon>-</icon>
           </item>
+          <!-- TV Libraries -->
+          <item id="2">
+            <label>$LOCALIZE[42481]</label>
+            <!-- STRING: TV Libraries -->
+            <onclick>noop</onclick>
+            <icon>-</icon>
+          </item>
         </content>
       </control>
       <!-- Aeon Nox Logo -->
@@ -141,7 +148,7 @@
           <posx>522</posx>
           <posy>32</posy>
           <width>1316</width>
-          <height>720</height>
+          <height>810</height>
           <itemgap>0</itemgap>
           <pagecontrol>60</pagecontrol>
           <onleft>90000</onleft>
@@ -283,6 +290,174 @@
             <label>$LOCALIZE[42467]</label>
             <!-- STRING: Configure submenu -->
             <onclick>ActivateWindow(1227)</onclick>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+          </control>
+        </control>
+        <!-- TV Settings -->
+        <control type="grouplist" id="90002">
+          <description>control area</description>
+          <posx>522</posx>
+          <posy>32</posy>
+          <width>1316</width>
+          <height>720</height>
+          <itemgap>0</itemgap>
+          <pagecontrol>60</pagecontrol>
+          <onleft>90000</onleft>
+          <onright>noop</onright>
+          <onup>90002</onup>
+          <ondown>90002</ondown>
+          <visible>Container(90000).HasFocus(2)</visible>
+          <!-- TV Background -->
+          <control type="button" id="90201">
+            <description>TV Background</description>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <label>$LOCALIZE[42012]</label>
+            <!-- STRING: Set Background -->
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[Homemenu_TVBackground][/COLOR]</label2>
+            <onclick>ActivateWindow(1267)</onclick>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+          </control>
+          <!-- TV On Deck Artwork Style -->
+          <control type="button" id="413">
+            <label>$LOCALIZE[42461]</label>
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVArtworkTypeLabelVar][/COLOR]</label2>
+            <onclick>$VAR[OnDeckTVArtworkTypeSettingVar]</onclick>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+          </control>
+          <!-- TV On Deck Episodes Case Style -->
+          <control type="button" id="414">
+            <label>$LOCALIZE[42462]</label>
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVCaseTypeLabelVar][/COLOR]</label2>
+            <onclick>$VAR[OnDeckTVCaseTypeSettingVar]</onclick>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+            <visible>IsEmpty(Skin.String(Widget.OnDeck.TV.Artwork))</visible>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+          </control>
+          <!-- TV On Deck Episodes Thumbnail Case Style -->
+          <control type="button" id="415">
+            <label>$LOCALIZE[42462]</label>
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVThumbnailCaseTypeLabelVar][/COLOR]</label2>
+            <onclick>Skin.ToggleSetting(Widget.OnDeck.TV.Thumbnail.Glass)</onclick>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+            <visible>String.IsEqual(Skin.String(Widget.OnDeck.TV.Artwork),Thumbnail)</visible>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+          </control>
+          <!-- TV On Deck Episodes Fanart Case Style -->
+          <control type="button" id="416">
+            <label>$LOCALIZE[42462]</label>
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[OnDeckTVFanartCaseTypeLabelVar][/COLOR]</label2>
+            <onclick>Skin.ToggleSetting(Widget.OnDeck.TV.Fanart.Glass)</onclick>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+            <visible>String.IsEqual(Skin.String(Widget.OnDeck.TV.Artwork),Fanart)</visible>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+          </control>
+          <!-- TV On Deck Episodes Text Label -->
+          <control type="radiobutton" id="417">
+            <description>On Deck Episodes Text Label</description>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <label>$LOCALIZE[42463]</label>
+            <onclick>Skin.ToggleSetting(Widget.OnDeck.TV.DisableLabel)</onclick>
+            <selected>!Skin.HasSetting(Widget.OnDeck.TV.DisableLabel)</selected>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+            <visible>!Skin.HasSetting(Widget.List)</visible>
+          </control>
+          <!-- TV Recently Added Artwork Style -->
+          <control type="button" id="427">
+            <label>$LOCALIZE[42464]</label>
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVArtworkTypeLabelVar][/COLOR]</label2>
+            <onclick>$VAR[RecentlyAddedTVArtworkTypeSettingVar]</onclick>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+          </control>
+          <!-- TV Recently Added Episodes Case Style -->
+          <control type="button" id="428">
+            <label>$LOCALIZE[42465]</label>
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVCaseTypeLabelVar][/COLOR]</label2>
+            <onclick>$VAR[RecentlyAddedTVCaseTypeSettingVar]</onclick>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+            <visible>[IsEmpty(Skin.String(Widget.RecentlyAdded.TV.Artwork)) |  String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)] | String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Season Poster)</visible>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+          </control>
+          <!-- TV Recently Added Thumbnail Case Style -->
+          <control type="button" id="429">
+            <label>$LOCALIZE[42465]</label>
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVThumbnailCaseTypeLabelVar][/COLOR]</label2>
+            <onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.Thumbnail.Glass)</onclick>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+            <visible>String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Thumbnail)</visible>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+          </control>
+          <!-- TV Fanart Case Style -->
+          <control type="button" id="430">
+            <label>$LOCALIZE[42465]</label>
+            <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[RecentlyAddedTVFanartCaseTypeLabelVar][/COLOR]</label2>
+            <onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.Fanart.Glass)</onclick>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <texturenofocus border="1">separator5.png</texturenofocus>
+            <visible>String.IsEqual(Skin.String(Widget.RecentlyAdded.TV.Artwork),Fanart)</visible>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+          </control>
+          <!-- TV Recently Added Episodes Text Label -->
+          <control type="radiobutton" id="431">
+            <description>Recently Added Episodes Text Label</description>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <label>$LOCALIZE[42466]</label>
+            <onclick>Skin.ToggleSetting(Widget.RecentlyAdded.TV.DisableLabel)</onclick>
+            <selected>!Skin.HasSetting(Widget.RecentlyAdded.TV.DisableLabel)</selected>
+            <enable>!Skin.HasSetting(Widget.Disable)</enable>
+            <visible>!Skin.HasSetting(Widget.List)</visible>
+          </control>
+          <!-- TV Submenu -->
+          <control type="button" id="90102">
+            <description>TV Submenu</description>
+            <width>1316</width>
+            <height>90</height>
+            <textoffsetx>30</textoffsetx>
+            <font>font15</font>
+            <label>$LOCALIZE[42467]</label>
+            <!-- STRING: Configure submenu -->
+            <onclick>ActivateWindow(1268)</onclick>
             <texturenofocus border="1">separator5.png</texturenofocus>
           </control>
         </control>
