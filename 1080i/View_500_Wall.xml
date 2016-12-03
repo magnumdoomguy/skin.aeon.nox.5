@@ -50,7 +50,7 @@
             <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
             <bordersize>2</bordersize>
             <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
-            <visible>[ListItem.Type(movie) + !IsEmpty(ListItem.Art(smallThumb))] | ListItem.Type(tvshow) | ListItem.Type(season)</visible>
+            <visible>[ListItem.Type(movie) + !IsEmpty(ListItem.Art(smallThumb))] | Container.Content(tvshow) | ListItem.Type(season)</visible>
           </control>
           <control type="image">
             <posx>0</posx>
@@ -216,48 +216,7 @@
             </control>
           </control>
         </focusedlayout>
-        <itemlayout height="240" width="240" condition="Container.Content(addons)">
-          <control type="image">
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>240</width>
-            <height>240</height>
-            <aspectratio>scale</aspectratio>
-            <texture>$INFO[ListItem.Art(smallThumb)]</texture>
-            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-            <bordersize>2</bordersize>
-            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
-          </control>
-        </itemlayout>
-        <focusedlayout height="240" width="240" condition="Container.Content(addons)">
-          <control type="group">
-            <animation type="Focus">
-              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
-              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
-            </animation>
-            <control type="image">
-              <posx>0</posx>
-              <posy>0</posy>
-              <width>240</width>
-              <height>240</height>
-              <aspectratio>scale</aspectratio>
-              <texture>$INFO[ListItem.Art(smallThumb)]</texture>
-              <bordersize>8</bordersize>
-            </control>
-            <control type="image">
-              <posx>0</posx>
-              <posy>0</posy>
-              <width>240</width>
-              <height>240</height>
-              <aspectratio>scale</aspectratio>
-              <texture>empty.png</texture>
-              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
-              <bordersize>8</bordersize>
-              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
-            </control>
-          </control>
-        </focusedlayout>
-        <itemlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(FilterActive)">
+        <itemlayout height="360" width="420" condition="![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(FilterActive)">
           <!-- Thumb -->
           <control type="image">
             <posx>0</posx>
@@ -378,7 +337,7 @@
             <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
           </control>
         </itemlayout>
-        <focusedlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(FilterActive)">
+        <focusedlayout height="360" width="420" condition="![Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(FilterActive)">
           <control type="group">
             <animation type="Focus">
               <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
