@@ -2749,69 +2749,653 @@
       <onclick condition="String.IsEqual(Skin.String(HomeVideosSubmenu20.Action),Shutdown)">Plex.Powerdown</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Property(type),homemovies) + !String.IsEqual(Skin.String(HomeVideosSubmenu20.Action),None) + !IsEmpty(Skin.String(HomeVideosSubmenu20.Action))</visible>
     </item>
-    <!-- Music (Type 9) -->
+    <!-- Music Submenu Item 1 -->
     <item>
-      <description>Recently Added</description>
-      <label>$LOCALIZE[42197]</label>
+      <description>Music Submenu Item 1</description>
+      <label>$VAR[MusicSubmenu1_LabelVar]</label>
       <icon>-</icon>
-      <onclick>Skin.SetBool(FilterActive)</onclick>
-      <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu1.Action)) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu1.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu1.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu1.Action))">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu1.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu1.Action),None)</visible>
     </item>
+    <!-- Music Submenu Item 2 -->
     <item>
-      <description>Artists</description>
-      <label>$LOCALIZE[133]</label>
+      <description>Music Submenu Item 2</description>
+      <label>$VAR[MusicSubmenu2_LabelVar]</label>
       <icon>-</icon>
-      <onclick>Skin.SetBool(FilterActive)</onclick>
-      <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu2.Action)) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu2.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu2.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu2.Action))">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu2.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu2.Action),None)</visible>
     </item>
+    <!-- Music Submenu Item 3 -->
     <item>
-      <description>Albums</description>
-      <label>$LOCALIZE[132]</label>
+      <description>Music Submenu Item 3</description>
+      <label>$VAR[MusicSubmenu3_LabelVar]</label>
       <icon>-</icon>
-      <onclick>Skin.SetBool(FilterActive)</onclick>
-      <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu3.Action)) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu3.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu3.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu3.Action))">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu3.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu3.Action),None)</visible>
     </item>
+    <!-- Music Submenu Item 4 -->
     <item>
-      <description>Collections</description>
-      <label>$LOCALIZE[42439]</label>
+      <description>Music Submenu Item 4</description>
+      <label>$VAR[MusicSubmenu4_LabelVar]</label>
       <icon>-</icon>
-      <onclick>Skin.SetBool(FilterActive)</onclick>
-      <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu4.Action)) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu4.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu4.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu4.Action))">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu4.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu4.Action),None)</visible>
     </item>
+    <!-- Music Submenu Item 5 -->
     <item>
-      <description>Genres</description>
-      <label>$LOCALIZE[135]</label>
+      <description>Music Submenu Item 5</description>
+      <label>$VAR[MusicSubmenu5_LabelVar]</label>
       <icon>-</icon>
-      <onclick>Skin.SetBool(FilterActive)</onclick>
-      <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu5.Action)) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu5.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu5.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu5.Action))">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu5.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu5.Action),None)</visible>
     </item>
+    <!-- Music Submenu Item 6 -->
     <item>
-      <description>Years</description>
-      <label>$LOCALIZE[652]</label>
+      <description>Music Submenu Item 6</description>
+      <label>$VAR[MusicSubmenu6_LabelVar]</label>
       <icon>-</icon>
-      <onclick>Skin.SetBool(FilterActive)</onclick>
-      <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu6.Action)) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu6.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu6.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu6.Action))">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu6.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu6.Action),None)</visible>
     </item>
+    <!-- Music Submenu Item 7 -->
     <item>
-      <description>Decades</description>
-      <label>$LOCALIZE[42440]</label>
+      <description>Music Submenu Item 7</description>
+      <label>$VAR[MusicSubmenu7_LabelVar]</label>
       <icon>-</icon>
-      <onclick>Skin.SetBool(FilterActive)</onclick>
-      <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu7.Action)) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu7.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu7.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu7.Action))">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu7.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu7.Action),None)</visible>
     </item>
+    <!-- Music Submenu Item 8 -->
     <item>
-      <label>Folders</label>
+      <description>Music Submenu Item 8</description>
+      <label>$VAR[MusicSubmenu8_LabelVar]</label>
       <icon>-</icon>
-      <onclick>Skin.SetBool(FilterActive)</onclick>
-      <onclick>XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist)</visible>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu8.Action)) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu8.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu8.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu8.Action))">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu8.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu8.Action),None)</visible>
+    </item>
+    <!-- Music Submenu Item 9 -->
+    <item>
+      <description>Music Submenu Item 9</description>
+      <label>$VAR[MusicSubmenu9_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu9.Action)) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu9.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu9.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu9.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu9.Action),None) + !IsEmpty(Skin.String(MusicSubmenu9.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 10 -->
+    <item>
+      <description>Music Submenu Item 10</description>
+      <label>$VAR[MusicSubmenu10_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu10.Action)) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu10.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu10.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu10.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu10.Action),None) + !IsEmpty(Skin.String(MusicSubmenu10.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 11 -->
+    <item>
+      <description>Music Submenu Item 11</description>
+      <label>$VAR[MusicSubmenu11_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu11.Action)) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu11.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu11.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu11.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu11.Action),None) + !IsEmpty(Skin.String(MusicSubmenu11.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 12 -->
+    <item>
+      <description>Music Submenu Item 12</description>
+      <label>$VAR[MusicSubmenu12_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu12.Action)) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu12.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu12.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu12.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu12.Action),None) + !IsEmpty(Skin.String(MusicSubmenu12.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 13 -->
+    <item>
+      <description>Music Submenu Item 13</description>
+      <label>$VAR[MusicSubmenu13_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu13.Action)) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu13.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu13.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu13.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu13.Action),None) + !IsEmpty(Skin.String(MusicSubmenu13.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 14 -->
+    <item>
+      <description>Music Submenu Item 14</description>
+      <label>$VAR[MusicSubmenu14_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu14.Action)) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu14.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu14.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu14.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu14.Action),None) + !IsEmpty(Skin.String(MusicSubmenu14.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 15 -->
+    <item>
+      <description>Music Submenu Item 15</description>
+      <label>$VAR[MusicSubmenu15_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu15.Action)) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu15.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu15.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu15.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu15.Action),None) + !IsEmpty(Skin.String(MusicSubmenu15.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 16 -->
+    <item>
+      <description>Music Submenu Item 16</description>
+      <label>$VAR[MusicSubmenu16_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu16.Action)) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu16.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu16.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu16.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu16.Action),None) + !IsEmpty(Skin.String(MusicSubmenu16.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 17 -->
+    <item>
+      <description>Music Submenu Item 17</description>
+      <label>$VAR[MusicSubmenu17_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu17.Action)) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu17.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu17.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu17.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu17.Action),None) + !IsEmpty(Skin.String(MusicSubmenu17.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 18 -->
+    <item>
+      <description>Music Submenu Item 18</description>
+      <label>$VAR[MusicSubmenu18_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu18.Action)) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu18.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu18.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu18.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu18.Action),None) + !IsEmpty(Skin.String(MusicSubmenu18.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 19 -->
+    <item>
+      <description>Music Submenu Item 19</description>
+      <label>$VAR[MusicSubmenu19_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu19.Action)) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu19.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu19.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu19.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu19.Action),None) + !IsEmpty(Skin.String(MusicSubmenu19.Action))</visible>
+    </item>
+    <!-- Music Submenu Item 20 -->
+    <item>
+      <description>Music Submenu Item 20</description>
+      <label>$VAR[MusicSubmenu20_LabelVar]</label>
+      <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(MusicSubmenu20.Action)) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Recently Added) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Artists) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Albums) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Collections) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Genres) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Years) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Decades) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Countries) | String.IsEqual(Skin.String(MusicSubmenu20.Action),By Letter) | String.IsEqual(Skin.String(MusicSubmenu20.Action),Folders)">Skin.SetBool(FilterActive)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Recently Added)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/recentlyAdded?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Artists)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/all?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Albums)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/albums?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Collections)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/collection?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Genres)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/genre?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Years)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/year?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Decades)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/decade?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Countries)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/country?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),By Letter)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/firstCharacter?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Folders)">XBMC.ActivateWindow(videolibrary,$INFO[Container(300).ListItem.Property(sectionpath)]/folder?type=9)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Search)">Plex.ActivateWindow(10051)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),System)">XBMC.ActivateWindow(settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Quit)">Plex.Quit</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Log Off) + System.IsSignedIn">XBMC.ActivateWindow(selectuser)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Log Off) + !System.IsSignedIn">Plex.ActivateWindow(plexlogin)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Channel Directory)">Plex.ActivateWindow(1,plexserver://channeldirectory,return)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),File Manager)">ActivateWindow(filemanager)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Skin Settings)">ActivateWindow(skinsettings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Openelec Settings) + System.isSystem(openelec)">RunAddon(service.openelec.settings)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Control Precaching) + System.isSystem(rasplex)">XBMC.ActivateWindow(10208)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Restart)">System.Exec(reboot)</onclick>
+      <onclick condition="String.IsEqual(Skin.String(MusicSubmenu20.Action),Shutdown)">Plex.Powerdown</onclick>
+      <visible>String.IsEqual(Container(300).ListItem.Property(type),artist) + !String.IsEqual(Skin.String(MusicSubmenu20.Action),None) + !IsEmpty(Skin.String(MusicSubmenu20.Action))</visible>
     </item>
     <!-- Photos (Type 13) -->
     <item>
