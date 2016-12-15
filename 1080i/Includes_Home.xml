@@ -4566,7 +4566,7 @@
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu1.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu1.Action),Restart)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu1.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + !String.IsEqual(Skin.String(PowerSubmenu1.Action),None)</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + [!String.IsEqual(Skin.String(PowerSubmenu1.Action),None) | [IsEmpty(Skin.String(PowerSubmenu1.Action)) + System.UserIsInHome]]</visible>
     </item>
     <!-- Power Submenu Item 2 -->
     <item>
@@ -4588,7 +4588,7 @@
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu2.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu2.Action),Restart)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu2.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>[String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + !String.IsEqual(Skin.String(PowerSubmenu2.Action),None)] | [IsEmpty(Skin.String(PowerSubmenu2.Action)) + !System.isSystem(openelec)]</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + [!String.IsEqual(Skin.String(PowerSubmenu2.Action),None) | [IsEmpty(Skin.String(PowerSubmenu2.Action)) + !System.isSystem(openelec)]]</visible>
     </item>
     <!-- Power Submenu Item 3 -->
     <item>
@@ -4610,7 +4610,7 @@
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu3.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu3.Action),Restart)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu3.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>[String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + !String.IsEqual(Skin.String(PowerSubmenu3.Action),None)] | [IsEmpty(Skin.String(PowerSubmenu3.Action)) + System.CanSuspend + !System.isSystem(rasplex)]</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + [!String.IsEqual(Skin.String(PowerSubmenu3.Action),None) | [IsEmpty(Skin.String(PowerSubmenu3.Action)) + System.CanSuspend + !System.isSystem(rasplex)]]</visible>
     </item>
     <!-- Power Submenu Item 4 -->
     <item>
@@ -4633,7 +4633,7 @@
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu4.Action),Suspend) + !System.isSystem(rasplex)">Plex.Suspend</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu4.Action),Restart)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu4.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>[[!System.UserIsRestricted | Skin.HasSetting(Reboot.Allow)] + String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + !String.IsEqual(Skin.String(PowerSubmenu4.Action),None)] | [[!System.UserIsRestricted | Skin.HasSetting(Reboot.Allow)] + [System.isSystem(openelec) | System.CanReboot] + IsEmpty(Skin.String(PowerSubmenu4.Action))]</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + [!String.IsEqual(Skin.String(PowerSubmenu4.Action),None) | [[!System.UserIsRestricted | Skin.HasSetting(Reboot.Allow)] + [System.isSystem(openelec) | System.CanReboot] + IsEmpty(Skin.String(PowerSubmenu4.Action))]]</visible>
     </item>
     <!-- Power Submenu Item 5 -->
     <item>
