@@ -4655,7 +4655,7 @@
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu5.Action),Sleep) + !System.isSystem(rasplex)">Plex.Sleep</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu5.Action),Restart)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu5.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>!System.UserIsRestricted + String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + !String.IsEqual(Skin.String(PowerSubmenu5.Action),None)</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + [!String.IsEqual(Skin.String(PowerSubmenu5.Action),None) | [[!System.UserIsRestricted | Skin.HasSetting(Shutdown.Allow)] + System.CanPowerDown + IsEmpty(Skin.String(PowerSubmenu5.Action))]]</visible>
     </item>
     <!-- Power Submenu Item 6 -->
     <item>
