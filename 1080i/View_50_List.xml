@@ -709,10 +709,10 @@
         <control type="list" id="50">
           <include>ListCommonValues</include>
           <!-- Movies -->
-          <itemlayout height="120" width="1140" condition="[[Container.PlexContent(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies) | [Container.PlexContent(folders) + ListItem.Type(movie)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
+          <itemlayout height="120" width="1140" condition="[[Container.PlexContent(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
             <include>ListMovie_NF</include>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="[[Container.PlexContent(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies) | [Container.PlexContent(folders) + ListItem.Type(movie)]] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
+          <focusedlayout height="120" width="1140" condition="[[Container.PlexContent(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
             <include>ListMovie_FO</include>
           </focusedlayout>
           <!-- Episodes -->
@@ -1284,7 +1284,7 @@
             <include>ListWatchedStatus</include>
           </focusedlayout>
           <!-- Directories -->
-          <itemlayout height="120" width="1140" condition="ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="Container.PlexContent(secondary) + ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Folder Icon -->
             <control type="image">
@@ -1348,7 +1348,7 @@
               <visible>String.IsEqual(Container.SecondTitle,By Director) | String.IsEqual(Container.SecondTitle,By Starring Actor)</visible>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="Container.PlexContent(secondary) + ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Highlight -->
             <include>ListHighlight</include>
@@ -1412,6 +1412,61 @@
               <textcolor>white</textcolor>
               <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
               <visible>String.IsEqual(Container.SecondTitle,By Director) | String.IsEqual(Container.SecondTitle,By Starring Actor)</visible>
+            </control>    
+          </focusedlayout>
+          <!-- Folders -->
+          <itemlayout height="120" width="1140" condition="Container.PlexContent(folders) + !Skin.HasSetting(List.Slimlist)">
+            <include>ListSeparator</include>
+            <!-- Image -->
+            <control type="image">
+              <posx>15</posx>
+              <posy>8</posy>
+              <width>70</width>
+              <height>105</height>
+              <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+              <texture background="true" fallback="views/list/defaultfolder.png">$INFO[ListItem.Art(smallThumb)]</texture>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>100</posx>
+              <posy>25</posy>
+              <width>1040</width>
+              <height>70</height>
+              <font>font30</font>
+              <align>left</align>
+              <aligny>center</aligny>
+              <textoffsetx>15</textoffsetx>
+              <label>$INFO[ListItem.Label]</label>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+            </control>
+          </itemlayout>
+          <focusedlayout height="120" width="1140" condition="Container.PlexContent(folders) + !Skin.HasSetting(List.Slimlist)">
+            <include>ListSeparator</include>
+            <!-- Highlight -->
+            <include>ListHighlight</include>
+            <!-- Image -->
+            <control type="image">
+              <posx>15</posx>
+              <posy>8</posy>
+              <width>70</width>
+              <height>105</height>
+              <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+              <texture background="true" fallback="views/list/defaultfolder.png">$INFO[ListItem.Art(smallThumb)]</texture>
+            </control> 
+            <!-- Title -->
+            <control type="label">
+              <posx>100</posx>
+              <posy>25</posy>
+              <width>1040</width>
+              <height>70</height>
+              <font>font30</font>
+              <align>left</align>
+              <aligny>center</aligny>
+              <textoffsetx>15</textoffsetx>
+              <label>$INFO[ListItem.Label]</label>
+              <textcolor>white</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
             </control>    
           </focusedlayout>
           <!-- Video Genres -->
