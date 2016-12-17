@@ -1277,8 +1277,8 @@
             <!-- Watched Status -->
             <include>ListWatchedStatus</include>
           </focusedlayout>
-          <!-- By Collection, By Year, By Decade, By Content Rating, By Rating, By First Letter, By Folder, By Camera Make, By Shutter Speed, By ISO, By Lens -->
-          <itemlayout height="120" width="1140" condition="[String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | [String.IsEqual(Container.SecondTitle,By Folder) + !ListItem.Type(movie)] | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,By Camera Model) | String.IsEqual(Container.SecondTitle,By Shutter Speed) | String.IsEqual(Container.SecondTitle,By ISO) | String.IsEqual(Container.SecondTitle,By Lens) | String.IsEqual(Container.SecondTitle,By Aperture)] + !Skin.HasSetting(List.Slimlist)">
+          <!-- By Collection, By Year, By Decade, By Content Rating, By Rating, By First Letter, By Camera Make, By Shutter Speed, By ISO, By Lens -->
+          <itemlayout height="120" width="1140" condition="ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Folder Icon -->
             <control type="image">
@@ -1304,7 +1304,7 @@
               <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="[String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By Resolution) | String.IsEqual(Container.SecondTitle,By First Letter) | [String.IsEqual(Container.SecondTitle,By Folder) + !ListItem.Type(movie)] | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,By Camera Model) | String.IsEqual(Container.SecondTitle,By Shutter Speed) | String.IsEqual(Container.SecondTitle,By ISO) | String.IsEqual(Container.SecondTitle,By Lens) | String.IsEqual(Container.SecondTitle,By Aperture)] + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Highlight -->
             <include>ListHighlight</include>
@@ -1690,6 +1690,152 @@
               <label>$INFO[ListItem.Artist]</label>
             </control>
             <!-- Year -->
+            <control type="label">
+              <posx>1120</posx>
+              <posy>0</posy>
+              <width>1060</width>
+              <height>105</height>
+              <font>font30</font>
+              <align>right</align>
+              <aligny>center</aligny>
+              <textcolor>white</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <aligny>center</aligny>
+              <label fallback="• • • •">$VAR[MusicListLabel4Var]</label>
+              <visible>!IsEmpty(ListItem.Title)</visible>
+            </control>
+          </focusedlayout>
+          <itemlayout height="120" width="1140" condition="ListItem.Type(media) + !Skin.HasSetting(List.Slimlist)">
+            <include>ListSeparator</include>
+            <!-- Track Number -->
+            <control type="label">
+              <posx>67</posx>
+              <posy>8</posy>
+              <width>105</width>
+              <height>105</height>
+              <font>font45caps_title</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>[B]$VAR[TrackNumberVar][/B]</label>
+            </control>
+            <!-- Song Title -->
+            <control type="label">
+              <posx>135</posx>
+              <posy>0</posy>
+              <width>865</width>
+              <height>70</height>
+              <font>font30</font>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$VAR[MusicListLabel3Var]</label>
+              <animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Artist)">Conditional</animation>
+              <textcolor>grey2</textcolor>
+            </control>
+            <!-- Track Artist -->
+            <control type="label">
+              <posx>135</posx>
+              <posy>50</posy>
+              <width>865</width>
+              <height>60</height>
+              <font>font15</font>
+              <textcolor>grey3</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$INFO[ListItem.Artist]</label>
+            </control>
+            <!-- Music Video Icon -->
+            <control type="label">
+              <visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
+              <posx>1015</posx>
+              <posy>0</posy>
+              <width>1060</width>
+              <height>105</height>
+              <font>IconSmall</font>
+              <align>right</align>
+              <aligny>center</aligny>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <aligny>center</aligny>
+              <label></label>
+            </control>
+            <!-- Duration -->
+            <control type="label">
+              <posx>1120</posx>
+              <posy>0</posy>
+              <width>1060</width>
+              <height>105</height>
+              <font>font30</font>
+              <align>right</align>
+              <aligny>center</aligny>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <aligny>center</aligny>
+              <label fallback="• • • •">$VAR[MusicListLabel4Var]</label>
+              <visible>!IsEmpty(ListItem.Title)</visible>
+            </control>
+          </itemlayout>
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(media) + !Skin.HasSetting(List.Slimlist)">
+            <include>ListSeparator</include>
+            <include>ListHighlight</include>
+            <!-- Track Number -->
+            <control type="label">
+              <posx>67</posx>
+              <posy>8</posy>
+              <width>105</width>
+              <height>105</height>
+              <font>font45caps_title</font>
+              <textcolor>white</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <align>center</align>
+              <aligny>center</aligny>
+              <label>[B]$VAR[TrackNumberVar][/B]</label>
+            </control>
+            <!-- Song Title -->
+            <control type="label">
+              <posx>135</posx>
+              <posy>0</posy>
+              <width>865</width>
+              <height>70</height>
+              <font>font30</font>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$VAR[MusicListLabel3Var]</label>
+              <animation effect="slide" start="0,0" end="0,25" time="0" condition="IsEmpty(ListItem.Artist)">Conditional</animation>
+              <textcolor>white</textcolor>
+            </control>
+            <!-- Track Artist -->
+            <control type="label">
+              <posx>135</posx>
+              <posy>50</posy>
+              <width>865</width>
+              <height>60</height>
+              <font>font15</font>
+              <textcolor>white</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$INFO[ListItem.Artist]</label>
+            </control>
+            <!-- Music Video Icon -->
+            <control type="label">
+              <visible>ListItem.Property(primaryExtraKey) + Container.Content(songs)</visible>
+              <posx>1015</posx>
+              <posy>0</posy>
+              <width>105</width>
+              <height>105</height>
+              <font>IconSmall</font>
+              <align>right</align>
+              <aligny>center</aligny>
+              <textcolor>white</textcolor>
+              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
+              <label></label>
+            </control>
+            <!-- Duration -->
             <control type="label">
               <posx>1120</posx>
               <posy>0</posy>
