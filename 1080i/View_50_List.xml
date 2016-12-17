@@ -69,6 +69,11 @@
       </control>
     </focusedlayout>
   </include>
+  <!-- List Directory Icon -->
+  <variable name="ListDirectoryIcon">
+    <value condition="String.IsEqual(Container.SecondTitle,By Collection)">views/list/defaultsets.png</value>
+    <value>views/list/defaultfolder.png</value>
+  </variable>
   <!-- Views: List Theme Colour -->
   <variable name="Colour_ListThemeColourVar">
     <value condition="!IsEmpty(Skin.String(Colour.ListThemeColour))">$INFO[Skin.String(Colour.ListThemeColour)]</value>
@@ -1277,7 +1282,7 @@
             <!-- Watched Status -->
             <include>ListWatchedStatus</include>
           </focusedlayout>
-          <!-- By Collection, By Year, By Decade, By Content Rating, By Rating, By First Letter, By Camera Make, By Shutter Speed, By ISO, By Lens -->
+          <!-- Directories -->
           <itemlayout height="120" width="1140" condition="ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Folder Icon -->
@@ -1287,7 +1292,19 @@
               <width>105</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture>views/list/defaultfolder.png</texture>
+              <texture>$VAR[ListDirectoryIcon]</texture>
+              <visible>!String.IsEqual(Container.SecondTitle,By Country)</visible>
+            </control>
+            <!-- Country Flag -->
+            <control type="image">
+              <posx>15</posx>
+              <posy>8</posy>
+              <width>105</width>
+              <height>105</height>
+              <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+              <texture background="true" fallback="views/list/defaultcountry.png">$INFO[ListItem.Label,countries/105x105/,.png]</texture>
+              <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+              <visible>String.IsEqual(Container.SecondTitle,By Country)</visible>
             </control>
             <!-- Title -->
             <control type="label">
@@ -1315,7 +1332,19 @@
               <width>105</width>
               <height>105</height>
               <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
-              <texture>views/list/defaultfolder.png</texture>
+              <texture>$VAR[ListDirectoryIcon]</texture>
+              <visible>!String.IsEqual(Container.SecondTitle,By Country)</visible>
+            </control>
+            <!-- Country Flag -->
+            <control type="image">
+              <posx>15</posx>
+              <posy>8</posy>
+              <width>105</width>
+              <height>105</height>
+              <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+              <texture background="true" fallback="views/list/defaultcountry.png">$INFO[ListItem.Label,countries/105x105/,.png]</texture>
+              <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+              <visible>String.IsEqual(Container.SecondTitle,By Country)</visible>
             </control>
             <!-- Title -->
             <control type="label">
@@ -1470,62 +1499,6 @@
             <!-- Display Poster -->
             <control type="label">
               <posx>135</posx>
-              <posy>25</posy>
-              <width>1005</width>
-              <height>70</height>
-              <font>font30</font>
-              <align>left</align>
-              <aligny>center</aligny>
-              <textoffsetx>15</textoffsetx>
-              <label>$INFO[ListItem.Label]</label>
-              <textcolor>white</textcolor>
-              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-            </control>
-          </focusedlayout>
-          <!-- By Country -->
-          <itemlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Country) + !Skin.HasSetting(List.Slimlist)">
-            <include>ListSeparator</include>
-            <!-- Country Flag -->
-            <control type="image">
-              <posx>15</posx>
-              <posy>8</posy>
-              <width>105</width>
-              <height>105</height>
-              <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
-              <texture background="true" fallback="views/list/defaultcountry.png">$INFO[ListItem.Label,countries/105x105/,.png]</texture>
-              <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
-            </control>
-            <!-- Title -->
-            <control type="label">
-              <posx>120</posx>
-              <posy>25</posy>
-              <width>1005</width>
-              <height>70</height>
-              <font>font30</font>
-              <align>left</align>
-              <aligny>center</aligny>
-              <textoffsetx>15</textoffsetx>
-              <label>$INFO[ListItem.Label]</label>
-              <textcolor>grey2</textcolor>
-              <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
-            </control>
-          </itemlayout>
-          <focusedlayout height="120" width="1140" condition="String.IsEqual(Container.SecondTitle,By Country) + !Skin.HasSetting(List.Slimlist)">
-            <include>ListSeparator</include>
-            <!-- Highlight -->
-            <include>ListHighlight</include>
-            <!-- Country Flag -->
-            <control type="image">
-              <posx>15</posx>
-              <posy>8</posy>
-              <width>105</width>
-              <height>105</height>
-              <aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
-              <texture background="true" fallback="views/list/defaultcountry.png">$INFO[ListItem.Label,countries/105x105/,.png]</texture>
-            </control>
-            <!-- Title -->
-            <control type="label">
-              <posx>120</posx>
               <posy>25</posy>
               <width>1005</width>
               <height>70</height>
