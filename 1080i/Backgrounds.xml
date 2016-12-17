@@ -158,7 +158,7 @@
       <include>PhotosFanart</include>
       <!-- Standard Video Background -->
       <control type="image">
-        <visible>!Container.PlexContent(clips) + [[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]] + !Container.PlexContent(secondary)</visible>
+        <visible>!Container.PlexContent(clips) + [[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + ListItem.Type(movie)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]] + !Container.PlexContent(secondary)</visible>
         <include>FanartCommonValues</include>
         <texture colordiffuse="$VAR[Colour_Fanart]" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
       </control>
@@ -182,7 +182,7 @@
       <!-- Custom Movie Background Image -->
       <control type="image">
         <visible>!Container.Content(clips)</visible>
-        <visible>!IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + Container.Content(movies)</visible>
+        <visible>!IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + ListItem.Type(movie)</visible>
         <include>FanartCommonValues</include>
         <info>Skin.String(CustomMovieSectionBackgroundFile)</info>
       </control>
@@ -210,7 +210,7 @@
       <!-- Custom Movie Slideshow -->
       <control type="multiimage">
         <visible>!Container.Content(clips)</visible>
-        <visible>!IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + Container.Content(movies)</visible>
+        <visible>!IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + ListItem.Type(movie)</visible>
         <include>FanartCommonValues</include>
         <info>Skin.String(CustomMovieSectionSlideshowPath)</info>
       </control>
