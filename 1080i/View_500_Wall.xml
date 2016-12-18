@@ -825,6 +825,228 @@
             </control>
           </control>
         </focusedlayout>
+        <!-- Episode Folders -->
+        <itemlayout height="360" width="420" condition="Container.PlexContent(folders) + [String.IsEqual(Skin.String(Filter.Type),tv) | String.IsEqual(Skin.String(Filter.Type),anime)]">
+          <!-- Thumb -->
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>420</width>
+            <height>360</height>
+            <aspectratio>scale</aspectratio>
+            <texture>defaultfolder.png</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>ListItem.Type(directory)</visible>
+          </control>
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>420</width>
+            <height>360</height>
+            <aspectratio>scale</aspectratio>
+            <texture>$VAR[EpisodeThumbnailVar]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>ListItem.Type(episode)</visible>
+          </control>
+          <!-- Watched Status Ribbon -->
+          <control type="image">
+            <posx>320</posx>
+            <posy>0</posy>
+            <width>100</width>
+            <height>100</height>
+            <texture>$VAR[OverlayVar]</texture>
+            <aspectratio align="center" aligny="top">keep</aspectratio>
+            <bordersize>1</bordersize>
+            <visible>!Skin.HasSetting(Enable.Circles)</visible>
+          </control>
+          <!-- Watched Status Upper Circle -->
+          <control type="image">
+            <posx>369</posx>
+            <posy>10</posy>
+            <width>36</width>
+            <height>36</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[OverlayVar]</texture>
+            <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
+            <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+          </control>
+          <control type="image">
+            <width>420</width>
+            <height>360</height>
+            <texture>thumbs/poster_black.png</texture>
+            <bordersize>2</bordersize>
+          </control>
+          <control type="label">
+            <posx>189</posx>
+            <posy>310</posy>
+            <width>359</width>
+            <height>40</height>
+            <align>center</align>
+            <textoffsetx>15</textoffsetx>
+            <textcolor>grey2</textcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <visible>Skin.HasSetting(Enable.LowerCircles)</visible>
+          </control>
+          <control type="label">
+            <posx>210</posx>
+            <posy>310</posy>
+            <width>410</width>
+            <height>40</height>
+            <align>center</align>
+            <textoffsetx>15</textoffsetx>
+            <textcolor>grey2</textcolor>
+            <label>$INFO[ListItem.Label]</label>
+            <visible>!Skin.HasSetting(Enable.LowerCircles)</visible>
+          </control>
+          <!-- Watched Status Lower Circle -->
+          <control type="image">
+            <posx>369</posx>
+            <posy>314</posy>
+            <width>36</width>
+            <height>36</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[OverlayVar]</texture>
+            <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
+            <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+          </control>
+        </itemlayout>
+        <focusedlayout height="360" width="420" condition="Container.PlexContent(folders) + [String.IsEqual(Skin.String(Filter.Type),tv) | String.IsEqual(Skin.String(Filter.Type),anime)]">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+            </animation>
+            <!-- Thumbnail (not episodes)-->
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>420</width>
+              <height>360</height>
+              <aspectratio>scale</aspectratio>
+              <texture>defaultfolder.png</texture>
+              <bordersize>8</bordersize>
+              <visible>ListItem.Type(directory)</visible>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>420</width>
+              <height>360</height>
+              <aspectratio>scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+              <visible>ListItem.Type(directory)</visible>
+            </control>
+            <!-- Thumbnail (episodes) -->
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>420</width>
+              <height>360</height>
+              <aspectratio>scale</aspectratio>
+              <texture>$VAR[EpisodeThumbnailVar]</texture>
+              <bordersize>8</bordersize>
+              <visible>ListItem.Type(episode)</visible>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>420</width>
+              <height>360</height>
+              <aspectratio>scale</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <bordersize>8</bordersize>
+              <visible>Container.Content(episodes)</visible>
+              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+              <visible>ListItem.Type(episode)</visible>
+            </control>
+            <control type="image">
+              <posx>320</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>100</height>
+              <texture>$VAR[OverlayVar]</texture>
+              <aspectratio align="center" aligny="top">keep</aspectratio>
+              <bordersize>8</bordersize>
+              <visible>!Skin.HasSetting(Enable.Circles)</visible>
+            </control>
+            <!-- Watched Status Upper Circle -->
+            <control type="image">
+              <posx>369</posx>
+              <posy>10</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <control type="image">
+              <width>420</width>
+              <height>360</height>
+              <texture>thumbs/poster_black.png</texture>
+              <bordersize>8</bordersize>
+            </control>
+            <control type="label">
+              <posx>0</posx>
+              <posy>310</posy>
+              <width>359</width>
+              <height>40</height>
+              <align>left</align>
+              <textoffsetx>15</textoffsetx>
+              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <visible>Container.Content(episodes) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <control type="label">
+              <posx>0</posx>
+              <posy>310</posy>
+              <width>420</width>
+              <height>40</height>
+              <align>left</align>
+              <textoffsetx>15</textoffsetx>
+              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <visible>Container.Content(episodes) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <control type="label">
+              <posx>189</posx>
+              <posy>310</posy>
+              <width>359</width>
+              <height>40</height>
+              <align>center</align>
+              <textoffsetx>15</textoffsetx>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>!Container.Content(episodes) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <control type="label">
+              <posx>210</posx>
+              <posy>310</posy>
+              <width>410</width>
+              <height>40</height>
+              <align>center</align>
+              <textoffsetx>15</textoffsetx>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>!Container.Content(episodes) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <!-- Watched Status Lower Circle -->
+            <control type="image">
+              <posx>369</posx>
+              <posy>314</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+          </control>
+        </focusedlayout>
         <!-- Directories -->
         <itemlayout height="240" width="240" condition="!Container.PlexContent(folders) + ListItem.Type(directory) + !String.IsEqual(Container.SecondTitle,By Director) + !String.IsEqual(Container.SecondTitle,By Starring Actor) + !String.IsEqual(Container.SecondTitle,By Country) + !String.IsEqual(Container.SecondTitle,By Content Rating) + !String.IsEqual(Container.SecondTitle,By Resolution)">
           <!-- Icon -->
