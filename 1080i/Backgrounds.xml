@@ -485,7 +485,7 @@
   <!-- Home Menu Backgrounds -->
   <include name="HomeFanart">
     <control type="group">
-      <visible>Control.HasFocus(300) | Control.HasFocus(9010)</visible>
+      <visible>[Control.HasFocus(300) | Control.HasFocus(9010)] + !Skin.HasSetting(CustomHomeUniversal) + !Skin.HasSetting(CustomHomeSlideshow)</visible>
       <!-- Display Plex Fanart -->
       <control type="multiimage" id="10101">
         <include>FanartCommonValues</include>
@@ -672,6 +672,18 @@
         <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[42081]) + !IsEmpty(Skin.String(Homemenu_WatchLater.Slideshow))</visible>
       </control>
       <include>LiveCasesBackground</include>
+    </control>
+    <!-- Universal Single Image -->
+    <control type="image">
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomHomeUniversalImage)</info>
+      <visible>Skin.HasSetting(CustomHomeUniversal) + !ControlGroup(8002).HasFocus() + !ControlGroup(8001).HasFocus()</visible>
+    </control>
+    <!-- Universal Slideshow -->
+    <control type="multiimage">
+      <include>FanartCommonValues</include>
+      <info>Skin.String(CustomHomeSlideshowPath)</info>
+      <visible>Skin.HasSetting(CustomHomeSlideshow) + !ControlGroup(8002).HasFocus() + !ControlGroup(8001).HasFocus()</visible>
     </control>
     <!-- On Deck Widgets -->
     <control type="group">
