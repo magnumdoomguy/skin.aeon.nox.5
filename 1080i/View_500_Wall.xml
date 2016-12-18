@@ -475,6 +475,230 @@
             </control>
           </control>
         </focusedlayout>
+        <!-- Folders -->
+        <itemlayout height="360" width="240" condition="Container.PlexContent(folders) + String.IsEqual(Skin.String(Filter.Type),movies)">
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>240</width>
+            <height>360</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture>$INFO[ListItem.Art(thumb)]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>!IsEmpty(ListItem.Art(smallThumb))</visible>
+          </control>
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>240</width>
+            <height>360</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture>defaultmovietitle.png</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>ListItem.Type(movie) + IsEmpty(ListItem.Art(smallThumb))</visible>
+          </control>
+          <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>240</width>
+            <height>360</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture>defaultfolder.png</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>!ListItem.Type(movie)</visible>
+          </control>
+          <!-- Label -->
+          <control type="image">
+            <posy>260</posy>
+            <width>240</width>
+            <height>100</height>
+            <texture>homewidgets/label.png</texture>
+            <bordersize>2</bordersize>
+          </control>
+          <control type="label">
+            <posx>120</posx>
+            <posy>280</posy>
+            <width>200</width>
+            <height>60</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font12_title</font>
+            <wrapmultiline>true</wrapmultiline>
+            <textoffsetx>4</textoffsetx>
+            <textcolor>lightgrey</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <info>ListItem.Label</info>
+          </control>
+          <!-- Watched Status Ribbon -->
+          <control type="image">
+            <posx>140</posx>
+            <posy>0</posy>
+            <width>100</width>
+            <height>100</height>
+            <texture>$VAR[OverlayVar]</texture>
+            <aspectratio align="center" aligny="top">keep</aspectratio>
+            <bordersize>1</bordersize>
+            <visible>!Skin.HasSetting(Enable.Circles)</visible>
+          </control>
+          <!-- Watched Status Upper Circle -->
+          <control type="image">
+            <posx>189</posx>
+            <posy>15</posy>
+            <width>36</width>
+            <height>36</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[OverlayVar]</texture>
+            <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
+            <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+          </control>
+          <!-- Watched Status Lower Circle -->
+          <control type="image">
+            <posx>189</posx>
+            <posy>309</posy>
+            <width>36</width>
+            <height>36</height>
+            <aspectratio>keep</aspectratio>
+            <texture>$VAR[OverlayVar]</texture>
+            <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
+            <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+          </control>
+          <control type="group">
+            <posx>15</posx>
+            <posy>15</posy>
+            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+          </control>
+          <control type="group">
+            <posx>15</posx>
+            <posy>309</posy>
+            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+          </control>
+        </itemlayout>
+        <focusedlayout height="360" width="240" condition="Container.PlexContent(folders) + String.IsEqual(Skin.String(Filter.Type),movies)">
+          <control type="group">
+            <animation type="Focus">
+              <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
+              <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
+            </animation>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>$INFO[ListItem.Art(thumb)]</texture>
+              <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+              <bordersize>2</bordersize>
+              <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+              <visible>ListItem.Type(movie) + !IsEmpty(ListItem.Art(smallThumb))</visible>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>defaultmovietitle.png</texture>
+              <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+              <bordersize>2</bordersize>
+              <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+              <visible>ListItem.Type(movie) + IsEmpty(ListItem.Art(smallThumb))</visible>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+              <texture>defaultfolder.png</texture>
+              <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+              <bordersize>2</bordersize>
+              <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+              <visible>!ListItem.Type(movie)</visible>
+            </control>
+            <control type="image">
+              <posx>0</posx>
+              <posy>0</posy>
+              <width>240</width>
+              <height>360</height>
+              <aspectratio>stretch</aspectratio>
+              <texture>empty.png</texture>
+              <bordertexture border="8">thumbs/thumbnail_focused.png</bordertexture>
+              <colordiffuse>$VAR[Colour_IconsHighlightColourVar]</colordiffuse>
+              <bordersize>8</bordersize>
+            </control>
+            <!-- Label -->
+            <control type="image">
+              <posy>260</posy>
+              <width>240</width>
+              <height>100</height>
+              <texture>homewidgets/label.png</texture>
+              <bordersize>2</bordersize>
+              <visible>!IsEmpty(ListItem.Art(smallThumb))</visible>
+            </control>
+            <control type="label">
+              <posx>120</posx>
+              <posy>280</posy>
+              <width>200</width>
+              <height>60</height>
+              <align>center</align>
+              <aligny>center</aligny>
+              <font>font12_title</font>
+              <wrapmultiline>true</wrapmultiline>
+              <textoffsetx>4</textoffsetx>
+              <textcolor>$VAR[Colour_IconsHighlightColourVar]</textcolor>
+              <shadowcolor>black</shadowcolor>
+              <info>ListItem.Label</info>
+            </control>
+            <control type="image">
+              <posx>140</posx>
+              <posy>0</posy>
+              <width>100</width>
+              <height>100</height>
+              <texture>$VAR[OverlayVar]</texture>
+              <aspectratio align="center" aligny="top">keep</aspectratio>
+              <bordersize>8</bordersize>
+              <visible>!Skin.HasSetting(Enable.Circles)</visible>
+            </control>
+            <!-- Watched Status Upper Circle -->
+            <control type="image">
+              <posx>189</posx>
+              <posy>15</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <!-- Watched Status Lower Circle -->
+            <control type="image">
+              <posx>189</posx>
+              <posy>309</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_IconsWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <control type="group">
+              <posx>15</posx>
+              <posy>15</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+            <control type="group">
+              <posx>15</posx>
+              <posy>309</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+          </control>
+        </focusedlayout>
         <!-- Directories -->
         <itemlayout height="240" width="240" condition="!Container.PlexContent(folders) + ListItem.Type(directory) + !String.IsEqual(Container.SecondTitle,By Director) + !String.IsEqual(Container.SecondTitle,By Starring Actor) + !String.IsEqual(Container.SecondTitle,By Country) + !String.IsEqual(Container.SecondTitle,By Content Rating) + !String.IsEqual(Container.SecondTitle,By Resolution)">
           <!-- Icon -->
