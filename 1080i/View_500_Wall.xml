@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+  <!-- Directory Icon -->
+  <variable name="DirectoryIcon">
+    <value condition="String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade)">defaultyear.png</value>
+    <value condition="String.IsEqual(Container.SecondTitle,By Collection)">defaultsets.png</value>
+    <value>defaultfolder.png</value>
+  </variable>
   <include name="WallBackPanel">
     <control type="image">
       <description>background image</description>
@@ -469,19 +475,21 @@
             </control>
           </control>
         </focusedlayout>
-        <!-- By Collection, By Year, By Decade, By Rating, By First Letter, By Folder, By Camera Make, By Shutter Speed, By ISO, By Lens -->
-        <itemlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,By Shutter Speed) | String.IsEqual(Container.SecondTitle,By ISO) | String.IsEqual(Container.SecondTitle,By Lens)">
+        <!-- Directories -->
+        <itemlayout height="240" width="240" condition="!Container.PlexContent(folders) + ListItem.Type(directory)">
+          <!-- Icon -->
           <control type="image">
             <posx>0</posx>
             <posy>0</posy>
             <width>240</width>
             <height>240</height>
             <aspectratio>scale</aspectratio>
-            <texture>defaultfolder.png</texture>
+            <texture>$VAR[DirectoryIcon]</texture>
             <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
             <bordersize>2</bordersize>
             <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
           </control>
+          <!-- Title -->
           <control type="label">
             <posx>120</posx>
             <posy>160</posy>
@@ -497,21 +505,23 @@
             <info>ListItem.Label</info>
           </control>
         </itemlayout>
-        <focusedlayout height="240" width="240" condition="String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Year) | String.IsEqual(Container.SecondTitle,By Decade) | String.IsEqual(Container.SecondTitle,By Rating) | String.IsEqual(Container.SecondTitle,By First Letter) | String.IsEqual(Container.SecondTitle,By Folder) | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,By Shutter Speed) | String.IsEqual(Container.SecondTitle,By ISO) | String.IsEqual(Container.SecondTitle,By Lens)">
+        <focusedlayout height="240" width="240" condition="!Container.PlexContent(folders) + ListItem.Type(directory)">
           <control type="group">
             <animation type="Focus">
               <effect type="zoom" start="95" end="100" time="200" tween="sine" easing="inout" center="auto"/>
               <effect type="fade" start="80" end="100" time="200" tween="sine" easing="in"/>
             </animation>
+            <!-- Icon -->
             <control type="image">
               <posx>0</posx>
               <posy>0</posy>
               <width>240</width>
               <height>240</height>
               <aspectratio>scale</aspectratio>
-              <texture>defaultfolder.png</texture>
+              <texture>$VAR[DirectoryIcon]</texture>
               <bordersize>8</bordersize>
             </control>
+            <!-- Title -->
             <control type="label">
               <posx>120</posx>
               <posy>160</posy>
