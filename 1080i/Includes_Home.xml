@@ -5593,6 +5593,7 @@
       <description>System Submenu Item 5</description>
       <label>$VAR[SystemSubmenu5_LabelVar]</label>
       <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(SystemSubmenu5.Action))">XBMC.ActivateWindow(10208)</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu5.Action),Search)">Plex.ActivateWindow(10051)</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu5.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu5.Action),Quit)">Plex.Quit</onclick>
@@ -5607,7 +5608,7 @@
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu5.Action),Restart) + System.isSystem(openelec)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu5.Action),Restart) + !System.isSystem(openelec)">Plex.Reboot</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu5.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[13000]) + !String.IsEqual(Skin.String(SystemSubmenu5.Action),None) + !IsEmpty(Skin.String(SystemSubmenu5.Action))</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[13000]) + ![String.IsEqual(Skin.String(SystemSubmenu5.Action),None) | [IsEmpty(Skin.String(SystemSubmenu5.Action)) + [System.UserIsRestricted | !System.isSystem(openelec)]]]</visible>
     </item>
     <!-- System Submenu Item 6 -->
     <item>
