@@ -4761,7 +4761,7 @@
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu4.Action),Restart) + System.isSystem(openelec)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu4.Action),Restart) + !System.isSystem(openelec)">Plex.Reboot</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu4.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + [!String.IsEqual(Skin.String(PowerSubmenu4.Action),None) | [[!System.UserIsRestricted | Skin.HasSetting(Reboot.Allow)] + System.CanReboot + IsEmpty(Skin.String(PowerSubmenu4.Action))]]</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + ![String.IsEqual(Skin.String(PowerSubmenu4.Action),None) | [IsEmpty(Skin.String(PowerSubmenu4.Action)) + [[System.UserIsRestricted + !Skin.HasSetting(Reboot.Allow)] | !System.CanReboot]]]</visible>
     </item>
     <!-- Power Submenu Item 5 -->
     <item>
@@ -4784,7 +4784,7 @@
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu5.Action),Restart) + System.isSystem(openelec)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu5.Action),Restart) + !System.isSystem(openelec)">Plex.Reboot</onclick>
       <onclick condition="String.IsEqual(Skin.String(PowerSubmenu5.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + [!String.IsEqual(Skin.String(PowerSubmenu5.Action),None) | [[!System.UserIsRestricted | Skin.HasSetting(Shutdown.Allow)] + System.CanPowerDown + IsEmpty(Skin.String(PowerSubmenu5.Action))]]</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[33060]) + ![String.IsEqual(Skin.String(PowerSubmenu5.Action),None) | [IsEmpty(Skin.String(PowerSubmenu5.Action)) + [[System.UserIsRestricted + !Skin.HasSetting(Shutdown.Allow)] | !System.CanPowerDown]]]</visible>
     </item>
     <!-- Power Submenu Item 6 -->
     <item>
