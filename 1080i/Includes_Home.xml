@@ -5566,11 +5566,12 @@
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu3.Action),Shutdown)">Plex.Powerdown</onclick>
       <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[13000]) + !String.IsEqual(Skin.String(SystemSubmenu3.Action),None)</visible>
     </item>
-    <!-- System Submenu Item 4 -->
+    <!-- System Submenu Item 4 [[System.UserIsRestricted + !Skin.HasSetting(Shutdown.Allow)] | !System.CanPowerDown]]]-->
     <item>
       <description>System Submenu Item 4</description>
       <label>$VAR[SystemSubmenu4_LabelVar]</label>
       <icon>-</icon>
+      <onclick condition="IsEmpty(Skin.String(SystemSubmenu4.Action))">RunAddon(service.openelec.settings)</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu4.Action),Search)">Plex.ActivateWindow(10051)</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu4.Action),System Info)">ActivateWindow(SystemInfo)</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu4.Action),Quit)">Plex.Quit</onclick>
@@ -5585,7 +5586,7 @@
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu4.Action),Restart) + System.isSystem(openelec)">System.Exec(reboot)</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu4.Action),Restart) + !System.isSystem(openelec)">Plex.Reboot</onclick>
       <onclick condition="String.IsEqual(Skin.String(SystemSubmenu4.Action),Shutdown)">Plex.Powerdown</onclick>
-      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[13000]) + !String.IsEqual(Skin.String(SystemSubmenu4.Action),None) + !IsEmpty(Skin.String(SystemSubmenu4.Action))</visible>
+      <visible>String.IsEqual(Container(300).ListItem.Label,$LOCALIZE[13000]) + ![String.IsEqual(Skin.String(SystemSubmenu4.Action),None) | [IsEmpty(Skin.String(SystemSubmenu4.Action)) + [System.UserIsRestricted | !System.isSystem(openelec)]]]</visible>
     </item>
     <!-- System Submenu Item 5 -->
     <item>
