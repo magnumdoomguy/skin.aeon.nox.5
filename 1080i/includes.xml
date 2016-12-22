@@ -165,28 +165,24 @@
   <!-- Scroll Label -->
   <include name="ScrollOffsetLabel">
     <control type="group">
-      <visible>Container.Scrolling + !Skin.HasSetting(Disable.ScrollIndicator)</visible>
-      <include>dialogeffect</include>
-      <posx>1794</posx>
-      <posy>36</posy>
-      <control type="image">
-        <posx>0</posx>
-        <posy>0</posy>
-        <width>160</width>
-        <height>160</height>
-        <texture border="35">listpanel_back.png</texture>
-      </control>
-      <control type="label">
-        <posx>0</posx>
-        <posy>15</posy>
-        <width>160</width>
-        <height>120</height>
-        <align>center</align>
-        <aligny>center</aligny>
-        <label>$INFO[ListItem.SortLetter]</label>
-        <textcolor>$VAR[Colour_ScrollOffsetText]</textcolor>
-        <font>font_MainMenu</font>
-      </control>
+      <visible>Container.Scrolling + !Skin.HasSetting(Disable.ScrollIndicator) + [String.IsEqual(Container.Property(currentSortOrder),titleSort) | String.IsEqual(Container.SecondTitle,Unwatched) | String.IsEqual(Container.SecondTitle,By Collection) | String.IsEqual(Container.SecondTitle,By Genre) | String.IsEqual(Container.SecondTitle,By Director) | String.IsEqual(Container.SecondTitle,By Starring Actor) | String.IsEqual(Container.SecondTitle,By Country) | String.IsEqual(Container.SecondTitle,By Content Rating) | String.IsEqual(Container.SecondTitle,By First Letter) | Container.PlexContent(folders) | String.IsEqual(Container.SecondTitle,By Camera Make) | String.IsEqual(Container.SecondTitle,Camera Model)]</visible>
+      <animation effect="slide" tween="cubic" easing="inout" time="400" start="160" end="0">VisibleChange</animation>
+			<posx>1794</posx>
+			<posy>36</posy>
+			<control type="image">
+				<width>160</width>
+				<height>160</height>
+				<texture border="35">listpanel_back.png</texture>
+			</control>
+			<control type="label">
+				<posy>15</posy>
+				<width>160</width>
+				<height>120</height>
+				<align>center</align>
+				<label>$INFO[ListItem.SortLetter]</label>
+				<textcolor>white</textcolor>
+				<font>font_MainMenu</font>
+			</control>
     </control>
   </include>
   <variable name="Colour_ScrollOffsetText">
