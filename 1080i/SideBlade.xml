@@ -1,5 +1,20 @@
 <?xml version="1.0"?>
 <includes>
+  <!-- Viewtype Has Fanart -->
+  <expression name="ViewHasFanart">[[Container.Content(movies) + ![Skin.HasSetting(CustomMovieSectionBackground) | Skin.HasSetting(CustomMovieSectionSlideshow)]] | [[Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + ![Skin.HasSetting(CustomTVSectionBackground) | Skin.HasSetting(CustomTVSectionSlideshow)]] | [Container.PlexContent(homemovies) + ![Skin.HasSetting(CustomHomeVideoSectionBackground) | Skin.HasSetting(CustomHomeVideoSectionSlideshow)]] | [[Container.Content(artists) | Container.Content(albums) | Container.Content(songs)] + ![Skin.HasSetting(CustomMusicSectionBackground) | Skin.HasSetting(CustomMusicSectionSlideshow)]] | [Container.PlexContent(photos) + ![Skin.HasSetting(CustomPhotoSectionBackground) | Skin.HasSetting(CustomPhotoSectionSlideshow)]] | [[Container.PlexContent(channels) | Container.PlexContent(channel)] + ![Skin.HasSetting(CustomChannelSectionBackground) | Skin.HasSetting(CustomChannelSectionSlideshow)]] | [Container.Content(clips) + ![Skin.HasSetting(CustomWatchLaterBackground) | Skin.HasSetting(CustomWatchLaterSlideshow)]]]</expression>
+  <!-- Common Values for Blur Background -->
+  <include name="BlurCommonValues">
+    <textwidth>255</textwidth>
+    <width>350</width>
+    <height>60</height>
+    <textoffsetx>15</textoffsetx>
+    <textcolor>grey</textcolor>
+    <focusedcolor>white</focusedcolor>
+    <textwidth>300</textwidth>
+    <aligny>center</aligny>
+    <font>font13</font>
+    <label>$LOCALIZE[42533]</label>
+  </include>
   <include name="SideBlade">
     <!-- Mouse Trigger -->
     <control type="button">
@@ -623,6 +638,30 @@
           <radioposx>340</radioposx>
           <label>$LOCALIZE[42012]</label>
           <onclick>ActivateWindow(1122)</onclick>
+        </control>
+        <!-- List Blur Background -->
+        <control type="radiobutton" id="310">
+          <description>List Blur Background</description>
+          <include>BlurCommonValues</include>
+          <onclick>Skin.ToggleSetting(List.Blur)</onclick>
+          <selected>Skin.HasSetting(List.Blur)</selected>
+          <visible>Control.IsVisible(50) + $EXP[ViewHasFanart]</visible>
+        </control>
+        <!-- RightList Blur Background -->
+        <control type="radiobutton" id="311">
+          <description>RightList Blur Background</description>
+          <include>BlurCommonValues</include>
+          <onclick>Skin.ToggleSetting(RightList.Blur)</onclick>
+          <selected>Skin.HasSetting(RightList.Blur)</selected>
+          <visible>Control.IsVisible(700) + $EXP[ViewHasFanart]</visible>
+        </control>
+        <!-- FanartList Blur Background -->
+        <control type="radiobutton" id="312">
+          <description>FanartList Blur Background</description>
+          <include>BlurCommonValues</include>
+          <onclick>Skin.ToggleSetting(FanartList.Blur)</onclick>
+          <selected>Skin.HasSetting(FanartList.Blur)</selected>
+          <visible>Control.IsVisible(507) + $EXP[ViewHasFanart]</visible>
         </control>
         <!-- Toggle Infopanel 52 -->
         <control type="button" id="204">

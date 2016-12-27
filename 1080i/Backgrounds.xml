@@ -125,11 +125,6 @@
       <imagepath>$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/slideshow/,/]</imagepath>
     </control>
   </include>
-  <variable name="WeatherFanartVar">
-    <value condition="String.IsEqual(Skin.String(Weather.Fanart),Faded)">$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/faded/,.jpg]</value>
-    <value condition="String.IsEqual(Skin.String(Weather.Fanart),Prairie)">$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/prairie/,.jpg]</value>
-    <value>$INFO[Window(Weather).Property(Current.FanartCode),special://skin/backgrounds/weather/single/,.jpg]</value>
-  </variable>
   <include name="VideoFanart">
     <!-- Directories -->
     <control type="image">
@@ -152,10 +147,18 @@
       <visible>!ListItem.Type(directory)</visible>
       <include>PhotosFanart</include>
       <!-- Standard Video Background -->
-      <control type="image">
+      <control type="group">
         <visible>!Container.PlexContent(clips) + [[IsEmpty(Skin.String(CustomMovieSectionBackgroundFile)) + IsEmpty(Skin.String(CustomMovieSectionSlideshowPath)) + ListItem.Type(movie)] | [IsEmpty(Skin.String(CustomTVSectionBackgroundFile)) + IsEmpty(Skin.String(CustomTVSectionSlideshowPath)) + [Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]] | [IsEmpty(Skin.String(CustomMusicSectionBackgroundFile)) + [Container.Content(artists) | Container.Content(albums) | Container.Content(songs)]] | [IsEmpty(Skin.String(CustomChannelSectionBackgroundFile)) + IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]]] + !Container.PlexContent(secondary)</visible>
-        <include>FanartCommonValues</include>
-        <texture colordiffuse="FFFFFFFF" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
+        <control type="image">
+          <visible>[Control.IsVisible(50) + Skin.HasSetting(List.Blur)] | [Control.IsVisible(700) + Skin.HasSetting(RightList.Blur)] | [Control.IsVisible(507) + Skin.HasSetting(FanartList.Blur)]</visible>
+          <include>FanartCommonValues</include>
+          <texture blur="90" colordiffuse="FFFFFFFF" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
+        </control>
+        <control type="image">
+          <visible>[Control.IsVisible(50) + !Skin.HasSetting(List.Blur)] | [Control.IsVisible(700 + !Skin.HasSetting(RightList.Blur)] | [Control.IsVisible(507) + !Skin.HasSetting(FanartList.Blur)]</visible>
+          <include>FanartCommonValues</include>
+          <texture colordiffuse="FFFFFFFF" fallback="special://skin/backgrounds/movies.jpg">$INFO[ListItem.Art(fanart)]</texture>
+        </control>
       </control>
       <!-- Home Videos Fanart -->
       <control type="image">
