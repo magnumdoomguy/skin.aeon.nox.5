@@ -224,9 +224,14 @@
       </control>
       <!-- Background for Watch Later -->
       <control type="image">
-        <visible>Container.Content(clips)</visible>
+        <visible>Container.Content(clips) + [[Control.IsVisible(50) + Skin.HasSetting(List.Blur)] | [Control.IsVisible(500) + Skin.HasSetting(Icons.Blur)]]</visible>
         <include>FanartCommonValues</include>
-        <texture fallback="special://skin/backgrounds/watchlater.jpg" blur="01">$INFO[ListItem.Art(bigThumb)]</texture>
+        <texture blur="90" fallback="special://skin/backgrounds/watchlater.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
+      </control>
+      <control type="image">
+        <visible>Container.Content(clips) + [[Control.IsVisible(50) + !Skin.HasSetting(List.Blur)] | [Control.IsVisible(500) + !Skin.HasSetting(Icons.Blur)]]</visible>
+        <include>FanartCommonValues</include>
+        <texture fallback="special://skin/backgrounds/watchlater.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
       </control>
       <!-- Custom Watch Later Background Image -->
       <control type="image">
@@ -258,6 +263,8 @@
   </include>
   <!-- Photo Fanart -->
   <include name="PhotosFanart">
+    <control type="group">
+      <visible>!Container.PlexContent(clips)</visible>
     <!-- Photo Background -->
     <control type="image">
       <description>Normal Default Background Image</description>
@@ -318,6 +325,7 @@
       <visible>!IsEmpty(Skin.String(CustomChannelSectionSlideshowPath)) + [Container.PlexContent(channels) | Container.PlexContent(channel)]</visible>
       <include>FanartCommonValues</include>
       <info>Skin.String(CustomChannelSectionSlideshowPath)</info>
+    </control>
     </control>
   </include>
   <include name="SearchFanart">
