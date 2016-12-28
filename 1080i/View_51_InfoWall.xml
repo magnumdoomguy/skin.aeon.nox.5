@@ -1,5 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+  <!-- InfoWall Watched Status -->
+  <include name="InfoWall_WatchedStatusNF">
+    <!-- Watched Status Ribbon -->
+    <control type="image">
+      <posx>120</posx>
+      <posy>0</posy>
+      <width>80</width>
+      <height>80</height>
+      <texture>$VAR[OverlayVar]</texture>
+      <aspectratio align="center" aligny="top">keep</aspectratio>
+      <bordersize>1</bordersize>
+      <visible>!Skin.HasSetting(Enable.Circles)</visible>
+    </control>
+    <!-- Watched Status Upper Circle -->
+    <control type="image">
+      <posx>149</posx>
+      <posy>15</posy>
+      <width>36</width>
+      <height>36</height>
+      <aspectratio>keep</aspectratio>
+      <texture>$VAR[OverlayVar]</texture>
+      <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
+      <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+    </control>
+    <!-- Unwatched Episodes Upper -->
+    <control type="group">
+      <posx>15</posx>
+      <posy>15</posy>
+      <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+    </control>
+    <!-- Watched Status Lower Circle -->
+    <control type="image">
+      <posx>149</posx>
+      <posy>249</posy>
+      <width>36</width>
+      <height>36</height>
+      <aspectratio>keep</aspectratio>
+      <texture>$VAR[OverlayVar]</texture>
+      <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
+      <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+    </control>
+    <!-- Unwatched Episodes Lower -->
+    <control type="group">
+      <posx>15</posx>
+      <posy>249</posy>
+      <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+    </control>
+  </include>
+  <include name="InfoWall_WatchedStatusFO">
+    <!-- Watched Status Ribbon -->
+            <control type="image">
+              <posx>120</posx>
+              <posy>3</posy>
+              <width>80</width>
+              <height>80</height>
+              <texture>$VAR[OverlayVar]</texture>
+              <aspectratio align="center" aligny="top">keep</aspectratio>
+              <bordersize>2</bordersize>
+              <visible>!Skin.HasSetting(Enable.Circles)</visible>
+            </control>
+            <!-- Watched Status Circle Upper -->
+            <control type="image">
+              <posx>149</posx>
+              <posy>15</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <!-- Unwatched Episodes Upper -->
+            <control type="group">
+              <posx>15</posx>
+              <posy>15</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+            <!-- Watched Status Circle Lower -->
+            <control type="image">
+              <posx>149</posx>
+              <posy>249</posy>
+              <width>36</width>
+              <height>36</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$VAR[OverlayVar]</texture>
+              <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
+              <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+            </control>
+            <!-- Unwatched Episodes Lower -->
+            <control type="group">
+              <posx>15</posx>
+              <posy>249</posy>
+              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
+            </control>
+  </include>
   <!-- Video InfoWall -->
   <include name="VideoInfoWall">
     <control type="group">
@@ -13,7 +108,7 @@
         <width>1740</width>
         <height>964</height>
         <texture border="40">panel_reflect.png</texture>
-        <visible>!Skin.HasSetting(Enable.AlternateInfowall)</visible>
+        <visible>!Skin.HasSetting(InfoWall.Alternate)</visible>
       </control>
       <control type="image">
         <description>background image</description>
@@ -22,7 +117,7 @@
         <width>1740</width>
         <height>964</height>
         <texture colordiffuse="E6FFFFFF" border="40">listpanel_back.png</texture>
-        <visible>!Skin.HasSetting(Enable.AlternateInfowall)</visible>
+        <visible>!Skin.HasSetting(InfoWall.Alternate)</visible>
       </control>
       <control type="scrollbar" id="60">
         <posx>104</posx>
@@ -246,7 +341,7 @@
         <viewtype label="InfoWall">icons</viewtype>
         <scrolltime tween="quadratic" easing="out">300</scrolltime>
         <visible>[Container.Content(tvshows) | Container.Content(movies)] + ![String.IsEqual(Skin.String(Filter.Type),homemovies) | Container.PlexContent(Secondary) | Container.PlexContent(Clips) | Container.PlexContent(homemovies) | Container.PlexContent(Folders) | Container.PlexContent(Folder)]</visible>
-        <itemlayout height="300" width="200">
+        <itemlayout height="300" width="200" condition="!Skin.HasSetting(InfoWall.Alternate)">
           <control type="image">
             <width>200</width>
             <height>300</height>
@@ -256,53 +351,9 @@
             <bordersize>2</bordersize>
             <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
           </control>
-          <!-- Watched Status Ribbon -->
-          <control type="image">
-            <posx>120</posx>
-            <posy>0</posy>
-            <width>80</width>
-            <height>80</height>
-            <texture>$VAR[OverlayVar]</texture>
-            <aspectratio align="center" aligny="top">keep</aspectratio>
-            <bordersize>1</bordersize>
-            <visible>!Skin.HasSetting(Enable.Circles)</visible>
-          </control>
-          <!-- Watched Status Upper Circle -->
-          <control type="image">
-            <posx>149</posx>
-            <posy>15</posy>
-            <width>36</width>
-            <height>36</height>
-            <aspectratio>keep</aspectratio>
-            <texture>$VAR[OverlayVar]</texture>
-            <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
-            <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-          </control>
-          <!-- Unwatched Episodes Upper -->
-          <control type="group">
-            <posx>15</posx>
-            <posy>15</posy>
-            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-          </control>
-          <!-- Watched Status Lower Circle -->
-          <control type="image">
-            <posx>149</posx>
-            <posy>249</posy>
-            <width>36</width>
-            <height>36</height>
-            <aspectratio>keep</aspectratio>
-            <texture>$VAR[OverlayVar]</texture>
-            <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
-            <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-          </control>
-          <!-- Unwatched Episodes Lower -->
-          <control type="group">
-            <posx>15</posx>
-            <posy>249</posy>
-            <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-          </control>
+          <include>InfoWall_WatchedStatusNF</include>
         </itemlayout>
-        <focusedlayout heigth="300" width="200">
+        <focusedlayout heigth="300" width="200" condition="!Skin.HasSetting(InfoWall.Alternate)">
           <control type="group">
             <animation type="Focus" reversible="false">
 							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="100,150" />
@@ -312,58 +363,41 @@
             <control type="image">
 							<width>200</width>
 							<height>300</height>
-							<aspectratio>scale</aspectratio>
+							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
 							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
 							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>6</bordersize>
 						</control>
-            <!-- Watched Status Ribbon -->
-            <control type="image">
-              <posx>120</posx>
-              <posy>5</posy>
-              <width>80</width>
-              <height>80</height>
-              <texture>$VAR[OverlayVar]</texture>
-              <aspectratio align="center" aligny="top">keep</aspectratio>
-              <bordersize>2</bordersize>
-              <visible>!Skin.HasSetting(Enable.Circles)</visible>
-            </control>
-            <!-- Watched Status Circle Upper -->
-            <control type="image">
-              <posx>149</posx>
-              <posy>15</posy>
-              <width>36</width>
-              <height>36</height>
-              <aspectratio>keep</aspectratio>
-              <texture>$VAR[OverlayVar]</texture>
-              <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
-              <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
-            </control>
-            <!-- Unwatched Episodes Upper -->
-            <control type="group">
-              <posx>15</posx>
-              <posy>15</posy>
-              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-            </control>
-            <!-- Watched Status Circle Lower -->
-            <control type="image">
-              <posx>149</posx>
-              <posy>249</posy>
-              <width>36</width>
-              <height>36</height>
-              <aspectratio>keep</aspectratio>
-              <texture>$VAR[OverlayVar]</texture>
-              <colordiffuse>$VAR[Colour_InfoWallWatchedStatusColourVar]</colordiffuse>
-              <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
-            </control>
-            <!-- Unwatched Episodes Lower -->
-            <control type="group">
-              <posx>15</posx>
-              <posy>249</posy>
-              <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon</include>
-            </control>
+            <include>InfoWall_WatchedStatusFO</include>
           </control>
         </focusedlayout>
+        <itemlayout height="300" width="200" condition="Skin.HasSetting(InfoWall.Alternate)">
+					<control type="image">
+						<width>200</width>
+						<height>300</height>
+						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+						<colordiffuse>BAffffff</colordiffuse>
+					</control>
+					<include>InfoWall_WatchedStatusNF</include>
+				</itemlayout>
+				<focusedlayout height="300" width="200" condition="Skin.HasSetting(InfoWall.Alternate)">
+					<control type="group">
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="auto" />
+							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
+						</animation>
+						<control type="image">
+							<width>200</width>
+							<height>300</height>
+							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>6</bordersize>
+						</control>
+						<include>InfoWall_WatchedStatusFO</include>
+					</control>
+				</focusedlayout>
       </control>      
       <!-- Scrollbar -->
       <control type="scrollbar" id="61">
