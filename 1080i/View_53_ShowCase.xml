@@ -450,7 +450,7 @@
   </include>
   <include name="ShowCaseInfoPanel">
     <control type="group" id="12000">
-      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420)</visible>
+      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory)</visible>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">VisibleChange</animation>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
       <animation effect="slide" end="0,-1200" start="0,0" time="720" tween="cubic">WindowClose</animation>
@@ -478,7 +478,7 @@
         <control type="grouplist">
           <posx>137</posx>
           <posy>162</posy>
-          <visible>Container.Content(movies) | Container.Content(episodes)</visible>
+          <visible>Container.PlexContent(movies) | Container.PlexContent(episodes)</visible>
           <control type="button">
             <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
@@ -491,7 +491,16 @@
         <control type="grouplist">
           <posx>137</posx>
           <posy>162</posy>
-          <visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
+          <visible>Container.PlexContent(homemovies)</visible>
+          <control type="button">
+            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$INFO[ListItem.Year]</label>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+          </control>
+        </control>
+        <control type="grouplist">
+          <posx>137</posx>
+          <posy>162</posy>
+          <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons)</visible>
           <control type="button">
             <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
@@ -507,11 +516,20 @@
           <width>2</width>
           <height>179</height>
           <texture border="1">separator3.png</texture>
+          <visible>!Container.PlexContent(homemovies)</visible>
+        </control>
+        <control type="image">
+          <posx>638</posx>
+          <posy>162</posy>
+          <width>2</width>
+          <height>90</height>
+          <texture border="1">separator3.png</texture>
+          <visible>Container.PlexContent(homemovies)</visible>
         </control>
         <control type="grouplist">
           <posx>640</posx>
           <posy>162</posy>
-          <visible>Container.Content(movies) | Container.Content(episodes)</visible>
+          <visible>Container.PlexContent(movies) | Container.PlexContent(episodes)</visible>
           <control type="button">
             <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
@@ -630,48 +648,57 @@
               <posx>251</posx>
               <width>250</width>
               <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.Content(movies)</visible>
+              <visible>Container.PlexContent(movies)</visible>
             </control>
             <control type="button">
               <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
               <posx>251</posx>
               <width>250</width>
               <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.Content(episodes)</visible>
+              <visible>Container.PlexContent(episodes)</visible>
             </control>
           </control>
         </control>
         <control type="grouplist">
           <posx>640</posx>
           <posy>162</posy>
-          <visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
+          <visible>Container.PlexContent(homemovies)</visible>
+          <control type="button">
+            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</label>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+          </control>
+        </control>
+        <control type="grouplist">
+          <posx>640</posx>
+          <posy>162</posy>
+          <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons)</visible>
           <control type="button">
             <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.episode]$INFO[ListItem.Property(UnWatchedEpisodes), (,[LOWERCASE] $LOCALIZE[16101][/LOWERCASE])]</label>
             <width>502</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>Container.Content(tvshows)</visible>
+            <visible>Container.PlexContent(tvshows)</visible>
           </control>
           <control type="button">
             <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.Episode]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>Container.Content(seasons) + !String.IsEqual(ListItem.Label,All Episodes)</visible>
+            <visible>Container.PlexContent(seasons) + !String.IsEqual(ListItem.Label,All Episodes)</visible>
           </control>
           <control type="button">
             <label>-</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>Container.Content(seasons) + String.IsEqual(ListItem.Label,All Episodes)</visible>
+            <visible>Container.PlexContent(seasons) + String.IsEqual(ListItem.Label,All Episodes)</visible>
           </control>
           <control type="group">
             <control type="button">
               <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]First Aired:[/COLOR][CR]$INFO[ListItem.Date]</label>
               <width>502</width>
               <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.Content(tvshows)</visible>
+              <visible>Container.PlexContent(tvshows)</visible>
             </control>
             <control type="button">
               <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
               <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.Content(seasons)</visible>
+              <visible>Container.PlexContent(seasons)</visible>
             </control>
           </control>
         </control>
@@ -684,7 +711,7 @@
           <font>font14_textbox2</font>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <include>ShowCaseInfoPanelButtonsValues</include>
-          <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies)</visible>
         </control>
         <control type="textbox">
           <label>$VAR[PlotVar]</label>
@@ -695,7 +722,29 @@
           <font>font14_textbox2_landscape</font>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <include>ShowCaseInfoPanelButtonsValues</include>
-          <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies)</visible>
+        </control>
+        <control type="textbox">
+          <label>$VAR[PlotVar]</label>
+          <posy>252</posy>
+          <posx>152</posx>
+          <width>970</width>
+          <height>270</height>
+          <font>font14_textbox2</font>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(homemovies)</visible>
+        </control>
+        <control type="textbox">
+          <label>$VAR[PlotVar]</label>
+          <posy>252</posy>
+          <posx>152</posx>
+          <width>970</width>
+          <height>270</height>
+          <font>font14_textbox2_landscape</font>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(homemovies)</visible>
         </control>
         <control type="image">
           <posx>137</posx>
@@ -722,7 +771,7 @@
         <control type="grouplist">
           <posx>137</posx>
           <posy>162</posy>
-          <visible>Container.Content(movies) | Container.Content(episodes)</visible>
+          <visible>Container.PlexContent(movies) | Container.PlexContent(episodes)</visible>
           <control type="button">
             <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
@@ -824,7 +873,7 @@
               <width>250</width>
               <height>92</height>
               <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.Content(movies)</visible>
+              <visible>Container.PlexContent(movies)</visible>
             </control>
             <control type="button">
               <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
@@ -832,14 +881,48 @@
               <width>250</width>
               <height>92</height>
               <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.Content(episodes)</visible>
+              <visible>Container.PlexContent(episodes)</visible>
             </control>
           </control>
         </control>
+
         <control type="grouplist">
           <posx>137</posx>
           <posy>162</posy>
-          <visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
+          <visible>Container.PlexContent(homemovies)</visible>
+          <control type="button">
+            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$INFO[ListItem.Year]</label>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+          </control>
+          <control type="button">
+            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</label>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+          </control>
+          <control type="group">
+            <!-- User Rating -->
+            <control type="button">
+              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[CR]$VAR[RatingVar][/COLOR]</label>
+              <width>251</width>
+              <height>92</height>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+            </control>
+            <!-- Standard Rating -->
+            <control type="button">
+              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</label>
+              <width>251</width>
+              <height>92</height>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+          </control>
+        </control>
+
+        
+        <control type="grouplist">
+          <posx>137</posx>
+          <posy>162</posy>
+          <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons)</visible>
           <control type="button">
             <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
@@ -851,7 +934,7 @@
           <control type="button">
             <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.episode]$INFO[ListItem.Property(UnWatchedEpisodes), (,[LOWERCASE] $LOCALIZE[16101][/LOWERCASE])]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>Container.Content(tvshows)</visible>
+            <visible>Container.PlexContent(tvshows)</visible>
           </control>
           <control type="group">
             <!-- No Rating -->
@@ -928,12 +1011,12 @@
           <texture border="1">separator2.png</texture>
         </control>
         <control type="image">
-          <posx>1142</posx>
+          <posx>1542</posx>
           <posy>162</posy>
-          <width>640</width>
+          <width>240</width>
           <height>360</height>
           <fadetime>200</fadetime>
-          <aspectratio align="right">keep</aspectratio>
+          <aspectratio align="center" aligny="top">scale</aspectratio>
           <texture>$INFO[ListItem.Art(thumb)]</texture>
           <bordertexture border="1,1,2,1">empty.png</bordertexture>
           <bordersize>1,1,2,1</bordersize>
@@ -961,7 +1044,7 @@
     <onup>SetProperty(MediaMenu,True,home)</onup>
     <onup>SetFocus(9050,0)</onup>
     <ondown>noop</ondown>
-    <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(musicvideos) | Container.Content(seasons)</visible>
+    <visible>Container.PlexContent(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)] | Container.Content(tvshows) | Container.Content(musicvideos) | Container.Content(seasons)</visible>
     <viewtype label="31077">bigwrap</viewtype>
     <pagecontrol>61</pagecontrol>
     <scrolltime tween="quadratic">300</scrolltime>
@@ -1599,54 +1682,71 @@
     </control>
   </include>
   <variable name="ShowcaseItem-7Var">
+    <value condition="ListItem(-7).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(-7).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem-6Var">
+    <value condition="ListItem(-6).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(-6).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem-5Var">
+    <value condition="ListItem(-5).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(-5).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem-4Var">
+    <value condition="ListItem(-4).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(-4).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem-3Var">
+    <value condition="ListItem(-3).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(-3).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem-2Var">
+    <value condition="ListItem(-2).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(-2).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem-1Var">
+    <value condition="ListItem(-1).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(-1).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem0Var">
+    <value condition="ListItem.Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem.Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem1Var">
+    <value condition="ListItem(1).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(1).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem2Var">
+    <value condition="ListItem(2).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(2).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem3Var">
+    <value condition="ListItem(3).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(3).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem4Var">
+    <value condition="ListItem(4).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(4).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem5Var">
+    <value condition="ListItem(5).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(5).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem6Var">
+    <value condition="ListItem(6).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(6).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem7Var">
+    <value condition="ListItem(7).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(7).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem8Var">
+    <value condition="ListItem(8).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(8).Art(thumb)]</value>
   </variable>
   <variable name="ShowcaseItem9Var">
+    <value condition="ListItem(9).Type(directory)">defaultfolder.png</value>
     <value>$INFO[ListItem(9).Art(thumb)]</value>
   </variable>
   <variable name="IconOverlay-1Var">
