@@ -413,20 +413,53 @@
             <include>InfoWall_WatchedStatusFO</include>
           </control>
         </focusedlayout>
-        <itemlayout height="300" width="200" condition="Skin.HasSetting(InfoWall.Alternate)">
+        <!-- TV Flat -->
+        <itemlayout height="300" width="200" condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Skin.HasSetting(InfoWall.Alternate)">
+          <!-- Thumbnail -->
+          <control type="image">
+						<width>200</width>
+						<height>300</height>
+						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+						<texture fallback="defaulttvshows.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+						<colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+					</control>
+          <!-- Watched Status -->
+          <include>InfoWall_WatchedStatusNF</include>
+        </itemlayout>
+        <focusedlayout heigth="300" width="200" condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Skin.HasSetting(InfoWall.Alternate)">
+          <control type="group">
+            <animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="100,150" />
+							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
+						</animation>
+            <!-- Thumbnail -->
+            <control type="image">
+							<width>200</width>
+							<height>300</height>
+							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+							<texture fallback="defaulttvshows.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>6</bordersize>
+						</control>
+            <!-- Watched Status -->
+            <include>InfoWall_WatchedStatusFO</include>
+          </control>
+        </focusedlayout>
+        <!-- Movies Flat -->
+        <itemlayout height="300" width="200" condition="Container.PlexContent(movies) + Skin.HasSetting(InfoWall.Alternate)">
 					<control type="image">
 						<width>200</width>
 						<height>300</height>
 						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
 						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-						<colordiffuse>BAffffff</colordiffuse>
+						<colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
 					</control>
 					<include>InfoWall_WatchedStatusNF</include>
 				</itemlayout>
-				<focusedlayout height="300" width="200" condition="Skin.HasSetting(InfoWall.Alternate)">
+				<focusedlayout height="300" width="200" condition="Container.PlexContent(movies) + Skin.HasSetting(InfoWall.Alternate)">
 					<control type="group">
 						<animation type="Focus" reversible="false">
-							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="auto" />
+							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="100,150" />
 							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
 						</animation>
 						<control type="image">
