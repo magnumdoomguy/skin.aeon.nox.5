@@ -11,7 +11,7 @@
         <posy>-10</posy>
         <camera x="960" y="200"/>
         <control type="group" id="6011">
-          <visible>Container.OnNext</visible>
+          <visible>Container.OnNext + !Skin.HasSetting(Landscape.Flat)</visible>
           <animation effect="slide" end="-300,0" time="200" reversible="false">Hidden</animation>
           <control type="group">
             <posx>75</posx>
@@ -62,7 +62,7 @@
           </control>
         </control>
         <control type="group" id="6012">
-          <visible>Container.OnPrevious</visible>
+          <visible>Container.OnPrevious + !Skin.HasSetting(Landscape.Flat)</visible>
           <animation effect="slide" end="300,0" time="200" reversible="false">Hidden</animation>
           <control type="group">
             <posx>1142</posx>
@@ -113,7 +113,7 @@
           </control>
         </control>
         <control type="group" id="6010">
-          <visible>!Control.IsVisible(6011) + !Control.IsVisible(6012)</visible>
+          <visible>!Control.IsVisible(6011) + !Control.IsVisible(6012) + !Skin.HasSetting(Landscape.Flat)</visible>
           <control type="group">
             <posx>75</posx>
             <visible>!IsEmpty(Container(52).ListItemNoWrap(-2).FolderPath) | !Skin.HasSetting(HorizontalListNav) | system.getbool(input.enablemouse)</visible>
@@ -209,8 +209,33 @@
     <viewtype label="31076">bigwrap</viewtype>
     <scrolltime tween="sine" easing="inout">500</scrolltime>
     <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(artists)</visible>
-    <itemlayout width="642" height="680"></itemlayout>
-    <focusedlayout width="636" height="680"></focusedlayout>
+    <itemlayout height="642" width="680" condition="![Skin.HasSetting(Landscape.Flat) + !Control.IsVisible(6010)]" />
+		<focusedlayout height="636" width="680" condition="![Skin.HasSetting(Landscape.Flat) + !Control.IsVisible(6010)]" />
+		<itemlayout height="642" width="710" condition="Skin.HasSetting(Landscape.Flat)">
+			<control type="group">
+				<animation effect="fade" time="0" delay="800">Visible</animation>
+				<posx>-100</posx>
+				<posy>-20</posy>
+				<include>LandscapeItem0</include>
+				<control type="image">
+					<include>WatchedOverlayLandscape</include>
+					<texture>$VAR[OverlayVar]</texture>
+				</control>
+			</control>
+		</itemlayout>
+		<focusedlayout height="642" width="710" condition="Skin.HasSetting(Landscape.Flat)">
+			<control type="group">
+				<animation effect="fade" time="0" delay="800">Visible</animation>
+				<animation effect="zoom" start="100" end="112" center="250,0" time="300" reversible="false" tween="cubic">Focus</animation>
+				<posx>-100</posx>
+				<posy>-20</posy>
+				<include>LandscapeItem0</include>
+				<control type="image">
+					<include>WatchedOverlayLandscape</include>
+					<texture>$VAR[OverlayVar]</texture>
+				</control>
+			</control>
+		</focusedlayout>
   </include>
   <include name="LandscapeThumbCommonValues">
     <posx>0</posx>
