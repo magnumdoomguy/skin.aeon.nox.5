@@ -534,17 +534,17 @@
           </control>
         </focusedlayout>
         <!-- Movies Flat -->
-        <itemlayout height="300" width="200" condition="[Container.PlexContent(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + Skin.HasSetting(InfoWall.Alternate)">
+        <itemlayout height="300" width="200" condition="Container.PlexContent(movies) + Skin.HasSetting(InfoWall.Alternate)">
 					<control type="image">
 						<width>200</width>
 						<height>300</height>
 						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-						<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+						<texture fallback="defaultmovies.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
 						<colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
 					</control>
 					<include>InfoWall_WatchedStatusNF</include>
 				</itemlayout>
-				<focusedlayout height="300" width="200" condition="[Container.PlexContent(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + Skin.HasSetting(InfoWall.Alternate)">
+				<focusedlayout height="300" width="200" condition="Container.PlexContent(movies) + Skin.HasSetting(InfoWall.Alternate)">
 					<control type="group">
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="100,150" />
@@ -554,10 +554,91 @@
 							<width>200</width>
 							<height>300</height>
 							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
-							<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+							<texture fallback="defaultmovies.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
 							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>6</bordersize>
 						</control>
+						<include>InfoWall_WatchedStatusFO</include>
+					</control>
+				</focusedlayout>
+        <!-- Home Videos Flat -->
+        <itemlayout height="300" width="200" condition="Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Skin.HasSetting(InfoWall.Alternate)">
+          <!-- Poster -->
+          <control type="image">
+						<width>200</width>
+						<height>300</height>
+						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+						<texture fallback="defaultmovies.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+						<colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>!ListItem.Type(directory)</visible>
+					</control>
+          <!-- Folder Image -->
+          <control type="image">
+						<width>200</width>
+						<height>300</height>
+						<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+						<texture background="true">defaultfolder.png</texture>
+						<colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>ListItem.Type(directory)</visible>
+					</control>
+          <!-- Folder Label -->
+          <control type="label">
+            <posx>100</posx>
+            <posy>220</posy>
+            <width>160</width>
+            <height>60</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font12_title</font>
+            <textcolor>lightgrey</textcolor>
+            <shadowcolor>black</shadowcolor>
+            <wrapmultiline>true</wrapmultiline>
+            <label>$VAR[Widgets_Title]</label>
+            <visible>ListItem.Type(directory)</visible>
+          </control>
+					<include>InfoWall_WatchedStatusNF</include>
+				</itemlayout>
+				<focusedlayout height="300" width="200" condition="Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + Skin.HasSetting(InfoWall.Alternate)">
+					<control type="group">
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="100,150" />
+							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
+						</animation>
+            <!-- Poster -->
+						<control type="image">
+							<width>200</width>
+							<height>300</height>
+							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+							<texture fallback="defaultmovies.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>6</bordersize>
+              <visible>!ListItem.Type(directory)</visible>
+						</control>
+            <!-- Folder Image -->
+            <control type="image">
+							<width>200</width>
+							<height>300</height>
+							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+							<texture background="true">defaultfolder.png</texture>
+							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>6</bordersize>
+              <visible>ListItem.Type(directory)</visible>
+						</control>
+            <!-- Folder Label -->
+            <control type="label">
+              <posx>100</posx>
+              <posy>220</posy>
+              <width>160</width>
+              <height>60</height>
+              <align>center</align>
+              <aligny>center</aligny>
+              <font>font12_title</font>
+              <textcolor>$VAR[Colour_InfoWallHighlightColourVar]</textcolor>
+              <shadowcolor>black</shadowcolor>
+              <wrapmultiline>true</wrapmultiline>
+              <label>$VAR[Widgets_Title]</label>
+              <visible>ListItem.Type(directory)</visible>
+            </control>
 						<include>InfoWall_WatchedStatusFO</include>
 					</control>
 				</focusedlayout>
