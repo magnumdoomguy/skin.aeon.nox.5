@@ -329,6 +329,7 @@
         <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
         <pagecontrol>61</pagecontrol>
         <include>ShowCaseInfoPanelButtonsValues</include>
+        <visible>!ListItem.Type(directory)</visible>
       </control>
       <control type="panel" id="51">
         <posx>120</posx>
@@ -344,7 +345,7 @@
         <preloaditems>2</preloaditems>
         <viewtype label="InfoWall">icons</viewtype>
         <scrolltime tween="quadratic" easing="out">300</scrolltime>
-        <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(movies) | Container.PlexContent(homemovies)</visible>
+        <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]</visible>
         <!-- Movies -->
         <itemlayout height="300" width="200" condition="Container.PlexContent(movies) + !Skin.HasSetting(InfoWall.Alternate)">
           <!-- Thumbnail -->
@@ -374,6 +375,63 @@
 							<texture fallback="defaultmovies.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
 							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
 							<bordersize>6</bordersize>
+						</control>
+            <!-- Watched Status -->
+            <include>InfoWall_WatchedStatusFO</include>
+          </control>
+        </focusedlayout>
+        <!-- Home Videos -->
+        <itemlayout height="300" width="200" condition="Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + !Skin.HasSetting(InfoWall.Alternate)">
+          <!-- Thumbnail -->
+          <control type="image">
+            <width>200</width>
+            <height>300</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture fallback="defaultmovies.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>!ListItem.Type(directory)</visible>
+          </control>
+          <!-- Folder Image -->
+          <control type="image">
+            <width>200</width>
+            <height>300</height>
+            <aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+            <texture background="true">defaultfolder.png</texture>
+            <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+            <bordersize>2</bordersize>
+            <colordiffuse>$VAR[Fade_UnfocusedItem]</colordiffuse>
+            <visible>ListItem.Type(directory)</visible>
+          </control>
+          <!-- Watched Status -->
+          <include>InfoWall_WatchedStatusNF</include>
+        </itemlayout>
+        <focusedlayout heigth="300" width="200" condition="Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos) + !Skin.HasSetting(InfoWall.Alternate)">
+          <control type="group">
+            <animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="100,150" />
+							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
+						</animation>
+            <!-- Thumbnail -->
+            <control type="image">
+							<width>200</width>
+							<height>300</height>
+							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+							<texture fallback="defaultmovies.png" background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>6</bordersize>
+              <visible>!ListItem.Type(directory)</visible>
+						</control>
+            <!-- Folder Image -->
+            <control type="image">
+							<width>200</width>
+							<height>300</height>
+							<aspectratio aligny="top" scalediffuse="false">scale</aspectratio>
+							<texture background="true">defaultfolder.png</texture>
+							<bordertexture colordiffuse="$VAR[Colour_InfoWallHighlightColourVar]" border="8">thumbs/thumbnail_focused.png</bordertexture>
+							<bordersize>6</bordersize>
+              <visible>ListItem.Type(directory)</visible>
 						</control>
             <!-- Watched Status -->
             <include>InfoWall_WatchedStatusFO</include>
@@ -446,7 +504,7 @@
           </control>
         </focusedlayout>
         <!-- Movies Flat -->
-        <itemlayout height="300" width="200" condition="Container.PlexContent(movies) + Skin.HasSetting(InfoWall.Alternate)">
+        <itemlayout height="300" width="200" condition="[Container.PlexContent(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + Skin.HasSetting(InfoWall.Alternate)">
 					<control type="image">
 						<width>200</width>
 						<height>300</height>
@@ -456,7 +514,7 @@
 					</control>
 					<include>InfoWall_WatchedStatusNF</include>
 				</itemlayout>
-				<focusedlayout height="300" width="200" condition="Container.PlexContent(movies) + Skin.HasSetting(InfoWall.Alternate)">
+				<focusedlayout height="300" width="200" condition="[Container.PlexContent(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + Skin.HasSetting(InfoWall.Alternate)">
 					<control type="group">
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="100" end="112" time="300" tween="sine" easing="inout" center="100,150" />
