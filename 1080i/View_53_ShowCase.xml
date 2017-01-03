@@ -535,6 +535,26 @@
             <include>ShowCaseInfoPanelButtonsValues</include>
           </control>
           <control type="group">
+            <control type="image">
+              <posx>251</posx>
+              <width>2</width>
+              <height>90</height>
+              <texture border="1">separator3.png</texture>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$INFO[ListItem.Year]</label>
+              <posx>251</posx>
+              <width>250</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>Container.PlexContent(movies)</visible>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
+              <posx>251</posx>
+              <width>250</width>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>Container.PlexContent(episodes)</visible>
+            </control>
             <!-- User Rating -->
             <control type="button">
               <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[42421]:[CR]$VAR[RatingVar][/COLOR]</label>
@@ -636,27 +656,7 @@
               <height>60</height>
               <texture border="1">separator2.png</texture>
               <visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
-            </control>
-            <control type="image">
-              <posx>251</posx>
-              <width>2</width>
-              <height>90</height>
-              <texture border="1">separator3.png</texture>
-            </control>
-            <control type="button">
-              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$INFO[ListItem.Year]</label>
-              <posx>251</posx>
-              <width>250</width>
-              <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.PlexContent(movies)</visible>
-            </control>
-            <control type="button">
-              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
-              <posx>251</posx>
-              <width>250</width>
-              <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.PlexContent(episodes)</visible>
-            </control>
+            </control>            
           </control>
         </control>
         <control type="grouplist">
@@ -765,6 +765,7 @@
           <bordersize>1,1,2,1</bordersize>
         </control>
       </control>
+      <!-- Icon Infopanel -->
       <control type="group">
         <visible>String.IsEqual(Control.GetLabel(4420),2)</visible>
         <include>SettingsFadeEffect</include>
@@ -773,11 +774,11 @@
           <posy>162</posy>
           <visible>Container.PlexContent(movies) | Container.PlexContent(episodes)</visible>
           <control type="button">
-            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</label>
+            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$VAR[Director]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
           </control>
           <control type="button">
-            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[31001]:[/COLOR][CR]$INFO[ListItem.Writer]</label>
+            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[31001]:[/COLOR][CR]$VAR[Writer]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
           </control>
           <control type="button">
@@ -785,27 +786,87 @@
             <include>ShowCaseInfoPanelButtonsValues</include>
           </control>
           <control type="group">
+            <!-- Separator -->
+            <control type="image">
+              <posx>251</posx>
+              <width>2</width>
+              <height>90</height>
+              <texture border="1">separator3.png</texture>
+              <visible>!IsEmpty(ListItem.Property(hasUserRating)) | !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$INFO[ListItem.Year]</label>
+              <posx>0</posx>
+              <width>500</width>
+              <height>92</height>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>Container.PlexContent(movies)</visible>
+            </control>
+            <control type="button">
+              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
+              <posx>0</posx>
+              <width>500</width>
+              <height>92</height>
+              <include>ShowCaseInfoPanelButtonsValues</include>
+              <visible>Container.PlexContent(episodes)</visible>
+            </control>
             <!-- User Rating -->
             <control type="button">
-              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[CR]$VAR[RatingVar][/COLOR]</label>
+              <posx>251</posx>
+              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[42421]:[CR]$VAR[RatingVar][/COLOR]</label>
               <width>251</width>
-              <height>92</height>
+              <texturefocus border="0">empty.png</texturefocus>
+              <texturenofocus border="0">empty.png</texturenofocus>
               <include>ShowCaseInfoPanelButtonsValues</include>
               <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
             </control>
             <!-- Standard Rating -->
             <control type="button">
+              <posx>251</posx>
               <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</label>
               <width>251</width>
-              <height>92</height>
+              <texturefocus border="0">empty.png</texturefocus>
+              <texturenofocus border="0">empty.png</texturenofocus>
               <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+            </control>
+            <!-- IMDb Rating -->
+            <control type="grouplist">
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb)</visible>
+              <orientation>vertical</orientation>
+              <posx>266</posx>
+              <control type="label">
+                <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR]</label>
+                <width>251</width>
+                <height>45</height>
+                <aligny>top</aligny>
+                <font>font14</font>
+                <textcolor>grey2</textcolor>
+              </control>
+              <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <control type="image">
+                  <width>51</width>
+                  <height>40</height>
+                  <aligny>center</aligny>
+                  <texture>imdb_51x40.png</texture>
+                  <aspectratio align="left" aligny="center">keep</aspectratio>
+                </control>
+                <control type="label">
+                  <height>40</height>
+                  <width min="20" max="121">auto</width>
+                  <aligny>center</aligny>
+                  <font>font14</font>
+                  <textcolor>grey2</textcolor>
+                  <label> $INFO[ListItem.Property(rating)]</label>
+                </control>
+              </control>
             </control>
             <!-- Rotten Tomatoes Rating -->
             <control type="grouplist">
-              <visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
               <orientation>vertical</orientation>
-              <posx>15</posx>
+              <posx>266</posx>
               <control type="label">
                 <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR]</label>
                 <width>251</width>
@@ -821,9 +882,8 @@
                   <height>40</height>
                   <align>left</align>
                   <aligny>center</aligny>
-                  <texture>$INFO[ListItem.Property(ratingImage)]</texture>
+                  <texture>rottentomatoes/32x32/$INFO[ListItem.Property(ratingImage)]</texture>
                   <aspectratio align="left" aligny="center">keep</aspectratio>
-                  <visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
                 </control>
                 <control type="label">
                   <height>40</height>
@@ -831,16 +891,14 @@
                   <aligny>center</aligny>
                   <font>font14</font>
                   <textcolor>grey2</textcolor>
-                  <label>$INFO[ListItem.Property(ratingPercent)]%</label>
-                  <visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+                  <label> $INFO[ListItem.Property(ratingPercent)]% </label>
                 </control>
                 <control type="image">
                   <width>32</width>
                   <height>40</height>
                   <aligny>center</aligny>
-                  <texture>$INFO[ListItem.Property(audienceRatingImage)]</texture>
+                  <texture>rottentomatoes/32x32/$INFO[ListItem.Property(audienceRatingImage)]</texture>
                   <aspectratio align="left" aligny="center">keep</aspectratio>
-                  <visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
                 </control>
                 <control type="label">
                   <height>40</height>
@@ -848,44 +906,12 @@
                   <aligny>center</aligny>
                   <font>font14</font>
                   <textcolor>grey2</textcolor>
-                  <label>$INFO[ListItem.Property(audienceRatingPercent)]%</label>
-                  <visible>!IsEmpty(ListItem.Property(ratingImage)) + IsEmpty(ListItem.Property(hasUserRating))</visible>
+                  <label> $INFO[ListItem.Property(audienceRatingPercent)]%</label>
                 </control>
               </control>
-            </control>
-            <control type="image">
-              <posx>0</posx>
-              <posy>32</posy>
-              <width>251</width>
-              <height>60</height>
-              <texture border="1">separator2.png</texture>
-              <visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
-            </control>
-            <control type="image">
-              <posx>251</posx>
-              <width>2</width>
-              <height>90</height>
-              <texture border="1">separator3.png</texture>
-            </control>
-            <control type="button">
-              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$INFO[ListItem.Year]</label>
-              <posx>251</posx>
-              <width>250</width>
-              <height>92</height>
-              <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.PlexContent(movies)</visible>
-            </control>
-            <control type="button">
-              <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
-              <posx>251</posx>
-              <width>250</width>
-              <height>92</height>
-              <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.PlexContent(episodes)</visible>
-            </control>
+            </control>            
           </control>
         </control>
-
         <control type="grouplist">
           <posx>137</posx>
           <posy>162</posy>
@@ -916,9 +942,7 @@
               <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingImage)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
             </control>
           </control>
-        </control>
-
-        
+        </control>        
         <control type="grouplist">
           <posx>137</posx>
           <posy>162</posy>
