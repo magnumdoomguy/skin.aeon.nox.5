@@ -534,13 +534,14 @@
               <visible>Window.IsActive(videos)</visible>
               <visible>Container.Content(tvshows) + !Skin.HasSetting(Disable.BannerPlexView)</visible>
             </item>
+            <!-- Landscape -->
             <item>
               <label>$LOCALIZE[31076]</label>
               <onclick>Container.SetViewMode(52)</onclick>
               <onclick>ClearProperty(ViewTypeMenu,Home)</onclick>
               <onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
               <onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
-              <visible>[[Container.Content(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | Container.Content(tvshows) | Container.Content(episodes)] + !Skin.HasSetting(Disable.LandscapeView)</visible>
+              <visible>[Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(tvshows) | Container.PlexContent(episodes) | Container.PlexContent(artists)] + !Skin.HasSetting(Disable.LandscapeView)</visible>
             </item>
             <item>
               <label>$LOCALIZE[42377]</label>
@@ -1122,7 +1123,7 @@
           <onclick>Skin.ToggleSetting(Landscape.Flat)</onclick>
           <visible>Control.IsVisible(52)</visible>
         </control>
-        <!-- Toggle Infopanel 52 -->
+        <!-- Landscape Infopanel -->
         <control type="button" id="204">
           <description>Show Info Toggle</description>
           <textwidth>255</textwidth>

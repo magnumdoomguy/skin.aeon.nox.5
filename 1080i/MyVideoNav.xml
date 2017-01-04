@@ -152,7 +152,7 @@
             <label>[B]$VAR[FloorLabelVar][/B]</label>
             <textoffsety>-2</textoffsety>
             <textoffsetx>0</textoffsetx>
-            <visible>!Container.Content(episodes)</visible>
+            <visible>!Container.PlexContent(episodes)</visible>
           </control>
           <!-- Display Episode Title -->
           <control type="label">
@@ -165,7 +165,7 @@
             <label>[B]$INFO[ListItem.Episode]. $VAR[FloorLabelVar][/B]</label>
             <textoffsety>-2</textoffsety>
             <textoffsetx>0</textoffsetx>
-            <visible>Container.Content(episodes)</visible>
+            <visible>Container.PlexContent(episodes)</visible>
           </control>
         </control>
         <!-- Sub Label -->
@@ -202,7 +202,7 @@
           <posy>1020</posy>
           <width>1920</width>
           <align>center</align>
-          <visible>[Control.IsVisible(52) + Container.Content(movies) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(52) + Container.Content(tvshows) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(52) + Container.Content(episodes) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(53) + Container.Content(movies)] | [Control.IsVisible(53) + Container.PlexContent(homemovies)] | [Control.IsVisible(53) + Container.Content(tvshows)] | [Control.IsVisible(53) + Container.Content(seasons)] | [Control.IsVisible(59) + Container.Content(movies)] | [Control.IsVisible(59) + Container.Content(tvshows)] | [Control.IsVisible(503) + Container.Content(movies)] | [Control.IsVisible(503) + Container.Content(tvshows)] | [Control.IsVisible(503) + Container.Content(seasons)]</visible>
+          <visible>[Control.IsVisible(52) + Container.PlexContent(movies) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(52) + Container.PlexContent(homemovies) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(52) + Container.PlexContent(tvshows) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(52) + Container.PlexContent(episodes) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(53) + Container.PlexContent(movies)] | [Control.IsVisible(53) + Container.PlexContent(homemovies)] | [Control.IsVisible(53) + Container.PlexContent(tvshows)] | [Control.IsVisible(53) + Container.PlexContent(seasons)] | [Control.IsVisible(59) + Container.PlexContent(movies)] | [Control.IsVisible(59) + Container.PlexContent(tvshows)] | [Control.IsVisible(503) + Container.PlexContent(movies)] | [Control.IsVisible(503) + Container.PlexContent(tvshows)] | [Control.IsVisible(503) + Container.PlexContent(seasons)]</visible>
           <!-- Display Studio -->
           <control type="group">
             <posx>65</posx>
@@ -236,7 +236,7 @@
           <control type="grouplist">
             <posx>45</posx>
             <orientation>horizontal</orientation>
-            <visible>[Control.IsVisible(52) + Container.Content(movies) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(52) + Container.Content(episodes) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(53) + Container.Content(movies)] | [Control.IsVisible(53) + Container.PlexContent(homemovies)] | [Control.IsVisible(59) + Container.Content(movies)] | [Control.IsVisible(503) + Container.Content(movies)]</visible>
+            <visible>[Control.IsVisible(52) + Container.PlexContent(movies) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(52) + Container.PlexContent(episodes) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] | [Control.IsVisible(53) + Container.PlexContent(movies)] | [Control.IsVisible(53) + Container.PlexContent(homemovies)] | [Control.IsVisible(59) + Container.PlexContent(movies)] | [Control.IsVisible(503) + Container.PlexContent(movies)]</visible>
             <control type="label">
               <width>158</width>
               <include>HiddenObject</include>
@@ -258,6 +258,43 @@
             <!-- Spacer -->
             <control type="label">
               <width>880</width>
+              <include>HiddenObject</include>
+            </control>
+            <!-- Audio Codec Flag -->
+            <control type="image">
+              <width>158</width>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/colour/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
+            </control>
+            <!-- Audio Channel Flag -->
+            <control type="image">
+              <width>158</width>
+              <include>MediaFlagVars</include>
+              <texture fallback="flags/colour/135x90/channels/0.png">$VAR[AudioChannelsFlag_135x90]</texture>
+            </control>
+          </control>
+          <!-- Home Videos -->
+          <control type="grouplist">
+            <posx>45</posx>
+            <orientation>horizontal</orientation>
+            <visible>[Control.IsVisible(52) + Container.PlexContent(homemovies) + !Skin.HasSetting(Landscape.MediaFlagsDisable)] + !ListItem.Type(directory)</visible>
+            <!-- Resolution Flag -->
+            <control type="image">
+              <width>158</width>
+              <bordersize>2</bordersize>
+              <texture fallback="flags/colour/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
+              <include>MediaFlagVars</include>
+            </control>
+            <!-- Video Codec Flag -->
+            <control type="image">
+              <width>158</width>
+              <bordersize>2</bordersize>
+              <texture fallback="flags/colour/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
+              <include>MediaFlagVars</include>
+            </control>
+            <!-- Spacer -->
+            <control type="label">
+              <width>1196</width>
               <include>HiddenObject</include>
             </control>
             <!-- Audio Codec Flag -->
