@@ -108,7 +108,7 @@
       </control>
       <!-- Icon Menu -->
       <control type="panel" id="9050">
-        <animation effect="slide" end="0,15" condition="[Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | $EXP[NewFilters] | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">Conditional</animation>
+        <animation effect="slide" end="0,15" condition="[Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.Content(episodes) + IsEmpty(Container.Property(PlexFilter))] | Container.PlexContent(secondary) | [Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.PlexContent(photoalbums)]">Conditional</animation>
         <animation effect="slide" end="0,-17" condition="Container.PlexContent(homemovies)">Conditional</animation>
         <visible>!Window.IsActive(10202)</visible>
         <!-- Filter Dialog Window -->
@@ -212,7 +212,7 @@
             <onclick>SetProperty(OptionsMenu,True,home)</onclick>
             <onclick>Control.SetFocus(202)</onclick>
             <label>&#xF00F;</label>
-            <visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + [![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(albums) | Container.Content(songs) | Container.Content(photoalbums) | Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | $EXP[NewFilters]]]</visible>
+            <visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | Container.Content(albums) | Container.Content(songs) | Container.Content(photoalbums) | Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | $EXP[NewFilters]]</visible>
           </item>
         </content>
       </control>
