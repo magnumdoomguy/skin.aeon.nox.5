@@ -19,12 +19,16 @@
     <!-- String: Episodes -->
   </variable>
   <variable name="FloorLabelVar">
-    <value condition="Container.Content(episodes) + String.Contains(Container.FolderPath,/recentlyaddedepisodes)">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode,,. ]$INFO[ListItem.Title]</value>
+    <value condition="Container.PlexContent(episodes) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">$INFO[ListItem.TvShowTitle]</value>
+    <value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(mixedParents))">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(mixedParents))">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="Container.ListItem.Type(episode)">$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
     <value>$INFO[ListItem.Label]</value>
   </variable>
   <variable name="FloorSubLabelVar">
-    <value condition="Container.Content(episodes) + isEmpty(Container.Property(primaryFilterActivated))">$INFO[Container.FirstTitle]</value>
-    <value condition="Container.Content(episodes) + !isEmpty(Container.Property(primaryFilterActivated))">$INFO[ListItem.TvShowTitle]</value>
+    <value condition="Container.ListItem.Type(episode) + !IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="Container.ListItem.Type(episode) + IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] | Container.Content(episodes)">$INFO[ListItem.Date]</value>
     <value condition="Container.Content(addons)">$INFO[ListItem.Property(Addon.Summary)]</value>
     <value condition="Container.Content(musicvideos)">$INFO[ListItem.Artist]</value>
     <value condition="Container.Content(movies) + !IsEmpty(ListItem.Title) + !Skin.HasSetting(Enable.HourMinuteDuration)">$INFO[ListItem.Year,, • ]$INFO[ListItem.RatingAndVotes,, • ]$INFO[ListItem.Duration,, $LOCALIZE[12391]]$INFO[ListItem.Endtime, • $LOCALIZE[19127]: ,]</value>
