@@ -14,6 +14,236 @@
     <value condition="Control.IsVisible(7010) + Control.HasFocus(9010)">$INFO[Container(9010).ListItem.Art(fanart)]</value>
     <value>special://skin/backgrounds/search.jpg</value>
   </variable>
+  <include name="NewInfoPanel">
+		<control type="group" id="13000">
+			<control type="image">
+				<description>background image</description>
+				<include>FullscreenDimensions</include>
+				<texture colordiffuse="80FFFFFF">black.png</texture>
+				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory) + [Control.IsVisible(53) + Skin.HasSetting(ShowCase.Flat)]</visible>
+				<animation effect="fade" time="320">Visible</animation>
+				<animation effect="fade" time="720">Hidden</animation>
+			</control>
+			<control type="group">
+				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory) + [Control.IsVisible(53) + Skin.HasSetting(ShowCase.Flat)]</visible>
+				<animation effect="slide" start="0,-1080" end="0,0" time="840" tween="cubic">Visible</animation>
+				<animation effect="slide" start="0,0" end="0,-1080" time="720" tween="cubic">Hidden</animation>
+				<animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
+				<animation effect="slide" end="0,-1200" start="0,0" time="720" tween="cubic">WindowClose</animation>
+				<control type="group">
+					<visible>String.IsEqual(Control.GetLabel(4420),1)</visible>
+					<include>SettingsFadeAnimation</include>
+					<control type="grouplist">
+						<posx>5</posx>
+						<posy>50</posy>
+						<control type="button">
+							<label>$VAR[InfoPanelLabel1Var]</label>
+							<include>FlatInfoPanelButtonsValues</include>
+						</control>
+						<control type="button">
+							<label>$VAR[InfoPanelLabel2Var]</label>
+							<include>FlatInfoPanelButtonsValues</include>
+						</control>
+						<control type="group">
+							<control type="button">
+								<label>$VAR[InfoPanelLabel3Var]</label>
+								<width>auto</width>
+								<include>FlatInfoPanelButtonsValues</include>
+							</control>
+							<control type="button">
+								<posx>501</posx>
+								<width>251</width>
+								<label>$VAR[InfoPanelLabel4Var]</label>
+								<include>FlatInfoPanelButtonsValues</include>
+							</control>
+							<control type="button">
+								<posx>752</posx>
+								<width>250</width>
+								<label>$VAR[InfoPanelLabel5Var]</label>
+								<include>FlatInfoPanelButtonsValues</include>
+                <visible>!Container.PlexContent(movies)</visible>
+							</control>
+              <!-- User Rating -->
+              <control type="button">
+                <posx>752</posx>
+                <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[42421]:[CR]$VAR[RatingVar][/COLOR]</label>
+                <width>250</width>
+                <include>FlatInfoPanelButtonsValues</include>
+                <visible>!IsEmpty(ListItem.Property(hasUserRating)) + Container.PlexContent(movies)</visible>
+              </control>
+              <!-- Standard Rating -->
+              <control type="button">
+                <posx>752</posx>
+                <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</label>
+                <width>251</width>
+                <include>FlatInfoPanelButtonsValues</include>
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes) + Container.PlexContent(movies)</visible>
+              </control>
+              <!-- IMDb Rating -->
+              <control type="grouplist">
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + Container.PlexContent(movies)</visible>
+                <orientation>vertical</orientation>
+                <posx>767</posx>
+                <control type="label">
+                  <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR]</label>
+                  <width>250</width>
+                  <height>45</height>
+                  <aligny>top</aligny>
+                  <font>font14</font>
+                  <textcolor>white2</textcolor>
+                </control>
+                <control type="grouplist">
+                  <orientation>horizontal</orientation>
+                  <control type="image">
+                    <width>51</width>
+                    <height>40</height>
+                    <aligny>center</aligny>
+                    <texture>imdb_51x40.png</texture>
+                    <aspectratio align="left" aligny="center">keep</aspectratio>
+                  </control>
+                  <control type="label">
+                    <height>40</height>
+                    <width min="20" max="121">auto</width>
+                    <aligny>center</aligny>
+                    <font>font14</font>
+                    <textcolor>white2</textcolor>
+                    <label> $INFO[ListItem.Property(rating)]</label>
+                  </control>
+                </control>
+              </control>
+              <!-- Rotten Tomatoes Rating -->
+              <control type="grouplist">
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + Container.PlexContent(movies)</visible>
+                <orientation>vertical</orientation>
+                <posx>767</posx>
+                <control type="label">
+                  <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR]</label>
+                  <width>250</width>
+                  <height>45</height>
+                  <aligny>top</aligny>
+                  <font>font14</font>
+                  <textcolor>white2</textcolor>
+                </control>
+                <control type="grouplist">
+                  <orientation>horizontal</orientation>
+                  <control type="image">
+                    <width>32</width>
+                    <height>40</height>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <texture>rottentomatoes/32x32/$INFO[ListItem.Property(ratingImage)]</texture>
+                    <aspectratio align="left" aligny="center">keep</aspectratio>
+                  </control>
+                  <control type="label">
+                    <height>40</height>
+                    <width min="20" max="121">auto</width>
+                    <aligny>center</aligny>
+                    <font>font14</font>
+                    <textcolor>white2</textcolor>
+                    <label> $INFO[ListItem.Property(ratingPercent)]% </label>
+                  </control>
+                  <control type="image">
+                    <width>32</width>
+                    <height>40</height>
+                    <aligny>center</aligny>
+                    <texture>rottentomatoes/32x32/$INFO[ListItem.Property(audienceRatingImage)]</texture>
+                    <aspectratio align="left" aligny="center">keep</aspectratio>
+                  </control>
+                  <control type="label">
+                    <height>40</height>
+                    <width min="20" max="121">auto</width>
+                    <aligny>center</aligny>
+                    <font>font14</font>
+                    <textcolor>white2</textcolor>
+                    <label> $INFO[ListItem.Property(audienceRatingPercent)]%</label>
+                  </control>
+                </control>
+              </control>
+						</control>
+					</control>
+					<control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>337</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>130</height>
+						<font>font14_textbox2</font>
+            <align>justify</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+					</control>
+					<control type="image">
+						<posx>1132</posx>
+						<posy>70</posy>
+						<width>768</width>
+						<height>415</height>
+						<fadetime>200</fadetime>
+						<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+						<aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
+						<bordersize>20</bordersize>
+					</control>
+				</control>
+				<control type="group">
+					<visible>String.IsEqual(Control.GetLabel(4420),2)</visible>
+					<include>SettingsFadeAnimation</include>
+					<control type="grouplist">
+						<posx>5</posx>
+						<posy>50</posy>
+						<control type="button">
+							<label>$VAR[InfoPanelLabel1Var]</label>
+							<width>615</width>
+							<include>NewInfoPanelButtonsValues</include>
+						</control>
+						<control type="button">
+							<label>$VAR[InfoPanelLabel2Var]</label>
+							<width>615</width>
+							<include>NewInfoPanelButtonsValues</include>
+						</control>
+						<control type="button">
+							<label>$VAR[InfoPanelLabel3Var]</label>
+							<width>615</width>
+							<include>NewInfoPanelButtonsValues</include>
+						</control>
+						<control type="group">
+							<control type="button">
+								<width>251</width>
+								<label>$VAR[InfoPanelLabel4Var]</label>
+								<include>NewInfoPanelButtonsValues</include>
+							</control>
+							<control type="button">
+								<posx>251</posx>
+								<width>364</width>
+								<label>$VAR[InfoPanelLabel5Var]</label>
+								<include>NewInfoPanelButtonsValues</include>
+							</control>
+						</control>
+					</control>
+					<control type="textbox">
+						<label>$VAR[VideoPlotVar]</label>
+						<posy>62</posy>
+						<posx>650</posx>
+						<width>900</width>
+						<height>345</height>
+						<font>font14_textbox2</font>
+						<pagecontrol />
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>NewInfoPanelButtonsValues</include>
+					</control>
+					<control type="image">
+						<posx>1601</posx>
+						<posy>40</posy>
+						<width>278</width>
+						<height>380</height>
+						<fadetime>200</fadetime>
+						<texture background="true">$VAR[PosterThumbVar]</texture>
+						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
+						<bordersize>20</bordersize>
+					</control>
+				</control>
+			</control>
+		</control>
+	</include>
   <include name="CommonBackground">
     <control type="group">
       <!-- Window Open and Close Animations -->
@@ -82,6 +312,7 @@
         <texture flipx="true" border="1">vignette.png</texture>
       </control>
     </control>
+    <include>NewInfoPanel</include>
     <!-- Floor -->
     <control type="group">
       <include>Window_OpenClose_Animation</include>

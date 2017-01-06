@@ -498,7 +498,7 @@
   </include>
   <include name="ShowCaseInfoPanel">
     <control type="group" id="12000">
-      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory)</visible>
+      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory) + ![Control.IsVisible(53) + Skin.HasSetting(ShowCase.Flat)]</visible>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">VisibleChange</animation>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
       <animation effect="slide" end="0,-1200" start="0,0" time="720" tween="cubic">WindowClose</animation>
@@ -1169,14 +1169,6 @@
 				<posy>30</posy>
 				<animation effect="fade" time="0" delay="800">Visible</animation>
 				<control type="image">
-					<texture background="true" fallback="$VAR[CaseBackPathVar]p.png">$VAR[CaseBackPathVar]$VAR[GlobalCaseVar]</texture>
-					<include>MovieShowcaseNoCase</include>
-				</control>
-				<control type="image">
-					<texture background="true" fallback="$VAR[CaseBackPathVar]p.png">$VAR[CaseBackPathVar]$VAR[GlobalCaseVar]</texture>
-					<include>MovieShowcaseNoCaseClear</include>
-				</control>
-				<control type="image">
 					<texture background="true" fallback="DefaultVideo.png">$VAR[ShowcaseItem0Var]</texture>
 					<include>MovieShowcaseThumb</include>
 				</control>
@@ -1185,20 +1177,46 @@
 					<include>MovieShowcaseThumbReflection</include>
 				</control>
 				<control type="image">
-					<texture background="true" fallback="$VAR[CaseTypePathVar]p.png">$VAR[CaseTypePathVar]$VAR[GlobalCaseVar]</texture>
-					<include>MovieShowcaseCase</include>
-					<visible>![ListItem.IsCollection + Skin.HasSetting(Disable.ShowCaseSetCases)]</visible>
-				</control>
-				<control type="image">
-					<texture background="true">$VAR[OverlayVar]</texture>
-					<include>WatchedOverlayShowCase</include>
-				</control>
-			</control>
-			<control type="group">
-				<posx>28</posx>
-				<posy>52</posy>
-				<include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
-			</control>
+          <include>WatchedOverlayShowCase</include>
+          <texture>$VAR[IconOverlay0Var]</texture>
+          <visible>[!Skin.HasSetting(toggleshowcasecovers) | [Skin.HasSetting(toggleshowcasecovers) + !Container.Content(movies)]] + !Skin.HasSetting(Enable.Circles)</visible>
+        </control>
+        <control type="image">
+          <include>WatchedOverlayShowCase2</include>
+          <texture>$VAR[IconOverlay0Var]</texture>
+          <visible>Skin.HasSetting(toggleshowcasecovers) + Container.Content(movies) + !Skin.HasSetting(Enable.Circles)</visible>
+        </control>
+        <control type="image">
+          <posx>230</posx>
+          <posy>22</posy>
+          <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+          <width>36</width>
+          <height>36</height>
+          <aspectratio>keep</aspectratio>
+          <colordiffuse>$VAR[Colour_ShowcaseWatchedStatusColourVar]</colordiffuse>
+          <texture>$VAR[IconOverlay0Var]</texture>
+        </control>
+        <control type="image">
+          <posx>230</posx>
+          <posy>348</posy>
+          <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+          <width>36</width>
+          <height>36</height>
+          <aspectratio>keep</aspectratio>
+          <colordiffuse>$VAR[Colour_ShowcaseWatchedStatusColourVar]</colordiffuse>
+          <texture>$VAR[IconOverlay0Var]</texture>
+        </control>
+        <control type="group">
+          <posx>28</posx>
+          <posy>22</posy>
+          <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon0</include>
+        </control>
+        <control type="group">
+          <posx>28</posx>
+          <posy>348</posy>
+          <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon0</include>
+        </control>
+      </control>
 		</itemlayout>
 		<focusedlayout height="525" width="294" condition="Skin.HasSetting(ShowCase.Flat)">
 			<control type="group">
@@ -1207,43 +1225,52 @@
 				<animation effect="zoom" start="75" end="100" center="147,345" time="300" reversible="false" tween="cubic">Focus</animation>
 				<control type="group">
 					<control type="image">
-						<texture background="true" fallback="$VAR[CaseBackPathVar]p.png">$VAR[CaseBackPathVar]$VAR[GlobalCaseVar]</texture>
-						<include>MovieShowcaseCase</include>
-						<visible>![ListItem.IsCollection + Skin.HasSetting(Disable.ShowCaseSetCases)]</visible>
-					</control>
-					<control type="image">
-						<texture background="true" fallback="$VAR[CaseBackPathVar]p.png">$VAR[CaseBackPathVar]$VAR[GlobalCaseVar]</texture>
-						<include>MovieShowcaseNoCase</include>
-					</control>
-					<control type="image">
-						<texture background="true" fallback="$VAR[CaseBackPathVar]p.png">$VAR[CaseBackPathVar]$VAR[GlobalCaseVar]</texture>
-						<include>MovieShowcaseNoCaseClear</include>
-					</control>
-					<control type="image">
 						<texture background="true" fallback="DefaultVideo.png">$VAR[ShowcaseItem0Var]</texture>
 						<include>MovieShowcaseThumb</include>
 					</control>
 					<control type="image">
-						<texture background="true" fallback="$VAR[CaseTypePathVar]">$VAR[CaseTypePathVar]$VAR[GlobalCaseVar]</texture>
-						<include>MovieShowcaseCase</include>
-						<visible>![ListItem.IsCollection + Skin.HasSetting(Disable.ShowCaseSetCases)]</visible>
-					</control>
-					<control type="image">
-						<texture background="true">$VAR[OverlayVar]</texture>
-						<include>WatchedOverlayShowCase</include>
-					</control>
-					<control type="group">
-						<posx>28</posx>
-						<posy>22</posy>
-						<include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
-					</control>
+      <include>WatchedOverlayShowCase</include>
+      <texture>$VAR[IconOverlay0Var]</texture>
+      <visible>[!Skin.HasSetting(toggleshowcasecovers) | [Skin.HasSetting(toggleshowcasecovers) + !Container.Content(movies)]] + !Skin.HasSetting(Enable.Circles)</visible>
+    </control>
+    <control type="image">
+      <include>WatchedOverlayShowCase2</include>
+      <texture>$VAR[IconOverlay0Var]</texture>
+      <visible>Skin.HasSetting(toggleshowcasecovers) + Container.Content(movies) + !Skin.HasSetting(Enable.Circles)</visible>
+    </control>
+    <control type="image">
+      <posx>230</posx>
+      <posy>22</posy>
+      <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+      <width>36</width>
+      <height>36</height>
+      <aspectratio>keep</aspectratio>
+      <colordiffuse>$VAR[Colour_ShowcaseWatchedStatusColourVar]</colordiffuse>
+      <texture>$VAR[IconOverlay0Var]</texture>
+    </control>
+    <control type="image">
+      <posx>230</posx>
+      <posy>348</posy>
+      <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+      <width>36</width>
+      <height>36</height>
+      <aspectratio>keep</aspectratio>
+      <colordiffuse>$VAR[Colour_ShowcaseWatchedStatusColourVar]</colordiffuse>
+      <texture>$VAR[IconOverlay0Var]</texture>
+    </control>
+    <control type="group">
+      <posx>28</posx>
+      <posy>22</posy>
+      <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + !Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon0</include>
+    </control>
+    <control type="group">
+      <posx>28</posx>
+      <posy>348</posy>
+      <include condition="!Skin.HasSetting(Disable.UnwatchedIcon) + Skin.HasSetting(Enable.LowerCircles)">UnwatchedIcon0</include>
+    </control>
 					<control type="image">
 						<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="DefaultVideo.png">$VAR[ShowcaseItem0Var]</texture>
 						<include>MovieShowcaseThumbReflection</include>
-					</control>
-					<control type="image">
-						<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="$VAR[CaseTypePathVar]p.png">$VAR[CaseTypePathVar]$VAR[GlobalCaseVar]</texture>
-						<include>MovieShowcaseCaseReflection</include>
 					</control>
 				</control>
 			</control>
