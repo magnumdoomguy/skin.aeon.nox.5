@@ -585,53 +585,57 @@
           <posx>137</posx>
           <posy>162</posy>
           <visible>Container.Content(albums)</visible>
+          <!-- Album -->
           <control type="button">
-            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]Album:[/COLOR][CR]$INFO[ListItem.Label]</label>
+            <label>$VAR[InfoPanelAlbum]</label>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>!IsEmpty(ListItem.Label)</visible>
+            <visible>!IsEmpty(ListItem.Label) + [!IsEmpty(ListItem.Genre) | !IsEmpty(ListItem.Genre)]</visible>
           </control>
           <control type="button">
-            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]Artist:[/COLOR][CR]$INFO[ListItem.Artist]</label>
+            <label>$VAR[InfoPanelAlbum]</label>
+            <width>1003</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>!IsEmpty(ListItem.Artist)</visible>
+            <visible>!IsEmpty(ListItem.Label) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Genre)</visible>
+          </control>
+          <!-- Artist -->
+          <control type="button">
+            <label>$VAR[InfoPanelArtist]</label>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Artist) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Genre)</visible>
+          </control>
+          <control type="button">
+            <label>$VAR[InfoPanelArtist]</label>
+            <width>1003</width>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Artist) + [IsEmpty(ListItem.Genre) | IsEmpty(ListItem.Genre)]</visible>
           </control>
         </control>
         <control type="grouplist">
           <posx>625</posx>
           <posy>162</posy>
           <visible>Container.Content(albums)</visible>
+          <!-- Genre -->
           <control type="button">
-            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
+            <label>$VAR[InfoPanelGenre]</label>
             <width>486</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>!IsEmpty(ListItem.Genre)</visible>
           </control>
+          <!-- Year -->
           <control type="button">
-            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$LOCALIZE[31103]</label>
+            <label>$VAR[InfoPanelYear]</label>
             <width>486</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>IsEmpty(ListItem.Genre)</visible>
-          </control>
-          <control type="button">
-            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$INFO[ListItem.Year]</label>
-            <width>486</width>
-            <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>!IsEmpty(ListItem.Year)</visible>
-          </control>
-          <control type="button">
-            <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[562]: [/COLOR][CR]$LOCALIZE[1446]</label>
-            <width>486</width>
-            <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>IsEmpty(ListItem.Year)</visible>
+            <visible>!IsEmpty(ListItem.Genre)</visible>
           </control>
         </control>
         <control type="image">
-          <posx>638</posx>
+          <posx>623</posx>
           <posy>162</posy>
           <width>2</width>
           <height>179</height>
           <texture border="1">separator3.png</texture>
-          <visible>!Container.Content(artists)</visible>
+          <visible>!Container.Content(artists) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Year)</visible>
         </control>
         <control type="textbox">
           <label>[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[183]:[CR][/COLOR]$INFO[ListItem.Property(summary)]</label>
