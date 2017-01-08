@@ -49,12 +49,14 @@
 								<label>$VAR[InfoPanelLabel3Var]</label>
 								<width>250</width>
 								<include>FlatInfoPanelButtonsValues</include>
+                <visible>!Container.PlexContent(homemovies)</visible>
 							</control>
 							<control type="button">
 								<posx>501</posx>
 								<width>251</width>
 								<label>$VAR[InfoPanelLabel4Var]</label>
 								<include>FlatInfoPanelButtonsValues</include>
+                <visible>!Container.PlexContent(homemovies)</visible>
 							</control>
 							<control type="button">
 								<posx>752</posx>
@@ -62,6 +64,7 @@
 								<label>$VAR[InfoPanelLabel5Var]</label>
 								<include>FlatInfoPanelButtonsValues</include>
                 <visible>!Container.PlexContent(movies)</visible>
+                <visible>!Container.PlexContent(homemovies)</visible>
 							</control>
               <!-- User Rating -->
               <control type="button">
@@ -69,7 +72,7 @@
                 <label>$VAR[InfoPanelUserRating]</label>
                 <width>250</width>
                 <include>FlatInfoPanelButtonsValues</include>
-                <visible>!IsEmpty(ListItem.Property(hasUserRating)) + Container.PlexContent(movies)</visible>
+                <visible>!IsEmpty(ListItem.Property(hasUserRating)) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
               </control>
               <!-- Standard Rating -->
               <control type="button">
@@ -77,11 +80,11 @@
                 <label>$VAR[InfoPanelRating]</label>
                 <width>251</width>
                 <include>FlatInfoPanelButtonsValues</include>
-                <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes) + Container.PlexContent(movies)</visible>
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
               </control>
               <!-- IMDb Rating -->
               <control type="grouplist">
-                <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + Container.PlexContent(movies)</visible>
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
                 <orientation>vertical</orientation>
                 <posx>767</posx>
                 <control type="label">
@@ -113,7 +116,7 @@
               </control>
               <!-- Rotten Tomatoes Rating -->
               <control type="grouplist">
-                <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + Container.PlexContent(movies)</visible>
+                <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
                 <orientation>vertical</orientation>
                 <posx>767</posx>
                 <control type="label">
@@ -161,6 +164,7 @@
               </control>
 						</control>
 					</control>
+          <!-- Plot Summary -->
 					<control type="textbox">
 						<label>$VAR[PlotVar]</label>
 						<posy>337</posy>
@@ -171,7 +175,7 @@
             <align>justify</align>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>FlatInfoPanelButtonsValues</include>
-            <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies)</visible>
 					</control>
           <control type="textbox">
 						<label>$VAR[PlotVar]</label>
@@ -183,8 +187,33 @@
             <align>justify</align>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>FlatInfoPanelButtonsValues</include>
-            <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies)</visible>
 					</control>
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>247</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>220</height>
+						<font>font14_textbox2</font>
+            <align>justify</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(homemovies)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>247</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>220</height>
+						<font>font14_textbox2_showcaseflatfanart</font>
+            <align>justify</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(homemovies)</visible>
+					</control>
+          <!-- Fanart -->
 					<control type="image">
 						<posx>1132</posx>
 						<posy>70</posy>
@@ -360,6 +389,7 @@
 						<width>278</width>
 						<height>380</height>
 						<fadetime>200</fadetime>
+            <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
 						<texture background="true">$VAR[PosterVar]</texture>
 						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
 						<bordersize>20</bordersize>
