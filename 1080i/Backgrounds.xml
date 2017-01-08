@@ -20,12 +20,12 @@
 				<description>background image</description>
 				<include>FullscreenDimensions</include>
 				<texture colordiffuse="80FFFFFF">black.png</texture>
-				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + [[Control.IsVisible(53) + Skin.HasSetting(ShowCase.Flat)] | [Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]]</visible>
+				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + [[[Control.IsVisible(53) | Control.IsVisible(54)] + Skin.HasSetting(ShowCase.Flat)] | [Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]]</visible>
 				<animation effect="fade" time="320">Visible</animation>
 				<animation effect="fade" time="720">Hidden</animation>
 			</control>
 			<control type="group">
-				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + [[Control.IsVisible(53) + Skin.HasSetting(ShowCase.Flat)] | [Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]]</visible>
+				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + [[[Control.IsVisible(53) | Control.IsVisible(54)] + Skin.HasSetting(ShowCase.Flat)] | [Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]]</visible>
 				<animation effect="slide" start="0,-1080" end="0,0" time="840" tween="cubic">Visible</animation>
 				<animation effect="slide" start="0,0" end="0,-1080" time="720" tween="cubic">Hidden</animation>
 				<animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
@@ -34,7 +34,7 @@
 					<visible>String.IsEqual(Control.GetLabel(4420),1)</visible>
 					<include>SettingsFadeAnimation</include>
 					<control type="grouplist">
-						<posx>5</posx>
+            <posx>5</posx>
 						<posy>50</posy>
 						<control type="button">
 							<label>$VAR[InfoPanelLabel1Var]</label>
@@ -175,7 +175,7 @@
             <align>justify</align>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>FlatInfoPanelButtonsValues</include>
-            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies)</visible>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies) + !Container.PlexContent(artists)</visible>
 					</control>
           <control type="textbox">
 						<label>$VAR[PlotVar]</label>
@@ -187,7 +187,7 @@
             <align>justify</align>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>FlatInfoPanelButtonsValues</include>
-            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies)</visible>
+            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies) + !Container.PlexContent(artists)</visible>
 					</control>
           <control type="textbox">
 						<label>$VAR[PlotVar]</label>
@@ -212,6 +212,31 @@
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>FlatInfoPanelButtonsValues</include>
             <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(homemovies)</visible>
+					</control>
+          <!-- Biography -->
+          <control type="textbox">
+						<label>$VAR[InfoPanelBiography]</label>
+						<posy>70</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>395</height>
+						<font>font14_textbox2</font>
+            <align>justify</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[InfoPanelBiography]</label>
+						<posy>70</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>395</height>
+						<font>font14_textbox2_showcaseflatfanart</font>
+            <align>justify</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
 					</control>
           <!-- Fanart -->
 					<control type="image">
@@ -365,10 +390,11 @@
 						<width>900</width>
 						<height>345</height>
 						<font>font14_textbox2</font>
+            <align>justify</align>
 						<pagecontrol />
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>NewInfoPanelButtonsValues</include>
-            <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists)</visible>
 					</control>
           <control type="textbox">
 						<label>$VAR[PlotVar]</label>
@@ -377,10 +403,38 @@
 						<width>900</width>
 						<height>345</height>
 						<font>font14_textbox2_showcaseflaticons</font>
+            <align>justify</align>
 						<pagecontrol />
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>NewInfoPanelButtonsValues</include>
-            <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists)</visible>
+					</control>
+          <!-- Biography -->
+          <control type="textbox">
+						<label>$VAR[InfoPanelBiography]</label>
+            <posx>20</posx>
+						<posy>62</posy>
+						<width>1478</width>
+						<height>350</height>
+						<font>font14_textbox2</font>
+            <align>justify</align>
+						<pagecontrol />
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>NewInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[InfoPanelBiography]</label>
+            <posx>20</posx>
+						<posy>62</posy>
+						<width>1478</width>
+						<height>350</height>
+						<font>font14_textbox2_showcaseflaticons</font>
+            <align>justify</align>
+						<pagecontrol />
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>NewInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
 					</control>
           <!-- Poster -->
 					<control type="image">
@@ -393,6 +447,19 @@
 						<texture background="true">$VAR[PosterVar]</texture>
 						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
 						<bordersize>20</bordersize>
+            <visible>!Container.PlexContent(artists)</visible>
+					</control>
+          <control type="image">
+						<posx>1499</posx>
+						<posy>40</posy>
+						<width>380</width>
+						<height>380</height>
+						<fadetime>200</fadetime>
+            <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+						<texture background="true">$VAR[PosterVar]</texture>
+						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
+						<bordersize>20</bordersize>
+            <visible>Container.PlexContent(artists)</visible>
 					</control>
 				</control>
 			</control>
