@@ -8,7 +8,7 @@
       <posy>-30</posy>
       <control type="group" id="7007">
         <posy>580</posy>
-        <visible>Container.OnNext</visible>
+        <visible>Container.OnNext + !Skin.HasSetting(ShowCase.Flat)</visible>
         <animation effect="slide" end="-150,0" time="200" reversible="false">Hidden</animation>
         <control type="group">
           <posx>75</posx>
@@ -84,7 +84,7 @@
       </control>
       <control type="group" id="7002">
         <posy>580</posy>
-        <visible>Container.OnPrevious</visible>
+        <visible>Container.OnPrevious + !Skin.HasSetting(ShowCase.Flat)</visible>
         <animation effect="slide" end="150,0" time="200" reversible="false">Hidden</animation>
         <control type="group">
           <posx>1440</posx>
@@ -160,7 +160,7 @@
       </control>
       <control type="group" id="7003">
         <posy>580</posy>
-        <visible>!Control.IsVisible(7007) + !Control.IsVisible(7002)</visible>
+        <visible>!Control.IsVisible(7007) + !Control.IsVisible(7002) + !Skin.HasSetting(ShowCase.Flat)</visible>
         <control type="group">
           <posx>75</posx>
           <animation effect="rotatey" center="-75" start="-65" end="-65" time="0" condition="true">Conditional</animation>
@@ -283,8 +283,83 @@
     <orientation>horizontal</orientation>
     <preloaditems>2</preloaditems>
     <visible>Container.Content(albums) | Container.Content(artists)</visible>
-    <itemlayout height="525" width="375"></itemlayout>
-    <focusedlayout height="525" width="375"></focusedlayout>
+    <itemlayout height="525" width="375" condition="![Skin.HasSetting(ShowCase.Flat) + !Control.IsVisible(6000)]" />
+		<focusedlayout height="525" width="375" condition="![Skin.HasSetting(ShowCase.Flat) + !Control.IsVisible(6000)]" />
+		<itemlayout height="383" width="383" condition="Skin.HasSetting(ShowCase.Flat)">
+			<control type="group">
+				<posy>30</posy>
+				<animation effect="fade" time="0" delay="800">Visible</animation>
+				<control type="image">
+					<texture background="true" fallback="defaultartist.png">$VAR[MusicShowcaseItem0Var]</texture>
+					<include>MusicShowcaseThumbFlat</include>
+          <visible>ListItem.Type(artist)</visible>
+				</control>
+        <control type="image">
+					<texture background="true" fallback="defaultalbumcover.png">$VAR[MusicShowcaseItem0Var]</texture>
+					<include>MusicShowcaseThumbFlat</include>
+          <visible>ListItem.Type(album)</visible>
+				</control>
+        <control type="image">
+					<texture background="true" fallback="defaultfolder.png">$VAR[MusicShowcaseItem0Var]</texture>
+					<include>MusicShowcaseThumbFlat</include>
+          <visible>ListItem.Type(directory)</visible>
+				</control>
+				<control type="image">
+					<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultartist.png">$VAR[MusicShowcaseItem0Var]</texture>
+					<include>MusicShowcaseThumbReflectionFlat</include>
+          <visible>ListItem.Type(artist)</visible>
+				</control>
+        <control type="image">
+					<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultalbumcover.png">$VAR[MusicShowcaseItem0Var]</texture>
+					<include>MusicShowcaseThumbReflectionFlat</include>
+          <visible>ListItem.Type(album)</visible>
+				</control>
+        <control type="image">
+					<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultfolder.png">$VAR[MusicShowcaseItem0Var]</texture>
+					<include>MusicShowcaseThumbReflectionFlat</include>
+          <visible>ListItem.Type(directory)</visible>
+				</control>
+      </control>
+		</itemlayout>
+		<focusedlayout height="383" width="383" condition="Skin.HasSetting(ShowCase.Flat)">
+			<control type="group">
+				<posy>30</posy>
+				<animation effect="fade" time="0" delay="800">Visible</animation>
+				<animation effect="zoom" start="75" end="100" center="192,345" time="300" reversible="false" tween="cubic">Focus</animation>
+				<control type="group">
+					<control type="image">
+						<texture background="true" fallback="defaultartist.png">$VAR[MusicShowcaseItem0Var]</texture>
+						<include>MusicShowcaseThumbFlat</include>
+            <visible>ListItem.Type(artist)</visible>
+					</control>
+          <control type="image">
+						<texture background="true" fallback="defaultalbumcover.png">$VAR[MusicShowcaseItem0Var]</texture>
+						<include>MusicShowcaseThumbFlat</include>
+            <visible>ListItem.Type(album)</visible>
+					</control>
+          <control type="image">
+						<texture background="true" fallback="defaultfolder.png">$VAR[MusicShowcaseItem0Var]</texture>
+						<include>MusicShowcaseThumbFlat</include>
+            <visible>ListItem.Type(directory)</visible>
+					</control>
+					<control type="image">
+						<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultartist.png">$VAR[MusicShowcaseItem0Var]</texture>
+						<include>MusicShowcaseThumbReflectionFlat</include>
+            <visible>ListItem.Type(artist)</visible>
+					</control>
+          <control type="image">
+						<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultalbumcover.png">$VAR[MusicShowcaseItem0Var]</texture>
+						<include>MusicShowcaseThumbReflectionFlat</include>
+            <visible>ListItem.Type(album)</visible>
+					</control>
+          <control type="image">
+						<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultfolder.png">$VAR[MusicShowcaseItem0Var]</texture>
+						<include>MusicShowcaseThumbReflectionFlat</include>
+            <visible>ListItem.Type(directory)</visible>
+					</control>
+				</control>
+			</control>
+		</focusedlayout>
   </include>
   <include name="scqfixed">
     <control type="fixedlist" id="54">
@@ -306,6 +381,16 @@
     <bordersize>16</bordersize>
     <bordertexture border="16">thumbs/cd_shadow.png</bordertexture>
   </include>
+  <include name="MusicShowcaseThumbFlat">
+    <posx>-12</posx>
+    <posy>11</posy>
+    <width>383</width>
+    <height>383</height>
+    <aspectratio scalediffuse="false">scale</aspectratio>
+    <fadetime>0</fadetime>
+    <bordersize>16</bordersize>
+    <bordertexture border="16">thumbs/cd_shadow.png</bordertexture>
+  </include>
   <include name="MusicShowcaseThumbReflectionDimensions">
     <posx>27</posx>
     <posy>378</posy>
@@ -316,6 +401,19 @@
     <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
     <fadetime>0</fadetime>
     <include>MusicShowcaseThumbReflectionDimensions</include>
+    <colordiffuse>d1FFFFFF</colordiffuse>
+    <animation effect="fade" start="70" end="70" time="0" condition="true">Conditional</animation>
+  </include>
+  <include name="MusicShowcaseThumbReflectionDimensionsFlat">
+    <posx>4</posx>
+    <posy>378</posy>
+    <width>351</width>
+    <height>351</height>
+  </include>
+  <include name="MusicShowcaseThumbReflectionFlat">
+    <aspectratio scalediffuse="false" aligny="top">scale</aspectratio>
+    <fadetime>0</fadetime>
+    <include>MusicShowcaseThumbReflectionDimensionsFlat</include>
     <colordiffuse>d1FFFFFF</colordiffuse>
     <animation effect="fade" start="70" end="70" time="0" condition="true">Conditional</animation>
   </include>
@@ -762,7 +860,7 @@
   </variable>
   <include name="ShowCaseMusicInfoPanel">
     <control type="group" id="12001">
-      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory) + ![Control.IsVisible(53) + Skin.HasSetting(ShowCase.Flat)] + ![Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]</visible>
+      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory) + ![Control.IsVisible(54) + Skin.HasSetting(ShowCase.Flat)] + ![Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]</visible>
       <animation effect="slide" start="0,0" end="0,20" time="100" tween="cubic" condition="Container.Content(albums) + Control.IsVisible(54)">Conditional</animation>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">VisibleChange</animation>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
