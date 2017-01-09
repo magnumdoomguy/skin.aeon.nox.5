@@ -1000,7 +1000,46 @@
       <control type="group">
         <visible>String.IsEqual(Control.GetLabel(4420),2)</visible>
         <include>SettingsFadeEffect</include>
-        <!-- Artist Info -->
+        <control type="grouplist">
+					<posx>137</posx>
+					<posy>164</posy>
+					<height>360</height>
+					<visible>Container.PlexContent(albums)</visible>
+          <!-- Album -->
+					<control type="button">
+						<label>$VAR[InfoPanelAlbum]</label>
+						<include>ShowCaseInfoPanelButtonsValues</include>
+						<visible>!IsEmpty(ListItem.Label)</visible>
+					</control>
+          <!-- Artist -->
+					<control type="button">
+						<label>$VAR[InfoPanelArtist]</label>
+						<include>ShowCaseInfoPanelButtonsValues</include>
+						<visible>!IsEmpty(ListItem.Artist)</visible>
+					</control>
+          <!-- Genre -->
+					<control type="button">
+						<label>$VAR[InfoPanelGenre]</label>
+						<include>ShowCaseInfoPanelButtonsValues</include>
+						<visible>!IsEmpty(ListItem.Genre)</visible>
+					</control>
+          <!-- Year -->
+					<control type="button">
+						<label>$VAR[InfoPanelYear]</label>
+						<include>ShowCaseInfoPanelButtonsValues</include>
+						<visible>!IsEmpty(ListItem.Year)</visible>
+					</control>
+				</control>
+        <!-- Separator -->
+        <control type="image">
+					<posx>638</posx>
+					<posy>162</posy>
+					<width>2</width>
+					<height>359</height>
+					<texture border="1">separator3.png</texture>
+          <visible>Container.PlexContent(albums)</visible>
+				</control>
+				<!-- Biography -->
         <control type="textbox">
           <label>$VAR[InfoPanelBiography]</label>
           <posy>162</posy>
@@ -1011,8 +1050,22 @@
           <font>font14_textbox</font>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <include>ShowCaseInfoPanelButtonsValues</include>
-          <visible>Container.Content(artists)</visible>
+          <visible>Container.PlexContent(artists)</visible>
         </control>
+        <!-- Review -->
+        <control type="textbox">
+					<posx>655</posx>
+					<label>$VAR[InfoPanelReview]</label>
+					<posy>162</posy>
+					<width>700</width>
+					<height>354</height>
+					<font>font14_textbox</font>
+          <align>justify</align>
+					<pagecontrol>95462</pagecontrol>
+					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+					<include>ShowCaseInfoPanelButtonsValues</include>
+          <visible>Container.PlexContent(albums)</visible>
+				</control>
         <!-- Separator -->
         <control type="image">
           <posx>637</posx>
