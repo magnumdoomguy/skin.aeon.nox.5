@@ -212,7 +212,7 @@
             <onclick>SetProperty(OptionsMenu,True,home)</onclick>
             <onclick>Control.SetFocus(202)</onclick>
             <label>&#xF00F;</label>
-            <visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | Container.Content(albums) | Container.Content(songs) | Container.Content(photoalbums) | Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | $EXP[NewFilters]]</visible>
+            <visible>![!IsEmpty(Window(Home).Property(ViewTypeMenu)) | !IsEmpty(Window(Home).Property(OptionsMenu)) | !IsEmpty(Window(Home).Property(VideoExtrasMenu))] + ![Container.PlexContent(channels) | Container.PlexContent(channel) | Container.Content(seasons) | [Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] | [Container.Content(albums) + IsEmpty(Container.Property(PlexFilter))] | Container.Content(songs) | Container.Content(photoalbums) | Skin.String(SectionType,shared) | Skin.String(SectionType,playqueue) | $EXP[NewFilters]]</visible>
           </item>
         </content>
       </control>
@@ -2579,7 +2579,7 @@
       </control>
       <!-- Filters -->
       <control type="grouplist" id="1300">
-        <visible>!ControlGroup(200).HasFocus + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + !Container.PlexContent(channels) + !Container.PlexContent(channel) + $EXP[NotNewFilters] + !Container.Content(seasons) + ![Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] + ![Container.PlexContent(Albums) + IsEmpty(Container.Property(PlexFilter))] + !Container.Content(songs) + !Container.PlexContent(photoalbums) + !Skin.String(SectionType,shared) + !Skin.String(SectionType,playqueue) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + !Window.IsActive(10202) + IsEmpty(Window(Home).Property(OptionsMenu))</visible>
+        <visible>!ControlGroup(200).HasFocus + !ControlGroup(1130).HasFocus + !ControlGroup(1132).HasFocus + !ControlGroup(300).HasFocus + !Container.PlexContent(channels) + !Container.PlexContent(channel) + $EXP[NotNewFilters] + !Container.Content(seasons) + ![Container.PlexContent(Episodes) + IsEmpty(Container.Property(primaryFilterActivated))] + ![Container.PlexContent(albums) + IsEmpty(Container.Property(PlexFilter))] + !Container.Content(songs) + !Container.PlexContent(photoalbums) + !Skin.String(SectionType,shared) + !Skin.String(SectionType,playqueue) + IsEmpty(Window(Home).Property(ViewTypeMenu)) + !Window.IsActive(10202) + IsEmpty(Window(Home).Property(OptionsMenu))</visible>
         <animation effect="slide" end="0,-17" condition="Container.PlexContent(homemovies)">Conditional</animation>
         <posx>0</posx>
         <posy>100</posy>
