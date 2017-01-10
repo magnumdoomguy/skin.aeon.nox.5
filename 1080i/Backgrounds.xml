@@ -450,7 +450,7 @@
 						<pagecontrol />
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>NewInfoPanelButtonsValues</include>
-            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists)</visible>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists) + !Container.PlexContent(albums)</visible>
 					</control>
           <control type="textbox">
 						<label>$VAR[PlotVar]</label>
@@ -463,7 +463,7 @@
 						<pagecontrol />
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>NewInfoPanelButtonsValues</include>
-            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists)</visible>
+            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists) + !Container.PlexContent(albums)</visible>
 					</control>
           <!-- Biography -->
           <control type="textbox">
@@ -492,6 +492,33 @@
 						<include>NewInfoPanelButtonsValues</include>
             <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
 					</control>
+          <!-- Review -->
+					<control type="textbox">
+						<label>$VAR[InfoPanelReview]</label>
+						<posy>62</posy>
+						<posx>650</posx>
+						<width>798</width>
+						<height>345</height>
+						<font>font14_textbox2</font>
+            <align>justify</align>
+						<pagecontrol />
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>NewInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(albums)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[InfoPanelReview]</label>
+						<posy>62</posy>
+						<posx>650</posx>
+						<width>798</width>
+						<height>345</height>
+						<font>font14_textbox2_showcaseflaticons</font>
+            <align>justify</align>
+						<pagecontrol />
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>NewInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(albums)</visible>
+					</control>
           <!-- Poster -->
 					<control type="image">
 						<posx>1601</posx>
@@ -503,7 +530,7 @@
 						<texture background="true">$VAR[PosterVar]</texture>
 						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
 						<bordersize>20</bordersize>
-            <visible>!Container.PlexContent(artists)</visible>
+            <visible>![Container.PlexContent(artists) | Container.PlexContent(albums)]</visible>
 					</control>
           <control type="image">
 						<posx>1499</posx>
@@ -515,7 +542,7 @@
 						<texture background="true">$VAR[PosterVar]</texture>
 						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
 						<bordersize>20</bordersize>
-            <visible>Container.PlexContent(artists)</visible>
+            <visible>Container.PlexContent(artists) | Container.PlexContent(albums)</visible>
 					</control>
 				</control>
 			</control>
