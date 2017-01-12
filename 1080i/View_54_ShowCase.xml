@@ -300,7 +300,7 @@
     <focusposition>3</focusposition>
     <orientation>horizontal</orientation>
     <preloaditems>2</preloaditems>
-    <visible>Container.PlexContent(albums) | Container.PlexContent(artists) | Container.PlexContent(channels) | Container.PlexContent(photos) | Container.PlexContent(photoalbums)</visible>
+    <visible>Container.PlexContent(albums) | Container.PlexContent(artists) | Container.PlexContent(channels) | Container.PlexContent(channel) | Container.PlexContent(photos) | Container.PlexContent(photoalbums)</visible>
     <itemlayout height="525" width="375" condition="![Skin.HasSetting(ShowCase.Flat) + !Control.IsVisible(6000)]" />
 		<focusedlayout height="525" width="375" condition="![Skin.HasSetting(ShowCase.Flat) + !Control.IsVisible(6000)]" />
 		<itemlayout height="383" width="383" condition="Skin.HasSetting(ShowCase.Flat)">
@@ -331,6 +331,11 @@
 					<texture background="true" fallback="defaultvideo.png">$VAR[MusicShowcaseItem0Var]</texture>
 					<include>MusicShowcaseThumbFlat</include>
           <visible>ListItem.Type(clip)</visible>
+				</control>
+        <control type="image">
+					<texture background="true" fallback="defaultaddon.png">$VAR[MusicShowcaseItem0Var]</texture>
+					<include>MusicShowcaseThumbFlat</include>
+          <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
 				</control>
         <control type="image">
           <posx>291</posx>
@@ -375,6 +380,11 @@
 					<include>MusicShowcaseThumbReflectionFlat</include>
           <visible>ListItem.Type(clip)</visible>
 				</control>
+        <control type="image">
+					<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem0Var]</texture>
+					<include>MusicShowcaseThumbReflectionFlat</include>
+          <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+				</control>
       </control>
 		</itemlayout>
 		<focusedlayout height="383" width="383" condition="Skin.HasSetting(ShowCase.Flat)">
@@ -407,6 +417,11 @@
 						<texture background="true" fallback="defaultvideo.png">$VAR[MusicShowcaseItem0Var]</texture>
 						<include>MusicShowcaseThumbFlat</include>
             <visible>ListItem.Type(clip)</visible>
+					</control>
+          <control type="image">
+						<texture background="true" fallback="defaultaddon.png">$VAR[MusicShowcaseItem0Var]</texture>
+						<include>MusicShowcaseThumbFlat</include>
+            <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
 					</control>
           <control type="image">
             <posx>291</posx>
@@ -450,6 +465,11 @@
 						<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem0Var]</texture>
 						<include>MusicShowcaseThumbReflectionFlat</include>
             <visible>ListItem.Type(clip)</visible>
+					</control>
+          <control type="image">
+						<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem0Var]</texture>
+						<include>MusicShowcaseThumbReflectionFlat</include>
+            <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
 					</control>
 				</control>
 			</control>
@@ -541,6 +561,11 @@
         <visible>ListItem(-6).Type(clip)</visible>
       </control>
       <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-6Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
+      <control type="image">
         <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultartist.png">$VAR[MusicShowcaseItem-6Var]</texture>
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(-6).Type(artist)</visible>
@@ -564,6 +589,11 @@
         <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem-6Var]</texture>
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(-6).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-6Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
     </control>
   </include>
@@ -594,6 +624,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem-5Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(-5).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-5Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
@@ -630,6 +665,13 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(-5).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
+        <width>150</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-5Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem-4">
@@ -659,6 +701,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem-4Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(-4).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-4Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
@@ -695,6 +742,13 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(-4).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
+        <width>168</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-4Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem-3">
@@ -724,6 +778,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem-3Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(-3).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-3Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
@@ -760,6 +819,13 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(-3).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
+        <width>192</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-3Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem-2">
@@ -789,6 +855,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem-2Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(-2).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-2Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
@@ -825,6 +896,13 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(-2).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
+        <width>220</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-2Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem-1">
@@ -854,6 +932,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem-1Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(-1).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-1Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <posx>314</posx>
@@ -908,6 +991,13 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(-1).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="left">scale</aspectratio>
+        <width>284</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem-1Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem0">
@@ -937,6 +1027,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem0Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem.Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem0Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <posx>314</posx>
@@ -981,6 +1076,11 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem.Type(clip)</visible>
       </control>
+      <control type="image">
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem0Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem1">
@@ -1010,6 +1110,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem1Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(1).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem1Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <posx>314</posx>
@@ -1069,6 +1174,14 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(1).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="right">scale</aspectratio>
+        <posx>93</posx>
+        <width>284</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem1Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem2">
@@ -1098,6 +1211,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem2Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(2).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem2Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <posx>314</posx>
@@ -1157,6 +1275,14 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(2).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="right">scale</aspectratio>
+        <posx>158</posx>
+        <width>220</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem2Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem3">
@@ -1186,6 +1312,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem3Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(3).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem3Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <posx>314</posx>
@@ -1245,7 +1376,15 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(3).Type(clip)</visible>
       </control>
-    </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="right">scale</aspectratio>
+        <posx>186</posx>
+        <width>192</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem3Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
+    </control>    
   </include>
   <include name="MusicShowcaseItem4">
     <control type="group">
@@ -1274,6 +1413,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem4Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(4).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem4Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <posx>314</posx>
@@ -1333,6 +1477,14 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(4).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="right">scale</aspectratio>
+        <posx>210</posx>
+        <width>168</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem4Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem5">
@@ -1362,6 +1514,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem5Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(5).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem5Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <posx>314</posx>
@@ -1421,6 +1578,14 @@
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(5).Type(clip)</visible>
       </control>
+      <control type="image">
+        <aspectratio scalediffuse="false" aligny="top" align="right">scale</aspectratio>
+        <posx>227</posx>
+        <width>150</width>
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem5Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
+      </control>
     </control>
   </include>
   <include name="MusicShowcaseItem6">
@@ -1450,6 +1615,11 @@
         <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem6Var]</texture>
         <include>MusicShowcaseThumb</include>
         <visible>ListItem(6).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture diffuse="thumbs/cdcover_mask_aa.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem6Var]</texture>
+        <include>MusicShowcaseThumb</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
       <control type="image">
         <posx>314</posx>
@@ -1493,6 +1663,11 @@
         <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultvideo.png">$VAR[MusicShowcaseItem6Var]</texture>
         <include>MusicShowcaseThumbReflection</include>
         <visible>ListItem(6).Type(clip)</visible>
+      </control>
+      <control type="image">
+        <texture flipy="true" diffuse="thumbs/cdcover_mask_reflect.png" fallback="defaultaddon.png">$VAR[MusicShowcaseItem6Var]</texture>
+        <include>MusicShowcaseThumbReflection</include>
+        <visible>Container.PlexContent(channels) | Container.PlexContent(channel)</visible>
       </control>
     </control>
   </include>
