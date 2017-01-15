@@ -674,17 +674,17 @@
     </control>
     <!-- Genres -->
     <control type="image">
-      <visible>String.IsEqual(Container.SecondTitle,By Genre) + !String.IsEqual(Skin.String(Filter.Type),music)</visible>
+      <visible>ListItem.Type(genre) + !String.IsEqual(Skin.String(Filter.Type),music)</visible>
       <include>FanartCommonValues</include>
       <texture fallback="special://skin/backgrounds/fallback.jpg">$INFO[ListItem.Label,special://skin/backgrounds/genres/,.jpg]</texture>
     </control>
     <control type="image">
-      <visible>String.IsEqual(Container.SecondTitle,By Genre) + String.IsEqual(Skin.String(Filter.Type),music)</visible>
+      <visible>ListItem.Type(genre) + String.IsEqual(Skin.String(Filter.Type),music)</visible>
       <include>FanartCommonValues</include>
       <texture fallback="special://skin/backgrounds/fallback.jpg">$INFO[ListItem.Label,special://skin/backgrounds/musicgenres/,.jpg]</texture>
     </control>
     <control type="group">
-      <visible>!ListItem.Type(directory) | [ListItem.Type(directory) + Container.Content(seasons)] | [ListItem.Type(directory) + Container.PlexContent(channel)]</visible>
+      <visible>[!ListItem.Type(directory) + !ListItem.Type(genre)] | [ListItem.Type(directory) + Container.Content(seasons)] | [ListItem.Type(directory) + Container.PlexContent(channel)]</visible>
       <include>PhotosFanart</include>
       <!-- Standard Video Background -->
       <control type="group">
