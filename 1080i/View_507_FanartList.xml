@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+  <!-- Year -->
+  <variable name="FanartList_Year">
+    <value condition="ListItem.Type(directory)">$LOCALIZE[42541]</value>
+    <!-- STRING: <DIR> -->
+    <value condition="IsEmpty(ListItem.Year)">• • • •</value>
+    <value>$INFO[ListItem.Year]</value>
+  </variable>
   <!-- Video FanartList -->
   <include name="VideoFanartList">
     <control type="group">
@@ -89,7 +96,7 @@
         <width>1815</width>
         <height>90</height>
         <include>VisibleFadeEffect</include>
-        <visible>![Container.Content(tvshows) | Container.Content(seasons)]</visible>
+        <visible>![Container.PlexContent(tvshows) | Container.PlexContent(seasons)]</visible>
         <!-- Video Resolution Flag -->
         <control type="image">
           <posx>0</posx>
@@ -122,7 +129,7 @@
         <height>90</height>
         <orientation>horizontal</orientation>
         <include>VisibleFadeEffect</include>
-        <visible>Container.Content(tvshows) | Container.Content(seasons)</visible>
+        <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons)</visible>
         <!-- TV -->
         <control type="group">
           <posy>-5</posy>
@@ -263,9 +270,9 @@
           <viewtype label="FanartList">list</viewtype>
           <pagecontrol>60</pagecontrol>
           <preloaditems>2</preloaditems>
-          <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+          <visible>Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)</visible>
           <scrolltime tween="quadratic" easing="out">200</scrolltime>
-          <itemlayout height="70" width="1056" condition="Container.Content(movies)">
+          <itemlayout height="70" width="1056" condition="Container.PlexContent(movies)">
             <control type="image">
               <posy>12</posy>
               <width>1056</width>
@@ -282,7 +289,7 @@
               <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
               <align>left</align>
               <aligny>center</aligny>
-              <label fallback="• • • •">$INFO[ListItem.Year]</label>
+              <label>$VAR[FanartList_Year]</label>
               <visible>!IsEmpty(ListItem.Title)</visible>
             </control>
             <!-- Title -->
@@ -386,7 +393,7 @@
               <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
             </control>
           </itemlayout>
-          <focusedlayout height="70" width="1056" condition="Container.Content(movies)">
+          <focusedlayout height="70" width="1056" condition="Container.PlexContent(movies)">
             <control type="image">
               <posy>12</posy>
               <width>1056</width>
@@ -410,8 +417,7 @@
               <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
               <align>left</align>
               <aligny>center</aligny>
-              <label fallback="• • • •">$INFO[ListItem.Year]</label>
-              <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(507)">Conditional</animation>
+              <label>$VAR[FanartList_Year]</label>
               <visible>!IsEmpty(ListItem.Title)</visible>
             </control>
             <!-- Title -->
@@ -509,7 +515,141 @@
               <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
             </control>
           </focusedlayout>
-          <itemlayout height="70" width="1056" condition="Container.Content(tvshows)">
+          <!-- Home Videos -->
+          <itemlayout height="70" width="1056" condition="Container.PlexContent(homemovies)">
+            <control type="image">
+              <posy>12</posy>
+              <width>1056</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <!-- Year -->
+            <control type="label">
+              <posx>15</posx>
+              <width>90</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>$VAR[Colour_FanartListThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$VAR[FanartList_Year]</label>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>826</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+            </control>
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>896</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
+            <control type="image">
+							<posx>946</posx>
+							<posy>22</posy>
+							<width>42</width>
+							<height>28</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+							<colordiffuse>grey2</colordiffuse>
+              <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+						</control>
+            <!-- Watched Status -->
+            <control type="image">
+              <posx>992</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <aspectratio>keep</aspectratio>
+              <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+              <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
+            </control>
+          </itemlayout>
+          <focusedlayout height="70" width="1056" condition="Container.PlexContent(homemovies)">
+            <control type="image">
+              <posy>12</posy>
+              <width>1056</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <control type="image">
+              <width>1056</width>
+              <height>70</height>
+              <texture border="4">listselect_fo.png</texture>
+              <colordiffuse>$VAR[Colour_FanartListHighlightColourVar]</colordiffuse>
+              <include>VisibleFadeEffect</include>
+            </control>
+            <!-- Year -->
+            <control type="label">
+              <posx>15</posx>
+              <width>90</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>$VAR[Colour_FanartListThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$VAR[FanartList_Year]</label>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>826</width>
+              <height>68</height>
+              <font>font15</font>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+            </control>
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>896</width>
+              <height>68</height>
+              <font>font15</font>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
+            <control type="image">
+							<posx>946</posx>
+							<posy>22</posy>
+							<width>42</width>
+							<height>28</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+              <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+						</control>
+            <!-- Watched Status -->
+            <control type="image">
+              <posx>992</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <aspectratio>keep</aspectratio>
+              <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+              <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
+            </control>
+          </focusedlayout>
+          <!-- TV Shows -->
+          <itemlayout height="70" width="1056" condition="Container.PlexContent(tvshows)">
             <control type="image">
               <posy>12</posy>
               <width>1056</width>
@@ -619,7 +759,7 @@
               </control>
             </control>
           </itemlayout>
-          <focusedlayout height="70" width="1056" condition="Container.Content(tvshows)">
+          <focusedlayout height="70" width="1056" condition="Container.PlexContent(tvshows)">
             <control type="image">
               <posy>12</posy>
               <width>1056</width>
@@ -736,7 +876,7 @@
               </control>
             </control>
           </focusedlayout>
-          <itemlayout height="70" width="1056" condition="Container.Content(episodes)">
+          <itemlayout height="70" width="1056" condition="Container.PlexContent(episodes)">
             <control type="image">
               <posy>10</posy>
               <width>1056</width>
@@ -843,7 +983,7 @@
               </control>
             </control>
           </itemlayout>
-          <focusedlayout height="70" width="1056" condition="Container.Content(episodes)">
+          <focusedlayout height="70" width="1056" condition="Container.PlexContent(episodes)">
             <control type="image">
               <posy>10</posy>
               <width>1056</width>
@@ -953,7 +1093,7 @@
               </control>
             </control>
           </focusedlayout>
-          <itemlayout height="70" width="1056" condition="Container.Content(seasons)">
+          <itemlayout height="70" width="1056" condition="Container.PlexContent(seasons)">
             <control type="image">
               <posy>12</posy>
               <width>1056</width>
@@ -1023,7 +1163,7 @@
               </control>
             </control>
           </itemlayout>
-          <focusedlayout height="70" width="1056" condition="Container.Content(seasons)">
+          <focusedlayout height="70" width="1056" condition="Container.PlexContent(seasons)">
             <control type="image">
               <posy>12</posy>
               <width>1056</width>

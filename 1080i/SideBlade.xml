@@ -326,6 +326,7 @@
               <onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
               <visible>[Container.Content(artists) | Container.Content(albums)] + !Skin.HasSetting(Disable.RightListView)</visible>
             </item>
+            <!-- FanartList -->
             <item>
               <label>$LOCALIZE[42368]</label>
               <onclick>Container.SetViewMode(507)</onclick>
@@ -333,7 +334,7 @@
               <onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
               <onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(202)</onclick>
               <visible>Window.IsActive(videos)</visible>
-              <visible>[[Container.Content(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)] + !Skin.HasSetting(Disable.FanartListView)</visible>
+              <visible>[Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)] + !Skin.HasSetting(Disable.FanartListView)</visible>
             </item>
             <item>
               <label>$LOCALIZE[42369]</label>
@@ -1107,7 +1108,7 @@
           <include>ResolutionCommonValues</include>
           <onclick>Skin.ToggleSetting(FanartList.ResolutionDisable)</onclick>
           <selected>!Skin.HasSetting(FanartList.ResolutionDisable)</selected>
-          <visible>Control.IsVisible(507) + [Container.PlexContent(movies) | Container.PlexContent(episodes)]</visible>
+          <visible>Control.IsVisible(507) + [Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(episodes)]</visible>
         </control>
         <!-- InfoWall Style -->
         <control type="button" id="434">
