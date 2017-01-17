@@ -38,6 +38,7 @@
           <width>689</width>
           <height>90</height>
           <texture border="1">separator5.png</texture>
+          <visible>!Container.PlexContent(artists)</visible>
         </control>
         <control type="image">
           <posx>0</posx>
@@ -54,10 +55,11 @@
           <width>660</width>
           <height>250</height>
           <font>font14_textbox</font>
+          <align>justify</align>
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists)</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -66,10 +68,37 @@
           <width>660</width>
           <height>250</height>
           <font>font14_textbox_fanartlist</font>
+          <align>justify</align>
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists)</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$VAR[ArtistSummary]</label>
+          <posx>13</posx>
+          <posy>455</posy>
+          <width>660</width>
+          <height>340</height>
+          <font>font14_textbox</font>
+          <align>justify</align>
+          <pagecontrol>62</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$VAR[ArtistSummary]</label>
+          <posx>13</posx>
+          <posy>455</posy>
+          <width>660</width>
+          <height>340</height>
+          <font>font14_textbox_fanartlist</font>
+          <align>justify</align>
+          <pagecontrol>62</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
         </control>
         <!-- Scrollbar -->
         <control type="scrollbar" id="62">
@@ -96,7 +125,7 @@
         <width>1815</width>
         <height>90</height>
         <include>VisibleFadeEffect</include>
-        <visible>![Container.PlexContent(tvshows) | Container.PlexContent(seasons)]</visible>
+        <visible>Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(episodes) | Container.PlexContent(seasons)</visible>
         <!-- Video Resolution Flag -->
         <control type="image">
           <posx>0</posx>
@@ -217,7 +246,7 @@
         <posy>190</posy>
         <!-- Fanart -->
         <control type="image">
-          <visible>!Container.Content(episodes)</visible>
+          <visible>!ListItem.Type(episode) + !ListItem.Type(directory)</visible>
           <width>693</width>
           <height>390</height>
           <aspectratio>scale</aspectratio>
@@ -226,9 +255,20 @@
           <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
           <bordersize>2</bordersize>
         </control>
+        <!-- Folder -->
+        <control type="image">
+          <visible>ListItem.Type(directory)</visible>
+          <width>693</width>
+          <height>390</height>
+          <aspectratio>scale</aspectratio>
+          <texture>defaultfolder.png</texture>
+          <fadetime>400</fadetime>
+          <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
+          <bordersize>2</bordersize>
+        </control>
         <!-- Episode Thumbnail -->
         <control type="image">
-          <visible>Container.Content(episodes)</visible>
+          <visible>ListItem.Type(episode)</visible>
           <width>693</width>
           <height>390</height>
           <aspectratio>scale</aspectratio>
@@ -270,7 +310,7 @@
           <viewtype label="FanartList">list</viewtype>
           <pagecontrol>60</pagecontrol>
           <preloaditems>2</preloaditems>
-          <visible>Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)</visible>
+          <visible>Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes) | Container.PlexContent(artists)</visible>
           <scrolltime tween="quadratic" easing="out">200</scrolltime>
           <itemlayout height="70" width="1056" condition="Container.PlexContent(movies)">
             <control type="image">
@@ -1236,6 +1276,51 @@
                 <textoffsetx>18</textoffsetx>
                 <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
               </control>
+            </control>
+          </focusedlayout>
+          <!-- Artists -->
+          <itemlayout height="70" width="1056" condition="Container.PlexContent(artists)">
+            <control type="image">
+              <posy>12</posy>
+              <width>1056</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <!-- Artist -->
+            <control type="label">
+              <posy>0</posy>
+              <width>1056</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <textoffsetx>15</textoffsetx>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+            </control>
+          </itemlayout>
+          <focusedlayout height="70" width="1056" condition="Container.PlexContent(artists)">
+            <control type="image">
+              <posy>12</posy>
+              <width>1056</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <control type="image">
+              <width>1056</width>
+              <height>70</height>
+              <texture border="4">listselect_fo.png</texture>
+              <colordiffuse>$VAR[Colour_FanartListHighlightColourVar]</colordiffuse>
+              <include>VisibleFadeEffect</include>
+            </control>
+            <!-- Artist -->
+            <control type="label">
+              <posy>0</posy>
+              <width>1056</width>
+              <height>68</height>
+              <font>font15</font>
+              <textoffsetx>15</textoffsetx>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
             </control>
           </focusedlayout>
         </control>
