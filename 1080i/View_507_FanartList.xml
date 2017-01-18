@@ -38,7 +38,7 @@
           <width>689</width>
           <height>90</height>
           <texture border="1">separator5.png</texture>
-          <visible>!ListItem.Type(artist) + !ListItem.Type(directory)</visible>
+          <visible>!ListItem.Type(artist) + !ListItem.Type(directory) + !ListItem.Type(album)</visible>
         </control>
         <control type="image">
           <posx>0</posx>
@@ -56,7 +56,7 @@
           <scroll>true</scroll>
           <label>$VAR[FloorLabelVar]</label>
           <textoffsetx>15</textoffsetx>
-          <visible>Container.PlexContent(artists)</visible>
+          <visible>Container.PlexContent(artists) | Container.PlexContent(albums)</visible>
         </control>
         <control type="button">
           <posy>505</posy>
@@ -71,7 +71,7 @@
           <texturefocus border="1">separator5.png</texturefocus>
           <texturenofocus border="1">separator5.png</texturenofocus>
           <onclick>noop</onclick>
-          <visible>Container.Content(artists)</visible>
+          <visible>Container.PlexContent(artists) | Container.PlexContent(albums)</visible>
         </control>
         <!-- Plot -->
         <control type="textbox" id="70">
@@ -85,7 +85,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>!Skin.HasSetting(General.SmallPlotText) + ![ListItem.Type(artist) | ListItem.Type(directory)]</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + ![ListItem.Type(artist) | ListItem.Type(album) | ListItem.Type(directory)]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -98,7 +98,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>Skin.HasSetting(General.SmallPlotText) + ![ListItem.Type(artist) | ListItem.Type(directory)]</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + ![ListItem.Type(artist) | ListItem.Type(album) | ListItem.Type(directory)]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[ArtistSummary]</label>
@@ -125,6 +125,32 @@
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
           <visible>Skin.HasSetting(General.SmallPlotText) + ListItem.Type(artist)</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$VAR[AlbumReview]</label>
+          <posx>13</posx>
+          <posy>555</posy>
+          <width>660</width>
+          <height>250</height>
+          <font>font14_textbox</font>
+          <align>justify</align>
+          <pagecontrol>62</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + ListItem.Type(album)</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$VAR[AlbumReview]</label>
+          <posx>13</posx>
+          <posy>555</posy>
+          <width>660</width>
+          <height>250</height>
+          <font>font14_textbox_fanartlist</font>
+          <align>justify</align>
+          <pagecontrol>62</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>Skin.HasSetting(General.SmallPlotText) + ListItem.Type(album)</visible>
         </control>
         <!-- Scrollbar -->
         <control type="scrollbar" id="62">
@@ -336,7 +362,7 @@
           <viewtype label="FanartList">list</viewtype>
           <pagecontrol>60</pagecontrol>
           <preloaditems>2</preloaditems>
-          <visible>Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes) | Container.PlexContent(artists)</visible>
+          <visible>Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes) | Container.PlexContent(artists) | Container.PlexContent(albums)</visible>
           <scrolltime tween="quadratic" easing="out">200</scrolltime>
           <itemlayout height="70" width="1056" condition="Container.PlexContent(movies)">
             <control type="image">
@@ -1368,6 +1394,77 @@
               <height>68</height>
               <font>font15</font>
               <textoffsetx>15</textoffsetx>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+            </control>
+          </focusedlayout>
+          <!-- Albums -->
+          <itemlayout height="70" width="1056" condition="Container.PlexContent(albums)">
+            <control type="image">
+              <posy>12</posy>
+              <width>1056</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <!-- Year -->
+            <control type="label">
+              <posx>15</posx>
+              <width>90</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>$VAR[Colour_FanartListThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$VAR[FanartList_Year]</label>
+              <visible>!IsEmpty(ListItem.Title)</visible>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>931</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+            </control>
+          </itemlayout>
+          <focusedlayout height="70" width="1056" condition="Container.PlexContent(albums)">
+            <control type="image">
+              <posy>12</posy>
+              <width>1056</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <control type="image">
+              <width>1056</width>
+              <height>70</height>
+              <texture border="4">listselect_fo.png</texture>
+              <colordiffuse>$VAR[Colour_FanartListHighlightColourVar]</colordiffuse>
+              <include>VisibleFadeEffect</include>
+            </control>
+            <!-- Year -->
+            <control type="label">
+              <posx>15</posx>
+              <width>90</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>$VAR[Colour_FanartListThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label>$VAR[FanartList_Year]</label>
+              <visible>!IsEmpty(ListItem.Title)</visible>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>931</width>
+              <height>68</height>
+              <font>font15</font>
               <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
               <label>$INFO[ListItem.Label]</label>
             </control>
