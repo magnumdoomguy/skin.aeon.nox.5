@@ -38,7 +38,7 @@
           <width>689</width>
           <height>90</height>
           <texture border="1">separator5.png</texture>
-          <visible>!Container.PlexContent(artists)</visible>
+          <visible>!ListItem.Type(artist) + !ListItem.Type(directory)</visible>
         </control>
         <control type="image">
           <posx>0</posx>
@@ -85,7 +85,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists)</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + ![ListItem.Type(artist) | ListItem.Type(directory)]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -98,7 +98,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(artists)</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + ![ListItem.Type(artist) | ListItem.Type(directory)]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[ArtistSummary]</label>
@@ -111,7 +111,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + ListItem.Type(artist)</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[ArtistSummary]</label>
@@ -124,7 +124,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + ListItem.Type(artist)</visible>
         </control>
         <!-- Scrollbar -->
         <control type="scrollbar" id="62">
@@ -151,7 +151,7 @@
         <width>1815</width>
         <height>90</height>
         <include>VisibleFadeEffect</include>
-        <visible>Container.PlexContent(movies) | Container.PlexContent(homemovies) | Container.PlexContent(episodes) | Container.PlexContent(seasons)</visible>
+        <visible>ListItem.Type(movie) | ListItem.Type(homemovie) | ListItem.Type(episode) | ListItem.Type(season)</visible>
         <!-- Video Resolution Flag -->
         <control type="image">
           <posx>0</posx>
@@ -168,7 +168,7 @@
         <control type="image">
           <posx>330</posx>
           <include>MediaFlagVars</include>
-          <texture>$VAR[AudioChannelsFlag_135x90]</texture>
+          <texture fallback="flags/colour/135x90/channels/0.png">$VAR[AudioChannelsFlag_135x90]</texture>
         </control>
         <!-- Video Codec Flag -->
         <control type="image">
@@ -184,7 +184,7 @@
         <height>90</height>
         <orientation>horizontal</orientation>
         <include>VisibleFadeEffect</include>
-        <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons)</visible>
+        <visible>ListItem.Type(tvshow) | ListItem.Type(season)</visible>
         <!-- TV -->
         <control type="group">
           <posy>-5</posy>
@@ -600,6 +600,18 @@
               <align>left</align>
               <aligny>center</aligny>
               <label>$VAR[FanartList_Year]</label>
+              <visible>!ListItem.Type(directory)</visible>
+            </control>
+            <!-- Folder Icon -->
+            <control type="image">
+              <posx>24</posx>
+              <posy>20</posy>
+              <width>58</width>
+              <height>28</height>
+              <texture>views/list/defaultfolder.png</texture>
+              <aspectratio>scale</aspectratio>
+              <colordiffuse>grey2</colordiffuse>
+              <visible>ListItem.Type(directory)</visible>
             </control>
             <!-- Title -->
             <control type="label">
@@ -671,6 +683,17 @@
               <align>left</align>
               <aligny>center</aligny>
               <label>$VAR[FanartList_Year]</label>
+              <visible>!ListItem.Type(directory)</visible>
+            </control>
+            <!-- Folder Icon -->
+            <control type="image">
+              <posx>24</posx>
+              <posy>20</posy>
+              <width>58</width>
+              <height>28</height>
+              <texture>views/list/defaultfolder.png</texture>
+              <aspectratio>scale</aspectratio>
+              <visible>ListItem.Type(directory)</visible>
             </control>
             <!-- Title -->
             <control type="label">
