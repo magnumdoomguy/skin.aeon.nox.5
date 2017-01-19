@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+  <variable name="FanartList_EpisodeTitleVar">
+    <value condition="!IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">[COLOR $VAR[Colour_FanartListThemeColourVar]][UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE][/COLOR]: $INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">[COLOR $VAR[Colour_FanartListThemeColourVar]][UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE][/COLOR]: S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
+  </variable>
   <!-- Year -->
   <variable name="FanartList_Year">
     <value condition="ListItem.Type(directory)">$LOCALIZE[42541]</value>
@@ -339,7 +344,7 @@
           <width>693</width>
           <height>390</height>
           <aspectratio>scale</aspectratio>
-          <texture>$VAR[EpisodeThumbnailVar]</texture>
+          <texture fallback="defaulttvshows.png">$VAR[EpisodeThumbnailVar]</texture>
           <fadetime>400</fadetime>
           <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
           <bordersize>2</bordersize>
@@ -1006,6 +1011,7 @@
               </control>
             </control>
           </focusedlayout>
+          <!-- Episodes -->
           <itemlayout height="70" width="1056" condition="Container.PlexContent(episodes)">
             <control type="image">
               <posy>10</posy>
@@ -1020,7 +1026,7 @@
               <font>font15</font>
               <textcolor>grey2</textcolor>
               <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
-              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <label>$VAR[FanartList_EpisodeTitleVar]</label>
               <textoffsetx>15</textoffsetx>
               <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
             </control>
@@ -1030,7 +1036,7 @@
               <font>font15</font>
               <textcolor>grey2</textcolor>
               <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
-              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <label>$VAR[FanartList_EpisodeTitleVar]</label>
               <textoffsetx>15</textoffsetx>
               <visible>Skin.HasSetting(FanartList.ResolutionDisable)</visible>
             </control>
@@ -1083,35 +1089,6 @@
               <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
               <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
             </control>
-            <!-- Unwatched Episodes -->
-            <control type="group">
-              <description>Unwatched episodes</description>
-              <posx>992</posx>
-              <posy>0</posy>
-              <visible>Container.Content(tvshows)</visible>
-              <control type="image">
-                <posx>0</posx>
-                <posy>3</posy>
-                <width>64</width>
-                <height>64</height>
-                <texture>overlays/list/OverlayUnWatched.png</texture>
-                <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
-                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-              </control>
-              <control type="label">
-                <posx>32</posx>
-                <posy>0</posy>
-                <width>100</width>
-                <height>68</height>
-                <font>font12_title</font>
-                <align>center</align>
-                <aligny>center</aligny>
-                <label>$VAR[ListOverlayEpisodesVar]</label>
-                <textcolor>grey3</textcolor>
-                <textoffsetx>18</textoffsetx>
-                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-              </control>
-            </control>
           </itemlayout>
           <focusedlayout height="70" width="1056" condition="Container.PlexContent(episodes)">
             <control type="image">
@@ -1133,7 +1110,7 @@
               <height>68</height>
               <font>font15</font>
               <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
-              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <label>$VAR[FanartList_EpisodeTitleVar]</label>
               <textoffsetx>15</textoffsetx>
               <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
             </control>
@@ -1142,7 +1119,7 @@
               <height>68</height>
               <font>font15</font>
               <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
-              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <label>$VAR[FanartList_EpisodeTitleVar]</label>
               <textoffsetx>15</textoffsetx>
               <visible>Skin.HasSetting(FanartList.ResolutionDisable)</visible>
             </control>
@@ -1192,35 +1169,6 @@
               <aspectratio>keep</aspectratio>
               <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
               <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
-            </control>
-            <!-- Unwatched Episodes -->
-            <control type="group">
-              <description>Unwatched episodes</description>
-              <posx>992</posx>
-              <posy>0</posy>
-              <visible>Container.Content(tvshows)</visible>
-              <control type="image">
-                <posx>0</posx>
-                <posy>3</posy>
-                <width>64</width>
-                <height>64</height>
-                <texture>overlays/list/OverlayUnWatched.png</texture>
-                <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
-                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + IsEmpty(ListItem.Overlay)</visible>
-              </control>
-              <control type="label">
-                <posx>32</posx>
-                <posy>0</posy>
-                <width>64</width>
-                <height>68</height>
-                <font>font12_title</font>
-                <align>center</align>
-                <aligny>center</aligny>
-                <label>$VAR[ListOverlayEpisodesVar]</label>
-                <textcolor>white</textcolor>
-                <textoffsetx>18</textoffsetx>
-                <visible>IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0)</visible>
-              </control>
             </control>
           </focusedlayout>
           <itemlayout height="70" width="1056" condition="Container.PlexContent(seasons)">
