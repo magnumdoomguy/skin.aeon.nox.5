@@ -208,6 +208,32 @@
         <posy>863</posy>
         <width>1815</width>
         <height>90</height>
+        <include>VisibleFadeEffect</include>
+        <visible>ListItem.Type(clip)</visible>
+        <!-- Video Resolution Flag -->
+        <control type="image">
+          <posx>0</posx>
+          <include>MediaFlagVars</include>
+          <texture fallback="flags/colour/135x90/resolution/defaultscreen.png">$VAR[ResolutionFlag_135x90]</texture>
+        </control>
+        <!-- Audio Codec Flag -->
+        <control type="image">
+          <posx>248</posx>
+          <include>MediaFlagVars</include>
+          <texture fallback="flags/colour/135x90/audio/defaultsound.png">$VAR[AudioCodecFlag_135x90]</texture>
+        </control>
+        <!-- Video Codec Flag -->
+        <control type="image">
+          <posx>495</posx>
+          <include>MediaFlagVars</include>
+          <texture fallback="flags/colour/135x90/video/default.png">$VAR[VideoCodecFlag_135x90]</texture>
+        </control>
+      </control>
+      <control type="group">
+        <posx>1180</posx>
+        <posy>863</posy>
+        <width>1815</width>
+        <height>90</height>
         <orientation>horizontal</orientation>
         <include>VisibleFadeEffect</include>
         <visible>ListItem.Type(tvshow) | ListItem.Type(season)</visible>
@@ -298,22 +324,11 @@
         <posy>190</posy>
         <!-- Fanart -->
         <control type="image">
-          <visible>!ListItem.Type(episode) + !ListItem.Type(directory)</visible>
+          <visible>!ListItem.Type(episode)</visible>
           <width>693</width>
           <height>390</height>
           <aspectratio>scale</aspectratio>
-          <texture>$INFO[ListItem.Art(fanart)]</texture>
-          <fadetime>400</fadetime>
-          <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
-          <bordersize>2</bordersize>
-        </control>
-        <!-- Folder -->
-        <control type="image">
-          <visible>ListItem.Type(directory)</visible>
-          <width>693</width>
-          <height>390</height>
-          <aspectratio>scale</aspectratio>
-          <texture>defaultfolder.png</texture>
+          <texture>$VAR[FanartVar]</texture>
           <fadetime>400</fadetime>
           <bordertexture border="2">thumbs/panel_border3.png</bordertexture>
           <bordersize>2</bordersize>
@@ -1467,6 +1482,115 @@
               <font>font15</font>
               <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
               <label>$INFO[ListItem.Label]</label>
+            </control>
+          </focusedlayout>
+          <!-- Watch Later -->
+          <itemlayout height="70" width="1056" condition="Container.PlexContent(clips)">
+            <control type="image">
+              <posy>12</posy>
+              <width>1056</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>15</posx>
+              <posy>0</posy>
+              <width>921</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+            </control>
+            <control type="label">
+              <posx>15</posx>
+              <posy>0</posy>
+              <width>991</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
+            <control type="image">
+							<posx>946</posx>
+							<posy>22</posy>
+							<width>42</width>
+							<height>28</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+							<colordiffuse>grey2</colordiffuse>
+              <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+						</control>
+            <!-- Watched Status -->
+            <control type="image">
+              <posx>992</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <aspectratio>keep</aspectratio>
+              <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+              <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
+            </control>
+          </itemlayout>
+          <focusedlayout height="70" width="1056" condition="Container.PlexContent(clips)">
+            <control type="image">
+              <posy>12</posy>
+              <width>1056</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <control type="image">
+              <width>1056</width>
+              <height>70</height>
+              <texture border="4">listselect_fo.png</texture>
+              <colordiffuse>$VAR[Colour_FanartListHighlightColourVar]</colordiffuse>
+              <include>VisibleFadeEffect</include>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>15</posx>
+              <posy>0</posy>
+              <width>921</width>
+              <height>68</height>
+              <font>font15</font>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+            </control>
+            <control type="label">
+              <posx>15</posx>
+              <posy>0</posy>
+              <width>991</width>
+              <height>68</height>
+              <font>font15</font>
+              <selectedcolor>$VAR[Colour_FanartListThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
+            <control type="image">
+							<posx>946</posx>
+							<posy>22</posy>
+							<width>42</width>
+							<height>28</height>
+							<aspectratio>keep</aspectratio>
+							<texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+              <visible>!Skin.HasSetting(FanartList.ResolutionDisable)</visible>
+						</control>
+            <!-- Watched Status -->
+            <control type="image">
+              <posx>992</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <aspectratio>keep</aspectratio>
+              <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+              <colordiffuse>$VAR[Colour_FanartListWatchedStatusColourVar]</colordiffuse>
             </control>
           </focusedlayout>
         </control>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
   <variable name="BlurImage">
-    <value condition="[Control.IsVisible(52) + !Container.PlexContent(clips)] | Container.PlexContent(seasons) | Control.IsVisible(507) | Control.IsVisible(510) | Control.IsVisible(591) | Control.IsVisible(592)">$INFO[ListItem.Art(fanart)]</value>
+    <value condition="[Control.IsVisible(52) + !Container.PlexContent(clips)] | Container.PlexContent(seasons) | [Control.IsVisible(507) + !Container.PlexContent(clips)] | Control.IsVisible(510) | Control.IsVisible(591) | Control.IsVisible(592)">$INFO[ListItem.Art(fanart)]</value>
     <value>$INFO[ListItem.Art(bigThumb)]</value>
   </variable>
   <!-- Search Background -->
@@ -802,12 +802,12 @@
       </control>
       <!-- Background for Watch Later -->
       <control type="image">
-        <visible>Container.PlexContent(clips) + [[Control.IsVisible(50) + Skin.HasSetting(List.Blur)] | [Control.IsVisible(52) + Skin.HasSetting(Landscape.Blur)] | [Control.IsVisible(500) + Skin.HasSetting(Icons.Blur)]]</visible>
+        <visible>Container.PlexContent(clips) + [[Control.IsVisible(50) + Skin.HasSetting(List.Blur)] | [Control.IsVisible(52) + Skin.HasSetting(Landscape.Blur)] | [Control.IsVisible(500) + Skin.HasSetting(Icons.Blur)] | [Control.IsVisible(507) + Skin.HasSetting(FanartList.Blur)]]</visible>
         <include>FanartCommonValues</include>
         <texture blur="90" fallback="special://skin/backgrounds/watchlater.jpg">$VAR[BlurImage]</texture>
       </control>
       <control type="image">
-        <visible>Container.PlexContent(clips) + [[Control.IsVisible(50) + !Skin.HasSetting(List.Blur)] | [Control.IsVisible(52) + !Skin.HasSetting(Landscape.Blur)] | [Control.IsVisible(500) + !Skin.HasSetting(Icons.Blur)]]</visible>
+        <visible>Container.PlexContent(clips) + [[Control.IsVisible(50) + !Skin.HasSetting(List.Blur)] | [Control.IsVisible(52) + !Skin.HasSetting(Landscape.Blur)] | [Control.IsVisible(500) + !Skin.HasSetting(Icons.Blur)] | [Control.IsVisible(507) + !Skin.HasSetting(FanartList.Blur)]]</visible>
         <include>FanartCommonValues</include>
         <texture fallback="special://skin/backgrounds/watchlater.jpg">$INFO[ListItem.Art(bigThumb)]</texture>
       </control>
