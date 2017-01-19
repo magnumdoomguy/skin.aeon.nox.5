@@ -35,7 +35,7 @@
 					<visible>String.IsEqual(Control.GetLabel(4420),1)</visible>
 					<include>SettingsFadeAnimation</include>
 					<control type="grouplist">
-            <visible>!Container.PlexContent(albums)</visible>
+            <visible>!Container.PlexContent(albums) + !Container.PlexContent(clips)</visible>
             <posx>5</posx>
 						<posy>50</posy>
 						<control type="button">
@@ -207,7 +207,7 @@
             <align>justify</align>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>FlatInfoPanelButtonsValues</include>
-            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies) + !Container.PlexContent(artists) + !Container.PlexContent(albums)</visible>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies) + !Container.PlexContent(artists) + !Container.PlexContent(albums) + !Container.PlexContent(clips)</visible>
 					</control>
           <control type="textbox">
 						<label>$VAR[PlotVar]</label>
@@ -219,7 +219,7 @@
             <align>justify</align>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
 						<include>FlatInfoPanelButtonsValues</include>
-            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies) + !Container.PlexContent(artists) + !Container.PlexContent(albums)</visible>
+            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies) + !Container.PlexContent(artists) + !Container.PlexContent(albums) + !Container.PlexContent(clips)</visible>
 					</control>
           <control type="textbox">
 						<label>$VAR[PlotVar]</label>
@@ -295,6 +295,31 @@
 						<include>FlatInfoPanelButtonsValues</include>
             <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(albums)</visible>
 					</control>
+          <!-- Watch Later Summary -->
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>90</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>390</height>
+						<font>font14_textbox2</font>
+            <align>justify</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(clips)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>90</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>390</height>
+						<font>font14_textbox2_showcaseflatfanart</font>
+            <align>justify</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(clips)</visible>
+					</control>
           <!-- Fanart -->
 					<control type="image">
 						<posx>1132</posx>
@@ -306,6 +331,19 @@
 						<aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
 						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
 						<bordersize>20</bordersize>
+            <visible>!Container.PlexContent(clips)</visible>
+					</control>
+          <control type="image">
+						<posx>1132</posx>
+						<posy>70</posy>
+						<width>768</width>
+						<height>415</height>
+						<fadetime>200</fadetime>
+						<texture background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+						<aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
+						<bordersize>20</bordersize>
+            <visible>Container.PlexContent(clips)</visible>
 					</control>
 				</control>
 				<control type="group">
