@@ -188,21 +188,22 @@
           <height>840</height>
           <onleft>SetProperty(MediaMenu,True,home)</onleft>
           <onleft>SetFocus(9050,0)</onleft>
-          <onright>60</onright>
+          <onright>noop</onright>
           <onup>55</onup>
           <ondown>55</ondown>
           <viewtype label="31078">list</viewtype>
           <pagecontrol>60</pagecontrol>
           <preloaditems>2</preloaditems>
-          <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
+          <visible>Container.PlexContent(movies) | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)</visible>
           <scrolltime tween="quadratic" easing="out">200</scrolltime>
-          <itemlayout height="70" width="806" condition="Container.Content(movies)">
+          <itemlayout height="70" width="806" condition="Container.PlexContent(movies)">
             <control type="image">
               <posy>12</posy>
               <width>806</width>
               <height>60</height>
               <texture border="1">separator2.png</texture>
             </control>
+            <!-- Year -->
             <control type="label">
               <posx>15</posx>
               <width>90</width>
@@ -215,6 +216,7 @@
               <label fallback="• • • •">$INFO[ListItem.Year]</label>
               <visible>!IsEmpty(ListItem.Title)</visible>
             </control>
+            <!-- Title -->
             <control type="label">
               <posx>110</posx>
               <posy>0</posy>
@@ -224,7 +226,20 @@
               <textcolor>grey2</textcolor>
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
               <label>$INFO[ListItem.Label]</label>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>565</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
             <control type="image">
               <posx>622</posx>
               <posy>21</posy>
@@ -233,6 +248,7 @@
               <aspectratio>keep</aspectratio>
               <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
               <colordiffuse>grey2</colordiffuse>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
             <!-- User Rating -->
             <control type="label">
@@ -301,7 +317,7 @@
               <colordiffuse>$VAR[Colour_TriPanelWatchedStatusColourVar]</colordiffuse>
             </control>
           </itemlayout>
-          <focusedlayout height="70" width="806" condition="Container.Content(movies)">
+          <focusedlayout height="70" width="806" condition="Container.PlexContent(movies)">
             <control type="image">
               <posy>12</posy>
               <width>806</width>
@@ -315,6 +331,7 @@
               <colordiffuse>$VAR[Colour_TriPanelHighlightColourVar]</colordiffuse>
               <include>VisibleFadeEffect</include>
             </control>
+            <!-- Year -->
             <control type="label">
               <posx>15</posx>
               <width>90</width>
@@ -327,6 +344,7 @@
               <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
               <visible>!IsEmpty(ListItem.Title)</visible>
             </control>
+            <!-- Title -->
             <control type="label">
               <posx>110</posx>
               <posy>0</posy>
@@ -336,7 +354,20 @@
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
               <label>$INFO[ListItem.Label]</label>
               <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>565</width>
+              <height>68</height>
+              <font>font15</font>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+              <visible>Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
             <control type="image">
               <posx>622</posx>
               <posy>21</posy>
@@ -345,6 +376,7 @@
               <aspectratio>keep</aspectratio>
               <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
               <animation effect="fade" start="100" end="60" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
             <!-- User Rating -->
             <control type="label">
@@ -413,7 +445,7 @@
               <colordiffuse>$VAR[Colour_TriPanelWatchedStatusColourVar]</colordiffuse>
             </control>
           </focusedlayout>
-          <itemlayout height="70" width="806" condition="Container.Content(tvshows)">
+          <itemlayout height="70" width="806" condition="Container.PlexContent(tvshows)">
             <control type="image">
               <posy>12</posy>
               <width>806</width>
@@ -519,7 +551,7 @@
               </control>
             </control>
           </itemlayout>
-          <focusedlayout height="70" width="806" condition="Container.Content(tvshows)">
+          <focusedlayout height="70" width="806" condition="Container.PlexContent(tvshows)">
             <control type="image">
               <posy>12</posy>
               <width>806</width>
@@ -633,22 +665,35 @@
               </control>
             </control>
           </focusedlayout>
-          <itemlayout height="70" width="806" condition="Container.Content(episodes)">
+          <itemlayout height="70" width="806" condition="Container.PlexContent(episodes)">
             <control type="image">
               <posy>10</posy>
               <width>806</width>
               <height>60</height>
               <texture border="1">separator2.png</texture>
             </control>
+            <!-- Title -->
             <control type="label">
-              <width>610</width>
+              <width>625</width>
               <height>68</height>
               <font>font15</font>
               <textcolor>grey2</textcolor>
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
               <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
               <textoffsetx>15</textoffsetx>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
+            <control type="label">
+              <width>685</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <textoffsetx>15</textoffsetx>
+              <visible>Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
             <control type="image">
               <posx>622</posx>
               <posy>21</posy>
@@ -657,6 +702,7 @@
               <aspectratio>keep</aspectratio>
               <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
               <colordiffuse>grey2</colordiffuse>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
             <!-- Standard Rating -->
             <control type="label">
@@ -710,15 +756,28 @@
               <colordiffuse>$VAR[Colour_TriPanelHighlightColourVar]</colordiffuse>
               <include>VisibleFadeEffect</include>
             </control>
+            <!-- Title -->
             <control type="label">
-              <width>610</width>
+              <width>625</width>
               <height>68</height>
               <font>font15</font>
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
               <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
               <textoffsetx>15</textoffsetx>
               <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
+            <control type="label">
+              <width>685</width>
+              <height>68</height>
+              <font>font15</font>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <textoffsetx>15</textoffsetx>
+              <animation effect="fade" start="100" end="70" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+              <visible>Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
             <control type="image">
               <posx>622</posx>
               <posy>21</posy>
@@ -727,6 +786,7 @@
               <aspectratio>keep</aspectratio>
               <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
               <animation effect="fade" start="100" end="60" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(55)">Conditional</animation>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
             <control type="label">
               <posx>709</posx>
