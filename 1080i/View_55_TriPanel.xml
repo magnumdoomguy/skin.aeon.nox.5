@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+  <variable name="TriPanel_EpisodeTitleVar">
+    <value condition="!IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">[COLOR $VAR[Colour_TripanelThemeColourVar]][UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE][/COLOR]: $INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">[COLOR $VAR[Colour_TripanelThemeColourVar]][UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE][/COLOR]: S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
+  </variable>
   <!-- Video TriPanel -->
   <include name="VideoTriPanel">
     <control type="group">
@@ -11,6 +16,7 @@
         <posy>136</posy>
         <animation effect="slide" end="-500,0" time="640" easing="inout" tween="circle" condition="Skin.HasSetting(TriPanel.Flipped)">Conditional</animation>
 				<animation effect="zoom" center="1400,500" start="100" end="110" time="240" tween="back" reversible="false" condition="Skin.HasSetting(TriPanel.Flipped)">Conditional</animation>
+        <!-- Background Panel Reflection -->
         <control type="image">
           <description>background image</description>
           <posx>-32</posx>
@@ -19,6 +25,7 @@
           <height>752</height>
           <texture border="40">panel_reflect.png</texture>
         </control>
+        <!-- Background Panel -->
         <control type="image">
           <description>background image</description>
           <posx>-32</posx>
@@ -32,36 +39,42 @@
           <posy>92</posy>
           <width>448</width>
           <height>270</height>
+          <!-- Director -->
           <control type="button">
             <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</label>
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>!IsEmpty(ListItem.Director)</visible>
           </control>
+          <!-- Studio -->
           <control type="button">
             <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[31019]:[/COLOR][CR]$INFO[ListItem.Property(mediaTag-Studio)]</label>
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>[Container.Content(tvshows) | Container.Content(seasons)]</visible>
           </control>
+          <!-- Date -->
           <control type="button">
             <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>!IsEmpty(ListItem.Date) + [Container.Content(episodes) | [[Container.Content(tvshows) | Container.Content(seasons)] + Skin.HasSetting(Disable.NextAired)]]</visible>
           </control>
+          <!-- Genre -->
           <control type="button">
             <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>!IsEmpty(ListItem.Genre)</visible>
           </control>
+          <!-- Duration -->
           <control type="button">
-            <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$INFO[ListItem.Duration,, $LOCALIZE[12391]]</label>
+            <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</label>
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>!IsEmpty(ListItem.Duration)</visible>
           </control>
+          <!-- Seasons -->
           <control type="button">
             <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]Seasons:[/COLOR][CR]$INFO[Container.NumItems]</label>
             <width>448</width>
@@ -680,7 +693,7 @@
               <font>font15</font>
               <textcolor>grey2</textcolor>
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
-              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <label>$VAR[TriPanel_EpisodeTitleVar]</label>
               <textoffsetx>15</textoffsetx>
               <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
@@ -690,7 +703,7 @@
               <font>font15</font>
               <textcolor>grey2</textcolor>
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
-              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <label>$VAR[TriPanel_EpisodeTitleVar]</label>
               <textoffsetx>15</textoffsetx>
               <visible>Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
@@ -763,7 +776,7 @@
               <height>68</height>
               <font>font15</font>
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
-              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <label>$VAR[TriPanel_EpisodeTitleVar]</label>
               <textoffsetx>15</textoffsetx>
               <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
@@ -772,7 +785,7 @@
               <height>68</height>
               <font>font15</font>
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
-              <label>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</label>
+              <label>$VAR[TriPanel_EpisodeTitleVar]</label>
               <textoffsetx>15</textoffsetx>
               <visible>Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
@@ -786,6 +799,7 @@
               <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
               <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
+            <!-- Rating -->
             <control type="label">
               <posx>709</posx>
               <posy>0</posy>
@@ -797,6 +811,7 @@
               <aligny>center</aligny>
               <label>$VAR[RatingVar]</label>
             </control>
+            <!-- Watched Status -->
             <control type="image">
               <posx>742</posx>
               <posy>3</posy>
@@ -814,6 +829,7 @@
               <height>60</height>
               <texture border="1">separator2.png</texture>
             </control>
+            <!-- Title -->
             <control type="label">
               <posx>15</posx>
               <posy>0</posy>
@@ -824,6 +840,7 @@
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
               <label>$INFO[ListItem.Label]</label>
             </control>
+            <!-- Number of Episodes -->
             <control type="label">
               <posx>730</posx>
               <posy>0</posy>
@@ -836,6 +853,7 @@
               <aligny>center</aligny>
               <label>$INFO[ListItem.Episode,, $LOCALIZE[20453]]</label>
             </control>
+            <!-- Watched Status -->
             <control type="image">
               <posx>742</posx>
               <posy>3</posy>
@@ -873,12 +891,14 @@
             </control>
           </itemlayout>
           <focusedlayout height="70" width="806" condition="Container.Content(seasons)">
+            <!-- Separator -->
             <control type="image">
               <posy>12</posy>
               <width>806</width>
               <height>60</height>
               <texture border="1">separator2.png</texture>
             </control>
+            <!-- Highlight -->
             <control type="image">
               <width>806</width>
               <height>70</height>
@@ -886,6 +906,7 @@
               <colordiffuse>$VAR[Colour_TriPanelHighlightColourVar]</colordiffuse>
               <include>VisibleFadeEffect</include>
             </control>
+            <!-- Title -->
             <control type="label">
               <posx>15</posx>
               <posy>0</posy>
@@ -895,6 +916,7 @@
               <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
               <label>$INFO[ListItem.Label]</label>
             </control>
+            <!-- Number of Episodes -->
             <control type="label">
               <posx>730</posx>
               <posy>0</posy>
@@ -906,6 +928,7 @@
               <aligny>center</aligny>
               <label>$INFO[ListItem.Episode,, $LOCALIZE[20453]]</label>
             </control>
+            <!-- Watched Status -->
             <control type="image">
               <posx>742</posx>
               <posy>3</posy>
@@ -943,6 +966,7 @@
             </control>
           </focusedlayout>
         </control>
+        <!-- Scrollbar -->
         <control type="scrollbar" id="60">
           <posx>806</posx>
           <posy>92</posy>
