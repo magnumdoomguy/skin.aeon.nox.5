@@ -5,6 +5,11 @@
     <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
     <value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
   </variable>
+  <variable name="TriPanel_PosterVar">
+    <value condition="Container.PlexContent(episodes) + IsEmpty(Container.Property(primaryFilterActivated)) + !Skin.HasSetting(FilterActive)">$INFO[Container.Thumb]</value>
+    <value condition="Container.PlexContent(episodes)">$INFO[ListItem.Art(grandparentThumb)]</value>
+    <value>$INFO[ListItem.Art(bigThumb)]</value>
+  </variable>
   <!-- Video TriPanel -->
   <include name="VideoTriPanel">
     <control type="group">
@@ -138,21 +143,10 @@
           <width>570</width>
           <height>835</height>
           <aspectratio aligny="bottom" align="right">scale</aspectratio>
-          <texture>$INFO[ListItem.Art(bigThumb)]</texture>
+          <texture>$VAR[TriPanel_PosterVar]</texture>
           <fadetime>400</fadetime>
           <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
           <bordersize>20</bordersize>
-          <visible>!Container.Content(episodes)</visible>
-        </control>
-        <control type="image">
-          <width>570</width>
-          <height>835</height>
-          <aspectratio aligny="bottom" align="right">scale</aspectratio>
-          <texture>$INFO[Container.Thumb]</texture>
-          <fadetime>400</fadetime>
-          <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
-          <bordersize>20</bordersize>
-          <visible>Container.Content(episodes) + [IsEmpty(Container.Property(primaryFilterActivated)) | Skin.HasSetting(FilterActive)]</visible>
         </control>
         <control type="image">
           <posx>0</posx>
@@ -161,20 +155,8 @@
           <height>835</height>
           <aspectratio aligny="top" align="right">scale</aspectratio>
           <fadetime>400</fadetime>
-          <texture diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[ListItem.Art(bigThumb)]</texture>
+          <texture diffuse="thumbs/thumb_reflect.png" flipy="true">$VAR[TriPanel_PosterVar]</texture>
           <bordersize>20</bordersize>
-          <visible>!Container.Content(episodes)</visible>
-        </control>
-        <control type="image">
-          <posx>0</posx>
-          <posy>797</posy>
-          <width>570</width>
-          <height>835</height>
-          <aspectratio aligny="top" align="right">scale</aspectratio>
-          <fadetime>400</fadetime>
-          <texture diffuse="thumbs/thumb_reflect.png" flipy="true">$INFO[Container.Thumb]</texture>
-          <bordersize>20</bordersize>
-          <visible>Container.Content(episodes)</visible>
         </control>
         <control type="image">
           <posx>20</posx>
