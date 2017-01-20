@@ -10,6 +10,9 @@
     <value condition="Container.PlexContent(episodes)">$INFO[ListItem.Art(grandparentThumb)]</value>
     <value>$INFO[ListItem.Art(bigThumb)]</value>
   </variable>
+  <variable name="PosterFallbackVar">
+    <value>defaulttvshows.png</value>
+  </variable>
   <!-- Video TriPanel -->
   <include name="VideoTriPanel">
     <control type="group">
@@ -51,19 +54,12 @@
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>!IsEmpty(ListItem.Director)</visible>
           </control>
-          <!-- Studio -->
-          <control type="button">
-            <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[31019]:[/COLOR][CR]$INFO[ListItem.Property(mediaTag-Studio)]</label>
-            <width>448</width>
-            <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>[Container.Content(tvshows) | Container.Content(seasons)]</visible>
-          </control>
           <!-- Date -->
           <control type="button">
             <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[20416]:[/COLOR][CR]$INFO[ListItem.Date]</label>
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>!IsEmpty(ListItem.Date) + [Container.Content(episodes) | [[Container.Content(tvshows) | Container.Content(seasons)] + Skin.HasSetting(Disable.NextAired)]]</visible>
+            <visible>!IsEmpty(ListItem.Date) + [Container.Content(episodes) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
           </control>
           <!-- Genre -->
           <control type="button">
@@ -79,13 +75,6 @@
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>!IsEmpty(ListItem.Duration)</visible>
           </control>
-          <!-- Seasons -->
-          <control type="button">
-            <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]Seasons:[/COLOR][CR]$INFO[Container.NumItems]</label>
-            <width>448</width>
-            <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>!IsEmpty(Container.NumItems) + Container.Content(tvshows)</visible>
-          </control>
         </control>
         <!-- Plot -->
         <control type="textbox" id="70">
@@ -99,7 +88,7 @@
           <align>justify</align>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>!Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [Container.PlexContent(tvshows) + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -112,7 +101,59 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>Skin.HasSetting(General.SmallPlotText)</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [Container.PlexContent(tvshows) + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$VAR[PlotVar]</label>
+          <posx>15</posx>
+          <posy>280</posy>
+          <width>418</width>
+          <height>492</height>
+          <font>font14_textbox</font>
+          <pagecontrol>62</pagecontrol>
+          <align>justify</align>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [Container.PlexContent(tvshows) + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]]]</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$VAR[PlotVar]</label>
+          <posx>15</posx>
+          <posy>280</posy>
+          <width>428</width>
+          <height>492</height>
+          <font>font14_textbox_tripanel</font>
+          <align>justify</align>
+          <pagecontrol>62</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [Container.PlexContent(tvshows) + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]]]</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$VAR[PlotVar]</label>
+          <posx>15</posx>
+          <posy>190</posy>
+          <width>418</width>
+          <height>552</height>
+          <font>font14_textbox</font>
+          <pagecontrol>62</pagecontrol>
+          <align>justify</align>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [Container.PlexContent(tvshows) + [[!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]]]</visible>
+        </control>
+        <control type="textbox" id="70">
+          <label>$VAR[PlotVar]</label>
+          <posx>15</posx>
+          <posy>190</posy>
+          <width>428</width>
+          <height>552</height>
+          <font>font14_textbox_tripanel</font>
+          <align>justify</align>
+          <pagecontrol>62</pagecontrol>
+          <include>ShowCaseInfoPanelButtonsValues</include>
+          <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [Container.PlexContent(tvshows) + [[!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]]]</visible>
         </control>
         <!-- Scrollbar -->
         <control type="scrollbar" id="62">
@@ -131,6 +172,43 @@
           <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
           <showonepage>false</showonepage>
           <orientation>vertical</orientation>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [Container.PlexContent(tvshows) + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]</visible>
+        </control>
+        <control type="scrollbar" id="62">
+          <posx>448</posx>
+          <posy>280</posy>
+          <width>14</width>
+          <height>492</height>
+          <colordiffuse>55ffffff</colordiffuse>
+          <onup>PageUp(70)</onup>
+          <ondown>PageUp(70)</ondown>
+          <onleft>50</onleft>
+          <onright>SetProperty(MediaMenu,True,home)</onright>
+          <onright>SetFocus(9050,0)</onright>
+          <texturesliderbackground>-</texturesliderbackground>
+          <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+          <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+          <showonepage>false</showonepage>
+          <orientation>vertical</orientation>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [Container.PlexContent(tvshows) + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]]]</visible>
+        </control>
+        <control type="scrollbar" id="62">
+          <posx>448</posx>
+          <posy>190</posy>
+          <width>14</width>
+          <height>552</height>
+          <colordiffuse>55ffffff</colordiffuse>
+          <onup>PageUp(70)</onup>
+          <ondown>PageUp(70)</ondown>
+          <onleft>50</onleft>
+          <onright>SetProperty(MediaMenu,True,home)</onright>
+          <onright>SetFocus(9050,0)</onright>
+          <texturesliderbackground>-</texturesliderbackground>
+          <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+          <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+          <showonepage>false</showonepage>
+          <orientation>vertical</orientation>
+          <visible>Container.PlexContent(movies) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)</visible>
         </control>
       </control>
       <control type="group">
@@ -142,11 +220,22 @@
         <control type="image">
           <width>570</width>
           <height>835</height>
-          <aspectratio aligny="bottom" align="right">scale</aspectratio>
-          <texture>$VAR[TriPanel_PosterVar]</texture>
+          <aspectratio aligny="top" align="center">scale</aspectratio>
+          <texture fallback="defaultmovies.png">$VAR[TriPanel_PosterVar]</texture>
           <fadetime>400</fadetime>
           <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
           <bordersize>20</bordersize>
+          <visible>Container.PlexContent(movies)</visible>
+        </control>
+        <control type="image">
+          <width>570</width>
+          <height>835</height>
+          <aspectratio aligny="top" align="center">scale</aspectratio>
+          <texture fallback="defaulttvshows.png">$VAR[TriPanel_PosterVar]</texture>
+          <fadetime>400</fadetime>
+          <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+          <bordersize>20</bordersize>
+          <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)</visible>
         </control>
         <control type="image">
           <posx>0</posx>
