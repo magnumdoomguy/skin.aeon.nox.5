@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
   <variable name="TriPanel_EpisodeTitleVar">
-    <value condition="!IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">[COLOR $VAR[Colour_TripanelThemeColourVar]][UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE][/COLOR]: $INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-    <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">[COLOR $VAR[Colour_TripanelThemeColourVar]][UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE][/COLOR]: S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="!IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
     <value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
   </variable>
   <!-- Video TriPanel -->
@@ -109,6 +109,7 @@
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
           <visible>Skin.HasSetting(General.SmallPlotText)</visible>
         </control>
+        <!-- Scrollbar -->
         <control type="scrollbar" id="62">
           <posx>448</posx>
           <posy>370</posy>
@@ -132,6 +133,7 @@
         <posy>154</posy>
         <animation effect="slide" end="547,0" time="640" easing="inout" tween="circle" condition="Skin.HasSetting(TriPanel.Flipped)">Conditional</animation>
 				<animation effect="zoom" center="850,700" start="100" end="90" time="240" tween="back" reversible="false" condition="Skin.HasSetting(TriPanel.Flipped)">Conditional</animation>
+        <!-- Poster -->
         <control type="image">
           <width>570</width>
           <height>835</height>
@@ -150,7 +152,7 @@
           <fadetime>400</fadetime>
           <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
           <bordersize>20</bordersize>
-          <visible>Container.Content(episodes)</visible>
+          <visible>Container.Content(episodes) + [IsEmpty(Container.Property(primaryFilterActivated)) | Skin.HasSetting(FilterActive)]</visible>
         </control>
         <control type="image">
           <posx>0</posx>
