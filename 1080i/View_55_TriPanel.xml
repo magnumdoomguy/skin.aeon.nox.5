@@ -73,7 +73,7 @@
             <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</label>
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>!IsEmpty(ListItem.Duration)</visible>
+            <visible>!IsEmpty(ListItem.Duration) | [Container.PlexContent(homemovies) + !ListItem.Type(directory)]</visible>
           </control>
           <!-- Seasons -->
           <control type="button">
@@ -96,7 +96,7 @@
           <align>justify</align>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[ListItem.Type(movie) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [[ListItem.Type(show) | ListItem.Type(episode)] + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -109,7 +109,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + [[ListItem.Type(movie) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [[ListItem.Type(show) | ListItem.Type(episode)] + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -122,7 +122,7 @@
           <align>justify</align>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]] | [Container.PlexContent(seasons) + !IsEmpty(ListItem.Genre)]]</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[ListItem.Type(movie) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [[ListItem.Type(show) | ListItem.Type(episode)] + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]] | [ListItem.Type(season) + !IsEmpty(ListItem.Genre)]]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -135,7 +135,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]] | [Container.PlexContent(seasons) + !IsEmpty(ListItem.Genre)]]</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + [[ListItem.Type(movie) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [[ListItem.Type(show) | ListItem.Type(episode)] + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]] | [ListItem.Type(season) + !IsEmpty(ListItem.Genre)]]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -148,7 +148,7 @@
           <align>justify</align>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>!Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + [[!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]] | [Container.PlexContent(seasons) + IsEmpty(ListItem.Genre)]]</visible>
+          <visible>!Skin.HasSetting(General.SmallPlotText) + [[ListItem.Type(movie) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [[ListItem.Type(show) | ListItem.Type(episode)] + [[!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]] | [ListItem.Type(season) + IsEmpty(ListItem.Genre)]]</visible>
         </control>
         <control type="textbox" id="70">
           <label>$VAR[PlotVar]</label>
@@ -161,7 +161,7 @@
           <pagecontrol>62</pagecontrol>
           <include>ShowCaseInfoPanelButtonsValues</include>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(62)</autoscroll>
-          <visible>Skin.HasSetting(General.SmallPlotText) + [[Container.PlexContent(movies) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + [[!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]] | [Container.PlexContent(seasons) + IsEmpty(ListItem.Genre)]]</visible>
+          <visible>Skin.HasSetting(General.SmallPlotText) + [[ListItem.Type(movie) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [[ListItem.Type(show) | ListItem.Type(episode)] + [[!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]] | [ListItem.Type(season) + IsEmpty(ListItem.Genre)]]</visible>
         </control>
         <!-- Scrollbar -->
         <control type="scrollbar" id="62">
@@ -180,7 +180,7 @@
           <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
           <showonepage>false</showonepage>
           <orientation>vertical</orientation>
-          <visible>[Container.PlexContent(movies) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]</visible>
+          <visible>[ListItem.Type(movie) + !IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)] | [[ListItem.Type(show) | ListItem.Type(episode)] + !IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]</visible>
         </control>
         <control type="scrollbar" id="62">
           <posx>448</posx>
@@ -198,7 +198,7 @@
           <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
           <showonepage>false</showonepage>
           <orientation>vertical</orientation>
-          <visible>[Container.PlexContent(movies) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]] | [Container.PlexContent(seasons) + !IsEmpty(ListItem.Genre)]</visible>
+          <visible>[ListItem.Type(movie) + [[!IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [IsEmpty(ListItem.Director) + !IsEmpty(ListItem.Genre)]]] | [[ListItem.Type(show) | ListItem.Type(episode)] + [[IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)] | [!IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)]]] | [ListItem.Type(season) + !IsEmpty(ListItem.Genre)]</visible>
         </control>
         <control type="scrollbar" id="62">
           <posx>448</posx>
@@ -216,7 +216,7 @@
           <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
           <showonepage>false</showonepage>
           <orientation>vertical</orientation>
-          <visible>[Container.PlexContent(movies) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [[Container.PlexContent(tvshows) | Container.PlexContent(episodes)] + [[!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]] | [Container.PlexContent(seasons) + IsEmpty(ListItem.Genre)]</visible>
+          <visible>[ListItem.Type(movie) + IsEmpty(ListItem.Director) + IsEmpty(ListItem.Genre)] | [[ListItem.Type(show) | ListItem.Type(episode)] + [[!IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + !IsEmpty(ListItem.Genre) + IsEmpty(ListItem.Duration)] | [IsEmpty(ListItem.Date) + IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Duration)]]] | [ListItem.Type(season) + IsEmpty(ListItem.Genre)]</visible>
         </control>
       </control>
       <control type="group">
@@ -233,7 +233,17 @@
           <fadetime>400</fadetime>
           <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
           <bordersize>20</bordersize>
-          <visible>Container.PlexContent(movies)</visible>
+          <visible>ListItem.Type(movie)</visible>
+        </control>
+        <control type="image">
+          <width>570</width>
+          <height>835</height>
+          <aspectratio aligny="top" align="center">scale</aspectratio>
+          <texture>defaultfolder.png</texture>
+          <fadetime>400</fadetime>
+          <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+          <bordersize>20</bordersize>
+          <visible>ListItem.Type(directory)</visible>
         </control>
         <control type="image">
           <width>570</width>
@@ -243,7 +253,7 @@
           <fadetime>400</fadetime>
           <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
           <bordersize>20</bordersize>
-          <visible>Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)</visible>
+          <visible>ListItem.Type(show) | ListItem.Type(season) | ListItem.Type(episode)</visible>
         </control>
         <control type="image">
           <posx>0</posx>
@@ -297,7 +307,7 @@
           <viewtype label="31078">list</viewtype>
           <pagecontrol>60</pagecontrol>
           <preloaditems>2</preloaditems>
-          <visible>Container.PlexContent(movies) | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)</visible>
+          <visible>Container.PlexContent(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)] | Container.PlexContent(tvshows) | Container.PlexContent(seasons) | Container.PlexContent(episodes)</visible>
           <scrolltime tween="quadratic" easing="out">200</scrolltime>
           <itemlayout height="70" width="806" condition="Container.PlexContent(movies)">
             <control type="image">
@@ -530,6 +540,162 @@
               <aligny>center</aligny>
               <label>$INFO[ListItem.Property(ratingPercent)]%</label>
               <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
+            </control>
+            <!-- Watched Status -->
+            <control type="image">
+              <posx>742</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <aspectratio>keep</aspectratio>
+              <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+              <colordiffuse>$VAR[Colour_TriPanelWatchedStatusColourVar]</colordiffuse>
+            </control>
+          </focusedlayout>
+          <!-- Home Videos -->
+          <itemlayout height="70" width="806" condition="Container.PlexContent(homemovies)">
+            <control type="image">
+              <posy>12</posy>
+              <width>806</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <!-- Year -->
+            <control type="label">
+              <posx>15</posx>
+              <width>90</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>$VAR[Colour_TriPanelThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label fallback="• • • •">$INFO[ListItem.Year]</label>
+              <visible>!ListItem.Type(directory)</visible>
+            </control>
+            <!-- Folder Icon -->
+            <control type="image">
+              <posx>24</posx>
+              <posy>20</posy>
+              <width>58</width>
+              <height>28</height>
+              <texture>views/list/defaultfolder.png</texture>
+              <aspectratio>scale</aspectratio>
+              <colordiffuse>grey2</colordiffuse>
+              <visible>ListItem.Type(directory)</visible>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>575</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>635</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>grey2</textcolor>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
+            <control type="image">
+              <posx>692</posx>
+              <posy>21</posy>
+              <width>42</width>
+              <height>28</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+              <colordiffuse>grey2</colordiffuse>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <!-- Watched Status -->
+            <control type="image">
+              <posx>742</posx>
+              <posy>3</posy>
+              <width>64</width>
+              <height>64</height>
+              <aspectratio>keep</aspectratio>
+              <texture>overlays/list/$INFO[ListItem.Overlay]</texture>
+              <colordiffuse>$VAR[Colour_TriPanelWatchedStatusColourVar]</colordiffuse>
+            </control>
+          </itemlayout>
+          <focusedlayout height="70" width="806" condition="Container.PlexContent(homemovies)">
+            <control type="image">
+              <posy>12</posy>
+              <width>806</width>
+              <height>60</height>
+              <texture border="1">separator2.png</texture>
+            </control>
+            <control type="image">
+              <width>806</width>
+              <height>70</height>
+              <texture border="4">listselect_fo.png</texture>
+              <colordiffuse>$VAR[Colour_TriPanelHighlightColourVar]</colordiffuse>
+              <include>VisibleFadeEffect</include>
+            </control>
+            <!-- Year -->
+            <control type="label">
+              <posx>15</posx>
+              <width>90</width>
+              <height>68</height>
+              <font>font15</font>
+              <textcolor>$VAR[Colour_TriPanelThemeColourVar]</textcolor>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <align>left</align>
+              <aligny>center</aligny>
+              <label fallback="• • • •">$INFO[ListItem.Year]</label>
+              <visible>!ListItem.Type(directory)</visible>
+            </control>
+            <!-- Folder Icon -->
+            <control type="image">
+              <posx>24</posx>
+              <posy>20</posy>
+              <width>58</width>
+              <height>28</height>
+              <texture>views/list/defaultfolder.png</texture>
+              <aspectratio>scale</aspectratio>
+              <visible>ListItem.Type(directory)</visible>
+            </control>
+            <!-- Title -->
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>575</width>
+              <height>68</height>
+              <font>font15</font>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <control type="label">
+              <posx>110</posx>
+              <posy>0</posy>
+              <width>635</width>
+              <height>68</height>
+              <font>font15</font>
+              <selectedcolor>$VAR[Colour_TriPanelThemeColourVar]</selectedcolor>
+              <label>$INFO[ListItem.Label]</label>
+              <visible>Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
+            </control>
+            <!-- Resolution -->
+            <control type="image">
+              <posx>692</posx>
+              <posy>21</posy>
+              <width>42</width>
+              <height>28</height>
+              <aspectratio>keep</aspectratio>
+              <texture>$INFO[ListItem.Property(mediaTag-videoResolution),overlays/list/,.png]</texture>
+              <visible>!Skin.HasSetting(TriPanel.ResolutionDisable)</visible>
             </control>
             <!-- Watched Status -->
             <control type="image">
