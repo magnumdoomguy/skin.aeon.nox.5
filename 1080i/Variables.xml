@@ -174,10 +174,14 @@
     <value condition="!IsEmpty(Container(9004).ListItem.Season)">$INFO[Container(9004).ListItem.Season]x$INFO[Container(9004).ListItem.Episode]. [UPPERCASE]$INFO[Container(9004).ListItem.Title][/UPPERCASE]</value>
     <value condition="IsEmpty(Container(9004).ListItem.Season)">S$INFO[Container(9004).ListItem.Episode]. [UPPERCASE]$INFO[Container(9004).ListItem.Title][/UPPERCASE]</value>
   </variable>
+  <!-- Plot -->
   <variable name="PlotVar">
     <value condition="IsEmpty(ListItem.Property(summary)) + Container.PlexContent(artists)">$LOCALIZE[42278].[CR]$LOCALIZE[32104].</value>
     <!-- STRING: There is no description available for this artist.  You can add one for it in Plex Web. -->
     <value condition="!IsEmpty(ListItem.Property(summary)) + Container.PlexContent(artists)">$INFO[ListItem.Property(summary)]</value>
+    <value condition="IsEmpty(ListItem.Property(summary)) + Container.PlexContent(albums)">$LOCALIZE[42224].[CR]$LOCALIZE[32104].</value>
+    <!-- STRING: There is no description available for this album.  You can add one for it in Plex Web. -->
+    <value condition="!IsEmpty(ListItem.Property(summary)) + Container.PlexContent(albums)">$INFO[ListItem.Property(summary)]</value>
     <value condition="Container.Content(seasons)">$INFO[Container.ShowPlot]</value>
     <value condition="IsEmpty(ListItem.Plot) + ListItem.Type(episode)">$LOCALIZE[42129].[CR]$LOCALIZE[32104].</value>
     <!-- STRING: There is no description available for this episode. You can add one for it in the Media Manager. -->
