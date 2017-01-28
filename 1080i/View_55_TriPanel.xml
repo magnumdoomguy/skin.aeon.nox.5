@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
   <variable name="TriPanel_EpisodeTitleVar">
-    <value condition="!IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-    <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="!IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | !IsEmpty(Container.Property(mixedParents)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | !IsEmpty(Container.Property(mixedParents)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
     <value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
   </variable>
   <variable name="TriPanel_PosterVar">
-    <value condition="Container.PlexContent(episodes) + IsEmpty(Container.Property(primaryFilterActivated)) + !Skin.HasSetting(FilterActive)">$INFO[Container.Thumb]</value>
-    <value condition="Container.PlexContent(episodes)">$INFO[ListItem.Art(grandparentThumb)]</value>
+    <value condition="Container.PlexContent(episodes) + IsEmpty(Container.Property(primaryFilterActivated)) + !Skin.HasSetting(FilterActive) + IsEmpty(Container.Property(mixedParents))">$INFO[Container.Thumb]</value>
+    <value condition="Container.PlexContent(episodes)">$INFO[ListItem.Art(parentThumb)]</value>
     <value>$INFO[ListItem.Art(bigThumb)]</value>
   </variable>
   <variable name="PosterFallbackVar">
@@ -66,7 +66,7 @@
             <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
-            <visible>!IsEmpty(ListItem.Genre)</visible>
+            <visible>!IsEmpty(ListItem.Genre) + !Container.PlexContent(episodes)</visible>
           </control>
           <!-- Duration -->
           <control type="button">
@@ -74,6 +74,13 @@
             <width>448</width>
             <include>ShowCaseInfoPanelButtonsValues</include>
             <visible>!IsEmpty(ListItem.Duration) | [Container.PlexContent(homemovies) + !ListItem.Type(directory)]</visible>
+          </control>
+          <!-- Genre -->
+          <control type="button">
+            <label>[COLOR $VAR[Colour_TriPanelThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</label>
+            <width>448</width>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Genre) + Container.PlexContent(episodes)</visible>
           </control>
           <!-- Seasons -->
           <control type="button">
