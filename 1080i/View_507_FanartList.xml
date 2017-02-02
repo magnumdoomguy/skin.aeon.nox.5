@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+  <!-- Episode Title -->
   <variable name="FanartList_EpisodeTitleVar">
+    <value condition="!IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">$INFO[ListItem.TvShowTitle]: $INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
+    <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">$INFO[ListItem.TvShowTitle]: S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
     <value condition="!IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(mixedParents))">$INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
     <value condition="IsEmpty(ListItem.Season) + !IsEmpty(Container.Property(mixedParents))">S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-    <value condition="!IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | !IsEmpty(Container.Property(mixedParents)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">[COLOR $VAR[Colour_FanartListThemeColourVar]][UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE][/COLOR]: $INFO[ListItem.Season]x$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
-    <value condition="IsEmpty(ListItem.Season) + [!IsEmpty(Container.Property(primaryFilterActivated)) | !IsEmpty(Container.Property(mixedParents)) | String.IsEqual(Skin.String(SectionType),playqueue) | String.IsEqual(Container.SecondTitle,Recently Aired) | String.IsEqual(Container.SecondTitle,Recently Added) | String.IsEqual(Container.SecondTitle,Recently Viewed Episodes) | String.IsEqual(Container.SecondTitle,On Deck)]">[COLOR $VAR[Colour_FanartListThemeColourVar]][UPPERCASE]$INFO[ListItem.TvShowTitle][/UPPERCASE][/COLOR]: S$INFO[ListItem.Episode]. $INFO[ListItem.Title]</value>
     <value>$INFO[ListItem.Episode]. $INFO[ListItem.Label]</value>
   </variable>
   <!-- Year -->
