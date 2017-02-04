@@ -42,30 +42,36 @@
   <variable name="InfoPanel_Episodes">
     <value condition="Control.IsVisible(52)">[COLOR $VAR[Colour_LandscapeThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.episode]$INFO[ListItem.Property(UnWatchedEpisodes), (,[LOWERCASE] $LOCALIZE[16101][/LOWERCASE])]</value>
     <value condition="Control.IsVisible(53)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.episode]$INFO[ListItem.Property(UnWatchedEpisodes), (,[LOWERCASE] $LOCALIZE[16101][/LOWERCASE])]</value>
+    <value condition="Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.episode]$INFO[ListItem.Property(UnWatchedEpisodes), (,[LOWERCASE] $LOCALIZE[16101][/LOWERCASE])]</value>
   </variable>  
   <variable name="InfoPanel_Episodes2">
     <value condition="Control.IsVisible(52)">[COLOR $VAR[Colour_LandscapeThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.Episode]</value>
     <value condition="Control.IsVisible(53)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.Episode]</value>
+    <value condition="Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.Episode]</value>
   </variable>
   <!-- Number of Unwatched Episodes -->
   <variable name="InfoPanel_Unwatched">
     <value condition="Control.IsVisible(52)">[COLOR $VAR[Colour_LandscapeThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</value>
     <value condition="Control.IsVisible(53)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</value>
+    <value condition="Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</value>
   </variable>
   <!-- Rating -->
   <variable name="InfoPanel_Rating">
     <value condition="Control.IsVisible(52)">[COLOR $VAR[Colour_LandscapeThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</value>
     <value condition="Control.IsVisible(53)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</value>
+    <value condition="Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[563]:[/COLOR][CR]$VAR[RatingVar]</value>
   </variable>
   <!-- User Rating -->
   <variable name="InfoPanel_UserRating">
     <value condition="Control.IsVisible(52)">[COLOR $VAR[Colour_LandscapeThemeColourVar]]$LOCALIZE[42421]:[CR]$VAR[RatingVar][/COLOR]</value>
     <value condition="Control.IsVisible(53)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[42421]:[CR]$VAR[RatingVar][/COLOR]</value>
+    <value condition="Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[42421]:[CR]$VAR[RatingVar][/COLOR]</value>
   </variable>
   <!-- Rating Label -->
   <variable name="InfoPanel_RatingLabel">
     <value condition="Control.IsVisible(52)">[COLOR $VAR[Colour_LandscapeThemeColourVar]]$LOCALIZE[563]:[/COLOR]</value>
     <value condition="Control.IsVisible(53)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[563]:[/COLOR]</value>
+    <value condition="Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[563]:[/COLOR]</value>
   </variable>
   <!-- Album -->
   <variable name="InfoPanel_Album">
@@ -687,7 +693,7 @@
           <visible>Container.PlexContent(clips)</visible>
         </control>
       </control>
-      <!-- Icon Infopanel -->
+      <!-- Infopanel Icon-->
       <control type="group">
         <visible>String.IsEqual(Control.GetLabel(4420),2)</visible>
         <include>SettingsFadeEffect</include>
@@ -999,7 +1005,7 @@
           <bordersize>1,1,2,1</bordersize>
         </control>
       </control>
-      <!-- Shift Fanart -->
+      <!-- Shift InfoPanel Fanart -->
       <control type="group">
 				<visible>String.IsEqual(Control.GetLabel(4420),3)</visible>
 				<include>SettingsFadeAnimation</include>
@@ -1018,53 +1024,37 @@
 						<include>ShowCaseInfoPanelButtonsValues</include>
 					</control>
 				</control>
-				<control type="label">
+				<control type="button">
           <posx>150</posx>
           <posy>270</posy>
 					<label>$VAR[InfoPanel_Label4]</label>
-					<width>220</width>
+					<width>443</width>
 					<include>ShowCaseInfoPanelButtonsValues</include>
         </control>
         <control type="group">
           <posx>370</posx>
           <posy>270</posy>
           <!-- Separator -->
-            <control type="image">
-              <posx>251</posx>
-              <width>2</width>
-              <height>89</height>
-              <texture border="1">separator3.png</texture>
-              <visible>!IsEmpty(ListItem.Property(hasUserRating)) | !IsEmpty(ListItem.RatingAndVotes)</visible>
-            </control>
-            <!-- Year -->
-            <control type="button">
-              <label>$VAR[InfoPanel_Year]</label>
-              <posx>0</posx>
-              <width>500</width>
-              <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.PlexContent(movies)</visible>
-            </control>
-            <!-- First Aired Date -->
-            <control type="button">
-              <label>$VAR[InfoPanel_Date]</label>
-              <posx>0</posx>
-              <width>500</width>
-              <include>ShowCaseInfoPanelButtonsValues</include>
-              <visible>Container.PlexContent(episodes)</visible>
-            </control>
+          <control type="image">
+            <width>2</width>
+            <height>89</height>
+            <texture border="1">separator3.png</texture>
+            <visible>!IsEmpty(ListItem.Property(hasUserRating)) | !IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          
             <!-- User Rating -->
             <control type="button">
               <posx>0</posx>
               <label>$VAR[InfoPanel_UserRating]</label>
-              <width>251</width>
+              <width>220</width>
               <include>ShowCaseInfoPanelButtonsValues</include>
               <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
             </control>
             <!-- Standard Rating -->
             <control type="button">
-              <posx>251</posx>
+              <posx>0</posx>
               <label>$VAR[InfoPanel_Rating]</label>
-              <width>251</width>
+              <width>220</width>
               <include>ShowCaseInfoPanelButtonsValues</include>
               <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
             </control>
@@ -1075,7 +1065,7 @@
               <posx>15</posx>
               <control type="label">
                 <label>$VAR[InfoPanel_RatingLabel]</label>
-                <width>251</width>
+                <width>220</width>
                 <height>45</height>
                 <aligny>top</aligny>
                 <font>font14</font>
@@ -1107,7 +1097,7 @@
               <posx>15</posx>
               <control type="label">
                 <label>$VAR[InfoPanel_RatingLabel]</label>
-                <width>251</width>
+                <width>220</width>
                 <height>45</height>
                 <aligny>top</aligny>
                 <font>font14</font>
@@ -1147,16 +1137,12 @@
                   <label> $INFO[ListItem.Property(audienceRatingPercent)]%</label>
                 </control>
               </control>
+               
+              </control>
+          
             </control>
-            <control type="image">
-              <posx>0</posx>
-              <posy>30</posy>
-              <width>251</width>
-              <height>60</height>
-              <texture border="1">separator2.png</texture>
-              <visible>IsEmpty(ListItem.Property(hasUserRating)) + !IsEmpty(ListItem.Property(ratingImage))</visible>
-            </control>            
-          </control>
+                       
+          
 				<control type="image">
 					<posx>593</posx>
 					<posy>91</posy>
