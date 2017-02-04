@@ -1145,6 +1145,7 @@
 					<height>331</height>
 					<texture border="1">separator3.png</texture>
 				</control>
+        <!-- Plot -->
 				<control type="textbox">
 					<label>$VAR[PlotVar]</label>
 					<posy>105</posy>
@@ -1156,6 +1157,7 @@
 					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
 					<include>ShowCaseInfoPanelButtonsValues</include>
 				</control>
+        <!-- Separator -->
 				<control type="image">
 					<posx>594</posx>
 					<posy>363</posy>
@@ -1163,6 +1165,7 @@
 					<height>60</height>
 					<texture border="1">separator2.png</texture>
 				</control>
+        <!-- Scrollbar -->
 				<control type="scrollbar" id="63">
 					<posy>179</posy>
 					<posx>1215</posx>
@@ -1179,6 +1182,7 @@
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
 				</control>
+        <!-- Fanart -->
 				<control type="image">
 					<posx>1229</posx>
 					<posy>92</posy>
@@ -1190,48 +1194,21 @@
 					<bordersize>1,1,2,1</bordersize>
 				</control>
 			</control>
-			<control type="group">
+      <!-- Shift InfoPanel Icon -->
+      <control type="group">
 				<visible>String.IsEqual(Control.GetLabel(4420),4)</visible>
 				<include>SettingsFadeAnimation</include>
 				<control type="grouplist">
 					<posx>150</posx>
 					<posy>90</posy>
-					<orientation>horizontal</orientation>
 					<align>left</align>
-					<visible>Skin.HasSetting(Enable.Shift.Discart) + !Skin.HasSetting(Enable.Shift.Small) + !ListItem.IsCollection + ![Container.Content(tvshows) | Container.Content(seasons)]</visible>
 					<control type="button">
 						<label>$VAR[InfoPanel_Label1]</label>
-						<width>300</width>
+						<width>384</width>
 						<include>ShowCaseInfoPanelButtonsValues</include>
 					</control>
 					<control type="button">
 						<label>$VAR[InfoPanel_Label2]</label>
-						<width>300</width>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-					</control>
-					<control type="button">
-						<label>$VAR[InfoPanel_Label3]</label>
-						<width>320</width>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-					</control>
-					<control type="button">
-						<label>$VAR[InfoPanel_Label4]</label>
-						<width>280</width>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-					</control>
-					<control type="button">
-						<label>$VAR[InfoPanel_Label5]</label>
-						<width>260</width>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-					</control>
-				</control>
-				<control type="grouplist">
-					<posx>150</posx>
-					<posy>90</posy>
-					<align>left</align>
-					<visible>!Skin.HasSetting(Enable.Shift.Discart) | Skin.HasSetting(Enable.Shift.Small) | ListItem.IsCollection | [Container.Content(tvshows) | Container.Content(seasons)]</visible>
-					<control type="button">
-						<label>$VAR[InfoPanel_Label1]</label>
 						<width>384</width>
 						<include>ShowCaseInfoPanelButtonsValues</include>
 					</control>
@@ -1240,55 +1217,135 @@
 						<width>384</width>
 						<include>ShowCaseInfoPanelButtonsValues</include>
 					</control>
-					<control type="button">
-						<label>$VAR[InfoPanel_Label5]</label>
-						<width>384</width>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-					</control>
 				</control>
-				<control type="grouplist">
-					<posx>535</posx>
-					<posy>90</posy>
-					<orientation>horizontal</orientation>
-					<visible>!Skin.HasSetting(Enable.Shift.Discart) | Skin.HasSetting(Enable.Shift.Small) | ListItem.IsCollection | [Container.Content(tvshows) | Container.Content(seasons)]</visible>
-					<control type="button">
-						<label>$VAR[InfoPanel_Label2]</label>
-						<width>430</width>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-					</control>
-					<control type="button">
-						<label>$VAR[InfoPanel_Label3]</label>
-						<width>440</width>
-						<include>ShowCaseInfoPanelButtonsValues</include>
-					</control>
-				</control>
-				<control type="image">
-					<posx>534</posx>
-					<posy>91</posy>
-					<width>2</width>
-					<height>359</height>
-					<texture border="1">separator3.png</texture>
-					<visible>!Skin.HasSetting(Enable.Shift.Discart) | Skin.HasSetting(Enable.Shift.Small) | ListItem.IsCollection | [Container.Content(tvshows) | Container.Content(seasons)]</visible>
-				</control>
+        <!-- Ratings -->
+        <control type="group">
+          <posx>311</posx>
+          <posy>270</posy>
+          <!-- Separator -->
+          <control type="image">
+            <width>2</width>
+            <height>89</height>
+            <texture border="1">separator3.png</texture>
+            <visible>!IsEmpty(ListItem.Property(hasUserRating)) | !IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <!-- User Rating -->
+          <control type="button">
+            <posx>0</posx>
+            <label>$VAR[InfoPanel_UserRating]</label>
+            <width>220</width>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>!IsEmpty(ListItem.Property(hasUserRating))</visible>
+          </control>
+          <!-- Standard Rating -->
+          <control type="button">
+            <posx>0</posx>
+            <label>$VAR[InfoPanel_Rating]</label>
+            <width>220</width>
+            <include>ShowCaseInfoPanelButtonsValues</include>
+            <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes)</visible>
+          </control>
+          <!-- IMDb Rating -->
+          <control type="grouplist">
+            <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb)</visible>
+            <orientation>vertical</orientation>
+            <posx>15</posx>
+            <control type="label">
+              <label>$VAR[InfoPanel_RatingLabel]</label>
+              <width>220</width>
+              <height>45</height>
+              <aligny>top</aligny>
+              <font>font14</font>
+              <textcolor>grey2</textcolor>
+            </control>
+            <control type="grouplist">
+              <orientation>horizontal</orientation>
+              <control type="image">
+                <width>51</width>
+                <height>40</height>
+                <aligny>center</aligny>
+                <texture>imdb_51x40.png</texture>
+                <aspectratio align="left" aligny="center">keep</aspectratio>
+              </control>
+              <control type="label">
+                <height>40</height>
+                <width min="20" max="121">auto</width>
+                <aligny>center</aligny>
+                <font>font14</font>
+                <textcolor>grey2</textcolor>
+                <label> $INFO[ListItem.Property(rating)]</label>
+              </control>
+            </control>
+          </control>
+          <!-- Rotten Tomatoes Rating -->
+          <control type="grouplist">
+            <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes)</visible>
+            <orientation>vertical</orientation>
+            <posx>15</posx>
+            <control type="label">
+              <label>$VAR[InfoPanel_RatingLabel]</label>
+              <width>220</width>
+              <height>45</height>
+              <aligny>top</aligny>
+              <font>font14</font>
+              <textcolor>grey2</textcolor>
+            </control>
+            <control type="grouplist">
+              <orientation>horizontal</orientation>
+              <control type="image">
+                <width>32</width>
+                <height>40</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <texture>rottentomatoes/32x32/$INFO[ListItem.Property(ratingImage)]</texture>
+                <aspectratio align="left" aligny="center">keep</aspectratio>
+              </control>
+              <control type="label">
+                <height>40</height>
+                <width min="20" max="121">auto</width>
+                <aligny>center</aligny>
+                <font>font14</font>
+                <textcolor>grey2</textcolor>
+                <label> $INFO[ListItem.Property(ratingPercent)]% </label>
+              </control>
+              <control type="image">
+                <width>32</width>
+                <height>40</height>
+                <aligny>center</aligny>
+                <texture>rottentomatoes/32x32/$INFO[ListItem.Property(audienceRatingImage)]</texture>
+                <aspectratio align="left" aligny="center">keep</aspectratio>
+              </control>
+              <control type="label">
+                <height>40</height>
+                <width min="20" max="121">auto</width>
+                <aligny>center</aligny>
+                <font>font14</font>
+                <textcolor>grey2</textcolor>
+                <label> $INFO[ListItem.Property(audienceRatingPercent)]%</label>
+              </control>
+            </control>
+          </control>
+        </control>
 				<control type="image">
 					<posx>534</posx>
 					<posy>179</posy>
 					<width>2</width>
 					<height>242</height>
 					<texture border="1">separator3.png</texture>
-					<visible>Skin.HasSetting(Enable.Shift.Discart) + !Skin.HasSetting(Enable.Shift.Small) + !ListItem.IsCollection + ![Container.Content(tvshows) | Container.Content(seasons)]</visible>
 				</control>
+        <!-- Plot -->
 				<control type="textbox">
 					<posx>550</posx>
-					<label>$VAR[VideoPlotVar]</label>
-					<posy>185</posy>
+					<label>$VAR[PlotVar]</label>
+					<posy>105</posy>
 					<width>950</width>
-					<height>240</height>
+					<height>308</height>
 					<font>font14_textbox</font>
 					<pagecontrol>63</pagecontrol>
 					<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(63)</autoscroll>
 					<include>ShowCaseInfoPanelButtonsValues</include>
 				</control>
+        <!-- Scrollbar -->
 				<control type="scrollbar" id="63">
 					<posy>180</posy>
 					<posx>1510</posx>
@@ -1305,13 +1362,14 @@
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
 				</control>
+        <!-- Poster -->
 				<control type="image">
 					<posx>1525</posx>
 					<posy>93</posy>
 					<width>240</width>
 					<height>340</height>
 					<fadetime>200</fadetime>
-					<texture background="true">$VAR[PosterThumbVar]</texture>
+					<texture background="true" fallback="defaultmovies.png">$INFO[ListItem.Art(thumb)]</texture>
 					<bordertexture border="1,1,2,1">thumbs/panel_border.png</bordertexture>
 					<bordersize>1,1,2,1</bordersize>
 				</control>
