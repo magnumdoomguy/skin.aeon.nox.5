@@ -298,7 +298,7 @@
   <!-- Includes -->
   <include name="ShowCaseInfoPanel">
     <control type="group" id="12000">
-      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + ![Control.IsVisible(53) + Skin.HasSetting(ShowCase.Flat)] + ![Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]</visible>
+      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + ![Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)] + ![Control.IsVisible(53) + Skin.HasSetting(ShowCase.Flat)] + ![Control.IsVisible(57) + Skin.HasSetting(Shift.Flat)]</visible>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">VisibleChange</animation>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
       <animation effect="slide" end="0,-1200" start="0,0" time="720" tween="cubic">WindowClose</animation>
@@ -1615,12 +1615,12 @@
 				<description>background image</description>
 				<include>FullscreenDimensions</include>
 				<texture colordiffuse="80FFFFFF">black.png</texture>
-				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + [[[Control.IsVisible(53) | Control.IsVisible(54)] + Skin.HasSetting(ShowCase.Flat)] | [Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]]</visible>
+				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + [[Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)] | [[Control.IsVisible(53) | Control.IsVisible(54)] + Skin.HasSetting(ShowCase.Flat)] | [Control.IsVisible(57) + Skin.HasSetting(Shift.Flat)]]</visible>
 				<animation effect="fade" time="320">Visible</animation>
 				<animation effect="fade" time="720">Hidden</animation>
 			</control>
 			<control type="group">
-				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + [[[Control.IsVisible(53) | Control.IsVisible(54)] + Skin.HasSetting(ShowCase.Flat)] | [Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]]</visible>
+				<visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + ![ListItem.Type(directory) + !String.IsEqual(ListItem.Label,All Episodes)] + [[Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)] | [[Control.IsVisible(53) | Control.IsVisible(54)] + Skin.HasSetting(ShowCase.Flat)] | [Control.IsVisible(57) + Skin.HasSetting(Shift.Flat)]]</visible>
 				<animation effect="slide" start="0,-1080" end="0,0" time="840" tween="cubic">Visible</animation>
 				<animation effect="slide" start="0,0" end="0,-1080" time="720" tween="cubic">Hidden</animation>
 				<animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
@@ -2176,6 +2176,322 @@
 						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
 						<bordersize>20</bordersize>
             <visible>Container.PlexContent(artists) | Container.PlexContent(albums)</visible>
+					</control>
+				</control>
+        <control type="group">
+					<visible>String.IsEqual(Control.GetLabel(4420),3)</visible>
+					<include>SettingsFadeAnimation</include>
+					<control type="grouplist">
+            <visible>!Container.PlexContent(albums) + !Container.PlexContent(clips)</visible>
+            <posx>5</posx>
+						<posy>50</posy>
+						<control type="button">
+							<label>$VAR[InfoPanel_Label1]</label>
+							<include>FlatInfoPanelButtonsValues</include>
+						</control>
+						<control type="button">
+							<label>$VAR[InfoPanel_Label2]</label>
+							<include>FlatInfoPanelButtonsValues</include>
+						</control>
+          </control>
+          <control type="grouplist">
+            <posx>501</posx>
+						<posy>50</posy>
+            <orientation>vertical</orientation>						
+            <control type="button">
+              <label>$VAR[InfoPanel_Label3]</label>
+              <include>FlatInfoPanelButtonsValues</include>
+              <visible>!Container.PlexContent(homemovies)</visible>
+            </control>
+						<control type="button">
+							<posx>501</posx>
+							<label>$VAR[InfoPanel_Label4]</label>
+							<include>FlatInfoPanelButtonsValues</include>
+              <visible>!Container.PlexContent(homemovies)</visible>
+						</control>
+						<control type="button">
+							<posx>752</posx>
+							<label>$VAR[InfoPanel_Label5]</label>
+							<include>FlatInfoPanelButtonsValues</include>
+              <visible>!Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+						</control>
+          </control>
+          <control type="group">
+            <posx>752</posx>
+            <posy>140</posy>
+            <!-- User Rating -->
+            <control type="button">
+              <label>$VAR[InfoPanel_UserRating]</label>
+              <width>250</width>
+              <include>FlatInfoPanelButtonsValues</include>
+              <visible>!IsEmpty(ListItem.Property(hasUserRating)) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+            </control>
+            <!-- Standard Rating -->
+            <control type="button">
+              <label>$VAR[InfoPanel_Rating]</label>
+              <width>251</width>
+              <include>FlatInfoPanelButtonsValues</include>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+            </control>
+            <!-- IMDb Rating -->
+            <control type="grouplist">
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+              <orientation>vertical</orientation>
+              <posx>15</posx>
+              <control type="label">
+                <label>$VAR[InfoPanel_RatingLabel]</label>
+                <width>250</width>
+                <height>45</height>
+                <aligny>top</aligny>
+                <font>font14</font>
+                <textcolor>white2</textcolor>
+              </control>
+              <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <control type="image">
+                  <width>51</width>
+                  <height>40</height>
+                  <aligny>center</aligny>
+                  <texture>imdb_51x40.png</texture>
+                  <aspectratio align="left" aligny="center">keep</aspectratio>
+                </control>
+                <control type="label">
+                  <height>40</height>
+                  <width min="20" max="121">auto</width>
+                  <aligny>center</aligny>
+                  <font>font14</font>
+                  <textcolor>white2</textcolor>
+                  <label> $INFO[ListItem.Property(rating)]</label>
+                </control>
+              </control>
+            </control>
+            <!-- Rotten Tomatoes Rating -->
+            <control type="grouplist">
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+              <orientation>vertical</orientation>
+              <posx>15</posx>
+              <control type="label">
+                <label>$VAR[InfoPanel_RatingLabel]</label>
+                <width>250</width>
+                <height>45</height>
+                <aligny>top</aligny>
+                <font>font14</font>
+                <textcolor>white2</textcolor>
+              </control>
+              <control type="grouplist">
+                <orientation>horizontal</orientation>
+                <control type="image">
+                  <width>32</width>
+                  <height>40</height>
+                  <align>left</align>
+                  <aligny>center</aligny>
+                  <texture>rottentomatoes/32x32/$INFO[ListItem.Property(ratingImage)]</texture>
+                  <aspectratio align="left" aligny="center">keep</aspectratio>
+                </control>
+                <control type="label">
+                  <height>40</height>
+                  <width min="20" max="121">auto</width>
+                  <aligny>center</aligny>
+                  <font>font14</font>
+                  <textcolor>white2</textcolor>
+                  <label> $INFO[ListItem.Property(ratingPercent)]% </label>
+                </control>
+                <control type="image">
+                  <width>32</width>
+                  <height>40</height>
+                  <aligny>center</aligny>
+                  <texture>rottentomatoes/32x32/$INFO[ListItem.Property(audienceRatingImage)]</texture>
+                  <aspectratio align="left" aligny="center">keep</aspectratio>
+                </control>
+                <control type="label">
+                  <height>40</height>
+                  <width min="20" max="121">auto</width>
+                  <aligny>center</aligny>
+                  <font>font14</font>
+                  <textcolor>white2</textcolor>
+                  <label> $INFO[ListItem.Property(audienceRatingPercent)]%</label>
+                </control>
+              </control>
+            </control>
+          </control>
+					<control type="grouplist">
+            <visible>Container.PlexContent(albums)</visible>
+            <posx>5</posx>
+						<posy>50</posy>
+						<control type="button">
+							<label>$VAR[InfoPanel_Label1]</label>
+              <width>500</width>
+							<include>FlatInfoPanelButtonsValues</include>
+						</control>
+						<control type="button">
+							<label>$VAR[InfoPanel_Label2]</label>
+              <width>500</width>
+							<include>FlatInfoPanelButtonsValues</include>
+						</control>
+          </control>
+          <control type="grouplist">
+            <visible>Container.PlexContent(albums)</visible>
+            <posx>505</posx>
+						<posy>50</posy>
+						<control type="button">
+							<label>$VAR[InfoPanel_Genre]</label>
+              <width>640</width>
+							<include>FlatInfoPanelButtonsValues</include>
+						</control>
+						<control type="button">
+							<label>$VAR[InfoPanel_Year]</label>
+              <width>640</width>
+							<include>FlatInfoPanelButtonsValues</include>
+						</control>
+          </control>
+          <!-- Plot Summary -->
+					<control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>232</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>135</height>
+						<font>font14_textbox2</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies) + !Container.PlexContent(artists) + !Container.PlexContent(albums) + !Container.PlexContent(clips)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>247</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>130</height>
+						<font>font14_textbox2_showcaseflatfanart</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + !Container.PlexContent(homemovies) + !Container.PlexContent(artists) + !Container.PlexContent(albums) + !Container.PlexContent(clips)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>247</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>220</height>
+						<font>font14_textbox2</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(homemovies)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>247</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>220</height>
+						<font>font14_textbox2_showcaseflatfanart</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(homemovies)</visible>
+					</control>
+          <!-- Biography -->
+          <control type="textbox">
+						<label>$VAR[InfoPanel_Biography]</label>
+						<posy>70</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>395</height>
+						<font>font14_textbox2</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[InfoPanel_Biography]</label>
+						<posy>70</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>395</height>
+						<font>font14_textbox2_showcaseflatfanart</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
+					</control>
+          <!-- Review -->
+          <control type="textbox">
+						<label>$VAR[InfoPanel_Review]</label>
+						<posy>247</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>220</height>
+						<font>font14_textbox2</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(albums)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[InfoPanel_Review]</label>
+						<posy>247</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>220</height>
+						<font>font14_textbox2_showcaseflatfanart</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(albums)</visible>
+					</control>
+          <!-- Watch Later Summary -->
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>90</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>390</height>
+						<font>font14_textbox2</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(clips)</visible>
+					</control>
+          <control type="textbox">
+						<label>$VAR[PlotVar]</label>
+						<posy>90</posy>
+						<posx>20</posx>
+						<width>1090</width>
+						<height>390</height>
+						<font>font14_textbox2_showcaseflatfanart</font>
+            <align>left</align>
+						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
+						<include>FlatInfoPanelButtonsValues</include>
+            <visible>Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(clips)</visible>
+					</control>
+          <!-- Fanart -->
+					<control type="image">
+						<posx>1132</posx>
+						<posy>35</posy>
+						<width>768</width>
+						<height>415</height>
+						<fadetime>200</fadetime>
+						<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+						<aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
+						<bordersize>20</bordersize>
+            <visible>!Container.PlexContent(clips)</visible>
+					</control>
+          <control type="image">
+						<posx>1132</posx>
+						<posy>35</posy>
+						<width>768</width>
+						<height>415</height>
+						<fadetime>200</fadetime>
+						<texture background="true">$INFO[ListItem.Art(bigThumb)]</texture>
+						<aspectratio scalediffuse="false" aligny="center">scale</aspectratio>
+						<bordertexture border="20">thumbs/thumb_shadow_aa.png</bordertexture>
+						<bordersize>20</bordersize>
+            <visible>Container.PlexContent(clips)</visible>
 					</control>
 				</control>
 			</control>
