@@ -310,7 +310,7 @@
             <label> $INFO[ListItem.Property(audienceRatingPercent)]% [B]•[/B] </label>
             <visible>String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + IsEmpty(ListItem.Property(hasUserRating))</visible>
           </control>
-          <!-- Duration On Deck -->
+          <!-- Duration -->
           <control type="label">
             <width min="20" max="299">auto</width>
             <height>40</height>
@@ -343,7 +343,19 @@
         <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
         <pagecontrol>61</pagecontrol>
         <include>ShowCaseInfoPanelButtonsValues</include>
-        <visible>!ListItem.Type(directory)</visible>
+        <visible>!ListItem.Type(directory) + !IsEmpty(ListItem.Genre)</visible>
+      </control>
+      <control type="textbox">
+        <label>$VAR[PlotVar]</label>
+        <posy>694</posy>
+        <posx>1135</posx>
+        <width>650</width>
+        <height>382</height>
+        <font>font14_textbox</font>
+        <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll) + !Control.HasFocus(61)</autoscroll>
+        <pagecontrol>61</pagecontrol>
+        <include>ShowCaseInfoPanelButtonsValues</include>
+        <visible>!ListItem.Type(directory) + IsEmpty(ListItem.Genre)</visible>
       </control>
       <control type="panel" id="51">
         <posx>120</posx>
@@ -673,6 +685,24 @@
         <texturesliderbackground>-</texturesliderbackground>
         <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
         <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+        <visible>!IsEmpty(ListItem.Genre)</visible>
+      </control>
+      <control type="scrollbar" id="61">
+        <posx>1797</posx>
+        <posy>694</posy>
+        <width>14</width>
+        <height>382</height>
+        <colordiffuse>55ffffff</colordiffuse>
+        <onleft>50</onleft>
+        <onright>SetProperty(MediaMenu,True,home)</onright>
+        <onright>SetFocus(9050,0)</onright>
+        <ondown>61</ondown>
+        <onup>61</onup>
+        <showonepage>false</showonepage>
+        <texturesliderbackground>-</texturesliderbackground>
+        <texturesliderbar border="1">scrollbar/texturesliderbar2.png</texturesliderbar>
+        <texturesliderbarfocus border="1">scrollbar/texturesliderbar2.png</texturesliderbarfocus>
+        <visible>IsEmpty(ListItem.Genre)</visible>
       </control>
     </control>
   </include>
