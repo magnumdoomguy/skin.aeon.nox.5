@@ -95,7 +95,7 @@
 			<posy>345</posy>
 			<width>200</width>
 			<height>275</height>
-			<texture background="true">$VAR[PosterThumbVar]</texture>
+			<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
 			<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 			<bordersize>20</bordersize>
 		</control>
@@ -104,7 +104,7 @@
 			<posy>601</posy>
 			<width>160</width>
 			<height>225</height>
-			<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png">$VAR[PosterThumbVar]</texture>
+			<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png">$INFO[ListItem.Art(smallThumb)]</texture>
 			<animation effect="fade" start="100" end="30" time="200">Focus</animation>
 			<animation effect="fade" start="30" end="100" time="200">UnFocus</animation>
 		</control>
@@ -229,16 +229,26 @@
       <scrolltime tween="quadratic">200</scrolltime>
       <focusposition>1</focusposition>
       <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.PlexContent(channels)</visible>
-      <itemlayout width="315" height="750" condition="!Container.PlexContent(channels)">
+      <itemlayout width="315" height="750" condition="!Skin.HasSetting(Shift.SmallPosters) + !Container.PlexContent(channels)">
         <include>ShiftPosterThumbs</include>
       </itemlayout>
-      <focusedlayout width="315" height="750" condition="!Container.PlexContent(channels)">
+      <focusedlayout width="315" height="750" condition="!Skin.HasSetting(Shift.SmallPosters) + !Container.PlexContent(channels)">
         <control type="group">
           <animation effect="zoom" center="auto" start="100" end="130" time="160" tween="quadratic">Focus</animation>
           <animation effect="zoom" center="auto" start="130" end="100" time="160" tween="quadratic">Unfocus</animation>
           <include>ShiftPosterThumbs</include>
         </control>
       </focusedlayout>
+      <itemlayout width="185" height="500" condition="Skin.HasSetting(Shift.SmallPosters) + !Container.PlexContent(channels)">
+				<include>ShiftPosterThumbsSmall</include>
+			</itemlayout>
+			<focusedlayout width="185" height="500" condition="Skin.HasSetting(Shift.SmallPosters) + !Container.PlexContent(channels)">
+				<control type="group">
+					<animation effect="zoom" center="220,482" start="100" end="150" time="300" tween="quadratic" reversible="false">Focus</animation>
+					<animation effect="zoom" center="220,482" start="150" end="100" time="300" tween="quadratic" reversible="false">Unfocus</animation>
+					<include>ShiftPosterThumbsSmall</include>
+				</control>
+			</focusedlayout>
       <itemlayout width="315" height="750" condition="Container.PlexContent(channels)">
         <include>ShiftSquareThumbs</include>
       </itemlayout>
