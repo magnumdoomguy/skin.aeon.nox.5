@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <includes>
+  <!-- Watched Status Indicator -->
+  <variable name="Shift_WatchedStatus">
+    <!-- Ribbons -->
+    <value condition="Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)">overlays/shift/default/0/$INFO[ListItem.Overlay]</value>
+    <value condition="!Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)">overlays/shift/default/1/$INFO[ListItem.Overlay]</value>
+    <value condition="!Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)">overlays/shift/default/2/$INFO[ListItem.Overlay]</value>
+    <value condition="!Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)">overlays/shift/default/3/$INFO[ListItem.Overlay]</value>
+    <value condition="!Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)">overlays/shift/default/4/$INFO[ListItem.Overlay]</value>
+    <value condition="Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)">overlays/shift/default/5/$INFO[ListItem.Overlay]</value>
+    <value condition="Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)">overlays/shift/default/6/$INFO[ListItem.Overlay]</value>
+    <value condition="Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched) + !Skin.HasSetting(Enable.Circles)">overlays/shift/default/7/$INFO[ListItem.Overlay]</value>
+    <!-- Circles -->
+    <value condition="Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)">overlays/circle/0/$INFO[ListItem.Overlay]</value>
+    <value condition="!Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)">overlays/circle/1/$INFO[ListItem.Overlay]</value>
+    <value condition="!Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)">overlays/circle/2/$INFO[ListItem.Overlay]</value>
+    <value condition="!Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)">overlays/circle/3/$INFO[ListItem.Overlay]</value>
+    <value condition="!Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)">overlays/circle/4/$INFO[ListItem.Overlay]</value>
+    <value condition="Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)">overlays/circle/5/$INFO[ListItem.Overlay]</value>
+    <value condition="Skin.HasSetting(Disable.Resumable) + !Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)">overlays/circle/6/$INFO[ListItem.Overlay]</value>
+    <value condition="Skin.HasSetting(Disable.Resumable) + Skin.HasSetting(Disable.Unwatched) + !Skin.HasSetting(Disable.Watched) + Skin.HasSetting(Enable.Circles)">overlays/circle/7/$INFO[ListItem.Overlay]</value>
+  </variable>
   <include name="ShiftPosterThumbs">
     <control type="image">
       <posx>-12</posx>
@@ -51,7 +72,7 @@
       <posy>149</posy>
       <width>100</width>
       <height>100</height>
-      <texture>$VAR[OverlayVar]</texture>
+      <texture>$VAR[Shift_WatchedStatus]</texture>
       <aspectratio align="center" aligny="top">keep</aspectratio>
       <bordersize>1</bordersize>
       <visible>!Skin.HasSetting(Enable.Circles)</visible>
@@ -95,8 +116,9 @@
 			<posy>345</posy>
 			<width>200</width>
 			<height>275</height>
+      <aspectratio scalediffuse="false">scale</aspectratio>
 			<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
-			<bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+      <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 			<bordersize>20</bordersize>
 		</control>
 		<control type="image">
@@ -104,25 +126,54 @@
 			<posy>601</posy>
 			<width>160</width>
 			<height>225</height>
+      <aspectratio scalediffuse="false">scale</aspectratio>
 			<texture background="true" flipy="true" diffuse="thumbs/thumb_diffuse.png">$INFO[ListItem.Art(smallThumb)]</texture>
 			<animation effect="fade" start="100" end="30" time="200">Focus</animation>
 			<animation effect="fade" start="30" end="100" time="200">UnFocus</animation>
 		</control>
-		<control type="image">
-			<posx>250</posx>
-			<posy>364</posy>
-			<width>50</width>
-			<height>50</height>
-			<texture>$VAR[OverlayVar]</texture>
-			<aspectratio align="center" aligny="top">keep</aspectratio>
-			<bordersize>1</bordersize>
-			<visible>[!String.IsEmpty(Skin.String(57.Movies.DisableOverlay)) + Container.Content(movies)] | [!String.IsEmpty(Skin.String(57.TV.DisableOverlay)) + Container.Content(tvshows)] | [!String.IsEmpty(Skin.String(57.Seasons.DisableOverlay)) + Container.Content(seasons)]</visible>
-		</control>
-		<control type="group">
-			<posx>135</posx>
-			<posy>368</posy>
-			<include condition="Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
-		</control>
+		<!-- Ribbon Watched Status -->
+    <control type="image">
+      <posx>250</posx>
+      <posy>364</posy>
+      <width>50</width>
+      <height>50</height>
+      <texture>$VAR[OverlayVar]</texture>
+      <aspectratio align="center" aligny="top">keep</aspectratio>
+      <bordersize>1</bordersize>
+      <visible>!Skin.HasSetting(Enable.Circles)</visible>
+    </control>
+    <!-- Circle Watched Status (Upper) -->
+    <control type="image">
+      <posx>250</posx>
+      <posy>170</posy>
+      <width>36</width>
+      <height>36</height>
+      <aspectratio>keep</aspectratio>
+      <texture>$VAR[OverlayVar]</texture>
+      <colordiffuse>$VAR[Colour_ShiftWatchedStatusColourVar]</colordiffuse>
+      <visible>Skin.HasSetting(Enable.Circles) + !Skin.HasSetting(Enable.LowerCircles)</visible>
+    </control>
+    <!-- Circle Watched Status (Lower) -->
+    <control type="image">
+      <posx>250</posx>
+      <posy>544</posy>
+      <width>36</width>
+      <height>36</height>
+      <aspectratio>keep</aspectratio>
+      <texture>$VAR[OverlayVar]</texture>
+      <colordiffuse>$VAR[Colour_ShiftWatchedStatusColourVar]</colordiffuse>
+      <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
+    </control>
+    <control type="group">
+      <posx>30</posx>
+      <posy>170</posy>
+      <include condition="!Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+    </control>
+    <control type="group">
+      <posx>30</posx>
+      <posy>544</posy>
+      <include condition="Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+    </control>
 	</include>
   <include name="ShiftSquareThumbs">
     <control type="image">
