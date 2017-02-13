@@ -107,6 +107,7 @@
     <value condition="Container.PlexContent(homemovies) + Control.IsVisible(53)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$VAR[Year]</value>
     <value condition="Container.PlexContent(albums) + Control.IsVisible(54)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]Album:[/COLOR][CR]$INFO[ListItem.Label]</value>
     <!-- Shift View -->
+    <value condition="Container.PlexContent(homemovies) + Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$VAR[Year]</value>
     <value condition="[Container.PlexContent(movies) | Container.PlexContent(episodes)] + Control.IsVisible(57) + !IsEmpty(ListItem.Director)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$INFO[ListItem.Director]</value>
     <value condition="[Container.PlexContent(movies) | Container.PlexContent(episodes)] + Control.IsVisible(57) + IsEmpty(ListItem.Director)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$LOCALIZE[42539]</value>
 		<value condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Control.IsVisible(57) + !IsEmpty(ListItem.Genre)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</value>
@@ -128,7 +129,7 @@
     <value condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Control.IsVisible(53) + IsEmpty(ListItem.Property(mediaTag-Studio))">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[31019]:[/COLOR][CR]$LOCALIZE[42539]</value>
     <value condition="Container.PlexContent(albums) + Control.IsVisible(54)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]Artist:[/COLOR][CR]$INFO[ListItem.Artist]</value>
     <!-- Shift View -->
-    <value condition="Container.PlexContent(homemovies) + Control.IsVisible(57)">[COLOR $VAR[Colour_LandscapeThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</value>
+    <value condition="Container.PlexContent(homemovies) + Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</value>
     <value condition="[Container.PlexContent(movies) | Container.PlexContent(episodes)] + Control.IsVisible(57) + !IsEmpty(ListItem.Writer)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31001]:[/COLOR][CR]$INFO[ListItem.Writer]</value>
 		<value condition="[Container.PlexContent(movies) | Container.PlexContent(episodes)] + Control.IsVisible(57) + IsEmpty(ListItem.Writer)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31001]:[/COLOR][CR]$LOCALIZE[42539]</value>
 		<value condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Control.IsVisible(57) + !IsEmpty(ListItem.Property(mediaTag-Studio))">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31019]:[/COLOR][CR]$INFO[ListItem.Property(mediaTag-Studio)]</value>
@@ -193,6 +194,7 @@
     <value condition="Control.IsVisible(52) + Container.PlexContent(artists)">$INFO[Skin.String(52.Artists.InfoPanel)]</value>
     <value condition="Control.IsVisible(52) + Container.PlexContent(clips)">$INFO[Skin.String(52.WatchLater.InfoPanel)]</value>
     <value condition="Control.IsVisible(57) + Container.PlexContent(movies)">$INFO[Skin.String(57.Movies.InfoPanel)]</value>
+    <value condition="Control.IsVisible(57) + Container.PlexContent(homemovies)">$INFO[Skin.String(57.HomeVideos.InfoPanel)]</value>
     <value condition="Control.IsVisible(57) + Container.PlexContent(tvshows)">$INFO[Skin.String(57.TVShows.InfoPanel)]</value>
     <value condition="Control.IsVisible(57) + Container.PlexContent(seasons)">$INFO[Skin.String(57.Seasons.InfoPanel)]</value>
     <value condition="Control.IsVisible(601) + Container.PlexContent(movies)">$INFO[Skin.String(601.Movies.InfoPanel)]</value>
@@ -258,6 +260,9 @@
     <value condition="Container.PlexContent(movies) + IsEmpty(Skin.String(57.Movies.InfoPanel))">Skin.SetString(57.Movies.InfoPanel,3)</value>
     <value condition="Container.PlexContent(movies) + String.IsEqual(Skin.String(57.Movies.InfoPanel),3)">Skin.SetString(57.Movies.InfoPanel,4)</value>
     <value condition="Container.PlexContent(movies) + String.IsEqual(Skin.String(57.Movies.InfoPanel),4)">Skin.Reset(57.Movies.InfoPanel)</value>
+    <value condition="Container.PlexContent(homemovies) + IsEmpty(Skin.String(57.HomeVideos.InfoPanel))">Skin.SetString(57.HomeVideos.InfoPanel,3)</value>
+    <value condition="Container.PlexContent(homemovies) + String.IsEqual(Skin.String(57.HomeVideos.InfoPanel),3)">Skin.SetString(57.HomeVideos.InfoPanel,4)</value>
+    <value condition="Container.PlexContent(homemovies) + String.IsEqual(Skin.String(57.HomeVideos.InfoPanel),4)">Skin.Reset(57.HomeVideos.InfoPanel)</value>
     <value condition="Container.PlexContent(tvshows) + IsEmpty(Skin.String(57.TVShows.InfoPanel))">Skin.SetString(57.TVShows.InfoPanel,3)</value>
     <value condition="Container.PlexContent(tvshows) + String.IsEqual(Skin.String(57.TVShows.InfoPanel),3)">Skin.SetString(57.TVShows.InfoPanel,4)</value>
     <value condition="Container.PlexContent(tvshows) + String.IsEqual(Skin.String(57.TVShows.InfoPanel),4)">Skin.Reset(57.TVShows.InfoPanel)</value>
@@ -1032,6 +1037,7 @@
 					<include>ShowCaseInfoPanelButtonsValues</include>
         </control>
         <control type="group">
+          <visible>!Container.PlexContent(homemovies)</visible>
           <posx>370</posx>
           <posy>270</posy>
           <!-- Separator -->
@@ -1220,6 +1226,7 @@
 				</control>
         <!-- Ratings -->
         <control type="group">
+          <visible>!Container.PlexContent(homemovies)</visible>
           <posx>311</posx>
           <posy>270</posy>
           <!-- Separator -->
@@ -1369,7 +1376,8 @@
 					<width>240</width>
 					<height>340</height>
 					<fadetime>200</fadetime>
-					<texture background="true" fallback="defaultmovies.png">$INFO[ListItem.Art(thumb)]</texture>
+          <aspectratio>scale</aspectratio>
+					<texture background="true" fallback="defaultvideo.png">$INFO[ListItem.Art(thumb)]</texture>
 					<bordertexture border="1,1,2,1">thumbs/panel_border.png</bordertexture>
 					<bordersize>1,1,2,1</bordersize>
 				</control>
@@ -2219,6 +2227,7 @@
 						</control>-->
           </control>
           <control type="group">
+            <visible>!Container.PlexContent(homemovies)</visible>
             <posx>752</posx>
             <posy>140</posy>
             <!-- User Rating -->
@@ -2226,18 +2235,18 @@
               <label>$VAR[InfoPanel_UserRating]</label>
               <width>250</width>
               <include>FlatInfoPanelButtonsValues</include>
-              <visible>!IsEmpty(ListItem.Property(hasUserRating)) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+              <visible>!IsEmpty(ListItem.Property(hasUserRating)) + Container.PlexContent(movies)</visible>
             </control>
             <!-- Standard Rating -->
             <control type="button">
               <label>$VAR[InfoPanel_Rating]</label>
               <width>251</width>
               <include>FlatInfoPanelButtonsValues</include>
-              <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + IsEmpty(ListItem.Property(ratingType)) + !IsEmpty(ListItem.RatingAndVotes) + Container.PlexContent(movies)</visible>
             </control>
             <!-- IMDb Rating -->
             <control type="grouplist">
-              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),imdb) + Container.PlexContent(movies)</visible>
               <orientation>vertical</orientation>
               <posx>15</posx>
               <control type="label">
@@ -2269,7 +2278,7 @@
             </control>
             <!-- Rotten Tomatoes Rating -->
             <control type="grouplist">
-              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
+              <visible>IsEmpty(ListItem.Property(hasUserRating)) + String.IsEqual(ListItem.Property(ratingType),rottentomatoes) + Container.PlexContent(movies)</visible>
               <orientation>vertical</orientation>
               <posx>15</posx>
               <control type="label">

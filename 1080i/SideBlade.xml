@@ -395,6 +395,7 @@
               <onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(2002)</onclick>
               <visible>[Container.Content(artists) | Container.Content(albums)] + !Skin.HasSetting(Disable.Shelf3DView)</visible>
             </item>
+            <!-- Shift -->
             <item>
               <label>$LOCALIZE[31079]</label>
               <onclick>Container.SetViewMode(57)</onclick>
@@ -402,7 +403,7 @@
               <onclick condition="IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(9050)</onclick>
               <onclick condition="!IsEmpty(Window(Home).Property(OptionsMenu))">Control.SetFocus(2002)</onclick>
               <visible>Window.IsActive(videos)</visible>
-              <visible>[[Container.Content(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | Container.Content(tvshows) | Container.Content(seasons)] + !Skin.HasSetting(Disable.ShiftView)</visible>
+              <visible>[Container.PlexContent(movies) | [Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)] | Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + !Skin.HasSetting(Disable.ShiftView)</visible>
             </item>
             <item>
               <label>$LOCALIZE[31079]</label>
@@ -1343,7 +1344,7 @@
           <label>Style</label>
           <label2>[COLOR $VAR[Colour_ThemeColourVar]]$VAR[ShiftStyle][/COLOR]</label2>
           <onclick>Skin.ToggleSetting(Shift.Flat)</onclick>
-          <enable>[!IsEmpty(Skin.String(57.Movies.InfoPanel)) + Container.PlexContent(movies)] | [!IsEmpty(Skin.String(57.TVShows.InfoPanel)) + Container.PlexContent(tvshows)] | [!IsEmpty(Skin.String(57.Seasons.InfoPanel)) + Container.PlexContent(seasons)]</enable>
+          <enable>[!IsEmpty(Skin.String(57.Movies.InfoPanel)) + Container.PlexContent(movies)] | [!IsEmpty(Skin.String(57.Movies.InfoPanel)) + Container.PlexContent(homemovies) + Skin.HasSetting(Advanced.PortraitHomeVideos)] | [!IsEmpty(Skin.String(57.TVShows.InfoPanel)) + Container.PlexContent(tvshows)] | [!IsEmpty(Skin.String(57.Seasons.InfoPanel)) + Container.PlexContent(seasons)]</enable>
           <visible>Control.IsVisible(57)</visible>
         </control>
         <!-- Toggle Infopanel 601 -->
