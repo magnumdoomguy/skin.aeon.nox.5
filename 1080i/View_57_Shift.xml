@@ -120,9 +120,21 @@
 			<width>200</width>
 			<height>275</height>
       <aspectratio scalediffuse="false">scale</aspectratio>
-			<texture background="true">$INFO[ListItem.Art(smallThumb)]</texture>
+			<texture background="true" fallback="defaultmovies.png">$INFO[ListItem.Art(smallThumb)]</texture>
       <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
 			<bordersize>20</bordersize>
+      <visible>ListItem.Type(movie)</visible>
+		</control>
+    <control type="image">
+			<posx>120</posx>
+			<posy>345</posy>
+			<width>200</width>
+			<height>275</height>
+      <aspectratio scalediffuse="false">scale</aspectratio>
+			<texture background="true" fallback="defaulttvshows.png">$INFO[ListItem.Art(smallThumb)]</texture>
+      <bordertexture border="20">thumbs/thumb_shadow.png</bordertexture>
+			<bordersize>20</bordersize>
+      <visible>ListItem.Type(show) | Container.PlexContent(seasons)</visible>
 		</control>
 		<control type="image">
 			<posx>140</posx>
@@ -167,15 +179,56 @@
       <colordiffuse>$VAR[Colour_ShiftWatchedStatusColourVar]</colordiffuse>
       <visible>Skin.HasSetting(Enable.Circles) + Skin.HasSetting(Enable.LowerCircles)</visible>
     </control>
+    <!-- Unwatched Episodes -->
     <control type="group">
-      <posx>30</posx>
-      <posy>170</posy>
-      <include condition="!Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+      <posx>153</posx>
+      <posy>376</posy>
+      <control type="group">
+        <visible>[Container.Content(tvshows) | Container.Content(seasons)] + IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + !Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)</visible>
+        <control type="image">
+          <width>27</width>
+          <height>27</height>
+          <aspectratio>keep</aspectratio>
+          <texture>circle.png</texture>
+        </control>
+        <control type="label">
+          <posx>13</posx>
+          <posy>1</posy>
+          <width>27</width>
+          <height>27</height>
+          <align>center</align>
+          <aligny>top</aligny>
+          <font>font9</font>
+          <textcolor>FF000000</textcolor>
+          <scroll>false</scroll>
+          <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+        </control>
+      </control>
     </control>
     <control type="group">
-      <posx>30</posx>
-      <posy>544</posy>
-      <include condition="Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)">UnwatchedIcon</include>
+      <posx>153</posx>
+      <posy>562</posy>
+      <control type="group">
+        <visible>[Container.Content(tvshows) | Container.Content(seasons)] + IntegerGreaterThan(ListItem.Property(UnWatchedEpisodes),0) + Skin.HasSetting(Enable.LowerCircles) + !Skin.HasSetting(Disable.UnwatchedIcon)</visible>
+        <control type="image">
+          <width>27</width>
+          <height>27</height>
+          <aspectratio>keep</aspectratio>
+          <texture>circle.png</texture>
+        </control>
+        <control type="label">
+          <posx>13</posx>
+          <posy>1</posy>
+          <width>27</width>
+          <height>27</height>
+          <align>center</align>
+          <aligny>top</aligny>
+          <font>font9</font>
+          <textcolor>FF000000</textcolor>
+          <scroll>false</scroll>
+          <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+        </control>
+      </control>
     </control>
 	</include>
   <include name="ShiftSquareThumbs">
