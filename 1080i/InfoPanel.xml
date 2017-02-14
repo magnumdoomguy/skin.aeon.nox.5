@@ -90,6 +90,7 @@
   <variable name="InfoPanel_Biography">
     <value condition="Control.IsVisible(52)">[COLOR $VAR[Colour_LandscapeThemeColourVar]]$LOCALIZE[21887]:[CR][/COLOR]$VAR[ArtistSummary]</value>
     <value condition="Control.IsVisible(54)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[21887]:[CR][/COLOR]$VAR[ArtistSummary]</value>
+    <value condition="Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[21887]:[CR][/COLOR]$VAR[ArtistSummary]</value>
   </variable>
   <!-- InfoPanel Label 1 -->
   <variable name="InfoPanel_Label1">
@@ -112,6 +113,7 @@
     <value condition="[Container.PlexContent(movies) | Container.PlexContent(episodes)] + Control.IsVisible(57) + IsEmpty(ListItem.Director)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31000]:[/COLOR][CR]$LOCALIZE[42539]</value>
 		<value condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Control.IsVisible(57) + !IsEmpty(ListItem.Genre)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</value>
     <value condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Control.IsVisible(57) + IsEmpty(ListItem.Genre)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$LOCALIZE[42199]</value>
+    <value condition="Container.PlexContent(albums) + Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]Album:[/COLOR][CR]$INFO[ListItem.Label]</value>
 	</variable>
   <!-- InfoPanel Label 2 -->
 	<variable name="InfoPanel_Label2">
@@ -134,6 +136,7 @@
 		<value condition="[Container.PlexContent(movies) | Container.PlexContent(episodes)] + Control.IsVisible(57) + IsEmpty(ListItem.Writer)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31001]:[/COLOR][CR]$LOCALIZE[42539]</value>
 		<value condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Control.IsVisible(57) + !IsEmpty(ListItem.Property(mediaTag-Studio))">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31019]:[/COLOR][CR]$INFO[ListItem.Property(mediaTag-Studio)]</value>
     <value condition="[Container.PlexContent(tvshows) | Container.PlexContent(seasons)] + Control.IsVisible(57) + IsEmpty(ListItem.Property(mediaTag-Studio))">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[31019]:[/COLOR][CR]$LOCALIZE[42539]</value>
+    <value condition="Container.PlexContent(albums) + Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]Artist:[/COLOR][CR]$INFO[ListItem.Artist]</value>
 	</variable>
   <!-- InfoPanel Label 3 -->
 	<variable name="InfoPanel_Label3">
@@ -152,7 +155,8 @@
     <value condition="[Container.PlexContent(movies) | Container.PlexContent(episodes)] + Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[DurationHrMinVar]</value>
 		<value condition="Container.PlexContent(tvshows) + Control.IsVisible(57)">[COLOR $VAR[Colour_ShowcaseThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.Episode]</value>
 		<value condition="Container.PlexContent(seasons) + Control.IsVisible(57) + !ListItem.Type(directory)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[20360]:[/COLOR][CR]$INFO[ListItem.Episode]</value>
-    <value condition="Container.PlexContent(seasons) + Control.IsVisible(57) + ListItem.Type(directory)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</value>	
+    <value condition="Container.PlexContent(seasons) + Control.IsVisible(57) + ListItem.Type(directory)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</value>
+    <value condition="Container.PlexContent(albums) + Control.IsVisible(57) + !IsEmpty(ListItem.Genre)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[515]:[/COLOR][CR]$INFO[ListItem.Genre]</value>
 	</variable>
   <!-- InfoPanel Label 4 -->
 	<variable name="InfoPanel_Label4">
@@ -168,7 +172,8 @@
     <!-- Shift View -->
     <value condition="Container.PlexContent(movies) + Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[345]:[/COLOR][CR]$VAR[Year]</value>
 		<value condition="Container.Content(tvshows) + Control.IsVisible(57)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</value>
-		<value condition="Container.Content(seasons) + Control.IsVisible(57) + !ListItem.Type(directory)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</value>    
+		<value condition="Container.Content(seasons) + Control.IsVisible(57) + !ListItem.Type(directory)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[16101]:[/COLOR][CR]$INFO[ListItem.Property(UnWatchedEpisodes)]</value>
+    <value condition="Container.PlexContent(albums) + Control.IsVisible(57) + !IsEmpty(ListItem.Year)">[COLOR $VAR[Colour_ShiftThemeColourVar]]$LOCALIZE[562]:[/COLOR][CR]$VAR[Year]</value>
 	</variable>
   <!-- InfoPanel Label 5 -->
 	<variable name="InfoPanel_Label5">
@@ -202,9 +207,11 @@
   </variable>
   <!-- Music InfoPanel Value -->
   <variable name="InfoPanel_Music">
+    <value condition="Control.IsVisible(52) + Container.PlexContent(artists)">$INFO[Skin.String(52.Artists.InfoPanel)]</value>
     <value condition="Control.IsVisible(54) + Container.PlexContent(albums)">$INFO[Skin.String(54.Albums.InfoPanel)]</value>
     <value condition="Control.IsVisible(54) + Container.PlexContent(artists)">$INFO[Skin.String(54.Artists.InfoPanel)]</value>
-    <value condition="Control.IsVisible(52) + Container.PlexContent(artists)">$INFO[Skin.String(52.Artists.InfoPanel)]</value>
+    <value condition="Control.IsVisible(57) + Container.PlexContent(albums)">$INFO[Skin.String(57.Albums.InfoPanel)]</value>
+    <value condition="Control.IsVisible(57) + Container.PlexContent(artists)">$INFO[Skin.String(57.Artists.InfoPanel)]</value>
   </variable>
   <!-- Landscape InfoPanel Setting -->
   <variable name="InfoPanel_Landscape">
@@ -268,7 +275,13 @@
     <value condition="Container.PlexContent(tvshows) + String.IsEqual(Skin.String(57.TVShows.InfoPanel),4)">Skin.Reset(57.TVShows.InfoPanel)</value>
     <value condition="Container.PlexContent(seasons) + IsEmpty(Skin.String(57.Seasons.InfoPanel))">Skin.SetString(57.Seasons.InfoPanel,3)</value>
     <value condition="Container.PlexContent(seasons) + String.IsEqual(Skin.String(57.Seasons.InfoPanel),3)">Skin.SetString(57.Seasons.InfoPanel,4)</value>
-    <value condition="Container.PlexContent(seasons) + String.IsEqual(Skin.String(57.Seasons.InfoPanel),4)">Skin.Reset(57.Seasons.InfoPanel)</value>
+    <value condition="Container.PlexContent(seasons) + String.IsEqual(Skin.String(57.Seasons.InfoPanel),4)">Skin.Reset(57.Seasons.InfoPanel)</value>    
+    <value condition="Container.PlexContent(artists) + IsEmpty(Skin.String(57.Artists.InfoPanel))">Skin.SetString(57.Artists.InfoPanel,3)</value>
+    <value condition="Container.PlexContent(artists) + String.IsEqual(Skin.String(57.Artists.InfoPanel),3)">Skin.SetString(57.Artists.InfoPanel,4)</value>
+    <value condition="Container.PlexContent(artists) + String.IsEqual(Skin.String(57.Artists.InfoPanel),4)">Skin.Reset(57.Artists.InfoPanel)</value>
+    <value condition="Container.PlexContent(albums) + IsEmpty(Skin.String(57.Albums.InfoPanel))">Skin.SetString(57.Albums.InfoPanel,3)</value>
+    <value condition="Container.PlexContent(albums) + String.IsEqual(Skin.String(57.Albums.InfoPanel),3)">Skin.SetString(57.Albums.InfoPanel,4)</value>
+    <value condition="Container.PlexContent(albums) + String.IsEqual(Skin.String(57.Albums.InfoPanel),4)">Skin.Reset(57.Albums.InfoPanel)</value>
   </variable>
   <!-- BannerPlex InfoPanel Setting -->
   <variable name="InfoPanel_BannerPlex">
@@ -1387,7 +1400,7 @@
   <!-- ShowCase Music InfoPanel -->
   <include name="ShowCaseMusicInfoPanel">
     <control type="group" id="12001">
-      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory) + ![Control.IsVisible(54) + Skin.HasSetting(ShowCase.Flat)] + ![Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)]</visible>
+      <visible>!IsEmpty(Control.GetLabel(4420)) + Control.IsVisible(4420) + !ListItem.Type(directory) + ![Control.IsVisible(52) + Skin.HasSetting(Landscape.Flat)] + ![Control.IsVisible(54) + Skin.HasSetting(ShowCase.Flat)] + ![Control.IsVisible(57) + Skin.HasSetting(Shift.Flat)]</visible>
       <animation effect="slide" start="0,0" end="0,20" time="100" tween="cubic" condition="Container.Content(albums) + Control.IsVisible(54)">Conditional</animation>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">VisibleChange</animation>
       <animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
@@ -1411,7 +1424,7 @@
         <texture border="40">listpanel_back.png</texture>
       </control>
       <control type="group">
-        <visible>String.IsEqual(Control.GetLabel(4420),1)</visible>
+        <visible>String.IsEqual(Control.GetLabel(4420),1) | String.IsEqual(Control.GetLabel(4420),3)</visible>
         <include>SettingsFadeEffect</include>
         <control type="grouplist">
           <posx>137</posx>
@@ -1468,7 +1481,7 @@
           <width>2</width>
           <height>179</height>
           <texture border="1">separator3.png</texture>
-          <visible>!Container.Content(artists) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Year)</visible>
+          <visible>!Container.PlexContent(artists) + !IsEmpty(ListItem.Genre) + !IsEmpty(ListItem.Year)</visible>
         </control>
         <control type="image">
           <posx>623</posx>
@@ -1476,7 +1489,7 @@
           <width>2</width>
           <height>89</height>
           <texture border="1">separator3.png</texture>
-          <visible>!Container.Content(artists) + [IsEmpty(ListItem.Genre) | IsEmpty(ListItem.Year)]</visible>
+          <visible>!Container.PlexContent(artists) + [IsEmpty(ListItem.Genre) | IsEmpty(ListItem.Year)]</visible>
         </control>
         <!-- Review -->
         <control type="textbox">
@@ -1489,7 +1502,7 @@
           <align>left</align>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <include>ShowCaseInfoPanelButtonsValues</include>
-          <visible>Container.Content(albums)</visible>
+          <visible>Container.PlexContent(albums)</visible>
         </control>
         <!-- Biography -->
         <control type="textbox">
@@ -1502,7 +1515,7 @@
           <align>left</align>
           <autoscroll time="3000" delay="6000" repeat="5000">Skin.HasSetting(Enable.AutoScroll)</autoscroll>
           <include>ShowCaseInfoPanelButtonsValues</include>
-          <visible>Container.Content(artists)</visible>
+          <visible>Container.PlexContent(artists)</visible>
         </control>
         <!-- Separator -->
         <control type="image">
@@ -1525,7 +1538,7 @@
         </control>
       </control>
       <control type="group">
-        <visible>String.IsEqual(Control.GetLabel(4420),2)</visible>
+        <visible>String.IsEqual(Control.GetLabel(4420),2) | String.IsEqual(Control.GetLabel(4420),4)</visible>
         <include>SettingsFadeEffect</include>
         <control type="grouplist">
 					<posx>137</posx>
@@ -1633,7 +1646,8 @@
 				<animation effect="slide" start="0,0" end="0,-1080" time="720" tween="cubic">Hidden</animation>
 				<animation effect="slide" start="0,-1200" end="0,0" time="720" tween="cubic">WindowOpen</animation>
 				<animation effect="slide" end="0,-1200" start="0,0" time="720" tween="cubic">WindowClose</animation>
-        <animation effect="slide" start="0,0" end="0,200" time="720" tween="cubic" condition="Control.IsVisible(57) + Skin.HasSetting(Shift.SmallPosters)">Conditional</animation>
+        <animation effect="slide" start="0,0" end="0,200" time="720" tween="cubic" condition="Control.IsVisible(57) + Skin.HasSetting(Shift.SmallPosters) + ![Container.PlexContent(artists) | Container.PlexContent(albums)]">Conditional</animation>
+        <animation effect="slide" start="0,0" end="0,120" time="720" tween="cubic" condition="Control.IsVisible(57) + [Container.PlexContent(artists) | Container.PlexContent(albums)]">Conditional</animation>
 				<control type="group">
 					<visible>String.IsEqual(Control.GetLabel(4420),1)</visible>
 					<include>SettingsFadeAnimation</include>
@@ -1791,7 +1805,16 @@
 						<control type="button">
 							<label>$VAR[InfoPanel_Genre]</label>
               <width>640</width>
-							<include>FlatInfoPanelButtonsValues</include>
+							<height>90</height>
+              <width>500</width>
+              <textoffsetx>15</textoffsetx>
+              <aligny>top</aligny>
+              <font>font14</font>
+              <textcolor>white2</textcolor>
+              <focusedcolor>white2</focusedcolor>
+              <texturefocus />
+              <texturenofocus />
+              <onclick>noop</onclick>
 						</control>
 						<control type="button">
 							<label>$VAR[InfoPanel_Year]</label>
@@ -2205,29 +2228,23 @@
 						</control>
           </control>
           <control type="grouplist">
+            <visible>!Container.PlexContent(homemovies)</visible>
             <posx>501</posx>
 						<posy>50</posy>
             <orientation>vertical</orientation>						
             <control type="button">
               <label>$VAR[InfoPanel_Label3]</label>
-              <include>FlatInfoPanelButtonsValues</include>
-              <visible>!Container.PlexContent(homemovies)</visible>
+              <width>620</width>
+              <include>FlatInfoPanelButtonsValues</include>              
             </control>
 						<control type="button">
 							<posx>501</posx>
 							<label>$VAR[InfoPanel_Label4]</label>
 							<include>FlatInfoPanelButtonsValues</include>
-              <visible>!Container.PlexContent(homemovies)</visible>
 						</control>
-						<!--<control type="button">
-							<posx>752</posx>
-							<label>$VAR[InfoPanel_Label5]</label>
-							<include>FlatInfoPanelButtonsValues</include>
-              <visible>!Container.PlexContent(movies) + !Container.PlexContent(homemovies)</visible>
-						</control>-->
           </control>
           <control type="group">
-            <visible>!Container.PlexContent(homemovies)</visible>
+            <visible>!Container.PlexContent(homemovies) + !Container.PlexContent(albums)</visible>
             <posx>752</posx>
             <posy>140</posy>
             <!-- User Rating -->
@@ -2331,7 +2348,7 @@
 						<posy>50</posy>
 						<control type="button">
 							<label>$VAR[InfoPanel_Label1]</label>
-              <width>500</width>
+              <width>550</width>
 							<include>FlatInfoPanelButtonsValues</include>
 						</control>
 						<control type="button">
@@ -2346,8 +2363,16 @@
 						<posy>50</posy>
 						<control type="button">
 							<label>$VAR[InfoPanel_Genre]</label>
-              <width>640</width>
-							<include>FlatInfoPanelButtonsValues</include>
+              <height>90</height>
+              <width>500</width>
+              <textoffsetx>15</textoffsetx>
+              <aligny>top</aligny>
+              <font>font14</font>
+              <textcolor>white2</textcolor>
+              <focusedcolor>white2</focusedcolor>
+              <texturefocus>-</texturefocus>
+              <texturenofocus>-</texturenofocus>
+              <onclick>noop</onclick>
 						</control>
 						<control type="button">
 							<label>$VAR[InfoPanel_Year]</label>
@@ -2406,6 +2431,7 @@
 					</control>
           <!-- Biography -->
           <control type="textbox">
+            <animation effect="slide" start="0,0" end="0,-35" time="720" tween="cubic" condition="Control.IsVisible(57)">Conditional</animation>
 						<label>$VAR[InfoPanel_Biography]</label>
 						<posy>70</posy>
 						<posx>20</posx>
@@ -2418,6 +2444,7 @@
             <visible>!Skin.HasSetting(General.SmallPlotText) + Container.PlexContent(artists)</visible>
 					</control>
           <control type="textbox">
+            <animation effect="slide" start="0,0" end="0,-35" time="720" tween="cubic" condition="Control.IsVisible(57)">Conditional</animation>
 						<label>$VAR[InfoPanel_Biography]</label>
 						<posy>70</posy>
 						<posx>20</posx>
@@ -2435,7 +2462,7 @@
 						<posy>247</posy>
 						<posx>20</posx>
 						<width>1090</width>
-						<height>220</height>
+						<height>180</height>
 						<font>font14_textbox2</font>
             <align>left</align>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
@@ -2447,7 +2474,7 @@
 						<posy>247</posy>
 						<posx>20</posx>
 						<width>1090</width>
-						<height>220</height>
+						<height>180</height>
 						<font>font14_textbox2_showcaseflatfanart</font>
             <align>left</align>
 						<autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
