@@ -518,14 +518,23 @@
     <value condition="Control.IsVisible(11003)">[UPPERCASE]$INFO[Container(11003).ListItem.Label][/UPPERCASE]</value>
     <value>[UPPERCASE]$INFO[Container(11000).ListItem.Label][/UPPERCASE]</value>
   </variable>
-  <!-- Widgets Plot -->
-  <variable name="Widgets_Plot">
-    <value condition="Container.ListItem.Type(episode) + !IsEmpty(Container.ListItem.Plot) + Skin.HasSetting(Disable.UnwatchedPlot) + [Container.ListItem.Status(unwatched) | Container.ListItem.Status(inprogress)]">$LOCALIZE[42277]</value>
-    <value condition="!IsEmpty(Container.ListItem.Plot)">$INFO[Container.ListItem.Plot]</value>
-    <value condition="Container.ListItem.Type(episode)">$LOCALIZE[42129].[CR]$LOCALIZE[32104].</value>
+  <!-- Recently Added Plot -->
+  <variable name="RecentlyAdded_Plot">
+    <value condition="IsEmpty(Container(11000).ListItem.Plot) + Container(11000).ListItem.Type(episode)">$LOCALIZE[42129].[CR]$LOCALIZE[32104].</value>
     <!-- STRING: There is no description available for this episode. You can add one for it in the Media Manager. -->
-    <value>$LOCALIZE[42128].[CR]$LOCALIZE[32104].</value>
+    <value condition="IsEmpty(Container(11000).ListItem.Plot)">$LOCALIZE[42128].[CR]$LOCALIZE[32104].</value>
     <!-- STRING: There is no description available for this video. You can add one for it in the Media Manager. -->
+    <value condition="Skin.HasSetting(Disable.UnwatchedPlot) + Container(11000).ListItem.Type(episode) + [Container(11000).ListItem.Status(unwatched) | Container(11001).ListItem.Status(inprogress)]">$LOCALIZE[42277]</value>
+    <value>$INFO[Container(11000).ListItem.Plot]</value>
+  </variable>
+  <!-- On Deck Plot -->
+  <variable name="OnDeck_Plot">
+    <value condition="IsEmpty(Container(11001).ListItem.Plot) + Container(11001).ListItem.Type(episode)">$LOCALIZE[42129].[CR]$LOCALIZE[32104].</value>
+    <!-- STRING: There is no description available for this episode. You can add one for it in the Media Manager. -->
+    <value condition="IsEmpty(Container(11001).ListItem.Plot)">$LOCALIZE[42128].[CR]$LOCALIZE[32104].</value>
+    <!-- STRING: There is no description available for this video. You can add one for it in the Media Manager. -->
+    <value condition="Skin.HasSetting(Disable.UnwatchedPlot) + Container(11001).ListItem.Type(episode) + [Container(11001).ListItem.Status(unwatched) | Container(11001).ListItem.Status(inprogress)]">$LOCALIZE[42277]</value>
+    <value>$INFO[Container(11001).ListItem.Plot]</value>
   </variable>
   <!-- Widgets Music Review -->
   <variable name="Widgets_MusicReview">
