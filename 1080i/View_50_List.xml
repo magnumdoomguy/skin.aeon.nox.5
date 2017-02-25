@@ -713,10 +713,10 @@
         <control type="list" id="50">
           <include>ListCommonValues</include>
           <!-- Movies -->
-          <itemlayout height="120" width="1140" condition="[[Container.PlexContent(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
+          <itemlayout height="120" width="1140" condition="[ListItem.Type(movie) | [ListItem.Type(homemovie) + Skin.HasSetting(Advanced.PortraitHomeVideos)] + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
             <include>ListMovie_NF</include>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="[[Container.PlexContent(movies) + !String.IsEqual(Skin.String(Filter.Type),homemovies)] | [[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + Skin.HasSetting(Advanced.PortraitHomeVideos)]] + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
+          <focusedlayout height="120" width="1140" condition="[ListItem.Type(movie) | [ListItem.Type(homemovie) + Skin.HasSetting(Advanced.PortraitHomeVideos)] + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
             <include>ListMovie_FO</include>
           </focusedlayout>
           <!-- Episodes -->
@@ -727,7 +727,7 @@
             <include>ListEpisode_FO</include>
           </focusedlayout>
           <!-- TV Shows -->
-          <itemlayout height="120" width="1140" condition="Container.PlexContent(tvshows) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="ListItem.Type(tvshow) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Series Poster -->
             <control type="image">
@@ -809,7 +809,7 @@
               </control>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="Container.PlexContent(tvshows) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(tvshow) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Highlight -->
             <include>ListHighlight</include>
@@ -894,7 +894,7 @@
             </control>
           </focusedlayout>
           <!-- Seasons -->
-          <itemlayout height="120" width="1140" condition="Container.PlexContent(seasons) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="ListItem.Type(season) + !Container.PlexContent(channel) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Season Poster -->
             <control type="image">
@@ -958,7 +958,7 @@
               </control>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="Container.PlexContent(seasons) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(season) + !Container.PlexContent(channel) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Highlight -->
             <include>ListHighlight</include>
@@ -1024,7 +1024,7 @@
             </control>
           </focusedlayout>
           <!-- Channel -->
-          <itemlayout height="120" width="1140" condition="Container.PlexContent(channel) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="Container.PlexContent(channel) + [ListItem.Type(directory) | ListItem.Type(video) | ListItem.Type(season)] + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Thumbnail / Icon -->
             <control type="image">
@@ -1050,7 +1050,7 @@
               <label>$INFO[ListItem.Label]</label>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="Container.PlexContent(channel) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="Container.PlexContent(channel) + [ListItem.Type(directory) | ListItem.Type(video) | ListItem.Type(season)] + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <include>ListHighlight</include>
             <!-- Thumbnail / Icon -->
@@ -1077,7 +1077,7 @@
             </control>
           </focusedlayout>
           <!-- Home Videos -->
-          <itemlayout height="120" width="1140" condition="[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + !Skin.HasSetting(Advanced.PortraitHomeVideos) + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
+          <itemlayout height="120" width="1140" condition="ListItem.Type(homemovie) + !Skin.HasSetting(Advanced.PortraitHomeVideos) + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
             <include>ListSeparator</include>
             <!-- Landscape Thumbnail -->
             <control type="image">
@@ -1169,7 +1169,7 @@
             <!-- Watched Status -->
             <include>ListWatchedStatus</include>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="[Container.PlexContent(homemovies) | String.IsEqual(Skin.String(Filter.Type),homemovies)] + !Skin.HasSetting(Advanced.PortraitHomeVideos) + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(homemovie) + !Skin.HasSetting(Advanced.PortraitHomeVideos) + !Skin.HasSetting(List.Slimlist) + !Container.PlexContent(secondary)">
             <include>ListSeparator</include>
             <include>ListHighlight</include>
             <!-- Landscape Thumbnail -->
@@ -1259,7 +1259,7 @@
             <!-- Watched Status -->
             <include>ListWatchedStatus</include>
           </focusedlayout>
-          <itemlayout height="120" width="1140" condition="Container.PlexContent(clips) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="ListItem.Type(clip) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Landscape Thumbnail -->
             <control type="image">
@@ -1301,7 +1301,7 @@
             <!-- Watched Status -->
             <include>ListWatchedStatus</include>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="Container.PlexContent(clips) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(clip) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <include>ListHighlight</include>
             <!-- Landscape Thumbnail -->
@@ -1344,7 +1344,7 @@
             <include>ListWatchedStatus</include>
           </focusedlayout>
           <!-- Directories -->
-          <itemlayout height="120" width="1140" condition="!Container.PlexContent(folders) + ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="!Container.PlexContent(folders) + !Container.PlexContent(channel) + ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Folder Icon -->
             <control type="image">
@@ -1408,7 +1408,7 @@
               <visible>String.IsEqual(Container.SecondTitle,By Director) | String.IsEqual(Container.SecondTitle,By Starring Actor)</visible>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="!Container.PlexContent(folders) + ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="!Container.PlexContent(folders) + !Container.PlexContent(channel) + ListItem.Type(directory) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Highlight -->
             <include>ListHighlight</include>
@@ -1679,7 +1679,7 @@
               <selectedcolor>$VAR[Colour_ListThemeColourVar]</selectedcolor>
             </control>
           </focusedlayout>
-          <itemlayout height="120" width="1140" condition="Container.Content(artists) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="ListItem.Type(artist) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Artist Thumb -->
             <control type="image">
@@ -1693,7 +1693,7 @@
               <textcolor>grey2</textcolor>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="Container.Content(artists) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(artist) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <include>ListHighlight</include>
             <!-- Artist Thumb -->
@@ -1707,7 +1707,7 @@
               <textcolor>white</textcolor>
             </control>
           </focusedlayout>
-          <itemlayout height="120" width="1140" condition="Container.Content(albums) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="ListItem.Type(album) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <!-- Album Cover -->
             <control type="image">
@@ -1749,7 +1749,7 @@
               <visible>!IsEmpty(ListItem.Title)</visible>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="Container.Content(albums) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(album) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <include>ListHighlight</include>
             <!-- Album Cover -->
@@ -1937,7 +1937,7 @@
               <visible>!IsEmpty(ListItem.Title)</visible>
             </control>
           </focusedlayout>
-          <itemlayout height="120" width="1140" condition="Container.Content(photos) + !Skin.HasSetting(List.Slimlist)">
+          <itemlayout height="120" width="1140" condition="ListItem.Type(photo) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <control type="image">
               <posx>15</posx>
@@ -2022,7 +2022,7 @@
               <label>$INFO[ListItem.PictureResolution]</label>
             </control>
           </itemlayout>
-          <focusedlayout height="120" width="1140" condition="Container.Content(photos) + !Skin.HasSetting(List.Slimlist)">
+          <focusedlayout height="120" width="1140" condition="ListItem.Type(photo) + !Skin.HasSetting(List.Slimlist)">
             <include>ListSeparator</include>
             <include>ListHighlight</include>
             <!-- Photo Thumbnail -->
@@ -2191,7 +2191,7 @@
       <control type="group">
         <posx>1296</posx>
         <posy>155</posy>
-        <visible>!ListItem.Type(episode) + ![ListItem.Type(directory) | ListItem.Type(video) | [ListItem.Type(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] | ListItem.Type(clip) | ListItem.Type(artist) | ListItem.Type(album) | ListItem.Type(photo)]</visible> <!-- Container.PlexContent(channels) | Container.PlexContent(channel) | -->
+        <visible>!ListItem.Type(episode) + ![ListItem.Type(directory) | ListItem.Type(video) | [ListItem.Type(homemovie) | String.IsEqual(Skin.String(Filter.Type),homemovies)] | ListItem.Type(clip) | ListItem.Type(artist) | ListItem.Type(album) | ListItem.Type(photo) | [Container.PlexContent(channel) + ListItem.Type(season)]]</visible> <!-- Container.PlexContent(channels) | Container.PlexContent(channel) | -->
         <!-- Genre Icons -->
         <control type="image">
           <width>570</width>
@@ -2278,7 +2278,7 @@
       <control type="group">
         <posx>1296</posx>
         <posy>155</posy>
-        <visible>ListItem.Type(video)</visible>
+        <visible>ListItem.Type(video) | [Container.PlexContent(channel) + ListItem.Type(season)]</visible>
         <control type="image">
           <width>570</width>
           <height>835</height>
